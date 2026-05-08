@@ -1,0 +1,1 @@
+export { VerseOfTheDay } from "./index";
