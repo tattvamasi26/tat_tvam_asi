@@ -52,7 +52,7 @@ export function VerseOfTheDay({ verse }: { verse: Verse }) {
         <div className="mt-12">
           <p className="font-sans text-xs tracking-widest text-gold">{verse.source}</p>
           {verse.chapter && <p className="font-sans text-xs text-ash/40 mt-1">{verse.chapter}</p>}
-          {verse.is_mahavakya && <Badge variant="gold" classname="mt-4">Mahavakya</Badge>}
+          {verse.is_mahavakya && <Badge variant="gold">Mahavakya</Badge>}
         </div>
       </div>
     </Section>
