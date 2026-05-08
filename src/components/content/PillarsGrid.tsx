@@ -1,1 +1,0 @@
-export { PillarsGrid } from "./index";

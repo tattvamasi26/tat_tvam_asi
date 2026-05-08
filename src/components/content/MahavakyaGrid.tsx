@@ -1,1 +1,0 @@
-export { MahavakyaGrid } from "./index";

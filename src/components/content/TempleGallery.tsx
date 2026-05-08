@@ -1,1 +1,0 @@
-export { TempleGallery } from "./index";
