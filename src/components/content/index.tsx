@@ -1,138 +1,151 @@
 import Link from "next/link";
-import { Section, SectionHeader, VerseCard, Badge } from "@/components/ui";
 import type { Verse, Temple, Teacher } from "@/types";
 
-// ── Four Pillars ─────────────────────────────
+const S = {
+  label: { fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.3em", textTransform:"uppercase" as const, color:"var(--saffron)", marginBottom:"1.2rem" },
+  title: { fontFamily:"var(--serif)", fontSize:"clamp(2rem,4vw,3.2rem)", fontWeight:300, color:"var(--text0)", lineHeight:1.15 },
+  divider: { width:40, height:1, background:"var(--gold-dim)", margin:"1.8rem 0" },
+  body: { fontFamily:"var(--sans)", fontSize:"0.92rem", color:"var(--text1)", lineHeight:2, fontWeight:300 },
+};
+
 const pillars = [
-  { title: "Advaita Vedanta", sub: "The Path of Non-Duality", desc: "The teaching that Atman and Brahman are one — individual self not separate from infinite consciousness.", icon: "☽", href: "/concepts", accent: "saffron" },
-  { title: "Shruti & Smriti", sub: "Vedas and Upanishads",   desc: "The revealed scriptures and remembered tradition that have guided seekers across millennia.", icon: "✦", href: "/verses",   accent: "gold" },
-  { title: "The Living Stones", sub: "Glory of Hindu Temples", desc: "Temples are cosmograms — sacred maps of the universe in stone, encoding cosmology and the divine.", icon: "◈", href: "/temples", accent: "saffron" },
-  { title: "Dharma & Daily Life", sub: "Sanatana Dharma", desc: "The eternal order present in every breath, every action, every relationship.", icon: "◉", href: "/concepts?category=dharma", accent: "gold" },
+  { title:"Advaita Vedanta", sub:"The Path of Non-Duality", desc:"The teaching that Atman and Brahman are one — individual self not separate from infinite consciousness.", icon:"☽", href:"/concepts", accent:"saffron" },
+  { title:"Shruti & Smriti", sub:"Vedas and Upanishads", desc:"The revealed scriptures and remembered tradition that have guided seekers across millennia.", icon:"✦", href:"/verses", accent:"gold" },
+  { title:"The Living Stones", sub:"Glory of Hindu Temples", desc:"Temples are cosmograms — sacred maps of the universe in stone, encoding cosmology and the divine.", icon:"◈", href:"/temples", accent:"saffron" },
+  { title:"Dharma & Daily Life", sub:"Sanatana Dharma", desc:"The eternal order present in every breath, every action, every relationship.", icon:"◉", href:"/concepts", accent:"gold" },
 ];
 
 export function PillarsGrid() {
   return (
-    <Section className="bg-[#0a0a0a]">
-      <SectionHeader label="Four Pillars" title="Rivers of Wisdom" />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#2a2218]">
-        {pillars.map((p) => (
-          <Link key={p.title} href={p.href} className="group bg-obsidian hover:bg-[#141414] transition-all duration-300 hover:-translate-y-px block p-10 relative overflow-hidden">
-            <div className={`absolute top-0 left-0 w-0.5 h-full ${p.accent==="saffron"?"bg-saffron/60":"bg-gold/60"}`}/>
-            <p className={`text-3xl mb-5 ${p.accent==="saffron"?"text-saffron":"text-gold"}`}>{p.icon}</p>
-            <h3 className="font-serif text-2xl font-light text-parchment">{p.title}</h3>
-            <p className={`font-sans text-xs tracking-widest uppercase mt-1 ${p.accent==="saffron"?"text-saffron":"text-gold"}`}>{p.sub}</p>
-            <div className="w-10 h-px bg-[#3a2e1a] my-5"/>
-            <p className="font-sans text-sm text-ash/60 leading-relaxed">{p.desc}</p>
-            <div className="flex items-center gap-2 mt-6">
-              <span className={`font-sans text-xs tracking-widest uppercase ${p.accent==="saffron"?"text-saffron":"text-gold"}`}>Explore</span>
-              <div className={`flex-1 h-px ${p.accent==="saffron"?"bg-saffron/20":"bg-gold/20"}`}/>
-            </div>
-          </Link>
-        ))}
+    <section style={{ padding:"120px 2rem", background:"var(--bg0)" }}>
+      <div style={{ maxWidth:1100, margin:"0 auto" }}>
+        <p style={S.label}>Four Pillars</p>
+        <h2 style={S.title}>Rivers of Wisdom</h2>
+        <div style={S.divider}/>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))", gap:2, marginTop:"3rem", background:"var(--bg3)" }}>
+          {pillars.map(p => (
+            <Link key={p.title} href={p.href} className="pillar-link"
+              style={{ padding:"2.8rem 2.2rem", position:"relative" }}>
+              <div style={{ position:"absolute", top:0, left:0, width:2, height:"100%", background:p.accent==="saffron"?"var(--saffron)":"var(--gold)", opacity:0.7 }}/>
+              <p style={{ fontSize:"1.6rem", color:p.accent==="saffron"?"var(--saffron)":"var(--gold)", marginBottom:"1.5rem" }}>{p.icon}</p>
+              <h3 style={{ fontFamily:"var(--serif)", fontSize:"1.6rem", fontWeight:300, color:"var(--text0)", marginBottom:"0.3rem" }}>{p.title}</h3>
+              <p style={{ fontFamily:"var(--sans)", fontSize:"0.63rem", letterSpacing:"0.2em", textTransform:"uppercase", color:p.accent==="saffron"?"var(--saffron)":"var(--gold)", marginBottom:"1.2rem" }}>{p.sub}</p>
+              <div style={{ width:32, height:1, background:"var(--bg3)", marginBottom:"1.2rem" }}/>
+              <p style={{ fontFamily:"var(--sans)", fontSize:"0.87rem", color:"var(--text1)", lineHeight:1.9, fontWeight:300 }}>{p.desc}</p>
+            </Link>
+          ))}
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
 
-// ── Verse of the Day ──────────────────────────
 export function VerseOfTheDay({ verse }: { verse: Verse }) {
   return (
-    <Section className="bg-[#111010]">
-      <div className="max-w-3xl mx-auto text-center">
-        <p className="label-saffron mb-12">Verse of the Day</p>
-        <div className="relative px-8 md:px-16">
-          <span className="absolute -top-6 left-2 font-serif text-7xl text-gold/15 leading-none select-none">"</span>
-          <p className="devanagari text-3xl md:text-4xl text-parchment leading-relaxed mb-4">{verse.sanskrit}</p>
-          <p className="font-sans text-xs italic text-ash/50 tracking-widest mb-8">{verse.transliteration}</p>
-          <p className="font-serif text-xl md:text-2xl italic font-light text-parchment/80 leading-relaxed">
-            "{verse.translation_en}"
-          </p>
-          <span className="absolute -bottom-8 right-2 font-serif text-7xl text-gold/15 leading-none select-none">"</span>
+    <section style={{ padding:"100px 2rem", background:"var(--bg1)" }}>
+      <div style={{ maxWidth:720, margin:"0 auto", textAlign:"center" }}>
+        <p style={{ ...S.label, textAlign:"center" }}>Verse of the Day</p>
+        <div style={{ position:"relative", padding:"0 2rem", marginTop:"3rem" }}>
+          <span style={{ position:"absolute", top:"-1rem", left:"0.5rem", fontFamily:"var(--serif)", fontSize:"5rem", color:"var(--gold)", opacity:0.12, lineHeight:1 }}>"</span>
+          <p style={{ fontFamily:"var(--serif)", fontSize:"clamp(1.8rem,4vw,2.8rem)", fontWeight:300, color:"var(--text0)", letterSpacing:"0.04em", lineHeight:1.5, marginBottom:"0.6rem" }}>{verse.sanskrit}</p>
+          <p style={{ fontFamily:"var(--sans)", fontSize:"0.78rem", letterSpacing:"0.15em", color:"var(--text2)", fontStyle:"italic", marginBottom:"1.5rem" }}>{verse.transliteration}</p>
+          <p style={{ fontFamily:"var(--serif)", fontSize:"1.25rem", fontStyle:"italic", fontWeight:300, color:"var(--text0)", opacity:0.8, lineHeight:1.7, marginBottom:"1.5rem" }}>"{verse.translation_en}"</p>
         </div>
-        <div className="mt-12">
-          <p className="font-sans text-xs tracking-widest text-gold">{verse.source}</p>
-          {verse.chapter && <p className="font-sans text-xs text-ash/40 mt-1">{verse.chapter}</p>}
-          {verse.is_mahavakya && <Badge variant="gold">Mahavakya</Badge>}
-        </div>
+        <p style={{ fontFamily:"var(--sans)", fontSize:"0.68rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--gold)", marginTop:"1.5rem" }}>{verse.source}{verse.chapter ? ` · ${verse.chapter}` : ""}</p>
+        {verse.is_mahavakya && (
+          <span style={{ display:"inline-block", marginTop:"1rem", fontFamily:"var(--sans)", fontSize:"0.6rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--gold)", border:"1px solid rgba(200,150,62,0.3)", padding:"0.3rem 1rem" }}>Mahavakya</span>
+        )}
       </div>
-    </Section>
+    </section>
   );
 }
 
-// ── Mahavakyas Grid ───────────────────────────
 export function MahavakyaGrid({ verses }: { verses: Verse[] }) {
-  if (verses.length === 0) return null;
+  if (!verses.length) return null;
   return (
-    <Section>
-      <SectionHeader label="The Four Great Sayings" title="Mahavakyas" subtitle="The four great declarations of the Upanishads — each a complete teaching on the identity of Atman and Brahman." />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[#2a2218]">
-        {verses.map((v) => (
-          <div key={v.id} className="bg-obsidian"><VerseCard verse={v} /></div>
-        ))}
+    <section style={{ padding:"120px 2rem", background:"var(--bg0)" }}>
+      <div style={{ maxWidth:1100, margin:"0 auto" }}>
+        <div style={{ textAlign:"center", marginBottom:"4rem" }}>
+          <p style={{ ...S.label, textAlign:"center" }}>The Four Great Sayings</p>
+          <h2 style={{ ...S.title, textAlign:"center" }}>Mahavakyas</h2>
+          <div style={{ ...S.divider, margin:"1.8rem auto" }}/>
+          <p style={{ ...S.body, maxWidth:520, margin:"0 auto" }}>Each Mahavakya is a complete teaching. Not a statement to believe — a pointer toward the recognition that ends seeking.</p>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))", gap:2, background:"var(--bg3)" }}>
+          {verses.map(v => (
+            <Link key={v.id} href={`/verses/${v.id}`} className="card-link card-link-dark"
+              style={{ padding:"2.5rem" }}>
+              <p style={{ fontFamily:"var(--serif)", fontSize:"2rem", fontWeight:300, color:"var(--text0)", marginBottom:"0.4rem", letterSpacing:"0.04em" }}>{v.sanskrit}</p>
+              <p style={{ fontFamily:"var(--sans)", fontSize:"0.7rem", letterSpacing:"0.15em", color:"var(--text2)", fontStyle:"italic", marginBottom:"0.8rem" }}>{v.transliteration}</p>
+              <p style={{ fontFamily:"var(--serif)", fontSize:"1.1rem", fontStyle:"italic", fontWeight:300, color:"var(--gold)", marginBottom:"0.6rem" }}>{v.translation_en}</p>
+              <p style={{ fontFamily:"var(--sans)", fontSize:"0.63rem", letterSpacing:"0.18em", textTransform:"uppercase", color:"var(--text2)" }}>{v.source}</p>
+            </Link>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"2.5rem" }}>
+          <Link href="/verses" style={{ fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--text2)", textDecoration:"none" }}>Explore all verses →</Link>
+        </div>
       </div>
-      <div className="text-center mt-10">
-        <Link href="/verses" className="font-sans text-xs tracking-widest uppercase text-ash/50 hover:text-saffron transition-colors">
-          Explore all verses →
-        </Link>
-      </div>
-    </Section>
+    </section>
   );
 }
 
-// ── Temple Gallery ────────────────────────────
 export function TempleGallery({ temples }: { temples: Temple[] }) {
-  if (temples.length === 0) return null;
+  if (!temples.length) return null;
   return (
-    <Section className="bg-[#0a0a0a]">
-      <SectionHeader label="Deva-Sthanam" title="The Living Stones" subtitle="Hindu temples are not buildings — they are the universe crystallised in stone." />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#2a2218]">
-        {temples.slice(0,3).map((t, i) => (
-          <Link key={t.id} href={`/temples/${t.slug}`} className={`group bg-obsidian hover:bg-[#141414] transition-colors block ${i===0?"md:col-span-2":""}`}>
-            <div className={`bg-[#1a1510] flex items-center justify-center relative overflow-hidden ${i===0?"aspect-[16/9]":"aspect-square"}`}>
-              <span className="font-serif text-6xl text-gold/10">◈</span>
-              <div className="absolute inset-0 bg-gradient-to-t from-obsidian/80 to-transparent"/>
-              <div className="absolute bottom-0 left-0 right-0 p-5">
-                <p className="font-serif text-lg text-parchment">{t.name}</p>
-                <p className="font-sans text-xs text-gold tracking-widest uppercase mt-1">{t.location} · {t.dynasty}</p>
+    <section style={{ padding:"120px 2rem", background:"var(--bg1)" }}>
+      <div style={{ maxWidth:1100, margin:"0 auto" }}>
+        <p style={S.label}>Deva-Sthanam</p>
+        <h2 style={S.title}>The Living Stones</h2>
+        <div style={S.divider}/>
+        <p style={{ ...S.body, maxWidth:580, marginBottom:"3rem" }}>Hindu temples are not buildings — they are the universe crystallised in stone, so you may walk through it and remember what you are.</p>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:2, background:"var(--bg3)" }}>
+          {temples.slice(0,3).map(t => (
+            <Link key={t.id} href={`/temples/${t.slug}`} className="card-link card-link-mid">
+              <div style={{ background:"var(--bg2)", aspectRatio:"4/3", display:"flex", alignItems:"center", justifyContent:"center" }}>
+                <span style={{ fontFamily:"var(--serif)", fontSize:"3rem", color:"var(--gold)", opacity:0.1 }}>◈</span>
               </div>
-            </div>
-          </Link>
-        ))}
+              <div style={{ padding:"1.8rem" }}>
+                <p style={{ fontFamily:"var(--serif)", fontSize:"1.1rem", fontWeight:300, color:"var(--text0)", marginBottom:"0.3rem" }}>{t.name}</p>
+                <p style={{ fontFamily:"var(--sans)", fontSize:"0.63rem", letterSpacing:"0.15em", textTransform:"uppercase", color:"var(--gold-dim)", marginBottom:"0.5rem" }}>{t.location} · {t.dynasty}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"2.5rem" }}>
+          <Link href="/temples" style={{ fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--text2)", textDecoration:"none" }}>Explore all temples →</Link>
+        </div>
       </div>
-      <div className="text-center mt-10">
-        <Link href="/temples" className="font-sans text-xs tracking-widest uppercase text-ash/50 hover:text-saffron transition-colors">
-          Explore all temples →
-        </Link>
-      </div>
-    </Section>
+    </section>
   );
 }
 
-// ── Teacher Row ───────────────────────────────
 export function TeacherRow({ teachers }: { teachers: Teacher[] }) {
-  if (teachers.length === 0) return null;
+  if (!teachers.length) return null;
   return (
-    <Section>
-      <SectionHeader label="Guru Parampara" title="The Acharyas" subtitle="The unbroken lineage of teachers who kept the lamp of Advaita burning." />
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[#2a2218]">
-        {teachers.map((t) => (
-          <Link key={t.id} href={`/teachers/${t.slug}`} className="group bg-obsidian hover:bg-[#141414] transition-colors block p-8">
-            <p className="font-sans text-xs tracking-widest text-saffron uppercase mb-4">{t.era}</p>
-            <h3 className="font-serif text-2xl font-light text-parchment group-hover:text-gold transition-colors">{t.name}</h3>
-            {t.name_sanskrit && <p className="devanagari text-lg text-ash/40 mt-1">{t.name_sanskrit}</p>}
-            {t.quote && (
-              <blockquote className="font-serif text-sm italic text-ash/50 mt-5 border-l border-gold/20 pl-4 leading-relaxed line-clamp-3">
-                "{t.quote}"
-              </blockquote>
-            )}
-          </Link>
-        ))}
+    <section style={{ padding:"120px 2rem", background:"var(--bg0)" }}>
+      <div style={{ maxWidth:1100, margin:"0 auto" }}>
+        <div style={{ textAlign:"center", marginBottom:"4rem" }}>
+          <p style={{ ...S.label, textAlign:"center" }}>Guru Parampara</p>
+          <h2 style={{ ...S.title, textAlign:"center" }}>The Acharyas</h2>
+          <div style={{ ...S.divider, margin:"1.8rem auto" }}/>
+          <p style={{ ...S.body, maxWidth:500, margin:"0 auto", textAlign:"center" }}>The flame of Advaita passes from teacher to student across millennia. Each Acharya — a lamp lighting the next without diminishing.</p>
+        </div>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(280px,1fr))", gap:2, background:"var(--bg3)" }}>
+          {teachers.map(t => (
+            <Link key={t.id} href={`/teachers/${t.slug}`} className="card-link card-link-dark"
+              style={{ padding:"2.5rem 2rem" }}>
+              <p style={{ fontFamily:"var(--sans)", fontSize:"0.62rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--saffron)", marginBottom:"1rem" }}>{t.era}</p>
+              <p style={{ fontFamily:"var(--serif)", fontSize:"1.6rem", fontWeight:300, color:"var(--text0)", marginBottom:"0.2rem" }}>{t.name}</p>
+              {t.name_sanskrit && <p style={{ fontFamily:"var(--serif)", fontSize:"1rem", color:"var(--text2)", marginBottom:"1.2rem" }}>{t.name_sanskrit}</p>}
+              {t.quote && <blockquote style={{ fontFamily:"var(--serif)", fontSize:"0.95rem", fontStyle:"italic", color:"var(--text1)", borderLeft:"1px solid rgba(200,150,62,0.2)", paddingLeft:"1rem", lineHeight:1.7 }}>"{t.quote}"</blockquote>}
+            </Link>
+          ))}
+        </div>
+        <div style={{ textAlign:"center", marginTop:"2.5rem" }}>
+          <Link href="/teachers" style={{ fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--text2)", textDecoration:"none" }}>All teachers →</Link>
+        </div>
       </div>
-      <div className="text-center mt-10">
-        <Link href="/teachers" className="font-sans text-xs tracking-widest uppercase text-ash/50 hover:text-saffron transition-colors">
-          All teachers →
-        </Link>
-      </div>
-    </Section>
+    </section>
   );
 }
