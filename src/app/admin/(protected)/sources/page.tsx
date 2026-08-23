@@ -17,9 +17,9 @@ const COPYRIGHT_STATUSES = [
 
 const inputStyle: CSSProperties = {
   padding: "0.6rem 0.9rem",
-  background: "var(--bg0)",
+  background: "var(--bg-0)",
   border: "1px solid rgba(200,150,62,0.2)",
-  color: "var(--text0)",
+  color: "var(--ink-0)",
   fontFamily: "var(--sans)",
   fontSize: "0.85rem",
 };
@@ -41,13 +41,13 @@ export default async function SourcesAdminPage() {
   const sources = await getAllSources();
 
   return (
-    <div style={{ maxWidth: 900, margin: "0 auto", color: "var(--text0)", fontFamily: "var(--sans)" }}>
+    <div style={{ maxWidth: 900, margin: "0 auto", color: "var(--ink-0)", fontFamily: "var(--sans)" }}>
       <h1 style={{ fontFamily: "var(--serif)", fontSize: "2rem", fontWeight: 300, marginBottom: "0.5rem" }}>Sources</h1>
-      <p style={{ color: "var(--text2)", fontSize: "0.85rem", marginBottom: "2rem" }}>
+      <p style={{ color: "var(--ink-2)", fontSize: "0.85rem", marginBottom: "2rem" }}>
         Every translation and commentary entry must cite one of these before it can be saved.
       </p>
 
-      <form action={createSource} style={{ display: "grid", gap: "0.75rem", marginBottom: "3rem", padding: "1.5rem", background: "var(--bg1)", border: "1px solid rgba(200,150,62,0.15)" }}>
+      <form action={createSource} style={{ display: "grid", gap: "0.75rem", marginBottom: "3rem", padding: "1.5rem", background: "var(--bg-1)", border: "1px solid rgba(200,150,62,0.15)" }}>
         <input name="work_title" placeholder="Work title (required)" required style={inputStyle} />
         <input name="translator_author" placeholder="Translator / author" style={inputStyle} />
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
@@ -70,24 +70,24 @@ export default async function SourcesAdminPage() {
         </button>
       </form>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg-3)" }}>
         {sources.map((s) => (
-          <div key={s.id} style={{ background: "var(--bg0)", padding: "1.25rem 1.5rem", display: "flex", justifyContent: "space-between", gap: "1rem", alignItems: "center" }}>
+          <div key={s.id} style={{ background: "var(--bg-0)", padding: "1.25rem 1.5rem", display: "flex", justifyContent: "space-between", gap: "1rem", alignItems: "center" }}>
             <div>
               <p style={{ fontWeight: 500 }}>{s.work_title}</p>
-              <p style={{ fontSize: "0.8rem", color: "var(--text2)" }}>
+              <p style={{ fontSize: "0.8rem", color: "var(--ink-2)" }}>
                 {s.translator_author ?? "—"}
                 {s.publication_year ? ` · ${s.publication_year}` : ""} · {s.copyright_status}
               </p>
             </div>
             <form action={deleteSource.bind(null, s.id)}>
-              <button type="submit" style={{ ...buttonStyle, background: "transparent", color: "var(--text2)", border: "1px solid rgba(200,150,62,0.3)" }}>
+              <button type="submit" style={{ ...buttonStyle, background: "transparent", color: "var(--ink-2)", border: "1px solid rgba(200,150,62,0.3)" }}>
                 Delete
               </button>
             </form>
           </div>
         ))}
-        {sources.length === 0 && <p style={{ padding: "1.5rem", color: "var(--text2)" }}>No sources yet.</p>}
+        {sources.length === 0 && <p style={{ padding: "1.5rem", color: "var(--ink-2)" }}>No sources yet.</p>}
       </div>
     </div>
   );

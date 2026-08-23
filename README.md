@@ -88,6 +88,79 @@ npm run dev
 
 Open http://localhost:3000 for the site, or http://localhost:3000/admin to sign in and manage content.
 
+**Supabase is not required to run the site.** All content currently lives in
+`src/lib/seed/` and is read through `src/lib/data.ts`, so `npm run dev` works on a
+clean checkout with no database and no `.env.local`. Supabase is needed only for
+`/admin` and for the seeding step below.
+
+---
+
+## Languages
+
+The site reads in **Kannada, English and Hindi**, and switching language changes the
+content as well as the interface.
+
+- **How it works.** The chosen locale is stored in a cookie (`tta_locale`) rather than
+  the URL, so every page stays a Server Component and arrives already translated.
+  `src/i18n/server.ts` reads it; the switcher in the header writes it and calls
+  `router.refresh()`.
+- **Deep links.** `?lang=kn` (or `en` / `hi`) on any URL sets the language and redirects
+  to the clean address — useful for sharing a page in a particular language.
+- **UI vs content.** Interface strings live in `src/i18n/ui.ts`. Content lives in the
+  seed data as `*_translations` rows keyed by `(parent_id, language)` — the same shape
+  the database uses.
+- **Adding a language** is a data change, not an engineering one: add the code to
+  `LOCALES` in `src/i18n/config.ts`, add its column to `src/i18n/ui.ts`, and add
+  translation rows. There are no per-language code paths anywhere in the app.
+
+Devanagari and Kannada each load their own Noto face, and Sanskrit mūla text always
+renders in Devanagari regardless of the interface language — it is scripture, not UI.
+
+---
+
+## Content data
+
+`src/lib/seed/*.ts` holds the content as **rows that mirror `supabase/schema.sql`
+column-for-column**, so it can be pushed to Postgres without transformation:
+
+| File | Tables |
+|---|---|
+| `sources.ts` | `sources` — the citation registry |
+| `texts.ts` | `texts`, `text_translations` |
+| `verses.ts` | `verses`, `translations`, `verse_notes` |
+| `teachers.ts` | `teachers`, `teacher_translations` |
+| `temples.ts` | `temples`, `temple_translations` |
+| `concepts.ts` | `concepts`, `concept_translations` |
+| `mathas.ts` | `mathas`, `matha_translations` |
+
+Language-neutral facts (slug, Sanskrit, dates, coordinates, image URL and credit) stay
+on the base row. Anything a human would translate lives in a `*_translations` row.
+
+Every translation row carries a `source_id`, and `translations.source_id` is `NOT NULL`
+in the schema — an uncited translation cannot be stored. Content inherited from the
+pre-database site points at the `site-editorial` source and renders with a visible
+"not yet cited" notice rather than being passed off as scholarship.
+
+### Pushing the local data to Supabase
+
+Once Steps 2–4 are done:
+
+```bash
+npm install          # first time only, for the tsx runner
+npm run seed         # insert missing rows, leave existing ones alone
+npm run seed -- --reset   # delete seeded content first, then insert
+```
+
+The script reads the same files the site reads, so there is one source of truth. Local
+rows use readable ids (`te-shankara`); Postgres uses uuid defaults, so the script inserts
+each parent, reads back its uuid, and rewrites child foreign keys before inserting them.
+
+### Images
+
+Photographs are hotlinked from Wikimedia Commons with the author and licence stored
+alongside the URL (`image_credit`), and rendered as a credit line under each image.
+`next.config.js` allows `upload.wikimedia.org`; add a host there before using it.
+
 ---
 
 ## Step 6 — Deploy to Vercel (free)

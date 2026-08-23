@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "tsx scripts/seed-supabase.ts"
   },
   "dependencies": {
     "next": "14.2.35",
@@ -28,6 +29,7 @@
     "postcss": "^8",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
-    "eslint-config-next": "14.2.35"
+    "eslint-config-next": "14.2.35",
+    "tsx": "^4.19.1"
   }
 }

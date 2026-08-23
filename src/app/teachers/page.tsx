@@ -1,44 +1,71 @@
-import { getAllTeachers } from "@/lib/db";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/server";
+import { getAllTeachers } from "@/lib/data";
 
-export const metadata: Metadata = { title: "Acharyas & Teachers" };
+export const metadata: Metadata = { title: "Acharyas" };
 
-export default async function TeachersPage() {
-  const TEACHERS = await getAllTeachers();
+export default function TeachersPage() {
+  const { locale, t } = getTranslations();
+  const teachers = getAllTeachers(locale);
+
   return (
-    <div style={{ background: "var(--bg0)", minHeight: "100vh", paddingTop: 100 }}>
-      <div style={{ borderBottom: "1px solid rgba(200,150,62,0.1)", padding: "60px 2rem 50px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Guru Parampara</p>
-          <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: 300, color: "var(--text0)" }}>Acharyas & Teachers</h1>
-          <p style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", fontStyle: "italic", color: "var(--gold)", marginTop: "1rem" }}>"The flame passes from teacher to student across millennia — each a lamp lighting the next without diminishing."</p>
+    <>
+      <section className="pagehead">
+        <div className="shell pagehead-inner">
+          <p className="eyebrow">{t.navTeachers}</p>
+          <h1 className="title">{t.teachersTitle}</h1>
+          <p className="lede">{t.teachersBlurb}</p>
         </div>
-      </div>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 2rem" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)" }}>
-          {TEACHERS.map(t => (
-            <Link key={t.id} href={`/teachers/${t.slug}`}
-              style={{ display: "block", background: "var(--bg0)", padding: "3rem 2.5rem", textDecoration: "none", transition: "background 0.4s" }}
-              className="hover-bg0-to-bg2">
-              <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "3rem", alignItems: "start" }}>
-                <div>
-                  <p style={{ fontFamily: "var(--sans)", fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--saffron)" }}>{t.era}</p>
-                  <p style={{ fontFamily: "var(--sans)", fontSize: "0.72rem", color: "var(--text2)", marginTop: "0.3rem" }}>{t.tradition}</p>
-                </div>
-                <div>
-                  <div style={{ display: "flex", alignItems: "baseline", gap: "1rem", marginBottom: "1rem" }}>
-                    <h3 style={{ fontFamily: "var(--serif)", fontSize: "2rem", fontWeight: 300, color: "var(--text0)" }}>{t.name}</h3>
-                    <span style={{ fontFamily: "var(--serif)", fontSize: "1.2rem", color: "var(--text2)" }}>{t.name_sanskrit}</span>
-                  </div>
-                  <p style={{ fontFamily: "var(--sans)", fontSize: "0.88rem", color: "var(--text1)", lineHeight: 1.9, fontWeight: 300, marginBottom: "1rem" }}>{t.biography?.slice(0, 200)}...</p>
-                  {t.quote && <blockquote style={{ fontFamily: "var(--serif)", fontSize: "0.95rem", fontStyle: "italic", color: "var(--text1)", borderLeft: "1px solid rgba(200,150,62,0.2)", paddingLeft: "1rem", lineHeight: 1.7 }}>"{t.quote.slice(0, 120)}…"</blockquote>}
-                </div>
+      </section>
+
+      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
+        <div style={{ display: "grid", gap: "clamp(2.5rem, 6vw, 5rem)" }}>
+          {teachers.map((p, i) => (
+            <article key={p.id} className="feature" data-flip={i % 2 === 1 ? "" : undefined}>
+              <div className="feature-media">
+                {p.imageUrl && (
+                  <Image
+                    src={p.imageUrl}
+                    alt={p.name}
+                    fill
+                    sizes="(max-width: 860px) 100vw, 50vw"
+                    style={{ objectFit: "cover", objectPosition: "top center" }}
+                  />
+                )}
               </div>
-            </Link>
+
+              <div className="feature-body">
+                <p className="eyebrow">{p.era}</p>
+                <h2 className="title" style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>
+                  {p.name}
+                </h2>
+                <p className="sanskrit" style={{ fontSize: "1.4rem" }}>{p.nameSanskrit}</p>
+
+                <p className="prose clamp-4">{p.biography}</p>
+
+                <blockquote className="lede" style={{ borderLeft: "2px solid var(--gold-dim)", paddingLeft: "1.1rem" }}>
+                  {p.quote}
+                </blockquote>
+
+                <div className="chips">
+                  <span className="chip chip-gold">{p.tradition}</span>
+                  {p.keyWorks.slice(0, 3).map((w) => (
+                    <span key={w} className="chip">{w}</span>
+                  ))}
+                </div>
+
+                <Link href={`/teachers/${p.slug}`} className="btn-ghost" style={{ marginTop: "0.5rem" }}>
+                  {t.readMore} →
+                </Link>
+
+                {p.imageCredit && <p className="credit">{t.imageCredit}: {p.imageCredit}</p>}
+              </div>
+            </article>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

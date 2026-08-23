@@ -1,47 +1,78 @@
-import { getAllMathas } from "@/lib/db";
+import Image from "next/image";
+import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/server";
+import { getAllMathas } from "@/lib/data";
 
-export const metadata = { title: "The Four Mathas" };
+export const metadata: Metadata = { title: "The Four Mathas" };
 
-function capitalize(s: string) {
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
+export default function MathasPage() {
+  const { locale, t } = getTranslations();
+  const mathas = getAllMathas(locale);
 
-export default async function MathasPage() {
-  const rows = await getAllMathas();
-  const mathas = rows.map(m => ({
-    dir: capitalize(m.direction),
-    name: m.name,
-    loc: `${m.location}, ${m.state}`,
-    vakya: m.mahavakya,
-    veda: capitalize(m.veda),
-    deity: m.presiding_deity,
-    desc: m.description,
-  }));
+  const dirLabel: Record<string, string> = {
+    north: t.dirNorth,
+    south: t.dirSouth,
+    east: t.dirEast,
+    west: t.dirWest,
+  };
+
   return (
-    <div style={{ background:"var(--bg0)", minHeight:"100vh", paddingTop:100 }}>
-      <div style={{ maxWidth:1000, margin:"0 auto", padding:"60px 2rem" }}>
-        <p style={{ fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.3em", textTransform:"uppercase", color:"var(--saffron)", marginBottom:"1.2rem" }}>Guru Parampara</p>
-        <h1 style={{ fontFamily:"var(--serif)", fontSize:"clamp(2.5rem,5vw,4rem)", fontWeight:300, color:"var(--text0)", marginBottom:"1rem" }}>The Four Amnaya Mathas</h1>
-        <p style={{ fontFamily:"var(--serif)", fontSize:"1.05rem", fontStyle:"italic", color:"var(--gold)", marginBottom:"1rem" }}>"Shankara did not write books and leave. He built four hearths at the four directions of India — so the flame would never go out."</p>
-        <div style={{ width:40, height:1, background:"var(--gold-dim)", margin:"2rem 0 4rem" }}/>
-        <div style={{ display:"flex", flexDirection:"column", gap:2, background:"var(--bg3)" }}>
-          {mathas.map(m => (
-            <div key={m.dir} style={{ background:"var(--bg0)", padding:"3rem 2.5rem", display:"grid", gridTemplateColumns:"120px 1fr", gap:"2rem", transition:"background 0.4s" }}
-              className="hover-bg0-to-bg2">
-              <div>
-                <p style={{ fontFamily:"var(--sans)", fontSize:"0.62rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--saffron)" }}>{m.dir}</p>
-                <p style={{ fontFamily:"var(--sans)", fontSize:"0.72rem", color:"var(--text2)", marginTop:"0.4rem" }}>{m.veda}</p>
+    <>
+      <section className="pagehead">
+        <div className="shell pagehead-inner">
+          <p className="eyebrow">{t.navMathas}</p>
+          <h1 className="title">{t.mathasTitle}</h1>
+          <p className="lede">{t.mathasBlurb}</p>
+        </div>
+      </section>
+
+      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
+        <div className="grid-cards">
+          {mathas.map((m) => (
+            <article key={m.id} className="card">
+              {m.imageUrl && (
+                <div className="card-img">
+                  <Image
+                    src={m.imageUrl}
+                    alt={m.name}
+                    fill
+                    sizes="(max-width: 700px) 100vw, 50vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              )}
+              <div className="card-body">
+                <span className="chip chip-gold">{dirLabel[m.direction] ?? m.direction}</span>
+                <h2 className="card-title" style={{ marginTop: "0.3rem" }}>{m.name}</h2>
+                <p className="meta">
+                  {m.location} · {m.state}
+                </p>
+
+                <p className="card-text" style={{ marginTop: "0.7rem" }}>{m.description}</p>
+
+                <div className="factbar" style={{ marginTop: "1.2rem", borderBottom: 0 }}>
+                  <div className="fact" style={{ paddingInline: 0 }}>
+                    <div className="fact-label">{t.labelVeda}</div>
+                    <div className="fact-value" style={{ fontSize: "0.95rem" }}>{m.veda}</div>
+                  </div>
+                  <div className="fact" style={{ borderRight: 0, paddingInline: "0 0 0 1rem" }}>
+                    <div className="fact-label">{t.labelMahavakya}</div>
+                    <div className="fact-value" style={{ fontSize: "0.95rem" }}>{m.mahavakya}</div>
+                  </div>
+                </div>
+
+                <div className="card-foot">
+                  <span className="meta">
+                    {t.labelDeity}: {m.presidingDeity}
+                  </span>
+                </div>
+
+                {m.imageCredit && <p className="credit">{t.imageCredit}: {m.imageCredit}</p>}
               </div>
-              <div>
-                <h3 style={{ fontFamily:"var(--serif)", fontSize:"1.5rem", fontWeight:300, color:"var(--text0)", marginBottom:"0.3rem" }}>{m.name}</h3>
-                <p style={{ fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.15em", textTransform:"uppercase", color:"var(--gold-dim)", marginBottom:"0.8rem" }}>{m.loc}</p>
-                <p style={{ fontFamily:"var(--serif)", fontSize:"1rem", fontStyle:"italic", color:"var(--gold)", marginBottom:"0.8rem" }}>{m.vakya}</p>
-                <p style={{ fontFamily:"var(--sans)", fontSize:"0.87rem", color:"var(--text1)", lineHeight:1.9, fontWeight:300 }}>{m.desc}</p>
-              </div>
-            </div>
+            </article>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

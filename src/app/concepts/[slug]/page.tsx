@@ -1,55 +1,61 @@
-import { getAllConcepts, getConceptBySlug } from "@/lib/db";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/server";
+import { getConceptBySlug, getAllConcepts } from "@/lib/data";
 
-export async function generateStaticParams() {
-  const concepts = await getAllConcepts();
-  return concepts.map(c => ({ slug: c.slug }));
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const c = getConceptBySlug(params.slug, "en");
+  return c ? { title: c.term, description: c.definition } : {};
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const c = await getConceptBySlug(params.slug);
-  if (!c) return { title: "Concept Not Found" };
-  return { title: `${c.term_en} — ${c.term_iast}`, description: c.definition };
-}
+export default function ConceptDetailPage({ params }: { params: { slug: string } }) {
+  const { locale, t } = getTranslations();
+  const c = getConceptBySlug(params.slug, locale);
+  if (!c) notFound();
 
-export default async function ConceptPage({ params }: { params: { slug: string } }) {
-  const concept = await getConceptBySlug(params.slug);
-  if (!concept) notFound();
+  const all = getAllConcepts(locale);
+  const related = c.relatedConcepts
+    .map((slug) => all.find((x) => x.slug === slug))
+    .filter((x): x is NonNullable<typeof x> => Boolean(x));
 
   return (
-    <div style={{ background: "var(--bg0)", minHeight: "100vh", paddingTop: 100 }}>
-      <div style={{ borderBottom: "1px solid rgba(200,150,62,0.1)", padding: "60px 2rem 50px" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <Link href="/concepts" style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)", textDecoration: "none", display: "block", marginBottom: "2rem" }}>← All Concepts</Link>
-          <p style={{ fontFamily: "var(--serif)", fontSize: "clamp(3rem,8vw,6rem)", fontWeight: 300, color: "var(--gold)", opacity: 0.8, lineHeight: 1, marginBottom: "0.5rem" }}>{concept.term_sanskrit}</p>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.85rem", letterSpacing: "0.2em", color: "var(--text2)", fontStyle: "italic", marginBottom: "0.8rem" }}>{concept.term_iast}</p>
-          <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.8rem,3vw,2.5rem)", fontWeight: 300, color: "var(--text0)" }}>{concept.term_en}</h1>
+    <>
+      <section className="pagehead">
+        <div className="shell-narrow pagehead-inner">
+          <Link href="/concepts" className="btn-ghost" style={{ marginBottom: "0.5rem" }}>
+            ← {t.conceptsTitle}
+          </Link>
+          <p className="sanskrit" style={{ fontSize: "clamp(2.6rem, 7vw, 4.5rem)" }}>{c.termSanskrit}</p>
+          <h1 className="title">{c.term}</h1>
+          <p className="subtitle translit">{c.termIast}</p>
         </div>
-      </div>
-      <div style={{ maxWidth: 800, margin: "0 auto", padding: "60px 2rem" }}>
-        <p style={{ fontFamily: "var(--serif)", fontSize: "1.3rem", fontStyle: "italic", fontWeight: 300, color: "var(--gold)", lineHeight: 1.6, borderLeft: "2px solid rgba(200,150,62,0.4)", paddingLeft: "1.5rem", marginBottom: "3rem" }}>{concept.definition}</p>
-        {concept.detailed_explanation && (
-          <>
-            <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1.2rem" }}>In Depth</p>
-            <p style={{ fontFamily: "var(--sans)", fontSize: "0.95rem", color: "var(--text1)", lineHeight: 2, fontWeight: 300, marginBottom: "3rem" }}>{concept.detailed_explanation}</p>
-          </>
-        )}
-        {concept.related_concepts?.length > 0 && (
-          <>
-            <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1.2rem" }}>Related Concepts</p>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-              {concept.related_concepts.map(slug => (
-                <Link key={slug} href={`/concepts/${slug}`}
-                  style={{ fontFamily: "var(--sans)", fontSize: "0.7rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold)", border: "1px solid rgba(200,150,62,0.3)", padding: "0.4rem 1rem", textDecoration: "none" }}>
-                  {slug}
+      </section>
+
+      <section className="shell-narrow stack-lg" style={{ paddingTop: 0 }}>
+        <p className="eyebrow">{t.labelDefinition}</p>
+        <p className="lede" style={{ marginTop: "0.8rem", fontSize: "1.25rem", color: "var(--gold)" }}>
+          {c.definition}
+        </p>
+
+        <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />
+
+        <p className="prose" style={{ fontSize: "1.05rem" }}>{c.detailedExplanation}</p>
+
+        {related.length > 0 && (
+          <div style={{ marginTop: "3rem" }}>
+            <p className="eyebrow" style={{ marginBottom: "1rem" }}>{t.labelRelated}</p>
+            <div className="chips">
+              {related.map((r) => (
+                <Link key={r.slug} href={`/concepts/${r.slug}`} className="chip chip-gold" style={{ padding: "0.5rem 1rem" }}>
+                  <span className="deva">{r.termSanskrit}</span>
+                  <span style={{ color: "var(--ink-2)" }}>{r.term}</span>
                 </Link>
               ))}
             </div>
-          </>
+          </div>
         )}
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

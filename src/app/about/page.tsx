@@ -1,31 +1,81 @@
-export const metadata = { title: "About" };
+import Link from "next/link";
+import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/server";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "What Tat Tvam Asi is trying to be: a single, cited reference for the whole of Sanatana Dharma — texts, temples, teachers, practices and stotras.",
+};
 
 export default function AboutPage() {
+  const { t } = getTranslations();
+
+  const pillars = [
+    { title: t.versesTitle, body: t.versesBlurb },
+    { title: t.upanishadsTitle, body: t.upanishadsBlurb },
+    { title: t.teachersTitle, body: t.teachersBlurb },
+    { title: t.templesTitle, body: t.templesBlurb },
+    { title: t.conceptsTitle, body: t.conceptsBlurb },
+    { title: t.mathasTitle, body: t.mathasBlurb },
+  ];
+
   return (
-    <div style={{ background:"var(--bg0)", minHeight:"100vh", paddingTop:100 }}>
-      <div style={{ maxWidth:720, margin:"0 auto", padding:"80px 2rem" }}>
-        <p style={{ fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.3em", textTransform:"uppercase", color:"var(--saffron)", marginBottom:"1.2rem" }}>About</p>
-        <h1 style={{ fontFamily:"var(--serif)", fontSize:"clamp(2.5rem,5vw,4rem)", fontWeight:300, color:"var(--text0)", marginBottom:"2rem", lineHeight:1.1 }}>What This Place Is</h1>
-        <div style={{ width:40, height:1, background:"var(--gold-dim)", marginBottom:"3rem" }}/>
-        {[
-          ["This is not a website about Advaita Vedanta.", "It is an attempt to create a space where Advaita Vedanta can speak for itself. The distinction matters. A website about something keeps the subject at arm's length. A space for something invites direct encounter."],
-          ["The platform is called Tat Tvam Asi.", "Thou Art That. The teaching Uddalaka gave his son Shvetaketu in the forest of the Chandogya Upanishad — nine times, through nine analogies, until the recognition arose on its own. This site aspires to the same patience."],
-          ["Content grows like a tree, not a newspaper.", "New material is added slowly, deliberately, and only when it comes from understanding rather than information. The goal is not comprehensiveness. It is depth. One verse understood fully is worth more than a thousand listed."],
-          ["Everything here points in one direction.", "Inward. Not as an instruction to introspect, but as the natural movement of all genuine inquiry. The verses, the temples, the teachers, the concepts — they are fingers pointing at the same moon. This platform tries never to mistake itself for the moon."],
-        ].map(([heading, body]) => (
-          <div key={heading} style={{ marginBottom:"3rem" }}>
-            <h3 style={{ fontFamily:"var(--serif)", fontSize:"1.3rem", fontWeight:300, color:"var(--gold)", marginBottom:"0.8rem" }}>{heading}</h3>
-            <p style={{ fontFamily:"var(--sans)", fontSize:"0.92rem", color:"var(--text1)", lineHeight:2, fontWeight:300 }}>{body}</p>
-          </div>
-        ))}
-        <div style={{ marginTop:"4rem", background:"var(--bg1)", border:"1px solid rgba(200,150,62,0.1)", padding:"2.5rem" }}>
-          <p style={{ fontFamily:"var(--serif)", fontSize:"1.2rem", fontStyle:"italic", color:"var(--text0)", lineHeight:1.7, opacity:0.85 }}>
-            "When they leave — one thing stays. Not information. A question.<br/>
-            <em>Who is the one who was reading just now?</em><br/>
-            That question is the teaching. Everything else is pointing at it."
-          </p>
+    <>
+      <section className="pagehead">
+        <div className="shell-narrow pagehead-inner">
+          <p className="eyebrow">{t.navAbout}</p>
+          <h1 className="title">तत् त्वम् असि</h1>
+          <p className="lede">{t.footerTagline}</p>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section className="shell-narrow stack-lg" style={{ paddingTop: 0 }}>
+        <p className="prose" style={{ fontSize: "1.1rem", color: "var(--ink-0)" }}>
+          There is no single place that holds the whole of Sanatana Dharma — the Vedic corpus, the
+          Upanishads, the Gita, the bhashyas of every sampradaya, the temples and their history, the
+          practices and traditions, the stotras and their recitation. This is an attempt to build one,
+          incrementally and without an end date.
+        </p>
+
+        <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />
+
+        <p className="eyebrow">Citation before scale</p>
+        <p className="prose" style={{ marginTop: "0.9rem" }}>
+          A reference is only worth as much as its sources. Every translation and every commentary
+          entry must name where it came from — this is enforced in the database itself, not left to
+          discipline. Content inherited from earlier drafts is labelled as an uncited editorial
+          paraphrase until a properly attributed translation replaces it, rather than quietly passed
+          off as scholarship.
+        </p>
+
+        <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />
+
+        <p className="eyebrow">{t.language}</p>
+        <p className="prose" style={{ marginTop: "0.9rem" }}>
+          The site reads in Kannada, English and Hindi, and the switch changes the content, not only
+          the menus. Each language is a row in the database rather than a separate copy of the site,
+          so a fourth language is a data task and not an engineering one.
+        </p>
+
+        <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />
+
+        <p className="eyebrow">{t.explorePillars}</p>
+        <div className="grid-cards" style={{ marginTop: "1.5rem" }}>
+          {pillars.map((p) => (
+            <div key={p.title} className="card">
+              <div className="card-body">
+                <h3 className="card-title" style={{ fontSize: "1.2rem" }}>{p.title}</h3>
+                <p className="card-text">{p.body}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div style={{ marginTop: "3rem" }}>
+          <Link href="/verses" className="btn">{t.heroEnter}</Link>
+        </div>
+      </section>
+    </>
   );
 }

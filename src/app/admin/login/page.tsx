@@ -1,7 +1,8 @@
 "use client";
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { supabaseBrowser } from "@/lib/supabase-browser";
+import Link from "next/link";
+import { supabaseBrowser, isSupabaseConfiguredBrowser } from "@/lib/supabase-browser";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -9,6 +10,7 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const configured = isSupabaseConfiguredBrowser();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
@@ -26,19 +28,31 @@ export default function AdminLoginPage() {
   }
 
   return (
-    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg0)" }}>
+    <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg-0)" }}>
       <form
         onSubmit={handleSubmit}
-        style={{ width: 360, display: "flex", flexDirection: "column", gap: "1rem", padding: "2.5rem", background: "var(--bg1)", border: "1px solid rgba(200,150,62,0.2)" }}
+        style={{ width: 360, display: "flex", flexDirection: "column", gap: "1rem", padding: "2.5rem", background: "var(--bg-1)", border: "1px solid rgba(200,150,62,0.2)" }}
       >
-        <h1 style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", fontWeight: 300, color: "var(--text0)", marginBottom: "0.5rem" }}>Admin sign in</h1>
+        <h1 style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", fontWeight: 300, color: "var(--ink-0)", marginBottom: "0.5rem" }}>Admin sign in</h1>
+
+        {!configured && (
+          <div style={{ borderLeft: "2px solid var(--saffron)", paddingLeft: "0.9rem", marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", color: "var(--ink-2)", lineHeight: 1.6 }}>
+              Supabase is not configured yet, so sign-in will fail. The public site runs without it —
+              see README.md, Steps 2–4.
+            </p>
+            <Link href="/" style={{ fontFamily: "var(--sans)", fontSize: "0.75rem", color: "var(--gold)" }}>
+              ← Back to the site
+            </Link>
+          </div>
+        )}
         <input
           type="email"
           required
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={{ padding: "0.75rem 1rem", background: "var(--bg0)", border: "1px solid rgba(200,150,62,0.2)", color: "var(--text0)", fontFamily: "var(--sans)", fontSize: "0.85rem" }}
+          style={{ padding: "0.75rem 1rem", background: "var(--bg-0)", border: "1px solid rgba(200,150,62,0.2)", color: "var(--ink-0)", fontFamily: "var(--sans)", fontSize: "0.85rem" }}
         />
         <input
           type="password"
@@ -46,7 +60,7 @@ export default function AdminLoginPage() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          style={{ padding: "0.75rem 1rem", background: "var(--bg0)", border: "1px solid rgba(200,150,62,0.2)", color: "var(--text0)", fontFamily: "var(--sans)", fontSize: "0.85rem" }}
+          style={{ padding: "0.75rem 1rem", background: "var(--bg-0)", border: "1px solid rgba(200,150,62,0.2)", color: "var(--ink-0)", fontFamily: "var(--sans)", fontSize: "0.85rem" }}
         />
         {error && <p style={{ color: "var(--saffron)", fontSize: "0.8rem" }}>{error}</p>}
         <button

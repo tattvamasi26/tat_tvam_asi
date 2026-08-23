@@ -1,59 +1,74 @@
-import { getAllTemples, getTempleBySlug } from "@/lib/db";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/server";
+import { getTempleBySlug } from "@/lib/data";
 
-export async function generateStaticParams() {
-  const temples = await getAllTemples();
-  return temples.map(t => ({ slug: t.slug }));
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const tp = getTempleBySlug(params.slug, "en");
+  return tp ? { title: tp.name, description: tp.description } : {};
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const t = await getTempleBySlug(params.slug);
-  if (!t) return { title: "Temple Not Found" };
-  return { title: t.name, description: t.description };
-}
-
-export default async function TemplePage({ params }: { params: { slug: string } }) {
-  const temple = await getTempleBySlug(params.slug);
-  if (!temple) notFound();
+export default function TempleDetailPage({ params }: { params: { slug: string } }) {
+  const { locale, t } = getTranslations();
+  const tp = getTempleBySlug(params.slug, locale);
+  if (!tp) notFound();
 
   return (
-    <div style={{ background: "var(--bg0)", minHeight: "100vh", paddingTop: 100 }}>
-      <div style={{ borderBottom: "1px solid rgba(200,150,62,0.1)", padding: "60px 2rem 50px" }}>
-        <div style={{ maxWidth: 900, margin: "0 auto" }}>
-          <Link href="/temples" style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)", textDecoration: "none", display: "block", marginBottom: "2rem" }}>← All Temples</Link>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>{temple.architecture_style} · {temple.dynasty}</p>
-          <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(2.5rem,5vw,4.5rem)", fontWeight: 300, color: "var(--text0)", lineHeight: 1.1, marginBottom: "0.5rem" }}>{temple.name}</h1>
-          {temple.name_local && <p style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", color: "var(--text2)", marginBottom: "1rem" }}>{temple.name_local}</p>}
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.72rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold-dim)" }}>{temple.location}, {temple.state} · {temple.century_built}</p>
-        </div>
-      </div>
-      <div style={{ background: "var(--bg2)", aspectRatio: "21/9", maxHeight: 400, display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <span style={{ fontFamily: "var(--serif)", fontSize: "5rem", color: "var(--gold)", opacity: 0.08 }}>◈</span>
-      </div>
-      <div style={{ maxWidth: 900, margin: "0 auto", padding: "60px 2rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "4rem", alignItems: "start" }}>
-          <div>
-            <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>About this Temple</p>
-            <p style={{ fontFamily: "var(--sans)", fontSize: "0.95rem", color: "var(--text1)", lineHeight: 2, fontWeight: 300, marginBottom: "3rem" }}>{temple.description}</p>
-            {temple.significance && (
-              <>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Philosophical Significance</p>
-                <p style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", fontStyle: "italic", fontWeight: 300, color: "var(--text0)", lineHeight: 1.8, borderLeft: "2px solid rgba(200,150,62,0.3)", paddingLeft: "1.5rem" }}>{temple.significance}</p>
-              </>
-            )}
+    <>
+      <section className="hero" style={{ minHeight: "clamp(420px, 62vh, 640px)" }}>
+        {tp.imageUrl && (
+          <div className="hero-bg">
+            <Image src={tp.imageUrl} alt="" fill priority sizes="100vw" style={{ objectFit: "cover" }} />
           </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)" }}>
-            {[["Presiding Deity", temple.presiding_deity], ["Dynasty", temple.dynasty], ["Architecture", temple.architecture_style], ["Built", temple.century_built], ["Location", `${temple.location}, ${temple.state}`]].map(([label, value]) => (
-              <div key={label} style={{ background: "var(--bg1)", padding: "1.2rem 1.5rem" }}>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)", marginBottom: "0.3rem" }}>{label}</p>
-                <p style={{ fontFamily: "var(--serif)", fontSize: "1rem", fontWeight: 300, color: "var(--text0)" }}>{value}</p>
-              </div>
-            ))}
+        )}
+        <div className="shell hero-inner">
+          <p className="eyebrow">
+            {tp.location} · {tp.state}
+          </p>
+          <h1 className="display" style={{ fontSize: "clamp(2.2rem, 6vw, 4.2rem)" }}>
+            {tp.name}
+          </h1>
+          <p className="subtitle" style={{ color: "var(--gold)" }}>{tp.nameLocal}</p>
+        </div>
+      </section>
+
+      <section className="shell">
+        <div className="factbar">
+          <div className="fact">
+            <div className="fact-label">{t.labelDeity}</div>
+            <div className="fact-value">{tp.presidingDeity}</div>
+          </div>
+          <div className="fact">
+            <div className="fact-label">{t.labelDynasty}</div>
+            <div className="fact-value">{tp.dynasty}</div>
+          </div>
+          <div className="fact">
+            <div className="fact-label">{t.labelCentury}</div>
+            <div className="fact-value">{tp.centuryBuilt}</div>
+          </div>
+          <div className="fact">
+            <div className="fact-label">{t.labelArchitecture}</div>
+            <div className="fact-value">{tp.architectureStyle}</div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+
+      <section className="shell-narrow stack-lg">
+        <p className="prose" style={{ fontSize: "1.1rem", color: "var(--ink-0)" }}>{tp.description}</p>
+
+        <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />
+
+        <p className="eyebrow">{t.labelSignificance}</p>
+        <p className="prose" style={{ marginTop: "0.9rem" }}>{tp.significance}</p>
+
+        {tp.imageCredit && <p className="credit" style={{ marginTop: "2.5rem" }}>{t.imageCredit}: {tp.imageCredit}</p>}
+
+        <div style={{ marginTop: "2.5rem" }}>
+          <Link href="/temples" className="btn-ghost">← {t.templesTitle}</Link>
+        </div>
+      </section>
+    </>
   );
 }

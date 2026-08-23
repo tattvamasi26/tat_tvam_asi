@@ -1,42 +1,88 @@
-import { getAllTemples } from "@/lib/db";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/server";
+import { getAllTemples } from "@/lib/data";
 
-export const metadata: Metadata = {
-  title: "Hindu Temples",
-  description: "The glory and science of Hindu temple architecture — cosmograms in stone encoding the Vedic universe.",
-};
+export const metadata: Metadata = { title: "Temples" };
 
-export default async function TemplesPage() {
-  const TEMPLES = await getAllTemples();
+export default function TemplesPage() {
+  const { locale, t } = getTranslations();
+  const temples = getAllTemples(locale);
+
   return (
-    <div style={{ background: "var(--bg0)", minHeight: "100vh", paddingTop: 100 }}>
-      <div style={{ borderBottom: "1px solid rgba(200,150,62,0.1)", padding: "60px 2rem 50px" }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Deva-Sthanam</p>
-          <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: 300, color: "var(--text0)" }}>The Living Stones</h1>
-          <p style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", fontStyle: "italic", color: "var(--gold)", marginTop: "1rem", maxWidth: 560 }}>"Hindu temples are not architecture — they are the universe crystallised in stone."</p>
+    <>
+      <section className="pagehead">
+        <div className="shell pagehead-inner">
+          <p className="eyebrow">{t.navTemples}</p>
+          <h1 className="title">{t.templesTitle}</h1>
+          <p className="lede">{t.templesBlurb}</p>
         </div>
-      </div>
-      <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 2rem" }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(300px,1fr))", gap: 2, background: "var(--bg3)" }}>
-          {TEMPLES.map(t => (
-            <Link key={t.id} href={`/temples/${t.slug}`}
-              style={{ display: "block", background: "var(--bg0)", textDecoration: "none", transition: "background 0.4s" }}
-              className="hover-bg0-to-bg2">
-              <div style={{ background: "var(--bg2)", aspectRatio: "4/3", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ fontFamily: "var(--serif)", fontSize: "3rem", color: "var(--gold)", opacity: 0.1 }}>◈</span>
-              </div>
-              <div style={{ padding: "1.8rem" }}>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.62rem", letterSpacing: "0.18em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "0.5rem" }}>{t.architecture_style}</p>
-                <p style={{ fontFamily: "var(--serif)", fontSize: "1.2rem", fontWeight: 300, color: "var(--text0)", marginBottom: "0.3rem" }}>{t.name}</p>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.63rem", letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--gold-dim)", marginBottom: "0.8rem" }}>{t.location}, {t.state} · {t.dynasty}</p>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.85rem", color: "var(--text1)", lineHeight: 1.8, fontWeight: 300 }}>{t.description?.slice(0, 120)}...</p>
+      </section>
+
+      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
+        <div className="grid-cards">
+          {temples.map((tp) => (
+            <Link key={tp.id} href={`/temples/${tp.slug}`} className="card">
+              {tp.imageUrl && (
+                <div className="card-img">
+                  <Image
+                    src={tp.imageUrl}
+                    alt={tp.name}
+                    fill
+                    sizes="(max-width: 700px) 100vw, 33vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              )}
+              <div className="card-body">
+                <h2 className="card-title">{tp.name}</h2>
+                <p className="translit">{tp.nameLocal}</p>
+                <p className="card-text clamp-3" style={{ marginTop: "0.5rem" }}>{tp.description}</p>
+                <div className="card-foot">
+                  <span className="meta">
+                    {tp.location} · {tp.state}
+                  </span>
+                  <span className="chip chip-gold">{tp.centuryBuilt}</span>
+                </div>
               </div>
             </Link>
           ))}
         </div>
-      </div>
-    </div>
+
+        {/* The Tulunadu pillar is hand-built rather than data-driven —
+            it is the first long-form temple monograph on the site. */}
+        <div style={{ marginTop: "clamp(3rem, 7vw, 5rem)" }}>
+          <hr className="rule" />
+          <div className="feature" style={{ marginTop: "clamp(2rem, 5vw, 3.5rem)" }}>
+            <div className="feature-media">
+              <Image
+                src="/images/mookambika/deity-main.jpg"
+                alt="Sri Mookambika Temple, Kollur"
+                fill
+                sizes="(max-width: 860px) 100vw, 50vw"
+                style={{ objectFit: "cover" }}
+              />
+            </div>
+            <div className="feature-body">
+              <p className="eyebrow">Temples of Tulunadu</p>
+              <h2 className="title" style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>
+                Sri Mookambika Temple
+              </h2>
+              <p className="kannada" style={{ color: "var(--gold)", fontSize: "1.2rem" }}>
+                ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ
+              </p>
+              <p className="prose">
+                Kollur · One of the Seven Mukti Sthalas of Parashurama Kshetra. History, Puranika
+                Katha, rituals, agama shastra, and the significance of the Swayambhu Lingam.
+              </p>
+              <Link href="/temples/tulunadu/kollur-mookambika" className="btn" style={{ marginTop: "0.6rem" }}>
+                {t.readMore}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

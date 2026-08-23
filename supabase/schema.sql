@@ -565,3 +565,129 @@ insert into mathas (name, location, state, founded_by, direction, presiding_deit
 ('Jyotirmath', 'Joshimath', 'Uttarakhand', 'Adi Shankaracharya', 'north', 'Narayana', 'Ayam Atma Brahma', 'Atharvaveda', 'The northern matha in the Himalayas, near Badrinath. Associated with the Atharvaveda and the mahavakya Ayam Atma Brahma.', 'jyotirmath'),
 ('Govardhana Peetham', 'Puri', 'Odisha', 'Adi Shankaracharya', 'east', 'Vimala', 'Prajnanam Brahma', 'Rigveda', 'The eastern matha at Puri, associated with the Rigveda and the mahavakya Prajnanam Brahma.', 'govardhana-peetham')
 on conflict (slug) do nothing;
+
+-- ════════════════════════════════════════════════════════════
+--  Multilingual content (Kannada / English / Hindi)
+--
+--  `translations` already carries a `language` column for verse
+--  translations. The tables below extend the same pattern to every
+--  other entity a reader sees, so switching site language swaps
+--  content and not merely UI chrome.
+--
+--  Language-neutral facts (slug, Sanskrit, dates, coordinates,
+--  image URLs) stay on the base row and are never duplicated here.
+--  These mirror src/lib/seed/*.ts one-to-one.
+-- ════════════════════════════════════════════════════════════
+
+create table if not exists text_translations (
+  id           uuid primary key default uuid_generate_v4(),
+  text_id      uuid not null references texts(id) on delete cascade,
+  language     text not null default 'en',
+  name         text not null,
+  summary      text,
+  key_teaching text,
+  created_at   timestamptz default now(),
+  unique (text_id, language)
+);
+
+create table if not exists verse_notes (
+  id         uuid primary key default uuid_generate_v4(),
+  verse_id   uuid not null references verses(id) on delete cascade,
+  language   text not null default 'en',
+  note       text not null,
+  created_at timestamptz default now(),
+  unique (verse_id, language)
+);
+
+create table if not exists teacher_translations (
+  id         uuid primary key default uuid_generate_v4(),
+  teacher_id uuid not null references teachers(id) on delete cascade,
+  language   text not null default 'en',
+  name       text not null,
+  era        text,
+  tradition  text,
+  biography  text,
+  quote      text,
+  key_works  text[] default '{}',
+  created_at timestamptz default now(),
+  unique (teacher_id, language)
+);
+
+create table if not exists temple_translations (
+  id                 uuid primary key default uuid_generate_v4(),
+  temple_id          uuid not null references temples(id) on delete cascade,
+  language           text not null default 'en',
+  name               text not null,
+  location           text,
+  state              text,
+  dynasty            text,
+  architecture_style text,
+  presiding_deity    text,
+  description        text,
+  significance       text,
+  created_at         timestamptz default now(),
+  unique (temple_id, language)
+);
+
+create table if not exists concept_translations (
+  id                   uuid primary key default uuid_generate_v4(),
+  concept_id           uuid not null references concepts(id) on delete cascade,
+  language             text not null default 'en',
+  term                 text not null,
+  definition           text,
+  detailed_explanation text,
+  created_at           timestamptz default now(),
+  unique (concept_id, language)
+);
+
+create table if not exists matha_translations (
+  id              uuid primary key default uuid_generate_v4(),
+  matha_id        uuid not null references mathas(id) on delete cascade,
+  language        text not null default 'en',
+  name            text not null,
+  location        text,
+  state           text,
+  presiding_deity text,
+  founded_by      text,
+  description     text,
+  created_at      timestamptz default now(),
+  unique (matha_id, language)
+);
+
+-- Image provenance. Every hotlinked photograph carries its author and
+-- licence so attribution is a stored fact, not something remembered.
+alter table teachers add column if not exists image_url    text;
+alter table teachers add column if not exists image_credit text;
+alter table temples  add column if not exists image_url    text;
+alter table temples  add column if not exists image_credit text;
+alter table mathas   add column if not exists image_url    text;
+alter table mathas   add column if not exists image_credit text;
+
+-- Public read, admin-only write — same posture as the content tables above.
+alter table text_translations    enable row level security;
+alter table verse_notes          enable row level security;
+alter table teacher_translations enable row level security;
+alter table temple_translations  enable row level security;
+alter table concept_translations enable row level security;
+alter table matha_translations   enable row level security;
+
+do $$
+declare t text;
+begin
+  foreach t in array array[
+    'text_translations', 'verse_notes', 'teacher_translations',
+    'temple_translations', 'concept_translations', 'matha_translations'
+  ] loop
+    execute format(
+      'create policy if not exists %I on %I for select using (true)',
+      t || '_public_read', t
+    );
+  end loop;
+end $$;
+
+create index if not exists idx_text_translations_lang    on text_translations (text_id, language);
+create index if not exists idx_verse_notes_lang          on verse_notes (verse_id, language);
+create index if not exists idx_teacher_translations_lang on teacher_translations (teacher_id, language);
+create index if not exists idx_temple_translations_lang  on temple_translations (temple_id, language);
+create index if not exists idx_concept_translations_lang on concept_translations (concept_id, language);
+create index if not exists idx_matha_translations_lang   on matha_translations (matha_id, language);

@@ -1,106 +1,124 @@
-"use client";
-import { useEffect, useState } from "react";
-import type { SearchResults } from "@/lib/db";
 import Link from "next/link";
+import type { Metadata } from "next";
+import { getTranslations } from "@/i18n/server";
+import { searchAll } from "@/lib/data";
 
-export default function SearchPage() {
-  const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchResults | null>(null);
+export const metadata: Metadata = { title: "Search" };
 
-  useEffect(() => {
-    const q = query.trim();
-    if (q.length < 2) {
-      setResults(null);
-      return;
-    }
-    let cancelled = false;
-    const timer = setTimeout(() => {
-      fetch(`/api/search?q=${encodeURIComponent(q)}`)
-        .then(res => res.json())
-        .then((data: SearchResults) => { if (!cancelled) setResults(data); })
-        .catch(() => { if (!cancelled) setResults(null); });
-    }, 250);
-    return () => { cancelled = true; clearTimeout(timer); };
-  }, [query]);
+/**
+ * A plain GET form rather than a client-side search box: the route is
+ * already dynamic (it reads the locale cookie), results are server
+ * rendered, and the query stays in the URL so a search can be shared.
+ */
+export default function SearchPage({
+  searchParams,
+}: {
+  searchParams: { q?: string };
+}) {
+  const { locale, t } = getTranslations();
+  const q = searchParams.q?.trim() ?? "";
+  const results = searchAll(q, locale);
 
-  const total = results ? results.verses.length + results.temples.length + results.concepts.length + results.teachers.length : 0;
+  const total =
+    results.verses.length + results.teachers.length + results.temples.length + results.concepts.length;
 
   return (
-    <div style={{ background: "var(--bg0)", minHeight: "100vh", paddingTop: 100 }}>
-      <div style={{ borderBottom: "1px solid rgba(200,150,62,0.1)", padding: "60px 2rem 50px" }}>
-        <div style={{ maxWidth: 800, margin: "0 auto" }}>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Search</p>
-          <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(2.5rem,5vw,4rem)", fontWeight: 300, color: "var(--text0)" }}>Find Wisdom</h1>
-        </div>
-      </div>
-      <div style={{ maxWidth: 800, margin: "0 auto", padding: "60px 2rem" }}>
-        <input type="text" value={query} onChange={e => setQuery(e.target.value)} placeholder="Search verses, temples, concepts, teachers…"
-          style={{ width: "100%", background: "var(--bg1)", border: "1px solid rgba(200,150,62,0.2)", outline: "none", padding: "1rem 1.5rem", fontFamily: "var(--sans)", fontSize: "0.9rem", color: "var(--text0)", marginBottom: "0.8rem", transition: "border-color 0.3s" }}
-          onFocus={e => (e.target.style.borderColor = "rgba(200,150,62,0.5)")}
-          onBlur={e => (e.target.style.borderColor = "rgba(200,150,62,0.2)")}/>
-        {query && <p style={{ fontFamily: "var(--sans)", fontSize: "0.72rem", color: "var(--text2)", letterSpacing: "0.1em" }}>{total > 0 ? `${total} results` : "No results found"}</p>}
+    <>
+      <section className="pagehead">
+        <div className="shell-narrow pagehead-inner">
+          <p className="eyebrow">{t.navSearch}</p>
+          <h1 className="title">{t.searchTitle}</h1>
+          <p className="lede">{t.searchBlurb}</p>
 
-        {results && total > 0 && (
-          <div style={{ marginTop: "3rem", display: "flex", flexDirection: "column", gap: "3rem" }}>
-            {results.verses.length > 0 && (
-              <div>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.63rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Verses ({results.verses.length})</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)" }}>
-                  {results.verses.map(v => (
-                    <Link key={v.id} href={`/verses/${v.id}`} style={{ display: "block", background: "var(--bg0)", padding: "1.5rem 2rem", textDecoration: "none", transition: "background 0.3s" }}
-                      onMouseEnter={e => (e.currentTarget.style.background = "var(--bg2)")} onMouseLeave={e => (e.currentTarget.style.background = "var(--bg0)")}>
-                      <p style={{ fontFamily: "var(--serif)", fontSize: "1.4rem", fontWeight: 300, color: "var(--text0)" }}>{v.sanskrit}</p>
-                      <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", color: "var(--text1)", marginTop: "0.3rem" }}>{v.translation_en.slice(0, 100)}…</p>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-            {results.teachers.length > 0 && (
-              <div>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.63rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Teachers ({results.teachers.length})</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)" }}>
-                  {results.teachers.map(t => (
-                    <Link key={t.id} href={`/teachers/${t.slug}`} style={{ display: "block", background: "var(--bg0)", padding: "1.5rem 2rem", textDecoration: "none", transition: "background 0.3s" }}
-                      onMouseEnter={e => (e.currentTarget.style.background = "var(--bg2)")} onMouseLeave={e => (e.currentTarget.style.background = "var(--bg0)")}>
-                      <p style={{ fontFamily: "var(--serif)", fontSize: "1.2rem", fontWeight: 300, color: "var(--text0)" }}>{t.name}</p>
-                      <p style={{ fontFamily: "var(--sans)", fontSize: "0.72rem", color: "var(--saffron)", marginTop: "0.2rem" }}>{t.era}</p>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-            {results.concepts.length > 0 && (
-              <div>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.63rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Concepts ({results.concepts.length})</p>
-                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 2, background: "var(--bg3)" }}>
-                  {results.concepts.map(c => (
-                    <Link key={c.id} href={`/concepts/${c.slug}`} style={{ display: "block", background: "var(--bg0)", padding: "1.5rem 2rem", textDecoration: "none", transition: "background 0.3s" }}
-                      onMouseEnter={e => (e.currentTarget.style.background = "var(--bg2)")} onMouseLeave={e => (e.currentTarget.style.background = "var(--bg0)")}>
-                      <p style={{ fontFamily: "var(--serif)", fontSize: "1.8rem", fontWeight: 300, color: "var(--gold)", opacity: 0.8 }}>{c.term_sanskrit}</p>
-                      <p style={{ fontFamily: "var(--serif)", fontSize: "1rem", fontWeight: 300, color: "var(--text0)", marginTop: "0.2rem" }}>{c.term_en}</p>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
-            {results.temples.length > 0 && (
-              <div>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.63rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>Temples ({results.temples.length})</p>
-                <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)" }}>
-                  {results.temples.map(t => (
-                    <Link key={t.id} href={`/temples/${t.slug}`} style={{ display: "block", background: "var(--bg0)", padding: "1.5rem 2rem", textDecoration: "none", transition: "background 0.3s" }}
-                      onMouseEnter={e => (e.currentTarget.style.background = "var(--bg2)")} onMouseLeave={e => (e.currentTarget.style.background = "var(--bg0)")}>
-                      <p style={{ fontFamily: "var(--serif)", fontSize: "1.2rem", fontWeight: 300, color: "var(--text0)" }}>{t.name}</p>
-                      <p style={{ fontFamily: "var(--sans)", fontSize: "0.72rem", color: "var(--text2)", marginTop: "0.2rem" }}>{t.location}, {t.state}</p>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
+          <form method="get" action="/search" className="searchbar" style={{ marginTop: "1.5rem" }}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-3)" strokeWidth="1.4" width="19" height="19">
+              <circle cx="11" cy="11" r="7" />
+              <path d="M20 20l-3.5-3.5" strokeLinecap="round" />
+            </svg>
+            <input
+              type="search"
+              name="q"
+              defaultValue={q}
+              placeholder={t.searchPlaceholder}
+              aria-label={t.searchTitle}
+              autoFocus
+            />
+          </form>
+        </div>
+      </section>
+
+      <section className="shell-narrow stack-lg" style={{ paddingTop: 0 }}>
+        {q && (
+          <p className="meta" style={{ marginBottom: "2rem" }}>
+            {t.searchResultsFor} “{q}” — {total}
+          </p>
+        )}
+
+        {q && total === 0 && <p className="lede">{t.searchNoResults}</p>}
+
+        {results.verses.length > 0 && (
+          <div style={{ marginBottom: "3rem" }}>
+            <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>{t.versesTitle}</p>
+            <div style={{ display: "grid", gap: "1rem" }}>
+              {results.verses.map((v) => (
+                <Link key={v.id} href={`/verses/${v.id}`} className="verse" style={{ display: "block" }}>
+                  <p className="sanskrit" style={{ fontSize: "1.5rem" }}>{v.sanskrit}</p>
+                  <p className="card-text clamp-3" style={{ marginTop: "0.6rem" }}>{v.translation}</p>
+                  <span className="meta" style={{ display: "block", marginTop: "0.8rem" }}>{v.source}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         )}
-      </div>
-    </div>
+
+        {results.concepts.length > 0 && (
+          <div style={{ marginBottom: "3rem" }}>
+            <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>{t.conceptsTitle}</p>
+            <div className="chips">
+              {results.concepts.map((c) => (
+                <Link key={c.id} href={`/concepts/${c.slug}`} className="chip chip-gold" style={{ padding: "0.5rem 1rem" }}>
+                  <span className="deva">{c.termSanskrit}</span>
+                  <span style={{ color: "var(--ink-2)" }}>{c.term}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {results.teachers.length > 0 && (
+          <div style={{ marginBottom: "3rem" }}>
+            <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>{t.teachersTitle}</p>
+            <div style={{ display: "grid", gap: "0.75rem" }}>
+              {results.teachers.map((p) => (
+                <Link key={p.id} href={`/teachers/${p.slug}`} className="card">
+                  <div className="card-body">
+                    <h3 className="card-title" style={{ fontSize: "1.2rem" }}>{p.name}</h3>
+                    <p className="meta">{p.era}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {results.temples.length > 0 && (
+          <div>
+            <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>{t.templesTitle}</p>
+            <div style={{ display: "grid", gap: "0.75rem" }}>
+              {results.temples.map((tp) => (
+                <Link key={tp.id} href={`/temples/${tp.slug}`} className="card">
+                  <div className="card-body">
+                    <h3 className="card-title" style={{ fontSize: "1.2rem" }}>{tp.name}</h3>
+                    <p className="meta">
+                      {tp.location} · {tp.state}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+      </section>
+    </>
   );
 }

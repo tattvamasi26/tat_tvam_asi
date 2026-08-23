@@ -22,6 +22,18 @@ import { cookies } from "next/headers";
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
 
+/**
+ * Whether a live Supabase project is wired up yet.
+ *
+ * Phase 0 of docs/ROADMAP.md is explicitly "site first, database later",
+ * so every Supabase-backed surface has to answer this before constructing
+ * a client — `createServerClient("", "")` throws, which would turn a
+ * missing env var into an opaque 500 instead of a setup instruction.
+ */
+export function isSupabaseConfigured(): boolean {
+  return Boolean(supabaseUrl && supabaseAnonKey);
+}
+
 export async function supabaseServer() {
   const cookieStore = await cookies();
   return createServerClient(supabaseUrl, supabaseAnonKey, {
