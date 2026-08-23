@@ -1,18 +1,28 @@
 "use client";
-import { useState } from "react";
-import { VERSES, TEMPLES, CONCEPTS, TEACHERS } from "@/lib/data";
+import { useEffect, useState } from "react";
+import type { SearchResults } from "@/lib/db";
 import Link from "next/link";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
+  const [results, setResults] = useState<SearchResults | null>(null);
 
-  const q = query.toLowerCase().trim();
-  const results = q.length < 2 ? null : {
-    verses:   VERSES.filter(v => v.translation_en.toLowerCase().includes(q) || v.source.toLowerCase().includes(q) || v.transliteration.toLowerCase().includes(q)),
-    temples:  TEMPLES.filter(t => t.name.toLowerCase().includes(q) || t.location.toLowerCase().includes(q) || t.dynasty.toLowerCase().includes(q)),
-    concepts: CONCEPTS.filter(c => c.term_en.toLowerCase().includes(q) || c.definition.toLowerCase().includes(q) || c.term_iast.toLowerCase().includes(q)),
-    teachers: TEACHERS.filter(t => t.name.toLowerCase().includes(q) || t.biography?.toLowerCase().includes(q)),
-  };
+  useEffect(() => {
+    const q = query.trim();
+    if (q.length < 2) {
+      setResults(null);
+      return;
+    }
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      fetch(`/api/search?q=${encodeURIComponent(q)}`)
+        .then(res => res.json())
+        .then((data: SearchResults) => { if (!cancelled) setResults(data); })
+        .catch(() => { if (!cancelled) setResults(null); });
+    }, 250);
+    return () => { cancelled = true; clearTimeout(timer); };
+  }, [query]);
+
   const total = results ? results.verses.length + results.temples.length + results.concepts.length + results.teachers.length : 0;
 
   return (

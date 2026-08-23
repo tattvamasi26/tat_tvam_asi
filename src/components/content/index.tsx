@@ -1,5 +1,6 @@
 import Link from "next/link";
-import type { Verse, Temple, Teacher } from "@/types";
+import type { Temple, Teacher } from "@/types";
+import type { VerseDetail } from "@/lib/db";
 
 const S = {
   label: { fontFamily:"var(--sans)", fontSize:"0.65rem", letterSpacing:"0.3em", textTransform:"uppercase" as const, color:"var(--saffron)", marginBottom:"1.2rem" },
@@ -40,7 +41,7 @@ export function PillarsGrid() {
   );
 }
 
-export function VerseOfTheDay({ verse }: { verse: Verse }) {
+export function VerseOfTheDay({ verse }: { verse: VerseDetail }) {
   return (
     <section style={{ padding:"100px 2rem", background:"var(--bg1)" }}>
       <div style={{ maxWidth:720, margin:"0 auto", textAlign:"center" }}>
@@ -60,7 +61,7 @@ export function VerseOfTheDay({ verse }: { verse: Verse }) {
   );
 }
 
-export function MahavakyaGrid({ verses }: { verses: Verse[] }) {
+export function MahavakyaGrid({ verses }: { verses: VerseDetail[] }) {
   if (!verses.length) return null;
   return (
     <section style={{ padding:"120px 2rem", background:"var(--bg0)" }}>

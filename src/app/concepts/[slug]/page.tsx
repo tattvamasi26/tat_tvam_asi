@@ -1,20 +1,21 @@
-import { CONCEPTS } from "@/lib/data";
+import { getAllConcepts, getConceptBySlug } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export function generateStaticParams() {
-  return CONCEPTS.map(c => ({ slug: c.slug }));
+export async function generateStaticParams() {
+  const concepts = await getAllConcepts();
+  return concepts.map(c => ({ slug: c.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const c = CONCEPTS.find(c => c.slug === params.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const c = await getConceptBySlug(params.slug);
   if (!c) return { title: "Concept Not Found" };
   return { title: `${c.term_en} — ${c.term_iast}`, description: c.definition };
 }
 
-export default function ConceptPage({ params }: { params: { slug: string } }) {
-  const concept = CONCEPTS.find(c => c.slug === params.slug);
+export default async function ConceptPage({ params }: { params: { slug: string } }) {
+  const concept = await getConceptBySlug(params.slug);
   if (!concept) notFound();
 
   return (

@@ -1,4 +1,4 @@
-import { VERSES } from "@/lib/data";
+import { getAllVerses } from "@/lib/db";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -7,9 +7,10 @@ export const metadata: Metadata = {
   description: "Sanskrit shlokas from the Upanishads and Vedantic texts — with transliteration, translation, and commentary.",
 };
 
-export default function VersesPage({ searchParams }: { searchParams: { category?: string } }) {
+export default async function VersesPage({ searchParams }: { searchParams: { category?: string } }) {
   const category = searchParams.category;
-  const verses = category ? VERSES.filter(v => v.category === category) : VERSES;
+  const all = await getAllVerses();
+  const verses = category ? all.filter(v => v.category === category) : all;
 
   return (
     <div style={{ background: "var(--bg0)", minHeight: "100vh", paddingTop: 100 }}>

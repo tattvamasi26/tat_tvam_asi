@@ -1,20 +1,21 @@
-import { VERSES } from "@/lib/data";
+import { getVerseIds, getVerseById } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
-  return VERSES.map(v => ({ id: v.id }));
+  const ids = await getVerseIds();
+  return ids.map(id => ({ id }));
 }
 
-export function generateMetadata({ params }: { params: { id: string } }): Metadata {
-  const verse = VERSES.find(v => v.id === params.id);
+export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
+  const verse = await getVerseById(params.id);
   if (!verse) return { title: "Verse Not Found" };
   return { title: `${verse.source} ${verse.chapter}`, description: verse.translation_en };
 }
 
-export default function VersePage({ params }: { params: { id: string } }) {
-  const verse = VERSES.find(v => v.id === params.id);
+export default async function VersePage({ params }: { params: { id: string } }) {
+  const verse = await getVerseById(params.id);
   if (!verse) notFound();
 
   return (

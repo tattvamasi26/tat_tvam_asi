@@ -1,10 +1,11 @@
-import { TEACHERS } from "@/lib/data";
+import { getAllTeachers } from "@/lib/db";
 import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Acharyas & Teachers" };
 
-export default function TeachersPage() {
+export default async function TeachersPage() {
+  const TEACHERS = await getAllTeachers();
   return (
     <div style={{ background: "var(--bg0)", minHeight: "100vh", paddingTop: 100 }}>
       <div style={{ borderBottom: "1px solid rgba(200,150,62,0.1)", padding: "60px 2rem 50px" }}>
@@ -17,8 +18,9 @@ export default function TeachersPage() {
       <div style={{ maxWidth: 1100, margin: "0 auto", padding: "60px 2rem" }}>
         <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)" }}>
           {TEACHERS.map(t => (
-            <Link key={t.id} href={`/teachers/${t.slug}`} className="card-link card-link-dark"
-              style={{ padding: "3rem 2.5rem" }}>
+            <Link key={t.id} href={`/teachers/${t.slug}`}
+              style={{ display: "block", background: "var(--bg0)", padding: "3rem 2.5rem", textDecoration: "none", transition: "background 0.4s" }}
+              className="hover-bg0-to-bg2">
               <div style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "3rem", alignItems: "start" }}>
                 <div>
                   <p style={{ fontFamily: "var(--sans)", fontSize: "0.62rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--saffron)" }}>{t.era}</p>

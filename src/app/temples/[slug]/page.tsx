@@ -1,20 +1,21 @@
-import { TEMPLES } from "@/lib/data";
+import { getAllTemples, getTempleBySlug } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export function generateStaticParams() {
-  return TEMPLES.map(t => ({ slug: t.slug }));
+export async function generateStaticParams() {
+  const temples = await getAllTemples();
+  return temples.map(t => ({ slug: t.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const t = TEMPLES.find(t => t.slug === params.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const t = await getTempleBySlug(params.slug);
   if (!t) return { title: "Temple Not Found" };
   return { title: t.name, description: t.description };
 }
 
-export default function TemplePage({ params }: { params: { slug: string } }) {
-  const temple = TEMPLES.find(t => t.slug === params.slug);
+export default async function TemplePage({ params }: { params: { slug: string } }) {
+  const temple = await getTempleBySlug(params.slug);
   if (!temple) notFound();
 
   return (

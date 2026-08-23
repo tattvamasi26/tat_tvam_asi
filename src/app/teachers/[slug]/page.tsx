@@ -1,20 +1,21 @@
-import { TEACHERS } from "@/lib/data";
+import { getAllTeachers, getTeacherBySlug } from "@/lib/db";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export function generateStaticParams() {
-  return TEACHERS.map(t => ({ slug: t.slug }));
+export async function generateStaticParams() {
+  const teachers = await getAllTeachers();
+  return teachers.map(t => ({ slug: t.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const t = TEACHERS.find(t => t.slug === params.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const t = await getTeacherBySlug(params.slug);
   if (!t) return { title: "Teacher Not Found" };
   return { title: t.name, description: t.biography?.slice(0, 160) };
 }
 
-export default function TeacherPage({ params }: { params: { slug: string } }) {
-  const teacher = TEACHERS.find(t => t.slug === params.slug);
+export default async function TeacherPage({ params }: { params: { slug: string } }) {
+  const teacher = await getTeacherBySlug(params.slug);
   if (!teacher) notFound();
 
   return (

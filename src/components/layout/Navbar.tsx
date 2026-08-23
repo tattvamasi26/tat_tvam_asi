@@ -14,7 +14,7 @@ const links = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [open, setOpen]         = useState(false);
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 50);
@@ -22,44 +22,53 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
+  const navStyle: React.CSSProperties = {
+    position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+    padding: "0 2.5rem", height: 60,
+    display: "flex", alignItems: "center", justifyContent: "space-between",
+    background: scrolled ? "rgba(15,14,12,0.95)" : "transparent",
+    backdropFilter: scrolled ? "blur(16px)" : "none",
+    borderBottom: scrolled ? "1px solid rgba(200,150,62,0.1)" : "1px solid transparent",
+    transition: "all 0.5s ease",
+  };
+
   return (
     <header>
-      <nav style={{
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        padding: "0 2.5rem", height: 60,
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        background: scrolled ? "rgba(15,14,12,0.95)" : "transparent",
-        backdropFilter: scrolled ? "blur(16px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(200,150,62,0.1)" : "1px solid transparent",
-        transition: "all 0.5s ease",
-      }}>
+      <nav style={navStyle}>
+        {/* Logo */}
         <Link href="/" style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", fontWeight: 300, color: "var(--gold)", letterSpacing: "0.08em", textDecoration: "none" }}>
           तत् त्वम् असि
         </Link>
 
+        {/* Desktop links */}
         <ul style={{ display: "flex", gap: "2.5rem", listStyle: "none", margin: 0, padding: 0 }} className="desktop-nav">
           {links.map(l => (
             <li key={l.href}>
-              <Link href={l.href} className="nav-link-item"
-                style={{ fontFamily: "var(--sans)", fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text1)", textDecoration: "none" }}>
+              <Link href={l.href} style={{ fontFamily: "var(--sans)", fontSize: "0.68rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text1)", textDecoration: "none" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "var(--saffron)")}
+                onMouseLeave={e => (e.currentTarget.style.color = "var(--text1)")}>
                 {l.label}
               </Link>
             </li>
           ))}
         </ul>
 
+        {/* Right */}
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <Link href="/search" aria-label="Search" className="nav-link-item" style={{ color: "var(--text1)", display: "flex" }}>
+          <Link href="/search" aria-label="Search" style={{ color: "var(--text1)", display: "flex" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "var(--saffron)")}
+            onMouseLeave={e => (e.currentTarget.style.color = "var(--text1)")}>
             <Search size={17}/>
           </Link>
           <button onClick={() => setOpen(!open)} aria-label="Menu"
-            style={{ background: "none", border: "none", color: "var(--text1)", cursor: "pointer", padding: 0 }}
+            style={{ background: "none", border: "none", color: "var(--text1)", cursor: "pointer", display: "none", padding: 0 }}
             className="mobile-menu-btn">
             {open ? <X size={20}/> : <Menu size={20}/>}
           </button>
         </div>
       </nav>
 
+      {/* Mobile drawer */}
       {open && (
         <div style={{ position: "fixed", top: 60, left: 0, right: 0, zIndex: 99, background: "var(--bg0)", borderBottom: "1px solid rgba(200,150,62,0.1)", padding: "2rem 2.5rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
           {links.map(l => (
@@ -75,9 +84,6 @@ export function Navbar() {
         @media(max-width:768px){
           .desktop-nav{display:none!important}
           .mobile-menu-btn{display:flex!important}
-        }
-        @media(min-width:769px){
-          .mobile-menu-btn{display:none!important}
         }
       `}</style>
     </header>

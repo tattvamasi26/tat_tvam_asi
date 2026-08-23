@@ -1,8 +1,15 @@
 # तत् त्वम् असि — Tat Tvam Asi
 
-A full-stack content platform for Advaita Vedanta, Upanishads, Hindu temples, and Sanatana Dharma.
+A full-stack reference platform for Sanatana Dharma: Vedas, Upanishads, the
+Bhagavad Gita, Brahma Sutras, bhashyas, temples and their history, practices
+and traditions, and stotras — cited to scholarly sources, not paraphrased.
+See `docs/ROADMAP.md` for the full plan and content-pillar sequence.
 
-**Stack:** Next.js 14 · Supabase (Postgres) · Sanity CMS · Cloudinary · Tailwind CSS · Vercel
+**Stack:** Next.js 14 · Supabase (Postgres + Auth) · Tailwind CSS · Vercel.
+Content is authored through a small built-in `/admin` panel (Supabase
+Auth-gated, single admin user) rather than a generic headless CMS — see
+`docs/ROADMAP.md` for why. Cloudinary may return once temple photography
+becomes a priority; it isn't wired up yet.
 
 ---
 
@@ -46,58 +53,44 @@ npm install
 
 ---
 
-## Step 3 — Set up Sanity CMS (free) — optional for now
+## Step 3 — Create your admin login
 
-Sanity is used for rich editorial content (articles, long-form essays). You can skip this initially and use only Supabase.
+`/admin` (content authoring — Sources, and more as later phases land) is
+gated to a single admin account, not a full user/roles system.
 
-If you want it now:
-```bash
-npm create sanity@latest -- --project-id YOUR_PROJECT_ID --dataset production
-```
-
-Or go to https://sanity.io → New project → get your Project ID.
+1. Supabase dashboard → **Authentication → Users → Add user**
+2. Set an email + password for yourself
+3. Note that same email — you'll set it as `ADMIN_EMAIL` next
 
 ---
 
-## Step 4 — Set up Cloudinary (free) — optional for now
-
-For image uploads and optimisation. Skip initially; add when you start uploading temple photos.
-
-1. Sign up at https://cloudinary.com
-2. Dashboard → copy Cloud Name, API Key, API Secret
-
----
-
-## Step 5 — Configure environment variables
+## Step 4 — Configure environment variables
 
 ```bash
 cp .env.local.example .env.local
 ```
 
-Open `.env.local` and fill in your values from the steps above.
-
-**Minimum required to run:**
+Open `.env.local` and fill in:
 ```
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 SUPABASE_SERVICE_ROLE_KEY=eyJ...
+ADMIN_EMAIL=you@example.com
 ```
-
-Leave Sanity and Cloudinary fields as placeholders for now — the app will still run.
 
 ---
 
-## Step 6 — Run locally
+## Step 5 — Run locally
 
 ```bash
 npm run dev
 ```
 
-Open http://localhost:3000 — your site is live locally.
+Open http://localhost:3000 for the site, or http://localhost:3000/admin to sign in and manage content.
 
 ---
 
-## Step 7 — Deploy to Vercel (free)
+## Step 6 — Deploy to Vercel (free)
 
 ### Option A — CLI (fastest)
 ```bash
@@ -140,9 +133,9 @@ tat-tvam-asi/
 │   │   ├── ui/                 # Reusable UI components
 │   │   └── content/            # Page-specific sections
 │   ├── lib/
-│   │   ├── supabase.ts         # Supabase client
-│   │   ├── sanity.ts           # Sanity client
-│   │   ├── db.ts               # All database query functions
+│   │   ├── supabase.ts         # Server-only Supabase clients (session, service-role)
+│   │   ├── supabase-browser.ts # Client-safe Supabase client (admin login form)
+│   │   ├── db.ts               # All database read-query functions
 │   │   └── utils.ts            # Helper functions
 │   └── types/index.ts          # TypeScript types for all content
 ├── supabase/
@@ -155,32 +148,26 @@ tat-tvam-asi/
 
 ## Adding Content
 
-### Verses
-In Supabase dashboard → **Table Editor** → `verses` → **Insert row**:
-- `sanskrit` — Devanagari text
-- `transliteration` — IAST romanisation
-- `translation_en` — English meaning
-- `source` — e.g. "Mandukya Upanishad"
-- `chapter` — e.g. "1.2"
-- `category` — one of: `advaita`, `shruti`, `smriti`, `temples`, `dharma`
-- `is_mahavakya` — true/false
-- `tags` — e.g. `{brahman,consciousness,mandukya}`
+Use the `/admin` panel (Sources, for now — more content types land as later
+phases are built out; see `docs/ROADMAP.md`) rather than editing tables
+directly. Every translation and bhashya entry requires a Source to be picked
+before it can be saved — that's the citation policy enforced at both the
+form and the database level.
 
-### Temples
-In `temples` table, add a row. Then add images in `temple_images` with the temple's `id`.
-
-### Teachers
-In `teachers` table. `key_works` is a Postgres array: `{"Vivekachudamani","Brahmasutra Bhashya"}`.
+For anything `/admin` doesn't cover yet, the Supabase Table Editor still
+works directly against `supabase/schema.sql`'s tables (`texts`, `verses`,
+`translations`, `teachers`, `temples`, `concepts`, `mathas`, …) — just keep
+the citation rule in mind: any `translations` or `commentary_entries` row
+needs a real `source_id`.
 
 ---
 
 ## Next Steps (when you're ready)
 
-- [ ] Add individual detail pages (`/verses/[id]`, `/temples/[slug]`, etc.)
-- [ ] Connect Sanity for long-form articles
-- [ ] Set up Cloudinary and upload temple photography
-- [ ] Add full-text search (Supabase `to_tsvector` already indexed)
-- [ ] Add sitemap.xml for SEO
+- [ ] Build out the Bhagavad Gita as the first fully-cited pillar (see `docs/ROADMAP.md` Phase 1)
+- [ ] Add Texts/Verses/Commentaries admin screens (Sources is the only one so far)
+- [ ] Layer bhashyas onto the Gita once the Texts/Verses admin exists (Phase 3)
+- [ ] Set up Cloudinary once temple photography becomes a priority
 - [ ] Set up custom domain in Vercel
 
 ---
@@ -191,6 +178,4 @@ In `teachers` table. `key_works` is a Postgres array: `{"Vivekachudamani","Brahm
 |------------|-------------------------------------|
 | Vercel     | Unlimited deploys, 100GB bandwidth  |
 | Supabase   | 500MB DB, 1GB storage, 2GB transfer |
-| Sanity     | 10GB storage, 3 users               |
-| Cloudinary | 25 credits/month (~25,000 images)   |
 | **Total**  | **₹0/month**                        |
