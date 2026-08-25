@@ -1,26 +1,24 @@
 import type { MathaRow, MathaTranslationRow } from "./types";
 
-const C = "https://upload.wikimedia.org/wikipedia/commons";
-
 export const MATHAS: MathaRow[] = [
   {
     id: "m-sringeri", slug: "sringeri-sharada-peetham", direction: "south", veda: "Yajurveda", mahavakya: "Aham Brahmasmi",
-    image_url: `${C}/2/2a/Vidyashankara_Temple_at_Shringeri.jpg`,
+    image_url: "/images/site/sringeri.jpg",
     image_credit: "Calvinkrishy · CC BY-SA 2.5 · Wikimedia Commons",
   },
   {
     id: "m-jyotirmath", slug: "jyotirmath", direction: "north", veda: "Atharvaveda", mahavakya: "Ayam Atma Brahma",
-    image_url: `${C}/thumb/1/19/Joshimath.jpg/1920px-Joshimath.jpg`,
+    image_url: "/images/site/joshimath.jpg",
     image_credit: "ArmouredCyborg · CC BY-SA 4.0 · Wikimedia Commons",
   },
   {
     id: "m-govardhana", slug: "govardhana-peetham", direction: "east", veda: "Rigveda", mahavakya: "Prajnanam Brahma",
-    image_url: `${C}/thumb/b/b7/Shri_Jagannath_temple.jpg/1920px-Shri_Jagannath_temple.jpg`,
+    image_url: "/images/site/jagannath.jpg",
     image_credit: "Prachites · CC BY-SA 3.0 · Wikimedia Commons",
   },
   {
     id: "m-dwarka", slug: "dwarka-sharada-peetham", direction: "west", veda: "Samaveda", mahavakya: "Tat Tvam Asi",
-    image_url: `${C}/0/0c/Dwarakadheesh_Temple%2C_2014.jpg`,
+    image_url: "/images/site/dwarka.jpg",
     image_credit: "Vishnupranay.k · CC BY-SA 4.0 · Wikimedia Commons",
   },
 ];

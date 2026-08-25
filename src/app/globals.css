@@ -44,6 +44,19 @@
     --measure: 68ch;
     --radius: 2px;
     --shell: 1200px;
+
+    /* Legacy token names.
+       The Kollur Mookambika guide (src/app/temples/tulunadu/) is hand
+       authored and refers to the pre-rename tokens 62 times. Aliasing
+       them here repairs that page without editing 356 lines of someone
+       else's writing. New work should use the --ink-* / --bg-* names. */
+    --text0: var(--ink-0);
+    --text1: var(--ink-1);
+    --text2: var(--ink-2);
+    --bg0: var(--bg-0);
+    --bg1: var(--bg-1);
+    --bg2: var(--bg-2);
+    --bg3: var(--bg-3);
   }
 
   * {
@@ -74,12 +87,22 @@
     background-repeat: no-repeat;
   }
 
-  /* Each script gets its own face — never a fallback substitution */
-  :lang(hi),
+  /* Each script gets its own face — never a fallback substitution.
+
+     The page-language rules are wrapped in :where() so they carry zero
+     specificity. Otherwise `:lang(kn)` and `.deva` tie at (0,1,0) and the
+     later rule wins, which rendered Sanskrit in the Kannada face on every
+     Kannada page. An explicit script class must always beat the ambient
+     page language. */
+  :where(:lang(hi)) {
+    font-family: var(--deva);
+  }
+  :where(:lang(kn)) {
+    font-family: var(--kannada);
+  }
   .deva {
     font-family: var(--deva);
   }
-  :lang(kn),
   .kannada {
     font-family: var(--kannada);
   }
@@ -940,4 +963,607 @@
 }
 .chips .chip {
   align-self: auto;
+}
+
+/* ═════════════════════════════════════════════════════════
+   HOMEPAGE — cinematic archive
+
+   Everything below is plain CSS: no animation library, no
+   scroll library. Motion is either a transition toggled by a
+   data attribute or a keyframe animation, and all of it stops
+   under prefers-reduced-motion at the end of this block.
+   ═════════════════════════════════════════════════════════ */
+
+/* ── Scroll reveal ─────────────────────────────────────── */
+/* Reveal is opt-IN, never opt-out: the element is visible by default and
+   only animates where the browser can actually drive the animation from
+   scroll position. Nothing here can leave content permanently hidden. */
+@supports (animation-timeline: view()) {
+  .reveal-item {
+    animation: revealIn linear both;
+    animation-timeline: view();
+    /* Both ends stay inside the `entry` phase. Mixing phases (entry → cover)
+       inverts the range for any element taller than the viewport, which
+       leaves it pinned at the from-state — i.e. invisible. The stagger
+       nudges each sibling's start point so a row arrives in sequence. */
+    animation-range: entry calc(4% + var(--reveal-stagger, 0%)) entry 78%;
+  }
+  @keyframes revealIn {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* ── Hero stage ────────────────────────────────────────── */
+.hero-full {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-frame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-frame[data-active] {
+  opacity: 1;
+}
+/* Several of these photographs are shot at dusk or inside a mandapa and
+   sit very dark; lift them slightly so detail survives the scrim. */
+.hero-frame img {
+  filter: brightness(1.16) saturate(0.94);
+}
+
+/* Slow drift on the visible frame only, so a still photo breathes. */
+.hero-frame[data-drift] img {
+  animation: heroDrift 14s ease-out forwards;
+}
+@keyframes heroDrift {
+  from { transform: scale(1.005); }
+  to   { transform: scale(1.07); }
+}
+
+/* Two-part scrim: a vertical wash for text contrast, plus a vignette so
+   the frame edges fall away instead of ending abruptly. */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  /* Light enough that the photograph is unmistakably a photograph. The
+     title carries its own text-shadow, so the scrim only has to protect
+     the smaller type near the top and bottom edges. */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(11, 10, 9, 0.58) 0%,
+      rgba(11, 10, 9, 0.10) 30%,
+      rgba(11, 10, 9, 0.30) 66%,
+      var(--bg-0) 100%
+    ),
+    radial-gradient(125% 90% at 50% 44%, transparent 46%, rgba(11, 10, 9, 0.5) 100%);
+}
+
+.hero-caption {
+  position: absolute;
+  left: clamp(1.25rem, 5vw, 3rem);
+  bottom: clamp(1.25rem, 3vw, 2.25rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  z-index: 3;
+}
+.hero-place {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.hero-credit {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  color: var(--ink-3);
+}
+
+.hero-dots {
+  position: absolute;
+  right: clamp(1.25rem, 5vw, 3rem);
+  bottom: clamp(1.4rem, 3vw, 2.4rem);
+  display: flex;
+  gap: 0.5rem;
+  z-index: 3;
+}
+.hero-dot {
+  width: 26px;
+  height: 2px;
+  border: 0;
+  padding: 0;
+  background: rgba(242, 235, 221, 0.24);
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+.hero-dot[data-active] { background: var(--gold); }
+.hero-dot:hover { background: var(--gold-bright); }
+
+.hero-core {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.15rem;
+  padding-block: clamp(4rem, 12vh, 8rem);
+  isolation: isolate;
+}
+
+/* A soft pool of shadow that travels with the text block. Some of these
+   photographs are pale carved stone, and a whole-frame scrim heavy enough
+   to carry the small type would flatten the image entirely — so the
+   darkening is local to where the words actually sit. */
+.hero-core::before {
+  content: "";
+  position: absolute;
+  inset: -12% -8%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    58% 44% at 50% 50%,
+    rgba(11, 10, 9, 0.86) 0%,
+    rgba(11, 10, 9, 0.66) 42%,
+    rgba(11, 10, 9, 0.28) 66%,
+    transparent 82%
+  );
+}
+
+/* Staged entrance: each element arrives a beat after the last. */
+.hero-in {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: heroIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-in-1 { animation-delay: 0.15s; }
+.hero-in-2 { animation-delay: 0.35s; }
+.hero-in-3 { animation-delay: 0.55s; }
+.hero-in-4 { animation-delay: 0.75s; }
+.hero-in-5 { animation-delay: 0.95s; }
+@keyframes heroIn {
+  to { opacity: 1; transform: none; }
+}
+
+.hero-title {
+  font-family: var(--deva);
+  font-weight: 500;
+  font-size: clamp(3rem, 11vw, 8.5rem);
+  line-height: 1;
+  color: var(--ink-0);
+  letter-spacing: 0.01em;
+  text-wrap: balance;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.55);
+}
+
+.hero-gloss {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 2.6vw, 2rem);
+  color: var(--gold-bright);
+  letter-spacing: 0.02em;
+}
+
+/* Thin gold rule that draws itself outward from the centre. */
+.hero-rule {
+  width: min(320px, 46vw);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform: scaleX(0);
+  animation: ruleOut 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+}
+@keyframes ruleOut {
+  to { transform: scaleX(1); }
+}
+
+.hero-scroll {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: clamp(3.5rem, 7vh, 5rem);
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 46px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2.4s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.25; transform: scaleY(0.7); transform-origin: top; }
+  50%      { opacity: 1;    transform: scaleY(1);   transform-origin: top; }
+}
+
+/* ── Section framing ───────────────────────────────────── */
+.band {
+  position: relative;
+  padding-block: clamp(4.5rem, 11vw, 9rem);
+}
+.band-hair { border-top: 1px solid var(--stroke-soft); }
+
+.band-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
+}
+.band-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  max-width: 62ch;
+}
+
+/* Numbered markers, because an archive should feel ordered. */
+.band-index {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--ink-3);
+}
+
+/* ── Tally strip (scale of the archive) ────────────────── */
+.tally-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1px;
+  background: var(--stroke-soft);
+  border-block: 1px solid var(--stroke-soft);
+}
+.tally {
+  background: var(--bg-0);
+  padding: clamp(1.4rem, 3vw, 2.4rem) 1rem;
+  text-align: center;
+}
+.tally-num {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  line-height: 1;
+  color: var(--gold);
+  /* Cormorant defaults to old-style figures, which render "1" as a
+     small-cap I and read as a typo in a count. Force lining figures. */
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
+}
+.tally-label {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin-top: 0.6rem;
+}
+
+/* ── Featured verse (the centrepiece of the page) ──────── */
+.verse-stage {
+  position: relative;
+  padding: clamp(2.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4.5rem);
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background:
+    radial-gradient(80% 120% at 0% 0%, rgba(201, 162, 39, 0.10), transparent 62%),
+    var(--bg-1);
+}
+
+/* Oversized watermark glyph bleeding off the corner. */
+.verse-stage::after {
+  content: "\0950";
+  position: absolute;
+  right: -2rem;
+  bottom: -5rem;
+  font-family: var(--deva);
+  font-size: clamp(11rem, 26vw, 22rem);
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.05;
+  pointer-events: none;
+}
+.verse-stage > * { position: relative; z-index: 1; }
+
+.verse-sanskrit-xl {
+  font-family: var(--deva);
+  font-weight: 500;
+  color: var(--gold-bright);
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+/* ── Editorial mosaic (temples) ────────────────────────── */
+.mosaic {
+  display: grid;
+  gap: clamp(0.75rem, 1.6vw, 1.25rem);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 900px) {
+  .mosaic {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+  }
+  /* Deliberately uneven: the first tile dominates, the rest orbit it. */
+  .mosaic > *:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .mosaic > *:nth-child(2) { grid-column: span 2; grid-row: span 1; }
+  .mosaic > *:nth-child(3) { grid-column: span 1; grid-row: span 1; }
+  .mosaic > *:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+  .mosaic > *:nth-child(5) { grid-column: span 4; grid-row: span 1; }
+}
+
+.tile {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--stroke-soft);
+  min-height: 190px;
+  display: flex;
+  align-items: flex-end;
+  isolation: isolate;
+}
+.tile img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    rgba(11, 10, 9, 0.94) 0%,
+    rgba(11, 10, 9, 0.45) 45%,
+    rgba(11, 10, 9, 0.1) 100%
+  );
+  transition: opacity 0.5s ease;
+}
+@media (hover: hover) {
+  .tile:hover img { transform: scale(1.06); }
+  .tile:hover { border-color: var(--gold-dim); }
+}
+.tile-body {
+  padding: clamp(1rem, 2vw, 1.6rem);
+  width: 100%;
+}
+.tile-name {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2vw, 1.75rem);
+  font-weight: 400;
+  color: var(--ink-0);
+  line-height: 1.15;
+}
+.tile-meta {
+  font-family: var(--sans);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 0.4rem;
+}
+
+/* ── Mahavakya row ─────────────────────────────────────── */
+.vakya-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--stroke-soft);
+  border: 1px solid var(--stroke-soft);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px)  { .vakya-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1080px) { .vakya-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.vakya {
+  background: var(--bg-0);
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-height: 230px;
+  transition: background 0.45s ease;
+  position: relative;
+}
+.vakya::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (hover: hover) {
+  .vakya:hover { background: var(--bg-2); }
+  .vakya:hover::before { transform: scaleY(1); }
+}
+.vakya-sanskrit {
+  font-family: var(--deva);
+  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
+  color: var(--gold-bright);
+  line-height: 1.4;
+}
+.vakya-veda {
+  margin-top: auto;
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ── Concept ticker ────────────────────────────────────── */
+.ticker {
+  overflow: hidden;
+  border-block: 1px solid var(--stroke-soft);
+  padding-block: 1.5rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.ticker-track {
+  display: flex;
+  gap: 3.5rem;
+  width: max-content;
+  animation: tickerRun 46s linear infinite;
+}
+.ticker:hover .ticker-track { animation-play-state: paused; }
+@keyframes tickerRun {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.7rem;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  color: var(--ink-1);
+}
+.ticker-item:hover { color: var(--gold); }
+.ticker-sanskrit {
+  font-family: var(--deva);
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+.ticker-term {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  font-style: italic;
+}
+
+/* ── Split feature (manuscript / citation promise) ─────── */
+.split {
+  display: grid;
+  gap: clamp(1.75rem, 4vw, 3.5rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .split { grid-template-columns: 0.85fr 1fr; }
+}
+.split-media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+}
+.split-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Pillars ───────────────────────────────────────────── */
+.pillars {
+  display: grid;
+  gap: 1px;
+  background: var(--stroke-soft);
+  border: 1px solid var(--stroke-soft);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 700px)  { .pillars { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .pillars { grid-template-columns: repeat(3, 1fr); } }
+
+.pillar {
+  background: var(--bg-0);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-height: 200px;
+  transition: background 0.4s ease;
+}
+.pillar-num {
+  font-family: var(--sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.26em;
+  color: var(--ink-3);
+}
+.pillar-name {
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink-0);
+}
+.pillar-arrow {
+  margin-top: auto;
+  color: var(--gold);
+  font-size: 1.1rem;
+  transform: translateX(0);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@media (hover: hover) {
+  .pillar:hover { background: var(--bg-2); }
+  .pillar:hover .pillar-arrow { transform: translateX(7px); }
+}
+
+/* Indic scripts: no case, and tracking breaks conjuncts. */
+:lang(kn) .tile-meta,
+:lang(kn) .tally-label,
+:lang(kn) .band-index,
+:lang(kn) .pillar-num,
+:lang(kn) .hero-place,
+:lang(kn) .hero-scroll,
+:lang(kn) .vakya-veda,
+:lang(hi) .tile-meta,
+:lang(hi) .tally-label,
+:lang(hi) .band-index,
+:lang(hi) .pillar-num,
+:lang(hi) .hero-place,
+:lang(hi) .hero-scroll,
+:lang(hi) .vakya-veda {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 0.78rem;
+}
+
+/* ── Reduced motion: stop everything that moves ────────── */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item { animation: none; opacity: 1; transform: none; }
+  .hero-in { opacity: 1; transform: none; animation: none; }
+  .hero-rule { transform: scaleX(1); animation: none; }
+  .hero-frame[data-drift] img { animation: none; }
+  .hero-scroll-line { animation: none; opacity: 0.6; }
+  .ticker-track { animation: none; }
+  .tile img,
+  .pillar-arrow { transition: none; }
 }

@@ -1,7 +1,5 @@
 import type { TeacherRow, TeacherTranslationRow } from "./types";
 
-const C = "https://upload.wikimedia.org/wikipedia/commons";
-
 export const TEACHERS: TeacherRow[] = [
   {
     id: "te-shankara",
@@ -9,7 +7,7 @@ export const TEACHERS: TeacherRow[] = [
     name_sanskrit: "आदि शङ्कराचार्य",
     birth_year: 788,
     death_year: 820,
-    image_url: `${C}/thumb/e/e3/Raja_Ravi_Varma_-_Sankaracharya.jpg/1920px-Raja_Ravi_Varma_-_Sankaracharya.jpg`,
+    image_url: "/images/site/shankara.jpg",
     image_credit: "Raja Ravi Varma · Public domain · Wikimedia Commons",
   },
   {
@@ -18,7 +16,7 @@ export const TEACHERS: TeacherRow[] = [
     name_sanskrit: "रमण महर्षि",
     birth_year: 1879,
     death_year: 1950,
-    image_url: `${C}/4/4c/Sri_Ramana_Maharshi_-_Portrait_-_G._G_Welling_-_1948.jpg`,
+    image_url: "/images/site/ramana.jpg",
     image_credit: "G. G. Welling, 1948 · Public domain · Wikimedia Commons",
   },
   {
@@ -27,7 +25,7 @@ export const TEACHERS: TeacherRow[] = [
     name_sanskrit: "निसर्गदत्त महाराज",
     birth_year: 1897,
     death_year: 1981,
-    image_url: `${C}/6/66/Nisargadatta_Maharaj.jpg`,
+    image_url: "/images/site/nisargadatta.jpg",
     image_credit: "Shree Nisargadatta Adhyatma Kendra · Attribution · Wikimedia Commons",
   },
 ];
