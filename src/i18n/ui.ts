@@ -19,6 +19,10 @@ export interface UIStrings {
   navMathas: string;
   navSearch: string;
   navAbout: string;
+  navOpenMenu: string;
+  navCloseMenu: string;
+  navIndex: string;
+  navMore: string;
 
   // ── Home
   heroTagline: string;
@@ -108,6 +112,10 @@ const en: UIStrings = {
   navMathas: "Mathas",
   navSearch: "Search",
   navAbout: "About",
+  navOpenMenu: "Menu",
+  navCloseMenu: "Close",
+  navIndex: "Sections",
+  navMore: "Also",
 
   heroTagline: "Thou Art That",
   heroSubtitle: "Advaita Vedanta · Vedas · Temples · Dharma",
@@ -193,6 +201,10 @@ const kn: UIStrings = {
   navMathas: "ಮಠಗಳು",
   navSearch: "ಹುಡುಕಿ",
   navAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
+  navOpenMenu: "ಮೆನು",
+  navCloseMenu: "ಮುಚ್ಚಿ",
+  navIndex: "ವಿಭಾಗಗಳು",
+  navMore: "ಇನ್ನಷ್ಟು",
 
   heroTagline: "ನೀನೇ ಅದು",
   heroSubtitle: "ಅದ್ವೈತ ವೇದಾಂತ · ವೇದಗಳು · ದೇವಾಲಯಗಳು · ಧರ್ಮ",
@@ -277,6 +289,10 @@ const hi: UIStrings = {
   navMathas: "मठ",
   navSearch: "खोजें",
   navAbout: "परिचय",
+  navOpenMenu: "मेन्यू",
+  navCloseMenu: "बंद करें",
+  navIndex: "अनुभाग",
+  navMore: "और भी",
 
   heroTagline: "तत् त्वम् असि",
   heroSubtitle: "अद्वैत वेदांत · वेद · मंदिर · धर्म",

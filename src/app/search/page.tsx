@@ -90,7 +90,7 @@ export default function SearchPage({
             <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>{t.teachersTitle}</p>
             <div style={{ display: "grid", gap: "0.75rem" }}>
               {results.teachers.map((p) => (
-                <Link key={p.id} href={`/teachers/${p.slug}`} className="card">
+                <Link key={p.id} href={`/acharyas/${p.slug}`} className="card">
                   <div className="card-body">
                     <h3 className="card-title" style={{ fontSize: "1.2rem" }}>{p.name}</h3>
                     <p className="meta">{p.era}</p>

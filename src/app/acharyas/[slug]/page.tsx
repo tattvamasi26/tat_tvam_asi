@@ -19,7 +19,7 @@ export default function TeacherDetailPage({ params }: { params: { slug: string }
     <>
       <section className="pagehead">
         <div className="shell pagehead-inner">
-          <Link href="/teachers" className="btn-ghost" style={{ marginBottom: "0.5rem" }}>
+          <Link href="/acharyas" className="btn-ghost" style={{ marginBottom: "0.5rem" }}>
             ← {t.teachersTitle}
           </Link>
           <p className="eyebrow">{p.era}</p>

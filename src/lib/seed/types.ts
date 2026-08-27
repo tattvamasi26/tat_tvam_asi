@@ -37,8 +37,10 @@ export type WorkType =
   | "aranyaka"
   | "upanishad"
   | "gita"
+  | "gita_chapter"
   | "brahma_sutra"
-  | "stotra";
+  | "stotra"
+  | "bhajan";
 
 export type Direction = "north" | "south" | "east" | "west";
 

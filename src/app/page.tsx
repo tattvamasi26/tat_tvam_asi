@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getTranslations } from "@/i18n/server";
+import { sectionsFor } from "@/i18n/sections";
 import {
   getVerseOfTheDay,
   getMahavakyas,
@@ -28,14 +29,9 @@ export default function HomePage() {
   const verses = getAllVerses(locale);
   const mathas = getAllMathas(locale);
 
-  const pillars = [
-    { href: "/verses", label: t.versesTitle, blurb: t.versesBlurb },
-    { href: "/upanishads", label: t.upanishadsTitle, blurb: t.upanishadsBlurb },
-    { href: "/teachers", label: t.teachersTitle, blurb: t.teachersBlurb },
-    { href: "/temples", label: t.templesTitle, blurb: t.templesBlurb },
-    { href: "/concepts", label: t.conceptsTitle, blurb: t.conceptsBlurb },
-    { href: "/mathas", label: t.mathasTitle, blurb: t.mathasBlurb },
-  ];
+  // The seven pillars come from the shared SECTIONS list, so the home
+  // index, the nav overlay and the footer can never disagree.
+  const pillars = sectionsFor(locale);
 
   // The ticker needs its list twice: the track translates -50%, so the
   // second copy is what occupies the viewport as the first scrolls away.
@@ -222,14 +218,14 @@ export default function HomePage() {
               <h2 className="title">{t.teachersTitle}</h2>
               <p className="lede">{t.teachersBlurb}</p>
             </div>
-            <Link href="/teachers" className="btn-ghost">{t.viewAll} →</Link>
+            <Link href="/acharyas" className="btn-ghost">{t.viewAll} →</Link>
           </div>
         </Reveal>
 
         <div className="grid-cards">
           {teachers.map((p, i) => (
             <Reveal key={p.id} delay={i * 90}>
-              <Link href={`/teachers/${p.slug}`} className="card" style={{ height: "100%" }}>
+              <Link href={`/acharyas/${p.slug}`} className="card" style={{ height: "100%" }}>
                 {p.imageUrl && (
                   <div className="card-img">
                     <Image

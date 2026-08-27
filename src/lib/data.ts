@@ -320,3 +320,61 @@ export function searchAll(query: string, locale: Locale, limit = 8): SearchResul
       .slice(0, limit),
   };
 }
+
+// ── The wider corpus: Vedas, Gita, stutis, bhajans ──────────
+//
+// These read from src/lib/seed/corpus.ts, which uses the same TextRow /
+// TextTranslationRow shapes as the Upanishads — so one resolver serves
+// all of them and a new work_type needs no new code here.
+
+import {
+  VEDAS,
+  GITA,
+  GITA_CHAPTERS,
+  GITA_CHAPTER_TRANSLATIONS,
+  STUTIS,
+  BHAJANS,
+  CORPUS_TRANSLATIONS,
+} from "./seed/corpus";
+import type { TextRow, TextTranslationRow } from "./seed/types";
+
+const CORPUS_ALL: TextTranslationRow[] = [
+  ...CORPUS_TRANSLATIONS,
+  ...GITA_CHAPTER_TRANSLATIONS,
+];
+
+function resolveTexts(rows: TextRow[], locale: Locale): UpanishadView[] {
+  return rows.map((t) => {
+    const tr = forLocale(CORPUS_ALL.filter((x) => x.text_id === t.id), locale);
+    return {
+      id: t.id,
+      slug: t.slug,
+      nameSanskrit: t.name_sanskrit,
+      nameIast: t.name_iast,
+      name: tr?.name ?? t.name_iast,
+      veda: t.veda,
+      verseCount: t.verse_count,
+      summary: tr?.summary ?? "",
+      keyTeaching: tr?.key_teaching ?? "",
+    };
+  });
+}
+
+export function getVedas(locale: Locale): UpanishadView[] {
+  return resolveTexts(VEDAS, locale);
+}
+
+export function getGita(locale: Locale): { work: UpanishadView; chapters: UpanishadView[] } {
+  return {
+    work: resolveTexts([GITA], locale)[0],
+    chapters: resolveTexts(GITA_CHAPTERS, locale),
+  };
+}
+
+export function getStutis(locale: Locale): UpanishadView[] {
+  return resolveTexts(STUTIS, locale);
+}
+
+export function getBhajans(locale: Locale): UpanishadView[] {
+  return resolveTexts(BHAJANS, locale);
+}

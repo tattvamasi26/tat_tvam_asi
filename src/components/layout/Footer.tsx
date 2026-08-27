@@ -1,20 +1,18 @@
 import Link from "next/link";
 import { getTranslations } from "@/i18n/server";
+import { sectionsFor } from "@/i18n/sections";
+import { Mark } from "@/components/brand/Mark";
 
 export function Footer() {
-  const { t } = getTranslations();
+  const { locale, t } = getTranslations();
+  const sections = sectionsFor(locale);
   const year = new Date().getFullYear();
 
-  const explore = [
-    { href: "/verses", label: t.navVerses },
-    { href: "/upanishads", label: t.navUpanishads },
-    { href: "/teachers", label: t.navTeachers },
-    { href: "/temples", label: t.navTemples },
-  ];
-
-  const more = [
+  // Reference pages, kept apart from the pillars.
+  const reference = [
     { href: "/concepts", label: t.navConcepts },
     { href: "/mathas", label: t.navMathas },
+    { href: "/verses", label: t.navVerses },
     { href: "/search", label: t.navSearch },
     { href: "/about", label: t.navAbout },
   ];
@@ -23,26 +21,31 @@ export function Footer() {
     <footer className="footer">
       <div className="shell footer-grid">
         <div>
-          <div className="wordmark" style={{ fontSize: "1.35rem", marginBottom: "0.85rem" }}>
-            तत् त्वम् असि
-          </div>
-          <p className="card-text" style={{ maxWidth: "38ch" }}>
+          <Link href="/" className="lockup" aria-label="Tat Tvam Asi">
+            <Mark size={34} />
+            <span className="lockup-text deva" style={{ fontSize: "1.25rem" }}>
+              तत् त्वम् असि
+            </span>
+          </Link>
+          <p className="card-text" style={{ maxWidth: "38ch", marginTop: "1rem" }}>
             {t.footerTagline}
           </p>
         </div>
 
-        <nav aria-label={t.footerExplore}>
-          <div className="footer-heading">{t.footerExplore}</div>
-          {explore.map((l) => (
-            <Link key={l.href} href={l.href} className="footer-link">
-              {l.label}
+        {/* Driven by the same SECTIONS list as the nav, so a new pillar
+            appears here without touching this file. */}
+        <nav aria-label={t.navIndex}>
+          <div className="footer-heading">{t.navIndex}</div>
+          {sections.map((s) => (
+            <Link key={s.id} href={s.href} className="footer-link">
+              {s.label}
             </Link>
           ))}
         </nav>
 
-        <nav aria-label={t.footerAbout}>
-          <div className="footer-heading">{t.footerAbout}</div>
-          {more.map((l) => (
+        <nav aria-label={t.navMore}>
+          <div className="footer-heading">{t.navMore}</div>
+          {reference.map((l) => (
             <Link key={l.href} href={l.href} className="footer-link">
               {l.label}
             </Link>

@@ -56,7 +56,7 @@ export default function TeachersPage() {
                   ))}
                 </div>
 
-                <Link href={`/teachers/${p.slug}`} className="btn-ghost" style={{ marginTop: "0.5rem" }}>
+                <Link href={`/acharyas/${p.slug}`} className="btn-ghost" style={{ marginTop: "0.5rem" }}>
                   {t.readMore} →
                 </Link>
 
