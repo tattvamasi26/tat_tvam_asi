@@ -9,6 +9,14 @@
 import type { Locale } from "./config";
 
 export interface UIStrings {
+  /**
+   * The site's name in the reading language. Latin in English, Kannada in
+   * Kannada, Devanagari in Hindi — the masthead, the footer and the hero
+   * all read from this one string so they cannot disagree with the rest
+   * of the page they sit on.
+   */
+  siteName: string;
+
   // ── Navigation
   navTeachings: string;
   navVerses: string;
@@ -103,6 +111,8 @@ export interface UIStrings {
 }
 
 const en: UIStrings = {
+  siteName: "Tat Tvam Asi",
+
   navTeachings: "Teachings",
   navVerses: "Verses",
   navUpanishads: "Upanishads",
@@ -192,6 +202,8 @@ const en: UIStrings = {
 };
 
 const kn: UIStrings = {
+  siteName: "ತತ್ ತ್ವಮ್ ಅಸಿ",
+
   navTeachings: "ಬೋಧನೆಗಳು",
   navVerses: "ಶ್ಲೋಕಗಳು",
   navUpanishads: "ಉಪನಿಷತ್ತುಗಳು",
@@ -280,6 +292,8 @@ const kn: UIStrings = {
 };
 
 const hi: UIStrings = {
+  siteName: "तत् त्वम् असि",
+
   navTeachings: "उपदेश",
   navVerses: "श्लोक",
   navUpanishads: "उपनिषद्",

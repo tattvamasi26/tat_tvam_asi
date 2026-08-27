@@ -41,6 +41,7 @@
     --deva: var(--font-deva), var(--font-cormorant), serif;
     --kannada: var(--font-kannada), system-ui, sans-serif;
 
+    --masthead-h: 68px;
     --measure: 68ch;
     --radius: 2px;
     --shell: 1200px;
@@ -273,7 +274,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 1.5rem;
-    height: 68px;
+    height: var(--masthead-h);
   }
 
   .wordmark {
@@ -2009,4 +2010,721 @@
 
 @media (prefers-reduced-motion: reduce) {
   .text-row { transition: none; }
+}
+
+/* ═════════════════════════════════════════════════════════
+   CINEMATIC LAYER
+
+   Full-viewport scenes, layered depth, scroll-linked motion.
+
+   Everything here degrades to a correct static page: the motion
+   is driven by a --p custom property that starts at 0, and by
+   position:sticky, so a browser that never runs the scroll
+   handler still gets a properly composed layout rather than a
+   pile of absolutely-positioned fragments.
+   ═════════════════════════════════════════════════════════ */
+
+/* ── 01 · The opening frame ────────────────────────────── */
+
+.cinema {
+  --p: 0;
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  overflow: clip;
+  isolation: isolate;
+}
+
+/* The plate is fixed-size and scales; the section itself must not,
+   or the whole page would grow as the hero zooms. */
+.cinema-plate {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  /* Layer 1 — slowest. Scales up a touch and drifts as it leaves. */
+  transform: scale(calc(1 + var(--p) * 0.14)) translate3d(0, calc(var(--p) * 4vh), 0);
+  transform-origin: 50% 45%;
+  will-change: transform;
+}
+
+.cinema-frame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cinema-frame[data-active] {
+  opacity: 1;
+}
+
+/* Two-part darkening: a vertical wash so the title always has
+   contrast, plus a vignette so the frame has edges. */
+.cinema-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(6, 5, 5, 0.72) 0%,
+    rgba(6, 5, 5, 0.42) 32%,
+    rgba(6, 5, 5, 0.55) 64%,
+    rgba(11, 10, 9, 0.94) 100%
+  );
+}
+.cinema-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 90% at 50% 45%,
+    transparent 38%,
+    rgba(6, 5, 5, 0.62) 100%
+  );
+}
+
+/* Layer 2 — the text, faster than the plate, and gone first. */
+.cinema-core {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  padding-block: 6rem 4rem;
+  transform: translate3d(0, calc(var(--p) * -12vh), 0);
+  opacity: calc(1 - var(--p) * 1.9);
+  will-change: transform, opacity;
+}
+
+.cinema-om {
+  font-family: var(--deva);
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  color: var(--gold);
+  opacity: 0.9;
+  line-height: 1;
+  animation: cinema-in 1100ms 120ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.cinema-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(3rem, 11vw, 9.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  color: var(--ink-0);
+  text-wrap: balance;
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
+  animation: cinema-in 1200ms 240ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+/* Indic scripts need room between lines and no negative tracking —
+   conjuncts break when letters are pulled together. */
+.cinema-title.deva,
+.cinema-title.kannada {
+  font-size: clamp(2.4rem, 8.5vw, 7rem);
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+.cinema-title.deva {
+  font-family: var(--deva);
+}
+.cinema-title.kannada {
+  font-family: var(--kannada);
+  font-weight: 500;
+}
+
+/* A hairline that draws itself outward from the centre. */
+.cinema-rule {
+  width: min(280px, 42vw);
+  height: 1px;
+  margin-block: 1.4rem 1.1rem;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform-origin: 50% 50%;
+  animation: rule-draw 1400ms 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.cinema-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.4vw, 1.9rem);
+  line-height: 1.5;
+  color: var(--ink-0);
+  max-width: 26ch;
+  text-wrap: balance;
+  animation: cinema-in 1100ms 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+:lang(kn) .cinema-tagline,
+:lang(hi) .cinema-tagline {
+  font-style: normal;
+}
+
+.cinema-sub {
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-1);
+  margin-top: 0.5rem;
+  animation: cinema-in 1100ms 660ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+:lang(kn) .cinema-sub,
+:lang(hi) .cinema-sub {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 0.85rem;
+}
+
+.cinema-actions {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+  animation: cinema-in 1100ms 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+/* Caption for the frame currently showing. */
+.cinema-foot {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  opacity: calc(1 - var(--p) * 2.4);
+}
+.cinema-place {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-1);
+}
+.cinema-credit {
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.cinema-cue {
+  position: absolute;
+  z-index: 2;
+  right: clamp(1rem, 4vw, 3rem);
+  bottom: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  opacity: calc(1 - var(--p) * 2.4);
+}
+.cinema-cue-line {
+  width: 46px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--ink-3), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.cinema-cue-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  animation: cue-sweep 2600ms ease-in-out infinite;
+}
+
+@media (max-width: 720px) {
+  .cinema-cue {
+    display: none;
+  }
+}
+
+@keyframes cinema-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes rule-draw {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+@keyframes cue-sweep {
+  0% {
+    transform: translateX(-100%);
+  }
+  60%,
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ── 02 · Pinned scenes ────────────────────────────────── */
+
+.scene {
+  --scene-h: 2;
+  position: relative;
+  height: calc(var(--scene-h) * 100svh);
+}
+
+.scene-pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: clip;
+  display: grid;
+  isolation: isolate;
+}
+
+.scene-media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.scene-scrim {
+  position: absolute;
+  inset: 0;
+  /* Three washes, each doing one job: a horizontal one so left-aligned
+     copy keeps contrast over a bright subject, a vertical one so the
+     masthead and the scene's foot stay legible, and a vignette to give
+     the frame edges. Without the horizontal pass, a panel sitting over
+     the lit centre of a photograph loses its lede entirely. */
+  background: linear-gradient(
+      to right,
+      rgba(8, 7, 6, 0.88) 0%,
+      rgba(8, 7, 6, 0.62) 34%,
+      rgba(8, 7, 6, 0.12) 62%,
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(11, 10, 9, 0.72) 0%,
+      rgba(11, 10, 9, 0.34) 38%,
+      rgba(11, 10, 9, 0.68) 100%
+    ),
+    radial-gradient(115% 85% at 50% 50%, transparent 42%, rgba(6, 5, 5, 0.58) 100%);
+}
+
+/* A centred panel has no "text side", so the horizontal wash would just
+   darken one half for no reason — even it out. */
+.scene-pin:has(.scene-panel[data-align="center"]) .scene-scrim {
+  background: linear-gradient(
+      to bottom,
+      rgba(11, 10, 9, 0.78) 0%,
+      rgba(11, 10, 9, 0.45) 40%,
+      rgba(11, 10, 9, 0.7) 100%
+    ),
+    radial-gradient(115% 85% at 50% 50%, transparent 40%, rgba(6, 5, 5, 0.62) 100%);
+}
+
+.scene-panel {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: clamp(4rem, 10vh, 8rem);
+  /* The panel carries the scene motion — it enters from below and
+     settles, using the view timeline where the browser has one. */
+  animation: scene-rise linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 42%;
+}
+.scene-panel[data-align="start"] {
+  justify-content: flex-start;
+}
+.scene-panel[data-align="center"] {
+  align-items: center;
+  text-align: center;
+}
+
+@keyframes scene-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8vh, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Browsers without scroll-driven animations get the settled state,
+   not the "from" keyframe stuck at opacity 0. */
+@supports not (animation-timeline: view()) {
+  .scene-panel {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.scene-credit {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1.1rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  text-align: center;
+}
+
+/* ── Scene typography ──────────────────────────────────── */
+
+.scene-eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.1rem;
+}
+:lang(kn) .scene-eyebrow,
+:lang(hi) .scene-eyebrow {
+  text-transform: none;
+  letter-spacing: 0.05em;
+  font-size: 0.82rem;
+}
+
+.scene-display {
+  font-family: var(--deva);
+  font-size: clamp(1.7rem, 4.6vw, 3.6rem);
+  line-height: 1.45;
+  color: var(--ink-0);
+  text-wrap: balance;
+  max-width: 20ch;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.55);
+}
+
+.scene-lede {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--ink-0);
+  max-width: 46ch;
+  margin-top: 1.5rem;
+}
+:lang(kn) .scene-lede,
+:lang(hi) .scene-lede {
+  font-style: normal;
+}
+
+.scene-meta {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-1);
+}
+:lang(kn) .scene-meta,
+:lang(hi) .scene-meta {
+  text-transform: none;
+  letter-spacing: 0.03em;
+}
+
+/* ── 03 · Statement band (type on black, no image) ─────── */
+
+.statement {
+  padding-block: clamp(7rem, 20vh, 14rem);
+  position: relative;
+}
+.statement-text {
+  font-family: var(--serif);
+  font-size: clamp(1.6rem, 4vw, 3.2rem);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  color: var(--ink-0);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+:lang(kn) .statement-text,
+:lang(hi) .statement-text {
+  letter-spacing: 0;
+  line-height: 1.5;
+  font-size: clamp(1.4rem, 3.4vw, 2.6rem);
+}
+.statement-sub {
+  margin-top: 2rem;
+  max-width: 52ch;
+  color: var(--ink-1);
+  font-size: 1.02rem;
+  line-height: 1.85;
+}
+
+/* ── 04 · Pillar index, cinematic ──────────────────────── */
+
+.index-list {
+  list-style: none;
+  border-top: 1px solid var(--stroke-soft);
+}
+
+.index-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1rem, 4vw, 3rem);
+  padding-block: clamp(1.5rem, 3.4vw, 2.6rem);
+  border-bottom: 1px solid var(--stroke-soft);
+  position: relative;
+}
+
+/* The accent wash that sweeps in behind a hovered row. */
+.index-row::before {
+  content: "";
+  position: absolute;
+  inset: 0 -2rem;
+  background: linear-gradient(90deg, var(--gold-wash), transparent 70%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+.index-num {
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.index-name {
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.12;
+  color: var(--ink-0);
+  transition: color 300ms ease;
+}
+:lang(kn) .index-name,
+:lang(hi) .index-name {
+  font-size: clamp(1.3rem, 3.4vw, 2.4rem);
+  line-height: 1.35;
+}
+
+.index-blurb {
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  max-width: 54ch;
+  margin-top: 0.4rem;
+  transition: color 300ms ease;
+}
+
+.index-glyph {
+  font-family: var(--deva);
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+  color: var(--ink-3);
+  transition: color 300ms ease, transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@media (hover: hover) {
+  .index-row:hover::before {
+    opacity: 1;
+  }
+  .index-row:hover .index-name {
+    color: var(--gold-bright);
+  }
+  .index-row:hover .index-blurb {
+    color: var(--ink-1);
+  }
+  .index-row:hover .index-glyph {
+    color: var(--gold);
+    transform: translateX(6px);
+  }
+}
+.index-row:focus-within::before {
+  opacity: 1;
+}
+.index-row:focus-within .index-name {
+  color: var(--gold-bright);
+}
+
+@media (max-width: 640px) {
+  .index-row {
+    grid-template-columns: auto 1fr;
+  }
+  .index-glyph {
+    display: none;
+  }
+}
+
+/* ── 05 · Mahavakya cells ──────────────────────────────── */
+
+.vakya-cinema {
+  display: grid;
+  gap: 1px;
+  background: var(--stroke-soft);
+  border-block: 1px solid var(--stroke-soft);
+}
+@media (min-width: 760px) {
+  .vakya-cinema {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1140px) {
+  .vakya-cinema {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.vakya-cell {
+  background: var(--bg-0);
+  padding: clamp(1.8rem, 3.2vw, 2.6rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  position: relative;
+  transition: background 420ms ease;
+  min-height: 15rem;
+}
+.vakya-cell-sanskrit {
+  font-family: var(--deva);
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+  line-height: 1.5;
+  color: var(--ink-0);
+}
+.vakya-cell-translit {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--gold);
+}
+.vakya-cell-text {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin-top: auto;
+}
+@media (hover: hover) {
+  .vakya-cell:hover {
+    background: var(--bg-2);
+  }
+}
+
+/* ── 06 · Tally, restyled for the cinematic page ───────── */
+
+.tally-cinema {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--stroke-soft);
+  border-block: 1px solid var(--stroke-soft);
+}
+@media (min-width: 700px) {
+  .tally-cinema {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1040px) {
+  .tally-cinema {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+.tally-cell {
+  background: var(--bg-0);
+  padding: clamp(1.6rem, 3vw, 2.4rem) 1rem;
+  text-align: center;
+}
+
+/* ── Reduced motion: hold everything still ─────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .cinema-plate,
+  .cinema-core {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .cinema-om,
+  .cinema-title,
+  .cinema-rule,
+  .cinema-tagline,
+  .cinema-sub,
+  .cinema-actions,
+  .scene-panel {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .cinema-cue-line::after {
+    animation: none;
+  }
+  .cinema-frame {
+    transition: none;
+  }
+}
+
+/* ── Masthead over a cinematic hero ────────────────────────
+   On a page that opens with a full-viewport frame, the header
+   must float over the photograph rather than sit on a bar above
+   it — otherwise the hero is pushed down by 68px and its own
+   footer (frame credit, scroll cue) falls off the bottom of the
+   viewport.
+
+   It starts transparent over a soft top scrim and settles into
+   the normal solid bar once the hero is scrolled away. The
+   settling is a scroll-driven animation, so there is no scroll
+   listener and nothing to desynchronise.
+
+   Guarded by @supports: a browser without scroll timelines keeps
+   the ordinary opaque masthead rather than being left with a
+   permanently transparent one over body copy.
+   ───────────────────────────────────────────────────────── */
+
+@supports (animation-timeline: scroll()) {
+  body:has(.cinema) .cinema {
+    /* Pull the frame up under the header so the image is full-bleed. */
+    margin-top: calc(-1 * var(--masthead-h));
+  }
+
+  body:has(.cinema) .masthead {
+    background-color: rgba(11, 10, 9, 0);
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+    animation: masthead-settle linear both;
+    animation-timeline: scroll();
+    animation-range: 30vh 85vh;
+  }
+
+  /* A soft wash so the lockup stays legible against a bright frame.
+     Sits behind the element background, so it is covered as that
+     background fades in. */
+  body:has(.cinema) .masthead::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(to bottom, rgba(6, 5, 5, 0.78), transparent);
+    pointer-events: none;
+  }
+
+  @keyframes masthead-settle {
+    to {
+      background-color: rgba(11, 10, 9, 0.92);
+      border-bottom-color: var(--stroke-soft);
+      backdrop-filter: saturate(140%) blur(14px);
+    }
+  }
 }

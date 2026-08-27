@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Image from "next/image";
 import { getTranslations } from "@/i18n/server";
+import { nameScriptClass } from "@/i18n/config";
 import { sectionsFor } from "@/i18n/sections";
 import {
   getVerseOfTheDay,
@@ -13,10 +13,21 @@ import {
   getAllMathas,
 } from "@/lib/data";
 import { HERO_IMAGES, TEXTURE } from "@/lib/hero";
-import { HeroStage } from "@/components/home/HeroStage";
+import { HeroCinema } from "@/components/home/HeroCinema";
+import { ScrollScene } from "@/components/home/ScrollScene";
 import { Counter } from "@/components/home/Counter";
 import { Reveal } from "@/components/motion/Reveal";
 
+/**
+ * The homepage is built as a sequence of full-viewport scenes rather
+ * than a stack of bands. Each scene holds one idea and one photograph,
+ * and the photograph stays pinned while the words move over it — so
+ * the page reads as a descent through the material rather than a list
+ * of links to it.
+ *
+ * Everything below the hero is a Server Component. The only client
+ * code on this page is the hero's scroll-depth handler.
+ */
 export default function HomePage() {
   const { locale, t } = getTranslations();
 
@@ -29,264 +40,165 @@ export default function HomePage() {
   const verses = getAllVerses(locale);
   const mathas = getAllMathas(locale);
 
-  // The seven pillars come from the shared SECTIONS list, so the home
-  // index, the nav overlay and the footer can never disagree.
+  // The pillars come from the shared SECTIONS list, so this index, the
+  // nav overlay and the footer can never disagree about what exists.
   const pillars = sectionsFor(locale);
 
-  // The ticker needs its list twice: the track translates -50%, so the
-  // second copy is what occupies the viewport as the first scrolls away.
-  const tickerItems = [...concepts, ...concepts];
+  const featured = temples[0];
 
   return (
     <>
-      {/* ── 01 · Hero ─────────────────────────────────── */}
-      <section className="hero-full">
-        <HeroStage images={HERO_IMAGES} />
+      {/* ── 01 · The opening frame ─────────────────────── */}
+      <HeroCinema
+        images={HERO_IMAGES}
+        title={t.siteName}
+        titleClass={nameScriptClass(locale)}
+        tagline={t.heroTagline}
+        subtitle={t.heroSubtitle}
+        enter={{ href: "/verses", label: t.heroEnter }}
+        explore={{ href: "/concepts", label: t.heroExplore }}
+        scrollCue={t.explorePillars}
+      />
 
-        <div className="shell hero-core">
-          <span className="om hero-in hero-in-1">ॐ</span>
-          <h1 className="hero-title hero-in hero-in-2">तत् त्वम् असि</h1>
-          <div className="hero-rule" />
-          <p className="hero-gloss hero-in hero-in-3">{t.heroTagline}</p>
-          <p className="eyebrow hero-in hero-in-4">{t.heroSubtitle}</p>
-
-          <div
-            className="hero-in hero-in-5"
-            style={{ display: "flex", gap: "1.5rem", flexWrap: "wrap", justifyContent: "center", marginTop: "0.75rem" }}
-          >
-            <Link href="/verses" className="btn">{t.heroEnter}</Link>
-            <Link href="/concepts" className="btn-ghost">{t.heroExplore} →</Link>
-          </div>
+      {/* ── 02 · Verse of the day, over carved stone ───── */}
+      <ScrollScene
+        id="verse"
+        src={TEXTURE.wheel.src}
+        alt=""
+        credit={TEXTURE.wheel.credit}
+        position="50% 50%"
+        height={2.4}
+      >
+        <p className="scene-eyebrow">{t.verseOfTheDay}</p>
+        <p className="scene-display">{verse.sanskrit}</p>
+        <p className="scene-lede">{verse.translation}</p>
+        <div className="scene-meta">
+          <span>
+            {verse.source} · {verse.locator}
+          </span>
+          <Link href={`/verses/${verse.id}`} className="btn-ghost">
+            {t.readMore} →
+          </Link>
         </div>
+        {!verse.isCited && <p className="notice-uncited">⚠ {t.uncitedNotice}</p>}
+      </ScrollScene>
 
-        <div className="hero-scroll">
-          <span>{t.explorePillars}</span>
-          <span className="hero-scroll-line" />
-        </div>
-      </section>
-
-      {/* ── 02 · Scale of the archive ─────────────────── */}
-      <section className="tally-strip" id="scale">
-        <Counter value={verses.length} label={t.navVerses} />
-        <Counter value={upanishads.length} label={t.navUpanishads} />
-        <Counter value={temples.length} label={t.navTemples} />
-        <Counter value={concepts.length} label={t.navConcepts} />
-        <Counter value={teachers.length} label={t.navTeachers} />
-        <Counter value={mathas.length} label={t.navMathas} />
-      </section>
-
-      {/* ── 03 · Verse of the day ─────────────────────── */}
-      <section className="band shell" id="verse">
+      {/* ── 03 · The citation promise, as a statement ──── */}
+      <section className="shell statement" id="sources">
         <Reveal>
-          <div className="band-head">
-            <div className="band-head-text">
-              <span className="band-index">01</span>
-              <p className="eyebrow">{t.verseOfTheDay}</p>
-            </div>
-            <Link href="/verses" className="btn-ghost">{t.viewAll} →</Link>
+          <p className="scene-eyebrow">{t.labelSource}</p>
+          <h2 className="statement-text">{t.uncitedNotice}</h2>
+          <p className="statement-sub">
+            Every translation and every commentary entry on this site must name where it
+            came from. That rule is enforced in the database itself — a translation
+            without a source cannot be stored — so the citation is a fact about the
+            record, not a promise about the editor.
+          </p>
+          <div className="scene-meta">
+            <Link href="/about" className="btn-ghost">
+              {t.navAbout} →
+            </Link>
           </div>
-        </Reveal>
-
-        <Reveal delay={90}>
-          <article className="verse-stage">
-            <p className="verse-sanskrit-xl">{verse.sanskrit}</p>
-            <p className="translit" style={{ marginTop: "1rem", fontSize: "1.1rem" }}>
-              {verse.transliteration}
-            </p>
-            <p
-              className="prose"
-              style={{ marginTop: "1.8rem", fontSize: "1.2rem", color: "var(--ink-0)", maxWidth: "58ch" }}
-            >
-              {verse.translation}
-            </p>
-            <div className="card-foot" style={{ marginTop: "2rem" }}>
-              <span className="meta">{verse.source} · {verse.locator}</span>
-              <Link href={`/verses/${verse.id}`} className="btn-ghost">{t.readMore} →</Link>
-            </div>
-            {!verse.isCited && <p className="notice-uncited">⚠ {t.uncitedNotice}</p>}
-          </article>
         </Reveal>
       </section>
 
-      {/* ── 04 · The four Mahavakyas ──────────────────── */}
-      <section className="band band-hair shell" id="mahavakyas">
+      {/* ── 04 · The four Mahavakyas ───────────────────── */}
+      <section className="shell" style={{ paddingBlock: "clamp(3rem, 8vh, 6rem)" }}>
         <Reveal>
-          <div className="band-head">
-            <div className="band-head-text">
-              <span className="band-index">02</span>
-              <h2 className="title">{t.mahavakyas}</h2>
-              <p className="lede">{t.mahavakyasBlurb}</p>
-            </div>
-          </div>
+          <p className="scene-eyebrow">{t.mahavakyas}</p>
+          <h2 className="statement-text" style={{ maxWidth: "18ch" }}>
+            {t.mahavakyasBlurb}
+          </h2>
         </Reveal>
-
-        <div className="vakya-grid">
-          {mahavakyas.map((m, i) => (
-            <Reveal key={m.id} delay={i * 80}>
-              <Link href={`/verses/${m.id}`} className="vakya" style={{ height: "100%" }}>
-                <p className="vakya-sanskrit">{m.sanskrit}</p>
-                <p className="translit">{m.transliteration}</p>
-                <p className="card-text clamp-3" style={{ marginTop: "0.5rem" }}>{m.translation}</p>
-                <span className="vakya-veda">{m.source}</span>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
       </section>
 
-      {/* ── 05 · Temples, as an editorial mosaic ──────── */}
-      <section className="band band-hair shell" id="temples">
-        <Reveal>
-          <div className="band-head">
-            <div className="band-head-text">
-              <span className="band-index">03</span>
-              <h2 className="title">{t.templesTitle}</h2>
-              <p className="lede">{t.templesBlurb}</p>
-            </div>
-            <Link href="/temples" className="btn-ghost">{t.viewAll} →</Link>
-          </div>
-        </Reveal>
+      <div className="vakya-cinema" id="mahavakyas">
+        {mahavakyas.map((m) => (
+          <Link key={m.id} href={`/verses/${m.id}`} className="vakya-cell">
+            <p className="vakya-cell-sanskrit">{m.sanskrit}</p>
+            <p className="vakya-cell-translit">{m.transliteration}</p>
+            <p className="vakya-cell-text">{m.translation}</p>
+          </Link>
+        ))}
+      </div>
 
-        <div className="mosaic">
-          {/* Reveal is the grid item itself — a display:contents wrapper
-              could not be faded or translated. */}
-          {temples.map((tp, i) => (
-            <Reveal key={tp.id} delay={i * 70}>
-              <Link href={`/temples/${tp.slug}`} className="tile" style={{ height: "100%" }}>
-                {tp.imageUrl && (
-                  <Image
-                    src={tp.imageUrl}
-                    alt={tp.name}
-                    fill
-                    sizes="(max-width: 900px) 50vw, 50vw"
-                    style={{ objectFit: "cover" }}
-                  />
-                )}
-                <div className="tile-body">
-                  <h3 className="tile-name">{tp.name}</h3>
-                  <p className="tile-meta">{tp.location} · {tp.centuryBuilt}</p>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 06 · Citation promise, over the Rigveda MS ── */}
-      <section className="band band-hair shell" id="sources">
-        <div className="split">
-          <Reveal>
-            <div className="split-media">
-              <Image
-                src={TEXTURE.manuscript.src}
-                alt="A page of the Rigveda in manuscript"
-                fill
-                sizes="(max-width: 900px) 100vw, 40vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-          </Reveal>
-
-          <Reveal delay={110}>
-            <div className="band-head-text">
-              <span className="band-index">04</span>
-              <h2 className="title">{t.labelSource}</h2>
-              <p className="prose" style={{ fontSize: "1.05rem" }}>
-                {t.uncitedNotice}
-              </p>
-              <p className="prose">
-                Every translation and every commentary entry on this site must name where it came
-                from. That rule is enforced in the database itself — a translation without a source
-                cannot be stored — so the citation is a fact about the record, not a promise about
-                the editor.
-              </p>
-              <p className="credit">{TEXTURE.manuscript.credit}</p>
-              <Link href="/about" className="btn-ghost" style={{ marginTop: "0.5rem" }}>
-                {t.navAbout} →
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ── 07 · Acharyas ─────────────────────────────── */}
-      <section className="band band-hair shell" id="acharyas">
-        <Reveal>
-          <div className="band-head">
-            <div className="band-head-text">
-              <span className="band-index">05</span>
-              <h2 className="title">{t.teachersTitle}</h2>
-              <p className="lede">{t.teachersBlurb}</p>
-            </div>
-            <Link href="/acharyas" className="btn-ghost">{t.viewAll} →</Link>
-          </div>
-        </Reveal>
-
-        <div className="grid-cards">
-          {teachers.map((p, i) => (
-            <Reveal key={p.id} delay={i * 90}>
-              <Link href={`/acharyas/${p.slug}`} className="card" style={{ height: "100%" }}>
-                {p.imageUrl && (
-                  <div className="card-img">
-                    <Image
-                      src={p.imageUrl}
-                      alt={p.name}
-                      fill
-                      sizes="(max-width: 700px) 100vw, 33vw"
-                      style={{ objectFit: "cover", objectPosition: "top center" }}
-                    />
-                  </div>
-                )}
-                <div className="card-body">
-                  <h3 className="card-title">{p.name}</h3>
-                  <p className="translit">{p.nameSanskrit}</p>
-                  <p className="card-text clamp-3" style={{ marginTop: "0.4rem" }}>{p.biography}</p>
-                  <div className="card-foot">
-                    <span className="meta">{p.era}</span>
-                  </div>
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── 08 · Concept ticker ───────────────────────── */}
-      <div className="ticker" aria-hidden="true">
-        <div className="ticker-track">
-          {tickerItems.map((c, i) => (
-            <span key={`${c.id}-${i}`} className="ticker-item">
-              <span className="ticker-sanskrit">{c.termSanskrit}</span>
-              <span className="ticker-term">{c.term}</span>
+      {/* ── 05 · Temples, pinned ───────────────────────── */}
+      {featured?.imageUrl && (
+        <ScrollScene
+          id="temples"
+          src={featured.imageUrl}
+          alt={featured.name}
+          credit={featured.imageCredit ?? undefined}
+          height={2.2}
+        >
+          <p className="scene-eyebrow">{t.templesTitle}</p>
+          <h2 className="statement-text">{t.templesBlurb}</h2>
+          <div className="scene-meta">
+            <span>
+              {featured.name} · {featured.centuryBuilt}
             </span>
-          ))}
+            <Link href="/temples" className="btn-ghost">
+              {t.viewAll} →
+            </Link>
+          </div>
+        </ScrollScene>
+      )}
+
+      {/* ── 06 · The scale of the archive ──────────────── */}
+      <div className="tally-cinema">
+        <div className="tally-cell">
+          <Counter value={verses.length} label={t.navVerses} />
+        </div>
+        <div className="tally-cell">
+          <Counter value={upanishads.length} label={t.navUpanishads} />
+        </div>
+        <div className="tally-cell">
+          <Counter value={temples.length} label={t.navTemples} />
+        </div>
+        <div className="tally-cell">
+          <Counter value={concepts.length} label={t.navConcepts} />
+        </div>
+        <div className="tally-cell">
+          <Counter value={teachers.length} label={t.navTeachers} />
+        </div>
+        <div className="tally-cell">
+          <Counter value={mathas.length} label={t.navMathas} />
         </div>
       </div>
 
-      {/* ── 09 · The pillars ──────────────────────────── */}
-      <section className="band shell" id="pillars">
+      {/* ── 07 · The index of pillars ──────────────────── */}
+      <section className="shell" id="pillars" style={{ paddingBlock: "clamp(4rem, 12vh, 9rem)" }}>
         <Reveal>
-          <div className="band-head">
-            <div className="band-head-text">
-              <span className="band-index">06</span>
-              <h2 className="title">{t.explorePillars}</h2>
-              <p className="lede">{t.pillarsBlurb}</p>
-            </div>
-          </div>
+          <p className="scene-eyebrow">{t.explorePillars}</p>
+          <h2 className="statement-text" style={{ marginBottom: "clamp(2rem, 5vh, 4rem)" }}>
+            {t.pillarsBlurb}
+          </h2>
         </Reveal>
 
-        <div className="pillars">
+        <ol className="index-list">
           {pillars.map((p, i) => (
-            <Reveal key={p.href} delay={i * 60}>
-              <Link href={p.href} className="pillar" style={{ height: "100%" }}>
-                <span className="pillar-num">{String(i + 1).padStart(2, "0")}</span>
-                <h3 className="pillar-name">{p.label}</h3>
-                <p className="card-text">{p.blurb}</p>
-                <span className="pillar-arrow">→</span>
-              </Link>
-            </Reveal>
+            <li key={p.id} className="index-row">
+              <span className="index-num">{String(i + 1).padStart(2, "0")}</span>
+              <span>
+                {/* The whole row is the target: the ::before overlay sits
+                    above the row, so a stretched link keeps it clickable. */}
+                <Link href={p.href} className="index-name" style={{ display: "block" }}>
+                  <span
+                    aria-hidden="true"
+                    style={{ position: "absolute", inset: 0, zIndex: 3 }}
+                  />
+                  {p.label}
+                </Link>
+                <span className="index-blurb" style={{ display: "block" }}>
+                  {p.blurb}
+                </span>
+              </span>
+              <span className="index-glyph deva" aria-hidden="true">
+                {p.glyph}
+              </span>
+            </li>
           ))}
-        </div>
+        </ol>
       </section>
     </>
   );

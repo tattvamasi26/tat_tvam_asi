@@ -29,10 +29,15 @@ export function SiteNav({
   sections,
   secondary,
   labels,
+  siteName,
+  nameClass = "",
 }: {
   sections: NavSection[];
   secondary: { href: string; label: string }[];
   labels: { open: string; close: string; index: string; more: string };
+  /** Site name in the reading language — see Wordmark for why it varies. */
+  siteName: string;
+  nameClass?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -119,9 +124,9 @@ export function SiteNav({
 
         <div className="nav-panel" ref={panelRef}>
           <div className="shell nav-panel-head">
-            <Link href="/" className="lockup" aria-label="Tat Tvam Asi">
+            <Link href="/" className="lockup" aria-label={siteName}>
               <Mark size={32} animated={open} />
-              <span className="lockup-text deva">तत् त्वम् असि</span>
+              <span className={`lockup-text ${nameClass}`.trim()}>{siteName}</span>
             </Link>
 
             <button type="button" className="nav-close" onClick={() => setOpen(false)}>

@@ -27,13 +27,30 @@ export interface LocaleMeta {
   htmlLang: string;
   /** Short badge text for the compact switcher. */
   short: string;
+  /**
+   * Which face the site's own name should be set in for this locale.
+   * The wordmark is the one place where the script has to follow the
+   * reading language: a Devanagari lockup above an English page reads
+   * as a different site's logo dropped onto the wrong page.
+   */
+  script: "latin" | "deva" | "knda";
 }
 
 export const LOCALE_META: Record<Locale, LocaleMeta> = {
-  en: { label: "English", native: "English", htmlLang: "en", short: "EN" },
-  kn: { label: "Kannada", native: "ಕನ್ನಡ", htmlLang: "kn", short: "ಕ" },
-  hi: { label: "Hindi", native: "हिन्दी", htmlLang: "hi", short: "हि" },
+  en: { label: "English", native: "English", htmlLang: "en", short: "EN", script: "latin" },
+  kn: { label: "Kannada", native: "ಕನ್ನಡ", htmlLang: "kn", short: "ಕ", script: "knda" },
+  hi: { label: "Hindi", native: "हिन्दी", htmlLang: "hi", short: "हि", script: "deva" },
 };
+
+/**
+ * The class the site name should carry in a given locale. Returns "" for
+ * English so Latin text simply inherits the page face rather than being
+ * forced into a script font that has no Latin coverage.
+ */
+export function nameScriptClass(locale: Locale): string {
+  const s = LOCALE_META[locale].script;
+  return s === "deva" ? "deva" : s === "knda" ? "kannada" : "";
+}
 
 export function isLocale(value: string | undefined | null): value is Locale {
   return !!value && (LOCALES as readonly string[]).includes(value);

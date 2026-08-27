@@ -13,8 +13,17 @@
 //  the page renders offline and cannot break when an upstream
 //  file is renamed or deleted.
 //
-//  Ordered deliberately: the rotation opens on Ellora — a temple
-//  carved downward out of one rock — and moves from stone to river.
+//  EVERY frame here must be at least ~3840px wide. The rotation
+//  is only as good as its worst frame: this list previously
+//  carried a 753x450 Varanasi photograph that was being upscaled
+//  roughly five times on a 4K display, and that single frame was
+//  what made the whole hero look soft.
+//
+//  Ordered as a tonal arc, and deliberately opening on the
+//  strongest frame: the first image is the LCP element and the
+//  one every visitor lands on, so it is the dusk-lit Thanjavur
+//  tower rather than a flatter midday shot. From there: carved
+//  detail, marble, stone, and out to open water at sunrise.
 // ─────────────────────────────────────────────────────────
 
 export interface HeroImage {
@@ -28,6 +37,18 @@ export interface HeroImage {
 
 export const HERO_IMAGES: HeroImage[] = [
   {
+    src: "/images/site/brihadeeswarar.jpg",
+    place: "Brihadeeswarar · Thanjavur",
+    credit: "Rainer Halama / UnpetitproleX · CC BY-SA 4.0",
+    position: "50% 40%",
+  },
+  {
+    src: "/images/site/konark-wheel.jpg",
+    place: "Sun Temple · Konark",
+    credit: "Subhrajyoti07 · CC BY-SA 4.0",
+    position: "50% 50%",
+  },
+  {
     src: "/images/site/ranakpur.jpg",
     place: "Ranakpur",
     credit: "Mustang Joe · CC0",
@@ -40,30 +61,25 @@ export const HERO_IMAGES: HeroImage[] = [
     position: "50% 45%",
   },
   {
-    src: "/images/site/brihadeeswarar.jpg",
-    place: "Brihadeeswarar · Thanjavur",
-    credit: "Rainer Halama / UnpetitproleX · CC BY-SA 4.0",
-    position: "50% 40%",
-  },
-  {
-    src: "/images/site/hampi.jpg",
-    place: "Virupaksha · Hampi",
-    credit: "iMahesh · CC BY-SA 4.0",
-    position: "50% 50%",
-  },
-  {
     src: "/images/site/varanasi.jpg",
-    place: "Dashashwamedh Ghat · Varanasi",
-    credit: "Vrinda · CC BY-SA 3.0",
-    position: "50% 55%",
+    place: "The Ganga at sunrise · Varanasi",
+    credit: "Schwiki · CC BY-SA 4.0",
+    position: "50% 50%",
   },
 ];
 
 /** Detail imagery used as section texture rather than as a backdrop. */
 export const TEXTURE = {
+  // Contextually the right image — an actual Rigveda manuscript — but only
+  // 1100px wide, so it is never given a full-bleed treatment. Replace it
+  // before using it any larger than a bounded panel.
   manuscript: {
     src: "/images/site/rigveda.jpg",
     credit: "Rigveda manuscript MS2097 · Public domain · Wikimedia Commons",
+  },
+  wheel: {
+    src: "/images/site/konark-wheel.jpg",
+    credit: "Subhrajyoti07 · CC BY-SA 4.0 · Wikimedia Commons",
   },
   reliefs: {
     src: "/images/site/halebidu.jpg",

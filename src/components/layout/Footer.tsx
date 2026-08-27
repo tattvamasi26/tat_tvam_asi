@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "@/i18n/server";
 import { sectionsFor } from "@/i18n/sections";
+import { nameScriptClass } from "@/i18n/config";
 import { Mark } from "@/components/brand/Mark";
 
 export function Footer() {
@@ -21,10 +22,13 @@ export function Footer() {
     <footer className="footer">
       <div className="shell footer-grid">
         <div>
-          <Link href="/" className="lockup" aria-label="Tat Tvam Asi">
+          <Link href="/" className="lockup" aria-label={t.siteName}>
             <Mark size={34} />
-            <span className="lockup-text deva" style={{ fontSize: "1.25rem" }}>
-              तत् त्वम् असि
+            <span
+              className={`lockup-text ${nameScriptClass(locale)}`.trim()}
+              style={{ fontSize: "1.25rem" }}
+            >
+              {t.siteName}
             </span>
           </Link>
           <p className="card-text" style={{ maxWidth: "38ch", marginTop: "1rem" }}>

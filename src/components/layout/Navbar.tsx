@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getTranslations } from "@/i18n/server";
 import { sectionsFor } from "@/i18n/sections";
+import { nameScriptClass } from "@/i18n/config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { SiteNav } from "./SiteNav";
 import { Wordmark } from "@/components/brand/Mark";
@@ -22,8 +23,8 @@ export function Navbar() {
   return (
     <header className="masthead">
       <div className="shell masthead-inner">
-        <Link href="/" aria-label="Tat Tvam Asi">
-          <Wordmark />
+        <Link href="/" aria-label={t.siteName}>
+          <Wordmark name={t.siteName} scriptClass={nameScriptClass(locale)} />
         </Link>
 
         <div className="nav-actions">
@@ -39,6 +40,8 @@ export function Navbar() {
           <SiteNav
             sections={sections}
             secondary={secondary}
+            siteName={t.siteName}
+            nameClass={nameScriptClass(locale)}
             labels={{
               open: t.navOpenMenu,
               close: t.navCloseMenu,

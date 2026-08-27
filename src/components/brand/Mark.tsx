@@ -57,14 +57,29 @@ export function Mark({
 
 /**
  * Mark + wordmark, the standard lockup used in the masthead.
- * The wordmark stays Devanagari in every language: it is the site's
- * name, not a string to be translated.
+ *
+ * The name follows the reading language rather than staying Devanagari
+ * throughout. A Devanagari lockup sitting above an otherwise English
+ * page reads as another site's logo pasted onto the wrong page — the
+ * masthead should be in the same language as the words beneath it.
+ *
+ * `name` and `scriptClass` are passed in rather than read here, because
+ * this renders inside a client component that has no access to the
+ * request's locale.
  */
-export function Wordmark({ size = 30 }: { size?: number }) {
+export function Wordmark({
+  size = 30,
+  name,
+  scriptClass = "",
+}: {
+  size?: number;
+  name: string;
+  scriptClass?: string;
+}) {
   return (
     <span className="lockup">
       <Mark size={size} />
-      <span className="lockup-text deva">तत् त्वम् असि</span>
+      <span className={`lockup-text ${scriptClass}`.trim()}>{name}</span>
     </span>
   );
 }

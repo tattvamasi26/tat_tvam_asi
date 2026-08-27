@@ -25,7 +25,7 @@ export default function AboutPage() {
       <section className="pagehead">
         <div className="shell-narrow pagehead-inner">
           <p className="eyebrow">{t.navAbout}</p>
-          <h1 className="title">तत् त्वम् असि</h1>
+          <h1 className="title">{t.siteName}</h1>
           <p className="lede">{t.footerTagline}</p>
         </div>
       </section>
