@@ -32,30 +32,21 @@ export default function AboutPage() {
 
       <section className="shell-narrow stack-lg" style={{ paddingTop: 0 }}>
         <p className="prose" style={{ fontSize: "1.1rem", color: "var(--ink-0)" }}>
-          There is no single place that holds the whole of Sanatana Dharma — the Vedic corpus, the
-          Upanishads, the Gita, the bhashyas of every sampradaya, the temples and their history, the
-          practices and traditions, the stotras and their recitation. This is an attempt to build one,
-          incrementally and without an end date.
+          {t.aboutIntro}
         </p>
 
         <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />
 
-        <p className="eyebrow">Citation before scale</p>
+        <p className="eyebrow">{t.aboutCitationHeading}</p>
         <p className="prose" style={{ marginTop: "0.9rem" }}>
-          A reference is only worth as much as its sources. Every translation and every commentary
-          entry must name where it came from — this is enforced in the database itself, not left to
-          discipline. Content inherited from earlier drafts is labelled as an uncited editorial
-          paraphrase until a properly attributed translation replaces it, rather than quietly passed
-          off as scholarship.
+          {t.aboutCitationBody}
         </p>
 
         <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />
 
         <p className="eyebrow">{t.language}</p>
         <p className="prose" style={{ marginTop: "0.9rem" }}>
-          The site reads in Kannada, English and Hindi, and the switch changes the content, not only
-          the menus. Each language is a row in the database rather than a separate copy of the site,
-          so a fourth language is a data task and not an engineering one.
+          {t.aboutLanguageBody}
         </p>
 
         <hr className="rule" style={{ margin: "2.75rem 0 2rem" }} />

@@ -88,12 +88,7 @@ export default function HomePage() {
         <Reveal>
           <p className="scene-eyebrow">{t.labelSource}</p>
           <h2 className="statement-text">{t.uncitedNotice}</h2>
-          <p className="statement-sub">
-            Every translation and every commentary entry on this site must name where it
-            came from. That rule is enforced in the database itself — a translation
-            without a source cannot be stored — so the citation is a fact about the
-            record, not a promise about the editor.
-          </p>
+          <p className="statement-sub">{t.citationPromise}</p>
           <div className="scene-meta">
             <Link href="/about" className="btn-ghost">
               {t.navAbout} →

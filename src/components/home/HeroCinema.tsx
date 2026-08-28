@@ -7,14 +7,18 @@ import type { HeroImage } from "@/lib/hero";
 /**
  * The opening frame.
  *
- * Three layers moving at different rates is what reads as depth:
- * the photograph drifts and scales slowly, a scrim sits still, and
- * the title block rises faster than both and fades out first. Doing
- * it with one transform per layer keeps the whole thing on the
- * compositor — no layout is read or written during the scroll.
+ * Three layers moving at different rates is what reads as depth: the
+ * photograph drifts and scales slowly, a scrim sits still, and the
+ * title block rises faster than both and fades out first. One transform
+ * per layer keeps the whole thing on the compositor — no layout is read
+ * or written during the scroll.
  *
- * The rotation cross-fades on a timer rather than on scroll, so the
- * hero is alive even before the visitor touches the wheel.
+ * The page also grades itself to whichever frame is showing. Each
+ * photograph carries a sampled tint and accent (see lib/hero.ts), and
+ * those are published as custom properties that the scrim, the hairline
+ * and the caption all read. Because they are colours on a CSS property
+ * with a transition, the grade cross-fades along with the image instead
+ * of snapping.
  */
 export function HeroCinema({
   images,
@@ -50,29 +54,66 @@ export function HeroCinema({
     return () => window.clearInterval(id);
   }, [images.length]);
 
-  // Scroll-linked depth. Written as a CSS custom property so all the
-  // actual motion stays in the stylesheet, and so a browser that never
-  // fires this still renders a correct, static hero.
+  // Scroll-linked depth, plus a pointer-linked parallax. Both are
+  // written as custom properties so every bit of actual motion lives in
+  // the stylesheet, and a browser that never fires these still renders
+  // a correct, static hero.
   useEffect(() => {
     const el = rootRef.current;
     if (!el) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let frame = 0;
+    let px = 0;
+    let py = 0;
+    let tx = 0;
+    let ty = 0;
+    let idle = true;
+
     const onScroll = () => {
       if (frame) return;
-      frame = window.requestAnimationFrame(() => {
-        frame = 0;
-        // 0 at the top of the hero, 1 once it has scrolled fully away.
-        const p = Math.min(1, Math.max(0, window.scrollY / window.innerHeight));
-        el.style.setProperty("--p", p.toFixed(4));
-      });
+      frame = window.requestAnimationFrame(tick);
     };
 
-    onScroll();
+    // Pointer parallax is eased rather than applied directly: following
+    // the cursor exactly reads as jitter, while a lerp reads as weight.
+    const onPointer = (e: PointerEvent) => {
+      tx = (e.clientX / window.innerWidth - 0.5) * 2;
+      ty = (e.clientY / window.innerHeight - 0.5) * 2;
+      if (idle) {
+        idle = false;
+        if (!frame) frame = window.requestAnimationFrame(tick);
+      }
+    };
+
+    function tick() {
+      frame = 0;
+      const node = rootRef.current;
+      if (!node) return;
+
+      // 0 at the top of the hero, 1 once it has scrolled fully away.
+      const p = Math.min(1, Math.max(0, window.scrollY / window.innerHeight));
+      node.style.setProperty("--p", p.toFixed(4));
+
+      px += (tx - px) * 0.06;
+      py += (ty - py) * 0.06;
+      node.style.setProperty("--mx", px.toFixed(4));
+      node.style.setProperty("--my", py.toFixed(4));
+
+      // Keep animating only while the eased value is still catching up.
+      if (Math.abs(tx - px) > 0.001 || Math.abs(ty - py) > 0.001) {
+        frame = window.requestAnimationFrame(tick);
+      } else {
+        idle = true;
+      }
+    }
+
+    tick();
     window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("pointermove", onPointer, { passive: true });
     return () => {
       window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("pointermove", onPointer);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
@@ -80,7 +121,17 @@ export function HeroCinema({
   const current = images[active];
 
   return (
-    <section className="cinema" ref={rootRef}>
+    <section
+      className="cinema"
+      ref={rootRef}
+      style={
+        {
+          "--frame-tint": current.grade.tint,
+          "--frame-accent": current.grade.accent,
+          "--frame-scrim": current.grade.scrim,
+        } as React.CSSProperties
+      }
+    >
       <div className="cinema-plate">
         {images.map((img, i) => (
           <div
@@ -128,8 +179,18 @@ export function HeroCinema({
       </div>
 
       <div className="cinema-foot">
-        <span className="cinema-place">{current.place}</span>
-        <span className="cinema-credit">{current.credit}</span>
+        {/* Keyed on src so the caption re-runs its fade when the frame
+            changes, rather than swapping text under a static label. */}
+        <span key={current.src} className="cinema-caption">
+          <span className="cinema-place">{current.place}</span>
+          <span className="cinema-credit">{current.credit}</span>
+        </span>
+
+        <span className="cinema-ticks" aria-hidden="true">
+          {images.map((img, i) => (
+            <span key={img.src} className="cinema-tick" data-on={i === active ? "" : undefined} />
+          ))}
+        </span>
       </div>
 
       <div className="cinema-cue" aria-hidden="true">

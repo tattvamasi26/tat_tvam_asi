@@ -108,6 +108,18 @@ export interface UIStrings {
   footerRights: string;
   footerExplore: string;
   footerAbout: string;
+
+  // ── Long-form page copy
+  //
+  // Prose that used to be written straight into the JSX. Anything a
+  // reader sees has to live here, or the page silently stays English
+  // when the language is switched.
+  citationPromise: string;
+  aboutIntro: string;
+  aboutCitationHeading: string;
+  aboutCitationBody: string;
+  aboutLanguageBody: string;
+  kollurBlurb: string;
 }
 
 const en: UIStrings = {
@@ -199,6 +211,18 @@ const en: UIStrings = {
   footerRights: "All rights reserved.",
   footerExplore: "Explore",
   footerAbout: "About",
+
+  citationPromise:
+    "Every translation and every commentary entry on this site must name where it came from. That rule is enforced in the database itself — a translation without a source cannot be stored — so the citation is a fact about the record, not a promise about the editor.",
+  aboutIntro:
+    "There is no single place that holds the whole of Sanatana Dharma — the Vedic corpus, the Upanishads, the Gita, the bhashyas of every sampradaya, the temples and their history, the practices and traditions, the stotras and their recitation. This is an attempt to build one, incrementally and without an end date.",
+  aboutCitationHeading: "Citation before scale",
+  aboutCitationBody:
+    "A reference is only worth as much as its sources. Every translation and every commentary entry must name where it came from — this is enforced in the database itself, not left to discipline. Content inherited from earlier drafts is labelled as an uncited editorial paraphrase until a properly attributed translation replaces it, rather than quietly passed off as scholarship.",
+  aboutLanguageBody:
+    "The site reads in Kannada, English and Hindi, and the switch changes the content, not only the menus. Each language is a row in the database rather than a separate copy of the site, so a fourth language is a data task and not an engineering one.",
+  kollurBlurb:
+    "Kollur · One of the Seven Mukti Sthalas of Parashurama Kshetra. History, Puranika Katha, rituals, agama shastra, and the significance of the Swayambhu Lingam.",
 };
 
 const kn: UIStrings = {
@@ -289,6 +313,18 @@ const kn: UIStrings = {
   footerRights: "ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
   footerExplore: "ಅನ್ವೇಷಿಸಿ",
   footerAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
+
+  citationPromise:
+    "ಈ ತಾಣದ ಪ್ರತಿಯೊಂದು ಅನುವಾದವೂ, ಪ್ರತಿಯೊಂದು ಭಾಷ್ಯದ ನಮೂದೂ ತಾನು ಎಲ್ಲಿಂದ ಬಂದಿತೆಂದು ಹೇಳಲೇಬೇಕು. ಈ ನಿಯಮ ದತ್ತಸಂಚಯದಲ್ಲಿಯೇ ಜಾರಿಯಾಗಿದೆ — ಆಧಾರವಿಲ್ಲದ ಅನುವಾದವನ್ನು ಸಂಗ್ರಹಿಸಲು ಸಾಧ್ಯವೇ ಇಲ್ಲ — ಆದ್ದರಿಂದ ಆಧಾರವೆಂಬುದು ಸಂಪಾದಕನ ಭರವಸೆಯಲ್ಲ, ದಾಖಲೆಯ ಸತ್ಯ.",
+  aboutIntro:
+    "ಸನಾತನ ಧರ್ಮದ ಸಮಗ್ರತೆಯನ್ನು — ವೇದರಾಶಿ, ಉಪನಿಷತ್ತುಗಳು, ಗೀತೆ, ಎಲ್ಲ ಸಂಪ್ರದಾಯಗಳ ಭಾಷ್ಯಗಳು, ದೇವಾಲಯಗಳು ಮತ್ತು ಅವುಗಳ ಇತಿಹಾಸ, ಆಚಾರ-ಪರಂಪರೆಗಳು, ಸ್ತೋತ್ರಗಳು ಮತ್ತು ಅವುಗಳ ಪಠಣ — ಒಂದೇ ಕಡೆ ಹಿಡಿದಿಟ್ಟ ಸ್ಥಳವೊಂದು ಇಲ್ಲ. ಇದು ಅಂಥದೊಂದನ್ನು ಕಟ್ಟುವ ಪ್ರಯತ್ನ, ಹಂತಹಂತವಾಗಿ ಮತ್ತು ಅಂತಿಮ ದಿನಾಂಕವಿಲ್ಲದೆ.",
+  aboutCitationHeading: "ವಿಸ್ತಾರಕ್ಕಿಂತ ಮೊದಲು ಆಧಾರ",
+  aboutCitationBody:
+    "ಆಕರಗ್ರಂಥವೊಂದರ ಮೌಲ್ಯ ಅದರ ಆಧಾರಗಳಷ್ಟೇ. ಪ್ರತಿಯೊಂದು ಅನುವಾದವೂ, ಪ್ರತಿಯೊಂದು ಭಾಷ್ಯದ ನಮೂದೂ ತಾನು ಎಲ್ಲಿಂದ ಬಂದಿತೆಂದು ಹೇಳಲೇಬೇಕು — ಇದು ಶಿಸ್ತಿಗೆ ಬಿಟ್ಟದ್ದಲ್ಲ, ದತ್ತಸಂಚಯದಲ್ಲಿಯೇ ಕಡ್ಡಾಯಗೊಳಿಸಲಾಗಿದೆ. ಹಿಂದಿನ ಕರಡುಗಳಿಂದ ಬಂದ ವಿಷಯವನ್ನು, ಸರಿಯಾದ ಆಧಾರಸಹಿತ ಅನುವಾದ ಅದರ ಸ್ಥಾನ ತುಂಬುವವರೆಗೆ, ಆಧಾರರಹಿತ ಸಂಪಾದಕೀಯ ಸಾರಾಂಶವೆಂದು ಗುರುತಿಸಲಾಗುತ್ತದೆ — ಮೌನವಾಗಿ ವಿದ್ವತ್ತೆಂದು ತೋರಿಸಲಾಗುವುದಿಲ್ಲ.",
+  aboutLanguageBody:
+    "ಈ ತಾಣವನ್ನು ಕನ್ನಡ, ಇಂಗ್ಲಿಷ್ ಮತ್ತು ಹಿಂದಿಯಲ್ಲಿ ಓದಬಹುದು; ಭಾಷೆ ಬದಲಿಸಿದಾಗ ಕೇವಲ ಮೆನುಗಳಲ್ಲ, ವಿಷಯವೂ ಬದಲಾಗುತ್ತದೆ. ಪ್ರತಿ ಭಾಷೆಯೂ ತಾಣದ ಪ್ರತ್ಯೇಕ ಪ್ರತಿಯಲ್ಲ, ದತ್ತಸಂಚಯದ ಒಂದು ಸಾಲು — ಆದ್ದರಿಂದ ನಾಲ್ಕನೆಯ ಭಾಷೆ ಸೇರಿಸುವುದು ತಂತ್ರಜ್ಞಾನದ ಕೆಲಸವಲ್ಲ, ದತ್ತಾಂಶದ ಕೆಲಸ.",
+  kollurBlurb:
+    "ಕೊಲ್ಲೂರು · ಪರಶುರಾಮ ಕ್ಷೇತ್ರದ ಸಪ್ತ ಮುಕ್ತಿಸ್ಥಳಗಳಲ್ಲಿ ಒಂದು. ಇತಿಹಾಸ, ಪೌರಾಣಿಕ ಕಥೆ, ಆಚರಣೆಗಳು, ಆಗಮಶಾಸ್ತ್ರ ಮತ್ತು ಸ್ವಯಂಭೂ ಲಿಂಗದ ಮಹತ್ವ.",
 };
 
 const hi: UIStrings = {
@@ -379,6 +415,18 @@ const hi: UIStrings = {
   footerRights: "सर्वाधिकार सुरक्षित।",
   footerExplore: "अन्वेषण",
   footerAbout: "परिचय",
+
+  citationPromise:
+    "इस स्थल का प्रत्येक अनुवाद और प्रत्येक भाष्य-प्रविष्टि यह बताएगी ही कि वह कहाँ से आई। यह नियम डेटाबेस में ही लागू है — बिना स्रोत का अनुवाद संग्रहीत हो ही नहीं सकता — इसलिए प्रमाण संपादक का वचन नहीं, अभिलेख का तथ्य है।",
+  aboutIntro:
+    "सनातन धर्म के समग्र रूप को — वैदिक वाङ्मय, उपनिषद्, गीता, प्रत्येक संप्रदाय के भाष्य, मंदिर और उनका इतिहास, आचार और परंपराएँ, स्तोत्र और उनका पाठ — एक ही स्थान पर धारण करने वाला कोई स्थान नहीं है। यह वैसा ही एक स्थान बनाने का प्रयास है, क्रमशः और बिना किसी अंतिम तिथि के।",
+  aboutCitationHeading: "विस्तार से पहले प्रमाण",
+  aboutCitationBody:
+    "किसी संदर्भग्रंथ का मूल्य उसके स्रोतों जितना ही होता है। प्रत्येक अनुवाद और प्रत्येक भाष्य-प्रविष्टि को यह बताना ही होगा कि वह कहाँ से आई — यह अनुशासन पर नहीं छोड़ा गया, डेटाबेस में ही अनिवार्य है। पूर्व प्रारूपों से आई सामग्री को, जब तक उचित प्रमाण-सहित अनुवाद उसका स्थान न ले, अप्रमाणित संपादकीय सारांश के रूप में चिह्नित किया जाता है — उसे चुपचाप विद्वत्ता के रूप में प्रस्तुत नहीं किया जाता।",
+  aboutLanguageBody:
+    "यह स्थल कन्नड़, अंग्रेज़ी और हिन्दी में पढ़ा जा सकता है, और भाषा बदलने पर केवल मेनू नहीं, सामग्री भी बदलती है। प्रत्येक भाषा स्थल की अलग प्रति नहीं, डेटाबेस की एक पंक्ति है — इसलिए चौथी भाषा जोड़ना अभियांत्रिकी का नहीं, आँकड़ों का काम है।",
+  kollurBlurb:
+    "कोल्लूर · परशुराम क्षेत्र के सात मुक्तिस्थलों में से एक। इतिहास, पौराणिक कथा, अनुष्ठान, आगमशास्त्र और स्वयंभू लिंग का महत्व।",
 };
 
 const DICTIONARIES: Record<Locale, UIStrings> = { en, kn, hi };

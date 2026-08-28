@@ -72,10 +72,7 @@ export default function TemplesPage() {
               <p className="kannada" style={{ color: "var(--gold)", fontSize: "1.2rem" }}>
                 ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ
               </p>
-              <p className="prose">
-                Kollur · One of the Seven Mukti Sthalas of Parashurama Kshetra. History, Puranika
-                Katha, rituals, agama shastra, and the significance of the Swayambhu Lingam.
-              </p>
+              <p className="prose">{t.kollurBlurb}</p>
               <Link href="/temples/tulunadu/kollur-mookambika" className="btn" style={{ marginTop: "0.6rem" }}>
                 {t.readMore}
               </Link>
