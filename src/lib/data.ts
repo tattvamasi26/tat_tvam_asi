@@ -378,3 +378,62 @@ export function getStutis(locale: Locale): UpanishadView[] {
 export function getBhajans(locale: Locale): UpanishadView[] {
   return resolveTexts(BHAJANS, locale);
 }
+
+// ── Isha Upanishad: the full verse-by-verse reading ─────────
+//
+// The other read functions here resolve one language and hand the page
+// a flat view. This one also exposes every language at once, because a
+// verse reader genuinely wants to compare renderings side by side —
+// that is a feature of scripture, not a violation of the locale rule.
+// The page still follows the active locale for everything else.
+
+import { ISHA_VERSES, type IshaVerse } from "./seed/isha";
+import { LOCALES } from "@/i18n/config";
+
+export interface IshaVerseView {
+  id: string;
+  locator: string;
+  handle: string;
+  sanskrit: string[];
+  iast: string[];
+  keywords: { term: string; iast: string; gloss: string }[];
+  /** The active locale's reading. */
+  translation: string;
+  explanation: string;
+  /** Every locale, for the compare panel. */
+  allTranslations: { locale: Locale; text: string }[];
+  isCited: boolean;
+  sourceTitle: string;
+}
+
+export function getIshaVerses(locale: Locale): IshaVerseView[] {
+  const source = SOURCES.find((s) => s.id === "site-editorial");
+
+  return ISHA_VERSES.map((v: IshaVerse) => ({
+    id: v.id,
+    locator: v.locator,
+    handle: v.handle,
+    sanskrit: v.sanskrit,
+    iast: v.iast,
+    keywords: v.keywords.map((k) => ({
+      term: k.term,
+      iast: k.iast,
+      gloss: k.gloss[locale] ?? k.gloss.en,
+    })),
+    translation: v.readings[locale]?.translation ?? v.readings.en.translation,
+    explanation: v.readings[locale]?.explanation ?? v.readings.en.explanation,
+    allTranslations: LOCALES.map((l) => ({
+      locale: l,
+      text: v.readings[l]?.translation ?? v.readings.en.translation,
+    })),
+    // Every row points at site-editorial for now — see the header of
+    // seed/isha.ts for why nothing here is attributed to a translator.
+    isCited: false,
+    sourceTitle: source?.work_title ?? "",
+  }));
+}
+
+/** The Isha's own record from the texts table. */
+export function getIshaText(locale: Locale): UpanishadView | null {
+  return getAllUpanishads(locale).find((u) => u.slug === "isha") ?? null;
+}

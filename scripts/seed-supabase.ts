@@ -18,11 +18,32 @@ import { createClient } from "@supabase/supabase-js";
 
 import { SOURCES } from "../src/lib/seed/sources";
 import { TEXTS, TEXT_TRANSLATIONS } from "../src/lib/seed/texts";
-import { VERSES, VERSE_TRANSLATIONS, VERSE_NOTES } from "../src/lib/seed/verses";
+import {
+  VERSES as STANDALONE_VERSES,
+  VERSE_TRANSLATIONS as STANDALONE_TRANSLATIONS,
+  VERSE_NOTES as STANDALONE_NOTES,
+} from "../src/lib/seed/verses";
+import {
+  ISHA_VERSE_ROWS,
+  ISHA_TRANSLATION_ROWS,
+  ISHA_NOTE_ROWS,
+} from "../src/lib/seed/isha";
 import { TEACHERS, TEACHER_TRANSLATIONS } from "../src/lib/seed/teachers";
 import { TEMPLES, TEMPLE_TRANSLATIONS } from "../src/lib/seed/temples";
 import { CONCEPTS, CONCEPT_TRANSLATIONS } from "../src/lib/seed/concepts";
 import { MATHAS, MATHA_TRANSLATIONS } from "../src/lib/seed/mathas";
+
+/**
+ * verses.ts holds the curated standalone verses that /verses browses;
+ * isha.ts holds a complete text read verse-by-verse. They are separate
+ * collections on the site for good reason, but Postgres wants one
+ * `verses` table, so they are concatenated here rather than merged
+ * upstream — which would have put nineteen Isha verses into the
+ * standalone browse list.
+ */
+const VERSES = [...STANDALONE_VERSES, ...ISHA_VERSE_ROWS];
+const VERSE_TRANSLATIONS = [...STANDALONE_TRANSLATIONS, ...ISHA_TRANSLATION_ROWS];
+const VERSE_NOTES = [...STANDALONE_NOTES, ...ISHA_NOTE_ROWS];
 
 // ── env ─────────────────────────────────────────────────────
 function loadEnv() {

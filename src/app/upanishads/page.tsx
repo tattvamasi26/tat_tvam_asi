@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
+import Link from "next/link";
 import { getAllUpanishads } from "@/lib/data";
 
 export const metadata: Metadata = { title: "The Upanishads" };
@@ -35,6 +36,12 @@ export default function UpanishadsPage() {
                     {u.keyTeaching}
                   </p>
                 </div>
+
+                {u.slug === "isha" && (
+                  <Link href="/upanishads/isha" className="btn" style={{ marginTop: "1.1rem" }}>
+                    {t.readWork} →
+                  </Link>
+                )}
 
                 <div className="card-foot">
                   <div className="chips">

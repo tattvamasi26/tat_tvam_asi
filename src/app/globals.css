@@ -3118,3 +3118,364 @@
 .cinema-foot {
   isolation: isolate;
 }
+
+/* ═════════════════════════════════════════════════════════
+   THE VERSE READER
+
+   A śloka is a sequence in time when it is recited, so it is
+   built here as one: each pada animates in on its own delay
+   rather than the whole verse appearing at once.
+
+   All of the motion is scroll-driven CSS behind @supports, so a
+   browser without scroll timelines shows every verse in its
+   settled state instead of a column of invisible text.
+   ═════════════════════════════════════════════════════════ */
+
+.vhero-title {
+  font-family: var(--deva);
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  line-height: 1.15;
+  color: var(--ink-0);
+  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
+}
+.vhero-name {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 2.4vw, 1.9rem);
+  color: var(--frame-accent, var(--gold));
+  margin-top: 0.4rem;
+}
+
+.vintro {
+  padding-block: clamp(2.5rem, 6vh, 4rem);
+}
+
+.vlist {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 9vh, 7rem);
+  padding-bottom: clamp(3rem, 8vh, 6rem);
+}
+
+/* ── One verse ─────────────────────────────────────────── */
+
+.vstage {
+  position: relative;
+  padding: clamp(1.8rem, 4vw, 3.2rem);
+  padding-left: clamp(1.8rem, 4vw, 3.6rem);
+  border-left: 1px solid var(--stroke);
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--gold) 4%, transparent),
+    transparent 42%
+  );
+  scroll-margin-top: calc(var(--masthead-h) + 2rem);
+}
+
+/* The oversized index bleeding off the corner, as on the home page. */
+.vstage-index {
+  position: absolute;
+  top: clamp(0.6rem, 2vw, 1.4rem);
+  right: clamp(0.6rem, 2vw, 1.6rem);
+  font-family: var(--serif);
+  font-size: clamp(3.5rem, 9vw, 7rem);
+  line-height: 1;
+  color: var(--ink-0);
+  opacity: 0.045;
+  pointer-events: none;
+  user-select: none;
+  font-variant-numeric: tabular-nums;
+}
+
+.vstage-head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+}
+.vstage-num {
+  font-size: 0.68rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+:lang(kn) .vstage-num,
+:lang(hi) .vstage-num {
+  text-transform: none;
+  letter-spacing: 0.05em;
+  font-size: 0.82rem;
+}
+.vstage-handle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-2);
+}
+
+/* ── The mūla ──────────────────────────────────────────── */
+
+.vstage-mula {
+  margin-bottom: 1.1rem;
+}
+
+.vstage-sanskrit {
+  font-family: var(--deva) !important;
+  font-size: clamp(1.35rem, 3.1vw, 2.35rem);
+  line-height: 1.85;
+  color: var(--ink-0);
+  text-wrap: balance;
+}
+
+.vstage-iast p {
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  line-height: 1.9;
+  color: var(--gold-bright);
+  opacity: 0.75;
+}
+
+/* Each pada arrives a beat after the one above it. --line is set
+   per line in the component, so the stagger needs no nth-child list
+   and works for a two-line śloka or a five-line one alike. */
+@supports (animation-timeline: view()) {
+  .vstage-sanskrit,
+  .vstage-iast p {
+    animation: pada-in linear both;
+    animation-timeline: view();
+    animation-range: entry 4% cover 26%;
+    animation-delay: calc(var(--line, 0) * -0.06s);
+  }
+
+  @keyframes pada-in {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 1.6vh, 0);
+      filter: blur(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+}
+
+.vstage-translation {
+  font-family: var(--serif);
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.75;
+  color: var(--ink-0);
+  max-width: 62ch;
+  margin-top: clamp(1.2rem, 3vw, 2rem);
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--gold-dim);
+}
+:lang(kn) .vstage-translation,
+:lang(hi) .vstage-translation {
+  font-family: inherit;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.95;
+}
+
+/* ── Terms worth knowing ───────────────────────────────── */
+
+.vstage-terms {
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+}
+.vstage-terms-label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.8rem;
+}
+:lang(kn) .vstage-terms-label,
+:lang(hi) .vstage-terms-label {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+}
+
+.vstage-terms dl {
+  display: grid;
+  gap: 0.5rem;
+}
+@media (min-width: 780px) {
+  .vstage-terms dl {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 0.9rem 2rem;
+  }
+}
+
+.vterm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--stroke-soft);
+}
+.vterm dt {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.vterm dt .deva {
+  font-size: 1.1rem;
+  color: var(--ink-0);
+}
+.vterm dt .translit {
+  font-size: 0.82rem;
+  color: var(--gold);
+}
+.vterm dd {
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ── Disclosures ───────────────────────────────────────── */
+
+.vstage-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+}
+
+.vbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: transparent;
+  border: 1px solid var(--stroke);
+  color: var(--gold-bright);
+  font-family: var(--sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  transition: border-color 320ms ease, color 320ms ease, background 320ms ease;
+}
+.vbtn-quiet {
+  color: var(--ink-2);
+}
+:lang(kn) .vbtn,
+:lang(hi) .vbtn {
+  text-transform: none;
+  letter-spacing: 0.03em;
+  font-size: 0.85rem;
+}
+@media (hover: hover) {
+  .vbtn:hover {
+    border-color: var(--gold);
+    color: var(--gold-bright);
+    background: var(--gold-wash);
+  }
+}
+.vbtn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.vbtn-chev {
+  display: inline-block;
+  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.vbtn-chev[data-open] {
+  transform: rotate(180deg);
+}
+
+/* grid-template-rows 0fr → 1fr animates a panel whose height is not
+   known in advance. max-height cannot do this without guessing a
+   number, and guessing either clips long text or makes short text
+   open slowly. */
+.vstage-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.vstage-drawer[data-open] {
+  grid-template-rows: 1fr;
+}
+.vstage-drawer-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.vstage-note {
+  font-size: 1rem;
+  line-height: 2;
+  color: var(--ink-1);
+  max-width: 70ch;
+  margin-top: 1.4rem;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--stroke);
+}
+
+/* ── Language comparison ───────────────────────────────── */
+
+.vcompare {
+  display: grid;
+  gap: 1px;
+  background: var(--stroke-soft);
+  border: 1px solid var(--stroke-soft);
+  margin-top: 1.4rem;
+}
+@media (min-width: 900px) {
+  .vcompare {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.vcompare-cell {
+  background: var(--bg-1);
+  padding: 1.2rem 1.4rem;
+}
+.vcompare-cell[data-active] {
+  background: var(--bg-2);
+}
+.vcompare-lang {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+}
+.vcompare-cell p {
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: var(--ink-1);
+}
+.vcompare-cell[data-active] p {
+  color: var(--ink-0);
+}
+
+/* ── Footer row ────────────────────────────────────────── */
+
+.vfoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  border-top: 1px solid var(--stroke-soft);
+  padding-top: 1.6rem;
+}
+
+/* ── Reduced motion ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .vstage-sanskrit,
+  .vstage-iast p {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .vstage-drawer,
+  .vbtn-chev {
+    transition: none;
+  }
+}

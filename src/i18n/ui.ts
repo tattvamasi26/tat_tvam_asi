@@ -120,6 +120,16 @@ export interface UIStrings {
   aboutCitationBody: string;
   aboutLanguageBody: string;
   kollurBlurb: string;
+
+  // ── Verse reader
+  labelVerse: string;
+  labelInvocation: string;
+  labelExplanation: string;
+  labelHideExplanation: string;
+  labelCompare: string;
+  labelHideCompare: string;
+  labelTerms: string;
+  readWork: string;
 }
 
 const en: UIStrings = {
@@ -223,6 +233,15 @@ const en: UIStrings = {
     "The site reads in Kannada, English and Hindi, and the switch changes the content, not only the menus. Each language is a row in the database rather than a separate copy of the site, so a fourth language is a data task and not an engineering one.",
   kollurBlurb:
     "Kollur · One of the Seven Mukti Sthalas of Parashurama Kshetra. History, Puranika Katha, rituals, agama shastra, and the significance of the Swayambhu Lingam.",
+
+  labelVerse: "Verse",
+  labelInvocation: "Invocation",
+  labelExplanation: "Explanation",
+  labelHideExplanation: "Hide explanation",
+  labelCompare: "Compare languages",
+  labelHideCompare: "Hide comparison",
+  labelTerms: "Terms worth knowing",
+  readWork: "Read verse by verse",
 };
 
 const kn: UIStrings = {
@@ -325,6 +344,15 @@ const kn: UIStrings = {
     "ಈ ತಾಣವನ್ನು ಕನ್ನಡ, ಇಂಗ್ಲಿಷ್ ಮತ್ತು ಹಿಂದಿಯಲ್ಲಿ ಓದಬಹುದು; ಭಾಷೆ ಬದಲಿಸಿದಾಗ ಕೇವಲ ಮೆನುಗಳಲ್ಲ, ವಿಷಯವೂ ಬದಲಾಗುತ್ತದೆ. ಪ್ರತಿ ಭಾಷೆಯೂ ತಾಣದ ಪ್ರತ್ಯೇಕ ಪ್ರತಿಯಲ್ಲ, ದತ್ತಸಂಚಯದ ಒಂದು ಸಾಲು — ಆದ್ದರಿಂದ ನಾಲ್ಕನೆಯ ಭಾಷೆ ಸೇರಿಸುವುದು ತಂತ್ರಜ್ಞಾನದ ಕೆಲಸವಲ್ಲ, ದತ್ತಾಂಶದ ಕೆಲಸ.",
   kollurBlurb:
     "ಕೊಲ್ಲೂರು · ಪರಶುರಾಮ ಕ್ಷೇತ್ರದ ಸಪ್ತ ಮುಕ್ತಿಸ್ಥಳಗಳಲ್ಲಿ ಒಂದು. ಇತಿಹಾಸ, ಪೌರಾಣಿಕ ಕಥೆ, ಆಚರಣೆಗಳು, ಆಗಮಶಾಸ್ತ್ರ ಮತ್ತು ಸ್ವಯಂಭೂ ಲಿಂಗದ ಮಹತ್ವ.",
+
+  labelVerse: "ಶ್ಲೋಕ",
+  labelInvocation: "ಶಾಂತಿಮಂತ್ರ",
+  labelExplanation: "ವಿವರಣೆ",
+  labelHideExplanation: "ವಿವರಣೆ ಮುಚ್ಚು",
+  labelCompare: "ಭಾಷೆಗಳನ್ನು ಹೋಲಿಸಿ",
+  labelHideCompare: "ಹೋಲಿಕೆ ಮುಚ್ಚು",
+  labelTerms: "ತಿಳಿಯಬೇಕಾದ ಪದಗಳು",
+  readWork: "ಶ್ಲೋಕಶಃ ಓದಿ",
 };
 
 const hi: UIStrings = {
@@ -427,6 +455,15 @@ const hi: UIStrings = {
     "यह स्थल कन्नड़, अंग्रेज़ी और हिन्दी में पढ़ा जा सकता है, और भाषा बदलने पर केवल मेनू नहीं, सामग्री भी बदलती है। प्रत्येक भाषा स्थल की अलग प्रति नहीं, डेटाबेस की एक पंक्ति है — इसलिए चौथी भाषा जोड़ना अभियांत्रिकी का नहीं, आँकड़ों का काम है।",
   kollurBlurb:
     "कोल्लूर · परशुराम क्षेत्र के सात मुक्तिस्थलों में से एक। इतिहास, पौराणिक कथा, अनुष्ठान, आगमशास्त्र और स्वयंभू लिंग का महत्व।",
+
+  labelVerse: "श्लोक",
+  labelInvocation: "शांतिमंत्र",
+  labelExplanation: "व्याख्या",
+  labelHideExplanation: "व्याख्या छिपाएँ",
+  labelCompare: "भाषाओं की तुलना",
+  labelHideCompare: "तुलना छिपाएँ",
+  labelTerms: "जानने योग्य पद",
+  readWork: "श्लोकशः पढ़ें",
 };
 
 const DICTIONARIES: Record<Locale, UIStrings> = { en, kn, hi };
