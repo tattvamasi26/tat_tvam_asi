@@ -387,7 +387,8 @@ export function getBhajans(locale: Locale): UpanishadView[] {
 // that is a feature of scripture, not a violation of the locale rule.
 // The page still follows the active locale for everything else.
 
-import { ISHA_VERSES, type IshaVerse } from "./seed/isha";
+import { ISHA_VERSES, commentaryFor, videoFor, type IshaVerse } from "./seed/isha";
+import { watchUrl, thumbUrl, VIDEO_SERIES } from "./seed/isha-video";
 import { LOCALES } from "@/i18n/config";
 
 export interface IshaVerseView {
@@ -404,6 +405,15 @@ export interface IshaVerseView {
   allTranslations: { locale: Locale; text: string }[];
   isCited: boolean;
   sourceTitle: string;
+  video: {
+    id: string;
+    talk: number;
+    covers: string;
+    url: string;
+    thumb: string;
+    speaker: string;
+    org: string;
+  } | null;
 }
 
 export function getIshaVerses(locale: Locale): IshaVerseView[] {
@@ -412,7 +422,7 @@ export function getIshaVerses(locale: Locale): IshaVerseView[] {
   return ISHA_VERSES.map((v: IshaVerse) => ({
     id: v.id,
     locator: v.locator,
-    handle: v.handle,
+    handle: v.handle[locale] ?? v.handle.en,
     sanskrit: v.sanskrit,
     iast: v.iast,
     keywords: v.keywords.map((k) => ({
@@ -421,7 +431,7 @@ export function getIshaVerses(locale: Locale): IshaVerseView[] {
       gloss: k.gloss[locale] ?? k.gloss.en,
     })),
     translation: v.readings[locale]?.translation ?? v.readings.en.translation,
-    explanation: v.readings[locale]?.explanation ?? v.readings.en.explanation,
+    explanation: commentaryFor(v.id, locale),
     allTranslations: LOCALES.map((l) => ({
       locale: l,
       text: v.readings[l]?.translation ?? v.readings.en.translation,
@@ -430,6 +440,17 @@ export function getIshaVerses(locale: Locale): IshaVerseView[] {
     // seed/isha.ts for why nothing here is attributed to a translator.
     isCited: false,
     sourceTitle: source?.work_title ?? "",
+    video: (() => {
+      const vid = videoFor(v.locator);
+      if (!vid) return null;
+      return {
+        ...vid,
+        url: watchUrl(vid.id),
+        thumb: thumbUrl(vid.id),
+        speaker: VIDEO_SERIES.speaker,
+        org: VIDEO_SERIES.org,
+      };
+    })(),
   }));
 }
 

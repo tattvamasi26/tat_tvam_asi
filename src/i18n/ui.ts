@@ -130,6 +130,10 @@ export interface UIStrings {
   labelHideCompare: string;
   labelTerms: string;
   readWork: string;
+  labelWatch: string;
+  labelTalk: string;
+  labelLectures: string;
+  readerHint: string;
 }
 
 const en: UIStrings = {
@@ -242,6 +246,11 @@ const en: UIStrings = {
   labelHideCompare: "Hide comparison",
   labelTerms: "Terms worth knowing",
   readWork: "Read verse by verse",
+
+  labelWatch: "Watch the talk",
+  labelTalk: "Talk",
+  labelLectures: "Lectures",
+  readerHint: "Use J and K, or the arrow keys, to move between verses.",
 };
 
 const kn: UIStrings = {
@@ -353,6 +362,11 @@ const kn: UIStrings = {
   labelHideCompare: "ಹೋಲಿಕೆ ಮುಚ್ಚು",
   labelTerms: "ತಿಳಿಯಬೇಕಾದ ಪದಗಳು",
   readWork: "ಶ್ಲೋಕಶಃ ಓದಿ",
+
+  labelWatch: "ಪ್ರವಚನ ವೀಕ್ಷಿಸಿ",
+  labelTalk: "ಪ್ರವಚನ",
+  labelLectures: "ಪ್ರವಚನಗಳು",
+  readerHint: "ಶ್ಲೋಕಗಳ ನಡುವೆ ಚಲಿಸಲು J ಮತ್ತು K, ಅಥವಾ ಬಾಣದ ಕೀಲಿಗಳನ್ನು ಬಳಸಿ.",
 };
 
 const hi: UIStrings = {
@@ -464,6 +478,11 @@ const hi: UIStrings = {
   labelHideCompare: "तुलना छिपाएँ",
   labelTerms: "जानने योग्य पद",
   readWork: "श्लोकशः पढ़ें",
+
+  labelWatch: "प्रवचन देखें",
+  labelTalk: "प्रवचन",
+  labelLectures: "प्रवचन",
+  readerHint: "श्लोकों के बीच चलने के लिए J और K, या तीर कुंजियाँ प्रयोग करें।",
 };
 
 const DICTIONARIES: Record<Locale, UIStrings> = { en, kn, hi };

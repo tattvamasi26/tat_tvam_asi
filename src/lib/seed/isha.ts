@@ -1,5 +1,7 @@
 import type { Locale } from "@/i18n/config";
 import type { TranslationRow, VerseNoteRow, VerseRow } from "./types";
+import { ISHA_COMMENTARY } from "./isha-commentary";
+import { ISHA_VIDEOS, type VerseVideo } from "./isha-video";
 
 // ─────────────────────────────────────────────────────────
 //  Īśāvāsya Upaniṣad — the complete text.
@@ -43,6 +45,8 @@ export interface IshaReading {
 }
 
 export interface IshaVerse {
+  /** The Sarvapriyananda talk that treats this verse, if there is one. */
+  video?: VerseVideo;
   /** Stable id, also the anchor in the URL. */
   id: string;
   /** "invocation", or "1".."18" — what the reader is told. */
@@ -51,8 +55,10 @@ export interface IshaVerse {
   sanskrit: string[];
   /** IAST, aligned line-for-line with the Sanskrit. */
   iast: string[];
-  /** A short handle for the verse, in English, for the index rail. */
-  handle: string;
+  /** A short handle for the verse, per language. Shown beside the
+   *  verse number, so it has to follow the reading language like
+   *  everything else on the page. */
+  handle: Record<Locale, string>;
   /** Two or three Sanskrit terms worth knowing before reading. */
   keywords: { term: string; iast: string; gloss: Record<Locale, string> }[];
   readings: Record<Locale, IshaReading>;
@@ -62,7 +68,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-shanti",
     locator: "invocation",
-    handle: "The whole from the whole",
+    handle: { en: "The whole from the whole", kn: "ಪೂರ್ಣದಿಂದ ಪೂರ್ಣ", hi: "पूर्ण से पूर्ण" },
     sanskrit: [
       "ॐ पूर्णमदः पूर्णमिदं पूर्णात्पूर्णमुदच्यते ।",
       "पूर्णस्य पूर्णमादाय पूर्णमेवावशिष्यते ॥",
@@ -118,7 +124,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-1",
     locator: "1",
-    handle: "Renounce, and enjoy",
+    handle: { en: "Renounce, and enjoy", kn: "ತ್ಯಜಿಸಿ ಅನುಭವಿಸು", hi: "त्याग कर भोगो" },
     sanskrit: [
       "ईशा वास्यमिदँ सर्वं यत्किञ्च जगत्यां जगत् ।",
       "तेन त्यक्तेन भुञ्जीथा मा गृधः कस्यस्विद्धनम् ॥",
@@ -181,7 +187,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-2",
     locator: "2",
-    handle: "A hundred years of action",
+    handle: { en: "A hundred years of action", kn: "ಕರ್ಮದ ನೂರು ವರ್ಷ", hi: "कर्म के सौ वर्ष" },
     sanskrit: [
       "कुर्वन्नेवेह कर्माणि जिजीविषेच्छतँ समाः ।",
       "एवं त्वयि नान्यथेतोऽस्ति न कर्म लिप्यते नरे ॥",
@@ -235,7 +241,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-3",
     locator: "3",
-    handle: "The worlds of the sunless",
+    handle: { en: "The worlds of the sunless", kn: "ಸೂರ್ಯರಹಿತ ಲೋಕಗಳು", hi: "सूर्यहीन लोक" },
     sanskrit: [
       "असुर्या नाम ते लोका अन्धेन तमसाऽऽवृताः ।",
       "ताँस्ते प्रेत्याभिगच्छन्ति ये के चात्महनो जनाः ॥",
@@ -289,7 +295,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-4",
     locator: "4",
-    handle: "Unmoving, it outruns the mind",
+    handle: { en: "Unmoving, it outruns the mind", kn: "ಚಲಿಸದೆಯೇ ಮನಸ್ಸನ್ನು ಮೀರುತ್ತದೆ", hi: "अचल, फिर भी मन से आगे" },
     sanskrit: [
       "अनेजदेकं मनसो जवीयो नैनद्देवा आप्नुवन्पूर्वमर्षत् ।",
       "तद्धावतोऽन्यानत्येति तिष्ठत्तस्मिन्नपो मातरिश्वा दधाति ॥",
@@ -343,7 +349,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-5",
     locator: "5",
-    handle: "It moves; it moves not",
+    handle: { en: "It moves; it moves not", kn: "ಅದು ಚಲಿಸುತ್ತದೆ; ಚಲಿಸುವುದಿಲ್ಲ", hi: "वह चलता है; नहीं चलता" },
     sanskrit: [
       "तदेजति तन्नैजति तद्दूरे तद्वन्तिके ।",
       "तदन्तरस्य सर्वस्य तदु सर्वस्यास्य बाह्यतः ॥",
@@ -397,7 +403,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-6",
     locator: "6",
-    handle: "He does not shrink away",
+    handle: { en: "He does not shrink away", kn: "ಅವನು ಹಿಂಜರಿಯುವುದಿಲ್ಲ", hi: "वह घृणा नहीं करता" },
     sanskrit: [
       "यस्तु सर्वाणि भूतान्यात्मन्येवानुपश्यति ।",
       "सर्वभूतेषु चात्मानं ततो न विजुगुप्सते ॥",
@@ -451,7 +457,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-7",
     locator: "7",
-    handle: "What delusion, what sorrow",
+    handle: { en: "What delusion, what sorrow", kn: "ಯಾವ ಮೋಹ, ಯಾವ ಶೋಕ", hi: "कौन-सा मोह, कौन-सा शोक" },
     sanskrit: [
       "यस्मिन्सर्वाणि भूतान्यात्मैवाभूद्विजानतः ।",
       "तत्र को मोहः कः शोक एकत्वमनुपश्यतः ॥",
@@ -505,7 +511,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-8",
     locator: "8",
-    handle: "He has reached out",
+    handle: { en: "He has reached out", kn: "ಅವನು ಎಲ್ಲೆಡೆ ವ್ಯಾಪಿಸಿದ್ದಾನೆ", hi: "वह सर्वत्र व्याप्त है" },
     sanskrit: [
       "स पर्यगाच्छुक्रमकायमव्रणमस्नाविरँ शुद्धमपापविद्धम् ।",
       "कविर्मनीषी परिभूः स्वयम्भूर्याथातथ्यतोऽर्थान्",
@@ -561,7 +567,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-9",
     locator: "9",
-    handle: "Into blind darkness",
+    handle: { en: "Into blind darkness", kn: "ಕುರುಡು ಕತ್ತಲೆಗೆ", hi: "अंधकार में प्रवेश" },
     sanskrit: [
       "अन्धं तमः प्रविशन्ति येऽविद्यामुपासते ।",
       "ततो भूय इव ते तमो य उ विद्यायाँ रताः ॥",
@@ -615,7 +621,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-10",
     locator: "10",
-    handle: "So we heard from the wise",
+    handle: { en: "So we heard from the wise", kn: "ಧೀರರಿಂದ ಹೀಗೆ ಕೇಳಿದೆವು", hi: "धीरों से ऐसा सुना" },
     sanskrit: [
       "अन्यदेवाहुर्विद्ययाऽन्यदाहुरविद्यया ।",
       "इति शुश्रुम धीराणां ये नस्तद्विचचक्षिरे ॥",
@@ -669,7 +675,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-11",
     locator: "11",
-    handle: "Both together",
+    handle: { en: "Both together", kn: "ಎರಡೂ ಜೊತೆಯಾಗಿ", hi: "दोनों साथ-साथ" },
     sanskrit: [
       "विद्यां चाविद्यां च यस्तद्वेदोभयँ सह ।",
       "अविद्यया मृत्युं तीर्त्वा विद्ययाऽमृतमश्नुते ॥",
@@ -723,7 +729,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-12",
     locator: "12",
-    handle: "The unmanifest and the manifest",
+    handle: { en: "The unmanifest and the manifest", kn: "ಅವ್ಯಕ್ತ ಮತ್ತು ವ್ಯಕ್ತ", hi: "अव्यक्त और व्यक्त" },
     sanskrit: [
       "अन्धं तमः प्रविशन्ति येऽसम्भूतिमुपासते ।",
       "ततो भूय इव ते तमो य उ सम्भूत्याँ रताः ॥",
@@ -777,7 +783,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-13",
     locator: "13",
-    handle: "Different, they said",
+    handle: { en: "Different, they said", kn: "ಬೇರೆಯದೆಂದರು", hi: "भिन्न, ऐसा कहा" },
     sanskrit: [
       "अन्यदेवाहुः सम्भवादन्यदाहुरसम्भवात् ।",
       "इति शुश्रुम धीराणां ये नस्तद्विचचक्षिरे ॥",
@@ -831,7 +837,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-14",
     locator: "14",
-    handle: "Crossing by destruction",
+    handle: { en: "Crossing by destruction", kn: "ವಿನಾಶದಿಂದ ದಾಟುವುದು", hi: "विनाश से पार" },
     sanskrit: [
       "सम्भूतिं च विनाशं च यस्तद्वेदोभयँ सह ।",
       "विनाशेन मृत्युं तीर्त्वा सम्भूत्याऽमृतमश्नुते ॥",
@@ -885,7 +891,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-15",
     locator: "15",
-    handle: "The golden vessel",
+    handle: { en: "The golden vessel", kn: "ಸುವರ್ಣ ಪಾತ್ರೆ", hi: "स्वर्णमय पात्र" },
     sanskrit: [
       "हिरण्मयेन पात्रेण सत्यस्यापिहितं मुखम् ।",
       "तत्त्वं पूषन्नपावृणु सत्यधर्माय दृष्टये ॥",
@@ -939,7 +945,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-16",
     locator: "16",
-    handle: "That Person, I am he",
+    handle: { en: "That Person, I am he", kn: "ಆ ಪುರುಷನು — ನಾನೇ ಅವನು", hi: "वह पुरुष — मैं वही हूँ" },
     sanskrit: [
       "पूषन्नेकर्षे यम सूर्य प्राजापत्य व्यूह रश्मीन् समूह ।",
       "तेजो यत्ते रूपं कल्याणतमं तत्ते पश्यामि",
@@ -995,7 +1001,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-17",
     locator: "17",
-    handle: "Remember the deed",
+    handle: { en: "Remember the deed", kn: "ಮಾಡಿದ್ದನ್ನು ಸ್ಮರಿಸು", hi: "किया हुआ स्मरण कर" },
     sanskrit: [
       "वायुरनिलममृतमथेदं भस्मान्तँ शरीरम् ।",
       "ॐ क्रतो स्मर कृतँ स्मर क्रतो स्मर कृतँ स्मर ॥",
@@ -1049,7 +1055,7 @@ export const ISHA_VERSES: IshaVerse[] = [
   {
     id: "isha-18",
     locator: "18",
-    handle: "Lead us by the good path",
+    handle: { en: "Lead us by the good path", kn: "ಸುಮಾರ್ಗದಿಂದ ನಡೆಸು", hi: "सुमार्ग से ले चल" },
     sanskrit: [
       "अग्ने नय सुपथा राये अस्मान् विश्वानि देव वयुनानि विद्वान् ।",
       "युयोध्यस्मज्जुहुराणमेनो भूयिष्ठां ते नमउक्तिं विधेम ॥",
@@ -1139,6 +1145,22 @@ export const ISHA_NOTE_ROWS: VerseNoteRow[] = ISHA_VERSES.flatMap((v) =>
   LOCALES.map((l) => ({
     verse_id: v.id,
     language: l,
-    note: v.readings[l].explanation,
+    note: commentaryFor(v.id, l),
   }))
 );
+
+/**
+ * The commentary lives in isha-commentary.ts — the mūla is fixed, the
+ * commentary is the layer that keeps being revised. Falls back to the
+ * short reading if a verse has no long-form entry yet.
+ */
+export function commentaryFor(verseId: string, locale: Locale): string {
+  const long = ISHA_COMMENTARY[verseId]?.[locale];
+  if (long) return long;
+  const v = ISHA_VERSES.find((x) => x.id === verseId);
+  return v?.readings[locale]?.explanation ?? "";
+}
+
+export function videoFor(locator: string): VerseVideo | undefined {
+  return ISHA_VIDEOS[locator];
+}

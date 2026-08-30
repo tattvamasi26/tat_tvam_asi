@@ -3120,67 +3120,442 @@
 }
 
 /* ═════════════════════════════════════════════════════════
-   THE VERSE READER
+   THE READER — rebuilt
 
-   A śloka is a sequence in time when it is recited, so it is
-   built here as one: each pada animates in on its own delay
-   rather than the whole verse appearing at once.
+   Replaces the first pass at the verse page. What changed and
+   why:
 
-   All of the motion is scroll-driven CSS behind @supports, so a
-   browser without scroll timelines shows every verse in its
-   settled state instead of a column of invisible text.
+     · the ambient field is a canvas, not stacked gradients, so
+       the layers actually move at different rates
+     · the verse sits on a rail with its number, so a long text
+       reads as a text rather than as a stack of cards
+     · the language comparison panel is gone — the page has ONE
+       reading language and everything on it follows that choice
+     · a spine tracks position and takes keyboard input
+
+   Everything animated is behind @supports or prefers-reduced-
+   motion, so the settled state is always the fallback.
    ═════════════════════════════════════════════════════════ */
 
-.vhero-title {
-  font-family: var(--deva);
-  font-size: clamp(2.4rem, 7vw, 5.5rem);
-  line-height: 1.15;
-  color: var(--ink-0);
-  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
-}
-.vhero-name {
-  font-family: var(--serif);
-  font-size: clamp(1.2rem, 2.4vw, 1.9rem);
-  color: var(--frame-accent, var(--gold));
-  margin-top: 0.4rem;
+.reader {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
 }
 
-.vintro {
-  padding-block: clamp(2.5rem, 6vh, 4rem);
+/* ── Ambient field ─────────────────────────────────────── */
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
 }
 
-.vlist {
+.aurora-canvas {
+  position: absolute;
+  /* Overscan: the blobs drift past the edges, and a canvas exactly
+     the size of the viewport would show them turning around. */
+  inset: -12%;
+  width: 124%;
+  height: 124%;
+  opacity: var(--aurora-o, 0.55);
+  filter: blur(46px) saturate(115%);
+  transform: translateZ(0);
+}
+
+/* A little noise over the top. Without it, a large area of smooth
+   gradient bands visibly on 8-bit displays. */
+.aurora-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora-canvas {
+    /* No JS runs, so the canvas is blank — fall back to a static
+       wash rather than showing nothing. */
+    background: radial-gradient(60% 50% at 30% 25%, rgba(201, 162, 39, 0.16), transparent 70%),
+      radial-gradient(50% 45% at 75% 65%, rgba(90, 130, 190, 0.12), transparent 70%);
+    opacity: 0.6;
+    filter: blur(30px);
+  }
+}
+
+/* ── Masthead of the text ──────────────────────────────── */
+
+.reader-head {
+  padding-block: clamp(3.5rem, 12vh, 8rem) clamp(2rem, 6vh, 4rem);
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: clamp(3rem, 9vh, 7rem);
-  padding-bottom: clamp(3rem, 8vh, 6rem);
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.reader-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+:lang(kn) .reader-kicker,
+:lang(hi) .reader-kicker {
+  text-transform: none;
+  letter-spacing: 0.06em;
+  font-size: 0.82rem;
+}
+
+.reader-title {
+  font-family: var(--deva) !important;
+  font-size: clamp(2.6rem, 9vw, 6.5rem);
+  line-height: 1.1;
+  color: var(--ink-0);
+  margin-top: 0.6rem;
+  text-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+  animation: title-in 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes title-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.985);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.reader-name {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.4vw, 1.75rem);
+  color: var(--gold-bright);
+}
+.reader-iast {
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.reader-lede {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.9vw, 1.3rem);
+  line-height: 1.7;
+  color: var(--ink-1);
+  max-width: 54ch;
+  margin-top: 1.4rem;
+  text-wrap: balance;
+}
+:lang(kn) .reader-lede,
+:lang(hi) .reader-lede {
+  font-style: normal;
+  font-family: inherit;
+}
+
+.reader-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 2rem;
+  margin-top: 1.8rem;
+  font-size: 0.85rem;
+  color: var(--ink-1);
+}
+.reader-facts i {
+  font-style: normal;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+:lang(kn) .reader-facts i,
+:lang(hi) .reader-facts i {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 0.72rem;
+}
+
+.reader-note {
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  margin-top: 1.4rem;
+}
+@media (max-width: 860px) {
+  .reader-note {
+    display: none;
+  }
+}
+
+/* ── Language choice ───────────────────────────────────── */
+
+.langchoice {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  transition: opacity 260ms ease;
+}
+.langchoice[data-pending] {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.langchoice-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+:lang(kn) .langchoice-label,
+:lang(hi) .langchoice-label {
+  text-transform: none;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+}
+
+.langchoice-track {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 0;
+  border: 1px solid var(--stroke);
+  border-radius: 999px;
+  padding: 4px;
+  background: rgba(11, 10, 9, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+/* The indicator is positioned from the selected index, so it cannot
+   drift out of sync with the buttons when a webfont swaps in. */
+.langchoice-thumb {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 4px;
+  width: calc((100% - 8px) / var(--count));
+  transform: translateX(calc(var(--i) * 100%));
+  border-radius: 999px;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--gold) 26%, transparent),
+    color-mix(in srgb, var(--gold) 12%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  transition: transform 520ms cubic-bezier(0.34, 1.4, 0.4, 1);
+}
+
+.langchoice-opt {
+  position: relative;
+  z-index: 1;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--ink-2);
+  transition: color 300ms ease;
+  white-space: nowrap;
+}
+.langchoice-opt[data-active] {
+  color: var(--ink-0);
+}
+@media (hover: hover) {
+  .langchoice-opt:hover {
+    color: var(--gold-bright);
+  }
+}
+.langchoice-opt:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 999px;
+}
+
+/* ── Body layout: spine + verses ───────────────────────── */
+
+.reader-body {
+  display: grid;
+  gap: 0;
+  padding-bottom: clamp(3rem, 10vh, 7rem);
+}
+@media (min-width: 1080px) {
+  .reader-body {
+    grid-template-columns: 64px 1fr;
+    gap: 2.5rem;
+  }
+}
+
+.spine {
+  display: none;
+}
+@media (min-width: 1080px) {
+  .spine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9rem;
+    position: sticky;
+    top: calc(var(--masthead-h) + 3rem);
+    height: fit-content;
+    max-height: calc(100vh - var(--masthead-h) - 6rem);
+  }
+}
+
+.spine-count {
+  font-family: var(--sans);
+  font-size: 0.68rem;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+.spine-count i {
+  font-style: normal;
+  color: var(--ink-3);
+  margin-inline: 2px;
+}
+
+.spine-ticks {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: center;
+}
+
+.spine-tick {
+  display: block;
+  padding: 3px 6px;
+}
+.spine-tick span {
+  display: block;
+  width: 14px;
+  height: 2px;
+  background: var(--ink-3);
+  opacity: 0.5;
+  transition: width 420ms cubic-bezier(0.34, 1.4, 0.4, 1),
+    background 320ms ease, opacity 320ms ease;
+}
+.spine-tick[data-passed] span {
+  background: var(--gold-dim);
+  opacity: 0.8;
+}
+.spine-tick[data-active] span {
+  width: 28px;
+  background: var(--gold-bright);
+  opacity: 1;
+}
+@media (hover: hover) {
+  .spine-tick:hover span {
+    width: 24px;
+    background: var(--gold);
+    opacity: 1;
+  }
+}
+.spine-tick:focus-visible {
+  outline: 1px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.reader-verses {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 7vh, 5rem);
+  min-width: 0;
 }
 
 /* ── One verse ─────────────────────────────────────────── */
 
 .vstage {
   position: relative;
-  padding: clamp(1.8rem, 4vw, 3.2rem);
-  padding-left: clamp(1.8rem, 4vw, 3.6rem);
-  border-left: 1px solid var(--stroke);
-  background: linear-gradient(
-    100deg,
-    color-mix(in srgb, var(--gold) 4%, transparent),
-    transparent 42%
-  );
-  scroll-margin-top: calc(var(--masthead-h) + 2rem);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  scroll-margin-top: calc(var(--masthead-h) + 1.5rem);
+}
+@media (min-width: 720px) {
+  .vstage {
+    grid-template-columns: 54px 1fr;
+    gap: 1.6rem;
+  }
 }
 
-/* The oversized index bleeding off the corner, as on the home page. */
-.vstage-index {
+/* The rail carries the verse number and a line that fills as the
+   verse is opened — a small, quiet indication of where you are. */
+.vstage-rail {
+  display: none;
+}
+@media (min-width: 720px) {
+  .vstage-rail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    padding-top: 0.4rem;
+  }
+}
+.vstage-rail-num {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+  transition: color 400ms ease;
+}
+.vstage[data-open] .vstage-rail-num {
+  color: var(--gold-bright);
+}
+.vstage-rail-line {
+  flex: 1;
+  width: 1px;
+  min-height: 40px;
+  background: linear-gradient(to bottom, var(--stroke), transparent);
+  transition: background 600ms ease;
+}
+.vstage[data-open] .vstage-rail-line {
+  background: linear-gradient(to bottom, var(--gold-dim), transparent);
+}
+
+.vstage-body {
+  min-width: 0;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  border: 1px solid var(--stroke-soft);
+  border-radius: 3px;
+  background: linear-gradient(
+    145deg,
+    rgba(19, 17, 16, 0.72),
+    rgba(11, 10, 9, 0.55)
+  );
+  backdrop-filter: blur(14px) saturate(120%);
+  transition: border-color 500ms ease, transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (hover: hover) {
+  .vstage:hover .vstage-body {
+    border-color: var(--stroke);
+  }
+}
+.vstage[data-open] .vstage-body {
+  border-color: color-mix(in srgb, var(--gold) 26%, transparent);
+}
+
+.vstage-ghost {
   position: absolute;
-  top: clamp(0.6rem, 2vw, 1.4rem);
-  right: clamp(0.6rem, 2vw, 1.6rem);
+  top: -0.4rem;
+  right: 0.6rem;
   font-family: var(--serif);
-  font-size: clamp(3.5rem, 9vw, 7rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   line-height: 1;
   color: var(--ink-0);
-  opacity: 0.045;
+  opacity: 0.04;
   pointer-events: none;
   user-select: none;
   font-variant-numeric: tabular-nums;
@@ -3191,10 +3566,10 @@
   align-items: baseline;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: clamp(1.4rem, 3vw, 2.2rem);
+  margin-bottom: clamp(1.2rem, 3vw, 1.9rem);
 }
 .vstage-num {
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--gold);
@@ -3209,48 +3584,51 @@
 .vstage-handle {
   font-family: var(--serif);
   font-style: italic;
-  font-size: 1rem;
+  font-size: 0.98rem;
   color: var(--ink-2);
+}
+:lang(kn) .vstage-handle,
+:lang(hi) .vstage-handle {
+  font-style: normal;
+  font-family: inherit;
 }
 
 /* ── The mūla ──────────────────────────────────────────── */
 
-.vstage-mula {
-  margin-bottom: 1.1rem;
-}
-
 .vstage-sanskrit {
   font-family: var(--deva) !important;
-  font-size: clamp(1.35rem, 3.1vw, 2.35rem);
-  line-height: 1.85;
+  font-size: clamp(1.3rem, 2.9vw, 2.15rem);
+  line-height: 1.9;
   color: var(--ink-0);
   text-wrap: balance;
 }
 
+.vstage-iast {
+  margin-top: 0.7rem;
+}
 .vstage-iast p {
-  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-size: clamp(0.82rem, 1.4vw, 0.97rem);
   line-height: 1.9;
   color: var(--gold-bright);
-  opacity: 0.75;
+  opacity: 0.72;
 }
 
-/* Each pada arrives a beat after the one above it. --line is set
-   per line in the component, so the stagger needs no nth-child list
-   and works for a two-line śloka or a five-line one alike. */
+/* Each pada arrives a beat after the one above it. --line is set per
+   line in the component, so the stagger works for a two-line śloka
+   or a five-line one without an nth-child list. */
 @supports (animation-timeline: view()) {
   .vstage-sanskrit,
   .vstage-iast p {
     animation: pada-in linear both;
     animation-timeline: view();
-    animation-range: entry 4% cover 26%;
-    animation-delay: calc(var(--line, 0) * -0.06s);
+    animation-range: entry 2% cover 24%;
+    animation-delay: calc(var(--line, 0) * -0.05s);
   }
-
   @keyframes pada-in {
     from {
       opacity: 0;
-      transform: translate3d(0, 1.6vh, 0);
-      filter: blur(6px);
+      transform: translate3d(0, 1.4vh, 0);
+      filter: blur(7px);
     }
     to {
       opacity: 1;
@@ -3262,29 +3640,29 @@
 
 .vstage-translation {
   font-family: var(--serif);
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1.75;
+  font-size: clamp(1.02rem, 1.9vw, 1.3rem);
+  line-height: 1.8;
   color: var(--ink-0);
   max-width: 62ch;
-  margin-top: clamp(1.2rem, 3vw, 2rem);
+  margin-top: clamp(1.2rem, 3vw, 1.9rem);
   padding-left: 1.2rem;
   border-left: 2px solid var(--gold-dim);
 }
 :lang(kn) .vstage-translation,
 :lang(hi) .vstage-translation {
   font-family: inherit;
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  line-height: 1.95;
+  font-size: clamp(0.98rem, 1.7vw, 1.16rem);
+  line-height: 2;
 }
 
-/* ── Terms worth knowing ───────────────────────────────── */
+/* ── Terms ─────────────────────────────────────────────── */
 
 .vstage-terms {
-  margin-top: clamp(1.4rem, 3vw, 2rem);
+  margin-top: clamp(1.3rem, 3vw, 1.9rem);
 }
 .vstage-terms-label {
   display: block;
-  font-size: 0.62rem;
+  font-size: 0.6rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-3);
@@ -3294,20 +3672,18 @@
 :lang(hi) .vstage-terms-label {
   text-transform: none;
   letter-spacing: 0.04em;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
 }
-
 .vstage-terms dl {
   display: grid;
-  gap: 0.5rem;
+  gap: 0.55rem;
 }
-@media (min-width: 780px) {
+@media (min-width: 820px) {
   .vstage-terms dl {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 0.9rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.8rem 2rem;
   }
 }
-
 .vterm {
   display: flex;
   flex-wrap: wrap;
@@ -3322,45 +3698,40 @@
   gap: 0.5rem;
 }
 .vterm dt .deva {
-  font-size: 1.1rem;
+  font-size: 1.08rem;
   color: var(--ink-0);
 }
 .vterm dt .translit {
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: var(--gold);
 }
 .vterm dd {
-  font-size: 0.85rem;
+  font-size: 0.84rem;
   color: var(--ink-2);
   line-height: 1.6;
 }
 
-/* ── Disclosures ───────────────────────────────────────── */
+/* ── Disclosure ────────────────────────────────────────── */
 
 .vstage-actions {
-  display: flex;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin-top: clamp(1.4rem, 3vw, 2rem);
+  margin-top: clamp(1.3rem, 3vw, 1.9rem);
 }
 
 .vbtn {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.7rem;
   background: transparent;
   border: 1px solid var(--stroke);
+  border-radius: 999px;
   color: var(--gold-bright);
   font-family: var(--sans);
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding: 0.7rem 1.2rem;
+  padding: 0.65rem 1.3rem;
   cursor: pointer;
   transition: border-color 320ms ease, color 320ms ease, background 320ms ease;
-}
-.vbtn-quiet {
-  color: var(--ink-2);
 }
 :lang(kn) .vbtn,
 :lang(hi) .vbtn {
@@ -3371,31 +3742,30 @@
 @media (hover: hover) {
   .vbtn:hover {
     border-color: var(--gold);
-    color: var(--gold-bright);
     background: var(--gold-wash);
   }
 }
 .vbtn:focus-visible {
   outline: 2px solid var(--gold);
-  outline-offset: 2px;
+  outline-offset: 3px;
 }
 
-.vbtn-chev {
-  display: inline-block;
-  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1);
+.vbtn-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  transition: transform 460ms cubic-bezier(0.34, 1.4, 0.4, 1), background 320ms ease;
 }
-.vbtn-chev[data-open] {
-  transform: rotate(180deg);
+.vstage[data-open] .vbtn-dot {
+  transform: scale(1.9);
+  background: var(--gold-bright);
 }
 
-/* grid-template-rows 0fr → 1fr animates a panel whose height is not
-   known in advance. max-height cannot do this without guessing a
-   number, and guessing either clips long text or makes short text
-   open slowly. */
 .vstage-drawer {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 520ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: grid-template-rows 560ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .vstage-drawer[data-open] {
   grid-template-rows: 1fr;
@@ -3406,67 +3776,132 @@
 }
 
 .vstage-note {
+  margin-top: 1.5rem;
+  padding-left: 1.2rem;
+  border-left: 1px solid var(--stroke);
+  max-width: 72ch;
+}
+.vstage-note p {
   font-size: 1rem;
   line-height: 2;
   color: var(--ink-1);
-  max-width: 70ch;
-  margin-top: 1.4rem;
-  padding-left: 1.2rem;
-  border-left: 1px solid var(--stroke);
+}
+.vstage-note p + p {
+  margin-top: 1.1rem;
 }
 
-/* ── Language comparison ───────────────────────────────── */
+/* ── Lecture link ──────────────────────────────────────── */
 
-.vcompare {
-  display: grid;
-  gap: 1px;
-  background: var(--stroke-soft);
+.vvideo {
+  display: flex;
+  gap: 1.1rem;
+  align-items: center;
+  margin-top: 1.6rem;
+  padding: 0.8rem;
   border: 1px solid var(--stroke-soft);
-  margin-top: 1.4rem;
+  border-radius: 4px;
+  background: rgba(11, 10, 9, 0.5);
+  transition: border-color 360ms ease, background 360ms ease, transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  max-width: 30rem;
 }
-@media (min-width: 900px) {
-  .vcompare {
-    grid-template-columns: repeat(3, 1fr);
+@media (hover: hover) {
+  .vvideo:hover {
+    border-color: color-mix(in srgb, var(--gold) 34%, transparent);
+    background: var(--bg-2);
+    transform: translateX(4px);
   }
 }
-.vcompare-cell {
-  background: var(--bg-1);
-  padding: 1.2rem 1.4rem;
+.vvideo:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
 }
-.vcompare-cell[data-active] {
-  background: var(--bg-2);
+
+.vvideo-thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 116px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 3px;
+  background: var(--bg-3);
 }
-.vcompare-lang {
+.vvideo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  font-size: 0.66rem;
+}
+.vvideo-play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--ink-0);
+  background: rgba(6, 5, 5, 0.35);
+  transition: background 360ms ease;
+}
+@media (hover: hover) {
+  .vvideo:hover .vvideo-play {
+    background: rgba(6, 5, 5, 0.1);
+  }
+}
+
+.vvideo-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.vvideo-kicker {
+  font-size: 0.58rem;
   letter-spacing: 0.16em;
-  color: var(--gold);
-  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
-.vcompare-cell p {
-  font-size: 0.92rem;
-  line-height: 1.85;
-  color: var(--ink-1);
+:lang(kn) .vvideo-kicker,
+:lang(hi) .vvideo-kicker {
+  text-transform: none;
+  letter-spacing: 0.03em;
+  font-size: 0.72rem;
 }
-.vcompare-cell[data-active] p {
+.vvideo-title {
+  font-family: var(--serif);
+  font-size: 1rem;
   color: var(--ink-0);
 }
+.vvideo-org {
+  font-size: 0.74rem;
+  color: var(--ink-2);
+}
+.vvideo-cta {
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-top: 0.3rem;
+}
 
-/* ── Footer row ────────────────────────────────────────── */
+/* ── Foot ──────────────────────────────────────────────── */
 
-.vfoot {
+.reader-foot {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 2rem;
   flex-wrap: wrap;
   border-top: 1px solid var(--stroke-soft);
-  padding-top: 1.6rem;
+  padding-block: clamp(2rem, 6vh, 3.5rem);
+}
+.reader-credit {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  align-items: flex-start;
 }
 
 /* ── Reduced motion ────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
+  .reader-title,
   .vstage-sanskrit,
   .vstage-iast p {
     animation: none !important;
@@ -3475,7 +3910,57 @@
     filter: none !important;
   }
   .vstage-drawer,
-  .vbtn-chev {
+  .langchoice-thumb,
+  .spine-tick span,
+  .vbtn-dot,
+  .vvideo {
     transition: none;
   }
+}
+
+/* ── Reader tuning ─────────────────────────────────────────
+   First render was too hazy: the ambient field sat at full
+   strength directly behind body copy, which lifted the black
+   point everywhere and left the small-caps labels barely
+   readable. Two fixes — hold the field back, and put a scrim
+   between it and the text.
+   ───────────────────────────────────────────────────────── */
+
+.aurora-canvas {
+  opacity: 0.34;
+}
+
+/* A vignette + floor so the field reads as depth behind the page
+   rather than as fog over it. */
+.aurora::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 30%, transparent 20%, rgba(6, 5, 5, 0.72) 100%),
+    linear-gradient(to bottom, rgba(11, 10, 9, 0.5), rgba(11, 10, 9, 0.2) 40%, rgba(11, 10, 9, 0.72));
+  pointer-events: none;
+}
+
+/* Small-caps labels were set in --ink-3, which is a hairline colour,
+   not a text colour. */
+.reader-facts i,
+.langchoice-label,
+.vstage-terms-label,
+.vvideo-kicker {
+  color: var(--ink-2);
+}
+.reader-note {
+  color: var(--ink-2);
+  opacity: 0.85;
+}
+
+/* The work's own name deserves more presence than the summary. */
+.reader-title {
+  font-size: clamp(3.4rem, 12vw, 8rem);
+  letter-spacing: 0.02em;
+}
+.reader-name {
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
 }

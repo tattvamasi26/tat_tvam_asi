@@ -2,15 +2,16 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getIshaVerses, getIshaText } from "@/lib/data";
-import { TEXTURE } from "@/lib/hero";
-import { ScrollScene } from "@/components/home/ScrollScene";
+import { VIDEO_SERIES } from "@/lib/seed/isha-video";
+import { Aurora } from "@/components/motion/Aurora";
+import { LanguageChoice } from "@/components/content/LanguageChoice";
 import { VerseStage } from "@/components/content/VerseStage";
-import { Reveal } from "@/components/motion/Reveal";
+import { VerseSpine } from "@/components/content/VerseSpine";
 
 export const metadata: Metadata = {
   title: "Isha Upanishad",
   description:
-    "The complete Īśāvāsya Upaniṣad — eighteen verses and the śānti mantra, with Sanskrit, transliteration, translation in English, Kannada and Hindi, and a commentary on every verse.",
+    "The complete Īśāvāsya Upaniṣad — eighteen verses and the śānti mantra, with Sanskrit, transliteration, translation and a full commentary on every verse, readable in English, Kannada or Hindi.",
 };
 
 export default function IshaPage() {
@@ -20,76 +21,99 @@ export default function IshaPage() {
 
   if (!work) return null;
 
-  return (
-    <>
-      {/* ── The opening scene ──────────────────────────── */}
-      <ScrollScene
-        src={TEXTURE.wheel.src}
-        alt=""
-        credit={TEXTURE.wheel.credit}
-        height={2}
-        align="center"
-      >
-        <p className="scene-eyebrow">{t.navUpanishads}</p>
-        <h1 className="vhero-title deva">{work.nameSanskrit}</h1>
-        <p className="vhero-name">{work.name}</p>
-        <p className="translit" style={{ fontSize: "1.05rem" }}>{work.nameIast}</p>
-        <p className="scene-lede" style={{ marginInline: "auto" }}>{work.summary}</p>
-      </ScrollScene>
+  const spineIds = verses.map((v) => ({ id: v.id, locator: v.locator }));
 
-      {/* ── What this text is ─────────────────────────── */}
-      <section className="shell vintro">
-        <Reveal>
-          <div className="factbar">
-            <div className="fact">
-              <div className="fact-label">{t.labelVeda}</div>
-              <div className="fact-value">{work.veda}</div>
-            </div>
-            <div className="fact">
-              <div className="fact-label">{t.labelVerseCount}</div>
-              <div className="fact-value">{work.verseCount}</div>
-            </div>
-            <div className="fact">
-              <div className="fact-label">{t.labelKeyTeaching}</div>
-              <div className="fact-value" style={{ fontSize: "0.95rem" }}>
-                {work.keyTeaching}
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
+  return (
+    <div className="reader">
+      <Aurora />
+
+      {/* ── Title ─────────────────────────────────────── */}
+      <header className="reader-head shell">
+        <p className="reader-kicker">{t.navUpanishads}</p>
+
+        <h1 className="reader-title deva">{work.nameSanskrit}</h1>
+        <p className="reader-name">{work.name}</p>
+        <p className="translit reader-iast">{work.nameIast}</p>
+
+        <p className="reader-lede">{work.summary}</p>
+
+        <div className="reader-facts">
+          <span>
+            <i>{t.labelVeda}</i> {work.veda}
+          </span>
+          <span>
+            <i>{t.labelVerseCount}</i> {work.verseCount}
+          </span>
+          <span>
+            <i>{t.labelKeyTeaching}</i> {work.keyTeaching}
+          </span>
+        </div>
+
+        {/* The first decision the reader makes, given real estate
+            rather than buried in the masthead. */}
+        <LanguageChoice current={locale} label={t.chooseLanguage} />
+
+        <p className="reader-note">{t.readerHint}</p>
+      </header>
 
       {/* ── The verses ────────────────────────────────── */}
-      <section className="shell vlist">
-        {verses.map((v, i) => (
-          <VerseStage
-            key={v.id}
-            verse={v}
-            index={i}
-            locale={locale}
-            labels={{
-              verse: t.labelVerse,
-              invocation: t.labelInvocation,
-              explanation: t.labelExplanation,
-              hideExplanation: t.labelHideExplanation,
-              compare: t.labelCompare,
-              hideCompare: t.labelHideCompare,
-              terms: t.labelTerms,
-              uncited: t.uncitedNotice,
-            }}
-          />
-        ))}
-      </section>
+      <div className="reader-body shell">
+        <VerseSpine
+          ids={spineIds}
+          labels={{
+            index: t.navIndex,
+            verse: t.labelVerse,
+            invocation: t.labelInvocation,
+          }}
+        />
+
+        <div className="reader-verses">
+          {verses.map((v, i) => (
+            <VerseStage
+              key={v.id}
+              verse={v}
+              index={i}
+              labels={{
+                verse: t.labelVerse,
+                invocation: t.labelInvocation,
+                explanation: t.labelExplanation,
+                hideExplanation: t.labelHideExplanation,
+                terms: t.labelTerms,
+                uncited: t.uncitedNotice,
+                watch: t.labelWatch,
+                talk: t.labelTalk,
+              }}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* ── Out ───────────────────────────────────────── */}
-      <section className="shell" style={{ paddingBlock: "clamp(3rem, 8vh, 6rem)" }}>
-        <div className="vfoot">
-          <Link href="/upanishads" className="btn-ghost">
+      <footer className="shell reader-foot">
+        <div className="reader-credit">
+          <p className="fact-label">{t.labelLectures}</p>
+          <p className="card-text">
+            {VIDEO_SERIES.speaker} · {VIDEO_SERIES.org}
+          </p>
+          <a
+            className="btn-ghost"
+            href={VIDEO_SERIES.channel}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t.labelWatch} ↗
+          </a>
+        </div>
+
+        <div>
+          <p className="meta">
+            {t.labelSource}: {verses[0]?.sourceTitle}
+          </p>
+          <Link href="/upanishads" className="btn-ghost" style={{ marginTop: "0.8rem" }}>
             ← {t.upanishadsTitle}
           </Link>
-          <p className="meta">{t.labelSource}: {verses[0]?.sourceTitle}</p>
         </div>
-      </section>
-    </>
+      </footer>
+    </div>
   );
 }
