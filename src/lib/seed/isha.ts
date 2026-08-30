@@ -1,7 +1,8 @@
 import type { Locale } from "@/i18n/config";
 import type { TranslationRow, VerseNoteRow, VerseRow } from "./types";
 import { ISHA_COMMENTARY } from "./isha-commentary";
-import { ISHA_VIDEOS, type VerseVideo } from "./isha-video";
+import { ISHA_VIDEOS, VIDEO_SERIES, type VerseVideo } from "./isha-video";
+import { registerText } from "./upanishads";
 
 // ─────────────────────────────────────────────────────────
 //  Īśāvāsya Upaniṣad — the complete text.
@@ -1164,3 +1165,20 @@ export function commentaryFor(verseId: string, locale: Locale): string {
 export function videoFor(locator: string): VerseVideo | undefined {
   return ISHA_VIDEOS[locator];
 }
+
+// ─────────────────────────────────────────────────────────
+//  Register with the reader.
+//
+//  Everything the generic reader needs — verses, commentary,
+//  lectures — handed over in one call. /upanishads/[slug] picks
+//  it up from here; there is no Isha-specific page any more.
+// ─────────────────────────────────────────────────────────
+
+registerText({
+  slug: "isha",
+  textId: "t-isha",
+  verses: ISHA_VERSES,
+  commentary: ISHA_COMMENTARY,
+  videos: ISHA_VIDEOS,
+  series: VIDEO_SERIES,
+});

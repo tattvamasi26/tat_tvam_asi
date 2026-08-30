@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import Link from "next/link";
-import { getAllUpanishads } from "@/lib/data";
+import { getAllUpanishads, getReadableSlugs } from "@/lib/data";
 
 export const metadata: Metadata = { title: "The Upanishads" };
 
 export default function UpanishadsPage() {
   const { locale, t } = getTranslations();
   const texts = getAllUpanishads(locale);
+  // Only texts entered verse-by-verse get a Read link; the rest
+  // stay summary cards until their content exists.
+  const readable = new Set(getReadableSlugs());
 
   return (
     <>
@@ -37,8 +40,8 @@ export default function UpanishadsPage() {
                   </p>
                 </div>
 
-                {u.slug === "isha" && (
-                  <Link href="/upanishads/isha" className="btn" style={{ marginTop: "1.1rem" }}>
+                {readable.has(u.slug) && (
+                  <Link href={`/upanishads/${u.slug}`} className="btn" style={{ marginTop: "1.1rem" }}>
                     {t.readWork} →
                   </Link>
                 )}

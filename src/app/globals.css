@@ -3964,3 +3964,29 @@
   margin-top: 0.5rem;
   letter-spacing: 0.01em;
 }
+
+/* ── Mūla in the reader's script ───────────────────────────
+   .vstage-sanskrit and .reader-title pin the Devanagari face with
+   !important so an ambient :lang() rule cannot pull Sanskrit into
+   the Kannada face on a Kannada page. When the mūla has actually
+   been transliterated INTO Kannada, that pin has to give way — so
+   the Kannada variant is stated at higher specificity rather than
+   by removing the guard.
+   ───────────────────────────────────────────────────────── */
+
+.vstage-sanskrit.kannada,
+.reader-title.kannada,
+.vterm dt .kannada {
+  font-family: var(--kannada) !important;
+}
+
+/* Kannada sits larger on the body than Devanagari at the same size,
+   and its conjuncts need more room between lines. */
+.vstage-sanskrit.kannada {
+  font-size: clamp(1.2rem, 2.6vw, 1.95rem);
+  line-height: 2;
+}
+.reader-title.kannada {
+  font-size: clamp(2.8rem, 10vw, 6.5rem);
+  line-height: 1.25;
+}

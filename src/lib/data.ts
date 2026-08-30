@@ -390,8 +390,11 @@ export function getBhajans(locale: Locale): UpanishadView[] {
 import { ISHA_VERSES, commentaryFor, videoFor, type IshaVerse } from "./seed/isha";
 import { watchUrl, thumbUrl, VIDEO_SERIES } from "./seed/isha-video";
 import { LOCALES } from "@/i18n/config";
+import { scriptFor, scriptClass } from "./script";
 
 export interface IshaVerseView {
+  /** "kannada" or "deva" — the face the mūla should be set in. */
+  scriptClass: string;
   id: string;
   locator: string;
   handle: string;
@@ -423,10 +426,14 @@ export function getIshaVerses(locale: Locale): IshaVerseView[] {
     id: v.id,
     locator: v.locator,
     handle: v.handle[locale] ?? v.handle.en,
-    sanskrit: v.sanskrit,
+    // The mūla in the reader's own script. Sanskrit is not Devanagari;
+    // in Karnataka it is written in Kannada letters, and a reader who
+    // chose Kannada should not be handed a script they did not pick.
+    sanskrit: v.sanskrit.map((l) => scriptFor(l, locale)),
+    scriptClass: scriptClass(locale),
     iast: v.iast,
     keywords: v.keywords.map((k) => ({
-      term: k.term,
+      term: scriptFor(k.term, locale),
       iast: k.iast,
       gloss: k.gloss[locale] ?? k.gloss.en,
     })),
@@ -456,5 +463,81 @@ export function getIshaVerses(locale: Locale): IshaVerseView[] {
 
 /** The Isha's own record from the texts table. */
 export function getIshaText(locale: Locale): UpanishadView | null {
-  return getAllUpanishads(locale).find((u) => u.slug === "isha") ?? null;
+  const t = getAllUpanishads(locale).find((u) => u.slug === "isha");
+  if (!t) return null;
+  // The title too — a Kannada page should not open on a Devanagari word.
+  return { ...t, nameSanskrit: scriptFor(t.nameSanskrit, locale) };
+}
+
+
+// ── Any registered Upanishad, verse by verse ────────────────
+//
+// The Isha-specific accessors above are kept as thin wrappers so
+// existing call sites do not change; everything new should use these.
+
+// Importing these runs their registerText() side effect. Without it a
+// text exists on disk but not in the registry, and its reader 404s.
+import "./seed/isha";
+import "./seed/mandukya";
+import {
+  getFullText,
+  readableSlugs,
+  commentaryFor as fullCommentaryFor,
+  type FullText,
+} from "./seed/upanishads";
+
+export function getReadableSlugs(): string[] {
+  return readableSlugs();
+}
+
+export function getUpanishadHeader(slug: string, locale: Locale): UpanishadView | null {
+  const t = getAllUpanishads(locale).find((u) => u.slug === slug);
+  if (!t) return null;
+  // The title follows the reading script too — a Kannada page should
+  // not open on a Devanagari word.
+  return { ...t, nameSanskrit: scriptFor(t.nameSanskrit, locale) };
+}
+
+export function getUpanishadVerses(slug: string, locale: Locale): IshaVerseView[] {
+  const text: FullText | undefined = getFullText(slug);
+  if (!text) return [];
+  const source = SOURCES.find((s) => s.id === "site-editorial");
+  const series = text.series;
+
+  return text.verses.map((v) => ({
+    id: v.id,
+    locator: v.locator,
+    handle: v.handle[locale] ?? v.handle.en,
+    sanskrit: v.sanskrit.map((l) => scriptFor(l, locale)),
+    scriptClass: scriptClass(locale),
+    iast: v.iast,
+    keywords: v.keywords.map((k) => ({
+      term: scriptFor(k.term, locale),
+      iast: k.iast,
+      gloss: k.gloss[locale] ?? k.gloss.en,
+    })),
+    translation: v.readings[locale]?.translation ?? v.readings.en.translation,
+    explanation: fullCommentaryFor(text, v.id, locale),
+    allTranslations: LOCALES.map((l) => ({
+      locale: l,
+      text: v.readings[l]?.translation ?? v.readings.en.translation,
+    })),
+    isCited: false,
+    sourceTitle: source?.work_title ?? "",
+    video: (() => {
+      const vid = text.videos?.[v.locator];
+      if (!vid || !series) return null;
+      return {
+        ...vid,
+        url: `https://www.youtube.com/watch?v=${vid.id}`,
+        thumb: `https://i.ytimg.com/vi/${vid.id}/mqdefault.jpg`,
+        speaker: series.speaker,
+        org: series.org,
+      };
+    })(),
+  }));
+}
+
+export function getUpanishadSeries(slug: string) {
+  return getFullText(slug)?.series ?? null;
 }

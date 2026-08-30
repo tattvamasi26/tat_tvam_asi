@@ -64,7 +64,11 @@ export function VerseStage({
         {/* The mūla. Each line is its own element so it can be timed. */}
         <div className="vstage-mula">
           {verse.sanskrit.map((line, i) => (
-            <p key={i} className="vstage-sanskrit deva" style={{ ["--line" as string]: i }}>
+            <p
+              key={i}
+              className={`vstage-sanskrit ${verse.scriptClass}`}
+              style={{ ["--line" as string]: i }}
+            >
               {line}
             </p>
           ))}
@@ -87,7 +91,7 @@ export function VerseStage({
               {verse.keywords.map((k) => (
                 <div key={k.term} className="vterm">
                   <dt>
-                    <span className="deva">{k.term}</span>
+                    <span className={verse.scriptClass}>{k.term}</span>
                     <span className="translit">{k.iast}</span>
                   </dt>
                   <dd>{k.gloss}</dd>

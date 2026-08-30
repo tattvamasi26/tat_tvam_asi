@@ -1,25 +1,57 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getTranslations } from "@/i18n/server";
-import { getIshaVerses, getIshaText } from "@/lib/data";
-import { VIDEO_SERIES } from "@/lib/seed/isha-video";
+import { DEFAULT_LOCALE } from "@/i18n/config";
+import {
+  getUpanishadVerses,
+  getUpanishadHeader,
+  getUpanishadSeries,
+  getReadableSlugs,
+} from "@/lib/data";
+import { scriptClass } from "@/lib/script";
 import { Aurora } from "@/components/motion/Aurora";
 import { LanguageChoice } from "@/components/content/LanguageChoice";
 import { VerseStage } from "@/components/content/VerseStage";
 import { VerseSpine } from "@/components/content/VerseSpine";
 
-export const metadata: Metadata = {
-  title: "Isha Upanishad",
-  description:
-    "The complete Īśāvāsya Upaniṣad — eighteen verses and the śānti mantra, with Sanskrit, transliteration, translation and a full commentary on every verse, readable in English, Kannada or Hindi.",
-};
+/**
+ * The reader, for any Upanishad that has been entered completely.
+ *
+ * This was a page written for the Isha. It is now the template: a
+ * text registers its verses, commentary and lectures in
+ * seed/upanishads.ts and gets this whole experience — script
+ * transliteration, per-verse commentary, the spine, keyboard
+ * navigation, talks — without a line of new page code.
+ *
+ * Only registered texts resolve here. A text that exists in the
+ * `texts` table but has no verses entered yet 404s rather than
+ * rendering an empty reader, because an empty reader would imply a
+ * completeness the content does not have.
+ */
 
-export default function IshaPage() {
+export function generateStaticParams() {
+  return getReadableSlugs().map((slug) => ({ slug }));
+}
+
+export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  const work = getUpanishadHeader(params.slug, DEFAULT_LOCALE);
+  if (!work) return {};
+  return {
+    title: work.name,
+    description: work.summary,
+  };
+}
+
+export default function UpanishadReader({ params }: { params: { slug: string } }) {
   const { locale, t } = getTranslations();
-  const work = getIshaText(locale);
-  const verses = getIshaVerses(locale);
 
-  if (!work) return null;
+  const work = getUpanishadHeader(params.slug, locale);
+  const verses = getUpanishadVerses(params.slug, locale);
+  const series = getUpanishadSeries(params.slug);
+
+  // No verses entered means there is no reader to show.
+  if (!work || verses.length === 0) notFound();
 
   const spineIds = verses.map((v) => ({ id: v.id, locator: v.locator }));
 
@@ -31,7 +63,7 @@ export default function IshaPage() {
       <header className="reader-head shell">
         <p className="reader-kicker">{t.navUpanishads}</p>
 
-        <h1 className="reader-title deva">{work.nameSanskrit}</h1>
+        <h1 className={`reader-title ${scriptClass(locale)}`}>{work.nameSanskrit}</h1>
         <p className="reader-name">{work.name}</p>
         <p className="translit reader-iast">{work.nameIast}</p>
 
@@ -90,20 +122,22 @@ export default function IshaPage() {
 
       {/* ── Out ───────────────────────────────────────── */}
       <footer className="shell reader-foot">
-        <div className="reader-credit">
-          <p className="fact-label">{t.labelLectures}</p>
-          <p className="card-text">
-            {VIDEO_SERIES.speaker} · {VIDEO_SERIES.org}
-          </p>
-          <a
-            className="btn-ghost"
-            href={VIDEO_SERIES.channel}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {t.labelWatch} ↗
-          </a>
-        </div>
+        {series && (
+          <div className="reader-credit">
+            <p className="fact-label">{t.labelLectures}</p>
+            <p className="card-text">
+              {series.speaker} · {series.org}
+            </p>
+            <a
+              className="btn-ghost"
+              href={series.channel}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {t.labelWatch} ↗
+            </a>
+          </div>
+        )}
 
         <div>
           <p className="meta">
