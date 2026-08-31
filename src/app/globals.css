@@ -3990,3 +3990,23 @@
   font-size: clamp(2.8rem, 10vw, 6.5rem);
   line-height: 1.25;
 }
+
+/* A text held as selections says so, in the header, before any verse.
+   Styled as a notice rather than a chip — it is a caveat about what the
+   page contains, not a decorative label. */
+.reader-partial {
+  margin-top: 1.6rem;
+  max-width: 60ch;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--saffron) 32%, transparent);
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--saffron) 7%, transparent);
+  color: var(--ink-1);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+.reader-partial strong {
+  color: var(--saffron);
+  font-weight: 500;
+  margin-right: 0.4rem;
+}

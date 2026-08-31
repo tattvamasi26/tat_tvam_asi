@@ -47,12 +47,29 @@ export interface FullVerse {
   readings: Record<Locale, VerseReading>;
 }
 
+/**
+ * Whether the registry holds the whole text or a curated part of it.
+ *
+ * Chāndogya is 628 verses and Bṛhadāraṇyaka 434, and neither can be set
+ * down complete with the confidence the rest of the site is held to.
+ * They get their studied sections instead — entered to the same
+ * standard, and flagged here so the interface can say plainly that it
+ * is showing selections. A partial text must never be able to look
+ * complete, for the same reason an uncited translation cannot be
+ * stored.
+ */
+export type Completeness = "complete" | "selections";
+
 export interface FullText {
   /** Matches the `texts` row slug, so the header can be looked up. */
   slug: string;
   /** The `texts.id` these verses hang off. */
   textId: string;
   verses: FullVerse[];
+  /** Defaults to "complete" — a text must opt in to being partial. */
+  completeness?: Completeness;
+  /** For a selections text: which sections are present, per language. */
+  covers?: Record<Locale, string>;
   /** Long-form commentary, keyed by verse id. Optional per verse. */
   commentary?: Record<string, Record<Locale, string>>;
   /** Lecture per verse locator, if a series covers this text. */
@@ -133,4 +150,10 @@ export function allReadableRows() {
     translations: texts.flatMap(translationRowsFor),
     notes: texts.flatMap(noteRowsFor),
   };
+}
+
+
+/** Texts whose reader shows only part of the work. */
+export function isPartial(text: FullText): boolean {
+  return text.completeness === "selections";
 }

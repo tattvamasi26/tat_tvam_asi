@@ -479,6 +479,7 @@ export function getIshaText(locale: Locale): UpanishadView | null {
 // text exists on disk but not in the registry, and its reader 404s.
 import "./seed/isha";
 import "./seed/mandukya";
+import "./seed/kena";
 import {
   getFullText,
   readableSlugs,
@@ -540,4 +541,18 @@ export function getUpanishadVerses(slug: string, locale: Locale): IshaVerseView[
 
 export function getUpanishadSeries(slug: string) {
   return getFullText(slug)?.series ?? null;
+}
+
+/**
+ * For a text entered as selections rather than in full: what is
+ * actually here. Returns null for a complete text, so the page can
+ * simply not render the banner.
+ */
+export function getUpanishadCoverage(
+  slug: string,
+  locale: Locale
+): string | null {
+  const t = getFullText(slug);
+  if (!t || t.completeness !== "selections") return null;
+  return t.covers?.[locale] ?? t.covers?.en ?? null;
 }

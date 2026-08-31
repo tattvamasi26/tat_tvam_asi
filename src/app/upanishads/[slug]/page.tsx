@@ -7,6 +7,7 @@ import {
   getUpanishadVerses,
   getUpanishadHeader,
   getUpanishadSeries,
+  getUpanishadCoverage,
   getReadableSlugs,
 } from "@/lib/data";
 import { scriptClass } from "@/lib/script";
@@ -49,6 +50,8 @@ export default function UpanishadReader({ params }: { params: { slug: string } }
   const work = getUpanishadHeader(params.slug, locale);
   const verses = getUpanishadVerses(params.slug, locale);
   const series = getUpanishadSeries(params.slug);
+  // Non-null only for a text held as selections; see seed/upanishads.ts.
+  const coverage = getUpanishadCoverage(params.slug, locale);
 
   // No verses entered means there is no reader to show.
   if (!work || verses.length === 0) notFound();
@@ -84,6 +87,12 @@ export default function UpanishadReader({ params }: { params: { slug: string } }
         {/* The first decision the reader makes, given real estate
             rather than buried in the masthead. */}
         <LanguageChoice current={locale} label={t.chooseLanguage} />
+
+        {coverage && (
+          <p className="reader-partial">
+            <strong>{t.labelSelections}</strong> {coverage}
+          </p>
+        )}
 
         <p className="reader-note">{t.readerHint}</p>
       </header>
