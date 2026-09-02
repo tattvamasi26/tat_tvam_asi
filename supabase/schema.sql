@@ -503,6 +503,13 @@ insert into texts (slug, title_sanskrit, title_iast, title_en, work_type, veda, 
 on conflict (slug) do nothing;
 
 -- Verses + their legacy-flagged translations + site_gloss
+--
+-- A verse is identified by its text and its locator, and this constraint is
+-- what makes the insert below idempotent. Without it, running this file a
+-- second time silently duplicated every verse and every translation —
+-- every other insert here has an `on conflict` guard, and this one did not.
+create unique index if not exists verses_text_locator_key on verses (text_id, locator);
+
 with v as (
   insert into verses (text_id, sanskrit, transliteration_iast, site_gloss, division_1, division_2, division_3, locator, category, is_mahavakya, tags, citation_status)
   select t.id, x.sanskrit, x.translit, nullif(x.gloss, ''), x.d1, x.d2, x.d3, x.locator, x.category, x.mahavakya, x.tags, 'legacy_uncited'
@@ -517,6 +524,7 @@ with v as (
     ('isha-upanishad', 'ॐ पूर्णमदः पूर्णमिदम्', 'Oṃ Pūrṇamadaḥ Pūrṇamidam', 'The opening invocation of the Isha Upanishad. It describes the nature of Brahman as Purna — complete, whole, lacking nothing.', 'Invocation',null,null,'Invocation', 'shruti', false, array['purna','wholeness','brahman'])
   ) as x(text_slug, sanskrit, translit, gloss, d1, d2, d3, locator, category, mahavakya, tags)
   join texts t on t.slug = x.text_slug
+  on conflict (text_id, locator) do nothing
   returning id, locator, sanskrit
 )
 insert into translations (verse_id, language, translation_text, source_id, is_primary)
