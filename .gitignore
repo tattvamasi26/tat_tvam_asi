@@ -1,3 +1,15 @@
 node_modules/
 .next/
 *.tsbuildinfo
+
+# Secrets. .env.local holds the service-role key, which bypasses row-level
+# security entirely — committing it would hand write access to the whole
+# database to anyone who can read the repo.
+#
+# This file previously listed only build output, while the README claimed
+# .env.local was ignored. It was not. Anything matching these patterns
+# stays out of git.
+.env
+.env.local
+.env.*.local
+.env.production
