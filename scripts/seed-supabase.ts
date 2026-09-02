@@ -207,7 +207,7 @@ async function main() {
     source_id: idMap.get(t.source_id),
   }));
   const { error: trErr } = await db
-    .from("translations").upsert(translations, { onConflict: "verse_id,language" });
+    .from("translations").upsert(translations, { onConflict: "verse_id,language,source_id" });
   if (trErr) throw new Error(`translations: ${trErr.message}`);
   console.log(`  ${"translations".padEnd(22)} ${translations.length} row(s)`);
 

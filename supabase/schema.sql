@@ -362,6 +362,18 @@ create index if not exists idx_verses_tags            on verses using gin(tags);
 create index if not exists idx_translations_verse_id  on translations(verse_id);
 create index if not exists idx_translations_source_id on translations(source_id);
 
+-- One translation per verse, per language, PER SOURCE.
+--
+-- Deliberately not (verse_id, language): the whole point of the citation
+-- model is that a verse can carry Hume's English and Müller's English side
+-- by side, distinguished by source and ranked by is_primary. Constraining
+-- on language alone would make that impossible.
+--
+-- Including source_id is also what lets the seed upsert instead of
+-- duplicating on every run.
+create unique index if not exists translations_verse_lang_source_key
+  on translations (verse_id, language, source_id);
+
 create index if not exists idx_commentary_entries_verse_id      on commentary_entries(verse_id);
 create index if not exists idx_commentary_entries_commentary_id on commentary_entries(commentary_id);
 create index if not exists idx_commentaries_base_text_id        on commentaries(base_text_id);
