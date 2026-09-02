@@ -1,4 +1,5 @@
 import { registerText, type FullVerse } from "./upanishads";
+import { MANDUKYA_VIDEOS, MANDUKYA_SERIES } from "./lectures";
 
 // ─────────────────────────────────────────────────────────
 //  Māṇḍūkya Upaniṣad — the complete text.
@@ -747,4 +748,6 @@ registerText({
   slug: "mandukya",
   textId: "t-mandukya",
   verses: VERSES,
+  videos: MANDUKYA_VIDEOS,
+  series: MANDUKYA_SERIES,
 });

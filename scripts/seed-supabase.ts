@@ -23,11 +23,13 @@ import {
   VERSE_TRANSLATIONS as STANDALONE_TRANSLATIONS,
   VERSE_NOTES as STANDALONE_NOTES,
 } from "../src/lib/seed/verses";
-import {
-  ISHA_VERSE_ROWS,
-  ISHA_TRANSLATION_ROWS,
-  ISHA_NOTE_ROWS,
-} from "../src/lib/seed/isha";
+// Importing these runs each text's registerText() side effect, which is
+// what puts it in the registry below. A text that is not imported here
+// exists on disk but never reaches Postgres.
+import "../src/lib/seed/isha";
+import "../src/lib/seed/mandukya";
+import "../src/lib/seed/kena";
+import { allReadableRows } from "../src/lib/seed/upanishads";
 import { TEACHERS, TEACHER_TRANSLATIONS } from "../src/lib/seed/teachers";
 import { TEMPLES, TEMPLE_TRANSLATIONS } from "../src/lib/seed/temples";
 import { CONCEPTS, CONCEPT_TRANSLATIONS } from "../src/lib/seed/concepts";
@@ -41,9 +43,13 @@ import { MATHAS, MATHA_TRANSLATIONS } from "../src/lib/seed/mathas";
  * upstream — which would have put nineteen Isha verses into the
  * standalone browse list.
  */
-const VERSES = [...STANDALONE_VERSES, ...ISHA_VERSE_ROWS];
-const VERSE_TRANSLATIONS = [...STANDALONE_TRANSLATIONS, ...ISHA_TRANSLATION_ROWS];
-const VERSE_NOTES = [...STANDALONE_NOTES, ...ISHA_NOTE_ROWS];
+// Every registered text, not a hand-maintained list — adding the next
+// Upanishad is one import line above and nothing else.
+const readable = allReadableRows();
+
+const VERSES = [...STANDALONE_VERSES, ...readable.verses];
+const VERSE_TRANSLATIONS = [...STANDALONE_TRANSLATIONS, ...readable.translations];
+const VERSE_NOTES = [...STANDALONE_NOTES, ...readable.notes];
 
 // ── env ─────────────────────────────────────────────────────
 function loadEnv() {

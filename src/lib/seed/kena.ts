@@ -1,4 +1,5 @@
 import { registerText, type FullVerse } from "./upanishads";
+import { KENA_VIDEOS, KENA_SERIES } from "./lectures";
 
 // ─────────────────────────────────────────────────────────
 //  Kena Upaniṣad — the complete text.
@@ -1481,4 +1482,6 @@ registerText({
   slug: "kena",
   textId: "t-kena",
   verses: VERSES,
+  videos: KENA_VIDEOS,
+  series: KENA_SERIES,
 });
