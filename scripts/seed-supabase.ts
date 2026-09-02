@@ -96,7 +96,14 @@ async function insertParents<T extends { id: string; slug?: string }>(
   table: string,
   rows: T[],
   matchOn: (r: T) => Record<string, string>,
-  extra?: (r: T) => Record<string, unknown>
+  extra?: (r: T) => Record<string, unknown>,
+  /**
+   * Rewrites the payload entirely. `extra` can only ADD columns, which is
+   * no use when a local column has to be RENAMED to match the table —
+   * `texts` stores title_sanskrit where the seed row says name_sanskrit,
+   * and sending the local name is rejected as an unknown column.
+   */
+  transform?: (payload: Record<string, unknown>, r: T) => Record<string, unknown>
 ) {
   for (const row of rows) {
     const filter = matchOn(row);
@@ -105,7 +112,11 @@ async function insertParents<T extends { id: string; slug?: string }>(
       idMap.set(row.id, existing.id);
       continue;
     }
-    const payload = { ...strip(row), ...(extra ? extra(row) : {}) };
+    let payload: Record<string, unknown> = {
+      ...strip(row),
+      ...(extra ? extra(row) : {}),
+    };
+    if (transform) payload = transform(payload, row);
     const { data, error } = await db.from(table).insert(payload).select("id").single();
     if (error) throw new Error(`${table}: ${error.message}`);
     idMap.set(row.id, data.id);
@@ -150,7 +161,26 @@ async function main() {
 
   console.log("Seeding…");
   await insertParents("sources", SOURCES, (r) => ({ work_title: r.work_title }));
-  await insertParents("texts", TEXTS, (r) => ({ slug: r.slug }));
+  // `texts` predates the translation tables: it still has NOT NULL
+  // title_sanskrit / title_iast / title_en on the base row, while the seed
+  // keeps names in text_translations. Map the two Sanskrit columns across
+  // and fill title_en from the English translation so the row is valid and
+  // stays readable in the Supabase table editor.
+  await insertParents(
+    "texts",
+    TEXTS,
+    (r) => ({ slug: r.slug }),
+    undefined,
+    (payload, r) => {
+      const { name_sanskrit, name_iast, ...rest } = payload as Record<string, unknown>;
+      return {
+        ...rest,
+        title_sanskrit: name_sanskrit,
+        title_iast: name_iast,
+        title_en: english(TEXT_TRANSLATIONS, "text_id", r.id, "name") ?? name_iast,
+      };
+    }
+  );
   await insertChildren("text_translations", TEXT_TRANSLATIONS, "text_id");
 
   // Verses carry a text_id that must be remapped before insert.

@@ -88,11 +88,19 @@ create table if not exists texts (
   title_sanskrit    text not null,
   title_iast        text not null,
   title_en          text not null,
+  -- Must stay in step with WorkType in src/lib/seed/types.ts. The Gita and
+  -- its chapters, and bhajans, live in this same table by design — that is
+  -- the point of one generalised hierarchy — so they belong in this list.
   work_type         text not null check (work_type in (
-                      'veda', 'samhita', 'brahmana', 'aranyaka', 'upanishad', 'smriti', 'sutra', 'stotra', 'itihasa'
+                      'veda', 'samhita', 'brahmana', 'aranyaka', 'upanishad',
+                      'gita', 'gita_chapter', 'brahma_sutra',
+                      'smriti', 'sutra', 'stotra', 'bhajan', 'itihasa'
                     )),
   parent_id         uuid references texts(id) on delete set null,
-  veda              text check (veda in ('rigveda', 'samaveda', 'yajurveda', 'atharvaveda')),
+  -- Compared case-insensitively: the app stores display case ('Rigveda')
+  -- because this column is rendered directly, and a check that only
+  -- accepted lowercase silently rejected every row the seed sent.
+  veda              text check (lower(veda) in ('rigveda', 'samaveda', 'yajurveda', 'atharvaveda')),
   canonical_order   int,
   verse_count       int,
   summary           text,
@@ -678,10 +686,10 @@ begin
     'text_translations', 'verse_notes', 'teacher_translations',
     'temple_translations', 'concept_translations', 'matha_translations'
   ] loop
-    execute format(
-      'create policy if not exists %I on %I for select using (true)',
-      t || '_public_read', t
-    );
+    -- Postgres has no CREATE POLICY IF NOT EXISTS. Drop-then-create is
+    -- the idempotent form, and is what the earlier policy block uses.
+    execute format('drop policy if exists %I on %I;', t || '_public_read', t);
+    execute format('create policy %I on %I for select using (true);', t || '_public_read', t);
   end loop;
 end $$;
 
