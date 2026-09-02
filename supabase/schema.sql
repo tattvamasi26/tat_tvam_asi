@@ -487,29 +487,34 @@ update teachers set sampradaya_id = (select id from sampradayas where slug = 'ad
 where tradition = 'Advaita Vedanta' and sampradaya_id is null;
 
 -- Texts (Upanishads)
+--
+-- Slugs must match src/lib/seed/texts.ts exactly. The app routes on them
+-- (/upanishads/isha) and the seed script matches on them, so a different
+-- convention here does not collide — it silently creates a SECOND row per
+-- text that nothing ever references.
 insert into texts (slug, title_sanskrit, title_iast, title_en, work_type, veda, verse_count, summary, key_teaching, citation_status) values
-('mandukya-upanishad', 'माण्डूक्य उपनिषद्', 'Māṇḍūkya Upaniṣad', 'Mandukya Upanishad', 'upanishad', 'atharvaveda', 12,
+('mandukya', 'माण्डूक्य उपनिषद्', 'Māṇḍūkya Upaniṣad', 'Mandukya Upanishad', 'upanishad', 'atharvaveda', 12,
   'The shortest yet most profound Upanishad, expounding the nature of Om and the four states of consciousness — waking, dream, deep sleep, and Turiya.',
   'Ayam Atma Brahma — This Self is Brahman', 'legacy_uncited'),
-('kena-upanishad', 'केन उपनिषद्', 'Kena Upaniṣad', 'Kena Upanishad', 'upanishad', 'samaveda', 35,
+('kena', 'केन उपनिषद्', 'Kena Upaniṣad', 'Kena Upanishad', 'upanishad', 'samaveda', 35,
   'Explores the nature of Brahman as that which cannot be known by the ordinary mind — the eye of the eye, the mind of the mind, the ear of the ear.',
   'That which is not thought by the mind, but by which the mind thinks — that alone is Brahman.', 'legacy_uncited'),
-('isha-upanishad', 'ईश उपनिषद्', 'Īśa Upaniṣad', 'Isha Upanishad', 'upanishad', 'yajurveda', 18,
+('isha', 'ईश उपनिषद्', 'Īśa Upaniṣad', 'Isha Upanishad', 'upanishad', 'yajurveda', 18,
   'The shortest Upanishad in the Yajurveda. Reconciles knowledge and action, renunciation and engagement.',
   'Tena tyaktena bhuñjīthāḥ — By renouncing, enjoy.', 'legacy_uncited'),
-('katha-upanishad', 'कठ उपनिषद्', 'Kaṭha Upaniṣad', 'Katha Upanishad', 'upanishad', 'yajurveda', 119,
+('katha', 'कठ उपनिषद्', 'Kaṭha Upaniṣad', 'Katha Upanishad', 'upanishad', 'yajurveda', 119,
   'Nachiketa, a young boy, asks Yama — the lord of death — about what lies beyond death. Yama''s answer is the complete teaching on the immortal Self.',
   'The Self is not born, nor does it die. It did not come from anywhere; nothing came from it.', 'legacy_uncited'),
-('mundaka-upanishad', 'मुण्डक उपनिषद्', 'Muṇḍaka Upaniṣad', 'Mundaka Upanishad', 'upanishad', 'atharvaveda', 64,
+('mundaka', 'मुण्डक उपनिषद्', 'Muṇḍaka Upaniṣad', 'Mundaka Upanishad', 'upanishad', 'atharvaveda', 64,
   'Distinguishes between the higher knowledge of Brahman and lower knowledge of the world. Uses the image of two birds on the same tree.',
   'Two birds, inseparable companions, dwell on the same tree. One eats the fruits; the other only watches.', 'legacy_uncited'),
-('chandogya-upanishad', 'छान्दोग्य उपनिषद्', 'Chāndogya Upaniṣad', 'Chandogya Upanishad', 'upanishad', 'samaveda', 628,
+('chandogya', 'छान्दोग्य उपनिषद्', 'Chāndogya Upaniṣad', 'Chandogya Upanishad', 'upanishad', 'samaveda', 628,
   'The longest and most storied Upanishad. Contains Tat Tvam Asi — given nine times by a father to his son through nine different analogies.',
   'Tat Tvam Asi — Thou Art That', 'legacy_uncited'),
-('brihadaranyaka-upanishad', 'बृहदारण्यक उपनिषद्', 'Bṛhadāraṇyaka Upaniṣad', 'Brihadaranyaka Upanishad', 'upanishad', 'yajurveda', 435,
+('brihadaranyaka', 'बृहदारण्यक उपनिषद्', 'Bṛhadāraṇyaka Upaniṣad', 'Brihadaranyaka Upanishad', 'upanishad', 'yajurveda', 435,
   'The largest Upanishad, rich with dialogues between Yajnavalkya and Maitreyi on the nature of Self.',
   'Aham Brahmasmi — I am Brahman', 'legacy_uncited'),
-('aitareya-upanishad', 'ऐतरेय उपनिषद्', 'Aitareya Upaniṣad', 'Aitareya Upanishad', 'upanishad', 'rigveda', 33,
+('aitareya', 'ऐतरेय उपनिषद्', 'Aitareya Upaniṣad', 'Aitareya Upanishad', 'upanishad', 'rigveda', 33,
   'Expounds the nature of Brahman as pure consciousness.',
   'Prajnanam Brahma — Consciousness is Brahman', 'legacy_uncited')
 on conflict (slug) do nothing;
@@ -526,14 +531,14 @@ with v as (
   insert into verses (text_id, sanskrit, transliteration_iast, site_gloss, division_1, division_2, division_3, locator, category, is_mahavakya, tags, citation_status)
   select t.id, x.sanskrit, x.translit, nullif(x.gloss, ''), x.d1, x.d2, x.d3, x.locator, x.category, x.mahavakya, x.tags, 'legacy_uncited'
   from (values
-    ('chandogya-upanishad', 'सर्वं खल्विदं ब्रह्म', 'Sarvaṃ Khalvidaṃ Brahma', '', '3','14','1','3.14.1', 'advaita', false, array['brahman','non-duality']),
-    ('brihadaranyaka-upanishad', 'अहं ब्रह्मास्मि', 'Ahaṃ Brahmāsmi', 'One of the four Mahavakyas — the great sayings of the Upanishads. Spoken in the Brihadaranyaka, it is the direct assertion of non-difference between the individual self and Brahman.', '1','4','10','1.4.10', 'advaita', true, array['mahavakya','brahman','atman']),
-    ('chandogya-upanishad', 'एकमेवाद्वितीयम्', 'Ekam Evādvitīyam', '', '6','2','1','6.2.1', 'advaita', false, array['brahman','oneness','non-duality']),
-    ('brihadaranyaka-upanishad', 'नेति नेति', 'Neti Neti', 'The method of Neti Neti — not this, not this — is the systematic negation of everything that can be objectified. What remains when all objects are negated is the subject itself: pure awareness.', '2','3','6','2.3.6', 'advaita', false, array['inquiry','brahman','method']),
-    ('aitareya-upanishad', 'प्रज्ञानं ब्रह्म', 'Prajñānaṃ Brahma', 'The Mahavakya of the Rigveda. It points directly at consciousness itself as the ultimate reality — not an object of consciousness, but consciousness as such.', '3','3',null,'3.3', 'advaita', true, array['mahavakya','consciousness','brahman']),
-    ('chandogya-upanishad', 'तत्त्वमसि', 'Tat Tvam Asi', 'The Mahavakya of the Samaveda, and the teaching for which this platform is named. Uddalaka gave this teaching to his son Shvetaketu nine times, through nine analogies, until the recognition arose.', '6','8','7','6.8.7', 'advaita', true, array['mahavakya','atman','brahman']),
-    ('mandukya-upanishad', 'अयमात्मा ब्रह्म', 'Ayam Ātmā Brahma', 'The Mahavakya of the Atharvaveda. The Mandukya Upanishad is the shortest — twelve verses — and this is its central declaration.', '1','2',null,'1.2', 'advaita', true, array['mahavakya','atman','brahman']),
-    ('isha-upanishad', 'ॐ पूर्णमदः पूर्णमिदम्', 'Oṃ Pūrṇamadaḥ Pūrṇamidam', 'The opening invocation of the Isha Upanishad. It describes the nature of Brahman as Purna — complete, whole, lacking nothing.', 'Invocation',null,null,'Invocation', 'shruti', false, array['purna','wholeness','brahman'])
+    ('chandogya', 'सर्वं खल्विदं ब्रह्म', 'Sarvaṃ Khalvidaṃ Brahma', '', '3','14','1','3.14.1', 'advaita', false, array['brahman','non-duality']),
+    ('brihadaranyaka', 'अहं ब्रह्मास्मि', 'Ahaṃ Brahmāsmi', 'One of the four Mahavakyas — the great sayings of the Upanishads. Spoken in the Brihadaranyaka, it is the direct assertion of non-difference between the individual self and Brahman.', '1','4','10','1.4.10', 'advaita', true, array['mahavakya','brahman','atman']),
+    ('chandogya', 'एकमेवाद्वितीयम्', 'Ekam Evādvitīyam', '', '6','2','1','6.2.1', 'advaita', false, array['brahman','oneness','non-duality']),
+    ('brihadaranyaka', 'नेति नेति', 'Neti Neti', 'The method of Neti Neti — not this, not this — is the systematic negation of everything that can be objectified. What remains when all objects are negated is the subject itself: pure awareness.', '2','3','6','2.3.6', 'advaita', false, array['inquiry','brahman','method']),
+    ('aitareya', 'प्रज्ञानं ब्रह्म', 'Prajñānaṃ Brahma', 'The Mahavakya of the Rigveda. It points directly at consciousness itself as the ultimate reality — not an object of consciousness, but consciousness as such.', '3','3',null,'3.3', 'advaita', true, array['mahavakya','consciousness','brahman']),
+    ('chandogya', 'तत्त्वमसि', 'Tat Tvam Asi', 'The Mahavakya of the Samaveda, and the teaching for which this platform is named. Uddalaka gave this teaching to his son Shvetaketu nine times, through nine analogies, until the recognition arose.', '6','8','7','6.8.7', 'advaita', true, array['mahavakya','atman','brahman']),
+    ('mandukya', 'अयमात्मा ब्रह्म', 'Ayam Ātmā Brahma', 'The Mahavakya of the Atharvaveda. The Mandukya Upanishad is the shortest — twelve verses — and this is its central declaration.', '1','2',null,'1.2', 'advaita', true, array['mahavakya','atman','brahman']),
+    ('isha', 'ॐ पूर्णमदः पूर्णमिदम्', 'Oṃ Pūrṇamadaḥ Pūrṇamidam', 'The opening invocation of the Isha Upanishad. It describes the nature of Brahman as Purna — complete, whole, lacking nothing.', 'Invocation',null,null,'Invocation', 'shruti', false, array['purna','wholeness','brahman'])
   ) as x(text_slug, sanskrit, translit, gloss, d1, d2, d3, locator, category, mahavakya, tags)
   join texts t on t.slug = x.text_slug
   on conflict (text_id, locator) do nothing
