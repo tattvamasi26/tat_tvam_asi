@@ -4010,3 +4010,239 @@
   font-weight: 500;
   margin-right: 0.4rem;
 }
+
+/* ═════════════════════════════════════════════════════════
+   HOMEPAGE — index, not slideshow
+
+   Replaces the pinned-scene treatment. There is one photographic
+   moment (the hero); everything below is structured, and each
+   band has a different shape so the page has rhythm rather than
+   repetition.
+   ═════════════════════════════════════════════════════════ */
+
+.home-band {
+  padding-block: clamp(3.5rem, 9vh, 6.5rem);
+}
+.home-band-tight {
+  padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
+}
+
+.home-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: clamp(1.8rem, 4vh, 3rem);
+}
+
+.home-title {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(1.5rem, 3.4vw, 2.6rem);
+  line-height: 1.25;
+  color: var(--ink-0);
+  max-width: 34ch;
+  text-wrap: balance;
+  margin-top: 0.5rem;
+}
+
+/* A head whose row has no button on the right is not a two-column
+   layout — it is one column, and the title should use the width. */
+.home-head:has(> :only-child) .home-title {
+  max-width: 46ch;
+}
+:lang(kn) .home-title,
+:lang(hi) .home-title {
+  font-family: inherit;
+  font-size: clamp(1.3rem, 3vw, 2.1rem);
+  line-height: 1.45;
+}
+
+/* ── The readable texts ────────────────────────────────── */
+
+.readgrid {
+  display: grid;
+  gap: 1px;
+  background: var(--stroke-soft);
+  border: 1px solid var(--stroke-soft);
+}
+@media (min-width: 720px) {
+  .readgrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1080px) {
+  .readgrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.readcard {
+  position: relative;
+  background: var(--bg-1);
+  padding: clamp(1.6rem, 3vw, 2.2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  min-height: 16rem;
+  overflow: hidden;
+  transition: background 420ms ease;
+}
+@media (hover: hover) {
+  .readcard:hover {
+    background: var(--bg-2);
+  }
+}
+
+/* The name in its own script, oversized and bled off the corner —
+   the card's identity before any Latin text is read. */
+.readcard-glyph {
+  position: absolute;
+  right: -0.5rem;
+  bottom: -1.2rem;
+  font-size: clamp(4rem, 9vw, 6.5rem);
+  line-height: 1;
+  color: var(--ink-0);
+  opacity: 0.06;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  transition: opacity 420ms ease, transform 620ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (hover: hover) {
+  .readcard:hover .readcard-glyph {
+    opacity: 0.12;
+    transform: translate(-4px, -6px);
+  }
+}
+
+.readcard-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  position: relative;
+  z-index: 1;
+}
+.readcard-name {
+  font-family: var(--serif);
+  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+  color: var(--ink-0);
+  line-height: 1.2;
+}
+:lang(kn) .readcard-name,
+:lang(hi) .readcard-name {
+  font-family: inherit;
+  line-height: 1.4;
+}
+.readcard-iast {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+.readcard-teaching {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin-top: 0.6rem;
+}
+
+.readcard-foot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 1rem;
+  position: relative;
+  z-index: 1;
+}
+.readcard-arrow {
+  margin-left: auto;
+  color: var(--gold);
+  transition: transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@media (hover: hover) {
+  .readcard:hover .readcard-arrow {
+    transform: translateX(5px);
+  }
+}
+
+/* ── Verse of the day, as a band ───────────────────────── */
+
+.verseband {
+  border-block: 1px solid var(--stroke-soft);
+  background: linear-gradient(
+    100deg,
+    color-mix(in srgb, var(--gold) 5%, transparent),
+    transparent 60%
+  );
+  padding-block: clamp(2.5rem, 7vh, 4.5rem);
+}
+
+.verseband-inner {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .verseband-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.verseband-mula {
+  font-family: var(--deva) !important;
+  font-size: clamp(1.4rem, 3.2vw, 2.3rem);
+  line-height: 1.7;
+  color: var(--ink-0);
+  margin-block: 0.7rem 0.5rem;
+}
+.verseband-mula.kannada {
+  font-family: var(--kannada) !important;
+  font-size: clamp(1.25rem, 2.8vw, 2rem);
+  line-height: 1.85;
+}
+
+.verseband-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2vw, 1.35rem);
+  line-height: 1.75;
+  color: var(--ink-0);
+  max-width: 46ch;
+}
+:lang(kn) .verseband-text,
+:lang(hi) .verseband-text {
+  font-family: inherit;
+  font-style: normal;
+  line-height: 1.95;
+}
+
+/* ── The citation promise ──────────────────────────────── */
+
+.citeband {
+  padding-block: clamp(3rem, 8vh, 5.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
+  border-top: 1px solid var(--stroke-soft);
+}
+.citeband-text {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.4vw, 1.75rem);
+  line-height: 1.6;
+  color: var(--ink-0);
+  max-width: 52ch;
+  text-wrap: balance;
+}
+:lang(kn) .citeband-text,
+:lang(hi) .citeband-text {
+  font-family: inherit;
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  line-height: 1.85;
+}
+
+/* The mosaic keeps its original 4-column span layout — an earlier edit
+   forced it to 3 columns, which left the fifth tile spanning wider than
+   the grid it sits in. */

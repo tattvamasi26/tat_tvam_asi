@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getTranslations } from "@/i18n/server";
 import { nameScriptClass } from "@/i18n/config";
 import { sectionsFor } from "@/i18n/sections";
@@ -11,22 +12,29 @@ import {
   getAllUpanishads,
   getAllVerses,
   getAllMathas,
+  getReadableSlugs,
+  getUpanishadVerses,
 } from "@/lib/data";
-import { HERO_IMAGES, TEXTURE } from "@/lib/hero";
+import { scriptFor, scriptClass } from "@/lib/script";
+import { HERO_IMAGES } from "@/lib/hero";
 import { HeroCinema } from "@/components/home/HeroCinema";
-import { ScrollScene } from "@/components/home/ScrollScene";
 import { Counter } from "@/components/home/Counter";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
- * The homepage is built as a sequence of full-viewport scenes rather
- * than a stack of bands. Each scene holds one idea and one photograph,
- * and the photograph stays pinned while the words move over it — so
- * the page reads as a descent through the material rather than a list
- * of links to it.
+ * The homepage is an index of the site, not a slideshow through it.
  *
- * Everything below the hero is a Server Component. The only client
- * code on this page is the hero's scroll-depth handler.
+ * The previous version was three full-bleed photographs — the hero plus
+ * two pinned scenes — each given the same treatment, and each consuming
+ * more than two screen-heights of scroll to deliver a single verse or a
+ * single sentence. Seven screens of scrolling for three pictures. It
+ * read exactly as it was built: one picture stacked on another.
+ *
+ * So there is now ONE photographic moment, the hero, and everything
+ * below it is structured and dense. Every section has a different shape
+ * and a different job, and the section that matters most — the texts you
+ * can actually sit down and read today — comes first instead of being
+ * four clicks deep.
  */
 export default function HomePage() {
   const { locale, t } = getTranslations();
@@ -39,110 +47,39 @@ export default function HomePage() {
   const upanishads = getAllUpanishads(locale);
   const verses = getAllVerses(locale);
   const mathas = getAllMathas(locale);
-
-  // The pillars come from the shared SECTIONS list, so this index, the
-  // nav overlay and the footer can never disagree about what exists.
   const pillars = sectionsFor(locale);
 
-  const featured = temples[0];
+  // The texts with a complete verse-by-verse reader, counted from the
+  // registry rather than hard-coded — a fourth text appears here the day
+  // it is entered, with no edit to this page.
+  const readable = getReadableSlugs()
+    .map((slug) => {
+      const head = upanishads.find((u) => u.slug === slug);
+      if (!head) return null;
+      return { ...head, entries: getUpanishadVerses(slug, locale).length };
+    })
+    .filter((x): x is NonNullable<typeof x> => x !== null);
+
+  const totalEntries = readable.reduce((n, r) => n + r.entries, 0);
 
   return (
     <>
-      {/* ── 01 · The opening frame ─────────────────────── */}
+      {/* ── 01 · One photographic moment ───────────────── */}
       <HeroCinema
         images={HERO_IMAGES}
         title={t.siteName}
         titleClass={nameScriptClass(locale)}
         tagline={t.heroTagline}
         subtitle={t.heroSubtitle}
-        enter={{ href: "/verses", label: t.heroEnter }}
+        enter={{ href: "/upanishads", label: t.heroEnter }}
         explore={{ href: "/concepts", label: t.heroExplore }}
         scrollCue={t.explorePillars}
       />
 
-      {/* ── 02 · Verse of the day, over carved stone ───── */}
-      <ScrollScene
-        id="verse"
-        src={TEXTURE.wheel.src}
-        alt=""
-        credit={TEXTURE.wheel.credit}
-        position="50% 50%"
-        height={2.4}
-      >
-        <p className="scene-eyebrow">{t.verseOfTheDay}</p>
-        <p className="scene-display">{verse.sanskrit}</p>
-        <p className="scene-lede">{verse.translation}</p>
-        <div className="scene-meta">
-          <span>
-            {verse.source} · {verse.locator}
-          </span>
-          <Link href={`/verses/${verse.id}`} className="btn-ghost">
-            {t.readMore} →
-          </Link>
-        </div>
-        {!verse.isCited && <p className="notice-uncited">⚠ {t.uncitedNotice}</p>}
-      </ScrollScene>
-
-      {/* ── 03 · The citation promise, as a statement ──── */}
-      <section className="shell statement" id="sources">
-        <Reveal>
-          <p className="scene-eyebrow">{t.labelSource}</p>
-          <h2 className="statement-text">{t.uncitedNotice}</h2>
-          <p className="statement-sub">{t.citationPromise}</p>
-          <div className="scene-meta">
-            <Link href="/about" className="btn-ghost">
-              {t.navAbout} →
-            </Link>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* ── 04 · The four Mahavakyas ───────────────────── */}
-      <section className="shell" style={{ paddingBlock: "clamp(3rem, 8vh, 6rem)" }}>
-        <Reveal>
-          <p className="scene-eyebrow">{t.mahavakyas}</p>
-          <h2 className="statement-text" style={{ maxWidth: "18ch" }}>
-            {t.mahavakyasBlurb}
-          </h2>
-        </Reveal>
-      </section>
-
-      <div className="vakya-cinema" id="mahavakyas">
-        {mahavakyas.map((m) => (
-          <Link key={m.id} href={`/verses/${m.id}`} className="vakya-cell">
-            <p className="vakya-cell-sanskrit">{m.sanskrit}</p>
-            <p className="vakya-cell-translit">{m.transliteration}</p>
-            <p className="vakya-cell-text">{m.translation}</p>
-          </Link>
-        ))}
-      </div>
-
-      {/* ── 05 · Temples, pinned ───────────────────────── */}
-      {featured?.imageUrl && (
-        <ScrollScene
-          id="temples"
-          src={featured.imageUrl}
-          alt={featured.name}
-          credit={featured.imageCredit ?? undefined}
-          height={2.2}
-        >
-          <p className="scene-eyebrow">{t.templesTitle}</p>
-          <h2 className="statement-text">{t.templesBlurb}</h2>
-          <div className="scene-meta">
-            <span>
-              {featured.name} · {featured.centuryBuilt}
-            </span>
-            <Link href="/temples" className="btn-ghost">
-              {t.viewAll} →
-            </Link>
-          </div>
-        </ScrollScene>
-      )}
-
-      {/* ── 06 · The scale of the archive ──────────────── */}
+      {/* ── 02 · The scale, immediately ────────────────── */}
       <div className="tally-cinema">
         <div className="tally-cell">
-          <Counter value={verses.length} label={t.navVerses} />
+          <Counter value={verses.length + totalEntries} label={t.navVerses} />
         </div>
         <div className="tally-cell">
           <Counter value={upanishads.length} label={t.navUpanishads} />
@@ -161,13 +98,163 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── 07 · The index of pillars ──────────────────── */}
-      <section className="shell" id="pillars" style={{ paddingBlock: "clamp(4rem, 12vh, 9rem)" }}>
+      {/* ── 03 · What you can read right now ───────────── */}
+      {readable.length > 0 && (
+        <section className="shell home-band" id="read">
+          <Reveal>
+            <div className="home-head">
+              <div>
+                <p className="scene-eyebrow">{t.labelReadNow}</p>
+                <h2 className="home-title">{t.upanishadsTitle}</h2>
+              </div>
+              <Link href="/upanishads" className="btn-ghost">
+                {t.viewAll} →
+              </Link>
+            </div>
+          </Reveal>
+
+          <div className="readgrid">
+            {readable.map((r, i) => (
+              <Reveal key={r.slug} delay={i * 70}>
+                <Link href={`/upanishads/${r.slug}`} className="readcard">
+                  <span className={`readcard-glyph ${scriptClass(locale)}`} aria-hidden="true">
+                    {scriptFor(r.nameSanskrit, locale)}
+                  </span>
+
+                  <span className="readcard-body">
+                    <span className="readcard-name">{r.name}</span>
+                    <span className="translit readcard-iast">{r.nameIast}</span>
+                    <span className="readcard-teaching">{r.keyTeaching}</span>
+                  </span>
+
+                  <span className="readcard-foot">
+                    <span className="chip chip-gold">
+                      {r.entries} {t.labelVerseCount}
+                    </span>
+                    {r.veda && <span className="chip">{r.veda}</span>}
+                    <span className="readcard-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </span>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* ── 04 · Verse of the day, a band not a screen ─── */}
+      <section className="verseband" id="verse">
+        <div className="shell verseband-inner">
+          <Reveal>
+            <div>
+              <p className="scene-eyebrow">{t.verseOfTheDay}</p>
+              <p className={`verseband-mula ${scriptClass(locale)}`}>
+                {scriptFor(verse.sanskrit, locale)}
+              </p>
+              <p className="translit">{verse.transliteration}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={90}>
+            <div>
+              <p className="verseband-text">{verse.translation}</p>
+              <div className="scene-meta">
+                <span>
+                  {verse.source} · {verse.locator}
+                </span>
+                <Link href={`/verses/${verse.id}`} className="btn-ghost">
+                  {t.readMore} →
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 05 · The four Mahavakyas ───────────────────── */}
+      <section className="shell home-band home-band-tight" id="mahavakyas">
         <Reveal>
-          <p className="scene-eyebrow">{t.explorePillars}</p>
-          <h2 className="statement-text" style={{ marginBottom: "clamp(2rem, 5vh, 4rem)" }}>
-            {t.pillarsBlurb}
-          </h2>
+          <div className="home-head">
+            <div>
+              <p className="scene-eyebrow">{t.mahavakyas}</p>
+              <h2 className="home-title">{t.mahavakyasBlurb}</h2>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <div className="vakya-cinema">
+        {mahavakyas.map((m) => (
+          <Link key={m.id} href={`/verses/${m.id}`} className="vakya-cell">
+            <p className={`vakya-cell-sanskrit ${scriptClass(locale)}`}>
+              {scriptFor(m.sanskrit, locale)}
+            </p>
+            <p className="vakya-cell-translit">{m.transliteration}</p>
+            <p className="vakya-cell-text">{m.translation}</p>
+          </Link>
+        ))}
+      </div>
+
+      {/* ── 06 · Temples, a mosaic not a pinned scene ──── */}
+      <section className="shell home-band" id="temples">
+        <Reveal>
+          <div className="home-head">
+            <div>
+              <p className="scene-eyebrow">{t.templesTitle}</p>
+              <h2 className="home-title">{t.templesBlurb}</h2>
+            </div>
+            <Link href="/temples" className="btn-ghost">
+              {t.viewAll} →
+            </Link>
+          </div>
+        </Reveal>
+
+        <div className="mosaic">
+          {temples.map((tp, i) => (
+            <Reveal key={tp.id} delay={i * 60}>
+              <Link href={`/temples/${tp.slug}`} className="tile" style={{ height: "100%" }}>
+                {tp.imageUrl && (
+                  <Image
+                    src={tp.imageUrl}
+                    alt={tp.name}
+                    fill
+                    sizes="(max-width: 900px) 50vw, 33vw"
+                    style={{ objectFit: "cover" }}
+                  />
+                )}
+                <div className="tile-body">
+                  <h3 className="tile-name">{tp.name}</h3>
+                  <p className="tile-meta">
+                    {tp.location} · {tp.centuryBuilt}
+                  </p>
+                </div>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── 07 · Why this site is different ────────────── */}
+      <section className="shell citeband" id="sources">
+        <Reveal>
+          <p className="scene-eyebrow">{t.labelSource}</p>
+          <p className="citeband-text">{t.citationPromise}</p>
+          <Link href="/about" className="btn-ghost">
+            {t.navAbout} →
+          </Link>
+        </Reveal>
+      </section>
+
+      {/* ── 08 · Everything else ───────────────────────── */}
+      <section className="shell home-band" id="pillars">
+        <Reveal>
+          <div className="home-head">
+            <div>
+              <p className="scene-eyebrow">{t.explorePillars}</p>
+              <h2 className="home-title">{t.pillarsBlurb}</h2>
+            </div>
+          </div>
         </Reveal>
 
         <ol className="index-list">
@@ -175,8 +262,6 @@ export default function HomePage() {
             <li key={p.id} className="index-row">
               <span className="index-num">{String(i + 1).padStart(2, "0")}</span>
               <span>
-                {/* The whole row is the target: the ::before overlay sits
-                    above the row, so a stretched link keeps it clickable. */}
                 <Link href={p.href} className="index-name" style={{ display: "block" }}>
                   <span
                     aria-hidden="true"
@@ -188,8 +273,8 @@ export default function HomePage() {
                   {p.blurb}
                 </span>
               </span>
-              <span className="index-glyph deva" aria-hidden="true">
-                {p.glyph}
+              <span className={`index-glyph ${scriptClass(locale)}`} aria-hidden="true">
+                {scriptFor(p.glyph, locale)}
               </span>
             </li>
           ))}

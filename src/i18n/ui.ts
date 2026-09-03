@@ -135,6 +135,7 @@ export interface UIStrings {
   labelLectures: string;
   readerHint: string;
   labelSelections: string;
+  labelReadNow: string;
 }
 
 const en: UIStrings = {
@@ -253,6 +254,7 @@ const en: UIStrings = {
   labelLectures: "Lectures",
   readerHint: "Use J and K, or the arrow keys, to move between verses.",
   labelSelections: "Selections —",
+  labelReadNow: "Read now",
 };
 
 const kn: UIStrings = {
@@ -370,6 +372,7 @@ const kn: UIStrings = {
   labelLectures: "ಪ್ರವಚನಗಳು",
   readerHint: "ಶ್ಲೋಕಗಳ ನಡುವೆ ಚಲಿಸಲು J ಮತ್ತು K, ಅಥವಾ ಬಾಣದ ಕೀಲಿಗಳನ್ನು ಬಳಸಿ.",
   labelSelections: "ಆಯ್ದ ಭಾಗಗಳು —",
+  labelReadNow: "ಈಗಲೇ ಓದಿ",
 };
 
 const hi: UIStrings = {
@@ -487,6 +490,7 @@ const hi: UIStrings = {
   labelLectures: "प्रवचन",
   readerHint: "श्लोकों के बीच चलने के लिए J और K, या तीर कुंजियाँ प्रयोग करें।",
   labelSelections: "चयनित अंश —",
+  labelReadNow: "अभी पढ़ें",
 };
 
 const DICTIONARIES: Record<Locale, UIStrings> = { en, kn, hi };
