@@ -7,8 +7,9 @@ import type { UpanishadView } from "@/lib/data";
  * All four render rows from the same `texts` table and differ only in
  * work_type, so they get one component rather than four near-identical
  * pages. `dense` switches between the roomy treatment used where there
- * are a handful of entries and the tighter list used for the Gita's
- * eighteen chapters.
+ * are a handful of entries and the tighter grid used for the Gita's
+ * eighteen chapters. Each row takes a tone from its position, so the
+ * list colours itself however long it grows.
  */
 export function TextIndex({
   items,
@@ -22,10 +23,15 @@ export function TextIndex({
   return (
     <ol className={dense ? "text-list text-list-dense" : "text-list"}>
       {items.map((item, i) => (
-        <Reveal key={item.id} as="li" delay={i * 40}>
-          <article className="text-row">
+        <Reveal key={item.id} as="li" delay={(i % 6) * 40}>
+          <article className={`text-row tone-${i % 7}`}>
             <div className="text-row-glyph">
               <span className="deva">{item.nameSanskrit}</span>
+              {dense && (
+                <span className="text-row-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              )}
             </div>
 
             <div className="text-row-body">

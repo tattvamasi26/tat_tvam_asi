@@ -8,6 +8,7 @@ export function Footer() {
   const { locale, t } = getTranslations();
   const sections = sectionsFor(locale);
   const year = new Date().getFullYear();
+  const nameClass = nameScriptClass(locale);
 
   // Reference pages, kept apart from the pillars.
   const reference = [
@@ -20,20 +21,18 @@ export function Footer() {
 
   return (
     <footer className="footer">
-      <div className="shell footer-grid">
+      <Mark size={480} className="footer-yantra" />
+
+      <div className="shell footer-top">
         <div>
           <Link href="/" className="lockup" aria-label={t.siteName}>
             <Mark size={34} />
-            <span
-              className={`lockup-text ${nameScriptClass(locale)}`.trim()}
-              style={{ fontSize: "1.25rem" }}
-            >
-              {t.siteName}
-            </span>
+            <span className={`lockup-text ${nameClass}`.trim()}>{t.siteName}</span>
           </Link>
-          <p className="card-text" style={{ maxWidth: "38ch", marginTop: "1rem" }}>
-            {t.footerTagline}
-          </p>
+          <p className="footer-tagline">{t.footerTagline}</p>
+          <Link href="/upanishads" className="btn footer-cta">
+            {t.ctaStartReading} <span aria-hidden="true">→</span>
+          </Link>
         </div>
 
         {/* Driven by the same SECTIONS list as the nav, so a new pillar
@@ -57,11 +56,17 @@ export function Footer() {
         </nav>
       </div>
 
-      <div className="shell" style={{ marginTop: "2.5rem" }}>
-        <hr className="rule" />
-        <p className="meta" style={{ marginTop: "1.25rem" }}>
+      <div className="shell">
+        <span className={`footer-wordmark ${nameClass}`.trim()} aria-hidden="true">
+          {t.siteName}
+        </span>
+      </div>
+
+      <div className="shell footer-base">
+        <span>
           © {year} Tat Tvam Asi · {t.footerRights}
-        </p>
+        </span>
+        <span>{t.heroTagline}</span>
       </div>
     </footer>
   );

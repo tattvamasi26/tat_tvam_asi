@@ -30,7 +30,7 @@ export default function TempleDetailPage({ params }: { params: { slug: string } 
           <h1 className="display" style={{ fontSize: "clamp(2.2rem, 6vw, 4.2rem)" }}>
             {tp.name}
           </h1>
-          <p className="subtitle" style={{ color: "var(--gold)" }}>{tp.nameLocal}</p>
+          <p className="subtitle">{tp.nameLocal}</p>
         </div>
       </section>
 

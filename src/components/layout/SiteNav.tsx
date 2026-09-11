@@ -140,7 +140,7 @@ export function SiteNav({
           <nav className="shell nav-index" aria-label={labels.index}>
             <ol>
               {sections.map((s, i) => (
-                <li key={s.id} style={{ ["--i" as string]: i }}>
+                <li key={s.id} className={`tone-${i % 7}`} style={{ ["--i" as string]: i }}>
                   <Link
                     href={s.href}
                     className="nav-item"
@@ -157,7 +157,7 @@ export function SiteNav({
               ))}
             </ol>
 
-            <div className="nav-secondary">
+            <div className="nav-secondary" style={{ ["--i" as string]: sections.length }}>
               <span className="nav-secondary-label">{labels.more}</span>
               <div className="nav-secondary-links">
                 {secondary.map((l) => (

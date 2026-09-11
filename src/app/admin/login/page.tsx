@@ -31,7 +31,7 @@ export default function AdminLoginPage() {
     <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--bg-0)" }}>
       <form
         onSubmit={handleSubmit}
-        style={{ width: 360, display: "flex", flexDirection: "column", gap: "1rem", padding: "2.5rem", background: "var(--bg-1)", border: "1px solid rgba(200,150,62,0.2)" }}
+        style={{ width: 360, display: "flex", flexDirection: "column", gap: "1rem", padding: "2.5rem", background: "var(--bg-1)", border: "1px solid rgba(200,150,62,0.2)", borderRadius: "var(--r-lg)", boxShadow: "var(--shadow)" }}
       >
         <h1 style={{ fontFamily: "var(--serif)", fontSize: "1.5rem", fontWeight: 300, color: "var(--ink-0)", marginBottom: "0.5rem" }}>Admin sign in</h1>
 
@@ -66,7 +66,7 @@ export default function AdminLoginPage() {
         <button
           type="submit"
           disabled={loading}
-          style={{ padding: "0.75rem 1rem", background: "var(--gold)", color: "#111", border: "none", cursor: "pointer", fontFamily: "var(--sans)", letterSpacing: "0.1em", textTransform: "uppercase", fontSize: "0.75rem" }}
+          style={{ padding: "0.8rem 1rem", background: "var(--marigold)", color: "var(--ink)", border: "none", borderRadius: 999, cursor: "pointer", fontFamily: "var(--sans)", fontWeight: 600, fontSize: "0.9rem" }}
         >
           {loading ? "Signing in…" : "Sign in"}
         </button>

@@ -26,14 +26,14 @@ const inputStyle: CSSProperties = {
 
 const buttonStyle: CSSProperties = {
   padding: "0.6rem 1.2rem",
-  background: "var(--gold)",
-  color: "#111",
+  background: "var(--marigold)",
+  color: "var(--ink)",
   border: "none",
+  borderRadius: 999,
   cursor: "pointer",
   fontFamily: "var(--sans)",
-  fontSize: "0.75rem",
-  letterSpacing: "0.08em",
-  textTransform: "uppercase",
+  fontWeight: 600,
+  fontSize: "0.85rem",
   width: "fit-content",
 };
 

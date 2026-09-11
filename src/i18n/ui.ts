@@ -136,6 +136,31 @@ export interface UIStrings {
   readerHint: string;
   labelSelections: string;
   labelReadNow: string;
+
+  // ── Homepage (2026 redesign)
+  //
+  // Headlines come in two parts: the plain run, and the phrase set in
+  // italic serif where the sentence turns. Kept as separate strings so
+  // each language can decide where its own turn falls.
+  navGita: string;
+  ctaStartReading: string;
+  heroHeadline: string;
+  heroAccent: string;
+  heroLede: string;
+  badgeSources: string;
+  badgeSourcesNote: string;
+  badgeLanguages: string;
+  badgeLanguagesNote: string;
+  badgeReader: string;
+  badgeReaderNote: string;
+  homeSpaceTitle: string;
+  homeSpaceAccent: string;
+  homeReadTitle: string;
+  homeReadAccent: string;
+  homeQuote: string;
+  homeCtaTitle: string;
+  homeCtaAccent: string;
+  homeCtaBody: string;
 }
 
 const en: UIStrings = {
@@ -255,6 +280,28 @@ const en: UIStrings = {
   readerHint: "Use J and K, or the arrow keys, to move between verses.",
   labelSelections: "Selections —",
   labelReadNow: "Read now",
+
+  navGita: "Gita",
+  ctaStartReading: "Start reading",
+  heroHeadline: "Sanatana Dharma, verse by verse —",
+  heroAccent: "in your own language.",
+  heroLede:
+    "The Upanishads in the original Sanskrit, with translation and commentary in English, Kannada and Hindi. Every translation names its source.",
+  badgeSources: "Every source named",
+  badgeSourcesNote: "Uncited text is labelled as such",
+  badgeLanguages: "Three languages",
+  badgeLanguagesNote: "English · ಕನ್ನಡ · हिन्दी",
+  badgeReader: "Verse by verse",
+  badgeReaderNote: "Mūla, IAST, meaning, commentary",
+  homeSpaceTitle: "One home for",
+  homeSpaceAccent: "the whole tradition.",
+  homeReadTitle: "Texts you can read today,",
+  homeReadAccent: "verse by verse.",
+  homeQuote: "A reference is only worth as much as its sources.",
+  homeCtaTitle: "Begin with",
+  homeCtaAccent: "a single verse.",
+  homeCtaBody:
+    "Choose a text and a language, and read at your own pace — the Sanskrit, its meaning and a commentary, one verse after another.",
 };
 
 const kn: UIStrings = {
@@ -373,6 +420,28 @@ const kn: UIStrings = {
   readerHint: "ಶ್ಲೋಕಗಳ ನಡುವೆ ಚಲಿಸಲು J ಮತ್ತು K, ಅಥವಾ ಬಾಣದ ಕೀಲಿಗಳನ್ನು ಬಳಸಿ.",
   labelSelections: "ಆಯ್ದ ಭಾಗಗಳು —",
   labelReadNow: "ಈಗಲೇ ಓದಿ",
+
+  navGita: "ಗೀತೆ",
+  ctaStartReading: "ಓದಲು ಆರಂಭಿಸಿ",
+  heroHeadline: "ಸನಾತನ ಧರ್ಮ, ಶ್ಲೋಕಶಃ —",
+  heroAccent: "ನಿಮ್ಮದೇ ಭಾಷೆಯಲ್ಲಿ.",
+  heroLede:
+    "ಮೂಲ ಸಂಸ್ಕೃತದಲ್ಲಿ ಉಪನಿಷತ್ತುಗಳು — ಕನ್ನಡ, ಇಂಗ್ಲಿಷ್ ಮತ್ತು ಹಿಂದಿಯಲ್ಲಿ ಅನುವಾದ ಹಾಗೂ ವಿವರಣೆಯೊಂದಿಗೆ. ಪ್ರತಿಯೊಂದು ಅನುವಾದವೂ ತನ್ನ ಆಧಾರವನ್ನು ಹೆಸರಿಸುತ್ತದೆ.",
+  badgeSources: "ಪ್ರತಿ ಆಧಾರವೂ ಸ್ಪಷ್ಟ",
+  badgeSourcesNote: "ಆಧಾರವಿಲ್ಲದ ಪಠ್ಯವನ್ನು ಹಾಗೆಂದೇ ಗುರುತಿಸಲಾಗುತ್ತದೆ",
+  badgeLanguages: "ಮೂರು ಭಾಷೆಗಳು",
+  badgeLanguagesNote: "ಕನ್ನಡ · English · हिन्दी",
+  badgeReader: "ಶ್ಲೋಕಶಃ",
+  badgeReaderNote: "ಮೂಲ, ಲಿಪ್ಯಂತರ, ಅರ್ಥ, ವಿವರಣೆ",
+  homeSpaceTitle: "ಇಡೀ ಪರಂಪರೆಗೆ",
+  homeSpaceAccent: "ಒಂದೇ ನೆಲೆ.",
+  homeReadTitle: "ಇಂದೇ ಓದಬಹುದಾದ ಪಠ್ಯಗಳು,",
+  homeReadAccent: "ಶ್ಲೋಕಶಃ.",
+  homeQuote: "ಆಕರಗ್ರಂಥವೊಂದರ ಮೌಲ್ಯ ಅದರ ಆಧಾರಗಳಷ್ಟೇ.",
+  homeCtaTitle: "ಒಂದೇ ಒಂದು ಶ್ಲೋಕದಿಂದ",
+  homeCtaAccent: "ಆರಂಭಿಸಿ.",
+  homeCtaBody:
+    "ಒಂದು ಪಠ್ಯವನ್ನೂ ಒಂದು ಭಾಷೆಯನ್ನೂ ಆರಿಸಿ, ನಿಮ್ಮದೇ ವೇಗದಲ್ಲಿ ಓದಿ — ಮೂಲ ಸಂಸ್ಕೃತ, ಅದರ ಅರ್ಥ ಮತ್ತು ವಿವರಣೆ, ಶ್ಲೋಕದ ನಂತರ ಶ್ಲೋಕ.",
 };
 
 const hi: UIStrings = {
@@ -491,6 +560,28 @@ const hi: UIStrings = {
   readerHint: "श्लोकों के बीच चलने के लिए J और K, या तीर कुंजियाँ प्रयोग करें।",
   labelSelections: "चयनित अंश —",
   labelReadNow: "अभी पढ़ें",
+
+  navGita: "गीता",
+  ctaStartReading: "पढ़ना आरंभ करें",
+  heroHeadline: "सनातन धर्म, श्लोकशः —",
+  heroAccent: "आपकी अपनी भाषा में।",
+  heroLede:
+    "मूल संस्कृत में उपनिषद् — हिन्दी, कन्नड़ और अंग्रेज़ी में अनुवाद और व्याख्या सहित। हर अनुवाद अपना स्रोत बताता है।",
+  badgeSources: "हर स्रोत स्पष्ट",
+  badgeSourcesNote: "बिना स्रोत की सामग्री पर स्पष्ट चिह्न",
+  badgeLanguages: "तीन भाषाएँ",
+  badgeLanguagesNote: "हिन्दी · ಕನ್ನಡ · English",
+  badgeReader: "श्लोकशः",
+  badgeReaderNote: "मूल, लिप्यंतरण, अर्थ, व्याख्या",
+  homeSpaceTitle: "पूरी परंपरा का",
+  homeSpaceAccent: "एक ही घर।",
+  homeReadTitle: "आज ही पढ़े जा सकने वाले ग्रंथ,",
+  homeReadAccent: "श्लोकशः।",
+  homeQuote: "किसी संदर्भग्रंथ का मूल्य उसके स्रोतों जितना ही होता है।",
+  homeCtaTitle: "एक श्लोक से",
+  homeCtaAccent: "आरंभ करें।",
+  homeCtaBody:
+    "कोई पाठ और कोई भाषा चुनें, और अपनी गति से पढ़ें — मूल संस्कृत, उसका अर्थ और व्याख्या, श्लोक-दर-श्लोक।",
 };
 
 const DICTIONARIES: Record<Locale, UIStrings> = { en, kn, hi };

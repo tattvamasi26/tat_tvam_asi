@@ -62,6 +62,7 @@ export function LanguageSwitcher({
           </svg>
         </span>
         <span className="lang-current">{LOCALE_META[current].native}</span>
+        <span className="lang-short" aria-hidden="true">{LOCALE_META[current].short}</span>
       </button>
 
       {open && (

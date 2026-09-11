@@ -48,14 +48,14 @@ export default function MathasPage() {
                   {m.location} · {m.state}
                 </p>
 
-                <p className="card-text" style={{ marginTop: "0.7rem" }}>{m.description}</p>
+                <p className="card-text" style={{ marginTop: "0.5rem" }}>{m.description}</p>
 
-                <div className="factbar" style={{ marginTop: "1.2rem", borderBottom: 0 }}>
-                  <div className="fact" style={{ paddingInline: 0 }}>
+                <div className="factbar" style={{ marginTop: "0.9rem", width: "100%" }}>
+                  <div className="fact">
                     <div className="fact-label">{t.labelVeda}</div>
                     <div className="fact-value" style={{ fontSize: "0.95rem" }}>{m.veda}</div>
                   </div>
-                  <div className="fact" style={{ borderRight: 0, paddingInline: "0 0 0 1rem" }}>
+                  <div className="fact">
                     <div className="fact-label">{t.labelMahavakya}</div>
                     <div className="fact-value" style={{ fontSize: "0.95rem" }}>{m.mahavakya}</div>
                   </div>

@@ -3,13 +3,14 @@
 import { useEffect, useRef } from "react";
 
 /**
- * The ambient field behind the text.
+ * The ambient field behind a text's title.
  *
- * A slow drift of warm light on near-black, drawn to a canvas rather
- * than built from CSS gradients, because what makes it read as depth
- * is that the blobs move at genuinely different rates and overlap
- * additively — which stacked CSS backgrounds cannot do without
- * repainting the whole layer every frame.
+ * A slow drift of pastel light — marigold, peach, lotus and a little
+ * sky — drawn to a canvas rather than built from CSS gradients, because
+ * what makes it read as depth is that the blobs move at genuinely
+ * different rates and overlap, which stacked CSS backgrounds cannot do
+ * without repainting the whole layer every frame. The stylesheet blurs
+ * it heavily and fades it out below the title.
  *
  * Deliberately cheap, because it runs for as long as the page is open:
  *
@@ -43,12 +44,12 @@ export function Aurora({ opacity = 0.55 }: { opacity?: number }) {
     canvas.width = W;
     canvas.height = H;
 
-    // Warm ink, cool ink, and gold — the site's own palette.
+    // Marigold, peach, lotus, sky — the page's own tones, lifted.
     const blobs = [
-      { x: 0.28, y: 0.22, r: 0.42, hue: 38, sat: 62, light: 26, sx: 0.00013, sy: 0.00009, p: 0 },
-      { x: 0.74, y: 0.38, r: 0.38, hue: 22, sat: 55, light: 21, sx: -0.00009, sy: 0.00012, p: 2.1 },
-      { x: 0.48, y: 0.74, r: 0.46, hue: 205, sat: 45, light: 18, sx: 0.00011, sy: -0.00008, p: 4.2 },
-      { x: 0.14, y: 0.62, r: 0.3, hue: 45, sat: 70, light: 22, sx: 0.00007, sy: -0.00011, p: 1.3 },
+      { x: 0.26, y: 0.24, r: 0.42, hue: 42, sat: 96, light: 68, sx: 0.00013, sy: 0.00009, p: 0 },
+      { x: 0.76, y: 0.34, r: 0.38, hue: 20, sat: 95, light: 74, sx: -0.00009, sy: 0.00012, p: 2.1 },
+      { x: 0.5, y: 0.72, r: 0.44, hue: 335, sat: 80, light: 84, sx: 0.00011, sy: -0.00008, p: 4.2 },
+      { x: 0.12, y: 0.64, r: 0.3, hue: 195, sat: 70, light: 84, sx: 0.00007, sy: -0.00011, p: 1.3 },
     ];
 
     let raf = 0;
@@ -64,7 +65,7 @@ export function Aurora({ opacity = 0.55 }: { opacity?: number }) {
       last = t;
 
       ctx.clearRect(0, 0, W, H);
-      ctx.globalCompositeOperation = "lighter";
+      ctx.globalCompositeOperation = "source-over";
 
       for (const b of blobs) {
         // Lissajous drift — two incommensurate frequencies, so the
@@ -74,8 +75,8 @@ export function Aurora({ opacity = 0.55 }: { opacity?: number }) {
         const r = b.r * W * (1 + Math.sin(t * 0.00007 + b.p) * 0.12);
 
         const g = ctx.createRadialGradient(cx, cy, 0, cx, cy, r);
-        g.addColorStop(0, `hsla(${b.hue}, ${b.sat}%, ${b.light}%, 0.85)`);
-        g.addColorStop(0.55, `hsla(${b.hue}, ${b.sat}%, ${b.light}%, 0.25)`);
+        g.addColorStop(0, `hsla(${b.hue}, ${b.sat}%, ${b.light}%, 0.75)`);
+        g.addColorStop(0.55, `hsla(${b.hue}, ${b.sat}%, ${b.light}%, 0.22)`);
         g.addColorStop(1, `hsla(${b.hue}, ${b.sat}%, ${b.light}%, 0)`);
         ctx.fillStyle = g;
         ctx.beginPath();

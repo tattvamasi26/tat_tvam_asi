@@ -28,8 +28,8 @@ function TempleImg({ src, alt, caption, subCaption, aspectRatio = "4/3", objectP
         <>
           <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%)", pointerEvents: "none" }}/>
           <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, padding: "1rem 1.2rem" }}>
-            {caption && <p style={{ fontFamily: "var(--serif)", fontSize: "0.95rem", fontWeight: 300, color: "var(--text0)" }}>{caption}</p>}
-            {subCaption && <p style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", color: "var(--gold)", letterSpacing: "0.1em", marginTop: "0.2rem" }}>{subCaption}</p>}
+            {caption && <p style={{ fontFamily: "var(--serif)", fontSize: "1.05rem", fontWeight: 400, color: "#fff" }}>{caption}</p>}
+            {subCaption && <p style={{ fontFamily: "var(--sans)", fontSize: "0.7rem", color: "var(--marigold-2)", letterSpacing: "0.04em", marginTop: "0.2rem" }}>{subCaption}</p>}
           </div>
         </>
       )}
@@ -45,20 +45,22 @@ export default function MookambikaPage() {
     <div style={{ background: "var(--bg0)", minHeight: "100vh", color: "var(--text0)" }}>
 
       {/* ── HERO ── */}
-      <div style={{ position: "relative", height: "90vh", minHeight: 560, overflow: "hidden", display: "flex", alignItems: "flex-end" }}>
+      {/* Inset, rounded and pulled up under the floating masthead, the
+          same treatment as every other photographic header on the site. */}
+      <div style={{ position: "relative", height: "90vh", minHeight: 560, overflow: "hidden", display: "flex", alignItems: "flex-end", borderRadius: "var(--r-xl)", margin: "calc(-1 * var(--masthead-space) + clamp(0.5rem,1.4vw,0.9rem)) clamp(0.5rem,1.4vw,0.9rem) 0" }}>
         <img
           src={IMGS.deityMain}
           alt={k.alts.hero}
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", filter: "brightness(0.5) saturate(0.9)" }}
+          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top", filter: "brightness(0.62) saturate(0.95)" }}
         />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, #0F0E0C 15%, rgba(15,14,12,0.3) 60%, transparent 100%)" }}/>
-        <div style={{ position: "relative", zIndex: 1, padding: "0 2rem 6rem", maxWidth: 900, margin: "0 auto", width: "100%" }}>
-          <Link href="/temples" style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(200,150,62,0.7)", textDecoration: "none", display: "block", marginBottom: "2rem" }}>
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(27,20,5,0.9) 10%, rgba(27,20,5,0.3) 58%, transparent 100%)" }}/>
+        <div style={{ position: "relative", zIndex: 1, padding: "0 2rem 5rem", maxWidth: 900, margin: "0 auto", width: "100%" }}>
+          <Link href="/temples" style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", fontWeight: 500, color: "rgba(255,255,255,0.8)", textDecoration: "none", display: "inline-block", marginBottom: "2rem", padding: "0.45rem 0.95rem", borderRadius: 999, border: "1px solid rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.12)" }}>
             {k.backTemples}
           </Link>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>{k.region}</p>
-          <h1 style={{ fontFamily: "var(--serif)", fontSize: "clamp(2.8rem,6vw,5rem)", fontWeight: 300, color: "var(--text0)", lineHeight: 1.1, marginBottom: "0.8rem" }}>{k.title}</h1>
-          <p style={{ fontFamily: "var(--serif)", fontSize: "1.3rem", fontStyle: "italic", fontWeight: 300, color: "var(--gold)", marginBottom: "0.5rem" }}>ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ</p>
+          <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.04em", color: "var(--marigold-2)", marginBottom: "1rem" }}>{k.region}</p>
+          <h1 style={{ fontFamily: "var(--sans)", fontSize: "clamp(2.6rem,6vw,5rem)", fontWeight: 700, letterSpacing: "var(--track-title)", color: "#fff", lineHeight: "var(--lh-title)", marginBottom: "0.8rem" }}>{k.title}</h1>
+          <p className="kannada" style={{ fontSize: "1.35rem", color: "var(--marigold-2)", marginBottom: "0.5rem" }}>ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ</p>
           <p style={{ fontFamily: "var(--sans)", fontSize: "0.82rem", color: "rgba(237,228,208,0.55)", letterSpacing: "0.1em" }}>{k.tagline}</p>
         </div>
       </div>

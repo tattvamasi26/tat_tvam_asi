@@ -1,145 +1,82 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { HeroImage } from "@/lib/hero";
 
+export interface HeroBadge {
+  icon: "sources" | "languages" | "reader";
+  title: string;
+  note: string;
+}
+
+const ICONS: Record<HeroBadge["icon"], React.ReactNode> = {
+  sources: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M6 3h12v18l-6-4-6 4z" />
+      <path d="M9.2 9.8l2 2 3.8-3.8" />
+    </svg>
+  ),
+  languages: <span className="deva">अ</span>,
+  reader: (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3 5.5c3-1.6 6-1.6 9 .3v14c-3-1.9-6-1.9-9-.3z" />
+      <path d="M21 5.5c-3-1.6-6-1.6-9 .3v14c3-1.9 6-1.9 9-.3z" />
+    </svg>
+  ),
+};
+
 /**
- * The opening frame.
+ * The opening frame: one photograph, a headline, and three facts.
  *
- * Three layers moving at different rates is what reads as depth: the
- * photograph drifts and scales slowly, a scrim sits still, and the
- * title block rises faster than both and fades out first. One transform
- * per layer keeps the whole thing on the compositor — no layout is read
- * or written during the scroll.
- *
- * The page also grades itself to whichever frame is showing. Each
- * photograph carries a sampled tint and accent (see lib/hero.ts), and
- * those are published as custom properties that the scrim, the hairline
- * and the caption all read. Because they are colours on a CSS property
- * with a transition, the grade cross-fades along with the image instead
- * of snapping.
+ * The photographs cross-fade on a slow rotation, each drifting in
+ * scale while it is on screen; a warm grade over all of them keeps a
+ * blue dusk and a white marble courtyard inside the same palette.
+ * Everything that moves is CSS — the only script here is the timer
+ * that picks the frame.
  */
 export function HeroCinema({
   images,
-  title,
-  titleClass = "",
+  siteName,
+  nameClass = "",
   tagline,
-  subtitle,
+  headline,
+  accent,
+  lede,
   enter,
   explore,
-  scrollCue,
+  badges,
 }: {
   images: HeroImage[];
-  title: string;
-  titleClass?: string;
-  tagline: string;
-  subtitle: string;
+  siteName: string;
+  nameClass?: string;
+  /** Omitted when it would only repeat the site name (Hindi). */
+  tagline?: string;
+  headline: string;
+  accent: string;
+  lede: string;
   enter: { href: string; label: string };
   explore: { href: string; label: string };
-  scrollCue: string;
+  badges: HeroBadge[];
 }) {
   const [active, setActive] = useState(0);
-  const rootRef = useRef<HTMLElement>(null);
 
-  // Cross-fade the rotation. 7s is long enough to actually look at a
-  // frame and short enough that a visitor sees two before scrolling.
+  // 7s is long enough to actually look at a frame and short enough
+  // that a visitor sees two before scrolling.
   useEffect(() => {
     if (images.length < 2) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = window.setInterval(
-      () => setActive((i) => (i + 1) % images.length),
-      7000
-    );
+    const id = window.setInterval(() => setActive((i) => (i + 1) % images.length), 7000);
     return () => window.clearInterval(id);
   }, [images.length]);
-
-  // Scroll-linked depth, plus a pointer-linked parallax. Both are
-  // written as custom properties so every bit of actual motion lives in
-  // the stylesheet, and a browser that never fires these still renders
-  // a correct, static hero.
-  useEffect(() => {
-    const el = rootRef.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    let frame = 0;
-    let px = 0;
-    let py = 0;
-    let tx = 0;
-    let ty = 0;
-    let idle = true;
-
-    const onScroll = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(tick);
-    };
-
-    // Pointer parallax is eased rather than applied directly: following
-    // the cursor exactly reads as jitter, while a lerp reads as weight.
-    const onPointer = (e: PointerEvent) => {
-      tx = (e.clientX / window.innerWidth - 0.5) * 2;
-      ty = (e.clientY / window.innerHeight - 0.5) * 2;
-      if (idle) {
-        idle = false;
-        if (!frame) frame = window.requestAnimationFrame(tick);
-      }
-    };
-
-    function tick() {
-      frame = 0;
-      const node = rootRef.current;
-      if (!node) return;
-
-      // 0 at the top of the hero, 1 once it has scrolled fully away.
-      const p = Math.min(1, Math.max(0, window.scrollY / window.innerHeight));
-      node.style.setProperty("--p", p.toFixed(4));
-
-      px += (tx - px) * 0.06;
-      py += (ty - py) * 0.06;
-      node.style.setProperty("--mx", px.toFixed(4));
-      node.style.setProperty("--my", py.toFixed(4));
-
-      // Keep animating only while the eased value is still catching up.
-      if (Math.abs(tx - px) > 0.001 || Math.abs(ty - py) > 0.001) {
-        frame = window.requestAnimationFrame(tick);
-      } else {
-        idle = true;
-      }
-    }
-
-    tick();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("pointermove", onPointer, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("pointermove", onPointer);
-      if (frame) window.cancelAnimationFrame(frame);
-    };
-  }, []);
 
   const current = images[active];
 
   return (
-    <section
-      className="cinema"
-      ref={rootRef}
-      style={
-        {
-          "--frame-tint": current.grade.tint,
-          "--frame-accent": current.grade.accent,
-          "--frame-scrim": current.grade.scrim,
-        } as React.CSSProperties
-      }
-    >
-      <div className="cinema-plate">
+    <section className="home-hero">
+      <div className="home-hero-media" aria-hidden="true">
         {images.map((img, i) => (
-          <div
-            key={img.src}
-            className="cinema-frame"
-            data-active={i === active ? "" : undefined}
-            aria-hidden="true"
-          >
+          <div key={img.src} className="home-hero-frame" data-active={i === active ? "" : undefined}>
             <Image
               src={img.src}
               alt=""
@@ -147,55 +84,69 @@ export function HeroCinema({
               // The first frame is the LCP element on every visit.
               priority={i === 0}
               sizes="100vw"
-              quality={90}
+              quality={85}
               style={{ objectFit: "cover", objectPosition: img.position }}
             />
           </div>
         ))}
-        <div className="cinema-scrim" aria-hidden="true" />
-        <div className="cinema-vignette" aria-hidden="true" />
+        <div className="home-hero-scrim" />
       </div>
 
-      <div className="shell cinema-core">
-        <span className="cinema-om" aria-hidden="true">
-          ॐ
-        </span>
+      <div className="shell home-hero-inner">
+        <p className="home-hero-kicker">
+          <span className="om" aria-hidden="true">
+            ॐ
+          </span>
+          <span className={nameClass || undefined}>{siteName}</span>
+          {tagline && (
+            <>
+              <i aria-hidden="true">·</i>
+              <span>{tagline}</span>
+            </>
+          )}
+        </p>
 
-        <h1 className={`cinema-title ${titleClass}`.trim()}>{title}</h1>
+        <h1 className="home-hero-title">
+          {headline} <span className="accent">{accent}</span>
+        </h1>
 
-        <div className="cinema-rule" aria-hidden="true" />
+        <p className="home-hero-lede">{lede}</p>
 
-        <p className="cinema-tagline">{tagline}</p>
-        <p className="cinema-sub">{subtitle}</p>
-
-        <div className="cinema-actions">
+        <div className="home-hero-actions">
           <a href={enter.href} className="btn">
-            {enter.label}
+            {enter.label} <span aria-hidden="true">→</span>
           </a>
-          <a href={explore.href} className="btn-ghost">
-            {explore.label} →
+          <a href={explore.href} className="btn-glass">
+            {explore.label}
           </a>
         </div>
+
+        <ul className="home-hero-badges">
+          {badges.map((b) => (
+            <li key={b.icon} className="home-badge">
+              <span className="home-badge-icon" aria-hidden="true">
+                {ICONS[b.icon]}
+              </span>
+              <span>
+                <span className="home-badge-title">{b.title}</span>
+                <span className="home-badge-note">{b.note}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <div className="cinema-foot">
+      <div className="home-hero-foot">
         {/* Keyed on src so the caption re-runs its fade when the frame
             changes, rather than swapping text under a static label. */}
-        <span key={current.src} className="cinema-caption">
-          <span className="cinema-place">{current.place}</span>
-          <span className="cinema-credit">{current.credit}</span>
+        <span key={current.src} className="home-hero-caption">
+          {current.place} <em>· {current.credit}</em>
         </span>
-
-        <span className="cinema-ticks" aria-hidden="true">
+        <span className="home-hero-ticks" aria-hidden="true">
           {images.map((img, i) => (
-            <span key={img.src} className="cinema-tick" data-on={i === active ? "" : undefined} />
+            <span key={img.src} className="home-hero-tick" data-on={i === active ? "" : undefined} />
           ))}
         </span>
-      </div>
-
-      <div className="cinema-cue" aria-hidden="true">
-        <span>{scrollCue}</span>
-        <span className="cinema-cue-line" />
       </div>
     </section>
   );

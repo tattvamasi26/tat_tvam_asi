@@ -5,62 +5,127 @@
 /* ─────────────────────────────────────────────────────────
    Tat Tvam Asi — design system
 
-   A dark, lamp-lit reading surface: near-black grounds, warm
-   gold for anything sacred, and photography that carries the
-   weight instead of decoration. Type is the primary material —
-   Sanskrit and Kannada/Devanagari get their own faces so no
-   script is rendered in a fallback.
+   Warm paper, deep brown ink, marigold for anything you can
+   press. Headlines are set big and tight in a grotesk, with an
+   italic serif phrase where the sentence turns; Sanskrit gets
+   faces drawn for Sanskrit (Tiro), in the reader's own script.
+
+   This file holds the tokens and the primitives. Everything
+   else is split by surface and imported from app/layout.tsx:
+     styles/chrome.css   masthead, index overlay, footer
+     styles/home.css     the homepage
+     styles/pages.css    page heads, cards, lists, detail pages
+     styles/reader.css   the verse-by-verse reader
    ───────────────────────────────────────────────────────── */
 
 @layer base {
   :root {
-    /* Grounds — warm-shifted blacks, never pure #000 */
-    --bg-0: #0b0a09;
-    --bg-1: #131110;
-    --bg-2: #1b1817;
-    --bg-3: #241f1c;
+    /* Paper */
+    --paper: #fbf6ea;
+    --paper-2: #f4ecd8;
+    --paper-3: #eadfc4;
+    --card: #fffcf4;
+    --card-2: #fff8e6;
 
-    /* Gold: the accent for anything sacred or citational */
-    --gold: #c9a227;
-    --gold-bright: #e8c766;
-    --gold-dim: #8a6f1e;
-    --gold-wash: rgba(201, 162, 39, 0.08);
-    --saffron: #d97a26;
+    /* Ink — deep, warm browns; never pure black */
+    --ink: #2a1f08;
+    --ink-2: #5b4a28;
+    --ink-3: #85744f;
+    --ink-4: #b0a27f;
+    --line: rgba(71, 54, 11, 0.11);
+    --line-2: rgba(71, 54, 11, 0.2);
 
-    /* Ink */
-    --ink-0: #f2ebdd;
-    --ink-1: #b8ab95;
-    --ink-2: #7d7263;
-    --ink-3: #4a423a;
+    /* Sanskrit is set in a deep kumkum-brown, not in the body ink */
+    --sacred: #6e2a0c;
 
-    --stroke: rgba(201, 162, 39, 0.14);
-    --stroke-soft: rgba(242, 235, 221, 0.07);
+    /* Accents. --marigold is for fills; --gold and --saffron are the
+       text-safe versions (≥4.5:1 on paper). */
+    --marigold: #f5b523;
+    --marigold-2: #ffd062;
+    --marigold-soft: #fff0c4;
+    --gold: #8a6100;
+    --gold-bright: #b98500;
+    --gold-dim: #d9b25b;
+    --saffron: #b4540b;
+    --saffron-2: #e0701b;
 
-    --serif: var(--font-cormorant), Georgia, serif;
-    --sans: var(--font-dm-sans), system-ui, sans-serif;
-    --deva: var(--font-deva), var(--font-cormorant), serif;
-    --kannada: var(--font-kannada), system-ui, sans-serif;
+    /* The one dark surface: the footer and a few feature panels */
+    --night: #1b1405;
+    --night-2: #2a200b;
+    --on-night: #fbf3df;
+    --on-night-2: rgba(251, 243, 223, 0.64);
 
-    --masthead-h: 68px;
-    --measure: 68ch;
-    --radius: 2px;
-    --shell: 1200px;
+    /* Type. Each stack names a Latin face first and the Indic faces
+       after it, so Hindi and Kannada fall through glyph by glyph
+       without any per-language rules. */
+    --sans: var(--font-inter-tight), var(--font-noto-deva), var(--font-noto-kn), system-ui, sans-serif;
+    --serif: var(--font-instrument), var(--font-tiro-sa), var(--font-tiro-kn), Georgia, serif;
+    --deva: var(--font-tiro-sa), var(--font-noto-deva), serif;
+    --kannada: var(--font-tiro-kn), var(--font-noto-kn), serif;
+    /* IAST: Tiro was drawn with transliteration in mind, so every
+       dot-below and macron comes from the same face. */
+    --translit-face: var(--font-tiro-sa), var(--font-instrument), Georgia, serif;
 
-    /* Legacy token names.
-       The Kollur Mookambika guide (src/app/temples/tulunadu/) is hand
-       authored and refers to the pre-rename tokens 62 times. Aliasing
-       them here repairs that page without editing 356 lines of someone
-       else's writing. New work should use the --ink-* / --bg-* names. */
-    --text0: var(--ink-0);
-    --text1: var(--ink-1);
-    --text2: var(--ink-2);
-    --bg0: var(--bg-0);
-    --bg1: var(--bg-1);
-    --bg2: var(--bg-2);
-    --bg3: var(--bg-3);
+    --track-display: -0.045em;
+    --track-title: -0.035em;
+    --track-head: -0.02em;
+    --lh-display: 0.98;
+    --lh-title: 1.04;
+
+    --r-xs: 10px;
+    --r-sm: 14px;
+    --r: 22px;
+    --r-lg: 30px;
+    --r-xl: 40px;
+    --pill: 999px;
+
+    --shadow-sm: 0 1px 0 rgba(71, 54, 11, 0.04), 0 3px 10px -4px rgba(71, 54, 11, 0.12);
+    --shadow: 0 1px 0 rgba(71, 54, 11, 0.04), 0 20px 44px -20px rgba(71, 54, 11, 0.3);
+    --shadow-lg: 0 34px 90px -34px rgba(71, 54, 11, 0.42);
+
+    --shell: 1240px;
+    --gutter: clamp(1.1rem, 4vw, 2.5rem);
+    --masthead-h: 62px;
+    --masthead-top: 14px;
+    --masthead-space: calc(var(--masthead-h) + var(--masthead-top) * 2);
+    --measure: 66ch;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    /* Legacy token names, kept as aliases. The Kollur Mookambika guide
+       and the admin screens are written against these; aliasing them
+       re-themes those pages without rewriting them. */
+    --bg-0: var(--paper);
+    --bg-1: var(--card);
+    --bg-2: var(--paper-2);
+    --bg-3: var(--paper-3);
+    --ink-0: var(--ink);
+    --ink-1: var(--ink-2);
+    --text0: var(--ink);
+    --text1: var(--ink-2);
+    --text2: var(--ink-3);
+    --bg0: var(--paper);
+    --bg1: var(--card);
+    --bg2: var(--paper-2);
+    --bg3: var(--paper-3);
+    --stroke: var(--line);
+    --stroke-soft: var(--line);
   }
 
-  * {
+  /* Tight negative tracking is a Latin idea. Kannada and Devanagari
+     conjuncts collide under it, and their matras need room above and
+     below, so both relax here. */
+  html:lang(kn),
+  html:lang(hi) {
+    --track-display: -0.012em;
+    --track-title: -0.008em;
+    --track-head: 0em;
+    --lh-display: 1.22;
+    --lh-title: 1.26;
+  }
+
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -68,39 +133,33 @@
 
   html {
     scroll-behavior: smooth;
-    background: var(--bg-0);
+    scroll-padding-top: calc(var(--masthead-space) + 12px);
+    background: var(--paper);
     -webkit-text-size-adjust: 100%;
   }
 
   body {
     font-family: var(--sans);
-    color: var(--ink-0);
-    background: var(--bg-0);
-    line-height: 1.75;
-    overflow-x: hidden;
     font-size: 16px;
-    /* A faint warm bloom at the top, like a lamp above the page */
-    background-image: radial-gradient(
-      110rem 44rem at 50% -18rem,
-      rgba(201, 162, 39, 0.09),
-      transparent 62%
-    );
+    line-height: 1.6;
+    color: var(--ink);
+    background: var(--paper);
+    background-image:
+      radial-gradient(64rem 30rem at 88% -12rem, rgba(255, 208, 98, 0.22), transparent 62%),
+      radial-gradient(52rem 26rem at -8% -6rem, rgba(255, 186, 140, 0.16), transparent 60%);
     background-repeat: no-repeat;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  /* Each script gets its own face — never a fallback substitution.
+  main {
+    display: block;
+    padding-top: var(--masthead-space);
+  }
 
-     The page-language rules are wrapped in :where() so they carry zero
-     specificity. Otherwise `:lang(kn)` and `.deva` tie at (0,1,0) and the
-     later rule wins, which rendered Sanskrit in the Kannada face on every
-     Kannada page. An explicit script class must always beat the ambient
-     page language. */
-  :where(:lang(hi)) {
-    font-family: var(--deva);
-  }
-  :where(:lang(kn)) {
-    font-family: var(--kannada);
-  }
+  /* An explicit script class always beats the ambient page language. */
   .deva {
     font-family: var(--deva);
   }
@@ -118,29 +177,38 @@
     display: block;
   }
 
-  ::selection {
-    background: rgba(201, 162, 39, 0.28);
-    color: var(--ink-0);
+  button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
   }
 
-  ::-webkit-scrollbar {
-    width: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: var(--bg-0);
-  }
-  ::-webkit-scrollbar-thumb {
-    background: var(--bg-3);
-    border-radius: 99px;
-    border: 3px solid var(--bg-0);
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--gold-dim);
+  ::selection {
+    background: var(--marigold-2);
+    color: var(--ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--gold);
+    outline: 2px solid var(--saffron-2);
     outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--paper);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--paper-3);
+    border-radius: 99px;
+    border: 3px solid var(--paper);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-dim);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -148,6 +216,7 @@
     *::before,
     *::after {
       animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
       transition-duration: 0.001ms !important;
       scroll-behavior: auto !important;
     }
@@ -161,75 +230,119 @@
     width: 100%;
     max-width: var(--shell);
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 5vw, 3rem);
+    padding-inline: var(--gutter);
   }
 
   .shell-narrow {
     width: 100%;
-    max-width: 780px;
+    max-width: 840px;
     margin-inline: auto;
-    padding-inline: clamp(1.25rem, 5vw, 3rem);
+    padding-inline: var(--gutter);
   }
 
   .stack-xl {
-    padding-block: clamp(4rem, 11vw, 8.5rem);
+    padding-block: clamp(4.5rem, 11vw, 9rem);
   }
   .stack-lg {
-    padding-block: clamp(3rem, 8vw, 6rem);
+    padding-block: clamp(3rem, 7vw, 5.5rem);
   }
 
   .rule {
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--stroke), transparent);
     border: 0;
+    background: var(--line);
   }
 
   /* ── Type ─────────────────────────────────────────────── */
 
+  /* The eyebrow is a pill tag, not spaced capitals: it reads the same
+     in Kannada and Hindi, which have no capitals to space. */
   .eyebrow {
-    font-family: var(--sans);
-    font-size: 0.68rem;
-    font-weight: 500;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--saffron);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    width: fit-content;
+    padding: 0.45em 0.95em 0.45em 0.8em;
+    border: 1px solid var(--line-2);
+    border-radius: var(--pill);
+    background: rgba(255, 252, 244, 0.7);
+    font: 500 0.8rem/1.2 var(--sans);
+    color: var(--ink-2);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--marigold);
+    box-shadow: 0 0 0 3px rgba(245, 181, 35, 0.22);
+    flex: none;
   }
 
   .display {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(2.6rem, 7.5vw, 5.4rem);
-    line-height: 1.02;
-    letter-spacing: -0.015em;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    line-height: var(--lh-display);
+    letter-spacing: var(--track-display);
+    text-wrap: balance;
   }
 
   .title {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(2.3rem, 5.2vw, 4.4rem);
+    line-height: var(--lh-title);
+    letter-spacing: var(--track-title);
+    color: var(--ink);
+    text-wrap: balance;
+  }
+
+  /* The turn in a headline: one phrase in italic serif. */
+  .accent {
     font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(2rem, 4.6vw, 3.4rem);
-    line-height: 1.1;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--gold-bright);
+  }
+  html:lang(kn) .accent,
+  html:lang(hi) .accent {
+    font-style: normal;
+    letter-spacing: 0;
   }
 
   .subtitle {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: clamp(1.35rem, 2.4vw, 1.9rem);
-    line-height: 1.25;
+    font-family: var(--sans);
+    font-weight: 500;
+    font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+    line-height: 1.35;
+    letter-spacing: var(--track-head);
+    color: var(--ink-2);
   }
 
   .lede {
-    font-family: var(--serif);
-    font-size: clamp(1.05rem, 1.5vw, 1.3rem);
-    font-style: italic;
-    color: var(--ink-1);
-    max-width: 56ch;
+    font-size: clamp(1.04rem, 1.35vw, 1.2rem);
     line-height: 1.6;
+    color: var(--ink-3);
+    max-width: 58ch;
+    text-wrap: pretty;
+  }
+
+  blockquote.lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.2rem, 1.8vw, 1.45rem);
+    line-height: 1.45;
+    color: var(--ink-2);
   }
 
   .prose {
     max-width: var(--measure);
-    color: var(--ink-1);
-    font-size: 1.0125rem;
+    color: var(--ink-2);
+    font-size: 1.05rem;
+    line-height: 1.75;
+    text-wrap: pretty;
   }
   .prose + .prose {
     margin-top: 1.1rem;
@@ -237,762 +350,199 @@
 
   .sanskrit {
     font-family: var(--deva);
-    color: var(--gold-bright);
-    line-height: 1.55;
-    font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    color: var(--sacred);
+    font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+    line-height: 1.5;
     font-weight: 400;
   }
 
   .translit {
-    font-family: var(--serif);
+    font-family: var(--translit-face);
     font-style: italic;
-    color: var(--ink-2);
-    letter-spacing: 0.02em;
+    color: var(--ink-3);
+    letter-spacing: 0.005em;
   }
 
   .meta {
-    font-family: var(--sans);
-    font-size: 0.7rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-  }
-
-  /* ── Header / nav ─────────────────────────────────────── */
-
-  .masthead {
-    position: sticky;
-    top: 0;
-    z-index: 60;
-    background: rgba(11, 10, 9, 0.82);
-    backdrop-filter: saturate(140%) blur(14px);
-    border-bottom: 1px solid var(--stroke-soft);
-  }
-
-  .masthead-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.5rem;
-    height: var(--masthead-h);
-  }
-
-  .wordmark {
-    font-family: var(--deva);
-    font-size: 1.15rem;
-    color: var(--gold);
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-  }
-
-  .navlinks {
-    display: none;
-    align-items: center;
-    gap: clamp(1rem, 2.2vw, 2rem);
-  }
-  @media (min-width: 1024px) {
-    .navlinks {
-      display: flex;
-    }
-  }
-
-  .navlink {
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-1);
-    padding-block: 0.4rem;
-    position: relative;
-    transition: color 0.25s ease;
-  }
-  .navlink::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 100%;
-    bottom: 0;
-    height: 1px;
-    background: var(--gold);
-    transition: right 0.3s ease;
-  }
-  .navlink:hover {
-    color: var(--ink-0);
-  }
-  .navlink:hover::after,
-  .navlink[data-active]::after {
-    right: 0;
-  }
-  .navlink[data-active] {
-    color: var(--gold);
-  }
-
-  .nav-actions {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-
-  /* Mobile drawer */
-  .navtoggle {
-    display: grid;
-    place-items: center;
-    width: 38px;
-    height: 38px;
-    border: 1px solid var(--stroke);
-    background: transparent;
-    color: var(--ink-1);
-    cursor: pointer;
-    border-radius: var(--radius);
-  }
-  @media (min-width: 1024px) {
-    .navtoggle {
-      display: none;
-    }
-  }
-
-  .drawer {
-    border-top: 1px solid var(--stroke-soft);
-    background: var(--bg-1);
-    padding: 1rem 0 1.5rem;
-  }
-  @media (min-width: 1024px) {
-    .drawer {
-      display: none;
-    }
-  }
-  .drawer-link {
-    display: block;
-    padding: 0.7rem 0;
     font-size: 0.8rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-1);
-    border-bottom: 1px solid var(--stroke-soft);
-  }
-  .drawer-link:hover {
-    color: var(--gold);
-  }
-
-  /* ── Language switcher ────────────────────────────────── */
-
-  .lang {
-    position: relative;
-  }
-
-  .lang-trigger {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.4rem 0.75rem;
-    border: 1px solid var(--stroke);
-    background: transparent;
-    color: var(--ink-1);
-    font-family: inherit;
-    font-size: 0.76rem;
-    letter-spacing: 0.06em;
-    cursor: pointer;
-    border-radius: var(--radius);
-    transition: border-color 0.25s ease, color 0.25s ease;
-  }
-  .lang-trigger:hover {
-    border-color: var(--gold-dim);
-    color: var(--ink-0);
-  }
-  .lang-trigger[data-pending] {
-    opacity: 0.55;
-  }
-  .lang-globe svg {
-    width: 15px;
-    height: 15px;
-    display: block;
-  }
-
-  .lang-menu {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    right: 0;
-    min-width: 172px;
-    list-style: none;
-    background: var(--bg-2);
-    border: 1px solid var(--stroke);
-    border-radius: var(--radius);
-    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6);
-    overflow: hidden;
-    z-index: 70;
-    animation: rise 0.18s ease both;
-  }
-
-  .lang-option {
-    width: 100%;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.75rem;
-    padding: 0.65rem 0.85rem;
-    background: transparent;
-    border: 0;
-    color: var(--ink-1);
-    font-family: inherit;
-    font-size: 0.9rem;
-    text-align: left;
-    cursor: pointer;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
-  .lang-option:hover {
-    background: var(--gold-wash);
-    color: var(--ink-0);
-  }
-  .lang-option[data-active] {
-    color: var(--gold);
-  }
-  .lang-label {
-    font-size: 0.62rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     color: var(--ink-3);
+  }
+
+  .credit {
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: var(--ink-4);
+  }
+
+  .om {
+    display: inline-block;
+    font-family: var(--deva);
+    color: var(--saffron-2);
+    line-height: 1;
   }
 
   /* ── Buttons ──────────────────────────────────────────── */
 
-  .btn {
+  .btn,
+  .btn-outline,
+  .btn-dark {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    padding: 0.85rem 1.7rem;
-    border: 1px solid var(--gold-dim);
-    color: var(--gold);
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    border-radius: var(--radius);
-    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    justify-content: center;
+    gap: 0.55em;
+    width: fit-content;
+    padding: 0.85em 1.45em;
+    border-radius: var(--pill);
+    font: 600 0.95rem/1.2 var(--sans);
+    letter-spacing: -0.005em;
+    white-space: nowrap;
+    transition:
+      transform 0.25s var(--ease),
+      background-color 0.2s ease,
+      box-shadow 0.25s ease,
+      border-color 0.2s ease;
   }
-  .btn:hover {
-    background: var(--gold);
-    border-color: var(--gold);
-    color: var(--bg-0);
+
+  .btn {
+    background: var(--marigold);
+    color: var(--ink);
+    box-shadow:
+      inset 0 -2px 0 rgba(120, 80, 0, 0.14),
+      0 10px 24px -12px rgba(197, 138, 0, 0.75);
+  }
+
+  .btn-outline {
+    background: var(--card);
+    color: var(--ink);
+    border: 1px solid var(--line-2);
+  }
+
+  .btn-dark {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  @media (hover: hover) {
+    .btn:hover {
+      background: var(--marigold-2);
+      transform: translateY(-1px);
+    }
+    .btn-outline:hover {
+      border-color: var(--ink-3);
+      transform: translateY(-1px);
+    }
+    .btn-dark:hover {
+      background: var(--night-2);
+      transform: translateY(-1px);
+    }
   }
 
   .btn-ghost {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: 0.72rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-1);
-    transition: color 0.25s ease, gap 0.25s ease;
-  }
-  .btn-ghost:hover {
-    color: var(--gold);
-    gap: 0.8rem;
-  }
-
-  /* ── Cards ────────────────────────────────────────────── */
-
-  .grid-cards {
-    display: grid;
-    gap: clamp(1rem, 2vw, 1.6rem);
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-  }
-
-  .card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-1);
-    border: 1px solid var(--stroke-soft);
-    border-radius: var(--radius);
-    overflow: hidden;
-    transition: border-color 0.35s ease, transform 0.35s ease, background 0.35s ease;
+    gap: 0.4em;
+    width: fit-content;
+    padding-block: 0.2em;
+    font: 600 0.92rem/1.3 var(--sans);
+    color: var(--ink);
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1.5px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease), color 0.2s ease;
   }
   @media (hover: hover) {
-    .card:hover {
-      border-color: var(--stroke);
-      background: var(--bg-2);
-      transform: translateY(-3px);
-    }
-    .card:hover .card-img img {
-      transform: scale(1.05);
+    .btn-ghost:hover {
+      background-size: 100% 1.5px;
     }
   }
 
-  .card-img {
-    position: relative;
-    aspect-ratio: 3 / 2;
-    overflow: hidden;
-    background: var(--bg-3);
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--ink);
+    border: 1px solid var(--line);
+    background: rgba(255, 252, 244, 0.7);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
   }
-  .card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
-  }
-  /* Scrim so text over photography stays legible */
-  .card-img::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(11, 10, 9, 0.9) 0%, rgba(11, 10, 9, 0.1) 55%, transparent 100%);
+  @media (hover: hover) {
+    .icon-btn:hover {
+      background: var(--card);
+      border-color: var(--line-2);
+    }
   }
 
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-    padding: 1.35rem 1.4rem 1.5rem;
-    flex: 1;
-  }
-
-  .card-title {
-    font-family: var(--serif);
-    font-size: 1.45rem;
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--ink-0);
-  }
-
-  .card-text {
-    color: var(--ink-1);
-    font-size: 0.9rem;
-    line-height: 1.7;
-  }
-
-  .card-foot {
-    margin-top: auto;
-    padding-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-  }
-
-  /* ── Verse card ───────────────────────────────────────── */
-
-  .verse {
-    position: relative;
-    padding: clamp(1.6rem, 3.5vw, 2.6rem);
-    background: var(--bg-1);
-    border: 1px solid var(--stroke-soft);
-    border-left: 2px solid var(--gold-dim);
-    border-radius: var(--radius);
-    transition: border-left-color 0.35s ease, background 0.35s ease;
-  }
-  .verse:hover {
-    border-left-color: var(--gold);
-    background: var(--bg-2);
-  }
-
-  .verse-mahavakya {
-    border-left-color: var(--gold);
-    background: linear-gradient(120deg, var(--gold-wash), transparent 55%), var(--bg-1);
-  }
-
-  /* ── Chips / badges ───────────────────────────────────── */
-
-  .chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.28rem 0.7rem;
-    border: 1px solid var(--stroke);
-    border-radius: 99px;
-    font-size: 0.64rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-2);
-    white-space: nowrap;
-  }
-  .chip-gold {
-    color: var(--gold);
-    border-color: var(--gold-dim);
-    background: var(--gold-wash);
-  }
+  /* ── Chips ────────────────────────────────────────────── */
 
   .chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.45rem;
+    gap: 0.5rem;
   }
 
-  /* Honest labelling of not-yet-cited content */
-  .notice-uncited {
+  .chip {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
-    font-size: 0.66rem;
-    letter-spacing: 0.08em;
-    color: var(--ink-3);
-    border-top: 1px dashed var(--stroke-soft);
-    padding-top: 0.7rem;
-    margin-top: 0.9rem;
+    gap: 0.45em;
+    width: fit-content;
+    padding: 0.38em 0.85em;
+    border: 1px solid var(--line-2);
+    border-radius: var(--pill);
+    font: 500 0.8rem/1.3 var(--sans);
+    color: var(--ink-2);
+    white-space: nowrap;
   }
 
-  .credit {
-    font-size: 0.62rem;
-    letter-spacing: 0.05em;
-    color: var(--ink-3);
-    margin-top: 0.5rem;
+  .chip-gold {
+    background: var(--marigold-soft);
+    border-color: rgba(197, 138, 0, 0.32);
+    color: #6b4a00;
   }
 
-  /* ── Hero ─────────────────────────────────────────────── */
+  /* ── Utilities ────────────────────────────────────────── */
 
-  .hero {
-    position: relative;
-    min-height: clamp(520px, 76vh, 760px);
-    display: grid;
-    place-items: center;
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .hero-bg {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .hero-bg img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* High enough that the photograph is legible as a photograph;
-       the scrim below carries the contrast for the text instead. */
-    opacity: 0.62;
-    filter: saturate(0.85) contrast(1.05);
-  }
-  .hero-bg::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(58% 52% at 50% 48%, rgba(11, 10, 9, 0.62), rgba(11, 10, 9, 0.34) 62%, transparent 88%),
-      linear-gradient(to bottom, rgba(11, 10, 9, 0.55), rgba(11, 10, 9, 0.15) 35%, rgba(11, 10, 9, 0.82) 88%, var(--bg-0) 100%);
-  }
-
-  .hero-inner {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .om {
-    font-family: var(--deva);
-    font-size: 2rem;
-    color: var(--gold);
-    opacity: 0.85;
-    animation: breathe 5s ease-in-out infinite;
-  }
-
-  /* ── Page header (interior pages) ─────────────────────── */
-
-  .pagehead {
-    position: relative;
-    padding-block: clamp(3.5rem, 9vw, 6.5rem) clamp(2rem, 4vw, 3rem);
-    overflow: hidden;
-  }
-  .pagehead::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(60rem 26rem at 12% -6rem, var(--gold-wash), transparent 70%);
-    pointer-events: none;
-  }
-  .pagehead-inner {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  /* ── Feature row (image + text, alternating) ──────────── */
-
-  .feature {
-    display: grid;
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-    align-items: center;
-  }
-  @media (min-width: 860px) {
-    .feature {
-      grid-template-columns: 1fr 1fr;
-    }
-    .feature[data-flip] .feature-media {
-      order: 2;
-    }
-  }
-
-  .feature-media {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: var(--radius);
-    border: 1px solid var(--stroke-soft);
-  }
-  .feature-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.3, 1);
-  }
-  .feature:hover .feature-media img {
-    transform: scale(1.04);
-  }
-
-  .feature-body {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  /* ── Detail pages ─────────────────────────────────────── */
-
-  .factbar {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    border-top: 1px solid var(--stroke-soft);
-    border-bottom: 1px solid var(--stroke-soft);
-  }
-  .fact {
-    padding: 1.1rem 1.25rem;
-    border-right: 1px solid var(--stroke-soft);
-  }
-  .fact:last-child {
-    border-right: 0;
-  }
-  .fact-label {
-    font-size: 0.6rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 0.3rem;
-  }
-  .fact-value {
-    font-family: var(--serif);
-    font-size: 1.05rem;
-    color: var(--gold);
-    line-height: 1.3;
-  }
-
-  /* ── Footer ───────────────────────────────────────────── */
-
-  .footer {
-    border-top: 1px solid var(--stroke-soft);
-    background: var(--bg-1);
-    padding-block: clamp(2.5rem, 6vw, 4rem);
-  }
-  .footer-grid {
-    display: grid;
-    gap: 2.5rem;
-    grid-template-columns: 1fr;
-  }
-  @media (min-width: 760px) {
-    .footer-grid {
-      grid-template-columns: 1.6fr 1fr 1fr;
-    }
-  }
-  .footer-heading {
-    font-size: 0.66rem;
-    letter-spacing: 0.24em;
-    text-transform: uppercase;
-    color: var(--ink-3);
-    margin-bottom: 1rem;
-  }
-  .footer-link {
-    display: block;
-    padding: 0.3rem 0;
-    color: var(--ink-1);
-    font-size: 0.9rem;
-    transition: color 0.25s ease;
-  }
-  .footer-link:hover {
-    color: var(--gold);
-  }
-
-  /* ── Search ───────────────────────────────────────────── */
-
-  .searchbar {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    border: 1px solid var(--stroke);
-    background: var(--bg-1);
-    padding: 0.9rem 1.2rem;
-    border-radius: var(--radius);
-  }
-  .searchbar input {
-    flex: 1;
-    background: transparent;
-    border: 0;
-    color: var(--ink-0);
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    outline: none;
-  }
-  .searchbar input::placeholder {
-    color: var(--ink-3);
-  }
-}
-
-@layer utilities {
-  .reveal {
-    animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
-  }
-
-  .clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+  .clamp-3,
   .clamp-4 {
     display: -webkit-box;
-    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-}
+  .clamp-3 {
+    -webkit-line-clamp: 3;
+  }
+  .clamp-4 {
+    -webkit-line-clamp: 4;
+  }
 
-@keyframes rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes breathe {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.06);
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
   }
 }
 
-/* ─────────────────────────────────────────────────────────
-   Indic script corrections.
-
-   Uppercasing and wide tracking are Latin typographic devices.
-   Devanagari and Kannada have no case, and letter-spacing breaks
-   their conjuncts apart, so both are switched off wherever the
-   page language is one of those scripts.
-   ───────────────────────────────────────────────────────── */
-:lang(kn) .eyebrow,
-:lang(kn) .meta,
-:lang(kn) .chip,
-:lang(kn) .navlink,
-:lang(kn) .btn,
-:lang(kn) .btn-ghost,
-:lang(kn) .fact-label,
-:lang(kn) .footer-heading,
-:lang(kn) .drawer-link,
-:lang(kn) .lang-label,
-:lang(hi) .eyebrow,
-:lang(hi) .meta,
-:lang(hi) .chip,
-:lang(hi) .navlink,
-:lang(hi) .btn,
-:lang(hi) .btn-ghost,
-:lang(hi) .fact-label,
-:lang(hi) .footer-heading,
-:lang(hi) .drawer-link,
-:lang(hi) .lang-label {
-  text-transform: none;
-  letter-spacing: 0.02em;
-}
-
-/* Indic faces sit smaller on the body than Latin at the same size */
-:lang(kn) .eyebrow,
-:lang(hi) .eyebrow {
-  font-size: 0.8rem;
-}
-:lang(kn) .meta,
-:lang(hi) .meta {
-  font-size: 0.8rem;
-}
-:lang(kn) .chip,
-:lang(hi) .chip {
-  font-size: 0.75rem;
-}
-:lang(kn) .navlink,
-:lang(hi) .navlink {
-  font-size: 0.85rem;
-}
-:lang(kn) .btn,
-:lang(hi) .btn,
-:lang(kn) .btn-ghost,
-:lang(hi) .btn-ghost {
-  font-size: 0.85rem;
-}
-
-/* The lede is italic Cormorant, which has no Indic coverage —
-   fall back to the upright script face rather than a synthetic slant. */
-:lang(kn) .lede,
-:lang(kn) blockquote.lede {
-  font-family: var(--kannada);
-  font-style: normal;
-}
-:lang(hi) .lede,
-:lang(hi) blockquote.lede {
-  font-family: var(--deva);
-  font-style: normal;
-}
-
-/* Sanskrit mula text and IAST transliteration are never translated,
-   so they keep their own faces regardless of the page language. */
-.sanskrit {
-  font-family: var(--deva) !important;
-}
-.translit {
-  font-family: var(--serif) !important;
-  font-style: italic;
-}
-
-/* A chip is a label, not a bar: keep it to its content width even when
-   it is a direct child of a stretching flex column (e.g. matha cards). */
-.chip {
-  align-self: flex-start;
-}
-.chips .chip {
-  align-self: auto;
-}
-
-/* ═════════════════════════════════════════════════════════
-   HOMEPAGE — cinematic archive
-
-   Everything below is plain CSS: no animation library, no
-   scroll library. Motion is either a transition toggled by a
-   data attribute or a keyframe animation, and all of it stops
-   under prefers-reduced-motion at the end of this block.
-   ═════════════════════════════════════════════════════════ */
-
-/* ── Scroll reveal ─────────────────────────────────────── */
-/* Reveal is opt-IN, never opt-out: the element is visible by default and
-   only animates where the browser can actually drive the animation from
-   scroll position. Nothing here can leave content permanently hidden. */
+/* ── Scroll reveal ─────────────────────────────────────────
+   CSS scroll-driven, behind @supports: a browser without scroll
+   timelines — or a reader who asked for less motion — simply sees
+   the content. Visibility never depends on a script running. */
 @supports (animation-timeline: view()) {
   .reveal-item {
-    animation: revealIn linear both;
+    animation: reveal-up linear both;
     animation-timeline: view();
-    /* Both ends stay inside the `entry` phase. Mixing phases (entry → cover)
-       inverts the range for any element taller than the viewport, which
-       leaves it pinned at the from-state — i.e. invisible. The stagger
-       nudges each sibling's start point so a row arrives in sequence. */
-    animation-range: entry calc(4% + var(--reveal-stagger, 0%)) entry 78%;
+    animation-range: entry calc(0% + var(--reveal-stagger, 0%)) entry calc(40% + var(--reveal-stagger, 0%));
   }
-  @keyframes revealIn {
+  @keyframes reveal-up {
     from {
       opacity: 0;
-      transform: translateY(26px);
+      transform: translateY(34px) scale(0.985);
     }
     to {
       opacity: 1;
@@ -1001,3248 +551,10 @@
   }
 }
 
-/* ── Hero stage ────────────────────────────────────────── */
-.hero-full {
-  position: relative;
-  min-height: 100svh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-.hero-stage {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-frame {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 2.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.hero-frame[data-active] {
-  opacity: 1;
-}
-/* Several of these photographs are shot at dusk or inside a mandapa and
-   sit very dark; lift them slightly so detail survives the scrim. */
-.hero-frame img {
-  filter: brightness(1.16) saturate(0.94);
-}
-
-/* Slow drift on the visible frame only, so a still photo breathes. */
-.hero-frame[data-drift] img {
-  animation: heroDrift 14s ease-out forwards;
-}
-@keyframes heroDrift {
-  from { transform: scale(1.005); }
-  to   { transform: scale(1.07); }
-}
-
-/* Two-part scrim: a vertical wash for text contrast, plus a vignette so
-   the frame edges fall away instead of ending abruptly. */
-.hero-veil {
-  position: absolute;
-  inset: 0;
-  /* Light enough that the photograph is unmistakably a photograph. The
-     title carries its own text-shadow, so the scrim only has to protect
-     the smaller type near the top and bottom edges. */
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(11, 10, 9, 0.58) 0%,
-      rgba(11, 10, 9, 0.10) 30%,
-      rgba(11, 10, 9, 0.30) 66%,
-      var(--bg-0) 100%
-    ),
-    radial-gradient(125% 90% at 50% 44%, transparent 46%, rgba(11, 10, 9, 0.5) 100%);
-}
-
-.hero-caption {
-  position: absolute;
-  left: clamp(1.25rem, 5vw, 3rem);
-  bottom: clamp(1.25rem, 3vw, 2.25rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  z-index: 3;
-}
-.hero-place {
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.hero-credit {
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  color: var(--ink-3);
-}
-
-.hero-dots {
-  position: absolute;
-  right: clamp(1.25rem, 5vw, 3rem);
-  bottom: clamp(1.4rem, 3vw, 2.4rem);
-  display: flex;
-  gap: 0.5rem;
-  z-index: 3;
-}
-.hero-dot {
-  width: 26px;
-  height: 2px;
-  border: 0;
-  padding: 0;
-  background: rgba(242, 235, 221, 0.24);
-  cursor: pointer;
-  transition: background 0.4s ease;
-}
-.hero-dot[data-active] { background: var(--gold); }
-.hero-dot:hover { background: var(--gold-bright); }
-
-.hero-core {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  gap: 1.15rem;
-  padding-block: clamp(4rem, 12vh, 8rem);
-  isolation: isolate;
-}
-
-/* A soft pool of shadow that travels with the text block. Some of these
-   photographs are pale carved stone, and a whole-frame scrim heavy enough
-   to carry the small type would flatten the image entirely — so the
-   darkening is local to where the words actually sit. */
-.hero-core::before {
-  content: "";
-  position: absolute;
-  inset: -12% -8%;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(
-    58% 44% at 50% 50%,
-    rgba(11, 10, 9, 0.86) 0%,
-    rgba(11, 10, 9, 0.66) 42%,
-    rgba(11, 10, 9, 0.28) 66%,
-    transparent 82%
-  );
-}
-
-/* Staged entrance: each element arrives a beat after the last. */
-.hero-in {
-  opacity: 0;
-  transform: translateY(18px);
-  animation: heroIn 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.hero-in-1 { animation-delay: 0.15s; }
-.hero-in-2 { animation-delay: 0.35s; }
-.hero-in-3 { animation-delay: 0.55s; }
-.hero-in-4 { animation-delay: 0.75s; }
-.hero-in-5 { animation-delay: 0.95s; }
-@keyframes heroIn {
-  to { opacity: 1; transform: none; }
-}
-
-.hero-title {
-  font-family: var(--deva);
-  font-weight: 500;
-  font-size: clamp(3rem, 11vw, 8.5rem);
-  line-height: 1;
-  color: var(--ink-0);
-  letter-spacing: 0.01em;
-  text-wrap: balance;
-  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.55);
-}
-
-.hero-gloss {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1.2rem, 2.6vw, 2rem);
-  color: var(--gold-bright);
-  letter-spacing: 0.02em;
-}
-
-/* Thin gold rule that draws itself outward from the centre. */
-.hero-rule {
-  width: min(320px, 46vw);
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  transform: scaleX(0);
-  animation: ruleOut 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
-}
-@keyframes ruleOut {
-  to { transform: scaleX(1); }
-}
-
-.hero-scroll {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.6rem;
-  padding-bottom: clamp(3.5rem, 7vh, 5rem);
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-.hero-scroll-line {
-  width: 1px;
-  height: 46px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2.4s ease-in-out infinite;
-}
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.25; transform: scaleY(0.7); transform-origin: top; }
-  50%      { opacity: 1;    transform: scaleY(1);   transform-origin: top; }
-}
-
-/* ── Section framing ───────────────────────────────────── */
-.band {
-  position: relative;
-  padding-block: clamp(4.5rem, 11vw, 9rem);
-}
-.band-hair { border-top: 1px solid var(--stroke-soft); }
-
-.band-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: clamp(2.25rem, 5vw, 3.5rem);
-}
-.band-head-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.85rem;
-  max-width: 62ch;
-}
-
-/* Numbered markers, because an archive should feel ordered. */
-.band-index {
-  font-family: var(--sans);
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  color: var(--ink-3);
-}
-
-/* ── Tally strip (scale of the archive) ────────────────── */
-.tally-strip {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1px;
-  background: var(--stroke-soft);
-  border-block: 1px solid var(--stroke-soft);
-}
-.tally {
-  background: var(--bg-0);
-  padding: clamp(1.4rem, 3vw, 2.4rem) 1rem;
-  text-align: center;
-}
-.tally-num {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  line-height: 1;
-  color: var(--gold);
-  /* Cormorant defaults to old-style figures, which render "1" as a
-     small-cap I and read as a typo in a count. Force lining figures. */
-  font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
-}
-.tally-label {
-  font-family: var(--sans);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  margin-top: 0.6rem;
-}
-
-/* ── Featured verse (the centrepiece of the page) ──────── */
-.verse-stage {
-  position: relative;
-  padding: clamp(2.5rem, 7vw, 5.5rem) clamp(1.5rem, 5vw, 4.5rem);
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  overflow: hidden;
-  background:
-    radial-gradient(80% 120% at 0% 0%, rgba(201, 162, 39, 0.10), transparent 62%),
-    var(--bg-1);
-}
-
-/* Oversized watermark glyph bleeding off the corner. */
-.verse-stage::after {
-  content: "\0950";
-  position: absolute;
-  right: -2rem;
-  bottom: -5rem;
-  font-family: var(--deva);
-  font-size: clamp(11rem, 26vw, 22rem);
-  line-height: 1;
-  color: var(--gold);
-  opacity: 0.05;
-  pointer-events: none;
-}
-.verse-stage > * { position: relative; z-index: 1; }
-
-.verse-sanskrit-xl {
-  font-family: var(--deva);
-  font-weight: 500;
-  color: var(--gold-bright);
-  font-size: clamp(2rem, 6vw, 4.2rem);
-  line-height: 1.35;
-  text-wrap: balance;
-}
-
-/* ── Editorial mosaic (temples) ────────────────────────── */
-.mosaic {
-  display: grid;
-  gap: clamp(0.75rem, 1.6vw, 1.25rem);
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (min-width: 900px) {
-  .mosaic {
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 200px;
-  }
-  /* Deliberately uneven: the first tile dominates, the rest orbit it. */
-  .mosaic > *:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-  .mosaic > *:nth-child(2) { grid-column: span 2; grid-row: span 1; }
-  .mosaic > *:nth-child(3) { grid-column: span 1; grid-row: span 1; }
-  .mosaic > *:nth-child(4) { grid-column: span 1; grid-row: span 1; }
-  .mosaic > *:nth-child(5) { grid-column: span 4; grid-row: span 1; }
-}
-
-.tile {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius);
-  border: 1px solid var(--stroke-soft);
-  min-height: 190px;
-  display: flex;
-  align-items: flex-end;
-  isolation: isolate;
-}
-.tile img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -2;
-  transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.tile::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
-    to top,
-    rgba(11, 10, 9, 0.94) 0%,
-    rgba(11, 10, 9, 0.45) 45%,
-    rgba(11, 10, 9, 0.1) 100%
-  );
-  transition: opacity 0.5s ease;
-}
-@media (hover: hover) {
-  .tile:hover img { transform: scale(1.06); }
-  .tile:hover { border-color: var(--gold-dim); }
-}
-.tile-body {
-  padding: clamp(1rem, 2vw, 1.6rem);
-  width: 100%;
-}
-.tile-name {
-  font-family: var(--serif);
-  font-size: clamp(1.15rem, 2vw, 1.75rem);
-  font-weight: 400;
-  color: var(--ink-0);
-  line-height: 1.15;
-}
-.tile-meta {
-  font-family: var(--sans);
-  font-size: 0.62rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 0.4rem;
-}
-
-/* ── Mahavakya row ─────────────────────────────────────── */
-.vakya-grid {
-  display: grid;
-  gap: 1px;
-  background: var(--stroke-soft);
-  border: 1px solid var(--stroke-soft);
-  grid-template-columns: 1fr;
-}
-@media (min-width: 720px)  { .vakya-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1080px) { .vakya-grid { grid-template-columns: repeat(4, 1fr); } }
-
-.vakya {
-  background: var(--bg-0);
-  padding: clamp(1.5rem, 3vw, 2.2rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  min-height: 230px;
-  transition: background 0.45s ease;
-  position: relative;
-}
-.vakya::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--gold);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-}
-@media (hover: hover) {
-  .vakya:hover { background: var(--bg-2); }
-  .vakya:hover::before { transform: scaleY(1); }
-}
-.vakya-sanskrit {
-  font-family: var(--deva);
-  font-size: clamp(1.5rem, 2.6vw, 2.05rem);
-  color: var(--gold-bright);
-  line-height: 1.4;
-}
-.vakya-veda {
-  margin-top: auto;
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-
-/* ── Concept ticker ────────────────────────────────────── */
-.ticker {
-  overflow: hidden;
-  border-block: 1px solid var(--stroke-soft);
-  padding-block: 1.5rem;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-.ticker-track {
-  display: flex;
-  gap: 3.5rem;
-  width: max-content;
-  animation: tickerRun 46s linear infinite;
-}
-.ticker:hover .ticker-track { animation-play-state: paused; }
-@keyframes tickerRun {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-.ticker-item {
-  display: flex;
-  align-items: baseline;
-  gap: 0.7rem;
-  white-space: nowrap;
-  transition: color 0.3s ease;
-  color: var(--ink-1);
-}
-.ticker-item:hover { color: var(--gold); }
-.ticker-sanskrit {
-  font-family: var(--deva);
-  font-size: 1.6rem;
-  color: var(--gold);
-}
-.ticker-term {
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  font-style: italic;
-}
-
-/* ── Split feature (manuscript / citation promise) ─────── */
-.split {
-  display: grid;
-  gap: clamp(1.75rem, 4vw, 3.5rem);
-  align-items: center;
-}
-@media (min-width: 900px) {
-  .split { grid-template-columns: 0.85fr 1fr; }
-}
-.split-media {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 1px solid var(--stroke);
-}
-.split-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ── Pillars ───────────────────────────────────────────── */
-.pillars {
-  display: grid;
-  gap: 1px;
-  background: var(--stroke-soft);
-  border: 1px solid var(--stroke-soft);
-  grid-template-columns: 1fr;
-}
-@media (min-width: 700px)  { .pillars { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1040px) { .pillars { grid-template-columns: repeat(3, 1fr); } }
-
-.pillar {
-  background: var(--bg-0);
-  padding: clamp(1.6rem, 3vw, 2.4rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  min-height: 200px;
-  transition: background 0.4s ease;
-}
-.pillar-num {
-  font-family: var(--sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.26em;
-  color: var(--ink-3);
-}
-.pillar-name {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--ink-0);
-}
-.pillar-arrow {
-  margin-top: auto;
-  color: var(--gold);
-  font-size: 1.1rem;
-  transform: translateX(0);
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-@media (hover: hover) {
-  .pillar:hover { background: var(--bg-2); }
-  .pillar:hover .pillar-arrow { transform: translateX(7px); }
-}
-
-/* Indic scripts: no case, and tracking breaks conjuncts. */
-:lang(kn) .tile-meta,
-:lang(kn) .tally-label,
-:lang(kn) .band-index,
-:lang(kn) .pillar-num,
-:lang(kn) .hero-place,
-:lang(kn) .hero-scroll,
-:lang(kn) .vakya-veda,
-:lang(hi) .tile-meta,
-:lang(hi) .tally-label,
-:lang(hi) .band-index,
-:lang(hi) .pillar-num,
-:lang(hi) .hero-place,
-:lang(hi) .hero-scroll,
-:lang(hi) .vakya-veda {
-  text-transform: none;
-  letter-spacing: 0.02em;
-  font-size: 0.78rem;
-}
-
-/* ── Reduced motion: stop everything that moves ────────── */
 @media (prefers-reduced-motion: reduce) {
-  .reveal-item { animation: none; opacity: 1; transform: none; }
-  .hero-in { opacity: 1; transform: none; animation: none; }
-  .hero-rule { transform: scaleX(1); animation: none; }
-  .hero-frame[data-drift] img { animation: none; }
-  .hero-scroll-line { animation: none; opacity: 0.6; }
-  .ticker-track { animation: none; }
-  .tile img,
-  .pillar-arrow { transition: none; }
-}
-
-/* ═════════════════════════════════════════════════════════
-   IDENTITY AND NAVIGATION
-
-   The horizontal link bar is gone. The section list will keep
-   growing, and a bar stops working at about seven items — so the
-   masthead now carries only the lockup, a search icon, the
-   language switcher and a Menu trigger, and the sections live in
-   a full-screen index that does not care how many there are.
-   ═════════════════════════════════════════════════════════ */
-
-/* ── The mark ──────────────────────────────────────────── */
-.mark {
-  color: var(--gold);
-  flex: none;
-  overflow: visible;
-}
-
-.lockup {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-}
-.lockup-text {
-  font-size: 1.05rem;
-  color: var(--gold);
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-  line-height: 1;
-}
-@media (max-width: 520px) {
-  .lockup-text {
-    display: none;
-  }
-}
-
-/* The enclosures draw themselves once, when the index opens. */
-.mark-draw circle,
-.mark-draw path {
-  stroke-dasharray: 140;
-  stroke-dashoffset: 140;
-  animation: markDraw 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-.mark-draw circle:last-of-type {
-  stroke-dasharray: none;
-  stroke-dashoffset: 0;
-  animation: markBindu 0.5s ease 0.5s both;
-}
-@keyframes markDraw {
-  to { stroke-dashoffset: 0; }
-}
-@keyframes markBindu {
-  from { transform: scale(0); transform-origin: center; opacity: 0; }
-  to   { transform: scale(1); opacity: 1; }
-}
-
-/* ── Masthead at rest ──────────────────────────────────── */
-.icon-btn {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  color: var(--ink-1);
-  transition: border-color 0.25s ease, color 0.25s ease;
-}
-.icon-btn:hover {
-  border-color: var(--gold-dim);
-  color: var(--gold);
-}
-
-.nav-trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 0.9rem 0.45rem 0.75rem;
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  background: transparent;
-  color: var(--ink-1);
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color 0.25s ease, color 0.25s ease;
-}
-.nav-trigger:hover {
-  border-color: var(--gold-dim);
-  color: var(--gold);
-}
-
-/* Three rules of unequal length — a table of contents, not a burger. */
-.nav-trigger-rules {
-  display: grid;
-  gap: 4px;
-  width: 18px;
-}
-.nav-trigger-rules span {
-  height: 1px;
-  background: currentColor;
-  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.nav-trigger-rules span:nth-child(1) { width: 100%; }
-.nav-trigger-rules span:nth-child(2) { width: 64%; }
-.nav-trigger-rules span:nth-child(3) { width: 84%; }
-.nav-trigger:hover .nav-trigger-rules span { width: 100%; }
-
-/* ── The index overlay ─────────────────────────────────── */
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 200;
-  visibility: hidden;
-  pointer-events: none;
-}
-.nav-overlay[data-open] {
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.nav-scrim {
-  position: absolute;
-  inset: 0;
-  background: rgba(6, 5, 5, 0.75);
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  transition: opacity 0.45s ease;
-}
-.nav-overlay[data-open] .nav-scrim {
-  opacity: 1;
-}
-
-.nav-panel {
-  position: absolute;
-  inset: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  background:
-    radial-gradient(70rem 40rem at 78% -10%, rgba(201, 162, 39, 0.10), transparent 65%),
-    var(--bg-0);
-  transform: translateY(-14px);
-  opacity: 0;
-  transition:
-    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.4s ease;
-}
-.nav-overlay[data-open] .nav-panel {
-  transform: none;
-  opacity: 1;
-}
-
-.nav-panel-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-  height: 68px;
-  border-bottom: 1px solid var(--stroke-soft);
-}
-
-.nav-close {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  padding: 0.45rem 0.85rem;
-  border: 1px solid var(--stroke);
-  border-radius: var(--radius);
-  background: transparent;
-  color: var(--ink-1);
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color 0.25s ease, color 0.25s ease;
-}
-.nav-close:hover {
-  border-color: var(--gold-dim);
-  color: var(--gold);
-}
-
-.nav-index {
-  padding-block: clamp(2rem, 6vh, 4.5rem) clamp(3rem, 8vh, 6rem);
-}
-.nav-index ol {
-  list-style: none;
-  border-top: 1px solid var(--stroke-soft);
-}
-.nav-index li {
-  border-bottom: 1px solid var(--stroke-soft);
-  opacity: 0;
-  transform: translateY(12px);
-}
-/* Staggered arrival, driven off the index custom property. */
-.nav-overlay[data-open] .nav-index li {
-  animation: navItemIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  animation-delay: calc(0.06s * var(--i, 0) + 0.12s);
-}
-@keyframes navItemIn {
-  to { opacity: 1; transform: none; }
-}
-
-.nav-item {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: baseline;
-  gap: clamp(1rem, 3vw, 2.5rem);
-  padding-block: clamp(1.1rem, 2.4vw, 1.7rem);
-  transition: background 0.35s ease, padding-inline 0.35s ease;
-}
-@media (hover: hover) {
-  .nav-item:hover {
-    background: linear-gradient(90deg, var(--gold-wash), transparent 70%);
-    padding-inline: 1rem;
-  }
-  .nav-item:hover .nav-label {
-    color: var(--gold-bright);
-  }
-  .nav-item:hover .nav-glyph {
-    opacity: 0.85;
-    transform: translateX(-4px);
-  }
-}
-.nav-item[data-current] .nav-label {
-  color: var(--gold);
-}
-
-.nav-num {
-  font-family: var(--sans);
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
-  color: var(--ink-3);
-  font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
-}
-
-.nav-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  min-width: 0;
-}
-.nav-label {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(1.6rem, 4.2vw, 3rem);
-  line-height: 1.05;
-  color: var(--ink-0);
-  transition: color 0.3s ease;
-  text-wrap: balance;
-}
-.nav-blurb {
-  font-family: var(--sans);
-  font-size: 0.85rem;
-  color: var(--ink-1);
-  max-width: 58ch;
-  line-height: 1.6;
-}
-@media (max-width: 640px) {
-  .nav-blurb { display: none; }
-}
-
-.nav-glyph {
-  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
-  color: var(--gold);
-  opacity: 0.35;
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
-}
-
-.nav-secondary {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 1rem 2rem;
-  margin-top: clamp(2rem, 5vh, 3.5rem);
-}
-.nav-secondary-label {
-  font-family: var(--sans);
-  font-size: 0.62rem;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.nav-secondary-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.75rem;
-}
-.nav-secondary-link {
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  color: var(--ink-1);
-  transition: color 0.25s ease;
-}
-.nav-secondary-link:hover {
-  color: var(--gold);
-}
-
-/* Indic scripts: no case, and tracking breaks conjuncts. */
-:lang(kn) .nav-trigger,
-:lang(kn) .nav-close,
-:lang(kn) .nav-num,
-:lang(kn) .nav-secondary-label,
-:lang(hi) .nav-trigger,
-:lang(hi) .nav-close,
-:lang(hi) .nav-num,
-:lang(hi) .nav-secondary-label {
-  text-transform: none;
-  letter-spacing: 0.02em;
-  font-size: 0.82rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav-scrim,
-  .nav-panel { transition: none; }
-  .nav-overlay[data-open] .nav-index li {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-  .nav-index li { opacity: 1; transform: none; }
-  .mark-draw circle,
-  .mark-draw path {
-    animation: none;
-    stroke-dashoffset: 0;
-  }
-  .nav-item,
-  .nav-glyph,
-  .nav-trigger-rules span { transition: none; }
-}
-
-/* ═════════════════════════════════════════════════════════
-   TEXT INDEX — Vedas, Gita chapters, Stutis, Bhajans
-
-   A ruled list rather than a card grid. These are entries in a
-   catalogue, and a catalogue reads as rows: the Sanskrit name
-   holds the left column, the gloss the centre, the apparatus the
-   right. It also survives an eighteen-item list, which a grid of
-   tall cards does not.
-   ═════════════════════════════════════════════════════════ */
-
-.pagehead-glyph {
-  font-size: clamp(1.4rem, 3vw, 2.1rem);
-  color: var(--gold);
-  opacity: 0.55;
-  line-height: 1;
-}
-
-.text-list {
-  list-style: none;
-  border-top: 1px solid var(--stroke-soft);
-}
-.text-list > li {
-  border-bottom: 1px solid var(--stroke-soft);
-}
-
-.text-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-  padding-block: clamp(1.5rem, 3vw, 2.4rem);
-  transition: background 0.35s ease, padding-inline 0.35s ease;
-}
-@media (min-width: 860px) {
-  .text-row {
-    grid-template-columns: minmax(9rem, 15rem) 1fr auto;
-    gap: clamp(1.5rem, 4vw, 3.5rem);
-    align-items: start;
-  }
-}
-@media (hover: hover) {
-  .text-list > li:hover .text-row {
-    background: linear-gradient(90deg, var(--gold-wash), transparent 65%);
-    padding-inline: 1rem;
-  }
-}
-
-.text-row-glyph {
-  font-size: clamp(1.5rem, 3vw, 2.2rem);
-  color: var(--gold-bright);
-  line-height: 1.35;
-  /* Devanagari conjuncts need the extra leading; without it the
-     matras of one line collide with the headstroke of the next. */
-}
-
-.text-row-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  min-width: 0;
-}
-.text-row-name {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(1.35rem, 2.6vw, 2rem);
-  line-height: 1.15;
-  color: var(--ink-0);
-  text-wrap: balance;
-}
-.text-row-summary {
-  margin-top: 0.5rem;
-  max-width: 62ch;
-}
-.text-row-teaching {
-  margin-top: 0.9rem;
-  border-left: 1px solid var(--gold-dim);
-  padding-left: 1rem;
-}
-
-.text-row-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  align-content: start;
-}
-@media (min-width: 860px) {
-  .text-row-meta {
-    justify-content: flex-end;
-    max-width: 16rem;
-  }
-}
-
-/* The Gita's eighteen chapters: same structure, tighter rhythm. */
-.text-list-dense .text-row {
-  padding-block: clamp(1rem, 2vw, 1.45rem);
-}
-.text-list-dense .text-row-glyph {
-  font-size: clamp(1.15rem, 2vw, 1.5rem);
-}
-.text-list-dense .text-row-name {
-  font-size: clamp(1.05rem, 1.8vw, 1.35rem);
-}
-.text-list-dense .text-row-summary {
-  margin-top: 0.25rem;
-  font-size: 0.85rem;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .text-row { transition: none; }
-}
-
-/* ═════════════════════════════════════════════════════════
-   CINEMATIC LAYER
-
-   Full-viewport scenes, layered depth, scroll-linked motion.
-
-   Everything here degrades to a correct static page: the motion
-   is driven by a --p custom property that starts at 0, and by
-   position:sticky, so a browser that never runs the scroll
-   handler still gets a properly composed layout rather than a
-   pile of absolutely-positioned fragments.
-   ═════════════════════════════════════════════════════════ */
-
-/* ── 01 · The opening frame ────────────────────────────── */
-
-.cinema {
-  --p: 0;
-  position: relative;
-  min-height: 100svh;
-  display: grid;
-  grid-template-rows: 1fr auto;
-  align-items: center;
-  overflow: clip;
-  isolation: isolate;
-}
-
-/* The plate is fixed-size and scales; the section itself must not,
-   or the whole page would grow as the hero zooms. */
-.cinema-plate {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  /* Layer 1 — slowest. Scales up a touch and drifts as it leaves. */
-  transform: scale(calc(1 + var(--p) * 0.14)) translate3d(0, calc(var(--p) * 4vh), 0);
-  transform-origin: 50% 45%;
-  will-change: transform;
-}
-
-.cinema-frame {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 1600ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-.cinema-frame[data-active] {
-  opacity: 1;
-}
-
-/* Two-part darkening: a vertical wash so the title always has
-   contrast, plus a vignette so the frame has edges. */
-.cinema-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(6, 5, 5, 0.72) 0%,
-    rgba(6, 5, 5, 0.42) 32%,
-    rgba(6, 5, 5, 0.55) 64%,
-    rgba(11, 10, 9, 0.94) 100%
-  );
-}
-.cinema-vignette {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    120% 90% at 50% 45%,
-    transparent 38%,
-    rgba(6, 5, 5, 0.62) 100%
-  );
-}
-
-/* Layer 2 — the text, faster than the plate, and gone first. */
-.cinema-core {
-  position: relative;
-  z-index: 2;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.4rem;
-  padding-block: 6rem 4rem;
-  transform: translate3d(0, calc(var(--p) * -12vh), 0);
-  opacity: calc(1 - var(--p) * 1.9);
-  will-change: transform, opacity;
-}
-
-.cinema-om {
-  font-family: var(--deva);
-  font-size: clamp(1.6rem, 3vw, 2.4rem);
-  color: var(--gold);
-  opacity: 0.9;
-  line-height: 1;
-  animation: cinema-in 1100ms 120ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.cinema-title {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(3rem, 11vw, 9.5rem);
-  line-height: 0.94;
-  letter-spacing: -0.02em;
-  color: var(--ink-0);
-  text-wrap: balance;
-  text-shadow: 0 2px 40px rgba(0, 0, 0, 0.5);
-  animation: cinema-in 1200ms 240ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-/* Indic scripts need room between lines and no negative tracking —
-   conjuncts break when letters are pulled together. */
-.cinema-title.deva,
-.cinema-title.kannada {
-  font-size: clamp(2.4rem, 8.5vw, 7rem);
-  line-height: 1.18;
-  letter-spacing: 0;
-}
-.cinema-title.deva {
-  font-family: var(--deva);
-}
-.cinema-title.kannada {
-  font-family: var(--kannada);
-  font-weight: 500;
-}
-
-/* A hairline that draws itself outward from the centre. */
-.cinema-rule {
-  width: min(280px, 42vw);
-  height: 1px;
-  margin-block: 1.4rem 1.1rem;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  transform-origin: 50% 50%;
-  animation: rule-draw 1400ms 620ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-.cinema-tagline {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(1.15rem, 2.4vw, 1.9rem);
-  line-height: 1.5;
-  color: var(--ink-0);
-  max-width: 26ch;
-  text-wrap: balance;
-  animation: cinema-in 1100ms 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-:lang(kn) .cinema-tagline,
-:lang(hi) .cinema-tagline {
-  font-style: normal;
-}
-
-.cinema-sub {
-  font-size: 0.78rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-1);
-  margin-top: 0.5rem;
-  animation: cinema-in 1100ms 660ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-:lang(kn) .cinema-sub,
-:lang(hi) .cinema-sub {
-  text-transform: none;
-  letter-spacing: 0.04em;
-  font-size: 0.85rem;
-}
-
-.cinema-actions {
-  display: flex;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 2rem;
-  animation: cinema-in 1100ms 800ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-/* Caption for the frame currently showing. */
-.cinema-foot {
-  position: absolute;
-  z-index: 2;
-  left: 0;
-  right: 0;
-  bottom: 1.6rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  opacity: calc(1 - var(--p) * 2.4);
-}
-.cinema-place {
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-1);
-}
-.cinema-credit {
-  font-size: 0.62rem;
-  letter-spacing: 0.06em;
-  color: var(--ink-3);
-}
-
-.cinema-cue {
-  position: absolute;
-  z-index: 2;
-  right: clamp(1rem, 4vw, 3rem);
-  bottom: 1.6rem;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-size: 0.66rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  opacity: calc(1 - var(--p) * 2.4);
-}
-.cinema-cue-line {
-  width: 46px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--ink-3), transparent);
-  position: relative;
-  overflow: hidden;
-}
-.cinema-cue-line::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  animation: cue-sweep 2600ms ease-in-out infinite;
-}
-
-@media (max-width: 720px) {
-  .cinema-cue {
-    display: none;
-  }
-}
-
-@keyframes cinema-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 26px, 0);
-    filter: blur(6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-@keyframes rule-draw {
-  from {
-    transform: scaleX(0);
-    opacity: 0;
-  }
-  to {
-    transform: scaleX(1);
-    opacity: 1;
-  }
-}
-@keyframes cue-sweep {
-  0% {
-    transform: translateX(-100%);
-  }
-  60%,
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* ── 02 · Pinned scenes ────────────────────────────────── */
-
-.scene {
-  --scene-h: 2;
-  position: relative;
-  height: calc(var(--scene-h) * 100svh);
-}
-
-.scene-pin {
-  position: sticky;
-  top: 0;
-  height: 100svh;
-  overflow: clip;
-  display: grid;
-  isolation: isolate;
-}
-
-.scene-media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-.scene-scrim {
-  position: absolute;
-  inset: 0;
-  /* Three washes, each doing one job: a horizontal one so left-aligned
-     copy keeps contrast over a bright subject, a vertical one so the
-     masthead and the scene's foot stay legible, and a vignette to give
-     the frame edges. Without the horizontal pass, a panel sitting over
-     the lit centre of a photograph loses its lede entirely. */
-  background: linear-gradient(
-      to right,
-      rgba(8, 7, 6, 0.88) 0%,
-      rgba(8, 7, 6, 0.62) 34%,
-      rgba(8, 7, 6, 0.12) 62%,
-      transparent 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(11, 10, 9, 0.72) 0%,
-      rgba(11, 10, 9, 0.34) 38%,
-      rgba(11, 10, 9, 0.68) 100%
-    ),
-    radial-gradient(115% 85% at 50% 50%, transparent 42%, rgba(6, 5, 5, 0.58) 100%);
-}
-
-/* A centred panel has no "text side", so the horizontal wash would just
-   darken one half for no reason — even it out. */
-.scene-pin:has(.scene-panel[data-align="center"]) .scene-scrim {
-  background: linear-gradient(
-      to bottom,
-      rgba(11, 10, 9, 0.78) 0%,
-      rgba(11, 10, 9, 0.45) 40%,
-      rgba(11, 10, 9, 0.7) 100%
-    ),
-    radial-gradient(115% 85% at 50% 50%, transparent 40%, rgba(6, 5, 5, 0.62) 100%);
-}
-
-.scene-panel {
-  position: relative;
-  z-index: 2;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-block: clamp(4rem, 10vh, 8rem);
-  /* The panel carries the scene motion — it enters from below and
-     settles, using the view timeline where the browser has one. */
-  animation: scene-rise linear both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 42%;
-}
-.scene-panel[data-align="start"] {
-  justify-content: flex-start;
-}
-.scene-panel[data-align="center"] {
-  align-items: center;
-  text-align: center;
-}
-
-@keyframes scene-rise {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 8vh, 0);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* Browsers without scroll-driven animations get the settled state,
-   not the "from" keyframe stuck at opacity 0. */
-@supports not (animation-timeline: view()) {
-  .scene-panel {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.scene-credit {
-  position: absolute;
-  z-index: 2;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 1.1rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.06em;
-  color: var(--ink-3);
-  text-align: center;
-}
-
-/* ── Scene typography ──────────────────────────────────── */
-
-.scene-eyebrow {
-  font-size: 0.72rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.1rem;
-}
-:lang(kn) .scene-eyebrow,
-:lang(hi) .scene-eyebrow {
-  text-transform: none;
-  letter-spacing: 0.05em;
-  font-size: 0.82rem;
-}
-
-.scene-display {
-  font-family: var(--deva);
-  font-size: clamp(1.7rem, 4.6vw, 3.6rem);
-  line-height: 1.45;
-  color: var(--ink-0);
-  text-wrap: balance;
-  max-width: 20ch;
-  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.55);
-}
-
-.scene-lede {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
-  line-height: 1.6;
-  color: var(--ink-0);
-  max-width: 46ch;
-  margin-top: 1.5rem;
-}
-:lang(kn) .scene-lede,
-:lang(hi) .scene-lede {
-  font-style: normal;
-}
-
-.scene-meta {
-  margin-top: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
-  flex-wrap: wrap;
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-1);
-}
-:lang(kn) .scene-meta,
-:lang(hi) .scene-meta {
-  text-transform: none;
-  letter-spacing: 0.03em;
-}
-
-/* ── 03 · Statement band (type on black, no image) ─────── */
-
-.statement {
-  padding-block: clamp(7rem, 20vh, 14rem);
-  position: relative;
-}
-.statement-text {
-  font-family: var(--serif);
-  font-size: clamp(1.6rem, 4vw, 3.2rem);
-  line-height: 1.32;
-  letter-spacing: -0.01em;
-  color: var(--ink-0);
-  max-width: 24ch;
-  text-wrap: balance;
-}
-:lang(kn) .statement-text,
-:lang(hi) .statement-text {
-  letter-spacing: 0;
-  line-height: 1.5;
-  font-size: clamp(1.4rem, 3.4vw, 2.6rem);
-}
-.statement-sub {
-  margin-top: 2rem;
-  max-width: 52ch;
-  color: var(--ink-1);
-  font-size: 1.02rem;
-  line-height: 1.85;
-}
-
-/* ── 04 · Pillar index, cinematic ──────────────────────── */
-
-.index-list {
-  list-style: none;
-  border-top: 1px solid var(--stroke-soft);
-}
-
-.index-row {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  gap: clamp(1rem, 4vw, 3rem);
-  padding-block: clamp(1.5rem, 3.4vw, 2.6rem);
-  border-bottom: 1px solid var(--stroke-soft);
-  position: relative;
-}
-
-/* The accent wash that sweeps in behind a hovered row. */
-.index-row::before {
-  content: "";
-  position: absolute;
-  inset: 0 -2rem;
-  background: linear-gradient(90deg, var(--gold-wash), transparent 70%);
-  opacity: 0;
-  transition: opacity 400ms ease;
-  pointer-events: none;
-}
-
-.index-num {
-  font-family: var(--sans);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  color: var(--ink-3);
-  font-variant-numeric: tabular-nums;
-}
-
-.index-name {
-  font-family: var(--serif);
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  font-weight: 300;
-  line-height: 1.12;
-  color: var(--ink-0);
-  transition: color 300ms ease;
-}
-:lang(kn) .index-name,
-:lang(hi) .index-name {
-  font-size: clamp(1.3rem, 3.4vw, 2.4rem);
-  line-height: 1.35;
-}
-
-.index-blurb {
-  color: var(--ink-2);
-  font-size: 0.92rem;
-  line-height: 1.7;
-  max-width: 54ch;
-  margin-top: 0.4rem;
-  transition: color 300ms ease;
-}
-
-.index-glyph {
-  font-family: var(--deva);
-  font-size: clamp(1.4rem, 3vw, 2.2rem);
-  color: var(--ink-3);
-  transition: color 300ms ease, transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-
-@media (hover: hover) {
-  .index-row:hover::before {
-    opacity: 1;
-  }
-  .index-row:hover .index-name {
-    color: var(--gold-bright);
-  }
-  .index-row:hover .index-blurb {
-    color: var(--ink-1);
-  }
-  .index-row:hover .index-glyph {
-    color: var(--gold);
-    transform: translateX(6px);
-  }
-}
-.index-row:focus-within::before {
-  opacity: 1;
-}
-.index-row:focus-within .index-name {
-  color: var(--gold-bright);
-}
-
-@media (max-width: 640px) {
-  .index-row {
-    grid-template-columns: auto 1fr;
-  }
-  .index-glyph {
-    display: none;
-  }
-}
-
-/* ── 05 · Mahavakya cells ──────────────────────────────── */
-
-.vakya-cinema {
-  display: grid;
-  gap: 1px;
-  background: var(--stroke-soft);
-  border-block: 1px solid var(--stroke-soft);
-}
-@media (min-width: 760px) {
-  .vakya-cinema {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 1140px) {
-  .vakya-cinema {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.vakya-cell {
-  background: var(--bg-0);
-  padding: clamp(1.8rem, 3.2vw, 2.6rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  position: relative;
-  transition: background 420ms ease;
-  min-height: 15rem;
-}
-.vakya-cell-sanskrit {
-  font-family: var(--deva);
-  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
-  line-height: 1.5;
-  color: var(--ink-0);
-}
-.vakya-cell-translit {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.9rem;
-  color: var(--gold);
-}
-.vakya-cell-text {
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--ink-2);
-  margin-top: auto;
-}
-@media (hover: hover) {
-  .vakya-cell:hover {
-    background: var(--bg-2);
-  }
-}
-
-/* ── 06 · Tally, restyled for the cinematic page ───────── */
-
-.tally-cinema {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--stroke-soft);
-  border-block: 1px solid var(--stroke-soft);
-}
-@media (min-width: 700px) {
-  .tally-cinema {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-@media (min-width: 1040px) {
-  .tally-cinema {
-    grid-template-columns: repeat(6, 1fr);
-  }
-}
-.tally-cell {
-  background: var(--bg-0);
-  padding: clamp(1.6rem, 3vw, 2.4rem) 1rem;
-  text-align: center;
-}
-
-/* ── Reduced motion: hold everything still ─────────────── */
-
-@media (prefers-reduced-motion: reduce) {
-  .cinema-plate,
-  .cinema-core {
-    transform: none !important;
-    opacity: 1 !important;
-  }
-  .cinema-om,
-  .cinema-title,
-  .cinema-rule,
-  .cinema-tagline,
-  .cinema-sub,
-  .cinema-actions,
-  .scene-panel {
+  .reveal-item {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
   }
-  .cinema-cue-line::after {
-    animation: none;
-  }
-  .cinema-frame {
-    transition: none;
-  }
 }
-
-/* ── Masthead over a cinematic hero ────────────────────────
-   On a page that opens with a full-viewport frame, the header
-   must float over the photograph rather than sit on a bar above
-   it — otherwise the hero is pushed down by 68px and its own
-   footer (frame credit, scroll cue) falls off the bottom of the
-   viewport.
-
-   It starts transparent over a soft top scrim and settles into
-   the normal solid bar once the hero is scrolled away. The
-   settling is a scroll-driven animation, so there is no scroll
-   listener and nothing to desynchronise.
-
-   Guarded by @supports: a browser without scroll timelines keeps
-   the ordinary opaque masthead rather than being left with a
-   permanently transparent one over body copy.
-   ───────────────────────────────────────────────────────── */
-
-@supports (animation-timeline: scroll()) {
-  body:has(.cinema) .cinema {
-    /* Pull the frame up under the header so the image is full-bleed. */
-    margin-top: calc(-1 * var(--masthead-h));
-  }
-
-  body:has(.cinema) .masthead {
-    background-color: rgba(11, 10, 9, 0);
-    backdrop-filter: none;
-    border-bottom-color: transparent;
-    animation: masthead-settle linear both;
-    animation-timeline: scroll();
-    animation-range: 30vh 85vh;
-  }
-
-  /* A soft wash so the lockup stays legible against a bright frame.
-     Sits behind the element background, so it is covered as that
-     background fades in. */
-  body:has(.cinema) .masthead::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(to bottom, rgba(6, 5, 5, 0.78), transparent);
-    pointer-events: none;
-  }
-
-  @keyframes masthead-settle {
-    to {
-      background-color: rgba(11, 10, 9, 0.92);
-      border-bottom-color: var(--stroke-soft);
-      backdrop-filter: saturate(140%) blur(14px);
-    }
-  }
-}
-
-/* ═════════════════════════════════════════════════════════
-   COLOUR GRADING + ADVANCED MOTION
-
-   Every full-viewport surface publishes three properties sampled
-   from its own photograph (see lib/hero.ts):
-
-     --frame-tint    the frame's hue, pushed dark
-     --frame-accent  the frame's most chromatic colour, lifted
-     --frame-scrim   how hard to darken, by frame brightness
-
-   Rules below read those instead of fixed colours, so the page
-   grades to whatever is behind it. They all carry sane defaults,
-   so any surface that has not published a grade still renders.
-   ═════════════════════════════════════════════════════════ */
-
-.cinema,
-.scene {
-  --frame-tint: #0b0a09;
-  --frame-accent: var(--gold);
-  --frame-scrim: 0.55;
-
-  /* Colour transitions are what make the grade cross-fade with the
-     photograph rather than snap to it. Long, because the frames
-     themselves cross-fade over 1.6s. */
-  transition: --frame-tint 1600ms linear, --frame-accent 1600ms linear;
-}
-
-/* Registering the properties as <color> is what lets them animate at
-   all — an unregistered custom property is a string and jumps. */
-@property --frame-tint {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #0b0a09;
-}
-@property --frame-accent {
-  syntax: "<color>";
-  inherits: true;
-  initial-value: #c9a227;
-}
-
-/* ── Hero: graded scrim + pointer parallax ─────────────── */
-
-.cinema {
-  --mx: 0;
-  --my: 0;
-}
-
-/* The plate now carries the pointer parallax as well as the scroll
-   drift. The pointer term is small on purpose: it should register as
-   the frame having depth, not as the page moving under the cursor. */
-.cinema-plate {
-  transform: scale(calc(1.04 + var(--p) * 0.14))
-    translate3d(calc(var(--mx) * -14px), calc(var(--my) * -14px + var(--p) * 4vh), 0);
-}
-
-.cinema-scrim {
-  /* Weighted to the top and bottom edges — where the masthead lockup and
-     the frame caption sit — and kept light across the middle so the
-     photograph itself stays vivid. Grading the frame should not mean
-     flattening it. */
-  background:
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--frame-tint) 88%, black) 0%,
-      color-mix(in srgb, var(--frame-tint) 34%, transparent) 30%,
-      color-mix(in srgb, var(--frame-tint) 44%, transparent) 62%,
-      var(--bg-0) 100%
-    );
-  opacity: calc(0.42 + var(--frame-scrim) * 0.46);
-  transition: opacity 1600ms linear;
-}
-
-.cinema-vignette {
-  background: radial-gradient(
-    120% 90% at 50% 45%,
-    transparent 38%,
-    color-mix(in srgb, var(--frame-tint) 78%, black) 100%
-  );
-}
-
-/* The text block counter-moves against the plate — opposing directions
-   at different rates is what separates the layers in depth. */
-.cinema-core {
-  transform: translate3d(calc(var(--mx) * 5px), calc(var(--my) * 5px + var(--p) * -12vh), 0);
-}
-
-/* Decoration follows the frame; fixed chrome (buttons) keeps the gold. */
-/* No transition here on purpose: --frame-accent is a registered property
-   that is already interpolating on the section. Adding `transition: color`
-   as well made the glyph lag a beat behind the hairline reading the very
-   same variable — the om stayed blue while the rule had gone gold. */
-.cinema-om {
-  color: var(--frame-accent);
-  text-shadow: 0 0 34px color-mix(in srgb, var(--frame-accent) 45%, transparent);
-}
-
-.cinema-rule {
-  background: linear-gradient(90deg, transparent, var(--frame-accent), transparent);
-}
-
-.cinema-cue-line::after {
-  background: linear-gradient(90deg, transparent, var(--frame-accent), transparent);
-}
-
-/* ── Hero caption + frame ticks ────────────────────────── */
-
-.cinema-foot {
-  gap: 0.7rem;
-}
-
-.cinema-caption {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.15rem;
-  animation: caption-in 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-
-@keyframes caption-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 8px, 0);
-    filter: blur(3px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-/* Which frame of the rotation is showing, and how far through it is. */
-.cinema-ticks {
-  display: flex;
-  gap: 6px;
-}
-.cinema-tick {
-  width: 22px;
-  height: 2px;
-  background: rgba(242, 235, 221, 0.18);
-  overflow: hidden;
-  position: relative;
-}
-.cinema-tick[data-on]::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: var(--frame-accent);
-  transform-origin: 0 50%;
-  animation: tick-fill 7000ms linear both;
-}
-@keyframes tick-fill {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-/* ── Scenes: graded scrim + slow drift on the photograph ─ */
-
-.scene-scrim {
-  background:
-    linear-gradient(
-      to right,
-      color-mix(in srgb, var(--frame-tint) 94%, black) 0%,
-      color-mix(in srgb, var(--frame-tint) 70%, transparent) 34%,
-      color-mix(in srgb, var(--frame-tint) 16%, transparent) 62%,
-      transparent 100%
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--frame-tint) 74%, transparent) 0%,
-      color-mix(in srgb, var(--frame-tint) 34%, transparent) 38%,
-      color-mix(in srgb, var(--frame-tint) 70%, transparent) 100%
-    ),
-    radial-gradient(
-      115% 85% at 50% 50%,
-      transparent 42%,
-      color-mix(in srgb, var(--frame-tint) 72%, black) 100%
-    );
-  opacity: calc(0.5 + var(--frame-scrim) * 0.46);
-}
-
-.scene-pin:has(.scene-panel[data-align="center"]) .scene-scrim {
-  background:
-    linear-gradient(
-      to bottom,
-      color-mix(in srgb, var(--frame-tint) 80%, transparent) 0%,
-      color-mix(in srgb, var(--frame-tint) 44%, transparent) 40%,
-      color-mix(in srgb, var(--frame-tint) 72%, transparent) 100%
-    ),
-    radial-gradient(
-      115% 85% at 50% 50%,
-      transparent 40%,
-      color-mix(in srgb, var(--frame-tint) 74%, black) 100%
-    );
-}
-
-.scene-eyebrow {
-  color: var(--frame-accent);
-}
-
-/* A slow push-in across the whole scene. Scroll-driven, so it is
-   welded to the scrollbar and reverses correctly when scrolling up. */
-@supports (animation-timeline: view()) {
-  .scene-media {
-    animation: scene-push linear both;
-    animation-timeline: view();
-    animation-range: cover 0% cover 100%;
-    will-change: transform;
-  }
-  @keyframes scene-push {
-    from {
-      transform: scale(1.12) translate3d(0, -1.5vh, 0);
-    }
-    to {
-      transform: scale(1) translate3d(0, 1.5vh, 0);
-    }
-  }
-
-  /* The panel's own copy staggers in rather than arriving as one block. */
-  .scene-panel > * {
-    animation: scene-line linear both;
-    animation-timeline: view();
-  }
-  .scene-panel > :nth-child(1) { animation-range: entry 12% cover 34%; }
-  .scene-panel > :nth-child(2) { animation-range: entry 16% cover 38%; }
-  .scene-panel > :nth-child(3) { animation-range: entry 20% cover 42%; }
-  .scene-panel > :nth-child(4) { animation-range: entry 24% cover 46%; }
-  .scene-panel > :nth-child(5) { animation-range: entry 28% cover 50%; }
-
-  @keyframes scene-line {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 3.2vh, 0);
-      filter: blur(5px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-      filter: none;
-    }
-  }
-
-  /* The panel itself no longer moves — its children do. */
-  .scene-panel {
-    animation: none;
-    opacity: 1;
-    transform: none;
-  }
-}
-
-/* ── Index rows: a graded sweep, and a travelling rule ─── */
-
-.index-row::before {
-  background: linear-gradient(
-    90deg,
-    color-mix(in srgb, var(--gold) 12%, transparent),
-    transparent 70%
-  );
-}
-
-/* A hairline that draws across the row on hover, left to right. */
-.index-row::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 1px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-  transition: transform 620ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  pointer-events: none;
-}
-@media (hover: hover) {
-  .index-row:hover::after {
-    transform: scaleX(1);
-  }
-}
-.index-row:focus-within::after {
-  transform: scaleX(1);
-}
-
-/* ── Reduced motion: hold the new motion still too ──────── */
-
-@media (prefers-reduced-motion: reduce) {
-  .cinema-plate,
-  .cinema-core {
-    transform: none !important;
-  }
-  .cinema-caption,
-  .cinema-tick[data-on]::after,
-  .scene-media,
-  .scene-panel > * {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-  }
-  .cinema-tick[data-on] {
-    background: var(--frame-accent);
-  }
-}
-
-/* ── The text plate ────────────────────────────────────────
-   A whole-frame luminance average is not enough to guarantee
-   contrast: Ranakpur measures mid-dark overall while being bright
-   white marble in exactly the band the title sits in, which left
-   the tagline and buttons barely legible.
-
-   So the copy carries its own pool of shadow, tinted to the frame
-   and sized to the text rather than the viewport. The edges of the
-   photograph stay vivid; only the area under the words is darkened.
-   ───────────────────────────────────────────────────────── */
-
-.cinema-core::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 50%;
-  top: 50%;
-  width: min(160vw, 1500px);
-  height: min(115vh, 1000px);
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  background: radial-gradient(
-    52% 46% at 50% 50%,
-    color-mix(in srgb, var(--frame-tint) 88%, black) 0%,
-    color-mix(in srgb, var(--frame-tint) 62%, transparent) 42%,
-    transparent 74%
-  );
-  opacity: calc(0.6 + var(--frame-scrim) * 0.5);
-  transition: opacity 1600ms linear;
-}
-
-/* The scene panels need the same guarantee — a pinned photograph can
-   be bright exactly where its panel sits. Anchored left, because the
-   panel is left-aligned unless it says otherwise. */
-.scene-panel::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0 auto 0 -12vw;
-  width: min(92vw, 1000px);
-  pointer-events: none;
-  background: radial-gradient(
-    68% 44% at 32% 50%,
-    color-mix(in srgb, var(--frame-tint) 82%, black) 0%,
-    color-mix(in srgb, var(--frame-tint) 52%, transparent) 46%,
-    transparent 76%
-  );
-  opacity: calc(0.55 + var(--frame-scrim) * 0.45);
-}
-.scene-panel[data-align="center"]::before {
-  inset: 0;
-  width: auto;
-  background: radial-gradient(
-    56% 44% at 50% 50%,
-    color-mix(in srgb, var(--frame-tint) 82%, black) 0%,
-    color-mix(in srgb, var(--frame-tint) 52%, transparent) 46%,
-    transparent 76%
-  );
-}
-
-/* The frame caption sits wherever the photograph happens to be palest —
-   on the Varanasi sunrise that is bright wet stone, which swallowed it
-   entirely. Give the foot its own gradient rather than relying on the
-   main scrim, which is deliberately light across the lower middle. */
-.cinema-foot::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: -2.5rem -50vw -2rem;
-  pointer-events: none;
-  background: linear-gradient(
-    to top,
-    color-mix(in srgb, var(--frame-tint) 92%, black) 0%,
-    color-mix(in srgb, var(--frame-tint) 55%, transparent) 55%,
-    transparent 100%
-  );
-  opacity: 0.85;
-}
-.cinema-foot {
-  isolation: isolate;
-}
-
-/* ═════════════════════════════════════════════════════════
-   THE READER — rebuilt
-
-   Replaces the first pass at the verse page. What changed and
-   why:
-
-     · the ambient field is a canvas, not stacked gradients, so
-       the layers actually move at different rates
-     · the verse sits on a rail with its number, so a long text
-       reads as a text rather than as a stack of cards
-     · the language comparison panel is gone — the page has ONE
-       reading language and everything on it follows that choice
-     · a spine tracks position and takes keyboard input
-
-   Everything animated is behind @supports or prefers-reduced-
-   motion, so the settled state is always the fallback.
-   ═════════════════════════════════════════════════════════ */
-
-.reader {
-  position: relative;
-  isolation: isolate;
-  min-height: 100vh;
-}
-
-/* ── Ambient field ─────────────────────────────────────── */
-
-.aurora {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.aurora-canvas {
-  position: absolute;
-  /* Overscan: the blobs drift past the edges, and a canvas exactly
-     the size of the viewport would show them turning around. */
-  inset: -12%;
-  width: 124%;
-  height: 124%;
-  opacity: var(--aurora-o, 0.55);
-  filter: blur(46px) saturate(115%);
-  transform: translateZ(0);
-}
-
-/* A little noise over the top. Without it, a large area of smooth
-   gradient bands visibly on 8-bit displays. */
-.aurora-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.15;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .aurora-canvas {
-    /* No JS runs, so the canvas is blank — fall back to a static
-       wash rather than showing nothing. */
-    background: radial-gradient(60% 50% at 30% 25%, rgba(201, 162, 39, 0.16), transparent 70%),
-      radial-gradient(50% 45% at 75% 65%, rgba(90, 130, 190, 0.12), transparent 70%);
-    opacity: 0.6;
-    filter: blur(30px);
-  }
-}
-
-/* ── Masthead of the text ──────────────────────────────── */
-
-.reader-head {
-  padding-block: clamp(3.5rem, 12vh, 8rem) clamp(2rem, 6vh, 4rem);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.35rem;
-}
-
-.reader-kicker {
-  font-size: 0.68rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-:lang(kn) .reader-kicker,
-:lang(hi) .reader-kicker {
-  text-transform: none;
-  letter-spacing: 0.06em;
-  font-size: 0.82rem;
-}
-
-.reader-title {
-  font-family: var(--deva) !important;
-  font-size: clamp(2.6rem, 9vw, 6.5rem);
-  line-height: 1.1;
-  color: var(--ink-0);
-  margin-top: 0.6rem;
-  text-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
-  animation: title-in 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
-}
-@keyframes title-in {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 22px, 0) scale(0.985);
-    filter: blur(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-.reader-name {
-  font-family: var(--serif);
-  font-size: clamp(1.15rem, 2.4vw, 1.75rem);
-  color: var(--gold-bright);
-}
-.reader-iast {
-  font-size: 0.95rem;
-  opacity: 0.7;
-}
-
-.reader-lede {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(1rem, 1.9vw, 1.3rem);
-  line-height: 1.7;
-  color: var(--ink-1);
-  max-width: 54ch;
-  margin-top: 1.4rem;
-  text-wrap: balance;
-}
-:lang(kn) .reader-lede,
-:lang(hi) .reader-lede {
-  font-style: normal;
-  font-family: inherit;
-}
-
-.reader-facts {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.6rem 2rem;
-  margin-top: 1.8rem;
-  font-size: 0.85rem;
-  color: var(--ink-1);
-}
-.reader-facts i {
-  font-style: normal;
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  display: block;
-  margin-bottom: 0.2rem;
-}
-:lang(kn) .reader-facts i,
-:lang(hi) .reader-facts i {
-  text-transform: none;
-  letter-spacing: 0.04em;
-  font-size: 0.72rem;
-}
-
-.reader-note {
-  font-size: 0.72rem;
-  color: var(--ink-3);
-  margin-top: 1.4rem;
-}
-@media (max-width: 860px) {
-  .reader-note {
-    display: none;
-  }
-}
-
-/* ── Language choice ───────────────────────────────────── */
-
-.langchoice {
-  margin-top: 2.4rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.8rem;
-  transition: opacity 260ms ease;
-}
-.langchoice[data-pending] {
-  opacity: 0.45;
-  pointer-events: none;
-}
-
-.langchoice-label {
-  font-size: 0.62rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-:lang(kn) .langchoice-label,
-:lang(hi) .langchoice-label {
-  text-transform: none;
-  letter-spacing: 0.04em;
-  font-size: 0.78rem;
-}
-
-.langchoice-track {
-  position: relative;
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 1fr;
-  gap: 0;
-  border: 1px solid var(--stroke);
-  border-radius: 999px;
-  padding: 4px;
-  background: rgba(11, 10, 9, 0.55);
-  backdrop-filter: blur(10px);
-}
-
-/* The indicator is positioned from the selected index, so it cannot
-   drift out of sync with the buttons when a webfont swaps in. */
-.langchoice-thumb {
-  position: absolute;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  width: calc((100% - 8px) / var(--count));
-  transform: translateX(calc(var(--i) * 100%));
-  border-radius: 999px;
-  background: linear-gradient(
-    180deg,
-    color-mix(in srgb, var(--gold) 26%, transparent),
-    color-mix(in srgb, var(--gold) 12%, transparent)
-  );
-  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
-  transition: transform 520ms cubic-bezier(0.34, 1.4, 0.4, 1);
-}
-
-.langchoice-opt {
-  position: relative;
-  z-index: 1;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  padding: 0.6rem 1.5rem;
-  font-family: var(--sans);
-  font-size: 0.88rem;
-  color: var(--ink-2);
-  transition: color 300ms ease;
-  white-space: nowrap;
-}
-.langchoice-opt[data-active] {
-  color: var(--ink-0);
-}
-@media (hover: hover) {
-  .langchoice-opt:hover {
-    color: var(--gold-bright);
-  }
-}
-.langchoice-opt:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-  border-radius: 999px;
-}
-
-/* ── Body layout: spine + verses ───────────────────────── */
-
-.reader-body {
-  display: grid;
-  gap: 0;
-  padding-bottom: clamp(3rem, 10vh, 7rem);
-}
-@media (min-width: 1080px) {
-  .reader-body {
-    grid-template-columns: 64px 1fr;
-    gap: 2.5rem;
-  }
-}
-
-.spine {
-  display: none;
-}
-@media (min-width: 1080px) {
-  .spine {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.9rem;
-    position: sticky;
-    top: calc(var(--masthead-h) + 3rem);
-    height: fit-content;
-    max-height: calc(100vh - var(--masthead-h) - 6rem);
-  }
-}
-
-.spine-count {
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  color: var(--ink-2);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.05em;
-}
-.spine-count i {
-  font-style: normal;
-  color: var(--ink-3);
-  margin-inline: 2px;
-}
-
-.spine-ticks {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-  align-items: center;
-}
-
-.spine-tick {
-  display: block;
-  padding: 3px 6px;
-}
-.spine-tick span {
-  display: block;
-  width: 14px;
-  height: 2px;
-  background: var(--ink-3);
-  opacity: 0.5;
-  transition: width 420ms cubic-bezier(0.34, 1.4, 0.4, 1),
-    background 320ms ease, opacity 320ms ease;
-}
-.spine-tick[data-passed] span {
-  background: var(--gold-dim);
-  opacity: 0.8;
-}
-.spine-tick[data-active] span {
-  width: 28px;
-  background: var(--gold-bright);
-  opacity: 1;
-}
-@media (hover: hover) {
-  .spine-tick:hover span {
-    width: 24px;
-    background: var(--gold);
-    opacity: 1;
-  }
-}
-.spine-tick:focus-visible {
-  outline: 1px solid var(--gold);
-  outline-offset: 2px;
-}
-
-.reader-verses {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(2.5rem, 7vh, 5rem);
-  min-width: 0;
-}
-
-/* ── One verse ─────────────────────────────────────────── */
-
-.vstage {
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  scroll-margin-top: calc(var(--masthead-h) + 1.5rem);
-}
-@media (min-width: 720px) {
-  .vstage {
-    grid-template-columns: 54px 1fr;
-    gap: 1.6rem;
-  }
-}
-
-/* The rail carries the verse number and a line that fills as the
-   verse is opened — a small, quiet indication of where you are. */
-.vstage-rail {
-  display: none;
-}
-@media (min-width: 720px) {
-  .vstage-rail {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.8rem;
-    padding-top: 0.4rem;
-  }
-}
-.vstage-rail-num {
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  color: var(--ink-2);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.06em;
-  transition: color 400ms ease;
-}
-.vstage[data-open] .vstage-rail-num {
-  color: var(--gold-bright);
-}
-.vstage-rail-line {
-  flex: 1;
-  width: 1px;
-  min-height: 40px;
-  background: linear-gradient(to bottom, var(--stroke), transparent);
-  transition: background 600ms ease;
-}
-.vstage[data-open] .vstage-rail-line {
-  background: linear-gradient(to bottom, var(--gold-dim), transparent);
-}
-
-.vstage-body {
-  min-width: 0;
-  padding: clamp(1.4rem, 3vw, 2.4rem);
-  border: 1px solid var(--stroke-soft);
-  border-radius: 3px;
-  background: linear-gradient(
-    145deg,
-    rgba(19, 17, 16, 0.72),
-    rgba(11, 10, 9, 0.55)
-  );
-  backdrop-filter: blur(14px) saturate(120%);
-  transition: border-color 500ms ease, transform 500ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-@media (hover: hover) {
-  .vstage:hover .vstage-body {
-    border-color: var(--stroke);
-  }
-}
-.vstage[data-open] .vstage-body {
-  border-color: color-mix(in srgb, var(--gold) 26%, transparent);
-}
-
-.vstage-ghost {
-  position: absolute;
-  top: -0.4rem;
-  right: 0.6rem;
-  font-family: var(--serif);
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 1;
-  color: var(--ink-0);
-  opacity: 0.04;
-  pointer-events: none;
-  user-select: none;
-  font-variant-numeric: tabular-nums;
-}
-
-.vstage-head {
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: clamp(1.2rem, 3vw, 1.9rem);
-}
-.vstage-num {
-  font-size: 0.66rem;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: var(--gold);
-  white-space: nowrap;
-}
-:lang(kn) .vstage-num,
-:lang(hi) .vstage-num {
-  text-transform: none;
-  letter-spacing: 0.05em;
-  font-size: 0.82rem;
-}
-.vstage-handle {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 0.98rem;
-  color: var(--ink-2);
-}
-:lang(kn) .vstage-handle,
-:lang(hi) .vstage-handle {
-  font-style: normal;
-  font-family: inherit;
-}
-
-/* ── The mūla ──────────────────────────────────────────── */
-
-.vstage-sanskrit {
-  font-family: var(--deva) !important;
-  font-size: clamp(1.3rem, 2.9vw, 2.15rem);
-  line-height: 1.9;
-  color: var(--ink-0);
-  text-wrap: balance;
-}
-
-.vstage-iast {
-  margin-top: 0.7rem;
-}
-.vstage-iast p {
-  font-size: clamp(0.82rem, 1.4vw, 0.97rem);
-  line-height: 1.9;
-  color: var(--gold-bright);
-  opacity: 0.72;
-}
-
-/* Each pada arrives a beat after the one above it. --line is set per
-   line in the component, so the stagger works for a two-line śloka
-   or a five-line one without an nth-child list. */
-@supports (animation-timeline: view()) {
-  .vstage-sanskrit,
-  .vstage-iast p {
-    animation: pada-in linear both;
-    animation-timeline: view();
-    animation-range: entry 2% cover 24%;
-    animation-delay: calc(var(--line, 0) * -0.05s);
-  }
-  @keyframes pada-in {
-    from {
-      opacity: 0;
-      transform: translate3d(0, 1.4vh, 0);
-      filter: blur(7px);
-    }
-    to {
-      opacity: 1;
-      transform: none;
-      filter: none;
-    }
-  }
-}
-
-.vstage-translation {
-  font-family: var(--serif);
-  font-size: clamp(1.02rem, 1.9vw, 1.3rem);
-  line-height: 1.8;
-  color: var(--ink-0);
-  max-width: 62ch;
-  margin-top: clamp(1.2rem, 3vw, 1.9rem);
-  padding-left: 1.2rem;
-  border-left: 2px solid var(--gold-dim);
-}
-:lang(kn) .vstage-translation,
-:lang(hi) .vstage-translation {
-  font-family: inherit;
-  font-size: clamp(0.98rem, 1.7vw, 1.16rem);
-  line-height: 2;
-}
-
-/* ── Terms ─────────────────────────────────────────────── */
-
-.vstage-terms {
-  margin-top: clamp(1.3rem, 3vw, 1.9rem);
-}
-.vstage-terms-label {
-  display: block;
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 0.8rem;
-}
-:lang(kn) .vstage-terms-label,
-:lang(hi) .vstage-terms-label {
-  text-transform: none;
-  letter-spacing: 0.04em;
-  font-size: 0.76rem;
-}
-.vstage-terms dl {
-  display: grid;
-  gap: 0.55rem;
-}
-@media (min-width: 820px) {
-  .vstage-terms dl {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 0.8rem 2rem;
-  }
-}
-.vterm {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 0.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--stroke-soft);
-}
-.vterm dt {
-  display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
-}
-.vterm dt .deva {
-  font-size: 1.08rem;
-  color: var(--ink-0);
-}
-.vterm dt .translit {
-  font-size: 0.8rem;
-  color: var(--gold);
-}
-.vterm dd {
-  font-size: 0.84rem;
-  color: var(--ink-2);
-  line-height: 1.6;
-}
-
-/* ── Disclosure ────────────────────────────────────────── */
-
-.vstage-actions {
-  margin-top: clamp(1.3rem, 3vw, 1.9rem);
-}
-
-.vbtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.7rem;
-  background: transparent;
-  border: 1px solid var(--stroke);
-  border-radius: 999px;
-  color: var(--gold-bright);
-  font-family: var(--sans);
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 0.65rem 1.3rem;
-  cursor: pointer;
-  transition: border-color 320ms ease, color 320ms ease, background 320ms ease;
-}
-:lang(kn) .vbtn,
-:lang(hi) .vbtn {
-  text-transform: none;
-  letter-spacing: 0.03em;
-  font-size: 0.85rem;
-}
-@media (hover: hover) {
-  .vbtn:hover {
-    border-color: var(--gold);
-    background: var(--gold-wash);
-  }
-}
-.vbtn:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-.vbtn-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-  transition: transform 460ms cubic-bezier(0.34, 1.4, 0.4, 1), background 320ms ease;
-}
-.vstage[data-open] .vbtn-dot {
-  transform: scale(1.9);
-  background: var(--gold-bright);
-}
-
-.vstage-drawer {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 560ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-.vstage-drawer[data-open] {
-  grid-template-rows: 1fr;
-}
-.vstage-drawer-inner {
-  overflow: hidden;
-  min-height: 0;
-}
-
-.vstage-note {
-  margin-top: 1.5rem;
-  padding-left: 1.2rem;
-  border-left: 1px solid var(--stroke);
-  max-width: 72ch;
-}
-.vstage-note p {
-  font-size: 1rem;
-  line-height: 2;
-  color: var(--ink-1);
-}
-.vstage-note p + p {
-  margin-top: 1.1rem;
-}
-
-/* ── Lecture link ──────────────────────────────────────── */
-
-.vvideo {
-  display: flex;
-  gap: 1.1rem;
-  align-items: center;
-  margin-top: 1.6rem;
-  padding: 0.8rem;
-  border: 1px solid var(--stroke-soft);
-  border-radius: 4px;
-  background: rgba(11, 10, 9, 0.5);
-  transition: border-color 360ms ease, background 360ms ease, transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1);
-  max-width: 30rem;
-}
-@media (hover: hover) {
-  .vvideo:hover {
-    border-color: color-mix(in srgb, var(--gold) 34%, transparent);
-    background: var(--bg-2);
-    transform: translateX(4px);
-  }
-}
-.vvideo:focus-visible {
-  outline: 2px solid var(--gold);
-  outline-offset: 3px;
-}
-
-.vvideo-thumb {
-  position: relative;
-  flex-shrink: 0;
-  width: 116px;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 3px;
-  background: var(--bg-3);
-}
-.vvideo-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.vvideo-play {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  color: var(--ink-0);
-  background: rgba(6, 5, 5, 0.35);
-  transition: background 360ms ease;
-}
-@media (hover: hover) {
-  .vvideo:hover .vvideo-play {
-    background: rgba(6, 5, 5, 0.1);
-  }
-}
-
-.vvideo-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.15rem;
-  min-width: 0;
-}
-.vvideo-kicker {
-  font-size: 0.58rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-:lang(kn) .vvideo-kicker,
-:lang(hi) .vvideo-kicker {
-  text-transform: none;
-  letter-spacing: 0.03em;
-  font-size: 0.72rem;
-}
-.vvideo-title {
-  font-family: var(--serif);
-  font-size: 1rem;
-  color: var(--ink-0);
-}
-.vvideo-org {
-  font-size: 0.74rem;
-  color: var(--ink-2);
-}
-.vvideo-cta {
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-  margin-top: 0.3rem;
-}
-
-/* ── Foot ──────────────────────────────────────────────── */
-
-.reader-foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--stroke-soft);
-  padding-block: clamp(2rem, 6vh, 3.5rem);
-}
-.reader-credit {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  align-items: flex-start;
-}
-
-/* ── Reduced motion ────────────────────────────────────── */
-
-@media (prefers-reduced-motion: reduce) {
-  .reader-title,
-  .vstage-sanskrit,
-  .vstage-iast p {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    filter: none !important;
-  }
-  .vstage-drawer,
-  .langchoice-thumb,
-  .spine-tick span,
-  .vbtn-dot,
-  .vvideo {
-    transition: none;
-  }
-}
-
-/* ── Reader tuning ─────────────────────────────────────────
-   First render was too hazy: the ambient field sat at full
-   strength directly behind body copy, which lifted the black
-   point everywhere and left the small-caps labels barely
-   readable. Two fixes — hold the field back, and put a scrim
-   between it and the text.
-   ───────────────────────────────────────────────────────── */
-
-.aurora-canvas {
-  opacity: 0.34;
-}
-
-/* A vignette + floor so the field reads as depth behind the page
-   rather than as fog over it. */
-.aurora::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(120% 80% at 50% 30%, transparent 20%, rgba(6, 5, 5, 0.72) 100%),
-    linear-gradient(to bottom, rgba(11, 10, 9, 0.5), rgba(11, 10, 9, 0.2) 40%, rgba(11, 10, 9, 0.72));
-  pointer-events: none;
-}
-
-/* Small-caps labels were set in --ink-3, which is a hairline colour,
-   not a text colour. */
-.reader-facts i,
-.langchoice-label,
-.vstage-terms-label,
-.vvideo-kicker {
-  color: var(--ink-2);
-}
-.reader-note {
-  color: var(--ink-2);
-  opacity: 0.85;
-}
-
-/* The work's own name deserves more presence than the summary. */
-.reader-title {
-  font-size: clamp(3.4rem, 12vw, 8rem);
-  letter-spacing: 0.02em;
-}
-.reader-name {
-  margin-top: 0.5rem;
-  letter-spacing: 0.01em;
-}
-
-/* ── Mūla in the reader's script ───────────────────────────
-   .vstage-sanskrit and .reader-title pin the Devanagari face with
-   !important so an ambient :lang() rule cannot pull Sanskrit into
-   the Kannada face on a Kannada page. When the mūla has actually
-   been transliterated INTO Kannada, that pin has to give way — so
-   the Kannada variant is stated at higher specificity rather than
-   by removing the guard.
-   ───────────────────────────────────────────────────────── */
-
-.vstage-sanskrit.kannada,
-.reader-title.kannada,
-.vterm dt .kannada {
-  font-family: var(--kannada) !important;
-}
-
-/* Kannada sits larger on the body than Devanagari at the same size,
-   and its conjuncts need more room between lines. */
-.vstage-sanskrit.kannada {
-  font-size: clamp(1.2rem, 2.6vw, 1.95rem);
-  line-height: 2;
-}
-.reader-title.kannada {
-  font-size: clamp(2.8rem, 10vw, 6.5rem);
-  line-height: 1.25;
-}
-
-/* A text held as selections says so, in the header, before any verse.
-   Styled as a notice rather than a chip — it is a caveat about what the
-   page contains, not a decorative label. */
-.reader-partial {
-  margin-top: 1.6rem;
-  max-width: 60ch;
-  padding: 0.8rem 1.2rem;
-  border: 1px solid color-mix(in srgb, var(--saffron) 32%, transparent);
-  border-radius: 3px;
-  background: color-mix(in srgb, var(--saffron) 7%, transparent);
-  color: var(--ink-1);
-  font-size: 0.88rem;
-  line-height: 1.7;
-}
-.reader-partial strong {
-  color: var(--saffron);
-  font-weight: 500;
-  margin-right: 0.4rem;
-}
-
-/* ═════════════════════════════════════════════════════════
-   HOMEPAGE — index, not slideshow
-
-   Replaces the pinned-scene treatment. There is one photographic
-   moment (the hero); everything below is structured, and each
-   band has a different shape so the page has rhythm rather than
-   repetition.
-   ═════════════════════════════════════════════════════════ */
-
-.home-band {
-  padding-block: clamp(3.5rem, 9vh, 6.5rem);
-}
-.home-band-tight {
-  padding-bottom: clamp(1.5rem, 4vh, 2.5rem);
-}
-
-.home-head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 2rem;
-  flex-wrap: wrap;
-  margin-bottom: clamp(1.8rem, 4vh, 3rem);
-}
-
-.home-title {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(1.5rem, 3.4vw, 2.6rem);
-  line-height: 1.25;
-  color: var(--ink-0);
-  max-width: 34ch;
-  text-wrap: balance;
-  margin-top: 0.5rem;
-}
-
-/* A head whose row has no button on the right is not a two-column
-   layout — it is one column, and the title should use the width. */
-.home-head:has(> :only-child) .home-title {
-  max-width: 46ch;
-}
-:lang(kn) .home-title,
-:lang(hi) .home-title {
-  font-family: inherit;
-  font-size: clamp(1.3rem, 3vw, 2.1rem);
-  line-height: 1.45;
-}
-
-/* ── The readable texts ────────────────────────────────── */
-
-.readgrid {
-  display: grid;
-  gap: 1px;
-  background: var(--stroke-soft);
-  border: 1px solid var(--stroke-soft);
-}
-@media (min-width: 720px) {
-  .readgrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-@media (min-width: 1080px) {
-  .readgrid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-.readcard {
-  position: relative;
-  background: var(--bg-1);
-  padding: clamp(1.6rem, 3vw, 2.2rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.9rem;
-  min-height: 16rem;
-  overflow: hidden;
-  transition: background 420ms ease;
-}
-@media (hover: hover) {
-  .readcard:hover {
-    background: var(--bg-2);
-  }
-}
-
-/* The name in its own script, oversized and bled off the corner —
-   the card's identity before any Latin text is read. */
-.readcard-glyph {
-  position: absolute;
-  right: -0.5rem;
-  bottom: -1.2rem;
-  font-size: clamp(4rem, 9vw, 6.5rem);
-  line-height: 1;
-  color: var(--ink-0);
-  opacity: 0.06;
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-  transition: opacity 420ms ease, transform 620ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-@media (hover: hover) {
-  .readcard:hover .readcard-glyph {
-    opacity: 0.12;
-    transform: translate(-4px, -6px);
-  }
-}
-
-.readcard-body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-  position: relative;
-  z-index: 1;
-}
-.readcard-name {
-  font-family: var(--serif);
-  font-size: clamp(1.25rem, 2.2vw, 1.6rem);
-  color: var(--ink-0);
-  line-height: 1.2;
-}
-:lang(kn) .readcard-name,
-:lang(hi) .readcard-name {
-  font-family: inherit;
-  line-height: 1.4;
-}
-.readcard-iast {
-  font-size: 0.85rem;
-  opacity: 0.75;
-}
-.readcard-teaching {
-  font-size: 0.9rem;
-  line-height: 1.7;
-  color: var(--ink-2);
-  margin-top: 0.6rem;
-}
-
-.readcard-foot {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: auto;
-  padding-top: 1rem;
-  position: relative;
-  z-index: 1;
-}
-.readcard-arrow {
-  margin-left: auto;
-  color: var(--gold);
-  transition: transform 460ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-@media (hover: hover) {
-  .readcard:hover .readcard-arrow {
-    transform: translateX(5px);
-  }
-}
-
-/* ── Verse of the day, as a band ───────────────────────── */
-
-.verseband {
-  border-block: 1px solid var(--stroke-soft);
-  background: linear-gradient(
-    100deg,
-    color-mix(in srgb, var(--gold) 5%, transparent),
-    transparent 60%
-  );
-  padding-block: clamp(2.5rem, 7vh, 4.5rem);
-}
-
-.verseband-inner {
-  display: grid;
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  align-items: center;
-}
-@media (min-width: 900px) {
-  .verseband-inner {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.verseband-mula {
-  font-family: var(--deva) !important;
-  font-size: clamp(1.4rem, 3.2vw, 2.3rem);
-  line-height: 1.7;
-  color: var(--ink-0);
-  margin-block: 0.7rem 0.5rem;
-}
-.verseband-mula.kannada {
-  font-family: var(--kannada) !important;
-  font-size: clamp(1.25rem, 2.8vw, 2rem);
-  line-height: 1.85;
-}
-
-.verseband-text {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: clamp(1.05rem, 2vw, 1.35rem);
-  line-height: 1.75;
-  color: var(--ink-0);
-  max-width: 46ch;
-}
-:lang(kn) .verseband-text,
-:lang(hi) .verseband-text {
-  font-family: inherit;
-  font-style: normal;
-  line-height: 1.95;
-}
-
-/* ── The citation promise ──────────────────────────────── */
-
-.citeband {
-  padding-block: clamp(3rem, 8vh, 5.5rem);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.2rem;
-  border-top: 1px solid var(--stroke-soft);
-}
-.citeband-text {
-  font-family: var(--serif);
-  font-size: clamp(1.15rem, 2.4vw, 1.75rem);
-  line-height: 1.6;
-  color: var(--ink-0);
-  max-width: 52ch;
-  text-wrap: balance;
-}
-:lang(kn) .citeband-text,
-:lang(hi) .citeband-text {
-  font-family: inherit;
-  font-size: clamp(1rem, 2vw, 1.4rem);
-  line-height: 1.85;
-}
-
-/* The mosaic keeps its original 4-column span layout — an earlier edit
-   forced it to 3 columns, which left the fifth tile spanning wider than
-   the grid it sits in. */

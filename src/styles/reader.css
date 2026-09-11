@@ -1,0 +1,634 @@
+/* ─────────────────────────────────────────────────────────
+   The verse-by-verse reader.
+   A light field behind the title, one card per verse, the
+   Sanskrit in deep kumkum-brown, the translation in serif on a
+   paper inset, and the commentary folded away until asked for.
+   ───────────────────────────────────────────────────────── */
+
+.reader {
+  position: relative;
+  isolation: isolate;
+}
+
+/* The ambient field: pastel light drifting behind the title only. */
+.aurora {
+  position: absolute;
+  z-index: -1;
+  inset: calc(-1 * var(--masthead-space)) 0 auto 0;
+  height: 110vh;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: var(--aurora-o, 0.55);
+  -webkit-mask-image: linear-gradient(180deg, #000 35%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 35%, transparent 100%);
+}
+.aurora-canvas {
+  width: 100%;
+  height: 100%;
+  filter: blur(46px) saturate(1.15);
+  transform: scale(1.2);
+}
+.aurora-grain {
+  display: none;
+}
+
+/* ── Title block ──────────────────────────────────────── */
+
+.reader-head {
+  display: grid;
+  justify-items: center;
+  gap: 0.85rem;
+  padding-block: clamp(1.8rem, 5vw, 4rem) clamp(2rem, 5vw, 3rem);
+  text-align: center;
+}
+
+.reader-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  padding: 0.45em 0.95em 0.45em 0.8em;
+  border: 1px solid var(--line-2);
+  border-radius: var(--pill);
+  background: rgba(255, 252, 244, 0.7);
+  font: 500 0.8rem/1.2 var(--sans);
+  color: var(--ink-2);
+}
+.reader-kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--marigold);
+}
+
+.reader-title {
+  font-size: clamp(4.6rem, 15vw, 10.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  color: var(--sacred);
+}
+
+.reader-name {
+  font: 700 clamp(1.6rem, 3.2vw, 2.6rem) / 1.1 var(--sans);
+  letter-spacing: var(--track-title);
+  color: var(--ink);
+}
+
+.reader-iast {
+  font-size: 1.1rem;
+}
+
+.reader-lede {
+  max-width: 58ch;
+  margin-top: 0.3rem;
+  font-size: clamp(1.04rem, 1.35vw, 1.18rem);
+  line-height: 1.6;
+  color: var(--ink-3);
+  text-wrap: pretty;
+}
+
+.reader-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  max-width: 920px;
+  margin-top: 0.6rem;
+}
+.reader-facts span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.6rem 0.95rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  font-size: 0.92rem;
+  line-height: 1.4;
+  color: var(--ink);
+  text-align: left;
+}
+.reader-facts i {
+  flex: none;
+  font-style: normal;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.reader-partial {
+  max-width: 64ch;
+  margin-top: 0.6rem;
+  padding: 0.9rem 1.15rem;
+  border-radius: var(--r);
+  background: #fff4dc;
+  border: 1px solid rgba(197, 138, 0, 0.3);
+  color: #6b4a00;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.reader-note {
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--ink-4);
+}
+
+/* ── Language choice: a segmented pill ────────────────── */
+
+.langchoice {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+  transition: opacity 0.2s ease;
+}
+.langchoice[data-pending] {
+  opacity: 0.6;
+}
+
+.langchoice-label {
+  font: 500 0.8rem/1 var(--sans);
+  color: var(--ink-3);
+}
+
+.langchoice-track {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--count), minmax(0, 1fr));
+  min-width: min(100%, 360px);
+  padding: 5px;
+  border-radius: var(--pill);
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Positioned from the selected index, not measured from the DOM, so a
+   late font swap cannot knock it out of place. */
+.langchoice-thumb {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 5px;
+  width: calc((100% - 10px) / var(--count));
+  border-radius: var(--pill);
+  background: var(--ink);
+  transform: translateX(calc(var(--i) * 100%));
+  transition: transform 0.45s var(--ease);
+}
+
+.langchoice-opt {
+  position: relative;
+  z-index: 1;
+  padding: 0.72rem 1.2rem;
+  border-radius: var(--pill);
+  font: 600 0.95rem/1 var(--sans);
+  color: var(--ink-2);
+  transition: color 0.25s ease;
+}
+.langchoice-opt .deva,
+.langchoice-opt .kannada {
+  font-family: var(--sans);
+}
+.langchoice-opt[data-active] {
+  color: var(--paper);
+}
+@media (hover: hover) {
+  .langchoice-opt:not([data-active]):hover {
+    color: var(--ink);
+  }
+}
+
+/* ── Body: spine + verses ─────────────────────────────── */
+
+.reader-body {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 1080px) {
+  .reader-body {
+    grid-template-columns: 96px minmax(0, 1fr);
+    gap: 2.2rem;
+    align-items: start;
+  }
+}
+
+.spine {
+  display: none;
+}
+@media (min-width: 1080px) {
+  .spine {
+    position: sticky;
+    top: calc(var(--masthead-space) + 1.25rem);
+    display: grid;
+    justify-items: center;
+    gap: 0.9rem;
+    max-height: calc(100vh - var(--masthead-space) - 2.5rem);
+    overflow-y: auto;
+    padding: 1rem 0.5rem;
+    border-radius: var(--r-lg);
+    background: var(--card);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    scrollbar-width: none;
+  }
+}
+
+.spine-count {
+  font: 700 1rem/1 var(--sans);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.spine-count i {
+  margin: 0 0.12em;
+  font-style: normal;
+  color: var(--ink-4);
+}
+
+.spine-ticks {
+  list-style: none;
+  display: grid;
+  justify-items: center;
+  gap: 2px;
+}
+
+.spine-tick {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 14px;
+}
+.spine-tick span {
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: var(--paper-3);
+  transition: width 0.35s var(--ease), background-color 0.2s ease;
+}
+.spine-tick[data-passed] span {
+  background: var(--gold-dim);
+}
+.spine-tick[data-active] span {
+  width: 24px;
+  background: var(--marigold);
+}
+@media (hover: hover) {
+  .spine-tick:hover span {
+    background: var(--ink-3);
+  }
+}
+
+.reader-verses {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  min-width: 0;
+}
+
+/* ── One verse ────────────────────────────────────────── */
+
+.vstage {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(1.4rem, 4vw, 3rem);
+  border-radius: var(--r-xl);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--masthead-space) + 1rem);
+  transition: box-shadow 0.35s ease, border-color 0.2s ease;
+}
+.vstage[data-open] {
+  border-color: var(--line-2);
+  box-shadow: var(--shadow);
+}
+
+.vstage-rail {
+  display: none;
+}
+
+.vstage-ghost {
+  position: absolute;
+  z-index: 0;
+  right: clamp(1rem, 3vw, 2.2rem);
+  top: clamp(0.4rem, 2vw, 1rem);
+  font: 800 clamp(4rem, 10vw, 7.5rem) / 1 var(--sans);
+  letter-spacing: -0.06em;
+  color: var(--paper-2);
+  pointer-events: none;
+  user-select: none;
+}
+
+.vstage-body {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  gap: 1.15rem;
+  min-width: 0;
+}
+
+.vstage-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.8rem;
+}
+
+.vstage-num {
+  display: inline-flex;
+  padding: 0.4rem 0.8rem;
+  border-radius: var(--pill);
+  background: var(--marigold-soft);
+  font: 600 0.8rem/1 var(--sans);
+  color: #6b4a00;
+}
+
+.vstage-handle {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-3);
+}
+html:lang(kn) .vstage-handle,
+html:lang(hi) .vstage-handle {
+  font-style: normal;
+  font-size: 1rem;
+}
+
+.vstage-mula {
+  display: grid;
+  gap: 0.05rem;
+  padding-top: 0.3rem;
+}
+
+.vstage-sanskrit {
+  font-size: clamp(1.4rem, 3vw, 2.3rem);
+  line-height: 1.55;
+  color: var(--sacred);
+  overflow-wrap: anywhere;
+}
+
+.vstage-iast {
+  display: grid;
+  gap: 0.1rem;
+}
+.vstage-iast .translit {
+  font-size: clamp(0.95rem, 1.3vw, 1.08rem);
+  line-height: 1.55;
+}
+
+/* Each pada arrives on its own delay as the verse enters, so a śloka
+   assembles line by line — the way it is heard. */
+@supports (animation-timeline: view()) {
+  .vstage-sanskrit {
+    animation: pada-in linear both;
+    animation-timeline: view();
+    animation-range: entry calc(5% + var(--line, 0) * 7%) entry calc(40% + var(--line, 0) * 7%);
+  }
+  @keyframes pada-in {
+    from {
+      opacity: 0;
+      transform: translateX(-12px);
+    }
+  }
+}
+
+.vstage-translation {
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--r);
+  background: var(--paper);
+  border-left: 3px solid var(--marigold);
+  font-family: var(--serif);
+  font-size: clamp(1.28rem, 2.1vw, 1.65rem);
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+html:lang(kn) .vstage-translation,
+html:lang(hi) .vstage-translation {
+  font-size: clamp(1.08rem, 1.7vw, 1.3rem);
+  line-height: 1.75;
+}
+
+.vstage-terms {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.vstage-terms-label {
+  font: 500 0.8rem/1 var(--sans);
+  color: var(--ink-3);
+}
+
+.vstage-terms dl {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+}
+
+.vterm {
+  padding: 0.8rem 0.95rem;
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+.vterm dt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+.vterm dt > span:first-child {
+  font-size: 1.2rem;
+  color: var(--sacred);
+}
+.vterm dt .translit {
+  font-size: 0.86rem;
+}
+.vterm dd {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.vstage-actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.vbtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.72rem 1.15rem;
+  border-radius: var(--pill);
+  border: 1px solid var(--line-2);
+  background: var(--card);
+  font: 600 0.9rem/1 var(--sans);
+  color: var(--ink);
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .vbtn:hover {
+    border-color: var(--ink-3);
+  }
+}
+.vstage[data-open] .vbtn {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.vbtn-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--marigold);
+  transition: transform 0.3s var(--ease);
+}
+.vstage[data-open] .vbtn-dot {
+  transform: scale(1.35);
+}
+
+/* grid-rows 0fr → 1fr animates a panel of unknown height without
+   measuring it. */
+.vstage-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s var(--ease);
+}
+.vstage-drawer[data-open] {
+  grid-template-rows: 1fr;
+}
+
+.vstage-drawer-inner {
+  display: grid;
+  gap: 1.2rem;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.vstage-note {
+  display: grid;
+  gap: 0.9rem;
+  max-width: var(--measure);
+  padding-top: 0.5rem;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+.vvideo {
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  max-width: 560px;
+  padding: 0.6rem;
+  border-radius: var(--r);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  transition: border-color 0.2s ease, box-shadow 0.3s ease;
+}
+@media (hover: hover) {
+  .vvideo:hover {
+    border-color: var(--line-2);
+    box-shadow: var(--shadow-sm);
+  }
+}
+@media (max-width: 560px) {
+  .vvideo {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.vvideo-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: calc(var(--r) - 0.4rem);
+  background: var(--paper-3);
+}
+.vvideo-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.vvideo-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+
+.vvideo-meta {
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.2rem 0.6rem 0.2rem 0;
+}
+.vvideo-kicker {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+.vvideo-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.vvideo-org {
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+.vvideo-cta {
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--saffron);
+}
+
+/* ── Foot ─────────────────────────────────────────────── */
+
+.reader-foot {
+  display: grid;
+  gap: 1.5rem;
+  padding-top: clamp(2rem, 5vw, 3rem);
+}
+@media (min-width: 800px) {
+  .reader-foot {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
+  }
+}
+
+.reader-credit {
+  display: grid;
+  justify-items: start;
+  gap: 0.45rem;
+  padding: 1.3rem 1.4rem;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vstage-drawer,
+  .langchoice-thumb,
+  .spine-tick span {
+    transition: none;
+  }
+  .vstage-sanskrit {
+    animation: none !important;
+  }
+}

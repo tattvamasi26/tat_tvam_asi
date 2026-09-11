@@ -36,15 +36,15 @@ export function Mark({
       focusable="false"
     >
       {/* Outer enclosure */}
-      <circle cx="24" cy="24" r="21" stroke="currentColor" strokeWidth="1" opacity="0.55" />
+      <circle cx="24" cy="24" r="21" stroke="currentColor" strokeWidth="1.7" opacity="0.55" />
       {/* Inner enclosure */}
-      <circle cx="24" cy="24" r="13" stroke="currentColor" strokeWidth="1" opacity="0.85" />
+      <circle cx="24" cy="24" r="13" stroke="currentColor" strokeWidth="1.7" opacity="0.85" />
 
       {/* Four cardinal strokes, bridging the two enclosures */}
       <path
         d="M24 3v8M24 37v8M3 24h8M37 24h8"
         stroke="currentColor"
-        strokeWidth="1"
+        strokeWidth="1.7"
         strokeLinecap="round"
         opacity="0.75"
       />

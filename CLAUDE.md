@@ -115,7 +115,22 @@ Don't route around these.
 
 ### UI
 
-- Nearly all styling is in `src/app/globals.css` (~4k lines): semantic classes such as `.shell`, `.card`, `.btn`, `.reader-*`, `.sanskrit` and `.translit`, built on CSS variables (`--bg-0`, `--gold`, `--ink-2`). Tailwind is configured, but its utility classes are rare (mostly `src/components/ui/index.tsx`). Follow the `globals.css` approach.
+- The theme is warm and light: paper background (`--paper`), deep brown ink (`--ink`, `--ink-2`…), marigold for fills (`--marigold`), and `--gold` / `--saffron` as the accents that are safe for text. Sanskrit is set in `--sacred`.
+- Styling is hand-written CSS on semantic classes, split by surface:
+  - `src/app/globals.css`: tokens, type, buttons and chips, inside Tailwind `@layer`s.
+  - `src/styles/{chrome,pages,home,reader}.css`: unlayered, imported in order from `app/layout.tsx`.
+
+  Tailwind utilities are barely used; follow the semantic-class approach.
+- **Tailwind drops any `@layer` class it can't find written out literally** in `src/app`, `src/components` or `src/pages`. A class name built at runtime (such as the `tone-${i % 7}` colour palette) must live in an unlayered file (the tones are in `styles/pages.css`), or it silently disappears.
+- Fonts are loaded with `next/font` in `app/layout.tsx`:
+  - Inter Tight: interface and headlines.
+  - Instrument Serif: the italic `.accent` phrase in headlines, and verse translations.
+  - Tiro Devanagari Sanskrit and Tiro Kannada: the mūla and IAST.
+  - Noto Sans Devanagari and Noto Sans Kannada: Hindi and Kannada interface text.
+
+  Headline letter-spacing and line-height are tokens that relax under `html:lang(kn)` and `html:lang(hi)`; don't hard-code negative tracking on Indic text.
+- Headlines that have an italic turn are two UI strings (e.g. `heroHeadline` + `heroAccent`), so each language decides where its own turn falls.
+- The old dark-theme token names (`--bg-0`, `--text0`, `--ink-0`…) are kept as aliases for the hand-authored Kollur Mookambika page and the admin screens.
 - `"use client"` is limited to interactive pieces: the reader's stage and spine, the language choice, the nav, motion, and the home hero. These import only **types** from `@/lib/data`. A value import would ship the entire seed corpus to the browser.
 - Images are either local (`public/images/`) or from hosts allowed in `next.config.js` `remotePatterns` (Wikimedia, i.ytimg.com). Every image URL is stored with an `image_credit`.
 - `/teachers` permanently redirects to `/acharyas`.

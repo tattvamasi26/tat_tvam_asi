@@ -1,0 +1,510 @@
+/* ─────────────────────────────────────────────────────────
+   Inner pages: page heads, card grids, feature rows, fact
+   tiles, verse lists, the shared text index, detail heroes,
+   search, and the citation notice.
+   ───────────────────────────────────────────────────────── */
+
+/* ── Tones ─────────────────────────────────────────────────
+   A family of warm-to-cool washes for anything that comes in a
+   set — sections, the Mahavakyas, texts. Components pick a tone by
+   index (`tone-${i % 7}`), so a new section gets a colour without
+   anyone choosing one.
+
+   Deliberately NOT inside a Tailwind @layer: Tailwind drops layered
+   classes it cannot find written out literally in the source, and
+   these names are only ever built at runtime. */
+
+.tone-0 { --tone-1: #ffe8d2; --tone-2: #ffc896; --tone-a: #e0701b; --tone-ink: #7a3405; }
+.tone-1 { --tone-1: #fff3cc; --tone-2: #ffd66b; --tone-a: #d99a00; --tone-ink: #6b4a00; }
+.tone-2 { --tone-1: #e9e6ff; --tone-2: #c6beff; --tone-a: #5b4bd6; --tone-ink: #2f2596; }
+.tone-3 { --tone-1: #e2f2e4; --tone-2: #b4dec0; --tone-a: #2e8b57; --tone-ink: #1d5436; }
+.tone-4 { --tone-1: #ffe2da; --tone-2: #ffb9a6; --tone-a: #c8431f; --tone-ink: #7c2410; }
+.tone-5 { --tone-1: #dcf3ee; --tone-2: #a8e0d4; --tone-a: #0f8a7e; --tone-ink: #0b4f48; }
+.tone-6 { --tone-1: #ffe4ef; --tone-2: #ffbdd6; --tone-a: #c23a78; --tone-ink: #7a1d49; }
+
+/* ── Page head ────────────────────────────────────────── */
+
+.pagehead {
+  position: relative;
+  padding-block: clamp(2.25rem, 6vw, 5rem) clamp(2rem, 4.5vw, 3.25rem);
+}
+
+.pagehead-inner {
+  position: relative;
+  display: grid;
+  gap: 1.05rem;
+  justify-items: start;
+}
+
+.pagehead .title {
+  max-width: 18ch;
+}
+
+.pagehead .lede {
+  max-width: 56ch;
+}
+
+/* The section's glyph, large and quiet behind the title. */
+.pagehead-glyph {
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(5rem, 17vw, 14rem);
+  line-height: 1;
+  color: var(--saffron-2);
+  opacity: 0.14;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Card grid ────────────────────────────────────────── */
+
+.grid-cards {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.4rem);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  color: inherit;
+  transition:
+    transform 0.45s var(--ease),
+    box-shadow 0.35s ease,
+    border-color 0.2s ease;
+}
+@media (hover: hover) {
+  a.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+    border-color: var(--line-2);
+  }
+}
+
+.card-img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  margin: 0.5rem 0.5rem 0;
+  border-radius: calc(var(--r-lg) - 0.5rem);
+  overflow: hidden;
+  background: var(--paper-2);
+}
+.card-img img {
+  transition: transform 0.9s var(--ease);
+}
+@media (hover: hover) {
+  a.card:hover .card-img img {
+    transform: scale(1.045);
+  }
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  flex: 1;
+  padding: 1.25rem 1.4rem 1.4rem;
+}
+
+.card-title {
+  font: 700 1.3rem/1.2 var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+}
+
+.card-text {
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+.card-foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 1rem;
+}
+
+/* ── Feature row ──────────────────────────────────────── */
+
+.feature {
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: center;
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border-radius: var(--r-xl);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+@media (min-width: 860px) {
+  .feature {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+  .feature[data-flip] .feature-media {
+    order: 2;
+  }
+}
+
+.feature-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: calc(var(--r-xl) - 0.7rem);
+  background: var(--paper-2);
+}
+
+.feature-body {
+  display: grid;
+  gap: 1rem;
+  justify-items: start;
+  padding: clamp(0.9rem, 3vw, 2rem);
+}
+
+/* ── Fact tiles ───────────────────────────────────────── */
+
+.factbar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr));
+  gap: 0.6rem;
+}
+
+.fact {
+  padding: 1rem 1.15rem;
+  border-radius: var(--r);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.card .fact {
+  background: var(--paper-2);
+  border-color: transparent;
+}
+
+.fact-label {
+  margin-bottom: 0.35rem;
+  font: 500 0.78rem/1.2 var(--sans);
+  color: var(--ink-3);
+}
+
+.fact-value {
+  font: 600 1.05rem/1.35 var(--sans);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+/* ── Verse list ───────────────────────────────────────── */
+
+.verse {
+  position: relative;
+  padding: clamp(1.4rem, 3vw, 2.2rem);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.45s var(--ease), box-shadow 0.35s ease;
+}
+@media (hover: hover) {
+  a.verse:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+}
+
+.verse-mahavakya {
+  background: linear-gradient(135deg, var(--card) 35%, #fff0cc 100%);
+  border-color: rgba(197, 138, 0, 0.28);
+}
+
+/* ── The shared text index (Vedas, Gita, Stutis, Bhajans) ── */
+
+.text-list {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.text-list-dense {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+}
+
+.text-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem 1.4rem;
+  align-items: start;
+  height: 100%;
+  padding: 0.9rem;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+@media (min-width: 900px) {
+  .text-list:not(.text-list-dense) .text-row {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+
+.text-row-glyph {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: clamp(88px, 12vw, 140px);
+  aspect-ratio: 1;
+  padding: 0.6rem;
+  border-radius: var(--r);
+  background: linear-gradient(150deg, var(--tone-1), var(--tone-2));
+  color: var(--tone-ink);
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.text-row-num {
+  position: absolute;
+  top: 0.55rem;
+  right: 0.7rem;
+  font: 600 0.72rem/1 var(--sans);
+  opacity: 0.7;
+}
+
+.text-list-dense .text-row {
+  grid-template-columns: minmax(0, 1fr);
+}
+.text-list-dense .text-row-glyph {
+  width: 100%;
+  aspect-ratio: auto;
+  min-height: 92px;
+  place-items: center start;
+  padding: 1rem 1.2rem;
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  text-align: left;
+}
+
+.text-row-body {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  padding: 0.35rem 0.4rem 0.4rem;
+}
+
+.text-row-name {
+  font: 700 clamp(1.2rem, 2vw, 1.55rem)/1.2 var(--sans);
+  letter-spacing: var(--track-head);
+}
+
+.text-row-summary {
+  margin-top: 0.35rem;
+}
+
+.text-row-teaching {
+  margin-top: 0.8rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--paper-2);
+}
+.text-row-teaching .lede {
+  color: var(--ink-2);
+}
+
+.text-row-meta {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0 0.4rem 0.3rem;
+}
+@media (min-width: 900px) {
+  .text-list:not(.text-list-dense) .text-row-meta {
+    grid-column: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 0.5rem 0.5rem 0 0;
+  }
+}
+
+/* ── Section band heading (inside a page) ─────────────── */
+
+.band-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.band-head-text {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.band-index {
+  display: grid;
+  place-items: center;
+  min-width: 52px;
+  height: 52px;
+  padding: 0 0.7rem;
+  border-radius: var(--pill);
+  background: var(--marigold);
+  font: 700 1.1rem/1 var(--sans);
+  color: var(--ink);
+}
+
+/* ── Detail hero (a single temple) ────────────────────────
+   Inset and rounded, and pulled up under the floating masthead so
+   the photograph starts at the top of the window. */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  margin: calc(-1 * var(--masthead-space) + clamp(0.5rem, 1.4vw, 0.9rem)) clamp(0.5rem, 1.4vw, 0.9rem) 0;
+  border-radius: var(--r-xl);
+  color: #fff;
+  background: var(--night);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(27, 20, 5, 0.42) 0%, rgba(27, 20, 5, 0) 32%, rgba(27, 20, 5, 0.82) 100%);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero-inner {
+  display: grid;
+  gap: 0.85rem;
+  justify-items: start;
+  padding-top: calc(var(--masthead-space) + 2rem);
+  padding-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.hero .eyebrow {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.hero .display {
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.25);
+}
+
+.hero .subtitle {
+  color: var(--marigold-2);
+}
+
+.hero + .shell {
+  margin-top: 1.25rem;
+}
+
+/* ── Search ───────────────────────────────────────────── */
+
+.searchbar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 660px;
+  height: 62px;
+  padding: 0 0.6rem 0 1.3rem;
+  border-radius: var(--pill);
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  box-shadow: var(--shadow);
+  transition: border-color 0.2s ease, box-shadow 0.25s ease;
+}
+.searchbar:focus-within {
+  border-color: var(--marigold);
+  box-shadow: 0 0 0 4px rgba(245, 181, 35, 0.22), var(--shadow);
+}
+
+.searchbar input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  font: 500 1.05rem/1 var(--sans);
+  color: var(--ink);
+}
+.searchbar input::placeholder {
+  color: var(--ink-4);
+}
+
+/* ── The citation notice ──────────────────────────────── */
+
+.notice-uncited {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  width: fit-content;
+  margin-top: 1.1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: var(--r-sm);
+  background: #fff4dc;
+  border: 1px solid rgba(197, 138, 0, 0.3);
+  color: #7a5200;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+/* ── Stacking and fit ─────────────────────────────────── */
+
+/* The page-head glyph sits at z-index -1. Without its own stacking
+   context it would drop behind <body>, which paints a background of
+   its own (html carries the canvas colour). */
+.pagehead {
+  isolation: isolate;
+}
+
+/* A feature's photograph fills the full height of its row rather than
+   floating mid-card at 4:3 with empty paper above and below it. */
+@media (min-width: 860px) {
+  .feature {
+    align-items: stretch;
+  }
+  .feature-media {
+    aspect-ratio: auto;
+    min-height: 380px;
+  }
+  .feature-body {
+    align-content: center;
+  }
+}
+
+/* The native clear button on type=search is a blue ×; the field is
+   cleared by selecting it, like every other field. */
+.searchbar input::-webkit-search-cancel-button,
+.searchbar input::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
