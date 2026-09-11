@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import type { HeroImage } from "@/lib/hero";
+import { Arrow } from "@/components/ui/Arrow";
 
 export interface HeroBadge {
   icon: "sources" | "languages" | "reader";
@@ -114,7 +115,7 @@ export function HeroCinema({
 
         <div className="home-hero-actions">
           <a href={enter.href} className="btn">
-            {enter.label} <span aria-hidden="true">→</span>
+            {enter.label} <Arrow />
           </a>
           <a href={explore.href} className="btn-glass">
             {explore.label}

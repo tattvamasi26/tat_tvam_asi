@@ -2,10 +2,13 @@ import type { Metadata, Viewport } from "next";
 import {
   Inter_Tight,
   Instrument_Serif,
+  Cormorant_Garamond,
   Tiro_Devanagari_Sanskrit,
   Tiro_Kannada,
   Noto_Sans_Devanagari,
   Noto_Sans_Kannada,
+  Noto_Sans_Tamil,
+  Noto_Sans_Oriya,
 } from "next/font/google";
 import "./globals.css";
 import "@/styles/chrome.css";
@@ -26,11 +29,27 @@ const interTight = Inter_Tight({
 });
 
 // The turn in a headline, and verse translations: one italic serif.
+//
+// No generated fallback. next/font normally inserts a metric-matched
+// alias of a system font straight after the web font, and Instrument's
+// alias is Times New Roman — which then drew every IAST letter Instrument
+// lacks (the ṣ in "Upaniṣad") before the stack ever reached Tiro, which
+// has them all. Without the alias those letters fall through to Tiro.
 const instrument = Instrument_Serif({
   subsets: ["latin", "latin-ext"],
   weight: "400",
   style: ["normal", "italic"],
   variable: "--font-instrument",
+  display: "swap",
+  adjustFontFallback: false,
+});
+
+// The wordmark, as the logo design canvas sets it. One weight, Latin
+// only — it draws two words, on every page.
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: "500",
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -71,6 +90,24 @@ const notoKannada = Noto_Sans_Kannada({
   preload: false,
 });
 
+// Temple names are given in the temple's own language — Tamil and Odia
+// among them. Without a face for those scripts each device drew them in
+// whatever it had installed, so the same name looked different on every
+// phone. Fetched only on pages that contain those glyphs.
+const notoTamil = Noto_Sans_Tamil({
+  subsets: ["tamil"],
+  variable: "--font-noto-tamil",
+  display: "swap",
+  preload: false,
+});
+
+const notoOriya = Noto_Sans_Oriya({
+  subsets: ["oriya"],
+  variable: "--font-noto-oriya",
+  display: "swap",
+  preload: false,
+});
+
 export const metadata: Metadata = {
   title: { default: "Tat Tvam Asi", template: "%s | Tat Tvam Asi" },
   description:
@@ -88,7 +125,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = getLocale();
-  const fonts = [interTight, instrument, tiroSanskrit, tiroKannada, notoDeva, notoKannada]
+  const fonts = [
+    interTight,
+    instrument,
+    cormorant,
+    tiroSanskrit,
+    tiroKannada,
+    notoDeva,
+    notoKannada,
+    notoTamil,
+    notoOriya,
+  ]
     .map((f) => f.variable)
     .join(" ");
 

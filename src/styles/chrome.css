@@ -38,26 +38,73 @@
 .lockup {
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.55rem;
   color: var(--ink);
   flex: none;
 }
 
+/* The bloom. Ink petals take currentColor; the outer two read
+   --mark-accent, so a surface re-colours the mark by setting tokens. */
 .mark {
-  color: var(--saffron-2);
+  display: block;
   flex: none;
+  overflow: visible;
+  color: var(--mark-ink);
+}
+.mark-accent {
+  fill: var(--mark-accent);
 }
 
+/* Petals fan open from the stem, centre first — run each time the
+   index opens. The end state is each petal's own transform attribute. */
+.mark-bloom path {
+  animation: petal-open 0.8s var(--ease) both;
+  animation-delay: calc(var(--k, 0) * 70ms + 120ms);
+}
+@keyframes petal-open {
+  from {
+    opacity: 0;
+    transform: translate(100px, 148px) rotate(0deg) scale(0.35);
+  }
+}
+
+/* The name as the logo sets it: Cormorant Garamond, lightly spaced. */
 .lockup-text {
-  font: 700 1.14rem/1 var(--sans);
-  letter-spacing: -0.03em;
+  font: 500 1.45rem/1 var(--brand-serif);
+  letter-spacing: 0.045em;
   white-space: nowrap;
+  /* Cormorant's x-height sits low in its box; nudge it onto the mark's
+     optical centre rather than its geometric one. */
+  padding-top: 0.06em;
 }
 .lockup-text.deva,
 .lockup-text.kannada {
   font-weight: 400;
   font-size: 1.22rem;
   letter-spacing: 0;
+  padding-top: 0;
+}
+
+/* ── Arrows ──────────────────────────────────────────────
+   Drawn, not typed (see components/ui/Arrow.tsx). They sit on the
+   text's baseline and nudge toward where they point on hover. */
+.arrow {
+  display: inline-block;
+  flex: none;
+  vertical-align: -0.14em;
+  transition: transform 0.3s var(--ease);
+}
+@media (hover: hover) {
+  a:hover > .arrow-right,
+  button:hover > .arrow-right {
+    transform: translateX(3px);
+  }
+  a:hover > .arrow-left {
+    transform: translateX(-3px);
+  }
+  a:hover > .arrow-up-right {
+    transform: translate(2px, -2px);
+  }
 }
 
 .masthead-links {
@@ -498,8 +545,9 @@
 .footer .lockup {
   color: var(--on-night);
 }
+/* The reversed mark, as the canvas draws it on dark: ivory and brass. */
 .footer .lockup .mark {
-  color: var(--marigold);
+  color: var(--mark-ivory);
 }
 
 .footer-tagline {
@@ -535,11 +583,12 @@
   }
 }
 
+/* The name set large, in the logo's own face and spacing. */
 .footer-wordmark {
   display: block;
-  padding-bottom: 0.1em;
-  font: 700 clamp(3rem, 12.5vw, 11rem)/0.92 var(--sans);
-  letter-spacing: var(--track-display);
+  padding-bottom: 0.08em;
+  font: 500 clamp(3rem, 13vw, 12rem)/1 var(--brand-serif);
+  letter-spacing: 0.03em;
   color: var(--on-night);
   white-space: nowrap;
   opacity: 0.95;
@@ -588,4 +637,21 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+/* The brand name in Kannada or Devanagari. The lockup and the footer
+   wordmark name the Cormorant stack outright, which outranks the layered
+   script classes — so without these the name fell through to whatever
+   Indic font the device had. */
+.lockup-text.deva,
+.footer-wordmark.deva {
+  font-family: var(--deva);
+}
+.lockup-text.kannada,
+.footer-wordmark.kannada {
+  font-family: var(--kannada);
+}
+
+.nav-label {
+  line-height: var(--lh-snug);
 }

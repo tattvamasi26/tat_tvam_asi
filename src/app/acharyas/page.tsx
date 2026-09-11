@@ -3,6 +3,8 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getAllTeachers } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export const metadata: Metadata = { title: "Acharyas" };
 
@@ -41,7 +43,7 @@ export default function TeachersPage() {
                 <h2 className="title" style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>
                   {p.name}
                 </h2>
-                <p className="sanskrit" style={{ fontSize: "1.4rem" }}>{p.nameSanskrit}</p>
+                <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "1.4rem" }}>{scriptFor(p.nameSanskrit, locale)}</p>
 
                 <p className="prose clamp-4">{p.biography}</p>
 
@@ -57,7 +59,7 @@ export default function TeachersPage() {
                 </div>
 
                 <Link href={`/acharyas/${p.slug}`} className="btn-ghost" style={{ marginTop: "0.5rem" }}>
-                  {t.readMore} →
+                  {t.readMore} <Arrow />
                 </Link>
 
                 {p.imageCredit && <p className="credit">{t.imageCredit}: {p.imageCredit}</p>}

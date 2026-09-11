@@ -3,6 +3,7 @@ import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabaseBrowser, isSupabaseConfiguredBrowser } from "@/lib/supabase-browser";
+import { Arrow } from "@/components/ui/Arrow";
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -42,7 +43,7 @@ export default function AdminLoginPage() {
               see README.md, Steps 2–4.
             </p>
             <Link href="/" style={{ fontFamily: "var(--sans)", fontSize: "0.75rem", color: "var(--gold)" }}>
-              ← Back to the site
+              <Arrow dir="left" /> Back to the site
             </Link>
           </div>
         )}

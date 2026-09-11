@@ -22,7 +22,8 @@ import { Counter } from "@/components/home/Counter";
 import { FillQuote } from "@/components/home/FillQuote";
 import { Marquee } from "@/components/home/Marquee";
 import { Reveal } from "@/components/motion/Reveal";
-import { Mark } from "@/components/brand/Mark";
+import { Rosette } from "@/components/brand/Mark";
+import { Arrow } from "@/components/ui/Arrow";
 
 /**
  * The homepage: one photographic moment, then a run of bands that
@@ -149,7 +150,7 @@ export default function HomePage() {
                     <span className="pillar-blurb">{p.blurb}</span>
                   </span>
                   <span className="pillar-go" aria-hidden="true">
-                    →
+                    <Arrow />
                   </span>
                 </Link>
               </Reveal>
@@ -170,7 +171,7 @@ export default function HomePage() {
                 </h2>
               </div>
               <Link href="/upanishads" className="btn-outline">
-                {t.viewAll} <span aria-hidden="true">→</span>
+                {t.viewAll} <Arrow />
               </Link>
             </div>
           </Reveal>
@@ -210,7 +211,7 @@ export default function HomePage() {
                       </span>
                       {r.veda && <span className="chip">{r.veda}</span>}
                       <span className="readcard-arrow" aria-hidden="true">
-                        →
+                        <Arrow />
                       </span>
                     </span>
                   </span>
@@ -236,7 +237,7 @@ export default function HomePage() {
         <FillQuote text={t.homeQuote} />
         <p className="lede">{t.citationPromise}</p>
         <Link href="/about" className="btn-ghost">
-          {t.navAbout} <span aria-hidden="true">→</span>
+          {t.navAbout} <Arrow />
         </Link>
       </section>
 
@@ -256,12 +257,12 @@ export default function HomePage() {
                   {verse.source} · {verse.locator}
                 </span>
                 <Link href={`/verses/${verse.id}`} className="btn-dark">
-                  {t.readMore} <span aria-hidden="true">→</span>
+                  {t.readMore} <Arrow />
                 </Link>
               </div>
             </div>
-            <span className="votd-om deva" aria-hidden="true">
-              ॐ
+            <span className={`votd-om ${sc}`} aria-hidden="true">
+              {scriptFor("ॐ", locale)}
             </span>
           </div>
         </Reveal>
@@ -305,7 +306,7 @@ export default function HomePage() {
                 <h2 className="home-title home-title-sm">{t.conceptsBlurb}</h2>
               </div>
               <Link href="/concepts" className="btn-outline">
-                {t.viewAll} <span aria-hidden="true">→</span>
+                {t.viewAll} <Arrow />
               </Link>
             </div>
           </Reveal>
@@ -331,7 +332,7 @@ export default function HomePage() {
               <h2 className="home-title home-title-sm">{t.templesBlurb}</h2>
             </div>
             <Link href="/temples" className="btn-outline">
-              {t.viewAll} <span aria-hidden="true">→</span>
+              {t.viewAll} <Arrow />
             </Link>
           </div>
         </Reveal>
@@ -366,7 +367,7 @@ export default function HomePage() {
         <Reveal>
           <div className="cta-band">
             <span className="cta-yantra" aria-hidden="true">
-              <Mark size={640} />
+              <Rosette id="cta" size={640} />
             </span>
             <h2 className="home-title">
               {t.homeCtaTitle} <span className="accent">{t.homeCtaAccent}</span>
@@ -374,7 +375,7 @@ export default function HomePage() {
             <p className="lede">{t.homeCtaBody}</p>
             <div className="cta-actions">
               <Link href="/upanishads" className="btn">
-                {t.ctaStartReading} <span aria-hidden="true">→</span>
+                {t.ctaStartReading} <Arrow />
               </Link>
               <Link href="/search" className="btn-outline">
                 {t.navSearch}

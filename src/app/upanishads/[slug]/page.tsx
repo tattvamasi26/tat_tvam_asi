@@ -15,6 +15,7 @@ import { Aurora } from "@/components/motion/Aurora";
 import { LanguageChoice } from "@/components/content/LanguageChoice";
 import { VerseStage } from "@/components/content/VerseStage";
 import { VerseSpine } from "@/components/content/VerseSpine";
+import { Arrow } from "@/components/ui/Arrow";
 
 /**
  * The reader, for any Upanishad that has been entered completely.
@@ -143,7 +144,7 @@ export default function UpanishadReader({ params }: { params: { slug: string } }
               target="_blank"
               rel="noopener noreferrer"
             >
-              {t.labelWatch} ↗
+              {t.labelWatch} <Arrow dir="up-right" />
             </a>
           </div>
         )}
@@ -153,7 +154,7 @@ export default function UpanishadReader({ params }: { params: { slug: string } }
             {t.labelSource}: {verses[0]?.sourceTitle}
           </p>
           <Link href="/upanishads" className="btn-ghost" style={{ marginTop: "0.8rem" }}>
-            ← {t.upanishadsTitle}
+            <Arrow dir="left" /> {t.upanishadsTitle}
           </Link>
         </div>
       </footer>

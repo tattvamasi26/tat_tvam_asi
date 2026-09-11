@@ -3,6 +3,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getVerseById } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { scriptFor, scriptClass } from "@/lib/script";
+import { Caution } from "@/components/ui/Caution";
 
 // No generateStaticParams: reading the locale cookie makes this route
 // dynamic by definition — one URL has to be able to serve three languages.
@@ -24,11 +27,11 @@ export default function VerseDetailPage({ params }: { params: { id: string } }) 
       <section className="pagehead">
         <div className="shell pagehead-inner">
           <Link href="/verses" className="btn-ghost" style={{ marginBottom: "0.5rem" }}>
-            ← {t.versesTitle}
+            <Arrow dir="left" /> {t.versesTitle}
           </Link>
           {verse.isMahavakya && <span className="chip chip-gold">{t.labelMahavakya}</span>}
-          <h1 className="sanskrit" style={{ fontSize: "clamp(2.2rem, 6vw, 4rem)" }}>
-            {verse.sanskrit}
+          <h1 className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "clamp(2.2rem, 6vw, 4rem)" }}>
+            {scriptFor(verse.sanskrit, locale)}
           </h1>
           <p className="subtitle translit">{verse.transliteration}</p>
         </div>
@@ -50,7 +53,7 @@ export default function VerseDetailPage({ params }: { params: { id: string } }) 
         <p className="prose" style={{ marginTop: "0.9rem", fontSize: "1.2rem", color: "var(--ink-0)" }}>
           {verse.translation}
         </p>
-        {!verse.isCited && <p className="notice-uncited">⚠ {t.uncitedNotice}</p>}
+        {!verse.isCited && <p className="notice-uncited"><Caution /> {t.uncitedNotice}</p>}
 
         {verse.note && (
           <>

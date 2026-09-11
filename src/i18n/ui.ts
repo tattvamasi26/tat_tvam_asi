@@ -164,7 +164,8 @@ export interface UIStrings {
 }
 
 const en: UIStrings = {
-  siteName: "Tat Tvam Asi",
+  // Sentence case, as the logo's lockup sets the name.
+  siteName: "Tat tvam asi",
 
   navTeachings: "Teachings",
   navVerses: "Verses",

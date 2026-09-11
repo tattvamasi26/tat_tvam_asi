@@ -37,7 +37,7 @@ export default function TemplesPage() {
               )}
               <div className="card-body">
                 <h2 className="card-title">{tp.name}</h2>
-                <p className="translit">{tp.nameLocal}</p>
+                <p className="name-local">{tp.nameLocal}</p>
                 <p className="card-text clamp-3" style={{ marginTop: "0.5rem" }}>{tp.description}</p>
                 <div className="card-foot">
                   <span className="meta">
@@ -69,7 +69,7 @@ export default function TemplesPage() {
               <h2 className="title" style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>
                 Sri Mookambika Temple
               </h2>
-              <p className="kannada" style={{ color: "var(--gold)", fontSize: "1.2rem" }}>
+              <p className="kannada" lang="kn" style={{ color: "var(--gold)", fontSize: "1.2rem" }}>
                 ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ
               </p>
               <p className="prose">{t.kollurBlurb}</p>

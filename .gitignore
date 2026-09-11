@@ -2,6 +2,10 @@ node_modules/
 .next/
 *.tsbuildinfo
 
+# Test output
+/playwright-report/
+/test-results/
+
 # Secrets. .env.local holds the service-role key, which bypasses row-level
 # security entirely — committing it would hand write access to the whole
 # database to anyone who can read the repo.

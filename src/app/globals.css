@@ -58,8 +58,16 @@
     /* Type. Each stack names a Latin face first and the Indic faces
        after it, so Hindi and Kannada fall through glyph by glyph
        without any per-language rules. */
-    --sans: var(--font-inter-tight), var(--font-noto-deva), var(--font-noto-kn), system-ui, sans-serif;
-    --serif: var(--font-instrument), var(--font-tiro-sa), var(--font-tiro-kn), Georgia, serif;
+    --sans: var(--font-inter-tight), var(--font-noto-deva), var(--font-noto-kn), var(--font-noto-tamil), var(--font-noto-oriya), system-ui, sans-serif;
+    --serif: var(--font-instrument), var(--font-tiro-sa), var(--font-tiro-kn), var(--font-noto-tamil), var(--font-noto-oriya), Georgia, serif;
+    /* The wordmark's face, as the logo canvas specifies. */
+    --brand-serif: var(--font-cormorant), var(--font-instrument), Georgia, serif;
+
+    /* The logo's own colours, from the design canvas: its brown ink
+       option and brass. On dark surfaces the ink turns ivory. */
+    --mark-ink: #3a2a20;
+    --mark-accent: #c9954a;
+    --mark-ivory: #f1e9d8;
     --deva: var(--font-tiro-sa), var(--font-noto-deva), serif;
     --kannada: var(--font-tiro-kn), var(--font-noto-kn), serif;
     /* IAST: Tiro was drawn with transliteration in mind, so every
@@ -114,13 +122,41 @@
   /* Tight negative tracking is a Latin idea. Kannada and Devanagari
      conjuncts collide under it, and their matras need room above and
      below, so both relax here. */
+  :root {
+    /* Card titles, labels, buttons: anything one or two lines long. */
+    --lh-snug: 1.2;
+  }
+
   html:lang(kn),
   html:lang(hi) {
-    --track-display: -0.012em;
-    --track-title: -0.008em;
+    --track-display: 0em;
+    --track-title: 0em;
     --track-head: 0em;
-    --lh-display: 1.22;
-    --lh-title: 1.26;
+    --lh-display: 1.36;
+    --lh-title: 1.36;
+    --lh-snug: 1.45;
+  }
+
+  /* The same guard for Indic text on a page in another language — a
+     temple's own name on an English page, marked with its lang. */
+  :is([lang|="kn"], [lang|="hi"], [lang|="sa"], [lang|="ta"], [lang|="or"], [lang|="mr"]):not(html),
+  :is([lang|="kn"], [lang|="hi"], [lang|="sa"], [lang|="ta"], [lang|="or"], [lang|="mr"]):not(html) * {
+    letter-spacing: 0 !important;
+    font-style: normal !important;
+  }
+
+  /* The guard behind the tokens. Letter-spacing pulls a Devanagari
+     headline bar apart and pushes Kannada conjuncts into each other, and
+     these scripts have no italic, so a slant is the browser shearing the
+     glyphs. On a Kannada or Hindi page neither may reach the text — not
+     from a component, and not from a hand-written inline style. */
+  html:lang(kn) body *,
+  html:lang(hi) body * {
+    letter-spacing: 0 !important;
+  }
+  html:lang(kn) :is(blockquote, em, i, cite, [style*="font-style:italic"], [style*="font-style: italic"]),
+  html:lang(hi) :is(blockquote, em, i, cite, [style*="font-style:italic"], [style*="font-style: italic"]) {
+    font-style: normal !important;
   }
 
   *,
@@ -266,7 +302,7 @@
     border: 1px solid var(--line-2);
     border-radius: var(--pill);
     background: rgba(255, 252, 244, 0.7);
-    font: 500 0.8rem/1.2 var(--sans);
+    font: 500 0.8rem / var(--lh-snug) var(--sans);
     color: var(--ink-2);
   }
   .eyebrow::before {
@@ -395,7 +431,7 @@
     width: fit-content;
     padding: 0.85em 1.45em;
     border-radius: var(--pill);
-    font: 600 0.95rem/1.2 var(--sans);
+    font: 600 0.95rem / var(--lh-snug) var(--sans);
     letter-spacing: -0.005em;
     white-space: nowrap;
     transition:

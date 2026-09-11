@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getTempleBySlug } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const tp = getTempleBySlug(params.slug, "en");
@@ -66,7 +67,7 @@ export default function TempleDetailPage({ params }: { params: { slug: string } 
         {tp.imageCredit && <p className="credit" style={{ marginTop: "2.5rem" }}>{t.imageCredit}: {tp.imageCredit}</p>}
 
         <div style={{ marginTop: "2.5rem" }}>
-          <Link href="/temples" className="btn-ghost">← {t.templesTitle}</Link>
+          <Link href="/temples" className="btn-ghost"><Arrow dir="left" /> {t.templesTitle}</Link>
         </div>
       </section>
     </>

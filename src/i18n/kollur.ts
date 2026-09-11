@@ -93,7 +93,7 @@ export interface KollurContent {
 }
 
 const en: KollurContent = {
-  backTemples: "← Temples of Tulunadu",
+  backTemples: "Temples of Tulunadu",
   region: "Tulunadu · Udupi District · Karnataka",
   title: "Sri Mookambika Temple",
   tagline: "Kollur · One of the Seven Mukti Sthalas of Parashurama Kshetra",
@@ -306,12 +306,12 @@ const en: KollurContent = {
     deepa: "Deepasthambha and Dwajasthambha at Mookambika Temple",
   },
 
-  allTemples: "← All Temples",
-  nextTemple: "Next Temple →",
+  allTemples: "All Temples",
+  nextTemple: "Next Temple",
 };
 
 const kn: KollurContent = {
-  backTemples: "← ತುಳುನಾಡಿನ ದೇವಾಲಯಗಳು",
+  backTemples: "ತುಳುನಾಡಿನ ದೇವಾಲಯಗಳು",
   region: "ತುಳುನಾಡು · ಉಡುಪಿ ಜಿಲ್ಲೆ · ಕರ್ನಾಟಕ",
   title: "ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ",
   tagline: "ಕೊಲ್ಲೂರು · ಪರಶುರಾಮ ಕ್ಷೇತ್ರದ ಸಪ್ತ ಮುಕ್ತಿಸ್ಥಳಗಳಲ್ಲಿ ಒಂದು",
@@ -524,12 +524,12 @@ const kn: KollurContent = {
     deepa: "ಮೂಕಾಂಬಿಕಾ ದೇವಾಲಯದ ದೀಪಸ್ತಂಭ ಮತ್ತು ಧ್ವಜಸ್ತಂಭ",
   },
 
-  allTemples: "← ಎಲ್ಲ ದೇವಾಲಯಗಳು",
-  nextTemple: "ಮುಂದಿನ ದೇವಾಲಯ →",
+  allTemples: "ಎಲ್ಲ ದೇವಾಲಯಗಳು",
+  nextTemple: "ಮುಂದಿನ ದೇವಾಲಯ",
 };
 
 const hi: KollurContent = {
-  backTemples: "← तुलुनाडु के मंदिर",
+  backTemples: "तुलुनाडु के मंदिर",
   region: "तुलुनाडु · उडुपी ज़िला · कर्नाटक",
   title: "श्री मूकाम्बिका मंदिर",
   tagline: "कोल्लूर · परशुराम क्षेत्र के सात मुक्तिस्थलों में से एक",
@@ -742,8 +742,8 @@ const hi: KollurContent = {
     deepa: "मूकाम्बिका मंदिर का दीपस्तंभ और ध्वजस्तंभ",
   },
 
-  allTemples: "← सभी मंदिर",
-  nextTemple: "अगला मंदिर →",
+  allTemples: "सभी मंदिर",
+  nextTemple: "अगला मंदिर",
 };
 
 const DICTIONARIES: Record<Locale, KollurContent> = { en, kn, hi };

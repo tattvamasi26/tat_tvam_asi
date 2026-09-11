@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { searchAll } from "@/lib/data";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export const metadata: Metadata = { title: "Search" };
 
@@ -62,7 +63,7 @@ export default function SearchPage({
             <div style={{ display: "grid", gap: "1rem" }}>
               {results.verses.map((v) => (
                 <Link key={v.id} href={`/verses/${v.id}`} className="verse" style={{ display: "block" }}>
-                  <p className="sanskrit" style={{ fontSize: "1.5rem" }}>{v.sanskrit}</p>
+                  <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "1.5rem" }}>{scriptFor(v.sanskrit, locale)}</p>
                   <p className="card-text clamp-3" style={{ marginTop: "0.6rem" }}>{v.translation}</p>
                   <span className="meta" style={{ display: "block", marginTop: "0.8rem" }}>{v.source}</span>
                 </Link>
@@ -77,7 +78,7 @@ export default function SearchPage({
             <div className="chips">
               {results.concepts.map((c) => (
                 <Link key={c.id} href={`/concepts/${c.slug}`} className="chip chip-gold" style={{ padding: "0.5rem 1rem" }}>
-                  <span className="deva">{c.termSanskrit}</span>
+                  <span className={scriptClass(locale)}>{scriptFor(c.termSanskrit, locale)}</span>
                   <span style={{ color: "var(--ink-2)" }}>{c.term}</span>
                 </Link>
               ))}

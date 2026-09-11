@@ -86,7 +86,7 @@
   border: 1px solid rgba(255, 255, 255, 0.26);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  font: 500 0.88rem/1.2 var(--sans);
+  font: 500 0.88rem / var(--lh-snug) var(--sans);
   color: rgba(255, 255, 255, 0.92);
 }
 .home-hero-kicker .om {
@@ -135,7 +135,7 @@
   gap: 0.55em;
   padding: 0.85em 1.45em;
   border-radius: var(--pill);
-  font: 600 0.95rem/1.2 var(--sans);
+  font: 600 0.95rem / var(--lh-snug) var(--sans);
   color: #fff;
   background: rgba(255, 255, 255, 0.14);
   border: 1px solid rgba(255, 255, 255, 0.34);
@@ -187,7 +187,7 @@
 
 .home-badge-title {
   display: block;
-  font: 600 0.96rem/1.25 var(--sans);
+  font: 600 0.96rem / var(--lh-snug) var(--sans);
 }
 .home-badge-note {
   display: block;
@@ -398,7 +398,7 @@ html:lang(hi) .home-title-sm {
 }
 
 .pillar-name {
-  font: 700 clamp(1.2rem, 1.9vw, 1.5rem) / 1.2 var(--sans);
+  font: 700 clamp(1.2rem, 1.9vw, 1.5rem) / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
   color: var(--ink);
 }
@@ -569,7 +569,7 @@ html:lang(hi) .home-title-sm {
 }
 
 .readcard-name {
-  font: 700 1.45rem/1.15 var(--sans);
+  font: 700 1.45rem / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
   color: var(--ink);
 }
@@ -901,7 +901,7 @@ html:lang(hi) .votd-text {
 }
 
 .term-name {
-  font: 700 1.1rem/1.2 var(--sans);
+  font: 700 1.1rem / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
 }
 
@@ -971,7 +971,7 @@ html:lang(hi) .votd-text {
 }
 
 .tile-name {
-  font: 700 clamp(1.05rem, 1.7vw, 1.45rem) / 1.2 var(--sans);
+  font: 700 clamp(1.05rem, 1.7vw, 1.45rem) / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
 }
 
@@ -1028,12 +1028,15 @@ html:lang(hi) .votd-text {
   color: inherit;
   animation: spin-slow 220s linear infinite;
 }
-/* The mark's strokes are drawn for 34px; at this size they need to be
-   hairlines, and the bindu would sit right under the headline. */
-.cta-yantra svg * {
-  stroke-width: 0.35;
+/* The rosette's line is drawn for small sizes; at this size it has to
+   be a hairline, and the bindu would sit right under the headline. */
+.cta-yantra .rosette-line {
+  stroke-width: 1.4;
 }
-.cta-yantra svg [fill="currentColor"] {
+.cta-yantra .rosette-fill {
+  opacity: 0.35;
+}
+.cta-yantra .rosette-bindu {
   display: none;
 }
 

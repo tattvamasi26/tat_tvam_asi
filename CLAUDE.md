@@ -20,15 +20,19 @@ Docs:
 
 ```bash
 npm run dev              # http://localhost:3000 — needs no .env.local and no database
-npx tsc --noEmit         # typecheck — the main automated check; there is no test suite
+npx tsc --noEmit         # typecheck (add --incremental false if it reports errors in code you didn't touch)
 npm run build
+npm run test:unit        # node:test via tsx: script conversion, content integrity, UI strings, the logo
+npm run test:e2e         # Playwright in the installed Chrome: every page × en/kn/hi × four widths
+npx playwright test --project=desktop -g "kena"   # one width, pages matching "kena"
 npm run seed             # push src/lib/seed/* to Supabase (inserts missing rows, idempotent)
 npm run seed -- --reset  # wipe the content tables first, then insert
 ```
 
 - `npm run lint` doesn't work as-is. No ESLint config has ever been committed, so `next lint` starts its interactive setup instead of linting.
 - The seed needs `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`. Don't remove the `--experimental-websocket` line in `.npmrc`: supabase-js needs a global WebSocket, and Node 20 only has one behind that flag.
-- To check a UI change, load the page in all three languages by appending `?lang=en`, `?lang=kn` or `?lang=hi`.
+- The e2e suite reuses a dev server already on :3000, or starts `npm run dev`. Against the dev server, one width takes about ten minutes; `--project=desktop` is the one that also runs the font audit.
+- To check a UI change by eye, load the page in all three languages by appending `?lang=en`, `?lang=kn` or `?lang=hi`.
 
 ## Architecture
 
@@ -65,7 +69,7 @@ Every public page reads from `src/lib/data.ts`, which reads TypeScript arrays in
 - A text entered only in part must set `completeness: "selections"` and a per-locale `covers`. Together they render a banner saying which sections are present and which aren't.
 - Lectures: `seed/lectures.ts` maps a verse locator to a YouTube video id. A verse with no entry shows no lecture card. Never point it at a neighbouring talk instead. The Īśa text predates the registry and keeps its own `isha-video.ts` and `isha-commentary.ts`.
 
-Adding an Upanishad needs no page, component or CSS changes.
+Adding an Upanishad needs no page, component or CSS changes. The unit tests (`tests/unit/content.test.ts`) check the new text's IAST alignment and translations.
 
 ### Citation and accuracy rules
 
@@ -91,10 +95,11 @@ Don't route around these.
   2. Add its column in `ui.ts`.
   3. Add translation rows.
   4. Add it to the separate hard-coded `LOCALES` in `seed/upanishads.ts`.
-- Sanskrit is stored only in Devanagari.
-  - `scriptFor(text, locale)` in `src/lib/script.ts` converts it to Kannada script for `kn`. It shifts code points by +0x380, with explicit exceptions such as ॐ→ಓಂ.
-  - `scriptClass(locale)` returns the matching `kannada` or `deva` font class.
+- Sanskrit is stored only in Devanagari, and **every place that renders Sanskrit shows it in the reader's script**: pass it through `scriptFor(text, locale)` and give it `scriptClass(locale)` (both in `src/lib/script.ts`). The e2e script check fails on Devanagari in a Sanskrit element on a Kannada page.
+  - `scriptFor` shifts U+0900–U+096F by +0x380 into Kannada, with explicit exceptions such as ॐ→ಓಂ. U+0970 onwards passes through, because those Kannada slots are unassigned.
+  - `.sanskrit` names the Devanagari face, so Kannada-script Sanskrit needs the `.sanskrit.kannada` pairing.
   - Never store Sanskrit in Kannada script in the seed data.
+  - Text that is in another language on purpose (a temple's own Kannada name on an English page) carries a `lang` attribute; the script check skips `[lang]` elements.
 
 ### Supabase and `/admin`
 
@@ -122,18 +127,42 @@ Don't route around these.
 
   Tailwind utilities are barely used; follow the semantic-class approach.
 - **Tailwind drops any `@layer` class it can't find written out literally** in `src/app`, `src/components` or `src/pages`. A class name built at runtime (such as the `tone-${i % 7}` colour palette) must live in an unlayered file (the tones are in `styles/pages.css`), or it silently disappears.
+- Unlayered rules beat the layered `.deva`/`.kannada` script classes. A component rule that sets `font` or `font-family` on an element that can carry a script class must restate the script face for it; see `.lockup-text.deva` in `chrome.css`.
+- The logo (`src/components/brand/Mark.tsx`) comes from the design canvas in `Tat tvam asi Logo Design.zip`:
+  - `Mark` is the side-profile lotus: seven petals (five ink, two brass) from 24px up, five in one colour below. Its colour comes from `--mark-ink` / `--mark-accent`; on dark surfaces the ink is `--mark-ivory`.
+  - `Rosette` (the eight-petalled ashtadala) is decoration only.
+  - `Wordmark` is the lockup: Cormorant Garamond in Latin, Tiro in Kannada and Hindi.
+  - `src/app/icon.svg`, `favicon.ico` and `apple-icon.png` were generated from the same geometry.
 - Fonts are loaded with `next/font` in `app/layout.tsx`:
   - Inter Tight: interface and headlines.
   - Instrument Serif: the italic `.accent` phrase in headlines, and verse translations.
+  - Cormorant Garamond: the wordmark only.
   - Tiro Devanagari Sanskrit and Tiro Kannada: the mūla and IAST.
-  - Noto Sans Devanagari and Noto Sans Kannada: Hindi and Kannada interface text.
-
-  Headline letter-spacing and line-height are tokens that relax under `html:lang(kn)` and `html:lang(hi)`; don't hard-code negative tracking on Indic text.
+  - Noto Sans Devanagari, Kannada, Tamil and Oriya: Hindi and Kannada interface text, and temple names in their own script (`.name-local`, never italic).
+- **Never type a glyph the fonts don't carry.** That means → ← ↗ ⚠ and emoji; Google's subsets omit them, so each device would draw them in its own system font. Use `<Arrow>` or `<Caution>` from `components/ui`. A unit test rejects typed arrows in UI strings, and the e2e font audit rejects any system-font glyph.
+- Kannada and Hindi typography:
+  - Headline letter-spacing is a token that is 0 under `html:lang(kn)` and `html:lang(hi)`. Line-heights also relax there: `--lh-display`, `--lh-title`, and `--lh-snug` for one- and two-line headings.
+  - A guard in `globals.css` zeroes all letter-spacing and neutralises inline italics on those pages, the hand-authored Kollur page's inline styles included.
+  - Put new heading line-heights on these tokens rather than hard-coding 1.1–1.2.
 - Headlines that have an italic turn are two UI strings (e.g. `heroHeadline` + `heroAccent`), so each language decides where its own turn falls.
 - The old dark-theme token names (`--bg-0`, `--text0`, `--ink-0`…) are kept as aliases for the hand-authored Kollur Mookambika page and the admin screens.
 - `"use client"` is limited to interactive pieces: the reader's stage and spine, the language choice, the nav, motion, and the home hero. These import only **types** from `@/lib/data`. A value import would ship the entire seed corpus to the browser.
 - Images are either local (`public/images/`) or from hosts allowed in `next.config.js` `remotePatterns` (Wikimedia, i.ytimg.com). Every image URL is stored with an `image_credit`.
 - `/teachers` permanently redirects to `/acharyas`.
+
+### Rendering tests
+
+`tests/e2e/rendering.spec.ts` loads every route in `ROUTES` (`tests/e2e/support.ts`) in all three languages at four widths, with reduced motion so scroll reveals don't offset anything. Add new pages to `ROUTES`. A test fails on any of these:
+- sideways page overflow
+- text cut off by an `overflow: hidden` container
+- Indic text that is letter-spaced, italic, or wrapped at a line-height below 1.3
+- glyphs overlapping other glyphs (word ink boxes from canvas `measureText`)
+- stretched images or logo marks
+- Sanskrit not in the reader's script
+- any glyph drawn by a system font, found through Chrome DevTools' `CSS.getPlatformFontsForNode` (desktop run only)
+- bold or italic the browser had to fake, found the same way (desktop run only)
+
+`brand.spec.ts` pins the logo, the lockup in each language, the reversed footer mark and the icons.
 
 ## Conventions
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getTranslations } from "@/i18n/server";
 import { kollur } from "@/i18n/kollur";
+import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
   title: "Kollur Mookambika Temple — Temples of Tulunadu",
@@ -56,11 +57,11 @@ export default function MookambikaPage() {
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(27,20,5,0.9) 10%, rgba(27,20,5,0.3) 58%, transparent 100%)" }}/>
         <div style={{ position: "relative", zIndex: 1, padding: "0 2rem 5rem", maxWidth: 900, margin: "0 auto", width: "100%" }}>
           <Link href="/temples" style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", fontWeight: 500, color: "rgba(255,255,255,0.8)", textDecoration: "none", display: "inline-block", marginBottom: "2rem", padding: "0.45rem 0.95rem", borderRadius: 999, border: "1px solid rgba(255,255,255,0.3)", background: "rgba(255,255,255,0.12)" }}>
-            {k.backTemples}
+            <Arrow dir="left" /> {k.backTemples}
           </Link>
           <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", fontWeight: 600, letterSpacing: "0.04em", color: "var(--marigold-2)", marginBottom: "1rem" }}>{k.region}</p>
           <h1 style={{ fontFamily: "var(--sans)", fontSize: "clamp(2.6rem,6vw,5rem)", fontWeight: 700, letterSpacing: "var(--track-title)", color: "#fff", lineHeight: "var(--lh-title)", marginBottom: "0.8rem" }}>{k.title}</h1>
-          <p className="kannada" style={{ fontSize: "1.35rem", color: "var(--marigold-2)", marginBottom: "0.5rem" }}>ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ</p>
+          <p className="kannada" lang="kn" style={{ fontSize: "1.35rem", color: "var(--marigold-2)", marginBottom: "0.5rem" }}>ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ</p>
           <p style={{ fontFamily: "var(--sans)", fontSize: "0.82rem", color: "rgba(237,228,208,0.55)", letterSpacing: "0.1em" }}>{k.tagline}</p>
         </div>
       </div>
@@ -92,7 +93,7 @@ export default function MookambikaPage() {
           <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.8rem,3vw,2.8rem)", fontWeight: 300, color: "var(--text0)", marginBottom: "1rem" }}>{k.kathaTitle}</h2>
           <div style={{ width: 40, height: 1, background: "var(--gold-dim)", marginBottom: "3rem" }}/>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start", marginBottom: "3rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 18rem), 1fr))", gap: "3rem", alignItems: "start", marginBottom: "3rem" }}>
             <div>
               <h3 style={{ fontFamily: "var(--serif)", fontSize: "1.3rem", fontWeight: 300, color: "var(--gold)", marginBottom: "1rem" }}>{k.demonTitle}</h3>
               <p style={{ fontFamily: "var(--sans)", fontSize: "0.92rem", color: "var(--text1)", lineHeight: 2, fontWeight: 300, marginBottom: "1rem" }}>
@@ -142,7 +143,7 @@ export default function MookambikaPage() {
             {k.deityBody}
           </p>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 2, background: "var(--bg3)", marginBottom: "3rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 12rem), 1fr))", gap: 2, background: "var(--bg3)", marginBottom: "3rem" }}>
             {k.forms.map((f, i) => (
               <div key={f.form} style={{ background: "var(--bg1)", padding: "2rem" }}>
                 <p style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)", marginBottom: "0.5rem" }}>{f.time}</p>
@@ -153,7 +154,7 @@ export default function MookambikaPage() {
           </div>
 
           {/* Silver palanquin + Deepasthambha */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", marginBottom: "2.5rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 18rem), 1fr))", gap: "2rem", marginBottom: "2.5rem" }}>
             <TempleImg
               src={IMGS.deitySilver}
               alt={k.alts.silver}
@@ -187,7 +188,7 @@ export default function MookambikaPage() {
           <p style={{ fontFamily: "var(--sans)", fontSize: "0.92rem", color: "var(--text1)", lineHeight: 2, fontWeight: 300, marginBottom: "3rem" }}>
             {k.agamaIntro}
           </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 18rem), 1fr))", gap: "2rem" }}>
             {k.practices.map(p => (
               <div key={p.title} style={{ borderLeft: "1px solid rgba(200,150,62,0.25)", paddingLeft: "1.5rem" }}>
                 <p style={{ fontFamily: "var(--serif)", fontSize: "1.1rem", fontWeight: 300, color: "var(--gold)", marginBottom: "0.5rem" }}>{p.title}</p>
@@ -204,7 +205,7 @@ export default function MookambikaPage() {
           <div style={{ width: 40, height: 1, background: "var(--gold-dim)", marginBottom: "3rem" }}/>
           <div style={{ display: "flex", flexDirection: "column", gap: 2, background: "var(--bg3)", marginBottom: "3rem" }}>
             {k.rituals.map((r, i) => (
-              <div key={i} style={{ background: i % 2 === 0 ? "var(--bg1)" : "var(--bg0)", padding: "1.6rem 2rem", display: "grid", gridTemplateColumns: "160px 1fr", gap: "2rem", alignItems: "start" }}>
+              <div key={i} style={{ background: i % 2 === 0 ? "var(--bg1)" : "var(--bg0)", padding: "1.6rem 2rem", display: "grid", gridTemplateColumns: "clamp(6rem, 22vw, 160px) minmax(0, 1fr)", gap: "clamp(1rem, 3vw, 2rem)", alignItems: "start" }}>
                 <div>
                   <p style={{ fontFamily: "var(--sans)", fontSize: "0.78rem", color: "var(--gold)" }}>{r.time}</p>
                   <p style={{ fontFamily: "var(--serif)", fontSize: "0.95rem", fontStyle: "italic", color: "var(--text0)", marginTop: "0.2rem", fontWeight: 300 }}>{r.name}</p>
@@ -233,7 +234,7 @@ export default function MookambikaPage() {
           <div style={{ width: 40, height: 1, background: "var(--gold-dim)", marginBottom: "3rem" }}/>
           <div style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
             {k.festivals.map(f => (
-              <div key={f.name} style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: "2rem", paddingBottom: "2.5rem", borderBottom: "1px solid rgba(200,150,62,0.08)" }}>
+              <div key={f.name} style={{ display: "grid", gridTemplateColumns: "clamp(6rem, 22vw, 160px) minmax(0, 1fr)", gap: "clamp(1rem, 3vw, 2rem)", paddingBottom: "2.5rem", borderBottom: "1px solid rgba(200,150,62,0.08)" }}>
                 <div>
                   <p style={{ fontFamily: "var(--serif)", fontSize: "1.3rem", fontWeight: 300, color: "var(--gold)" }}>{f.name}</p>
                   <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", color: "var(--text2)", letterSpacing: "0.1em", marginTop: "0.3rem" }}>{f.when}</p>
@@ -249,7 +250,7 @@ export default function MookambikaPage() {
           <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>{k.landEyebrow}</p>
           <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.8rem,3vw,2.8rem)", fontWeight: 300, color: "var(--text0)", marginBottom: "1rem" }}>{k.landTitle}</h2>
           <div style={{ width: 40, height: 1, background: "var(--gold-dim)", marginBottom: "2.5rem" }}/>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem", alignItems: "start" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 18rem), 1fr))", gap: "3rem", alignItems: "start" }}>
             <div>
               <p style={{ fontFamily: "var(--sans)", fontSize: "0.92rem", color: "var(--text1)", lineHeight: 2, fontWeight: 300, marginBottom: "1.5rem" }}>
                 {k.landP1}
@@ -274,7 +275,7 @@ export default function MookambikaPage() {
           <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>{k.visitEyebrow}</p>
           <h2 style={{ fontFamily: "var(--serif)", fontSize: "clamp(1.8rem,3vw,2.8rem)", fontWeight: 300, color: "var(--text0)", marginBottom: "1rem" }}>{k.visitTitle}</h2>
           <div style={{ width: 40, height: 1, background: "var(--gold-dim)", marginBottom: "3rem" }}/>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "3rem" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 18rem), 1fr))", gap: "3rem" }}>
             <div>
               <div style={{ background: "var(--bg1)", border: "1px solid rgba(200,150,62,0.15)", padding: "2rem", marginBottom: "2rem" }}>
                 <p style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>{k.addressLabel}</p>
@@ -284,8 +285,16 @@ export default function MookambikaPage() {
                   Udupi District<br/>
                   Karnataka — 576 220
                 </p>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", color: "var(--text1)", marginTop: "1rem" }}>📞 82542 58221</p>
-                <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", color: "var(--text1)", marginTop: "0.3rem" }}>🌐 kollurmookambikatemple.org</p>
+                {/* Drawn, not emoji: an emoji is whatever the device's emoji font
+                    makes of it, in its own colours, on every phone differently. */}
+                <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", color: "var(--text1)", marginTop: "1rem", display: "flex", alignItems: "center", gap: "0.45rem" }}>
+                  <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" /></svg>
+                  82542 58221
+                </p>
+                <p style={{ fontFamily: "var(--sans)", fontSize: "0.8rem", color: "var(--text1)", marginTop: "0.3rem", display: "flex", alignItems: "center", gap: "0.45rem" }}>
+                  <svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z" /></svg>
+                  kollurmookambikatemple.org
+                </p>
               </div>
               <div style={{ background: "var(--bg1)", border: "1px solid rgba(200,150,62,0.15)", padding: "2rem" }}>
                 <p style={{ fontFamily: "var(--sans)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--saffron)", marginBottom: "1rem" }}>{k.bestTimeLabel}</p>
@@ -302,11 +311,14 @@ export default function MookambikaPage() {
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
               {k.travel.map(item => (
-                <div key={item.mode} style={{ display: "flex", gap: "1.2rem" }}>
+                <div key={item.mode} style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem 1.2rem" }}>
                   <div style={{ width: 100, flexShrink: 0 }}>
                     <p style={{ fontFamily: "var(--serif)", fontSize: "0.9rem", fontWeight: 300, color: "var(--gold)" }}>{item.mode}</p>
                   </div>
-                  <p style={{ fontFamily: "var(--sans)", fontSize: "0.85rem", color: "var(--text1)", lineHeight: 1.8, fontWeight: 300 }}>{item.detail}</p>
+                  {/* flex: 1 1 12rem + minWidth 0: the detail wraps beside the label
+                      where there is room and drops below it on a phone, instead of
+                      holding the row open at its longest word. */}
+                  <p style={{ flex: "1 1 12rem", minWidth: 0, fontFamily: "var(--sans)", fontSize: "0.85rem", color: "var(--text1)", lineHeight: 1.8, fontWeight: 300 }}>{item.detail}</p>
                 </div>
               ))}
             </div>
@@ -318,9 +330,9 @@ export default function MookambikaPage() {
       {/* ── FOOTER NAV ── */}
       <div style={{ background: "var(--bg1)", borderTop: "1px solid rgba(200,150,62,0.1)", padding: "3rem 2rem" }}>
         <div style={{ maxWidth: 900, margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-          <Link href="/temples" style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)", textDecoration: "none" }}>{k.allTemples}</Link>
-          <p style={{ fontFamily: "var(--serif)", fontSize: "1rem", fontStyle: "italic", color: "var(--gold)", opacity: 0.6 }}>ಜಯ ಮೂಕಾಂಬಿಕೆ</p>
-          <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)" }}>{k.nextTemple}</p>
+          <Link href="/temples" style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)", textDecoration: "none" }}><Arrow dir="left" /> {k.allTemples}</Link>
+          <p lang="kn" className="kannada" style={{ fontSize: "1.05rem", color: "var(--gold)", opacity: 0.6 }}>ಜಯ ಮೂಕಾಂಬಿಕೆ</p>
+          <p style={{ fontFamily: "var(--sans)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text2)" }}>{k.nextTemple} <Arrow /></p>
         </div>
       </div>
 

@@ -74,7 +74,11 @@ export function devanagariToKannada(input: string): string {
       continue;
     }
     const cp = ch.codePointAt(0)!;
-    if (cp >= 0x0900 && cp <= 0x097f) {
+    // Only the shared, parallel part of the two blocks is offset. From
+    // U+0970 on, Devanagari holds abbreviation marks and letters for
+    // Marathi, Sindhi and others; their Kannada slots are unassigned or
+    // mean something else (U+0CF1 is jihvamuliya), so they pass through.
+    if (cp >= 0x0900 && cp <= 0x096f) {
       const target = cp + OFFSET;
       out += isAssignedKannada(target) ? String.fromCodePoint(target) : ch;
     } else {

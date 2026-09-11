@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { IshaVerseView } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { Caution } from "@/components/ui/Caution";
 
 /**
  * One verse, given a full stage.
@@ -153,12 +155,12 @@ export function VerseStage({
                   </span>
                   <span className="vvideo-title">{verse.video.speaker}</span>
                   <span className="vvideo-org">{verse.video.org}</span>
-                  <span className="vvideo-cta">{labels.watch} ↗</span>
+                  <span className="vvideo-cta">{labels.watch} <Arrow dir="up-right" /></span>
                 </span>
               </a>
             )}
 
-            {!verse.isCited && <p className="notice-uncited">⚠ {labels.uncited}</p>}
+            {!verse.isCited && <p className="notice-uncited"><Caution /> {labels.uncited}</p>}
           </div>
         </div>
       </div>

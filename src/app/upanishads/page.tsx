@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import Link from "next/link";
 import { getAllUpanishads, getReadableSlugs } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export const metadata: Metadata = { title: "The Upanishads" };
 
@@ -27,7 +29,7 @@ export default function UpanishadsPage() {
           {texts.map((u) => (
             <article key={u.id} className="card">
               <div className="card-body">
-                <p className="sanskrit" style={{ fontSize: "1.9rem" }}>{u.nameSanskrit}</p>
+                <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "1.9rem" }}>{scriptFor(u.nameSanskrit, locale)}</p>
                 <h2 className="card-title" style={{ marginTop: "0.35rem" }}>{u.name}</h2>
                 <p className="translit">{u.nameIast}</p>
 
@@ -42,7 +44,7 @@ export default function UpanishadsPage() {
 
                 {readable.has(u.slug) && (
                   <Link href={`/upanishads/${u.slug}`} className="btn" style={{ marginTop: "1.1rem" }}>
-                    {t.readWork} →
+                    {t.readWork} <Arrow />
                   </Link>
                 )}
 

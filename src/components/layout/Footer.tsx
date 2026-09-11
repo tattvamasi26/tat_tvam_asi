@@ -2,7 +2,8 @@ import Link from "next/link";
 import { getTranslations } from "@/i18n/server";
 import { sectionsFor } from "@/i18n/sections";
 import { nameScriptClass } from "@/i18n/config";
-import { Mark } from "@/components/brand/Mark";
+import { Mark, Rosette } from "@/components/brand/Mark";
+import { Arrow } from "@/components/ui/Arrow";
 
 export function Footer() {
   const { locale, t } = getTranslations();
@@ -21,17 +22,17 @@ export function Footer() {
 
   return (
     <footer className="footer">
-      <Mark size={480} className="footer-yantra" />
+      <Rosette id="footer" size={480} className="footer-yantra" />
 
       <div className="shell footer-top">
         <div>
           <Link href="/" className="lockup" aria-label={t.siteName}>
-            <Mark size={34} />
+            <Mark size={40} />
             <span className={`lockup-text ${nameClass}`.trim()}>{t.siteName}</span>
           </Link>
           <p className="footer-tagline">{t.footerTagline}</p>
           <Link href="/upanishads" className="btn footer-cta">
-            {t.ctaStartReading} <span aria-hidden="true">→</span>
+            {t.ctaStartReading} <Arrow />
           </Link>
         </div>
 
@@ -64,7 +65,7 @@ export function Footer() {
 
       <div className="shell footer-base">
         <span>
-          © {year} Tat Tvam Asi · {t.footerRights}
+          © {year} Tat tvam asi · {t.footerRights}
         </span>
         <span>{t.heroTagline}</span>
       </div>

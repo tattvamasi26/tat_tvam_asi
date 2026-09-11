@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getTeacherBySlug } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const p = getTeacherBySlug(params.slug, "en");
@@ -20,11 +22,11 @@ export default function TeacherDetailPage({ params }: { params: { slug: string }
       <section className="pagehead">
         <div className="shell pagehead-inner">
           <Link href="/acharyas" className="btn-ghost" style={{ marginBottom: "0.5rem" }}>
-            ← {t.teachersTitle}
+            <Arrow dir="left" /> {t.teachersTitle}
           </Link>
           <p className="eyebrow">{p.era}</p>
           <h1 className="title">{p.name}</h1>
-          <p className="sanskrit" style={{ fontSize: "1.7rem" }}>{p.nameSanskrit}</p>
+          <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "1.7rem" }}>{scriptFor(p.nameSanskrit, locale)}</p>
         </div>
       </section>
 

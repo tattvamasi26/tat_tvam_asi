@@ -1,0 +1,10 @@
+{
+  // For the unit tests only (npm run test:unit). Next compiles the app with
+  // "jsx": "preserve"; Node needs the JSX turned into calls before it can
+  // run a .tsx component, so tsx gets this override.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "noEmit": true
+  }
+}

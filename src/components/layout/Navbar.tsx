@@ -6,6 +6,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 import { SiteNav } from "./SiteNav";
 import { MastheadLinks } from "./MastheadLinks";
 import { Wordmark } from "@/components/brand/Mark";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 /**
  * The floating masthead.
@@ -16,7 +17,8 @@ import { Wordmark } from "@/components/brand/Mark";
  */
 export function Navbar() {
   const { locale, t } = getTranslations();
-  const sections = sectionsFor(locale);
+  // Glyphs in the reader's script, like every other Sanskrit on the site.
+  const sections = sectionsFor(locale).map((s) => ({ ...s, glyph: scriptFor(s.glyph, locale) }));
 
   const primary = [
     { href: "/upanishads", label: t.navUpanishads },
@@ -63,6 +65,7 @@ export function Navbar() {
             secondary={secondary}
             siteName={t.siteName}
             nameClass={nameScriptClass(locale)}
+            glyphClass={scriptClass(locale)}
             labels={{
               open: t.navOpenMenu,
               close: t.navCloseMenu,

@@ -4,6 +4,7 @@ import { sectionsFor } from "@/i18n/sections";
 import { getGita } from "@/lib/data";
 import { TextIndex } from "@/components/content/TextIndex";
 import { Reveal } from "@/components/motion/Reveal";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export const metadata: Metadata = {
   title: "Geetha Rasa Dhara",
@@ -20,10 +21,10 @@ export default function GitaPage() {
     <>
       <section className="pagehead">
         <div className="shell pagehead-inner">
-          <span className="deva pagehead-glyph">{section.glyph}</span>
+          <span className={`${scriptClass(locale)} pagehead-glyph`} aria-hidden="true">{scriptFor(section.glyph, locale)}</span>
           <h1 className="title">{work.name}</h1>
-          <p className="sanskrit" style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}>
-            {work.nameSanskrit}
+          <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}>
+            {scriptFor(work.nameSanskrit, locale)}
           </p>
           <p className="lede">{work.summary}</p>
         </div>
@@ -62,6 +63,7 @@ export default function GitaPage() {
 
         <TextIndex
           items={chapters}
+          locale={locale}
           dense
           labels={{
             keyTeaching: t.labelKeyTeaching,

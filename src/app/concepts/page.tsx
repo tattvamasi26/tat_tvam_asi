@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getAllConcepts } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export const metadata: Metadata = { title: "Concepts" };
 
@@ -24,12 +26,12 @@ export default function ConceptsPage() {
           {concepts.map((c) => (
             <Link key={c.id} href={`/concepts/${c.slug}`} className="card">
               <div className="card-body">
-                <p className="sanskrit" style={{ fontSize: "2.1rem" }}>{c.termSanskrit}</p>
+                <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "2.1rem" }}>{scriptFor(c.termSanskrit, locale)}</p>
                 <h2 className="card-title" style={{ marginTop: "0.3rem" }}>{c.term}</h2>
                 <p className="translit">{c.termIast}</p>
                 <p className="card-text" style={{ marginTop: "0.75rem" }}>{c.definition}</p>
                 <div className="card-foot">
-                  <span className="btn-ghost">{t.readMore} →</span>
+                  <span className="btn-ghost">{t.readMore} <Arrow /></span>
                 </div>
               </div>
             </Link>

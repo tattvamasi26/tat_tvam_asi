@@ -1,5 +1,7 @@
 import { Reveal } from "@/components/motion/Reveal";
 import type { UpanishadView } from "@/lib/data";
+import type { Locale } from "@/i18n/config";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 /**
  * The shared index used by Vedas, Gita chapters, Stutis and Bhajans.
@@ -15,10 +17,13 @@ export function TextIndex({
   items,
   labels,
   dense = false,
+  locale,
 }: {
   items: UpanishadView[];
   labels: { keyTeaching: string; verseCount: string; veda: string };
   dense?: boolean;
+  /** The reading language: the Sanskrit names follow its script. */
+  locale: Locale;
 }) {
   return (
     <ol className={dense ? "text-list text-list-dense" : "text-list"}>
@@ -26,7 +31,7 @@ export function TextIndex({
         <Reveal key={item.id} as="li" delay={(i % 6) * 40}>
           <article className={`text-row tone-${i % 7}`}>
             <div className="text-row-glyph">
-              <span className="deva">{item.nameSanskrit}</span>
+              <span className={scriptClass(locale)}>{scriptFor(item.nameSanskrit, locale)}</span>
               {dense && (
                 <span className="text-row-num" aria-hidden="true">
                   {String(i + 1).padStart(2, "0")}

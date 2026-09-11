@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getConceptBySlug, getAllConcepts } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
   const c = getConceptBySlug(params.slug, "en");
@@ -24,9 +26,9 @@ export default function ConceptDetailPage({ params }: { params: { slug: string }
       <section className="pagehead">
         <div className="shell-narrow pagehead-inner">
           <Link href="/concepts" className="btn-ghost" style={{ marginBottom: "0.5rem" }}>
-            ← {t.conceptsTitle}
+            <Arrow dir="left" /> {t.conceptsTitle}
           </Link>
-          <p className="sanskrit" style={{ fontSize: "clamp(2.6rem, 7vw, 4.5rem)" }}>{c.termSanskrit}</p>
+          <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "clamp(2.6rem, 7vw, 4.5rem)" }}>{scriptFor(c.termSanskrit, locale)}</p>
           <h1 className="title">{c.term}</h1>
           <p className="subtitle translit">{c.termIast}</p>
         </div>
@@ -48,7 +50,7 @@ export default function ConceptDetailPage({ params }: { params: { slug: string }
             <div className="chips">
               {related.map((r) => (
                 <Link key={r.slug} href={`/concepts/${r.slug}`} className="chip chip-gold" style={{ padding: "0.5rem 1rem" }}>
-                  <span className="deva">{r.termSanskrit}</span>
+                  <span className={scriptClass(locale)}>{scriptFor(r.termSanskrit, locale)}</span>
                   <span style={{ color: "var(--ink-2)" }}>{r.term}</span>
                 </Link>
               ))}

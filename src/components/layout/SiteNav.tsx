@@ -31,6 +31,7 @@ export function SiteNav({
   labels,
   siteName,
   nameClass = "",
+  glyphClass = "deva",
 }: {
   sections: NavSection[];
   secondary: { href: string; label: string }[];
@@ -38,6 +39,8 @@ export function SiteNav({
   /** Site name in the reading language — see Wordmark for why it varies. */
   siteName: string;
   nameClass?: string;
+  /** Script class for the section glyphs, which arrive already transliterated. */
+  glyphClass?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -125,7 +128,7 @@ export function SiteNav({
         <div className="nav-panel" ref={panelRef}>
           <div className="shell nav-panel-head">
             <Link href="/" className="lockup" aria-label={siteName}>
-              <Mark size={32} animated={open} />
+              <Mark size={40} animated={open} />
               <span className={`lockup-text ${nameClass}`.trim()}>{siteName}</span>
             </Link>
 
@@ -151,7 +154,7 @@ export function SiteNav({
                       <span className="nav-label">{s.label}</span>
                       <span className="nav-blurb">{s.blurb}</span>
                     </span>
-                    <span className="nav-glyph deva" aria-hidden="true">{s.glyph}</span>
+                    <span className={`nav-glyph ${glyphClass}`} aria-hidden="true">{s.glyph}</span>
                   </Link>
                 </li>
               ))}

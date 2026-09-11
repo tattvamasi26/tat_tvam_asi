@@ -117,7 +117,7 @@
 }
 
 .card-title {
-  font: 700 1.3rem/1.2 var(--sans);
+  font: 700 1.3rem / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
   color: var(--ink);
 }
@@ -197,7 +197,7 @@
 
 .fact-label {
   margin-bottom: 0.35rem;
-  font: 500 0.78rem/1.2 var(--sans);
+  font: 500 0.78rem / var(--lh-snug) var(--sans);
   color: var(--ink-3);
 }
 
@@ -304,7 +304,7 @@
 }
 
 .text-row-name {
-  font: 700 clamp(1.2rem, 2vw, 1.55rem)/1.2 var(--sans);
+  font: 700 clamp(1.2rem, 2vw, 1.55rem) / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
 }
 
@@ -416,8 +416,11 @@
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.25);
 }
 
+/* The temple's name in its own script — Tamil, Odia, Kannada. Those
+   scripts take no tracking, on any page. */
 .hero .subtitle {
   color: var(--marigold-2);
+  letter-spacing: 0;
 }
 
 .hero + .shell {
@@ -507,4 +510,34 @@
   -webkit-appearance: none;
   appearance: none;
   display: none;
+}
+
+/* A name in its own script — a temple's Tamil, Odia or Kannada name.
+   Never italic: those scripts have no italic, so the browser would
+   slant the glyphs synthetically, which reads as damaged lettering. */
+.name-local {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* Sanskrit set in Kannada script for a Kannada reader. `.sanskrit`
+   names the Devanagari face, which has no Kannada glyphs. */
+.sanskrit.kannada {
+  font-family: var(--kannada);
+}
+
+/* A long Sanskrit name wraps inside its tile rather than running out of
+   it and over the title beside it. */
+.text-row-glyph > span:first-child {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* The drawn caution mark in the "not yet cited" notice. */
+.notice-uncited .caution {
+  flex: none;
+  margin-top: 0.12em;
 }

@@ -2,6 +2,8 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getAllVerses } from "@/lib/data";
+import { Arrow } from "@/components/ui/Arrow";
+import { scriptFor, scriptClass } from "@/lib/script";
 
 export const metadata: Metadata = { title: "Sacred Verses" };
 
@@ -33,7 +35,7 @@ export default function VersesPage() {
                   {t.labelMahavakya}
                 </span>
               )}
-              <p className="sanskrit">{v.sanskrit}</p>
+              <p className={`sanskrit ${scriptClass(locale)}`}>{scriptFor(v.sanskrit, locale)}</p>
               <p className="translit" style={{ marginTop: "0.5rem", fontSize: "1.02rem" }}>
                 {v.transliteration}
               </p>
@@ -42,7 +44,7 @@ export default function VersesPage() {
                 <span className="meta">
                   {v.source} · {v.locator}
                 </span>
-                <span className="btn-ghost">{t.readMore} →</span>
+                <span className="btn-ghost">{t.readMore} <Arrow /></span>
               </div>
             </Link>
           ))}

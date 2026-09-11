@@ -50,7 +50,7 @@
   border: 1px solid var(--line-2);
   border-radius: var(--pill);
   background: rgba(255, 252, 244, 0.7);
-  font: 500 0.8rem/1.2 var(--sans);
+  font: 500 0.8rem / var(--lh-snug) var(--sans);
   color: var(--ink-2);
 }
 .reader-kicker::before {
@@ -69,7 +69,7 @@
 }
 
 .reader-name {
-  font: 700 clamp(1.6rem, 3.2vw, 2.6rem) / 1.1 var(--sans);
+  font: 700 clamp(1.6rem, 3.2vw, 2.6rem) / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-title);
   color: var(--ink);
 }
