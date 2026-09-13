@@ -29,12 +29,15 @@ export function VerseStage({
   verse,
   index,
   labels,
+  ghost,
 }: {
   verse: IshaVerseView;
   index: number;
   labels: {
     verse: string;
     invocation: string;
+    /** For a closing phalaśruti (locator "phala"). */
+    phala?: string;
     explanation: string;
     hideExplanation: string;
     terms: string;
@@ -42,15 +45,18 @@ export function VerseStage({
     watch: string;
     talk: string;
   };
+  /** The large faint numeral behind the verse. Defaults to its position. */
+  ghost?: string;
 }) {
   const [open, setOpen] = useState(false);
   const isInvocation = verse.locator === "invocation";
+  const isPhala = verse.locator === "phala";
 
   return (
     <article className="vstage" id={verse.id} data-open={open ? "" : undefined}>
       <div className="vstage-rail" aria-hidden="true">
         <span className="vstage-rail-num">
-          {isInvocation ? "॥" : verse.locator}
+          {isInvocation || isPhala ? "॥" : verse.locator}
         </span>
         <span className="vstage-rail-line" />
       </div>
@@ -58,7 +64,11 @@ export function VerseStage({
       <div className="vstage-body">
         <header className="vstage-head">
           <span className="vstage-num">
-            {isInvocation ? labels.invocation : `${labels.verse} ${verse.locator}`}
+            {isInvocation
+              ? labels.invocation
+              : isPhala
+                ? labels.phala ?? labels.verse
+                : `${labels.verse} ${verse.locator}`}
           </span>
           <span className="vstage-handle">{verse.handle}</span>
         </header>
@@ -165,8 +175,14 @@ export function VerseStage({
         </div>
       </div>
 
-      <span className="vstage-ghost" aria-hidden="true">
-        {String(index).padStart(2, "0")}
+      {/* A danda here is Sanskrit, and marked so: the Indic guard then
+          keeps the numeral's tight Latin tracking off it. */}
+      <span
+        className="vstage-ghost"
+        aria-hidden="true"
+        lang={ghost && /[ऀ-ॿ]/.test(ghost) ? "sa" : undefined}
+      >
+        {ghost ?? String(index).padStart(2, "0")}
       </span>
     </article>
   );

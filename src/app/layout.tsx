@@ -15,6 +15,7 @@ import "@/styles/chrome.css";
 import "@/styles/pages.css";
 import "@/styles/home.css";
 import "@/styles/reader.css";
+import "@/styles/stotra.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { getLocale } from "@/i18n/server";

@@ -9,6 +9,8 @@ import { TEACHERS } from "../../src/lib/seed/teachers";
 import { SECTIONS } from "../../src/i18n/sections";
 import { getReadableSlugs } from "../../src/lib/data";
 import { getFullText } from "../../src/lib/seed/upanishads";
+import { getStotra, stotraSlugs } from "../../src/lib/seed/stotras";
+import { DEVATAS } from "../../src/lib/seed/devatas";
 
 // Devanagari letters — everything in the block except the dandas and the
 // Vedic stress marks, which Kannada text borrows unchanged.
@@ -67,6 +69,15 @@ test("every Sanskrit string on the site converts to Kannada completely", () => {
       v.sanskrit.forEach((line, i) => corpus.push([`${slug} ${v.locator} line ${i + 1}`, line]));
       v.keywords.forEach((k) => corpus.push([`${slug} ${v.locator} term ${k.iast}`, k.term]));
     }
+  }
+  for (const slug of stotraSlugs()) {
+    for (const v of getStotra(slug)!.verses) {
+      v.sanskrit.forEach((line, i) => corpus.push([`stotra ${slug} ${v.locator} line ${i + 1}`, line]));
+      v.keywords.forEach((k) => corpus.push([`stotra ${slug} ${v.locator} term ${k.iast}`, k.term]));
+    }
+  }
+  for (const d of DEVATAS) {
+    corpus.push([`devata ${d.slug}`, d.name_sanskrit], [`devata ${d.slug} glyph`, d.glyph]);
   }
 
   assert.ok(corpus.length > 100, "the corpus should be non-trivial");

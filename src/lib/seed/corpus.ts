@@ -63,13 +63,24 @@ export const GITA_CHAPTERS: TextRow[] = CH.map(([slug, sa, iast, count], i) => (
   verse_count: count,
 }));
 
+/**
+ * Every stotra, each tagged with the devata it praises (`deity`, a
+ * seed/devatas.ts slug). Those with a module under seed/stotras/ are
+ * readable verse by verse; the rest are summaries until they are
+ * entered, and the stutis index says so.
+ */
 export const STUTIS: TextRow[] = [
-  { id: "t-stuti-ganesha", slug: "ganesha-pancharatnam", work_type: "stotra", parent_id: null, name_sanskrit: "गणेशपञ्चरत्नम्", name_iast: "Gaṇeśa Pañcaratnam", veda: null, verse_count: 5 },
-  { id: "t-stuti-bhaja-govindam", slug: "bhaja-govindam", work_type: "stotra", parent_id: null, name_sanskrit: "भजगोविन्दम्", name_iast: "Bhaja Govindam", veda: null, verse_count: 31 },
-  { id: "t-stuti-lalita", slug: "lalita-sahasranama", work_type: "stotra", parent_id: null, name_sanskrit: "ललितासहस्रनाम", name_iast: "Lalitā Sahasranāma", veda: null, verse_count: 320 },
-  { id: "t-stuti-vishnu-sahasranama", slug: "vishnu-sahasranama", work_type: "stotra", parent_id: null, name_sanskrit: "विष्णुसहस्रनाम", name_iast: "Viṣṇu Sahasranāma", veda: null, verse_count: 142 },
-  { id: "t-stuti-shiva-tandava", slug: "shiva-tandava-stotram", work_type: "stotra", parent_id: null, name_sanskrit: "शिवताण्डवस्तोत्रम्", name_iast: "Śiva Tāṇḍava Stotram", veda: null, verse_count: 17 },
-  { id: "t-stuti-mahishasura", slug: "mahishasura-mardini-stotram", work_type: "stotra", parent_id: null, name_sanskrit: "महिषासुरमर्दिनीस्तोत्रम्", name_iast: "Mahiṣāsura Mardinī Stotram", veda: null, verse_count: 21 },
+  { id: "t-stuti-gayatri-mantra", slug: "gayatri-mantra", work_type: "stotra", parent_id: null, name_sanskrit: "गायत्रीमन्त्रः", name_iast: "Gāyatrī Mantra", veda: "Rigveda", verse_count: 1, deity: "gayatri" },
+  { id: "t-stuti-ganesha-dhyana", slug: "ganesha-dhyana-shlokas", work_type: "stotra", parent_id: null, name_sanskrit: "गणेशध्यानश्लोकाः", name_iast: "Gaṇeśa Dhyāna Ślokāḥ", veda: null, verse_count: 4, deity: "ganesha" },
+  { id: "t-stuti-gananam-tva", slug: "gananam-tva", work_type: "stotra", parent_id: null, name_sanskrit: "गणानां त्वा", name_iast: "Gaṇānāṃ Tvā", veda: "Rigveda", verse_count: 1, deity: "ganesha" },
+  { id: "t-stuti-ganesha-gayatri", slug: "ganesha-gayatri", work_type: "stotra", parent_id: null, name_sanskrit: "गणेशगायत्री", name_iast: "Gaṇeśa Gāyatrī", veda: null, verse_count: 1, deity: "ganesha" },
+  { id: "t-stuti-ganesha", slug: "ganesha-pancharatnam", work_type: "stotra", parent_id: null, name_sanskrit: "गणेशपञ्चरत्नम्", name_iast: "Gaṇeśa Pañcaratnam", veda: null, verse_count: 5, deity: "ganesha" },
+  { id: "t-stuti-sankatanashana", slug: "sankatanashana-ganesha-stotram", work_type: "stotra", parent_id: null, name_sanskrit: "सङ्कटनाशनगणेशस्तोत्रम्", name_iast: "Saṅkaṭanāśana Gaṇeśa Stotram", veda: null, verse_count: 8, deity: "ganesha" },
+  { id: "t-stuti-shiva-tandava", slug: "shiva-tandava-stotram", work_type: "stotra", parent_id: null, name_sanskrit: "शिवताण्डवस्तोत्रम्", name_iast: "Śiva Tāṇḍava Stotram", veda: null, verse_count: 17, deity: "shiva" },
+  { id: "t-stuti-vishnu-sahasranama", slug: "vishnu-sahasranama", work_type: "stotra", parent_id: null, name_sanskrit: "विष्णुसहस्रनाम", name_iast: "Viṣṇu Sahasranāma", veda: null, verse_count: 142, deity: "vishnu" },
+  { id: "t-stuti-bhaja-govindam", slug: "bhaja-govindam", work_type: "stotra", parent_id: null, name_sanskrit: "भजगोविन्दम्", name_iast: "Bhaja Govindam", veda: null, verse_count: 31, deity: "vishnu" },
+  { id: "t-stuti-lalita", slug: "lalita-sahasranama", work_type: "stotra", parent_id: null, name_sanskrit: "ललितासहस्रनाम", name_iast: "Lalitā Sahasranāma", veda: null, verse_count: 320, deity: "devi" },
+  { id: "t-stuti-mahishasura", slug: "mahishasura-mardini-stotram", work_type: "stotra", parent_id: null, name_sanskrit: "महिषासुरमर्दिनीस्तोत्रम्", name_iast: "Mahiṣāsura Mardinī Stotram", veda: null, verse_count: 21, deity: "devi" },
 ];
 
 export const BHAJANS: TextRow[] = [
@@ -103,6 +114,26 @@ export const CORPUS_TRANSLATIONS: TextTranslationRow[] = [
   { text_id: "t-gita", language: "hi", name: "गीता रसधारा", summary: "दो सेनाओं के बीच कहे गए सात सौ श्लोक, जहाँ कृष्ण अर्जुन के युद्ध-निषेध का उत्तर सम्पूर्ण वेदांत से देते हैं — कर्म, ज्ञान और भक्ति को क्रम में रखे बिना, साथ-साथ थामे हुए। यह वह एकमात्र ग्रंथ है जिसके उन्हीं श्लोकों पर शंकर, रामानुज और मध्व — तीनों ने प्रसिद्ध भाष्य लिखे।", key_teaching: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन — तुम्हारा अधिकार केवल कर्म में है, फल में कभी नहीं।" },
 
   // ── Stutis ──────────────────────────────────────────────
+  { text_id: "t-stuti-gayatri-mantra", language: "en", name: "Gayatri Mantra", summary: "Twenty-four syllables to Savitṛ, the sun as the one who sets the world in motion, from the third mandala of the Ṛgveda — the first mantra given at upanayana, and the one said at every sandhyā for the rest of a life.", key_teaching: "Dhiyo yo naḥ pracodayāt — may he set our minds in motion." },
+  { text_id: "t-stuti-gayatri-mantra", language: "kn", name: "ಗಾಯತ್ರೀ ಮಂತ್ರ", summary: "ಋಗ್ವೇದದ ಮೂರನೆಯ ಮಂಡಲದಿಂದ, ಜಗತ್ತನ್ನು ಚಲಿಸುವಂತೆ ಮಾಡುವ ಸೂರ್ಯ ಸವಿತೃವಿಗೆ ಇಪ್ಪತ್ತನಾಲ್ಕು ಅಕ್ಷರಗಳು — ಉಪನಯನದಲ್ಲಿ ಉಪದೇಶಿಸುವ ಮೊದಲ ಮಂತ್ರ, ಆಮೇಲೆ ಜೀವನಪೂರ್ತಿ ಪ್ರತಿ ಸಂಧ್ಯೆಯಲ್ಲಿ ಜಪಿಸುವ ಮಂತ್ರ.", key_teaching: "ಧಿಯೋ ಯೋ ನಃ ಪ್ರಚೋದಯಾತ್ — ಅವನು ನಮ್ಮ ಬುದ್ಧಿಯನ್ನು ಪ್ರೇರೇಪಿಸಲಿ." },
+  { text_id: "t-stuti-gayatri-mantra", language: "hi", name: "गायत्री मंत्र", summary: "ऋग्वेद के तृतीय मंडल से, जगत् को गति देने वाले सूर्य सविता को चौबीस अक्षर — उपनयन में दिया जाने वाला पहला मंत्र, और फिर जीवन भर हर संध्या में जपा जाने वाला।", key_teaching: "धियो यो नः प्रचोदयात् — वे हमारी बुद्धि को प्रेरित करें।" },
+
+  { text_id: "t-stuti-ganesha-dhyana", language: "en", name: "Ganesha Dhyana Shlokas", summary: "Four short verses said before beginning anything — a lesson, a journey, a pūjā — each a different way of calling Gaṇeśa to mind.", key_teaching: "Nirvighnaṃ kuru me deva — keep my undertakings free of obstacles." },
+  { text_id: "t-stuti-ganesha-dhyana", language: "kn", name: "ಗಣೇಶ ಧ್ಯಾನ ಶ್ಲೋಕಗಳು", summary: "ಯಾವುದನ್ನೇ ಆರಂಭಿಸುವ ಮೊದಲು — ಪಾಠ, ಪ್ರಯಾಣ, ಪೂಜೆ — ಹೇಳುವ ನಾಲ್ಕು ಚಿಕ್ಕ ಶ್ಲೋಕಗಳು; ಪ್ರತಿಯೊಂದೂ ಗಣೇಶನನ್ನು ಮನಸ್ಸಿಗೆ ತಂದುಕೊಳ್ಳುವ ಬೇರೆ ಬೇರೆ ಬಗೆ.", key_teaching: "ನಿರ್ವಿಘ್ನಂ ಕುರು ಮೇ ದೇವ — ನನ್ನ ಕಾರ್ಯಗಳನ್ನು ವಿಘ್ನರಹಿತವಾಗಿಸು." },
+  { text_id: "t-stuti-ganesha-dhyana", language: "hi", name: "गणेश ध्यान श्लोक", summary: "कुछ भी आरंभ करने से पहले — पाठ, यात्रा, पूजा — कहे जाने वाले चार छोटे श्लोक; हर एक गणेश को मन में लाने का अलग ढंग।", key_teaching: "निर्विघ्नं कुरु मे देव — मेरे कार्यों को विघ्नरहित करो।" },
+
+  { text_id: "t-stuti-gananam-tva", language: "en", name: "Gananam Tva", summary: "The Ṛgvedic verse to the lord of the hosts with which Vedic rites and household pūjās open in Gaṇapati's name.", key_teaching: "Gaṇānāṃ tvā gaṇapatiṃ havāmahe — we call you, lord of the hosts." },
+  { text_id: "t-stuti-gananam-tva", language: "kn", name: "ಗಣಾನಾಂ ತ್ವಾ", summary: "ವೈದಿಕ ಯಜ್ಞಗಳೂ ಮನೆಯ ಪೂಜೆಗಳೂ ಗಣಪತಿಯ ಹೆಸರಿನಲ್ಲಿ ಆರಂಭವಾಗುವ, ಗಣಗಳ ಒಡೆಯನಿಗೆ ಸಲ್ಲಿಸಿದ ಋಗ್ವೇದದ ಋಕ್ಕು.", key_teaching: "ಗಣಾನಾಂ ತ್ವಾ ಗಣಪತಿಂ ಹವಾಮಹೇ — ಗಣಗಳ ಒಡೆಯನೇ, ನಿನ್ನನ್ನು ಕರೆಯುತ್ತೇವೆ." },
+  { text_id: "t-stuti-gananam-tva", language: "hi", name: "गणानां त्वा", summary: "गणों के स्वामी को समर्पित ऋग्वेद की वह ऋचा, जिससे वैदिक यज्ञ और घर की पूजा गणपति के नाम से आरंभ होती है।", key_teaching: "गणानां त्वा गणपतिं हवामहे — गणों के स्वामी, हम तुम्हें पुकारते हैं।" },
+
+  { text_id: "t-stuti-ganesha-gayatri", language: "en", name: "Ganesha Gayatri", summary: "The Gāyatrī's three lines given to Gaṇeśa, from the Gaṇapati Atharvaśīrṣa.", key_teaching: "Tan no dantiḥ pracodayāt — may the tusked one set us in motion." },
+  { text_id: "t-stuti-ganesha-gayatri", language: "kn", name: "ಗಣೇಶ ಗಾಯತ್ರೀ", summary: "ಗಣಪತಿ ಅಥರ್ವಶೀರ್ಷದಿಂದ, ಗಣೇಶನಿಗೆ ನೀಡಿದ ಗಾಯತ್ರಿಯ ಮೂರು ಪಾದಗಳು.", key_teaching: "ತನ್ನೋ ದಂತಿಃ ಪ್ರಚೋದಯಾತ್ — ದಂತವುಳ್ಳವನು ನಮ್ಮನ್ನು ಪ್ರೇರೇಪಿಸಲಿ." },
+  { text_id: "t-stuti-ganesha-gayatri", language: "hi", name: "गणेश गायत्री", summary: "गणपति अथर्वशीर्ष से, गणेश को दिए गए गायत्री के तीन पाद।", key_teaching: "तन्नो दन्तिः प्रचोदयात् — वे दंतधारी हमें प्रेरित करें।" },
+
+  { text_id: "t-stuti-sankatanashana", language: "en", name: "Sankatanashana Ganesha Stotram", summary: "Nārada's twelve names of Gaṇeśa, from the Nārada Purāṇa, to be said at dawn, noon and dusk — the stotra 'that destroys distress'.", key_teaching: "Vidyārthī labhate vidyām — the seeker of learning gains learning." },
+  { text_id: "t-stuti-sankatanashana", language: "kn", name: "ಸಂಕಟನಾಶನ ಗಣೇಶ ಸ್ತೋತ್ರ", summary: "ನಾರದ ಪುರಾಣದಿಂದ, ನಾರದರು ಹೇಳಿದ ಗಣೇಶನ ಹನ್ನೆರಡು ನಾಮಗಳು — ಮುಂಜಾನೆ, ಮಧ್ಯಾಹ್ನ, ಸಂಜೆ ಹೇಳಬೇಕಾದ, 'ಸಂಕಟವನ್ನು ನಾಶಮಾಡುವ' ಸ್ತೋತ್ರ.", key_teaching: "ವಿದ್ಯಾರ್ಥೀ ಲಭತೇ ವಿದ್ಯಾಂ — ವಿದ್ಯೆ ಬಯಸುವವನು ವಿದ್ಯೆಯನ್ನು ಪಡೆಯುತ್ತಾನೆ." },
+  { text_id: "t-stuti-sankatanashana", language: "hi", name: "संकटनाशन गणेश स्तोत्र", summary: "नारद पुराण से, नारद द्वारा कहे गणेश के बारह नाम — प्रातः, मध्याह्न और सायं कहा जाने वाला, 'संकट का नाश करने वाला' स्तोत्र।", key_teaching: "विद्यार्थी लभते विद्यां — विद्या चाहने वाला विद्या पाता है।" },
+
   { text_id: "t-stuti-ganesha", language: "en", name: "Ganesha Pancharatnam", summary: "Five jewelled verses by Adi Shankaracharya to Ganapati, in a tight galloping metre that is as much a feat of prosody as of devotion.", key_teaching: "Sung at the beginning of any undertaking." },
   { text_id: "t-stuti-ganesha", language: "kn", name: "ಗಣೇಶ ಪಂಚರತ್ನ", summary: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಗಣಪತಿಗೆ ರಚಿಸಿದ ಐದು ರತ್ನಸಮಾನ ಶ್ಲೋಕಗಳು; ಭಕ್ತಿಯಷ್ಟೇ ಛಂದಸ್ಸಿನ ಸಾಧನೆಯೂ ಆಗಿರುವ ಬಿಗಿಯಾದ ಲಯ.", key_teaching: "ಯಾವುದೇ ಕಾರ್ಯದ ಆರಂಭದಲ್ಲಿ ಹಾಡಲಾಗುತ್ತದೆ." },
   { text_id: "t-stuti-ganesha", language: "hi", name: "गणेश पंचरत्न", summary: "आदि शंकराचार्य द्वारा गणपति को अर्पित पाँच रत्नतुल्य श्लोक; भक्ति के साथ-साथ छंद की भी सिद्धि।", key_teaching: "किसी भी कार्य के आरंभ में गाया जाता है।" },

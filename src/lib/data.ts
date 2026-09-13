@@ -543,6 +543,208 @@ export function getUpanishadSeries(slug: string) {
   return getFullText(slug)?.series ?? null;
 }
 
+// ── Stotras, arranged by devata ─────────────────────────────
+//
+// Each module registers itself (registerStotra) when imported, exactly
+// as the Upanishads do. A module that is not imported here exists on
+// disk but has no page.
+import "./seed/stotras/gayatri-mantra";
+import "./seed/stotras/ganesha-dhyana";
+import "./seed/stotras/gananam-tva";
+import "./seed/stotras/ganesha-gayatri";
+import "./seed/stotras/ganesha-pancharatnam";
+import "./seed/stotras/sankatanashana";
+import { DEVATAS, type DevataRow, type DevataTheme } from "./seed/devatas";
+import { getStotra, stotrasOf, stotraSlugs } from "./seed/stotras";
+
+export interface DevataView {
+  slug: string;
+  status: "open" | "planned";
+  theme: DevataTheme;
+  name: string;
+  /** In the reader's script. */
+  nameSanskrit: string;
+  nameIast: string;
+  /** Decorative Sanskrit, in the reader's script. */
+  glyph: string;
+  scriptClass: string;
+  epithet: string;
+  blurb: string;
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    position: string;
+    alt: string;
+    credit: string;
+    sourceUrl: string;
+  } | null;
+  /** How many stotras can be read in full. */
+  stotraCount: number;
+}
+
+export interface StotraView {
+  slug: string;
+  devata: string;
+  href: string;
+  name: string;
+  /** In the reader's script. */
+  nameSanskrit: string;
+  nameIast: string;
+  scriptClass: string;
+  summary: string;
+  keyTeaching: string;
+  origin: string;
+  composer: string | null;
+  metre: string | null;
+  verseCount: number | null;
+  /** The opening line of the mūla, in the reader's script. */
+  firstLine: string;
+  coverage: string | null;
+}
+
+/** A stotra summarised in corpus.ts whose text is not entered yet. */
+export interface PlannedStuti {
+  slug: string;
+  name: string;
+  nameSanskrit: string;
+  nameIast: string;
+}
+
+function devataView(d: DevataRow, locale: Locale): DevataView {
+  return {
+    slug: d.slug,
+    status: d.status,
+    theme: d.theme,
+    name: d.name[locale] ?? d.name.en,
+    nameSanskrit: scriptFor(d.name_sanskrit, locale),
+    nameIast: d.name_iast,
+    glyph: scriptFor(d.glyph, locale),
+    scriptClass: scriptClass(locale),
+    epithet: d.epithet[locale] ?? d.epithet.en,
+    blurb: d.blurb[locale] ?? d.blurb.en,
+    image: d.image
+      ? {
+          src: d.image.src,
+          width: d.image.width,
+          height: d.image.height,
+          position: d.image.position ?? "50% 50%",
+          alt: d.image.alt[locale] ?? d.image.alt.en,
+          credit: d.image.credit,
+          sourceUrl: d.image.sourceUrl,
+        }
+      : null,
+    stotraCount: stotrasOf(d.slug).length,
+  };
+}
+
+/** Devatas with stotras to read, in order: Gāyatrī first. */
+export function getDevatas(locale: Locale): DevataView[] {
+  return DEVATAS.filter((d) => d.status === "open")
+    .sort((a, b) => a.order - b.order)
+    .map((d) => devataView(d, locale));
+}
+
+/** An open devata; planned ones have no page yet. */
+export function getDevata(slug: string, locale: Locale): DevataView | null {
+  const d = DEVATAS.find((x) => x.slug === slug && x.status === "open");
+  return d ? devataView(d, locale) : null;
+}
+
+/** Devatas still being entered, with the stotras already summarised for them. */
+export function getPlannedDevatas(locale: Locale): { devata: DevataView; stotras: PlannedStuti[] }[] {
+  const readable = new Set(stotraSlugs());
+  return DEVATAS.filter((d) => d.status === "planned")
+    .sort((a, b) => a.order - b.order)
+    .map((d) => ({
+      devata: devataView(d, locale),
+      stotras: resolveTexts(
+        STUTIS.filter((t) => t.deity === d.slug && !readable.has(t.slug)),
+        locale
+      ).map((t) => ({
+        slug: t.slug,
+        name: t.name,
+        nameSanskrit: scriptFor(t.nameSanskrit, locale),
+        nameIast: t.nameIast,
+      })),
+    }))
+    .filter((g) => g.stotras.length > 0);
+}
+
+export function getStotraView(slug: string, locale: Locale): StotraView | null {
+  const s = getStotra(slug);
+  const row = STUTIS.find((t) => t.slug === slug);
+  if (!s || !row) return null;
+  const header = resolveTexts([row], locale)[0];
+  return {
+    slug: s.slug,
+    devata: s.devata,
+    href: `/stutis/${s.devata}/${s.slug}`,
+    name: header.name,
+    nameSanskrit: scriptFor(header.nameSanskrit, locale),
+    nameIast: header.nameIast,
+    scriptClass: scriptClass(locale),
+    summary: header.summary,
+    keyTeaching: header.keyTeaching,
+    origin: s.origin[locale] ?? s.origin.en,
+    composer: s.composer ? s.composer[locale] ?? s.composer.en : null,
+    metre: s.metre ?? null,
+    verseCount: header.verseCount,
+    firstLine: scriptFor(s.verses[0]?.sanskrit[0] ?? "", locale),
+    coverage: s.completeness === "selections" ? s.covers?.[locale] ?? s.covers?.en ?? null : null,
+  };
+}
+
+/** A devata's stotras, in the order they are said. */
+export function getStotraViews(devata: string, locale: Locale): StotraView[] {
+  return stotrasOf(devata)
+    .map((s) => getStotraView(s.slug, locale))
+    .filter((v): v is StotraView => v !== null);
+}
+
+/** The verses, shaped for the same VerseStage the Upanishad reader uses. */
+export function getStotraVerses(slug: string, locale: Locale): IshaVerseView[] {
+  const s = getStotra(slug);
+  if (!s) return [];
+  const source = SOURCES.find((x) => x.id === "site-editorial");
+  return s.verses.map((v) => ({
+    id: v.id,
+    locator: v.locator,
+    handle: v.handle[locale] ?? v.handle.en,
+    sanskrit: v.sanskrit.map((l) => scriptFor(l, locale)),
+    scriptClass: scriptClass(locale),
+    iast: v.iast,
+    keywords: v.keywords.map((k) => ({
+      term: scriptFor(k.term, locale),
+      iast: k.iast,
+      gloss: k.gloss[locale] ?? k.gloss.en,
+    })),
+    translation: v.readings[locale]?.translation ?? v.readings.en.translation,
+    explanation: v.readings[locale]?.explanation ?? v.readings.en.explanation,
+    allTranslations: LOCALES.map((l) => ({
+      locale: l,
+      text: v.readings[l]?.translation ?? v.readings.en.translation,
+    })),
+    isCited: false,
+    sourceTitle: source?.work_title ?? "",
+    video: null,
+  }));
+}
+
+/** The stotras either side of this one on its devata's page. */
+export function getStotraNeighbours(slug: string, locale: Locale) {
+  const s = getStotra(slug);
+  if (!s) return { prev: null, next: null };
+  const list = getStotraViews(s.devata, locale);
+  const i = list.findIndex((x) => x.slug === slug);
+  return { prev: list[i - 1] ?? null, next: list[i + 1] ?? null };
+}
+
+/** Every readable stotra's route segments. */
+export function getStotraParams(): { devata: string; stotra: string }[] {
+  return stotraSlugs().map((slug) => ({ devata: getStotra(slug)!.devata, stotra: slug }));
+}
+
 /**
  * For a text entered as selections rather than in full: what is
  * actually here. Returns null for a complete text, so the page can

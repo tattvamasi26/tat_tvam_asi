@@ -1,0 +1,934 @@
+/* ─────────────────────────────────────────────────────────
+   The stutis: a clean temple-dark.
+
+   Every stuti page is one inset dark panel, lit the way a sanctum is
+   lit — one soft glow from above, as from a lamp, and a few faint
+   embers rising (SanctumField). There is nothing drawn behind the text:
+   the only bright things are the devata's picture and the gold of the
+   mūla. Each devata brings its own warmth through [data-theme], which
+   changes the hue of the glow and the gold, not the darkness.
+
+   Nothing that sets `font` or `font-family` here may land on an
+   element carrying .deva/.kannada: these rules are unlayered and would
+   beat the script faces. Sanskrit elements get sizes, never faces.
+   ───────────────────────────────────────────────────────── */
+
+.sanctum,
+.sanctum [data-theme] {
+  --s-base: #0f0a08;
+  --s-raise: #17100c;
+  --s-glow: 38 90% 58%;
+  --s-gold: #f2c97a;
+  --s-gold-2: #ffe2ab;
+  --s-accent: #f5b523;
+  --s-ivory: #f6eedd;
+  --s-ivory-2: rgba(246, 238, 221, 0.76);
+  --s-ivory-3: rgba(246, 238, 221, 0.6);
+  --s-line: rgba(255, 222, 170, 0.12);
+  --s-line-2: rgba(255, 222, 170, 0.24);
+  --s-glass: rgba(255, 240, 215, 0.04);
+  --s-on-accent: #1d1206;
+}
+
+/* Savitṛ: the gold of first light. */
+.sanctum[data-theme="savitr"],
+.sanctum [data-theme="savitr"] {
+  --s-base: #0e0a0a;
+  --s-raise: #171011;
+  --s-glow: 42 92% 60%;
+  --s-gold: #f6d283;
+  --s-accent: #f5b523;
+}
+
+/* Gaṇapati: the warmer, redder light of a ghee lamp. */
+.sanctum[data-theme="ganapati"],
+.sanctum [data-theme="ganapati"] {
+  --s-base: #100907;
+  --s-raise: #1a0f0b;
+  --s-glow: 26 92% 56%;
+  --s-gold: #ffc978;
+  --s-accent: #ff9f36;
+}
+
+.sanctum [data-theme="shiva"] {
+  --s-glow: 205 60% 64%;
+  --s-gold: #d2e2f1;
+}
+.sanctum [data-theme="vishnu"] {
+  --s-glow: 215 64% 64%;
+  --s-gold: #d6e1f8;
+}
+.sanctum [data-theme="devi"] {
+  --s-glow: 345 70% 64%;
+  --s-gold: #ffcad3;
+}
+
+/* ── The panel ────────────────────────────────────────── */
+
+.sanctum {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  margin: calc(-1 * var(--masthead-space) + clamp(0.5rem, 1.4vw, 0.9rem)) clamp(0.5rem, 1.4vw, 0.9rem) 0;
+  padding-bottom: clamp(3rem, 7vw, 5.5rem);
+  border-radius: var(--r-xl);
+  color: var(--s-ivory);
+  /* One lamp, overhead. */
+  background:
+    radial-gradient(80% 44% at 50% 0%, hsl(var(--s-glow) / 0.16), transparent 72%),
+    var(--s-base);
+}
+
+.sanctum a {
+  color: inherit;
+}
+
+/* ── Hero ─────────────────────────────────────────────── */
+
+.sanctum-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: calc(var(--masthead-space) + clamp(1.5rem, 5vw, 4rem)) 0 clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.sanctum-field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.sanctum-hero-inner {
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+  text-align: center;
+}
+
+.sanctum-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  width: fit-content;
+  padding: 0.45em 0.95em 0.45em 0.8em;
+  border: 1px solid var(--s-line-2);
+  border-radius: var(--pill);
+  background: var(--s-glass);
+  font: 500 0.8rem / var(--lh-snug) var(--sans);
+  color: var(--s-ivory-2);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.sanctum-kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--s-accent);
+}
+@media (hover: hover) {
+  a.sanctum-kicker:hover {
+    color: var(--s-gold);
+    border-color: var(--s-gold);
+  }
+}
+
+.sanctum-title {
+  max-width: 17ch;
+  font: 700 clamp(2.5rem, 7vw, 5.6rem) / var(--lh-display) var(--sans);
+  letter-spacing: var(--track-display);
+  color: var(--s-ivory);
+  text-wrap: balance;
+}
+.sanctum-title .accent {
+  color: var(--s-gold);
+}
+html:lang(kn) .sanctum-title,
+html:lang(hi) .sanctum-title {
+  font-size: clamp(2.1rem, 5.4vw, 4.2rem);
+}
+
+.sanctum-lede {
+  max-width: 60ch;
+  font-size: clamp(1.02rem, 1.3vw, 1.16rem);
+  line-height: 1.65;
+  color: var(--s-ivory-2);
+  text-wrap: pretty;
+}
+
+.sanctum-h2 {
+  font: 700 clamp(1.5rem, 2.8vw, 2.2rem) / var(--lh-snug) var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--s-ivory);
+}
+
+.sanctum-chip {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0.36em 0.85em;
+  border-radius: var(--pill);
+  border: 1px solid var(--s-line-2);
+  background: var(--s-glass);
+  font: 500 0.78rem / 1.4 var(--sans);
+  color: var(--s-ivory-2);
+}
+
+.sanctum-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  width: fit-content;
+  margin-top: 0.35rem;
+  padding: 0.72em 1.25em;
+  border-radius: var(--pill);
+  background: var(--s-accent);
+  color: var(--s-on-accent);
+  font: 600 0.92rem / var(--lh-snug) var(--sans);
+  transition: transform 0.3s var(--ease);
+}
+
+.sanctum-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  width: fit-content;
+  font: 600 0.92rem / 1.3 var(--sans);
+  color: var(--s-ivory-2);
+  transition: color 0.2s ease;
+}
+
+.sanctum-credit {
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--s-ivory-3);
+}
+.sanctum-credit a {
+  text-decoration: underline;
+  text-decoration-color: var(--s-line-2);
+  text-underline-offset: 2px;
+}
+
+@media (hover: hover) {
+  .sanctum-back:hover,
+  .sanctum-credit a:hover {
+    color: var(--s-gold);
+  }
+}
+
+/* ── The shrine: a picture in its prabhāvali ──────────── */
+
+.shrine {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  margin: 0;
+}
+
+/* A semicircular top on a 3:4 frame: 50% of the width across, and
+   37.5% of the height down, are the same length. */
+.shrine-arch {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 50% 50% 16px 16px / 37.5% 37.5% 16px 16px;
+  border: 1px solid rgba(255, 222, 160, 0.5);
+  background: var(--s-raise);
+  box-shadow:
+    0 0 0 5px rgba(255, 214, 140, 0.05),
+    0 0 0 6px rgba(255, 222, 160, 0.2),
+    0 28px 70px -30px rgba(0, 0, 0, 0.9);
+}
+.shrine-arch::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgba(255, 236, 190, 0.14);
+  pointer-events: none;
+}
+
+/* The lamp's light falling on the frame: a still, soft glow. */
+.shrine-glow {
+  position: absolute;
+  z-index: -1;
+  inset: -12% -18%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, hsl(var(--s-glow) / 0.22), transparent 75%);
+  pointer-events: none;
+}
+
+/* ── Index: the Gāyatrī first ─────────────────────────── */
+
+.dawn-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding: clamp(1.5rem, 4.5vw, 3.5rem);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--s-line);
+  background: linear-gradient(180deg, var(--s-raise), var(--s-base));
+  transition: transform 0.5s var(--ease), border-color 0.3s ease;
+}
+@media (min-width: 900px) {
+  .dawn-card {
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 3rem;
+  }
+}
+
+.dawn-text {
+  display: grid;
+  justify-items: start;
+  gap: 0.95rem;
+}
+
+.dawn-mantra {
+  display: grid;
+  gap: 0.1rem;
+  font-size: clamp(1.55rem, 3.6vw, 2.8rem);
+  line-height: 1.5;
+  color: var(--s-gold);
+  text-shadow: 0 0 22px hsl(var(--s-glow) / 0.22);
+  overflow-wrap: anywhere;
+}
+.dawn-mantra > span:first-child {
+  font-size: 0.72em;
+  color: var(--s-gold-2);
+}
+
+.dawn-name {
+  font: 700 clamp(1.3rem, 2.2vw, 1.75rem) / var(--lh-snug) var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--s-ivory);
+}
+
+.dawn-summary {
+  max-width: 56ch;
+  line-height: 1.6;
+  color: var(--s-ivory-2);
+}
+
+.dawn-shrine {
+  justify-self: center;
+  width: min(100%, 300px);
+}
+
+/* ── Index: a card for each devata ────────────────────── */
+
+.devata-grid {
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.5rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  padding-top: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.devata-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  align-content: end;
+  min-height: clamp(28rem, 62vw, 36rem);
+  padding: clamp(1.3rem, 3vw, 2rem);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--s-line);
+  background: linear-gradient(180deg, var(--s-raise), var(--s-base));
+  color: var(--s-ivory);
+  transition: transform 0.5s var(--ease), border-color 0.3s ease;
+}
+/* A picture under a card fades into the dark wherever words sit on it:
+   the name at the top, the text at the foot. A pale picture (the
+   lithograph's sky) would otherwise swallow the gold. */
+.devata-card-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+.devata-card-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--s-base) 82%, transparent) 0%,
+    color-mix(in srgb, var(--s-base) 30%, transparent) 24%,
+    transparent 36%,
+    color-mix(in srgb, var(--s-base) 60%, transparent) 54%,
+    var(--s-base) 84%
+  );
+}
+.devata-card-media img {
+  transition: transform 1.4s var(--ease);
+}
+
+.devata-card-glyph {
+  position: absolute;
+  top: clamp(1rem, 3vw, 1.6rem);
+  left: clamp(1.2rem, 3vw, 1.8rem);
+  font-size: clamp(3rem, 7vw, 4.6rem);
+  line-height: 1.4;
+  color: var(--s-gold);
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.7);
+}
+
+.devata-card-body {
+  display: grid;
+  justify-items: start;
+  gap: 0.45rem;
+}
+
+.devata-card-epithet {
+  font: 500 0.86rem / var(--lh-snug) var(--sans);
+  color: var(--s-gold);
+}
+
+.devata-card-name {
+  font: 700 clamp(2rem, 4vw, 2.8rem) / var(--lh-title) var(--sans);
+  letter-spacing: var(--track-title);
+}
+
+.devata-card-count {
+  font: 500 0.82rem / 1.3 var(--sans);
+  color: var(--s-ivory-3);
+}
+
+.devata-card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.3rem;
+}
+.devata-card-list > span {
+  padding: 0.3em 0.72em;
+  border-radius: var(--pill);
+  border: 1px solid var(--s-line);
+  background: rgba(10, 6, 4, 0.5);
+  font: 500 0.78rem / 1.35 var(--sans);
+  color: var(--s-ivory-2);
+}
+
+@media (hover: hover) {
+  .dawn-card:hover,
+  .devata-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--s-line-2);
+  }
+  .devata-card:hover .devata-card-media img {
+    transform: scale(1.04);
+  }
+  .dawn-card:hover .sanctum-cta,
+  .devata-card:hover .sanctum-cta,
+  .stotra-card:hover .sanctum-cta {
+    transform: translateX(3px);
+  }
+}
+
+/* ── Index: devatas still being entered ───────────────── */
+
+.coming {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.coming-note {
+  max-width: 62ch;
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--s-ivory-3);
+}
+
+.coming-list {
+  list-style: none;
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.coming-item {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  align-content: start;
+  gap: 0.3rem;
+  padding: 1.2rem 1.3rem 1.3rem;
+  border-radius: var(--r-lg);
+  border: 1px dashed var(--s-line-2);
+  background: var(--s-glass);
+}
+
+.coming-glyph {
+  position: absolute;
+  top: 0.1rem;
+  right: 0.9rem;
+  font-size: 3.2rem;
+  line-height: 1.4;
+  color: var(--s-gold);
+  opacity: 0.16;
+}
+
+.coming-name {
+  font: 700 1.2rem / var(--lh-snug) var(--sans);
+  color: var(--s-ivory);
+}
+
+.coming-epithet {
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: var(--s-ivory-3);
+}
+
+.coming-texts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+}
+.coming-texts > span {
+  padding: 0.28em 0.68em;
+  border-radius: var(--pill);
+  border: 1px solid var(--s-line);
+  font: 500 0.78rem / 1.35 var(--sans);
+  color: var(--s-ivory-2);
+}
+
+/* ── A devata's page ──────────────────────────────────── */
+
+.devata-hero-inner {
+  display: grid;
+  gap: 2.2rem;
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .devata-hero-inner {
+    grid-template-columns: minmax(0, 1fr) 360px;
+    gap: 4rem;
+  }
+}
+
+.devata-hero-text {
+  display: grid;
+  justify-items: start;
+  gap: 0.85rem;
+}
+
+/* Large Sanskrit titles wrap on a phone, and Kannada conjuncts need the
+   room: 1.4, not the 1.3 the rendering test holds as the floor. */
+.devata-title {
+  font-size: clamp(3.8rem, 12vw, 9rem);
+  line-height: 1.4;
+  color: var(--s-gold);
+  text-shadow: 0 0 36px hsl(var(--s-glow) / 0.25);
+}
+
+.devata-name {
+  font: 700 clamp(1.8rem, 3.6vw, 2.8rem) / var(--lh-title) var(--sans);
+  letter-spacing: var(--track-title);
+}
+
+.devata-epithet {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--s-gold-2);
+}
+html:lang(kn) .devata-epithet,
+html:lang(hi) .devata-epithet {
+  font-style: normal;
+  font-size: clamp(1.05rem, 1.7vw, 1.25rem);
+}
+
+.devata-hero-media {
+  display: grid;
+  justify-items: center;
+  gap: 0.9rem;
+  width: min(100%, 340px);
+  justify-self: center;
+  text-align: center;
+}
+
+.stotra-section {
+  display: grid;
+  gap: 1.4rem;
+}
+
+.stotra-list {
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.stotra-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  gap: 0.75rem;
+  padding: clamp(1.3rem, 3vw, 2rem);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--s-line);
+  background: var(--s-raise);
+  transition: transform 0.45s var(--ease), border-color 0.3s ease;
+}
+@media (min-width: 760px) {
+  .stotra-card {
+    padding-left: 5.4rem;
+  }
+}
+@media (hover: hover) {
+  .stotra-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--s-line-2);
+  }
+}
+
+.stotra-card-num {
+  font: 800 1.1rem / 1 var(--sans);
+  color: var(--s-accent);
+}
+@media (min-width: 760px) {
+  .stotra-card-num {
+    position: absolute;
+    top: 2.1rem;
+    left: 1.7rem;
+    font-size: 1.7rem;
+  }
+}
+
+.stotra-card-head {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.stotra-card-sanskrit {
+  font-size: clamp(1.6rem, 3.4vw, 2.4rem);
+  line-height: 1.4;
+  color: var(--s-gold);
+  overflow-wrap: anywhere;
+}
+
+.stotra-card-name {
+  font: 700 clamp(1.15rem, 2vw, 1.4rem) / var(--lh-snug) var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--s-ivory);
+}
+
+.stotra-card-iast {
+  font-size: 0.96rem;
+  color: var(--s-ivory-3);
+}
+
+.stotra-card-line {
+  padding-left: 0.9rem;
+  border-left: 2px solid hsl(var(--s-glow) / 0.5);
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  line-height: 1.6;
+  color: var(--s-gold-2);
+  overflow-wrap: anywhere;
+}
+
+.stotra-card-summary {
+  max-width: 70ch;
+  line-height: 1.6;
+  color: var(--s-ivory-2);
+}
+
+.stotra-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ── A stotra's reader ────────────────────────────────── */
+
+.stotra-hero-inner {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+@media (min-width: 1000px) {
+  .stotra-hero-inner {
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: 3.5rem;
+  }
+}
+
+.stotra-hero-text {
+  display: grid;
+  justify-items: start;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+.sanctum-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font: 500 0.86rem / var(--lh-snug) var(--sans);
+  color: var(--s-ivory-3);
+}
+.sanctum-crumbs a {
+  color: var(--s-ivory-2);
+  transition: color 0.2s ease;
+}
+@media (hover: hover) {
+  .sanctum-crumbs a:hover {
+    color: var(--s-gold);
+  }
+}
+
+.stotra-title {
+  max-width: 100%;
+  font-size: clamp(2.5rem, 6.6vw, 5.2rem);
+  line-height: 1.4;
+  color: var(--s-gold);
+  text-shadow: 0 0 32px hsl(var(--s-glow) / 0.24);
+  overflow-wrap: anywhere;
+}
+
+.stotra-name {
+  font: 700 clamp(1.4rem, 2.6vw, 2rem) / var(--lh-snug) var(--sans);
+  letter-spacing: var(--track-head);
+}
+
+.stotra-iast {
+  font-size: 1.05rem;
+  color: var(--s-ivory-3);
+}
+
+.stotra-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+.stotra-facts > div {
+  display: grid;
+  gap: 0.15rem;
+  max-width: 100%;
+  padding: 0.6rem 0.95rem;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--s-line);
+  background: var(--s-glass);
+}
+.stotra-facts dt {
+  font: 500 0.72rem / 1.3 var(--sans);
+  color: var(--s-ivory-3);
+}
+.stotra-facts dd {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--s-ivory);
+}
+
+.stotra-hero-media {
+  width: min(100%, 280px);
+  justify-self: center;
+}
+
+/* The shared reader, turned to the dark. */
+.sanctum .reader-body {
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.sanctum .langchoice {
+  justify-items: start;
+  margin-top: 0.6rem;
+}
+.sanctum .langchoice-label {
+  color: var(--s-ivory-3);
+}
+.sanctum .langchoice-track {
+  background: var(--s-glass);
+  border-color: var(--s-line-2);
+  box-shadow: none;
+}
+.sanctum .langchoice-thumb {
+  background: var(--s-accent);
+}
+.sanctum .langchoice-opt {
+  color: var(--s-ivory-2);
+}
+.sanctum .langchoice-opt[data-active] {
+  color: var(--s-on-accent);
+}
+
+.sanctum .reader-partial {
+  background: rgba(255, 196, 80, 0.07);
+  border-color: rgba(255, 196, 80, 0.28);
+  color: #ffe2a8;
+}
+
+.sanctum .spine {
+  background: var(--s-raise);
+  border-color: var(--s-line);
+  box-shadow: none;
+}
+.sanctum .spine-count {
+  color: var(--s-ivory);
+}
+.sanctum .spine-count i {
+  color: var(--s-ivory-3);
+}
+.sanctum .spine-tick span {
+  background: rgba(255, 236, 200, 0.16);
+}
+.sanctum .spine-tick[data-passed] span {
+  background: hsl(var(--s-glow) / 0.45);
+}
+.sanctum .spine-tick[data-active] span {
+  background: var(--s-accent);
+}
+
+.sanctum .vstage {
+  border-color: var(--s-line);
+  background: var(--s-raise);
+  box-shadow: none;
+}
+.sanctum .vstage[data-open] {
+  border-color: var(--s-line-2);
+  box-shadow: none;
+}
+.sanctum .vstage-ghost {
+  color: rgba(255, 226, 170, 0.05);
+}
+.sanctum .vstage-num {
+  background: hsl(var(--s-glow) / 0.14);
+  color: var(--s-gold-2);
+}
+.sanctum .vstage-handle {
+  color: var(--s-ivory-2);
+}
+.sanctum .vstage-sanskrit {
+  font-size: clamp(1.45rem, 3.1vw, 2.35rem);
+  color: var(--s-gold);
+  text-shadow: 0 0 20px hsl(var(--s-glow) / 0.18);
+}
+.sanctum .vstage-iast .translit {
+  color: var(--s-ivory-3);
+}
+.sanctum .vstage-translation {
+  background: rgba(0, 0, 0, 0.26);
+  border-left-color: var(--s-accent);
+  color: var(--s-ivory);
+}
+.sanctum .vstage-terms-label {
+  color: var(--s-ivory-3);
+}
+.sanctum .vterm {
+  background: var(--s-glass);
+  border-color: var(--s-line);
+}
+.sanctum .vterm dt > span:first-child {
+  color: var(--s-gold);
+}
+.sanctum .vterm dt .translit {
+  color: var(--s-ivory-3);
+}
+.sanctum .vterm dd {
+  color: var(--s-ivory-2);
+}
+.sanctum .vbtn {
+  background: var(--s-glass);
+  border-color: var(--s-line-2);
+  color: var(--s-ivory);
+}
+.sanctum .vstage[data-open] .vbtn {
+  background: var(--s-accent);
+  border-color: var(--s-accent);
+  color: var(--s-on-accent);
+}
+.sanctum .vbtn-dot {
+  background: var(--s-accent);
+}
+.sanctum .vstage[data-open] .vbtn-dot {
+  background: var(--s-on-accent);
+}
+.sanctum .vstage-note {
+  color: var(--s-ivory-2);
+}
+.sanctum .notice-uncited {
+  background: rgba(255, 196, 80, 0.07);
+  border-color: rgba(255, 196, 80, 0.28);
+  color: #ffdc93;
+}
+@media (hover: hover) {
+  .sanctum .vbtn:hover {
+    border-color: var(--s-gold);
+  }
+}
+
+.stotra-foot {
+  display: grid;
+  gap: 1.6rem;
+  padding-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.stotra-pager {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.pager-link {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--s-line);
+  background: var(--s-raise);
+  transition: border-color 0.3s ease;
+}
+.pager-link[data-dir="next"] {
+  justify-items: end;
+  text-align: right;
+}
+@media (hover: hover) {
+  .pager-link:hover {
+    border-color: var(--s-line-2);
+  }
+}
+
+.pager-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font: 500 0.8rem / 1.3 var(--sans);
+  color: var(--s-ivory-3);
+}
+
+.pager-name {
+  font: 700 1.1rem / var(--lh-snug) var(--sans);
+  color: var(--s-ivory);
+}
+
+.stotra-foot-notes {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.stotra-foot-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dawn-card,
+  .devata-card,
+  .stotra-card,
+  .devata-card-media img,
+  .sanctum-cta {
+    transition: none;
+  }
+}

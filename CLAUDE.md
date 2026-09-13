@@ -22,7 +22,7 @@ Docs:
 npm run dev              # http://localhost:3000 — needs no .env.local and no database
 npx tsc --noEmit         # typecheck (add --incremental false if it reports errors in code you didn't touch)
 npm run build
-npm run test:unit        # node:test via tsx: script conversion, content integrity, UI strings, the logo
+npm run test:unit        # node:test via tsx: script conversion, content integrity, UI strings, the logo, the stotras
 npm run test:e2e         # Playwright in the installed Chrome: every page × en/kn/hi × four widths
 npx playwright test --project=desktop -g "kena"   # one width, pages matching "kena"
 npm run seed             # push src/lib/seed/* to Supabase (inserts missing rows, idempotent)
@@ -47,7 +47,7 @@ Every public page reads from `src/lib/data.ts`, which reads TypeScript arrays in
   - Every `WorkType` in `types.ts` must be allowed by the `texts.work_type` check constraint.
   - Text slugs inserted by `schema.sql` must match `seed/texts.ts` exactly. A mismatch silently creates a second row per text.
   - Known column mismatches are bridged in the seed script, not in the data. `texts` has `title_*` columns where the seed has `name_*` (the script's `transform` renames them). Base tables still have legacy NOT NULL English columns, which the script fills from the `en` translation row (`english()`).
-  - The site reads `seed/corpus.ts` (Vedas, the Gita and its chapters, stutis, bhajans), but the seed script does not push it.
+  - The site reads `seed/corpus.ts` (Vedas, the Gita and its chapters, stutis, bhajans), but the seed script does not push it. Nor does it push the stotra registry (`seed/stotras.ts`); `allStotraRows()` builds its rows for when it does.
 - `src/lib/db.ts` is the Supabase read path, but it has fallen out of step with `data.ts`: its functions take no `Locale`. Only `/admin/sources` uses it at runtime. The switch-over plan is in `docs/DATABASE.md` §6:
   1. Give each `db.ts` function the same signature as its `data.ts` counterpart, returning the same View shapes.
   2. Move one page per commit.
@@ -70,6 +70,25 @@ Every public page reads from `src/lib/data.ts`, which reads TypeScript arrays in
 - Lectures: `seed/lectures.ts` maps a verse locator to a YouTube video id. A verse with no entry shows no lecture card. Never point it at a neighbouring talk instead. The Īśa text predates the registry and keeps its own `isha-video.ts` and `isha-commentary.ts`.
 
 Adding an Upanishad needs no page, component or CSS changes. The unit tests (`tests/unit/content.test.ts`) check the new text's IAST alignment and translations.
+
+### Stotras are arranged by devata
+
+The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotra]`. The stutis use the same registry idea as the Upanishads:
+
+- `seed/devatas.ts` lists the devatas in order, Gāyatrī first and then Gaṇeśa.
+  - An `open` devata has stotras to read. It gets a page, a theme and a picture.
+  - A `planned` devata appears on the index with the stotras already summarised for it, marked as not yet entered. Its page 404s.
+- Each stotra is a module in `seed/stotras/` that calls `registerStotra()` (in `seed/stotras.ts`). It supplies its verses as `FullVerse[]`, plus `devata`, `order`, `origin`, `composer` and `metre`.
+  - Import the module in the stotra block of `data.ts`, or it has no page.
+  - Its header (name and summary) is a `STUTIS` row in `seed/corpus.ts`, with `deity` set to the devata. The row's `id` must equal the module's `textId`.
+- Verses use three kinds of locator: `invocation`, `1`…`n`, or `phala` for a closing phalaśruti. The reader labels each one.
+- Each module names the edition its mūla was checked against, and any place it departs from that edition.
+  - stotranidhi.com refuses automated reads, so the texts so far were checked against sa.wikisource.org.
+  - Any reading in doubt was checked against a second source.
+- Pictures:
+  - They live in `public/images/stutis/`, under free licences.
+  - Each declares its real pixel size, and a unit test reads the JPEG to check it.
+  - A cropped CC BY-SA photograph says "cropped" in its credit.
 
 ### Citation and accuracy rules
 
@@ -123,7 +142,11 @@ Don't route around these.
 - The theme is warm and light: paper background (`--paper`), deep brown ink (`--ink`, `--ink-2`…), marigold for fills (`--marigold`), and `--gold` / `--saffron` as the accents that are safe for text. Sanskrit is set in `--sacred`.
 - Styling is hand-written CSS on semantic classes, split by surface:
   - `src/app/globals.css`: tokens, type, buttons and chips, inside Tailwind `@layer`s.
-  - `src/styles/{chrome,pages,home,reader}.css`: unlayered, imported in order from `app/layout.tsx`.
+  - `src/styles/{chrome,pages,home,reader,stotra}.css`: unlayered, imported in order from `app/layout.tsx`.
+  - `stotra.css` styles the stutis as a dark panel, to the owner's brief:
+    - one soft glow from above, and faint embers from `components/stotra/SanctumField`
+    - nothing drawn behind the text: no yantra artwork, no blurred copy of the picture
+    - each devata changes only the warmth of the light and the gold
 
   Tailwind utilities are barely used; follow the semantic-class approach.
 - **Tailwind drops any `@layer` class it can't find written out literally** in `src/app`, `src/components` or `src/pages`. A class name built at runtime (such as the `tone-${i % 7}` colour palette) must live in an unlayered file (the tones are in `styles/pages.css`), or it silently disappears.
@@ -163,6 +186,13 @@ Don't route around these.
 - bold or italic the browser had to fake, found the same way (desktop run only)
 
 `brand.spec.ts` pins the logo, the lockup in each language, the reversed footer mark and the icons.
+
+`stutis.spec.ts` covers the stutis:
+- the order of the devatas
+- the plain background (no artwork or blurred picture behind the text)
+- text contrast of at least 4.5:1 on the dark
+- the pictures and their credits
+- the links from one stotra to the next
 
 ## Conventions
 

@@ -137,6 +137,25 @@ export interface UIStrings {
   labelSelections: string;
   labelReadNow: string;
 
+  // ── Stutis, by devata
+  stutisHeadline: string;
+  stutisAccent: string;
+  stutisLede: string;
+  labelBeginHere: string;
+  labelOpenDevata: string;
+  labelTextOne: string;
+  labelTextMany: string;
+  labelInOrder: string;
+  labelFrom: string;
+  labelComposer: string;
+  labelMetre: string;
+  labelPhala: string;
+  labelComing: string;
+  labelComingNote: string;
+  labelAllDevatas: string;
+  labelPrevious: string;
+  labelNext: string;
+
   // ── Homepage (2026 redesign)
   //
   // Headlines come in two parts: the plain run, and the phrase set in
@@ -282,6 +301,26 @@ const en: UIStrings = {
   labelSelections: "Selections —",
   labelReadNow: "Read now",
 
+  stutisHeadline: "Every devata,",
+  stutisAccent: "and the verses that praise them.",
+  stutisLede:
+    "Begin where each day begins, with the Gāyatrī; then Gaṇeśa, who is honoured before anything else is begun. Every text is set verse by verse — the mūla in your script, its transliteration, a translation, and the words that carry it.",
+  labelBeginHere: "Begin here",
+  labelOpenDevata: "Open the texts",
+  labelTextOne: "text",
+  labelTextMany: "texts",
+  labelInOrder: "In the order they are said",
+  labelFrom: "From",
+  labelComposer: "Seer or author",
+  labelMetre: "Metre",
+  labelPhala: "Phalashruti",
+  labelComing: "Being entered next",
+  labelComingNote:
+    "A text is added only once every syllable has been checked against a published edition. Until then it is listed here, not shown.",
+  labelAllDevatas: "All devatas",
+  labelPrevious: "Previous",
+  labelNext: "Next",
+
   navGita: "Gita",
   ctaStartReading: "Start reading",
   heroHeadline: "Sanatana Dharma, verse by verse —",
@@ -422,6 +461,26 @@ const kn: UIStrings = {
   labelSelections: "ಆಯ್ದ ಭಾಗಗಳು —",
   labelReadNow: "ಈಗಲೇ ಓದಿ",
 
+  stutisHeadline: "ಪ್ರತಿ ದೇವತೆ,",
+  stutisAccent: "ಮತ್ತು ಅವರನ್ನು ಸ್ತುತಿಸುವ ಶ್ಲೋಕಗಳು.",
+  stutisLede:
+    "ಪ್ರತಿ ದಿನ ಆರಂಭವಾಗುವಲ್ಲಿಂದಲೇ ಆರಂಭಿಸಿ — ಗಾಯತ್ರಿಯಿಂದ; ನಂತರ ಯಾವುದೇ ಕಾರ್ಯಕ್ಕೆ ಮೊದಲು ಪೂಜಿಸಲ್ಪಡುವ ಗಣೇಶ. ಪ್ರತಿ ಪಠ್ಯವೂ ಶ್ಲೋಕಶಃ — ನಿಮ್ಮ ಲಿಪಿಯಲ್ಲಿ ಮೂಲ, ಅದರ ಲಿಪ್ಯಂತರ, ಅನುವಾದ, ಮತ್ತು ಅರ್ಥವನ್ನು ಹೊತ್ತ ಪದಗಳು.",
+  labelBeginHere: "ಇಲ್ಲಿಂದ ಆರಂಭಿಸಿ",
+  labelOpenDevata: "ಪಠ್ಯಗಳನ್ನು ತೆರೆಯಿರಿ",
+  labelTextOne: "ಪಠ್ಯ",
+  labelTextMany: "ಪಠ್ಯಗಳು",
+  labelInOrder: "ಹೇಳುವ ಕ್ರಮದಲ್ಲಿ",
+  labelFrom: "ಮೂಲ",
+  labelComposer: "ಋಷಿ ಅಥವಾ ಕರ್ತೃ",
+  labelMetre: "ಛಂದಸ್ಸು",
+  labelPhala: "ಫಲಶ್ರುತಿ",
+  labelComing: "ಮುಂದೆ ಸೇರಲಿವೆ",
+  labelComingNote:
+    "ಪ್ರತಿ ಅಕ್ಷರವನ್ನೂ ಪ್ರಕಟಿತ ಆವೃತ್ತಿಯೊಂದಿಗೆ ತಾಳೆ ನೋಡಿದ ನಂತರವೇ ಪಠ್ಯವನ್ನು ಸೇರಿಸಲಾಗುತ್ತದೆ. ಅಲ್ಲಿಯವರೆಗೆ ಅದನ್ನು ಇಲ್ಲಿ ಪಟ್ಟಿ ಮಾಡಲಾಗುತ್ತದೆ, ತೋರಿಸಲಾಗುವುದಿಲ್ಲ.",
+  labelAllDevatas: "ಎಲ್ಲ ದೇವತೆಗಳು",
+  labelPrevious: "ಹಿಂದಿನದು",
+  labelNext: "ಮುಂದಿನದು",
+
   navGita: "ಗೀತೆ",
   ctaStartReading: "ಓದಲು ಆರಂಭಿಸಿ",
   heroHeadline: "ಸನಾತನ ಧರ್ಮ, ಶ್ಲೋಕಶಃ —",
@@ -561,6 +620,26 @@ const hi: UIStrings = {
   readerHint: "श्लोकों के बीच चलने के लिए J और K, या तीर कुंजियाँ प्रयोग करें।",
   labelSelections: "चयनित अंश —",
   labelReadNow: "अभी पढ़ें",
+
+  stutisHeadline: "हर देवता,",
+  stutisAccent: "और उनकी स्तुति के श्लोक।",
+  stutisLede:
+    "वहीं से आरंभ करें जहाँ हर दिन आरंभ होता है — गायत्री से; फिर गणेश, जिनकी पूजा किसी भी कार्य से पहले होती है। हर पाठ श्लोकशः है — आपकी लिपि में मूल, उसका लिप्यंतरण, अनुवाद, और अर्थ वहन करने वाले शब्द।",
+  labelBeginHere: "यहाँ से आरंभ करें",
+  labelOpenDevata: "पाठ खोलें",
+  labelTextOne: "पाठ",
+  labelTextMany: "पाठ",
+  labelInOrder: "पाठ के क्रम में",
+  labelFrom: "स्रोत",
+  labelComposer: "ऋषि या रचयिता",
+  labelMetre: "छंद",
+  labelPhala: "फलश्रुति",
+  labelComing: "आगे जुड़ेंगे",
+  labelComingNote:
+    "कोई पाठ तभी जोड़ा जाता है जब उसके हर अक्षर का किसी प्रकाशित संस्करण से मिलान हो जाए। तब तक वह यहाँ केवल सूचीबद्ध रहता है, दिखाया नहीं जाता।",
+  labelAllDevatas: "सभी देवता",
+  labelPrevious: "पिछला",
+  labelNext: "अगला",
 
   navGita: "गीता",
   ctaStartReading: "पढ़ना आरंभ करें",

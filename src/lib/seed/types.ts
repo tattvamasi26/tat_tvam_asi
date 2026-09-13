@@ -67,6 +67,8 @@ export interface TextRow {
   name_iast: string;
   veda: string | null;
   verse_count: number | null;
+  /** Stotras only: the devata praised, as a `seed/devatas.ts` slug (→ texts.deity). */
+  deity?: string | null;
 }
 
 /** → text_translations */
