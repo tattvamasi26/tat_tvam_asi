@@ -21,16 +21,8 @@ registerStotra({
   order: 1,
   category: "shruti",
   metre: "gāyatrī",
-  origin: {
-    en: "Ṛgveda 3.62.10, with the vyāhṛtis the Yajurvedic tradition sets before it",
-    kn: "ಋಗ್ವೇದ 3.62.10; ಯಜುರ್ವೇದ ಪರಂಪರೆ ಅದರ ಮುಂದೆ ಸೇರಿಸುವ ವ್ಯಾಹೃತಿಗಳೊಂದಿಗೆ",
-    hi: "ऋग्वेद 3.62.10; यजुर्वेदीय परंपरा द्वारा उसके आगे जोड़ी जाने वाली व्याहृतियों सहित",
-  },
-  composer: {
-    en: "Seen by the ṛṣi Viśvāmitra",
-    kn: "ಋಷಿ ವಿಶ್ವಾಮಿತ್ರರು ದರ್ಶಿಸಿದ್ದು",
-    hi: "ऋषि विश्वामित्र द्वारा दृष्ट",
-  },
+  origin: { en: "Rigveda 3.62.10", kn: "ಋಗ್ವೇದ 3.62.10", hi: "ऋग्वेद 3.62.10" },
+  composer: { en: "Rishi Vishvamitra", kn: "ಋಷಿ ವಿಶ್ವಾಮಿತ್ರ", hi: "ऋषि विश्वामित्र" },
   verses: [
     {
       id: "gayatri-vyahriti",

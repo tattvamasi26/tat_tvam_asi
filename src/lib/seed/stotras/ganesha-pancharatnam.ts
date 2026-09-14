@@ -17,16 +17,8 @@ registerStotra({
   order: 4,
   category: "smriti",
   metre: "pañcacāmara",
-  origin: {
-    en: "Bṛhat Stotra Ratnākara, among the stotras ascribed to Śaṅkara",
-    kn: "ಬೃಹತ್ ಸ್ತೋತ್ರ ರತ್ನಾಕರ — ಶಂಕರರಿಗೆ ಆರೋಪಿತ ಸ್ತೋತ್ರಗಳಲ್ಲಿ",
-    hi: "बृहत् स्तोत्र रत्नाकर — शंकर को आरोपित स्तोत्रों में",
-  },
-  composer: {
-    en: "Ādi Śaṅkarācārya, by tradition",
-    kn: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು, ಪರಂಪರೆಯಂತೆ",
-    hi: "आदि शंकराचार्य, परंपरानुसार",
-  },
+  origin: { en: "Brihat Stotra Ratnakara", kn: "ಬೃಹತ್ ಸ್ತೋತ್ರ ರತ್ನಾಕರ", hi: "बृहत् स्तोत्र रत्नाकर" },
+  composer: { en: "Adi Shankaracharya", kn: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು", hi: "आदि शंकराचार्य" },
   verses: [
     {
       id: "ganesha-pancharatnam-1",

@@ -18,8 +18,8 @@ registerStotra({
   order: 5,
   category: "smriti",
   metre: "anuṣṭubh",
-  origin: { en: "Nārada Purāṇa", kn: "ನಾರದ ಪುರಾಣ", hi: "नारद पुराण" },
-  composer: { en: "Spoken by the sage Nārada", kn: "ನಾರದ ಮಹರ್ಷಿ ಹೇಳಿದ್ದು", hi: "देवर्षि नारद द्वारा कथित" },
+  origin: { en: "Narada Purana", kn: "ನಾರದ ಪುರಾಣ", hi: "नारद पुराण" },
+  composer: { en: "Narada", kn: "ನಾರದ", hi: "नारद" },
   verses: [
     {
       id: "sankatanashana-1",

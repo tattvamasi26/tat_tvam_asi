@@ -23,11 +23,8 @@ export function VerseSpine({
   labels,
 }: {
   ids: { id: string; locator: string }[];
-  labels: { index: string; verse: string; invocation: string; phala?: string };
+  labels: { index: string; verse: string; invocation: string };
 }) {
-  // An Upanishad opens on an invocation, counted as 00. A stotra that
-  // opens on its first verse counts from 01.
-  const offset = ids[0]?.locator === "invocation" ? 0 : 1;
   const [active, setActive] = useState<string | null>(null);
 
   useEffect(() => {
@@ -80,9 +77,9 @@ export function VerseSpine({
   return (
     <nav className="spine" aria-label={labels.index}>
       <span className="spine-count">
-        {activeIndex >= 0 ? String(activeIndex + offset).padStart(2, "0") : "··"}
+        {activeIndex >= 0 ? String(activeIndex).padStart(2, "0") : "··"}
         <i>/</i>
-        {String(ids.length - 1 + offset).padStart(2, "0")}
+        {String(ids.length - 1).padStart(2, "0")}
       </span>
 
       <ol className="spine-ticks">
@@ -96,9 +93,7 @@ export function VerseSpine({
               aria-label={
                 v.locator === "invocation"
                   ? labels.invocation
-                  : v.locator === "phala"
-                    ? labels.phala ?? labels.verse
-                    : `${labels.verse} ${v.locator}`
+                  : `${labels.verse} ${v.locator}`
               }
             >
               <span />

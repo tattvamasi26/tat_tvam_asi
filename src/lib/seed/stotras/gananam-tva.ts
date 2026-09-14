@@ -19,12 +19,8 @@ registerStotra({
   order: 2,
   category: "shruti",
   metre: "jagatī",
-  origin: { en: "Ṛgveda 2.23.1", kn: "ಋಗ್ವೇದ 2.23.1", hi: "ऋग्वेद 2.23.1" },
-  composer: {
-    en: "Seen by the ṛṣi Gṛtsamada",
-    kn: "ಋಷಿ ಗೃತ್ಸಮದರು ದರ್ಶಿಸಿದ್ದು",
-    hi: "ऋषि गृत्समद द्वारा दृष्ट",
-  },
+  origin: { en: "Rigveda 2.23.1", kn: "ಋಗ್ವೇದ 2.23.1", hi: "ऋग्वेद 2.23.1" },
+  composer: { en: "Rishi Gritsamada", kn: "ಋಷಿ ಗೃತ್ಸಮದ", hi: "ऋषि गृत्समद" },
   verses: [
     {
       id: "gananam-tva-1",

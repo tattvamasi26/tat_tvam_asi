@@ -76,19 +76,25 @@ Adding an Upanishad needs no page, component or CSS changes. The unit tests (`te
 The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotra]`. The stutis use the same registry idea as the Upanishads:
 
 - `seed/devatas.ts` lists the devatas in order, Gāyatrī first and then Gaṇeśa.
-  - An `open` devata has stotras to read. It gets a page, a theme and a picture.
-  - A `planned` devata appears on the index with the stotras already summarised for it, marked as not yet entered. Its page 404s.
+  - An `open` devata has stotras to read. It gets a page and a picture.
+  - A `planned` devata is listed by name under "Coming soon" on the index. It appears only once at least one stotra is summarised for it in `corpus.ts`. Its page 404s.
 - Each stotra is a module in `seed/stotras/` that calls `registerStotra()` (in `seed/stotras.ts`). It supplies its verses as `FullVerse[]`, plus `devata`, `order`, `origin`, `composer` and `metre`.
   - Import the module in the stotra block of `data.ts`, or it has no page.
   - Its header (name and summary) is a `STUTIS` row in `seed/corpus.ts`, with `deity` set to the devata. The row's `id` must equal the module's `textId`.
 - Verses use three kinds of locator: `invocation`, `1`…`n`, or `phala` for a closing phalaśruti. The reader labels each one.
+- A stotra page follows the stotra portals, to the owner's brief (`components/stotra/StotraText`):
+  - The whole text sits in one column, each verse numbered, in the reader's script.
+  - Transliteration appears only on English pages.
+  - The translation stays closed until the reader presses "Show meaning", and the "not yet cited" notice appears with it.
+  - Word-by-word glosses and commentary stay in the data but are not shown. Don't add them to the page unless asked.
 - Each module names the edition its mūla was checked against, and any place it departs from that edition.
   - stotranidhi.com refuses automated reads, so the texts so far were checked against sa.wikisource.org.
   - Any reading in doubt was checked against a second source.
 - Pictures:
   - They live in `public/images/stutis/`, under free licences.
   - Each declares its real pixel size, and a unit test reads the JPEG to check it.
-  - A cropped CC BY-SA photograph says "cropped" in its credit.
+  - A picture cropped from its original says "cropped" in its credit.
+  - Each one must clearly show the devata. The owner chooses among candidates before one goes in.
 
 ### Citation and accuracy rules
 
@@ -143,10 +149,9 @@ Don't route around these.
 - Styling is hand-written CSS on semantic classes, split by surface:
   - `src/app/globals.css`: tokens, type, buttons and chips, inside Tailwind `@layer`s.
   - `src/styles/{chrome,pages,home,reader,stotra}.css`: unlayered, imported in order from `app/layout.tsx`.
-  - `stotra.css` styles the stutis as a dark panel, to the owner's brief:
-    - one soft glow from above, and faint embers from `components/stotra/SanctumField`
-    - nothing drawn behind the text: no yantra artwork, no blurred copy of the picture
-    - each devata changes only the warmth of the light and the gold
+  - `stotra.css` styles the stutis in the site's own design language: the page head and cards on paper, the feature block, and the whole stotra in a single text card.
+    - There is no dark panel and no background effect; the owner rejected both.
+    - For any UI change, study the existing pages first and design within them. The owner's personal `design-language` skill spells this out.
 
   Tailwind utilities are barely used; follow the semantic-class approach.
 - **Tailwind drops any `@layer` class it can't find written out literally** in `src/app`, `src/components` or `src/pages`. A class name built at runtime (such as the `tone-${i % 7}` colour palette) must live in an unlayered file (the tones are in `styles/pages.css`), or it silently disappears.
@@ -189,10 +194,12 @@ Don't route around these.
 
 `stutis.spec.ts` covers the stutis:
 - the order of the devatas
-- the plain background (no artwork or blurred picture behind the text)
-- text contrast of at least 4.5:1 on the dark
+- that they sit on the site's paper, with no dark panel, canvas or artwork
 - the pictures and their credits
+- that the meaning stays closed until asked for, and that no word meanings are shown
+- that transliteration appears only in English
 - the links from one stotra to the next
+- the 404s for devatas not yet entered
 
 ## Conventions
 

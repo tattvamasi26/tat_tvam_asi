@@ -134,7 +134,7 @@ test("an invocation comes first and a phalaśruti last; everything between is nu
 
 test("on a Kannada page every title, line and term comes back in Kannada script", () => {
   for (const d of getDevatas("kn")) {
-    assert.ok(!DEVANAGARI_LETTER.test(d.nameSanskrit + d.glyph), `${d.slug}: name left in Devanagari`);
+    assert.ok(!DEVANAGARI_LETTER.test(d.nameSanskrit), `${d.slug}: name left in Devanagari`);
     for (const s of getStotraViews(d.slug, "kn")) {
       assert.ok(!DEVANAGARI_LETTER.test(s.nameSanskrit), `${s.slug}: title left in Devanagari`);
       assert.ok(!DEVANAGARI_LETTER.test(s.firstLine), `${s.slug}: opening line left in Devanagari`);

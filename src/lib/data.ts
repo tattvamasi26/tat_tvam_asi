@@ -554,19 +554,16 @@ import "./seed/stotras/gananam-tva";
 import "./seed/stotras/ganesha-gayatri";
 import "./seed/stotras/ganesha-pancharatnam";
 import "./seed/stotras/sankatanashana";
-import { DEVATAS, type DevataRow, type DevataTheme } from "./seed/devatas";
+import { DEVATAS, type DevataRow } from "./seed/devatas";
 import { getStotra, stotrasOf, stotraSlugs } from "./seed/stotras";
 
 export interface DevataView {
   slug: string;
   status: "open" | "planned";
-  theme: DevataTheme;
   name: string;
   /** In the reader's script. */
   nameSanskrit: string;
   nameIast: string;
-  /** Decorative Sanskrit, in the reader's script. */
-  glyph: string;
   scriptClass: string;
   epithet: string;
   blurb: string;
@@ -615,11 +612,9 @@ function devataView(d: DevataRow, locale: Locale): DevataView {
   return {
     slug: d.slug,
     status: d.status,
-    theme: d.theme,
     name: d.name[locale] ?? d.name.en,
     nameSanskrit: scriptFor(d.name_sanskrit, locale),
     nameIast: d.name_iast,
-    glyph: scriptFor(d.glyph, locale),
     scriptClass: scriptClass(locale),
     epithet: d.epithet[locale] ?? d.epithet.en,
     blurb: d.blurb[locale] ?? d.blurb.en,

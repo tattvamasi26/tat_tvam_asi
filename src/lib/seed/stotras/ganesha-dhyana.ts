@@ -21,11 +21,7 @@ registerStotra({
   devata: "ganesha",
   order: 1,
   category: "smriti",
-  origin: {
-    en: "The Āgamas and household practice — each verse's source is given with it",
-    kn: "ಆಗಮಗಳು ಮತ್ತು ಗೃಹಾಚರಣೆ — ಪ್ರತಿ ಶ್ಲೋಕದ ಮೂಲವನ್ನು ಅದರೊಂದಿಗೇ ನೀಡಲಾಗಿದೆ",
-    hi: "आगम और गृह-परंपरा — प्रत्येक श्लोक का स्रोत उसी के साथ दिया गया है",
-  },
+  origin: { en: "Traditional verses", kn: "ಸಾಂಪ್ರದಾಯಿಕ ಶ್ಲೋಕಗಳು", hi: "पारंपरिक श्लोक" },
   verses: [
     {
       id: "ganesha-dhyana-1",

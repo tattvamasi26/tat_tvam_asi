@@ -63,7 +63,6 @@ test("headlines with an italic turn have both halves in every language", () => {
     ["homeSpaceTitle", "homeSpaceAccent"],
     ["homeReadTitle", "homeReadAccent"],
     ["homeCtaTitle", "homeCtaAccent"],
-    ["stutisHeadline", "stutisAccent"],
   ] as const;
   for (const l of LOCALES) {
     const t = ui(l);

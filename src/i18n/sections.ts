@@ -108,9 +108,9 @@ export const SECTIONS: SectionDef[] = [
       hi: "देवता स्तुतियाँ",
     },
     blurb: {
-      en: "Stotras of praise — where metre, sound and meaning are inseparable.",
-      kn: "ಸ್ತೋತ್ರಗಳು — ಛಂದಸ್ಸು, ನಾದ ಮತ್ತು ಅರ್ಥ ಬೇರ್ಪಡಿಸಲಾಗದವು.",
-      hi: "स्तोत्र — जहाँ छंद, नाद और अर्थ अभिन्न हैं।",
+      en: "Stotras and mantras, arranged by devata.",
+      kn: "ದೇವತೆಗಳ ಪ್ರಕಾರ ಜೋಡಿಸಿದ ಸ್ತೋತ್ರಗಳು ಮತ್ತು ಮಂತ್ರಗಳು.",
+      hi: "देवताओं के अनुसार क्रम से स्तोत्र और मंत्र।",
     },
   },
   {

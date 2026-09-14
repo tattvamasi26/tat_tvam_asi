@@ -15,7 +15,7 @@ registerStotra({
   order: 3,
   category: "shruti",
   metre: "gāyatrī",
-  origin: { en: "Gaṇapati Atharvaśīrṣa", kn: "ಗಣಪತಿ ಅಥರ್ವಶೀರ್ಷ", hi: "गणपति अथर्वशीर्ष" },
+  origin: { en: "Ganapati Atharvashirsha", kn: "ಗಣಪತಿ ಅಥರ್ವಶೀರ್ಷ", hi: "गणपति अथर्वशीर्ष" },
   verses: [
     {
       id: "ganesha-gayatri-1",

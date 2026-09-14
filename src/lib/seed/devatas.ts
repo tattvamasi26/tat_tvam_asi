@@ -3,26 +3,21 @@ import type { Locale } from "@/i18n/config";
 // ─────────────────────────────────────────────────────────
 //  The devatas the stotras are arranged by.
 //
-//  `open` devatas have at least one stotra entered in full and get
-//  their own page, picture and theme. `planned` devatas are listed
-//  on the index with the stotras already summarised in corpus.ts,
-//  marked plainly as not yet entered — never as readable.
+//  `open` devatas have at least one stotra entered in full and get a
+//  page with their picture. `planned` devatas are listed under
+//  "Coming soon" and have no page yet.
 //
-//  `theme` picks the warmth of the page's light and its gold. Every
-//  picture is a local file under a free licence — public domain, CC0
-//  or CC BY-SA — and carries its credit, saying so where it has been
-//  cropped; `width` and `height` are the file's real pixel size (a
-//  unit test reads the JPEG to hold them to it), so nothing can be
-//  drawn stretched.
+//  Every picture is a local file under a free licence (public domain
+//  or CC0) and carries its credit. `width` and `height` are the file's
+//  real pixel size — a unit test reads the JPEG to hold them to it —
+//  so a picture is never drawn stretched.
 // ─────────────────────────────────────────────────────────
-
-export type DevataTheme = "savitr" | "ganapati" | "shiva" | "vishnu" | "devi";
 
 export interface DevataImage {
   src: string;
   width: number;
   height: number;
-  /** Which part of the picture to keep when the arch crops it. */
+  /** Which part of the picture to keep when a frame crops it. */
   position?: string;
   credit: string;
   sourceUrl: string;
@@ -33,11 +28,8 @@ export interface DevataRow {
   slug: string;
   order: number;
   status: "open" | "planned";
-  theme: DevataTheme;
   name_sanskrit: string;
   name_iast: string;
-  /** A short Sanskrit form for decoration — a bīja or the name itself. */
-  glyph: string;
   name: Record<Locale, string>;
   epithet: Record<Locale, string>;
   blurb: Record<Locale, string>;
@@ -49,30 +41,28 @@ export const DEVATAS: DevataRow[] = [
     slug: "gayatri",
     order: 1,
     status: "open",
-    theme: "savitr",
     name_sanskrit: "गायत्री",
     name_iast: "Gāyatrī",
-    glyph: "ॐ",
     name: { en: "Gayatri", kn: "ಗಾಯತ್ರೀ", hi: "गायत्री" },
     epithet: { en: "Mother of the Vedas", kn: "ವೇದಮಾತೆ", hi: "वेदमाता" },
     blurb: {
-      en: "Gāyatrī is first a metre — three lines of eight syllables — and the verse in that metre to Savitṛ, the sun that sets the world in motion. The verse became the mantra given at every upanayana and said at the three twilights, and the mantra became a goddess: Gāyatrī, mother of the Vedas.",
-      kn: "ಗಾಯತ್ರೀ ಮೊದಲು ಒಂದು ಛಂದಸ್ಸು — ಎಂಟು ಅಕ್ಷರಗಳ ಮೂರು ಪಾದಗಳು — ಮತ್ತು ಆ ಛಂದಸ್ಸಿನಲ್ಲಿ ಜಗತ್ತನ್ನು ಪ್ರೇರೇಪಿಸುವ ಸೂರ್ಯನಾದ ಸವಿತೃವಿಗೆ ಸಲ್ಲಿಸಿದ ಋಕ್ಕು. ಆ ಋಕ್ಕು ಪ್ರತಿ ಉಪನಯನದಲ್ಲಿ ಉಪದೇಶಿಸುವ, ಮೂರು ಸಂಧ್ಯೆಗಳಲ್ಲಿ ಜಪಿಸುವ ಮಂತ್ರವಾಯಿತು; ಆ ಮಂತ್ರವೇ ದೇವಿಯಾದಳು — ವೇದಮಾತೆ ಗಾಯತ್ರೀ.",
-      hi: "गायत्री पहले एक छंद है — आठ-आठ अक्षरों के तीन पाद — और उसी छंद में जगत् को प्रेरित करने वाले सूर्य, सविता, की ऋचा। वह ऋचा हर उपनयन में दिया जाने वाला और तीनों संध्याओं में जपा जाने वाला मंत्र बनी, और वह मंत्र स्वयं देवी बना — वेदमाता गायत्री।",
+      en: "The Gayatri mantra from the Rigveda is said at dawn, noon and dusk. Gayatri Devi is the mantra in the form of the goddess.",
+      kn: "ಋಗ್ವೇದದ ಗಾಯತ್ರೀ ಮಂತ್ರವನ್ನು ಮುಂಜಾನೆ, ಮಧ್ಯಾಹ್ನ ಮತ್ತು ಸಂಜೆ ಜಪಿಸಲಾಗುತ್ತದೆ. ಗಾಯತ್ರೀ ದೇವಿ ಆ ಮಂತ್ರದ ದೇವತಾರೂಪ.",
+      hi: "ऋग्वेद का गायत्री मंत्र प्रातः, मध्याह्न और सायं जपा जाता है। गायत्री देवी उसी मंत्र का देवी रूप हैं।",
     },
-    // The mantra as it is actually kept: said at the river at sandhyā,
-    // the count told on the fingers inside a cloth.
     image: {
-      src: "/images/stutis/gayatri-japa-belnos-1851.jpg",
-      width: 1200,
-      height: 1600,
-      position: "50% 72%",
-      credit: "“The secret prayer” — Gayatri japa, hand-coloured lithograph by Mrs S. C. Belnos, 1851 — public domain, via Wikimedia Commons",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Gayatri_japa.jpg",
+      src: "/images/stutis/gayatri-devi-siddhalinga-swami.jpg",
+      width: 540,
+      height: 720,
+      position: "50% 30%",
+      credit:
+        "Sri Gayatri Devi, painting by Shilpi Siddhanti Siddhalinga Swami (1870–1962), Jaganmohan Palace, Mysore — public domain, via Wikimedia Commons",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:%E0%B2%B6%E0%B3%8D%E0%B2%B0%E0%B3%80_%E0%B2%97%E0%B2%BE%E0%B2%AF%E0%B2%A4%E0%B3%8D%E0%B2%B0%E0%B2%BF_%E0%B2%A6%E0%B3%87%E0%B2%B5%E0%B2%BF.jpg",
       alt: {
-        en: "An elderly Brahmin seated on a mat by a river, eyes closed, telling the Gāyatrī on his fingers inside a cloth, his water-pot and vessels beside him — a hand-coloured lithograph of 1851.",
-        kn: "ನದೀತೀರದಲ್ಲಿ ಚಾಪೆಯ ಮೇಲೆ ಕುಳಿತ ವೃದ್ಧ ಬ್ರಾಹ್ಮಣ, ಕಣ್ಣುಮುಚ್ಚಿ, ಬಟ್ಟೆಯೊಳಗೆ ಬೆರಳುಗಳಲ್ಲಿ ಗಾಯತ್ರಿಯನ್ನು ಎಣಿಸುತ್ತಾ ಜಪಿಸುತ್ತಿದ್ದಾರೆ; ಪಕ್ಕದಲ್ಲಿ ಕಮಂಡಲು ಮತ್ತು ಪಾತ್ರೆಗಳು — 1851ರ ಕೈಬಣ್ಣದ ಶಿಲಾಮುದ್ರಣ.",
-        hi: "नदी तट पर चटाई पर बैठे वृद्ध ब्राह्मण, आँखें मूँदे, कपड़े के भीतर उँगलियों पर गिनते हुए गायत्री का जप करते; पास में कमंडलु और पात्र — 1851 का हाथ से रंगा शिलामुद्रण।",
+        en: "Gayatri Devi with five faces and ten arms, seated on a pink lotus in a pond with swans.",
+        kn: "ಹಂಸಗಳಿರುವ ಕೊಳದಲ್ಲಿ ಗುಲಾಬಿ ಕಮಲದ ಮೇಲೆ ಕುಳಿತ ಪಂಚಮುಖಿ, ದಶಭುಜೆ ಗಾಯತ್ರೀ ದೇವಿ.",
+        hi: "हंसों वाले सरोवर में गुलाबी कमल पर विराजमान पंचमुखी, दशभुजा गायत्री देवी।",
       },
     },
   },
@@ -80,33 +70,27 @@ export const DEVATAS: DevataRow[] = [
     slug: "ganesha",
     order: 2,
     status: "open",
-    theme: "ganapati",
     name_sanskrit: "गणेश",
     name_iast: "Gaṇeśa",
-    glyph: "गं",
     name: { en: "Ganesha", kn: "ಗಣೇಶ", hi: "गणेश" },
-    epithet: {
-      en: "Lord of beginnings, remover of obstacles",
-      kn: "ಆದಿಪೂಜ್ಯ, ವಿಘ್ನನಿವಾರಕ",
-      hi: "प्रथमपूज्य, विघ्नहर्ता",
-    },
+    epithet: { en: "Remover of obstacles", kn: "ವಿಘ್ನನಿವಾರಕ", hi: "विघ्नहर्ता" },
     blurb: {
-      en: "Nothing begins without him — not a pūjā, not a book, not a journey. Gaṇeśa is lord of the gaṇas, Śiva's attendant hosts; he puts obstacles in the way and takes them out of it, which is why he is honoured first and his name is the first word written.",
-      kn: "ಅವನಿಲ್ಲದೆ ಯಾವುದೂ ಆರಂಭವಾಗದು — ಪೂಜೆಯಾಗಲಿ, ಗ್ರಂಥವಾಗಲಿ, ಪ್ರಯಾಣವಾಗಲಿ. ಗಣೇಶನು ಶಿವನ ಪರಿವಾರವಾದ ಗಣಗಳ ಒಡೆಯ; ವಿಘ್ನಗಳನ್ನು ತರುವವನೂ ಅವನೇ, ತೊಲಗಿಸುವವನೂ ಅವನೇ — ಆದ್ದರಿಂದಲೇ ಅವನಿಗೆ ಮೊದಲ ಪೂಜೆ, ಬರೆಯುವ ಮೊದಲ ಪದವೂ ಅವನ ಹೆಸರೇ.",
-      hi: "उनके बिना कुछ आरंभ नहीं होता — न पूजा, न ग्रंथ, न यात्रा। गणेश शिव के गणों के स्वामी हैं; विघ्न रखने वाले भी वही हैं और हटाने वाले भी, इसीलिए उनकी पूजा सबसे पहले होती है और लिखा जाने वाला पहला शब्द उन्हीं का नाम होता है।",
+      en: "Ganesha is worshipped first, before any puja or new beginning. He removes obstacles.",
+      kn: "ಯಾವುದೇ ಪೂಜೆ ಅಥವಾ ಹೊಸ ಆರಂಭದ ಮೊದಲು ಗಣೇಶನನ್ನು ಪೂಜಿಸಲಾಗುತ್ತದೆ. ಅವನು ವಿಘ್ನಗಳನ್ನು ನಿವಾರಿಸುತ್ತಾನೆ.",
+      hi: "किसी भी पूजा या नए आरंभ से पहले गणेश की पूजा होती है। वे विघ्न दूर करते हैं।",
     },
-    // Cropped from the original photograph to the carved niche; CC BY-SA
-    // asks that the change be stated, and the credit says so.
+    // Cropped from the museum photograph to the figure, crown to lotus.
     image: {
-      src: "/images/stutis/ganesha-hoysaleswara-halebidu.jpg",
+      src: "/images/stutis/ganesha-chola-bronze-cleveland.jpg",
       width: 1200,
       height: 1600,
-      credit: "Dancing Ganesha, Hoysaleswara temple, Halebidu, 12th century — photograph by VasuVR, CC BY-SA 4.0, cropped, via Wikimedia Commons",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:KAHLB_09_Dancing_Ganesha_Hoysaleswara.jpg",
+      position: "50% 30%",
+      credit: "Ganesha, Chola bronze, South India, c. 1070 — Cleveland Museum of Art, CC0, cropped",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Clevelandart_1970.62.jpg",
       alt: {
-        en: "Dancing Ganesha carved into the wall of the Hoysaleswara temple at Halebidu, twelfth century, beneath an arch of scrolling stone foliage.",
-        kn: "ಹಳೇಬೀಡಿನ ಹೊಯ್ಸಳೇಶ್ವರ ದೇವಾಲಯದ ಭಿತ್ತಿಯಲ್ಲಿ ಕೆತ್ತಿದ ನೃತ್ಯ ಗಣಪತಿ — ಹನ್ನೆರಡನೆಯ ಶತಮಾನ, ಕಲ್ಲಿನ ಬಳ್ಳಿಗಳ ಕಮಾನಿನಡಿ.",
-        hi: "हळेबीडु के होयसळेश्वर मंदिर की भित्ति पर उकेरे नृत्य गणपति — बारहवीं शताब्दी, पत्थर की बेलों के तोरण के नीचे।",
+        en: "A Chola-period bronze of Ganesha, four-armed, standing on a lotus.",
+        kn: "ಕಮಲದ ಮೇಲೆ ನಿಂತಿರುವ ಚತುರ್ಭುಜ ಗಣೇಶನ ಚೋಳರ ಕಾಲದ ಕಂಚಿನ ಮೂರ್ತಿ.",
+        hi: "कमल पर खड़े चतुर्भुज गणेश की चोल काल की कांस्य प्रतिमा।",
       },
     },
   },
@@ -114,52 +98,42 @@ export const DEVATAS: DevataRow[] = [
     slug: "shiva",
     order: 3,
     status: "planned",
-    theme: "shiva",
     name_sanskrit: "शिव",
     name_iast: "Śiva",
-    glyph: "शिव",
     name: { en: "Shiva", kn: "ಶಿವ", hi: "शिव" },
     epithet: { en: "The auspicious one", kn: "ಮಂಗಳಕರ", hi: "कल्याणकारी" },
     blurb: {
-      en: "The ascetic of Kailāsa and the dancer of Cidambaram — the stotras to Śiva are some of the most sonorous in the language.",
-      kn: "ಕೈಲಾಸದ ತಪಸ್ವಿ, ಚಿದಂಬರದ ನರ್ತಕ — ಶಿವಸ್ತೋತ್ರಗಳು ಸಂಸ್ಕೃತದ ಅತ್ಯಂತ ನಾದಮಯ ರಚನೆಗಳಲ್ಲಿ ಸೇರಿವೆ.",
-      hi: "कैलास के तपस्वी और चिदंबरम् के नर्तक — शिव के स्तोत्र संस्कृत की सबसे नादमय रचनाओं में हैं।",
+      en: "Stotras to Shiva, such as the Shiva Tandava Stotram.",
+      kn: "ಶಿವತಾಂಡವ ಸ್ತೋತ್ರದಂತಹ ಶಿವನ ಸ್ತೋತ್ರಗಳು.",
+      hi: "शिव तांडव स्तोत्र जैसे शिव के स्तोत्र।",
     },
   },
   {
     slug: "vishnu",
     order: 4,
     status: "planned",
-    theme: "vishnu",
     name_sanskrit: "विष्णु",
     name_iast: "Viṣṇu",
-    glyph: "हरि",
     name: { en: "Vishnu", kn: "ವಿಷ್ಣು", hi: "विष्णु" },
-    epithet: { en: "The all-pervading preserver", kn: "ಸರ್ವವ್ಯಾಪಿ ಪಾಲಕ", hi: "सर्वव्यापी पालनकर्ता" },
+    epithet: { en: "The preserver", kn: "ಪಾಲಕ", hi: "पालनकर्ता" },
     blurb: {
-      en: "Viṣṇu and his avatāras, Rāma and Kṛṣṇa among them — praised by name, a thousand times over.",
-      kn: "ವಿಷ್ಣು ಮತ್ತು ರಾಮ, ಕೃಷ್ಣರನ್ನೊಳಗೊಂಡ ಅವನ ಅವತಾರಗಳು — ಸಾವಿರ ನಾಮಗಳಿಂದ ಸ್ತುತಿಸಲ್ಪಡುವವನು.",
-      hi: "विष्णु और राम, कृष्ण सहित उनके अवतार — सहस्र नामों से जिनकी स्तुति होती है।",
+      en: "Stotras to Vishnu, such as the Vishnu Sahasranama.",
+      kn: "ವಿಷ್ಣು ಸಹಸ್ರನಾಮದಂತಹ ವಿಷ್ಣುವಿನ ಸ್ತೋತ್ರಗಳು.",
+      hi: "विष्णु सहस्रनाम जैसे विष्णु के स्तोत्र।",
     },
   },
   {
     slug: "devi",
     order: 5,
     status: "planned",
-    theme: "devi",
     name_sanskrit: "देवी",
     name_iast: "Devī",
-    glyph: "श्री",
     name: { en: "Devi", kn: "ದೇವಿ", hi: "देवी" },
-    epithet: {
-      en: "The Mother, as Lalitā and Durgā",
-      kn: "ಲಲಿತೆ ಮತ್ತು ದುರ್ಗೆಯಾಗಿ ಜಗನ್ಮಾತೆ",
-      hi: "ललिता और दुर्गा के रूप में जगन्माता",
-    },
+    epithet: { en: "The Mother", kn: "ಜಗನ್ಮಾತೆ", hi: "जगन्माता" },
     blurb: {
-      en: "The Goddess in her gentlest and her fiercest forms — the thousand names of Lalitā, and Durgā astride the lion.",
-      kn: "ಅತ್ಯಂತ ಸೌಮ್ಯ ಮತ್ತು ಅತ್ಯಂತ ಉಗ್ರ ರೂಪಗಳಲ್ಲಿ ದೇವಿ — ಲಲಿತೆಯ ಸಾವಿರ ನಾಮಗಳು, ಸಿಂಹವಾಹಿನಿ ದುರ್ಗೆ.",
-      hi: "अपने सबसे सौम्य और सबसे उग्र रूपों में देवी — ललिता के सहस्र नाम, और सिंहवाहिनी दुर्गा।",
+      en: "Stotras to the Devi, such as the Lalita Sahasranama.",
+      kn: "ಲಲಿತಾ ಸಹಸ್ರನಾಮದಂತಹ ದೇವಿಯ ಸ್ತೋತ್ರಗಳು.",
+      hi: "ललिता सहस्रनाम जैसे देवी के स्तोत्र।",
     },
   },
 ];

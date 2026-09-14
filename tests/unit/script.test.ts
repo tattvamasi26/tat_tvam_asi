@@ -76,9 +76,7 @@ test("every Sanskrit string on the site converts to Kannada completely", () => {
       v.keywords.forEach((k) => corpus.push([`stotra ${slug} ${v.locator} term ${k.iast}`, k.term]));
     }
   }
-  for (const d of DEVATAS) {
-    corpus.push([`devata ${d.slug}`, d.name_sanskrit], [`devata ${d.slug} glyph`, d.glyph]);
-  }
+  for (const d of DEVATAS) corpus.push([`devata ${d.slug}`, d.name_sanskrit]);
 
   assert.ok(corpus.length > 100, "the corpus should be non-trivial");
   for (const [where, s] of corpus) {
