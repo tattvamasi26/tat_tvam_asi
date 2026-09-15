@@ -98,11 +98,33 @@ test.describe("the stutis", () => {
   test("stotras lead on to each other in the order they are said", async ({ page, baseURL }) => {
     await openPage(page, baseURL!, "/stutis/ganesha/ganesha-dhyana-shlokas", "en");
     await expect(page.locator('.pager-link[data-dir="prev"]')).toHaveCount(0);
-    await expect(page.locator('.pager-link[data-dir="next"]')).toHaveAttribute("href", "/stutis/ganesha/gananam-tva");
+    await expect(page.locator('.pager-link[data-dir="next"]')).toHaveAttribute("href", "/stutis/ganesha/ganesha-dvadasha-nama");
 
     await openPage(page, baseURL!, "/stutis/ganesha/sankatanashana-ganesha-stotram", "en");
     await expect(page.locator('.pager-link[data-dir="prev"]')).toHaveAttribute("href", "/stutis/ganesha/ganesha-pancharatnam");
+    await expect(page.locator('.pager-link[data-dir="next"]')).toHaveAttribute("href", "/stutis/ganesha/ganesha-bhujangam");
+
+    await openPage(page, baseURL!, "/stutis/ganesha/ganeshashtakam", "en");
     await expect(page.locator('.pager-link[data-dir="next"]')).toHaveCount(0);
+  });
+
+  test("Ganesha's page: the festival band, then ten stotras in three sections, each with a picture", async ({ page, baseURL }) => {
+    await openPage(page, baseURL!, "/stutis/ganesha", "en");
+    await expect(page.locator(".festival-title")).toHaveText("Ganesha Chaturthi");
+    await expect(page.locator(".festival .btn")).toHaveAttribute("href", "/stutis/ganesha/ganapati-atharvashirsha");
+    await expect(page.locator(".stotra-group h2")).toHaveText(["Daily prayers", "From the Vedas", "Stotras"]);
+    await expect(page.locator(".stotra-group-media img")).toHaveCount(3);
+    await expect(page.locator(".stotra-row")).toHaveCount(10);
+    await expect(page.locator(".stotra-row-num").last()).toHaveText("10");
+    await expect(page.locator(".chip-video")).toHaveCount(10);
+  });
+
+  test("a stotra's recitation loads nothing from YouTube until it is played", async ({ page, baseURL }) => {
+    await openPage(page, baseURL!, "/stutis/ganesha/ganapati-atharvashirsha", "en");
+    await expect(page.locator(".stotra-video iframe")).toHaveCount(0);
+    await expect(page.locator(".stotra-video-title")).toContainText("Atharvashirsha");
+    await page.locator(".stotra-video-poster").click();
+    await expect(page.locator(".stotra-video iframe")).toHaveAttribute("src", /youtube-nocookie\.com\/embed\/7nIZcKM-BiM/);
   });
 
   test("a devata still to come has no page, and neither does a stotra under the wrong devata", async ({ page }) => {

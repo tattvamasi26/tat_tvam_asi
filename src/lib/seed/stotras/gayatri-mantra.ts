@@ -18,6 +18,7 @@ registerStotra({
   slug: "gayatri-mantra",
   textId: "t-stuti-gayatri-mantra",
   devata: "gayatri",
+  group: "vedic",
   order: 1,
   category: "shruti",
   metre: "gāyatrī",

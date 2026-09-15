@@ -15,11 +15,13 @@ registerStotra({
   slug: "sankatanashana-ganesha-stotram",
   textId: "t-stuti-sankatanashana",
   devata: "ganesha",
-  order: 5,
+  group: "stotra",
+  order: 8,
   category: "smriti",
   metre: "anuṣṭubh",
   origin: { en: "Narada Purana", kn: "ನಾರದ ಪುರಾಣ", hi: "नारद पुराण" },
   composer: { en: "Narada", kn: "ನಾರದ", hi: "नारद" },
+  video: { id: "8r7AWFkjVpw", title: "Pranamya Shirasa Devam, with lyrics", channel: "Rajshri Soul" },
   verses: [
     {
       id: "sankatanashana-1",

@@ -73,7 +73,7 @@ test("every Sanskrit string on the site converts to Kannada completely", () => {
   for (const slug of stotraSlugs()) {
     for (const v of getStotra(slug)!.verses) {
       v.sanskrit.forEach((line, i) => corpus.push([`stotra ${slug} ${v.locator} line ${i + 1}`, line]));
-      v.keywords.forEach((k) => corpus.push([`stotra ${slug} ${v.locator} term ${k.iast}`, k.term]));
+      (v.keywords ?? []).forEach((k) => corpus.push([`stotra ${slug} ${v.locator} term ${k.iast}`, k.term]));
     }
   }
   for (const d of DEVATAS) corpus.push([`devata ${d.slug}`, d.name_sanskrit]);

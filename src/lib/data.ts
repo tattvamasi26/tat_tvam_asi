@@ -554,8 +554,40 @@ import "./seed/stotras/gananam-tva";
 import "./seed/stotras/ganesha-gayatri";
 import "./seed/stotras/ganesha-pancharatnam";
 import "./seed/stotras/sankatanashana";
-import { DEVATAS, type DevataRow } from "./seed/devatas";
-import { getStotra, stotrasOf, stotraSlugs } from "./seed/stotras";
+import "./seed/stotras/ganesha-dvadasha-nama";
+import "./seed/stotras/ganapati-mula-mantra";
+import "./seed/stotras/ganapati-atharvashirsha";
+import "./seed/stotras/ganesha-bhujangam";
+import "./seed/stotras/ganeshashtakam";
+import { DEVATAS, type DevataImage, type DevataRow } from "./seed/devatas";
+import { getStotra, stotrasOf, stotraSlugs, type StotraGroup } from "./seed/stotras";
+
+export type { StotraGroup };
+
+/** A picture, described in the reader's language. */
+export interface ImageView {
+  src: string;
+  width: number;
+  height: number;
+  position: string;
+  alt: string;
+  credit: string;
+  /** Where it came from; null for a picture supplied without a source. */
+  sourceUrl: string | null;
+}
+
+function imageView(img: DevataImage | undefined, locale: Locale): ImageView | null {
+  if (!img) return null;
+  return {
+    src: img.src,
+    width: img.width,
+    height: img.height,
+    position: img.position ?? "50% 50%",
+    alt: img.alt[locale] ?? img.alt.en,
+    credit: img.credit,
+    sourceUrl: img.sourceUrl ?? null,
+  };
+}
 
 export interface DevataView {
   slug: string;
@@ -567,14 +599,14 @@ export interface DevataView {
   scriptClass: string;
   epithet: string;
   blurb: string;
-  image: {
-    src: string;
-    width: number;
-    height: number;
-    position: string;
-    alt: string;
-    credit: string;
-    sourceUrl: string;
+  image: ImageView | null;
+  /** A festival of theirs, given a band of its own on their page. */
+  festival: {
+    name: string;
+    when: string;
+    text: string;
+    image: ImageView | null;
+    stotra: { href: string; name: string } | null;
   } | null;
   /** How many stotras can be read in full. */
   stotraCount: number;
@@ -598,6 +630,12 @@ export interface StotraView {
   /** The opening line of the mūla, in the reader's script. */
   firstLine: string;
   coverage: string | null;
+  /** The section of the devata's page it is listed in. */
+  group: StotraGroup;
+  /** A recitation to listen to. */
+  video: { id: string; title: string; channel: string; url: string; thumb: string } | null;
+  /** Its own picture, else its section's, else the devata's. */
+  image: ImageView | null;
 }
 
 /** A stotra summarised in corpus.ts whose text is not entered yet. */
@@ -618,15 +656,17 @@ function devataView(d: DevataRow, locale: Locale): DevataView {
     scriptClass: scriptClass(locale),
     epithet: d.epithet[locale] ?? d.epithet.en,
     blurb: d.blurb[locale] ?? d.blurb.en,
-    image: d.image
+    image: imageView(d.image, locale),
+    festival: d.festival
       ? {
-          src: d.image.src,
-          width: d.image.width,
-          height: d.image.height,
-          position: d.image.position ?? "50% 50%",
-          alt: d.image.alt[locale] ?? d.image.alt.en,
-          credit: d.image.credit,
-          sourceUrl: d.image.sourceUrl,
+          name: d.festival.name[locale] ?? d.festival.name.en,
+          when: d.festival.when[locale] ?? d.festival.when.en,
+          text: d.festival.text[locale] ?? d.festival.text.en,
+          image: imageView(d.festival.image, locale),
+          stotra: (() => {
+            const s = getStotraView(d.festival.stotra, locale);
+            return s ? { href: s.href, name: s.name } : null;
+          })(),
         }
       : null,
     stotraCount: stotrasOf(d.slug).length,
@@ -671,6 +711,7 @@ export function getStotraView(slug: string, locale: Locale): StotraView | null {
   const row = STUTIS.find((t) => t.slug === slug);
   if (!s || !row) return null;
   const header = resolveTexts([row], locale)[0];
+  const devataRow = DEVATAS.find((d) => d.slug === s.devata);
   return {
     slug: s.slug,
     devata: s.devata,
@@ -687,6 +728,15 @@ export function getStotraView(slug: string, locale: Locale): StotraView | null {
     verseCount: header.verseCount,
     firstLine: scriptFor(s.verses[0]?.sanskrit[0] ?? "", locale),
     coverage: s.completeness === "selections" ? s.covers?.[locale] ?? s.covers?.en ?? null : null,
+    group: s.group,
+    video: s.video
+      ? {
+          ...s.video,
+          url: `https://www.youtube.com/watch?v=${s.video.id}`,
+          thumb: `https://i.ytimg.com/vi/${s.video.id}/hqdefault.jpg`,
+        }
+      : null,
+    image: imageView(s.image ?? devataRow?.groupImages?.[s.group] ?? devataRow?.image, locale),
   };
 }
 
@@ -697,6 +747,26 @@ export function getStotraViews(devata: string, locale: Locale): StotraView[] {
     .filter((v): v is StotraView => v !== null);
 }
 
+const GROUP_ORDER: StotraGroup[] = ["daily", "vedic", "stotra"];
+
+export interface StotraGroupView {
+  group: StotraGroup;
+  /** The picture beside this section, if the devata has one for it. */
+  image: ImageView | null;
+  stotras: StotraView[];
+}
+
+/** A devata's stotras in the sections of their page, each in the order said. */
+export function getStotraGroups(devata: string, locale: Locale): StotraGroupView[] {
+  const row = DEVATAS.find((d) => d.slug === devata);
+  const all = getStotraViews(devata, locale);
+  return GROUP_ORDER.map((group) => ({
+    group,
+    image: imageView(row?.groupImages?.[group], locale),
+    stotras: all.filter((s) => s.group === group),
+  })).filter((g) => g.stotras.length > 0);
+}
+
 /** The verses, shaped for the same VerseStage the Upanishad reader uses. */
 export function getStotraVerses(slug: string, locale: Locale): IshaVerseView[] {
   const s = getStotra(slug);
@@ -705,17 +775,17 @@ export function getStotraVerses(slug: string, locale: Locale): IshaVerseView[] {
   return s.verses.map((v) => ({
     id: v.id,
     locator: v.locator,
-    handle: v.handle[locale] ?? v.handle.en,
+    handle: v.handle?.[locale] ?? v.handle?.en ?? "",
     sanskrit: v.sanskrit.map((l) => scriptFor(l, locale)),
     scriptClass: scriptClass(locale),
     iast: v.iast,
-    keywords: v.keywords.map((k) => ({
+    keywords: (v.keywords ?? []).map((k) => ({
       term: scriptFor(k.term, locale),
       iast: k.iast,
       gloss: k.gloss[locale] ?? k.gloss.en,
     })),
     translation: v.readings[locale]?.translation ?? v.readings.en.translation,
-    explanation: v.readings[locale]?.explanation ?? v.readings.en.explanation,
+    explanation: v.readings[locale]?.explanation ?? v.readings.en.explanation ?? "",
     allTranslations: LOCALES.map((l) => ({
       locale: l,
       text: v.readings[l]?.translation ?? v.readings.en.translation,
@@ -738,6 +808,45 @@ export function getStotraNeighbours(slug: string, locale: Locale) {
 /** Every readable stotra's route segments. */
 export function getStotraParams(): { devata: string; stotra: string }[] {
   return stotraSlugs().map((slug) => ({ devata: getStotra(slug)!.devata, stotra: slug }));
+}
+
+// ── Nava Vinayakas of Tulunadu ───────────────────────────────
+import { NAVA_VINAYAKAS, NAVA_VINAYAKAS_PAGE } from "./seed/nava-vinayakas";
+
+export interface NavaVinayakaView {
+  slug: string;
+  short: string;
+  name: string;
+  /** In Kannada, whatever the reader's language. */
+  nameLocal: string;
+  place: string;
+  text: string;
+  photo: ImageView | null;
+}
+
+/** The nine temples, south to north, with the page's own words. */
+export function getNavaVinayakas(locale: Locale) {
+  const pick = (r: Record<Locale, string>) => r[locale] ?? r.en;
+  const P = NAVA_VINAYAKAS_PAGE;
+  return {
+    title: pick(P.title),
+    eyebrow: pick(P.eyebrow),
+    lede: pick(P.lede),
+    note: pick(P.note),
+    blurb: pick(P.blurb),
+    routeLabel: pick(P.routeLabel),
+    temples: NAVA_VINAYAKAS.map(
+      (n): NavaVinayakaView => ({
+        slug: n.slug,
+        short: pick(n.short),
+        name: pick(n.name),
+        nameLocal: n.nameLocal,
+        place: pick(n.place),
+        text: pick(n.text),
+        photo: imageView(n.photo, locale),
+      })
+    ),
+  };
 }
 
 /**

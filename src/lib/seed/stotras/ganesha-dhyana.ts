@@ -19,9 +19,12 @@ registerStotra({
   slug: "ganesha-dhyana-shlokas",
   textId: "t-stuti-ganesha-dhyana",
   devata: "ganesha",
+  group: "daily",
   order: 1,
   category: "smriti",
   origin: { en: "Traditional verses", kn: "ಸಾಂಪ್ರದಾಯಿಕ ಶ್ಲೋಕಗಳು", hi: "पारंपरिक श्लोक" },
+  // Sings all four verses here, with two more, each three times.
+  video: { id: "M7RweIYQ7H0", title: "Ganesha shlokas, with lyrics and meaning", channel: "Vedik Heritage" },
   verses: [
     {
       id: "ganesha-dhyana-1",

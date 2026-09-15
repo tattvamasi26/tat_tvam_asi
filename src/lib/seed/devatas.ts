@@ -1,4 +1,6 @@
 import type { Locale } from "@/i18n/config";
+import type { StotraGroup } from "./stotras";
+import { GANESHA_BRUSH, GANESHA_GARLANDS, GANESHA_LAMPS, GANESHA_MANTRA } from "./stuti-images";
 
 // ─────────────────────────────────────────────────────────
 //  The devatas the stotras are arranged by.
@@ -7,10 +9,12 @@ import type { Locale } from "@/i18n/config";
 //  page with their picture. `planned` devatas are listed under
 //  "Coming soon" and have no page yet.
 //
-//  Every picture is a local file under a free licence (public domain
-//  or CC0) and carries its credit. `width` and `height` are the file's
-//  real pixel size — a unit test reads the JPEG to hold them to it —
-//  so a picture is never drawn stretched.
+//  Every picture is a local file and carries its credit. The devatas'
+//  own portraits are under free licences (public domain or CC0) and
+//  link to their source; the pictures in stuti-images.ts were supplied
+//  by the site's owner. `width` and `height` are the file's real pixel
+//  size — a unit test reads the JPEG to hold them to it — so a picture
+//  is never drawn stretched.
 // ─────────────────────────────────────────────────────────
 
 export interface DevataImage {
@@ -20,8 +24,20 @@ export interface DevataImage {
   /** Which part of the picture to keep when a frame crops it. */
   position?: string;
   credit: string;
-  sourceUrl: string;
+  /** Where the picture came from. Absent for one supplied without a source. */
+  sourceUrl?: string;
   alt: Record<Locale, string>;
+}
+
+/** A festival of the devata's, given a band of its own on their page. */
+export interface DevataFestival {
+  name: Record<Locale, string>;
+  /** When it falls, in the lunar calendar — not a date that goes stale. */
+  when: Record<Locale, string>;
+  text: Record<Locale, string>;
+  image: DevataImage;
+  /** The stotra the band points to, by slug. */
+  stotra: string;
 }
 
 export interface DevataRow {
@@ -34,6 +50,9 @@ export interface DevataRow {
   epithet: Record<Locale, string>;
   blurb: Record<Locale, string>;
   image?: DevataImage;
+  festival?: DevataFestival;
+  /** A picture beside each section of their page, when it has sections. */
+  groupImages?: Partial<Record<StotraGroup, DevataImage>>;
 }
 
 export const DEVATAS: DevataRow[] = [
@@ -92,6 +111,22 @@ export const DEVATAS: DevataRow[] = [
         kn: "ಕಮಲದ ಮೇಲೆ ನಿಂತಿರುವ ಚತುರ್ಭುಜ ಗಣೇಶನ ಚೋಳರ ಕಾಲದ ಕಂಚಿನ ಮೂರ್ತಿ.",
         hi: "कमल पर खड़े चतुर्भुज गणेश की चोल काल की कांस्य प्रतिमा।",
       },
+    },
+    festival: {
+      name: { en: "Ganesha Chaturthi", kn: "ಗಣೇಶ ಚತುರ್ಥಿ", hi: "गणेश चतुर्थी" },
+      when: { en: "Bhadrapada Shukla Chaturthi", kn: "ಭಾದ್ರಪದ ಶುಕ್ಲ ಚತುರ್ಥಿ", hi: "भाद्रपद शुक्ल चतुर्थी" },
+      text: {
+        en: "Ganesha Chaturthi falls on the fourth day of the bright half of Bhadrapada. A clay image of Ganesha is brought home and worshipped with modakas, durva grass and red flowers, and the Atharvashirsha is recited. After a few days the image is immersed in water.",
+        kn: "ಗಣೇಶ ಚತುರ್ಥಿ ಭಾದ್ರಪದ ಮಾಸದ ಶುಕ್ಲ ಪಕ್ಷದ ನಾಲ್ಕನೆಯ ದಿನ ಬರುತ್ತದೆ. ಮಣ್ಣಿನ ಗಣೇಶ ಮೂರ್ತಿಯನ್ನು ಮನೆಗೆ ತಂದು ಮೋದಕ, ಗರಿಕೆ ಮತ್ತು ಕೆಂಪು ಹೂಗಳಿಂದ ಪೂಜಿಸಿ, ಅಥರ್ವಶೀರ್ಷವನ್ನು ಪಠಿಸಲಾಗುತ್ತದೆ. ಕೆಲವು ದಿನಗಳ ನಂತರ ಮೂರ್ತಿಯನ್ನು ನೀರಿನಲ್ಲಿ ವಿಸರ್ಜಿಸಲಾಗುತ್ತದೆ.",
+        hi: "गणेश चतुर्थी भाद्रपद मास के शुक्ल पक्ष के चौथे दिन आती है। मिट्टी की गणेश प्रतिमा घर लाकर मोदक, दूर्वा और लाल फूलों से पूजी जाती है और अथर्वशीर्ष का पाठ होता है। कुछ दिनों बाद प्रतिमा का जल में विसर्जन किया जाता है।",
+      },
+      image: GANESHA_LAMPS,
+      stotra: "ganapati-atharvashirsha",
+    },
+    groupImages: {
+      daily: GANESHA_GARLANDS,
+      vedic: GANESHA_MANTRA,
+      stotra: GANESHA_BRUSH,
     },
   },
   {

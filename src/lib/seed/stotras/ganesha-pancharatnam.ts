@@ -14,11 +14,13 @@ registerStotra({
   slug: "ganesha-pancharatnam",
   textId: "t-stuti-ganesha",
   devata: "ganesha",
-  order: 4,
+  group: "stotra",
+  order: 7,
   category: "smriti",
   metre: "pañcacāmara",
   origin: { en: "Brihat Stotra Ratnakara", kn: "ಬೃಹತ್ ಸ್ತೋತ್ರ ರತ್ನಾಕರ", hi: "बृहत् स्तोत्र रत्नाकर" },
   composer: { en: "Adi Shankaracharya", kn: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು", hi: "आदि शंकराचार्य" },
+  video: { id: "bgnEJM0C1Cg", title: "Mudakaratta Modakam, with lyrics", channel: "Rajshri Soul" },
   verses: [
     {
       id: "ganesha-pancharatnam-1",

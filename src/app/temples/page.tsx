@@ -2,13 +2,15 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
-import { getAllTemples } from "@/lib/data";
+import { getAllTemples, getNavaVinayakas } from "@/lib/data";
 
 export const metadata: Metadata = { title: "Temples" };
 
 export default function TemplesPage() {
   const { locale, t } = getTranslations();
   const temples = getAllTemples(locale);
+  const nava = getNavaVinayakas(locale);
+  const navaPhoto = nava.temples.find((tp) => tp.photo)?.photo ?? null;
 
   return (
     <>
@@ -74,6 +76,30 @@ export default function TemplesPage() {
               </p>
               <p className="prose">{t.kollurBlurb}</p>
               <Link href="/temples/tulunadu/kollur-mookambika" className="btn" style={{ marginTop: "0.6rem" }}>
+                {t.readMore}
+              </Link>
+            </div>
+          </div>
+
+          <div className="feature nv-feature" style={{ marginTop: "clamp(1.25rem, 3vw, 2rem)" }}>
+            {navaPhoto && (
+              <div className="feature-media">
+                <Image
+                  src={navaPhoto.src}
+                  alt={navaPhoto.alt}
+                  fill
+                  sizes="(max-width: 860px) 100vw, 50vw"
+                  style={{ objectFit: "cover", objectPosition: navaPhoto.position }}
+                />
+              </div>
+            )}
+            <div className="feature-body">
+              <p className="eyebrow">{nava.eyebrow}</p>
+              <h2 className="title" style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>
+                {nava.title}
+              </h2>
+              <p className="prose">{nava.blurb}</p>
+              <Link href="/temples/tulunadu/nava-vinayakas" className="btn" style={{ marginTop: "0.6rem" }}>
                 {t.readMore}
               </Link>
             </div>

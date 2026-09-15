@@ -12,10 +12,12 @@ registerStotra({
   slug: "ganesha-gayatri",
   textId: "t-stuti-ganesha-gayatri",
   devata: "ganesha",
-  order: 3,
+  group: "daily",
+  order: 4,
   category: "shruti",
   metre: "gāyatrī",
   origin: { en: "Ganapati Atharvashirsha", kn: "ಗಣಪತಿ ಅಥರ್ವಶೀರ್ಷ", hi: "गणपति अथर्वशीर्ष" },
+  video: { id: "YI-JM9Mlaog", title: "Ganesha Gayatri, with lyrics", channel: "Rajshri Soul" },
   verses: [
     {
       id: "ganesha-gayatri-1",

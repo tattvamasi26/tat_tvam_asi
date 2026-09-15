@@ -16,11 +16,14 @@ registerStotra({
   slug: "gananam-tva",
   textId: "t-stuti-gananam-tva",
   devata: "ganesha",
-  order: 2,
+  group: "vedic",
+  order: 5,
   category: "shruti",
   metre: "jagatī",
   origin: { en: "Rigveda 2.23.1", kn: "ಋಗ್ವೇದ 2.23.1", hi: "ऋग्वेद 2.23.1" },
   composer: { en: "Rishi Gritsamada", kn: "ಋಷಿ ಗೃತ್ಸಮದ", hi: "ऋषि गृत्समद" },
+  // From the Ramakrishna Mission's Vedamantrah recording.
+  video: { id: "3ErdStnFmos", title: "Gananam Tva, Vedic chanting by Swami Sarvagananda", channel: "Inside The Globe" },
   verses: [
     {
       id: "gananam-tva-1",

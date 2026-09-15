@@ -78,9 +78,22 @@ The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotr
 - `seed/devatas.ts` lists the devatas in order, Gāyatrī first and then Gaṇeśa.
   - An `open` devata has stotras to read. It gets a page and a picture.
   - A `planned` devata is listed by name under "Coming soon" on the index. It appears only once at least one stotra is summarised for it in `corpus.ts`. Its page 404s.
-- Each stotra is a module in `seed/stotras/` that calls `registerStotra()` (in `seed/stotras.ts`). It supplies its verses as `FullVerse[]`, plus `devata`, `order`, `origin`, `composer` and `metre`.
+- Each stotra is a module in `seed/stotras/` that calls `registerStotra()` (in `seed/stotras.ts`). It supplies:
+  - its verses: the mūla, aligned IAST, and a translation in every language. Handles, glosses and commentary are optional, because the page doesn't show them.
+  - `devata`, `group`, `order`, `origin`, `composer` and `metre`
+  - optionally a `video` (a YouTube id with a title and channel) and its own `image`
+
+  Other rules for modules:
   - Import the module in the stotra block of `data.ts`, or it has no page.
   - Its header (name and summary) is a `STUTIS` row in `seed/corpus.ts`, with `deity` set to the devata. The row's `id` must equal the module's `textId`.
+  - `group` places it in one section of the devata's page: `daily` (Daily prayers), `vedic` (From the Vedas) or `stotra` (Stotras). `order` runs straight through the sections, so the page and the previous/next links agree.
+- A devata's page (`app/stutis/[devata]`):
+  - It opens with the feature block.
+  - An optional festival band follows (`festival` in `devatas.ts`: Gaṇeśa Chaturthi, pointing to the Atharvaśīrṣa). Its date is given in the lunar calendar, never as a year's date.
+  - Then comes one section per group. Sections alternate between paper and `--paper-2`, each with a picture from `groupImages`. With a single group, the page shows one plain "Stotras" list.
+- Videos: the owner chose the recitations; each module names the choice.
+  - `StotraVideo` shows a still and loads `youtube-nocookie.com` only when pressed.
+  - Attach a video only if it recites the exact text entered. Similar titles often mean a different text: one "Ganesha Ashtakam" is really the Ekadantam hymn, and one "Sumukhascha" is the sixteen-name version.
 - Verses use three kinds of locator: `invocation`, `1`…`n`, or `phala` for a closing phalaśruti. The reader labels each one.
 - A stotra page follows the stotra portals, to the owner's brief (`components/stotra/StotraText`):
   - The whole text sits in one column, each verse numbered, in the reader's script.
@@ -91,10 +104,22 @@ The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotr
   - stotranidhi.com refuses automated reads, so the texts so far were checked against sa.wikisource.org.
   - Any reading in doubt was checked against a second source.
 - Pictures:
-  - They live in `public/images/stutis/`, under free licences.
-  - Each declares its real pixel size, and a unit test reads the JPEG to check it.
+  - They live in `public/images/stutis/`.
+  - Each devata's own portrait is under a free licence and links to its Commons page.
+  - The festival and section pictures in `seed/stuti-images.ts` were supplied by the owner. They are credited "Supplied by the site owner", with no source link, because their original source isn't recorded.
+  - Each picture declares its real pixel size, and a unit test reads the JPEG to check it.
   - A picture cropped from its original says "cropped" in its credit.
   - Each one must clearly show the devata. The owner chooses among candidates before one goes in.
+
+### Nava Vinayakas of Tulunadu
+
+`/temples/tulunadu/nava-vinayakas` lists nine Gaṇeśa temples of the coast, south to north, from `seed/nava-vinayakas.ts`. Each temple has names, place and a short text in every language, plus its Kannada name.
+
+- The page says plainly that the nine are a pilgrims' circuit, not a scriptural list. It also says that Idagunji and Gokarna lie north of Tulunadu proper. Keep both points.
+- Photographs:
+  - They come from Wikimedia Commons, with the licence and author in each credit.
+  - A temple with no free photograph shows its Kannada name in place of one. Don't substitute a photo of another temple.
+- The Temples index links to the page with a second feature card, below Kollur's.
 
 ### Citation and accuracy rules
 
@@ -199,7 +224,11 @@ Don't route around these.
 - that the meaning stays closed until asked for, and that no word meanings are shown
 - that transliteration appears only in English
 - the links from one stotra to the next
+- Gaṇeśa's festival band and three sections of ten stotras
+- that a video loads nothing from YouTube until played
 - the 404s for devatas not yet entered
+
+`nava-vinayakas.spec.ts` checks the nine temples' order, the pilgrims'-circuit note, a Commons credit for every photograph, and the link from Temples.
 
 ## Conventions
 

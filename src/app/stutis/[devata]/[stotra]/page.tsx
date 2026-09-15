@@ -13,12 +13,14 @@ import {
 } from "@/lib/data";
 import { LanguageChoice } from "@/components/content/LanguageChoice";
 import { StotraText } from "@/components/stotra/StotraText";
+import { StotraVideo } from "@/components/stotra/StotraVideo";
 import { Arrow } from "@/components/ui/Arrow";
 
 /**
- * A stotra: the reader's head, as the Upanishads have it, then the
- * whole text in one column (StotraText), the meaning closed until the
- * reader opens it, and the stotras either side of it.
+ * A stotra: the reader's head, as the Upanishads have it, a recitation
+ * to listen to (StotraVideo, which loads nothing from YouTube until
+ * played), then the whole text in one column (StotraText), the meaning
+ * closed until the reader opens it, and the stotras either side of it.
  *
  * A stotra registers itself in seed/stotras.ts and needs no page code.
  */
@@ -45,15 +47,15 @@ export default function StotraPage({ params }: { params: { devata: string; stotr
   return (
     <div className="reader stotra-page">
       <header className="reader-head shell">
-        {d.image && (
+        {s.image && (
           <Link href={`/stutis/${d.slug}`} className="stotra-thumb" aria-label={d.name}>
             <Image
-              src={d.image.src}
+              src={s.image.src}
               alt=""
               fill
               priority
               sizes="112px"
-              style={{ objectFit: "cover", objectPosition: d.image.position }}
+              style={{ objectFit: "cover", objectPosition: s.image.position }}
             />
           </Link>
         )}
@@ -81,6 +83,12 @@ export default function StotraPage({ params }: { params: { devata: string; stotr
       </header>
 
       <div className="shell-narrow">
+        {s.video && (
+          <StotraVideo
+            video={s.video}
+            labels={{ listen: t.labelListen, play: t.labelPlayVideo, watch: t.labelWatchOnYouTube }}
+          />
+        )}
         <StotraText
           verses={verses}
           showIast={locale === "en"}
@@ -125,12 +133,16 @@ export default function StotraPage({ params }: { params: { devata: string; stotr
           <p className="credit">
             {t.labelSource}: {verses[0]?.sourceTitle}
           </p>
-          {d.image && (
+          {s.image && (
             <p className="credit">
               {t.imageCredit}:{" "}
-              <a href={d.image.sourceUrl} target="_blank" rel="noopener noreferrer">
-                {d.image.credit}
-              </a>
+              {s.image.sourceUrl ? (
+                <a href={s.image.sourceUrl} target="_blank" rel="noopener noreferrer">
+                  {s.image.credit}
+                </a>
+              ) : (
+                s.image.credit
+              )}
             </p>
           )}
         </div>

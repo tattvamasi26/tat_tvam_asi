@@ -148,6 +148,17 @@ export interface UIStrings {
   labelAllDevatas: string;
   labelPrevious: string;
   labelNext: string;
+  labelGroupDaily: string;
+  labelGroupVedic: string;
+  labelGroupStotra: string;
+  labelGroupDailyNote: string;
+  labelGroupVedicNote: string;
+  labelGroupStotraNote: string;
+  labelListen: string;
+  labelPlayVideo: string;
+  labelWatchOnYouTube: string;
+  labelVideo: string;
+  labelFestival: string;
 
   // ── Homepage (2026 redesign)
   //
@@ -304,6 +315,17 @@ const en: UIStrings = {
   labelAllDevatas: "All devatas",
   labelPrevious: "Previous",
   labelNext: "Next",
+  labelGroupDaily: "Daily prayers",
+  labelGroupVedic: "From the Vedas",
+  labelGroupStotra: "Stotras",
+  labelGroupDailyNote: "Short verses and mantras, said every day.",
+  labelGroupVedicNote: "Mantras from the Vedas and the Upanishads.",
+  labelGroupStotraNote: "Longer hymns, from the Puranas and the acharyas.",
+  labelListen: "Listen",
+  labelPlayVideo: "Play",
+  labelWatchOnYouTube: "Watch on YouTube",
+  labelVideo: "Video",
+  labelFestival: "Festival",
 
   navGita: "Gita",
   ctaStartReading: "Start reading",
@@ -455,6 +477,17 @@ const kn: UIStrings = {
   labelAllDevatas: "ಎಲ್ಲ ದೇವತೆಗಳು",
   labelPrevious: "ಹಿಂದಿನದು",
   labelNext: "ಮುಂದಿನದು",
+  labelGroupDaily: "ನಿತ್ಯ ಪ್ರಾರ್ಥನೆಗಳು",
+  labelGroupVedic: "ವೇದಗಳಿಂದ",
+  labelGroupStotra: "ಸ್ತೋತ್ರಗಳು",
+  labelGroupDailyNote: "ಪ್ರತಿದಿನ ಹೇಳುವ ಚಿಕ್ಕ ಶ್ಲೋಕಗಳು ಮತ್ತು ಮಂತ್ರಗಳು.",
+  labelGroupVedicNote: "ವೇದಗಳು ಮತ್ತು ಉಪನಿಷತ್ತುಗಳ ಮಂತ್ರಗಳು.",
+  labelGroupStotraNote: "ಪುರಾಣಗಳಿಂದ ಮತ್ತು ಆಚಾರ್ಯರಿಂದ ಬಂದ ದೀರ್ಘ ಸ್ತೋತ್ರಗಳು.",
+  labelListen: "ಆಲಿಸಿ",
+  labelPlayVideo: "ಪ್ಲೇ ಮಾಡಿ",
+  labelWatchOnYouTube: "YouTube ನಲ್ಲಿ ನೋಡಿ",
+  labelVideo: "ವೀಡಿಯೊ",
+  labelFestival: "ಹಬ್ಬ",
 
   navGita: "ಗೀತೆ",
   ctaStartReading: "ಓದಲು ಆರಂಭಿಸಿ",
@@ -606,6 +639,17 @@ const hi: UIStrings = {
   labelAllDevatas: "सभी देवता",
   labelPrevious: "पिछला",
   labelNext: "अगला",
+  labelGroupDaily: "नित्य प्रार्थनाएँ",
+  labelGroupVedic: "वेदों से",
+  labelGroupStotra: "स्तोत्र",
+  labelGroupDailyNote: "प्रतिदिन कहे जाने वाले छोटे श्लोक और मंत्र।",
+  labelGroupVedicNote: "वेदों और उपनिषदों के मंत्र।",
+  labelGroupStotraNote: "पुराणों और आचार्यों के लंबे स्तोत्र।",
+  labelListen: "सुनें",
+  labelPlayVideo: "चलाएँ",
+  labelWatchOnYouTube: "YouTube पर देखें",
+  labelVideo: "वीडियो",
+  labelFestival: "पर्व",
 
   navGita: "गीता",
   ctaStartReading: "पढ़ना आरंभ करें",

@@ -5,12 +5,16 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "@/i18n/server";
 import { sectionsFor } from "@/i18n/sections";
 import { DEFAULT_LOCALE } from "@/i18n/config";
-import { getDevata, getDevatas, getStotraViews } from "@/lib/data";
+import { getDevata, getDevatas, getStotraGroups, type ImageView, type StotraGroup } from "@/lib/data";
 import { Arrow } from "@/components/ui/Arrow";
 
 /**
  * One devata: their picture beside their name (the site's feature
- * block), then their stotras as a numbered list. Only devatas with at
+ * block), a festival of theirs if they have one, then their stotras in
+ * sections — daily prayers, Vedic mantras, longer stotras — numbered
+ * straight through in the order they are said. The sections alternate
+ * between plain paper and the deeper paper band, each with a picture of
+ * the devata beside it where one has been chosen. Only devatas with at
  * least one stotra entered in full have a page.
  */
 
@@ -27,8 +31,29 @@ export default function DevataPage({ params }: { params: { devata: string } }) {
   const { locale, t } = getTranslations();
   const d = getDevata(params.devata, locale);
   if (!d) notFound();
-  const stotras = getStotraViews(d.slug, locale);
+  const groups = getStotraGroups(d.slug, locale);
+  const sectioned = groups.length > 1;
   const section = sectionsFor(locale).find((s) => s.id === "stutis")!;
+
+  const heading: Record<StotraGroup, string> = {
+    daily: t.labelGroupDaily,
+    vedic: t.labelGroupVedic,
+    stotra: t.labelGroupStotra,
+  };
+  const note: Record<StotraGroup, string> = {
+    daily: t.labelGroupDailyNote,
+    vedic: t.labelGroupVedicNote,
+    stotra: t.labelGroupStotraNote,
+  };
+
+  // Numbered straight through the sections, in the order they are said.
+  const starts: number[] = [];
+  groups.forEach((g, i) => starts.push(i === 0 ? 1 : starts[i - 1] + groups[i - 1].stotras.length));
+
+  // Every picture on the page, credited once.
+  const pictures = [d.image, d.festival?.image ?? null, ...groups.map((g) => (sectioned ? g.image : null))]
+    .filter((p): p is ImageView => p !== null)
+    .filter((p, i, all) => all.findIndex((q) => q.src === p.src) === i);
 
   return (
     <>
@@ -62,38 +87,105 @@ export default function DevataPage({ params }: { params: { devata: string } }) {
         </div>
       </section>
 
-      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
-        <h2 className="stutis-h2">{t.labelStotras}</h2>
-        <ol className="stotra-list">
-          {stotras.map((s, i) => (
-            <li key={s.slug}>
-              <Link href={s.href} className="stotra-row">
-                <span className="stotra-row-num">{i + 1}</span>
-                <span className="stotra-row-body">
-                  <span className="stotra-row-name">{s.name}</span>
-                  <span className={`stotra-row-sanskrit ${s.scriptClass}`}>{s.nameSanskrit}</span>
-                  <span className="stotra-row-summary">{s.summary}</span>
-                </span>
-                <span className="stotra-row-meta">
-                  {s.verseCount != null && (
-                    <span className="chip">
-                      {s.verseCount} {t.labelVerseCount}
-                    </span>
-                  )}
-                  <Arrow />
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ol>
+      {d.festival && (
+        <section className="stutis-band festival" aria-labelledby="festival-title">
+          <div className="shell festival-inner">
+            {d.festival.image && (
+              <div className="festival-media">
+                <Image
+                  src={d.festival.image.src}
+                  alt={d.festival.image.alt}
+                  fill
+                  sizes="(max-width: 860px) 100vw, 340px"
+                  style={{ objectFit: "cover", objectPosition: d.festival.image.position }}
+                />
+              </div>
+            )}
+            <div className="festival-body">
+              <p className="eyebrow">{t.labelFestival}</p>
+              <h2 id="festival-title" className="festival-title">
+                {d.festival.name}
+              </h2>
+              <p className="festival-when">{d.festival.when}</p>
+              <p className="festival-text">{d.festival.text}</p>
+              {d.festival.stotra && (
+                <Link href={d.festival.stotra.href} className="btn">
+                  {d.festival.stotra.name} <Arrow />
+                </Link>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
-        {d.image && (
-          <p className="credit stutis-credit">
-            {t.imageCredit}:{" "}
-            <a href={d.image.sourceUrl} target="_blank" rel="noopener noreferrer">
-              {d.image.credit}
-            </a>
-          </p>
+      {groups.map((g, gi) => (
+        <section
+          key={g.group}
+          className="stotra-group"
+          data-tone={gi % 2 === 1 ? "tint" : undefined}
+          aria-labelledby={`stotras-${g.group}`}
+        >
+          <div className="shell stotra-group-inner" data-pictured={sectioned && g.image ? "" : undefined}>
+            {sectioned && g.image && (
+              <figure className="stotra-group-media">
+                <Image
+                  src={g.image.src}
+                  alt={g.image.alt}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 240px"
+                  style={{ objectFit: "cover", objectPosition: g.image.position }}
+                />
+              </figure>
+            )}
+            <div className="stotra-group-body">
+              <h2 id={`stotras-${g.group}`} className="stutis-h2">
+                {sectioned ? heading[g.group] : t.labelStotras}
+              </h2>
+              {sectioned && <p className="stotra-group-note">{note[g.group]}</p>}
+              <ol className="stotra-list" start={starts[gi]}>
+                {g.stotras.map((s, i) => (
+                  <li key={s.slug}>
+                    <Link href={s.href} className="stotra-row">
+                      <span className="stotra-row-num">{starts[gi] + i}</span>
+                      <span className="stotra-row-body">
+                        <span className="stotra-row-name">{s.name}</span>
+                        <span className={`stotra-row-sanskrit ${s.scriptClass}`}>{s.nameSanskrit}</span>
+                        <span className="stotra-row-summary">{s.summary}</span>
+                      </span>
+                      <span className="stotra-row-meta">
+                        {s.video && <span className="chip chip-video">{t.labelVideo}</span>}
+                        {s.verseCount != null && (
+                          <span className="chip">
+                            {s.verseCount} {s.verseCount === 1 ? t.labelVerse : t.labelVerseCount}
+                          </span>
+                        )}
+                        <Arrow />
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      <section className="shell stutis-foot">
+        {pictures.length > 0 && (
+          <div className="stutis-credit">
+            {pictures.map((p) => (
+              <p key={p.src} className="credit">
+                {t.imageCredit}:{" "}
+                {p.sourceUrl ? (
+                  <a href={p.sourceUrl} target="_blank" rel="noopener noreferrer">
+                    {p.credit}
+                  </a>
+                ) : (
+                  p.credit
+                )}
+              </p>
+            ))}
+          </div>
         )}
 
         <Link href="/stutis" className="btn-ghost stutis-back">
