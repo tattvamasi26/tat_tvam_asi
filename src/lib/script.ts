@@ -89,15 +89,46 @@ export function devanagariToKannada(input: string): string {
 }
 
 /**
+ * The Vedic pitch marks: udātta (U+0951) and anudātta (U+0952).
+ *
+ * Only these two occur in the saṃhitā the Rigveda is entered from —
+ * checked across all ten mandalas, where the Vedic Extensions block
+ * (U+1CD0–U+1CFF) does not appear once. Deliberately not widened to
+ * that block on speculation: several of its code points are spacing
+ * signs that are part of the text, not accents, and stripping those
+ * would delete words rather than marks. A source that actually used
+ * them would need this list revisited.
+ */
+const VEDIC_PITCH_MARKS = /[॒॑]/g;
+
+/** The text with its pitch marks removed, and nothing else changed. */
+export function stripVedicAccents(text: string): string {
+  return text.replace(VEDIC_PITCH_MARKS, "");
+}
+
+/**
  * The mūla in the script that goes with the reading language.
  *
  * English and Hindi both get Devanagari — Hindi because it is written
  * in it, English because Devanagari plus the IAST line beside it is
  * the scholarly convention and neither is the reader's own script
  * anyway. Kannada gets Kannada.
+ *
+ * Kannada also drops the Vedic pitch marks, and that is an editorial
+ * choice rather than a limitation. The marks are Unicode-correct over
+ * Kannada letters and both Kannada faces the site loads carry them
+ * (U+0951–0952 are the first range in their Kannada subset). But they
+ * were drawn for Devanagari, which hangs from a headline; Kannada's
+ * forms are open and headline-less, so the marks crowd the letters they
+ * sit on — badly at phone sizes, where they read as noise rather than
+ * as pitch. Devanagari and IAST keep them, so nothing is lost for a
+ * reader who wants them.
+ *
+ * It lives here, not in devanagariToKannada, because that function is a
+ * reversible script transliteration and must stay one.
  */
 export function scriptFor(text: string, locale: Locale): string {
-  return locale === "kn" ? devanagariToKannada(text) : text;
+  return locale === "kn" ? stripVedicAccents(devanagariToKannada(text)) : text;
 }
 
 /** The CSS class that pairs with the script `scriptFor` produced. */

@@ -1,0 +1,462 @@
+/* ─────────────────────────────────────────────────────────
+   Temples: the regions, one region's page, and a temple written
+   in depth.
+
+   The same paper, cards and feature block as the rest of the site.
+   A monograph is a single column of prose with a facts bar above it,
+   pictures between the sections, and the sources at the foot.
+
+   Nothing here may set `font` or `font-family` on an element that can
+   carry .deva/.kannada — these rules are unlayered and would beat the
+   script faces. Local names get sizes, never faces.
+   ───────────────────────────────────────────────────────── */
+
+/* ── The regions ──────────────────────────────────────── */
+
+.region-card .card-img {
+  aspect-ratio: 3 / 2;
+}
+
+.region-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+/* ── One region ───────────────────────────────────────── */
+
+.region-head {
+  display: grid;
+  gap: 1.05rem;
+  justify-items: start;
+}
+
+.region-lede {
+  max-width: 62ch;
+  font-size: clamp(1rem, 1.6vw, 1.12rem);
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+.temples-h2 {
+  margin-bottom: 1rem;
+  font: 700 clamp(1.4rem, 2.4vw, 1.9rem) / var(--lh-snug) var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+}
+
+.temple-card .card-img {
+  aspect-ratio: 4 / 3;
+}
+
+.temple-card-local {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--sacred);
+}
+
+/* ── A temple, in depth ───────────────────────────────── */
+
+.temple-page {
+  padding-bottom: clamp(2rem, 6vw, 4rem);
+}
+
+.temple-hero {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--r-xl);
+  background: var(--paper-2);
+  box-shadow: var(--shadow);
+}
+@media (max-width: 700px) {
+  .temple-hero {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.temple-title {
+  max-width: 22ch;
+}
+
+.temple-local {
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--sacred);
+}
+
+.temple-tagline {
+  max-width: 56ch;
+  font-size: clamp(1.02rem, 1.7vw, 1.18rem);
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.temple-place {
+  font: 600 0.95rem / 1.5 var(--sans);
+  color: var(--gold);
+}
+
+/* The facts bar: what a reader wants before the prose. */
+.temple-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  gap: 1px;
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.temple-fact {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem 1.15rem;
+  background: var(--card);
+}
+
+.temple-fact-label {
+  font: 600 0.72rem / 1.4 var(--sans);
+  color: var(--ink-3);
+}
+
+.temple-fact-value {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.temple-quote {
+  margin-top: clamp(1.8rem, 4vw, 2.6rem);
+  padding: 0.2rem 0 0.2rem 1.4rem;
+  border-left: 3px solid var(--marigold);
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  line-height: 1.6;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+html:lang(kn) .temple-quote,
+html:lang(hi) .temple-quote {
+  font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+  line-height: 1.8;
+}
+
+.temple-section {
+  padding-block: clamp(2rem, 5vw, 3.2rem);
+  scroll-margin-top: calc(var(--masthead-space) + 1rem);
+}
+.temple-section + .temple-section {
+  border-top: 1px solid var(--line);
+}
+
+.temple-section-title {
+  margin: 0.35rem 0 1.4rem;
+  font: 700 clamp(1.5rem, 3vw, 2.2rem) / var(--lh-title) var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+}
+
+.temple-para,
+.temple-sub p {
+  max-width: 68ch;
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+.temple-para + .temple-para {
+  margin-top: 1rem;
+}
+
+.temple-sub {
+  display: grid;
+  gap: 0.7rem;
+  margin-block: 1.6rem;
+}
+.temple-sub h3,
+.temple-block-title {
+  font: 700 1.15rem / var(--lh-snug) var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+}
+.temple-block-title {
+  margin: 1.8rem 0 0.9rem;
+}
+
+.temple-list {
+  display: grid;
+  gap: 0.7rem;
+  margin-block: 1.3rem;
+}
+
+.temple-list-item {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: var(--r);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.temple-list-item dt {
+  font: 700 0.98rem / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+
+.temple-list-item dd {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+.temple-rows {
+  list-style: none;
+  display: grid;
+  gap: 0.15rem;
+  margin-block: 1.3rem;
+}
+
+.temple-row {
+  display: grid;
+  gap: 0.2rem 1.2rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 720px) {
+  .temple-row {
+    grid-template-columns: 8.5rem minmax(0, 1fr);
+  }
+  .temple-row-text {
+    grid-column: 2;
+  }
+}
+
+.temple-row-when {
+  font: 600 0.9rem / 1.5 var(--sans);
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.temple-row-name {
+  font: 700 1rem / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+
+.temple-row-text {
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+
+/* ── Pictures ─────────────────────────────────────────── */
+
+.temple-gallery {
+  display: grid;
+  gap: clamp(0.8rem, 2vw, 1.2rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  margin-top: clamp(1.5rem, 4vw, 2.2rem);
+}
+
+.temple-shot {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.temple-shot-frame {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  border: 5px solid var(--card);
+  background: var(--paper-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.temple-shot figcaption {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+  padding-inline: 0.2rem;
+}
+
+/* ── Sources and the way on ───────────────────────────── */
+
+.temple-sources {
+  display: grid;
+  gap: 0.4rem;
+  margin-top: clamp(2rem, 5vw, 3rem);
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.temple-sources li {
+  list-style: none;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+.temple-sources a {
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 2px;
+}
+
+.temple-pager {
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.temple-back {
+  margin-top: 1.4rem;
+}
+
+/* ── A circuit: the Nava Vinayakas ────────────────────── */
+
+.nv-note {
+  max-width: 62ch;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--r);
+  border-left: 3px solid var(--marigold);
+  background: var(--card);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.nv-route {
+  display: grid;
+  gap: 0.6rem;
+  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.nv-route-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.nv-route-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.4rem;
+  border-radius: var(--pill);
+  border: 1px solid var(--line);
+  background: var(--card);
+  font: 600 0.9rem / 1.5 var(--sans);
+  color: var(--ink);
+  transition: border-color 0.2s ease;
+}
+@media (hover: hover) {
+  .nv-route-list a:hover {
+    border-color: var(--ink-3);
+  }
+}
+
+.nv-route-num,
+.nv-num {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--marigold-soft);
+  color: #6b4a00;
+  font-variant-numeric: tabular-nums;
+}
+.nv-route-num {
+  width: 1.6rem;
+  height: 1.6rem;
+  font: 700 0.78rem / 1 var(--sans);
+}
+.nv-num {
+  width: 2.2rem;
+  height: 2.2rem;
+  font: 700 0.92rem / 1 var(--sans);
+}
+
+.nv-list {
+  list-style: none;
+  display: grid;
+  gap: clamp(1rem, 2.5vw, 1.6rem);
+}
+
+.nv-item {
+  display: grid;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  padding: clamp(0.5rem, 1vw, 0.75rem);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  scroll-margin-top: calc(var(--masthead-space) + 1rem);
+}
+@media (min-width: 860px) {
+  .nv-item {
+    grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
+    align-items: center;
+  }
+}
+
+.nv-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: calc(var(--r-xl) - 0.7rem);
+  background: var(--paper-2);
+}
+
+/* A temple with no free photograph shows its name in its own script. */
+.nv-media-name {
+  padding: 1.5rem;
+  text-align: center;
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  line-height: 1.6;
+  color: var(--sacred);
+}
+
+.nv-body {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+  padding: clamp(0.6rem, 2.5vw, 1.6rem);
+}
+
+.nv-name {
+  font: 700 clamp(1.3rem, 2.4vw, 1.75rem) / var(--lh-snug) var(--sans);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+}
+
+.nv-place {
+  font: 600 0.95rem / 1.5 var(--sans);
+  color: var(--gold);
+}
+
+.nv-text {
+  max-width: 62ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+.nv-body .credit a {
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 2px;
+}
+
+.nv-back {
+  margin-top: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nv-route-list a {
+    transition: none;
+  }
+}

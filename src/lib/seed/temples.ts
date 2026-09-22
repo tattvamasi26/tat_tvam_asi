@@ -1,32 +1,35 @@
 import type { TempleRow, TempleTranslationRow } from "./types";
 
+// Every temple belongs to a region, and is reached at
+// /temples/[region]/[slug]. The temples written in depth are modules
+// under seed/temple-pages/; these rows are the shorter entries.
 export const TEMPLES: TempleRow[] = [
   {
-    id: "tp-brihadeeswarar", slug: "brihadeeswarar-temple", name_local: "பெரிய கோயில்",
+    id: "tp-brihadeeswarar", slug: "brihadeeswarar-temple", region: "tamil-nadu", name_local: "பெரிய கோயில்",
     century_built: "11th century CE", latitude: 10.7828, longitude: 79.1318,
     image_url: "/images/site/brihadeeswarar.jpg",
     image_credit: "Rainer Halama / UnpetitproleX · CC BY-SA 4.0 · Wikimedia Commons",
   },
   {
-    id: "tp-kailasa", slug: "kailasa-temple-ellora", name_local: "कैलास मंदिर",
+    id: "tp-kailasa", slug: "kailasa-temple-ellora", region: "deccan", name_local: "कैलास मंदिर",
     century_built: "8th century CE", latitude: 20.0263, longitude: 75.1779,
     image_url: "/images/site/ellora.jpg",
     image_credit: "Shishirdasika · CC BY-SA 4.0 · Wikimedia Commons",
   },
   {
-    id: "tp-meenakshi", slug: "meenakshi-amman-temple", name_local: "மீனாக்ஷி அம்மன் கோவில்",
+    id: "tp-meenakshi", slug: "meenakshi-amman-temple", region: "tamil-nadu", name_local: "மீனாக்ஷி அம்மன் கோவில்",
     century_built: "17th century CE", latitude: 9.9195, longitude: 78.1193,
     image_url: "/images/site/meenakshi.jpg",
     image_credit: "எஸ்ஸார் · CC BY 3.0 · Wikimedia Commons",
   },
   {
-    id: "tp-konark", slug: "konark-sun-temple", name_local: "କୋଣାର୍କ",
+    id: "tp-konark", slug: "konark-sun-temple", region: "odisha", name_local: "କୋଣାର୍କ",
     century_built: "13th century CE", latitude: 19.8876, longitude: 86.0945,
     image_url: "/images/site/konark.jpg",
     image_credit: "Subham9423 · CC BY-SA 4.0 · Wikimedia Commons",
   },
   {
-    id: "tp-virupaksha", slug: "virupaksha-temple-hampi", name_local: "ವಿರೂಪಾಕ್ಷ ದೇವಾಲಯ",
+    id: "tp-virupaksha", slug: "virupaksha-temple-hampi", region: "deccan", name_local: "ವಿರೂಪಾಕ್ಷ ದೇವಾಲಯ",
     century_built: "7th century CE", latitude: 15.3350, longitude: 76.4600,
     image_url: "/images/site/hampi.jpg",
     image_credit: "iMahesh · CC BY-SA 4.0 · Wikimedia Commons",

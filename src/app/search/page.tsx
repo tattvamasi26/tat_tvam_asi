@@ -107,7 +107,7 @@ export default function SearchPage({
             <p className="eyebrow" style={{ marginBottom: "1.2rem" }}>{t.templesTitle}</p>
             <div style={{ display: "grid", gap: "0.75rem" }}>
               {results.temples.map((tp) => (
-                <Link key={tp.id} href={`/temples/${tp.slug}`} className="card">
+                <Link key={tp.id} href={tp.href} className="card">
                   <div className="card-body">
                     <h3 className="card-title" style={{ fontSize: "1.2rem" }}>{tp.name}</h3>
                     <p className="meta">

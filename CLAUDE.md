@@ -111,15 +111,22 @@ The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotr
   - A picture cropped from its original says "cropped" in its credit.
   - Each one must clearly show the devata. The owner chooses among candidates before one goes in.
 
-### Nava Vinayakas of Tulunadu
+### Temples are arranged by region
 
-`/temples/tulunadu/nava-vinayakas` lists nine Gaṇeśa temples of the coast, south to north, from `seed/nava-vinayakas.ts`. Each temple has names, place and a short text in every language, plus its Kannada name.
+The routes are `/temples` (the regions), `/temples/[section]` (one region), and `/temples/[section]/[entry]` (a temple, or a circuit). There is one dynamic segment per level, so `[section]` and `[entry]` resolve by data rather than by folder.
 
-- The page says plainly that the nine are a pilgrims' circuit, not a scriptural list. It also says that Idagunji and Gokarna lie north of Tulunadu proper. Keep both points.
-- Photographs:
-  - They come from Wikimedia Commons, with the licence and author in each credit.
-  - A temple with no free photograph shows its Kannada name in place of one. Don't substitute a photo of another temple.
-- The Temples index links to the page with a second feature card, below Kollur's.
+- `seed/temple-regions.ts` lists the regions: Tulunadu, Tamil Nadu, the Deccan, Odisha. A region is cultural, not administrative — Tulunadu spans Kasaragod in Kerala and the Karnataka coast.
+- A region page shows its circuits first, then its temples.
+- A temple written in depth is a module under `seed/temple-pages/` that calls `registerTemplePage()`. Import it in the temple block of `data.ts`, or it has no page.
+  - The prose is written per language (`content.en`, `.kn`, `.hi`), each with the whole structure, the way `i18n/kollur.ts` was written. A unit test holds the languages to the same section ids and the same block kinds, so none can drift.
+  - Blocks are `para`, `sub` (a titled passage), `list` (label and text) and `rows` (a time, a name, what happens then).
+  - Every module names the sources its facts came from, and the page prints them. Say plainly where a tradition is a tradition, and where a legend was written down long after the event.
+  - Kollur keeps its prose in `i18n/kollur.ts`; its module shapes that into the monograph. Its old hand-built dark page is gone.
+- The shorter entries stay as `TEMPLES` rows in `seed/temples.ts`, each carrying a `region`. They render through `ShortTemple` with the same head and facts bar.
+- A circuit (a set of temples visited together) is a row in `seed/temple-collections.ts` pointing at its own data and page; the Nava Vinayakas are the first.
+  - That page says plainly that the nine are a pilgrims' circuit, not a scriptural list, and that Idagunji and Gokarna lie north of Tulunadu proper. Keep both points.
+- Photographs come from Wikimedia Commons with the licence and author in each credit; a temple with no free photograph shows its own name in its own script instead. Don't substitute a photo of another temple.
+- Temples used to live at `/temples/<slug>`. Those addresses still work: `[section]` redirects a slug it recognises to the temple's page inside its region. Keep that redirect when adding regions.
 
 ### Citation and accuracy rules
 

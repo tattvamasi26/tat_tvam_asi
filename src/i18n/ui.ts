@@ -160,6 +160,14 @@ export interface UIStrings {
   labelVideo: string;
   labelFestival: string;
 
+  // ── Temples, by region
+  labelCircuits: string;
+  labelCircuitOne: string;
+  labelTemplesCount: string;
+  labelTempleOne: string;
+  labelSources: string;
+  labelInDepth: string;
+
   // ── Homepage (2026 redesign)
   //
   // Headlines come in two parts: the plain run, and the phrase set in
@@ -326,6 +334,12 @@ const en: UIStrings = {
   labelWatchOnYouTube: "Watch on YouTube",
   labelVideo: "Video",
   labelFestival: "Festival",
+  labelCircuits: "Circuits",
+  labelCircuitOne: "Circuit",
+  labelTemplesCount: "temples",
+  labelTempleOne: "temple",
+  labelSources: "Sources",
+  labelInDepth: "In depth",
 
   navGita: "Gita",
   ctaStartReading: "Start reading",
@@ -488,6 +502,12 @@ const kn: UIStrings = {
   labelWatchOnYouTube: "YouTube ನಲ್ಲಿ ನೋಡಿ",
   labelVideo: "ವೀಡಿಯೊ",
   labelFestival: "ಹಬ್ಬ",
+  labelCircuits: "ಯಾತ್ರೆಗಳು",
+  labelCircuitOne: "ಯಾತ್ರೆ",
+  labelTemplesCount: "ದೇವಾಲಯಗಳು",
+  labelTempleOne: "ದೇವಾಲಯ",
+  labelSources: "ಆಧಾರಗಳು",
+  labelInDepth: "ವಿವರವಾಗಿ",
 
   navGita: "ಗೀತೆ",
   ctaStartReading: "ಓದಲು ಆರಂಭಿಸಿ",
@@ -650,6 +670,12 @@ const hi: UIStrings = {
   labelWatchOnYouTube: "YouTube पर देखें",
   labelVideo: "वीडियो",
   labelFestival: "पर्व",
+  labelCircuits: "यात्राएँ",
+  labelCircuitOne: "यात्रा",
+  labelTemplesCount: "मंदिर",
+  labelTempleOne: "मंदिर",
+  labelSources: "स्रोत",
+  labelInDepth: "विस्तार से",
 
   navGita: "गीता",
   ctaStartReading: "पढ़ना आरंभ करें",

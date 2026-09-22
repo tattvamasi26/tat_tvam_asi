@@ -2,15 +2,22 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
-import { getAllTemples, getNavaVinayakas } from "@/lib/data";
+import { getTempleRegions } from "@/lib/data";
 
-export const metadata: Metadata = { title: "Temples" };
+export const metadata: Metadata = {
+  title: "Temples",
+  description: "Temples by region — Tulunadu, Tamil Nadu, the Deccan and Odisha.",
+};
 
+/**
+ * The temples, by region. Each card opens a region: its own temples,
+ * written in depth, and its circuits. Temples are added to a region
+ * rather than to one flat list, so a section can grow without the
+ * index growing with it.
+ */
 export default function TemplesPage() {
   const { locale, t } = getTranslations();
-  const temples = getAllTemples(locale);
-  const nava = getNavaVinayakas(locale);
-  const navaPhoto = nava.temples.find((tp) => tp.photo)?.photo ?? null;
+  const regions = getTempleRegions(locale);
 
   return (
     <>
@@ -24,86 +31,37 @@ export default function TemplesPage() {
 
       <section className="shell stack-lg" style={{ paddingTop: 0 }}>
         <div className="grid-cards">
-          {temples.map((tp) => (
-            <Link key={tp.id} href={`/temples/${tp.slug}`} className="card">
-              {tp.imageUrl && (
+          {regions.map((r) => (
+            <Link key={r.slug} href={r.href} className="card region-card">
+              {r.image && (
                 <div className="card-img">
                   <Image
-                    src={tp.imageUrl}
-                    alt={tp.name}
+                    src={r.image.src}
+                    alt=""
                     fill
                     sizes="(max-width: 700px) 100vw, 33vw"
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", objectPosition: r.image.position }}
                   />
                 </div>
               )}
               <div className="card-body">
-                <h2 className="card-title">{tp.name}</h2>
-                <p className="name-local">{tp.nameLocal}</p>
-                <p className="card-text clamp-3" style={{ marginTop: "0.5rem" }}>{tp.description}</p>
+                <h2 className="card-title">{r.name}</h2>
+                <p className="card-text">{r.blurb}</p>
                 <div className="card-foot">
-                  <span className="meta">
-                    {tp.location} · {tp.state}
+                  <span className="region-meta">
+                    <span className="chip chip-gold">
+                      {r.templeCount} {r.templeCount === 1 ? t.labelTempleOne : t.labelTemplesCount}
+                    </span>
+                    {r.collectionCount > 0 && (
+                      <span className="chip">
+                        {r.collectionCount} {r.collectionCount === 1 ? t.labelCircuitOne : t.labelCircuits}
+                      </span>
+                    )}
                   </span>
-                  <span className="chip chip-gold">{tp.centuryBuilt}</span>
                 </div>
               </div>
             </Link>
           ))}
-        </div>
-
-        {/* The Tulunadu pillar is hand-built rather than data-driven —
-            it is the first long-form temple monograph on the site. */}
-        <div style={{ marginTop: "clamp(3rem, 7vw, 5rem)" }}>
-          <hr className="rule" />
-          <div className="feature" style={{ marginTop: "clamp(2rem, 5vw, 3.5rem)" }}>
-            <div className="feature-media">
-              <Image
-                src="/images/mookambika/deity-main.jpg"
-                alt="Sri Mookambika Temple, Kollur"
-                fill
-                sizes="(max-width: 860px) 100vw, 50vw"
-                style={{ objectFit: "cover" }}
-              />
-            </div>
-            <div className="feature-body">
-              <p className="eyebrow">Temples of Tulunadu</p>
-              <h2 className="title" style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>
-                Sri Mookambika Temple
-              </h2>
-              <p className="kannada" lang="kn" style={{ color: "var(--gold)", fontSize: "1.2rem" }}>
-                ಕೊಲ್ಲೂರು ಶ್ರೀ ಮೂಕಾಂಬಿಕಾ ದೇವಸ್ಥಾನ
-              </p>
-              <p className="prose">{t.kollurBlurb}</p>
-              <Link href="/temples/tulunadu/kollur-mookambika" className="btn" style={{ marginTop: "0.6rem" }}>
-                {t.readMore}
-              </Link>
-            </div>
-          </div>
-
-          <div className="feature nv-feature" style={{ marginTop: "clamp(1.25rem, 3vw, 2rem)" }}>
-            {navaPhoto && (
-              <div className="feature-media">
-                <Image
-                  src={navaPhoto.src}
-                  alt={navaPhoto.alt}
-                  fill
-                  sizes="(max-width: 860px) 100vw, 50vw"
-                  style={{ objectFit: "cover", objectPosition: navaPhoto.position }}
-                />
-              </div>
-            )}
-            <div className="feature-body">
-              <p className="eyebrow">{nava.eyebrow}</p>
-              <h2 className="title" style={{ fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)" }}>
-                {nava.title}
-              </h2>
-              <p className="prose">{nava.blurb}</p>
-              <Link href="/temples/tulunadu/nava-vinayakas" className="btn" style={{ marginTop: "0.6rem" }}>
-                {t.readMore}
-              </Link>
-            </div>
-          </div>
         </div>
       </section>
     </>

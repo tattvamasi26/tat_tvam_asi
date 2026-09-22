@@ -1,24 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { getNavaVinayakas } from "@/lib/data";
 import { Arrow } from "@/components/ui/Arrow";
 
-export const metadata: Metadata = {
-  title: "Nava Vinayakas of Tulunadu",
-  description: "Nine Ganesha temples of the coast, from Madhur to Gokarna, that devotees visit as a circuit.",
-};
-
 /**
- * The Nava Vinayakas: nine Gaṇeśa temples of the coast, south to north.
- * The page head says plainly that the nine are a pilgrims' tradition,
- * then the route as a line of numbered places, then one entry per
- * temple in the site's feature style — its photograph (or, where there
- * is no free photograph, its Kannada name), its names, place and a few
- * plain lines, with the photograph's credit.
+ * The Nava Vinayakas of Tulunadu: nine Gaṇeśa temples of the coast,
+ * south to north. The page head says plainly that the nine are a
+ * pilgrims' circuit, then the route as a line of numbered places, then
+ * one entry per temple — its photograph (or, where there is no free
+ * photograph, its Kannada name), its names, place, a few plain lines,
+ * and the photograph's credit.
  */
-export default function NavaVinayakasPage() {
+export function NavaVinayakas() {
   const { locale, t } = getTranslations();
   const page = getNavaVinayakas(locale);
 
@@ -26,7 +20,7 @@ export default function NavaVinayakasPage() {
     <>
       <section className="pagehead">
         <div className="shell pagehead-inner">
-          <Link href="/temples" className="eyebrow">
+          <Link href="/temples/tulunadu" className="eyebrow">
             {page.eyebrow}
           </Link>
           <h1 className="title">{page.title}</h1>
@@ -95,8 +89,8 @@ export default function NavaVinayakasPage() {
           ))}
         </ol>
 
-        <Link href="/temples" className="btn-ghost nv-back">
-          <Arrow dir="left" /> {t.navTemples}
+        <Link href="/temples/tulunadu" className="btn-ghost nv-back">
+          <Arrow dir="left" /> {page.eyebrow}
         </Link>
       </section>
     </>

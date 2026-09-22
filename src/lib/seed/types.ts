@@ -138,6 +138,8 @@ export interface TeacherTranslationRow {
 export interface TempleRow {
   id: string;
   slug: string;
+  /** A seed/temple-regions.ts slug: the section the temple is listed under. */
+  region: string;
   name_local: string;
   century_built: string;
   image_url: string | null;

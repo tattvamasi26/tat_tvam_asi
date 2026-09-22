@@ -340,7 +340,7 @@ export default function HomePage() {
         <div className="mosaic">
           {temples.map((tp, i) => (
             <Reveal key={tp.id} delay={i * 60}>
-              <Link href={`/temples/${tp.slug}`} className="tile" style={{ height: "100%" }}>
+              <Link href={tp.href} className="tile" style={{ height: "100%" }}>
                 {tp.imageUrl && (
                   <Image
                     src={tp.imageUrl}

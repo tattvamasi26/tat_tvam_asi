@@ -17,3 +17,13 @@ node_modules/
 .env.local
 .env.*.local
 .env.production
+
+# The Rigveda harvest: the accented samhita (3.4 MB) and 1,028 pages of
+# Sayana's bhashya (34 MB). Both are re-fetched by
+# scripts/rigveda/fetch-samhita.mjs and fetch-spine.mjs, and the corpus
+# the site actually reads is committed under src/lib/rigveda/data. The
+# parsed spine (rv-spine-raw.json) IS committed, so what the editorial
+# layer in src/lib/rigveda/devatas.ts does to the raw field can be
+# checked without re-harvesting anything.
+/corpus/rigveda/rv-sasvara-raw.txt
+/corpus/rigveda/suktas/

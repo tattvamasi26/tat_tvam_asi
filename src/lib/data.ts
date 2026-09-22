@@ -75,6 +75,9 @@ export interface TeacherView {
 export interface TempleView {
   id: string;
   slug: string;
+  /** The region it is listed under, and the page it lives on. */
+  region: string;
+  href: string;
   name: string;
   nameLocal: string;
   location: string;
@@ -218,6 +221,8 @@ export function getAllTemples(locale: Locale): TempleView[] {
     return {
       id: t.id,
       slug: t.slug,
+      region: t.region,
+      href: `/temples/${t.region}/${t.slug}`,
       name: tr?.name ?? "",
       nameLocal: t.name_local,
       location: tr?.location ?? "",
@@ -236,6 +241,223 @@ export function getAllTemples(locale: Locale): TempleView[] {
 
 export function getTempleBySlug(slug: string, locale: Locale): TempleView | null {
   return getAllTemples(locale).find((t) => t.slug === slug) ?? null;
+}
+
+// ── Temples by region ───────────────────────────────────────
+//
+// /temples lists the regions; /temples/[region] lists a region's
+// temples and its circuits; /temples/[region]/[entry] is one temple
+// written in depth, or one circuit. A temple module registers itself
+// when imported, as the stotras do.
+import "./seed/temple-pages/kollur-mookambika";
+import "./seed/temple-pages/udupi-krishna-matha";
+import "./seed/temple-pages/dharmasthala";
+import "./seed/temple-pages/kukke-subramanya";
+import "./seed/temple-pages/kateel";
+import "./seed/temple-pages/mangaladevi";
+import "./seed/temple-pages/kadri-manjunatha";
+import { TEMPLE_REGIONS, type TempleRegion } from "./seed/temple-regions";
+import { collectionsOf, getCollection, type TempleCollection } from "./seed/temple-collections";
+import {
+  getTemplePage,
+  templePagesOf,
+  templePageSlugs,
+  type TempleContent,
+  type TemplePage,
+  type TemplePicture,
+} from "./seed/temple-pages";
+
+export type { TempleBlock, TempleContent, TempleSection } from "./seed/temple-pages";
+
+export interface TempleRegionView {
+  slug: string;
+  href: string;
+  name: string;
+  blurb: string;
+  lede: string;
+  image: ImageView | null;
+  /** How many temples and circuits the region holds. */
+  templeCount: number;
+  collectionCount: number;
+}
+
+/** A temple or a circuit, as a card on a region's page. */
+export interface TempleCardView {
+  slug: string;
+  href: string;
+  name: string;
+  nameLocal: string;
+  nameLocalLang: string;
+  /** Where it stands, or for a circuit, how many temples it takes in. */
+  meta: string;
+  blurb: string;
+  image: ImageView | null;
+  /** True for a temple written in depth, false for a short entry. */
+  inDepth: boolean;
+}
+
+function regionView(r: TempleRegion, locale: Locale): TempleRegionView {
+  const pick = (t: Record<Locale, string>) => t[locale] ?? t.en;
+  return {
+    slug: r.slug,
+    href: `/temples/${r.slug}`,
+    name: pick(r.name),
+    blurb: pick(r.blurb),
+    lede: pick(r.lede),
+    image: imageView(r.image, locale),
+    templeCount: templePagesOf(r.slug).length + TEMPLES.filter((t) => t.region === r.slug).length,
+    collectionCount: collectionsOf(r.slug).length,
+  };
+}
+
+/** The regions, in order, for the Temples index. */
+export function getTempleRegions(locale: Locale): TempleRegionView[] {
+  return [...TEMPLE_REGIONS].sort((a, b) => a.order - b.order).map((r) => regionView(r, locale));
+}
+
+function pageCard(p: TemplePage, locale: Locale): TempleCardView {
+  const c = p.content[locale] ?? p.content.en;
+  return {
+    slug: p.slug,
+    href: `/temples/${p.region}/${p.slug}`,
+    name: p.name[locale] ?? p.name.en,
+    nameLocal: p.nameLocal,
+    nameLocalLang: p.nameLocalLang,
+    meta: c.place,
+    blurb: c.tagline,
+    image: imageView(p.hero, locale),
+    inDepth: true,
+  };
+}
+
+function collectionCard(c: TempleCollection, locale: Locale, templesLabel: string): TempleCardView {
+  return {
+    slug: c.slug,
+    href: `/temples/${c.region}/${c.slug}`,
+    name: c.name[locale] ?? c.name.en,
+    nameLocal: "",
+    nameLocalLang: "kn",
+    meta: `${c.count} ${templesLabel}`,
+    blurb: c.blurb[locale] ?? c.blurb.en,
+    image: imageView(c.image, locale),
+    inDepth: false,
+  };
+}
+
+/** One region: its own words, its circuits, and its temples. */
+export function getTempleRegionPage(slug: string, locale: Locale, templesLabel: string) {
+  const row = TEMPLE_REGIONS.find((r) => r.slug === slug);
+  if (!row) return null;
+  const temples: TempleCardView[] = [
+    ...templePagesOf(slug).map((p) => pageCard(p, locale)),
+    ...getAllTemples(locale)
+      .filter((t) => t.region === slug)
+      .map((t) => ({
+        slug: t.slug,
+        href: t.href,
+        name: t.name,
+        nameLocal: t.nameLocal,
+        nameLocalLang: "kn",
+        meta: `${t.location} · ${t.state}`,
+        blurb: t.description,
+        image: t.imageUrl
+          ? { src: t.imageUrl, width: 0, height: 0, position: "50% 50%", alt: t.name, credit: t.imageCredit ?? "", sourceUrl: null }
+          : null,
+        inDepth: false,
+      })),
+  ];
+  return {
+    ...regionView(row, locale),
+    collections: collectionsOf(slug).map((c) => collectionCard(c, locale, templesLabel)),
+    temples,
+  };
+}
+
+/** What sits at /temples/[region]/[entry]: a temple, a circuit, or nothing. */
+export function getTempleEntryKind(region: string, entry: string): "temple" | "collection" | null {
+  const page = getTemplePage(entry);
+  if (page && page.region === region) return "temple";
+  const row = TEMPLES.find((t) => t.slug === entry && t.region === region);
+  if (row) return "temple";
+  const collection = getCollection(entry);
+  if (collection && collection.region === region) return "collection";
+  return null;
+}
+
+export interface TempleMonographView {
+  slug: string;
+  region: TempleRegionView;
+  name: string;
+  nameLocal: string;
+  nameLocalLang: string;
+  tagline: string;
+  place: string;
+  facts: [string, string][];
+  quote: string | null;
+  sections: TempleContent["sections"];
+  hero: ImageView | null;
+  gallery: (ImageView & { caption: string | null })[];
+  sources: { title: string; url: string }[];
+  /** The temples either side of it on the region's page. */
+  prev: { href: string; name: string } | null;
+  next: { href: string; name: string } | null;
+}
+
+/** A temple written in depth. Short entries have no monograph. */
+export function getTempleMonograph(slug: string, locale: Locale): TempleMonographView | null {
+  const p = getTemplePage(slug);
+  if (!p) return null;
+  const region = TEMPLE_REGIONS.find((r) => r.slug === p.region);
+  if (!region) return null;
+  const c = p.content[locale] ?? p.content.en;
+  const siblings = templePagesOf(p.region);
+  const i = siblings.findIndex((x) => x.slug === slug);
+  const link = (x: TemplePage | undefined) =>
+    x ? { href: `/temples/${x.region}/${x.slug}`, name: x.name[locale] ?? x.name.en } : null;
+
+  return {
+    slug: p.slug,
+    region: regionView(region, locale),
+    name: p.name[locale] ?? p.name.en,
+    nameLocal: p.nameLocal,
+    nameLocalLang: p.nameLocalLang,
+    tagline: c.tagline,
+    place: c.place,
+    facts: c.facts,
+    quote: c.quote ?? null,
+    sections: c.sections,
+    hero: imageView(p.hero, locale),
+    gallery: (p.gallery ?? []).map((g: TemplePicture) => ({
+      ...imageView(g, locale)!,
+      caption: g.caption ? g.caption[locale] ?? g.caption.en : null,
+    })),
+    sources: p.sources,
+    prev: link(siblings[i - 1]),
+    next: link(siblings[i + 1]),
+  };
+}
+
+/** Every region and entry route, for the static params. */
+export function getTempleRoutes() {
+  const regions = TEMPLE_REGIONS.map((r) => ({ section: r.slug }));
+  const entries = [
+    ...templePageSlugs().map((slug) => ({ section: getTemplePage(slug)!.region, entry: slug })),
+    ...TEMPLES.map((t) => ({ section: t.region, entry: t.slug })),
+    ...TEMPLE_COLLECTIONS_ROUTES(),
+  ];
+  return { regions, entries };
+}
+
+function TEMPLE_COLLECTIONS_ROUTES() {
+  return TEMPLE_REGIONS.flatMap((r) => collectionsOf(r.slug).map((c) => ({ section: r.slug, entry: c.slug })));
+}
+
+/** Where a temple slug lives now, for links written before the regions. */
+export function templeHref(slug: string): string | null {
+  const page = getTemplePage(slug);
+  if (page) return `/temples/${page.region}/${page.slug}`;
+  const row = TEMPLES.find((t) => t.slug === slug);
+  return row ? `/temples/${row.region}/${row.slug}` : null;
 }
 
 // ── Concepts ────────────────────────────────────────────────
