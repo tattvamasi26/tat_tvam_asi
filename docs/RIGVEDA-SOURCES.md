@@ -327,48 +327,72 @@ title queries — about fifty requests, not 1,028.
   full attribution string is kept alongside the principal value and
   printed on the sūkta's own page.
 
-**Result:** 291 raw devatā strings normalise to 114 canonical values —
-96 deities, 18 subjects (`ज्ञानम्`, `श्रद्धा`, and other topics the
-Anukramaṇī names in the devatā slot), and one hymn-type (`आप्रीसूक्तम्`,
-which covers ten hymns under several spellings). Indra 259, Agni 187,
-Soma Pavamāna 113, Viśve Devāḥ 72 and the Aśvins 55 account for 67%;
-the 15 devatās with ten or more hymns cover ~81%.
+**Result:** the 290 raw devatā strings reduce to **123 principals**
+(the devatā named in verse 1, by `scripts/rigveda/attribution.mjs`) and
+then to **98 canonical values** — 77 deities, 20 subjects (`ज्ञानम्`,
+`श्रद्धा`, the charms and the dāna-stutis), and one hymn-type
+(`आप्रीसूक्तम्`, which covers ten hymns under several spellings).
+Indra 261, Agni 208, Soma Pavamāna 113, Viśve Devāḥ 72 and the Aśvins
+55 account for **69%**; the 14 devatās with ten or more hymns cover
+**83%**, and 51 devatās hold a single hymn each.
 
-**Where it lives right now:** a session scratchpad —
-`rv-spine.json` plus 1,028 `.wiki` files, and `rv-sasvara-raw.txt`
-holding the complete accented saṃhitā. **That directory is temporary.**
-This must be moved into Postgres, or committed, before it is lost;
-re-harvesting is cheap but not free, and Wikimedia rate-limits.
+> An earlier draft of this section said 291 strings, 114 canonical
+> values and different per-deity counts. Those came from a fold that
+> was never written down. These come from the code that now does it
+> (`src/lib/rigveda/devatas.ts`), and a unit test holds them.
+
+**189 hymns carry an attribution naming more than one devatā** — a
+narrower count than the "232" an earlier draft gave, because it counts
+distinct *names*, not commas: "Agni, in verse 1 the Ṛtus alternatively"
+is one hymn to Agni with a variant reading, not a hymn that changes
+deity.
+
+**Where it lives now:** in this repository, not in a scratchpad.
+
+- `src/lib/rigveda/data/` — the built corpus the site reads: `spine.json`
+  (1,028 hymns, no verses) and `mandala-1..10.json` (the verses).
+  **Committed.**
+- `corpus/rigveda/rv-spine-raw.json` — the raw harvest, committed so
+  that what the editorial layer does to the Anukramaṇī's own field can
+  be checked without re-harvesting.
+- `corpus/rigveda/rv-sasvara-raw.txt` and `corpus/rigveda/suktas/`
+  (1,028 `.wiki` pages, 34 MB of Sāyaṇa) — **git-ignored**, because
+  every syllable of the saṃhitā is already in the built corpus and the
+  bhāṣya is re-fetchable:
+
+```
+node scripts/rigveda/fetch-samhita.mjs    # the accented samhita
+node scripts/rigveda/fetch-spine.mjs      # rishi/devata/metre + Sayana
+npx tsx scripts/rigveda/build.ts          # -> src/lib/rigveda/data
+```
+
+The build refuses to write a half-true corpus: it fails on a verse
+count that disagrees with the saṃhitā, a devatā it cannot map to a
+canonical id, or a sūkta left without ṛṣi, devatā or metre.
 
 ---
 
-## 10. What is settled, and what is not
+## 11. What the spine now contains
 
-**Settled:**
-- Mūla: sa.wikisource sasvara, complete and verified.
-- Hymn metadata (ṛṣi, devatā, metre) and Sāyaṇa: sa.wikisource per-sūkta pages.
-- Word-by-word: Zurich corpus, CC BY 4.0.
-- English reference: Griffith 1896, public domain.
-- Excluded: Jamison–Brereton (©), VedaWeb's unlicensed nine, GRETIL for
-  any commercial use.
+Built 2026-09-22, from the sources above.
 
-**Open, pending the owner's decision:**
-- vedicheritage.gov.in's reuse terms, if we cite or embed anything from it.
-- Who holds rights to the Venkata Rao Kannada and Trivedi Hindi editions.
+| | |
+|---|---|
+| Sūktas | **1,028** |
+| Verses | **10,552** |
+| With ṛṣi, devatā, metre and verse count | **1,028 — all of them** |
+| Read by hand from Sāyaṇa or the Anukramaṇī's prose | 26 sūktas |
+| Canonical devatās | 98 |
 
-**Decided 2026-09-21 by the owner:**
-- Scope: the complete spine (all 1,028 sūktas) plus deeply written selections.
-- Storage: migrate the whole site to Postgres.
-- Accents: accented Devanagari and IAST; plain, unaccented Kannada.
-- Kannada/Hindi: pursue permission for a published translation.
+The 26 hand-read values are in `src/lib/rigveda/devatas-by-hand.ts`
+and `spine-by-hand.ts`, and **each one quotes the clause it was read
+from**, so the claim can be checked against the source rather than
+trusted. One of the 26 is not read from a text at all: RV 10.136's
+metre, which neither Sāyaṇa nor the Anukramaṇī states, because by their
+own convention an unstated metre continues from the hymn before. That
+entry says exactly that, is marked `counted` rather than attributed to
+a source, and records that all seven verses are printed as two lines of
+sixteen syllables.
 
-**Rights-holder leads (unconfirmed):**
-- *Trivedi, Hindi* — Chaukhamba Vidya Bhawan, K 37/117 Gopal Mandir Lane,
-  Golghar, Maidagin, Varanasi 221001. They published the 1992 and 2016
-  reprints, so they are the likely rights-holder.
-- *Venkata Rao, Kannada* — the Jayachamarajendra Vedaratnamālā, 36 vols,
-  first volume 24 October 1947, last 1961, printed by Sharada Press and
-  Vinayak Printing Works, Mysore, sponsored by the Maharaja. Rights most
-  likely sit with the University of Mysore / Oriental Research Institute
-  (Kautilya Circle, Chamarajapuram, Mysuru 570005) or the Government of
-  Karnataka. To be established before writing.
+RV 9.101 turned out not to be a gap at all: its page does say
+`दे. पवमानः सोमः`, but below the header template the harvester parsed.

@@ -228,6 +228,15 @@ its own routes. The harvested field is not yet fit for that:
 **Normalising the devatā data is therefore a prerequisite for the first
 cut, not follow-up work.**
 
+> **Done, 2026-09-22.** `src/lib/rigveda/devatas.ts` names 98 canonical
+> devatās and maps every principal onto one; `devatas-by-hand.ts` and
+> `spine-by-hand.ts` carry the 26 values read out of Sāyaṇa, each with
+> the clause it was read from. All 1,028 hymns now have ṛṣi, devatā,
+> metre and verse count, and `tests/unit/rigveda.test.ts` fails the
+> moment that stops being true. Artefacts like
+> `आप्रीसूक्तं (१ इध्मः समिद्धोऽग्निर्वा` no longer reach a heading:
+> they resolve to the Āprī hymn-type. See RIGVEDA-SOURCES.md §9-11.
+
 ### 5. How mixed hymns are handled (owner, 2026-09-21)
 
 **Each sūkta sits in exactly one group, under the devatā the

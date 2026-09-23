@@ -111,6 +111,50 @@ The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotr
   - A picture cropped from its original says "cropped" in its credit.
   - Each one must clearly show the devata. The owner chooses among candidates before one goes in.
 
+### The Rigveda is a built corpus, not seed files
+
+The Rigveda is eighty times the rest of the site's verse corpus, so it
+does not live in `src/lib/seed/`. It is harvested, built and committed
+as data, and read through `src/lib/rigveda/`.
+
+```
+node scripts/rigveda/fetch-samhita.mjs    # corpus/rigveda/rv-sasvara-raw.txt
+node scripts/rigveda/fetch-spine.mjs      # corpus/rigveda/{rv-spine-raw.json,suktas/}
+npx tsx scripts/rigveda/build.ts          # -> src/lib/rigveda/data/
+```
+
+- **Sources and decisions are documented**: `docs/RIGVEDA-SOURCES.md`
+  (what may legally be used, and what was harvested) and
+  `docs/RIGVEDA-DESIGN.md` (the pages, and the owner's decisions).
+  Read both before adding Rigveda pages.
+- **The built corpus is committed**: `src/lib/rigveda/data/spine.json`
+  (1,028 hymns without verses, ~330 KB) and `mandala-1..10.json` (the
+  10,552 verses). The raw saṃhitā and the 1,028 Sāyaṇa pages under
+  `corpus/` are git-ignored and re-fetchable; `rv-spine-raw.json` is
+  committed as the witness for what the editorial layer does.
+- **Load one mandala, never ten.** `SPINE` is imported directly;
+  `verses(mandala, sukta)` dynamically imports a single mandala file.
+  Never import `data/mandala-*.json` from a page.
+- **The devatā field is an attribution, not a name.** It gives
+  per-verse attributions, epithets and subjects, in 290 spellings. The
+  editorial layer is `src/lib/rigveda/devatas.ts`: 98 canonical
+  devatās, plus a map from each principal (the devatā of verse 1,
+  parsed by `scripts/rigveda/attribution.mjs`). A hymn is filed under
+  its verse-1 devatā and its full attribution is printed on its own
+  page. **The build fails on a principal with no entry**, so a
+  re-harvest cannot quietly introduce an unmapped god.
+- **26 values were read by hand** out of Sāyaṇa or the Anukramaṇī's
+  prose (`devatas-by-hand.ts`, `spine-by-hand.ts`). Each quotes the
+  clause it was read from. Keep that rule: never add one without its
+  witness.
+- **Honesty**: all 1,028 hymns have verified mūla, ṛṣi, devatā, metre
+  and verse count; none has a translation yet. That is a *complete
+  text whose translation is in part* — a different claim from
+  `completeness: "selections"`, and it needs its own plain words on
+  the sūkta page and the front door (DESIGN §5-6).
+- `tests/unit/rigveda.test.ts` holds the counts, the completeness, the
+  grouping and the Kannada-plain rendering.
+
 ### Temples are arranged by region
 
 The routes are `/temples` (the regions), `/temples/[section]` (one region), and `/temples/[section]/[entry]` (a temple, or a circuit). There is one dynamic segment per level, so `[section]` and `[entry]` resolve by data rather than by folder.
