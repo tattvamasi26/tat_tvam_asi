@@ -135,6 +135,30 @@ export interface UIStrings {
   labelLectures: string;
   readerHint: string;
   labelSelections: string;
+
+  // ── Rigveda
+  /** The section: ten mandalas, 1,028 hymns, 10,552 verses. */
+  rvArrangedTitle: string;
+  rvArrangedBody: string;
+  rvMandala: string;
+  rvMandalas: string;
+  rvSuktas: string;
+  rvVerses: string;
+  rvRishi: string;
+  rvDevata: string;
+  rvMetre: string;
+  rvByDevata: string;
+  rvByDevataBlurb: string;
+  rvPrincipallyTo: string;
+  rvHymnsTo: string;
+  rvFullAttribution: string;
+  rvReadByHand: string;
+  rvTextCompleteTitle: string;
+  rvTextCompleteBody: string;
+  rvTranslatedCount: string;
+  rvFamousTitle: string;
+  rvSourcesTitle: string;
+  rvOpen: string;
   labelReadNow: string;
 
   // ── Stutis, by devata
@@ -166,6 +190,7 @@ export interface UIStrings {
   labelTemplesCount: string;
   labelTempleOne: string;
   labelSources: string;
+  labelContents: string;
   labelInDepth: string;
 
   // ── Homepage (2026 redesign)
@@ -311,6 +336,32 @@ const en: UIStrings = {
   labelLectures: "Lectures",
   readerHint: "Use J and K, or the arrow keys, to move between verses.",
   labelSelections: "Selections —",
+
+  // ── Rigveda
+  rvArrangedTitle: "How it is arranged",
+  rvArrangedBody:
+    "Ten maṇḍalas — circles, or books. A maṇḍala holds sūktas, which are hymns; a sūkta holds mantras, which are the verses themselves. A hymn is named by the two numbers: 1.164 is the hundred and sixty-fourth hymn of the first maṇḍala.",
+  rvMandala: "Maṇḍala",
+  rvMandalas: "Maṇḍalas",
+  rvSuktas: "Hymns",
+  rvVerses: "Verses",
+  rvRishi: "Ṛṣi",
+  rvDevata: "Devatā",
+  rvMetre: "Metre",
+  rvByDevata: "By devatā",
+  rvByDevataBlurb:
+    "Each hymn is filed under the devatā its first verse addresses. Hymns that turn to other gods later say so on their own page.",
+  rvPrincipallyTo: "principally to",
+  rvHymnsTo: "Hymns to",
+  rvFullAttribution: "The Anukramaṇī gives",
+  rvReadByHand: "Read by hand",
+  rvTextCompleteTitle: "The Sanskrit is complete. The translation is not.",
+  rvTextCompleteBody:
+    "All 1,028 hymns carry their verified text, ṛṣi, devatā, metre and verse count. None is translated yet — so this page shows the mūla alone, and nothing here is a translation.",
+  rvTranslatedCount: "translated of 1,028",
+  rvFamousTitle: "Well-known hymns",
+  rvSourcesTitle: "Sources",
+  rvOpen: "Open",
   labelReadNow: "Read now",
 
   labelStotras: "Stotras",
@@ -339,6 +390,7 @@ const en: UIStrings = {
   labelTemplesCount: "temples",
   labelTempleOne: "temple",
   labelSources: "Sources",
+  labelContents: "In this page",
   labelInDepth: "In depth",
 
   navGita: "Gita",
@@ -479,6 +531,32 @@ const kn: UIStrings = {
   labelLectures: "ಪ್ರವಚನಗಳು",
   readerHint: "ಶ್ಲೋಕಗಳ ನಡುವೆ ಚಲಿಸಲು J ಮತ್ತು K, ಅಥವಾ ಬಾಣದ ಕೀಲಿಗಳನ್ನು ಬಳಸಿ.",
   labelSelections: "ಆಯ್ದ ಭಾಗಗಳು —",
+
+  // ── Rigveda
+  rvArrangedTitle: "ಜೋಡಣೆ ಹೇಗಿದೆ",
+  rvArrangedBody:
+    "ಹತ್ತು ಮಂಡಲಗಳು. ಒಂದು ಮಂಡಲದಲ್ಲಿ ಸೂಕ್ತಗಳು, ಒಂದು ಸೂಕ್ತದಲ್ಲಿ ಮಂತ್ರಗಳು — ಅಂದರೆ ಋಕ್ಕುಗಳು. ಸೂಕ್ತವನ್ನು ಎರಡು ಸಂಖ್ಯೆಗಳಿಂದ ಹೆಸರಿಸಲಾಗುತ್ತದೆ: 1.164 ಎಂದರೆ ಮೊದಲ ಮಂಡಲದ ನೂರ ಅರವತ್ತನಾಲ್ಕನೆಯ ಸೂಕ್ತ.",
+  rvMandala: "ಮಂಡಲ",
+  rvMandalas: "ಮಂಡಲಗಳು",
+  rvSuktas: "ಸೂಕ್ತಗಳು",
+  rvVerses: "ಋಕ್ಕುಗಳು",
+  rvRishi: "ಋಷಿ",
+  rvDevata: "ದೇವತೆ",
+  rvMetre: "ಛಂದಸ್ಸು",
+  rvByDevata: "ದೇವತೆಯ ಪ್ರಕಾರ",
+  rvByDevataBlurb:
+    "ಪ್ರತಿ ಸೂಕ್ತವನ್ನೂ ಅದರ ಮೊದಲ ಋಕ್ಕು ಸಂಬೋಧಿಸುವ ದೇವತೆಯ ಅಡಿಯಲ್ಲಿ ಸೇರಿಸಲಾಗಿದೆ. ಮುಂದೆ ಬೇರೆ ದೇವತೆಗಳಿಗೆ ತಿರುಗುವ ಸೂಕ್ತಗಳು ತಮ್ಮ ಪುಟದಲ್ಲಿ ಅದನ್ನು ಹೇಳುತ್ತವೆ.",
+  rvPrincipallyTo: "ಮುಖ್ಯವಾಗಿ",
+  rvHymnsTo: "ಈ ದೇವತೆಗೆ ಸಲ್ಲುವ ಸೂಕ್ತಗಳು",
+  rvFullAttribution: "ಅನುಕ್ರಮಣಿಯ ಪ್ರಕಾರ",
+  rvReadByHand: "ಕೈಯಾರೆ ಓದಿದ್ದು",
+  rvTextCompleteTitle: "ಸಂಸ್ಕೃತ ಪಾಠ ಪೂರ್ಣ. ಅನುವಾದ ಇನ್ನೂ ಇಲ್ಲ.",
+  rvTextCompleteBody:
+    "ಎಲ್ಲಾ 1,028 ಸೂಕ್ತಗಳಿಗೂ ಪರಿಶೀಲಿತ ಪಾಠ, ಋಷಿ, ದೇವತೆ, ಛಂದಸ್ಸು ಮತ್ತು ಋಕ್ಕುಗಳ ಸಂಖ್ಯೆ ಇದೆ. ಯಾವುದಕ್ಕೂ ಇನ್ನೂ ಅನುವಾದವಿಲ್ಲ — ಆದ್ದರಿಂದ ಈ ಪುಟದಲ್ಲಿ ಮೂಲ ಮಾತ್ರ ಇದೆ; ಇಲ್ಲಿ ಯಾವುದೂ ಅನುವಾದವಲ್ಲ.",
+  rvTranslatedCount: "1,028 ರಲ್ಲಿ ಅನುವಾದಿತ",
+  rvFamousTitle: "ಪ್ರಸಿದ್ಧ ಸೂಕ್ತಗಳು",
+  rvSourcesTitle: "ಆಕರಗಳು",
+  rvOpen: "ತೆರೆಯಿರಿ",
   labelReadNow: "ಈಗಲೇ ಓದಿ",
 
   labelStotras: "ಸ್ತೋತ್ರಗಳು",
@@ -507,6 +585,7 @@ const kn: UIStrings = {
   labelTemplesCount: "ದೇವಾಲಯಗಳು",
   labelTempleOne: "ದೇವಾಲಯ",
   labelSources: "ಆಧಾರಗಳು",
+  labelContents: "ಈ ಪುಟದಲ್ಲಿ",
   labelInDepth: "ವಿವರವಾಗಿ",
 
   navGita: "ಗೀತೆ",
@@ -647,6 +726,32 @@ const hi: UIStrings = {
   labelLectures: "प्रवचन",
   readerHint: "श्लोकों के बीच चलने के लिए J और K, या तीर कुंजियाँ प्रयोग करें।",
   labelSelections: "चयनित अंश —",
+
+  // ── Rigveda
+  rvArrangedTitle: "इसकी व्यवस्था",
+  rvArrangedBody:
+    "दस मंडल। एक मंडल में सूक्त होते हैं, और एक सूक्त में मंत्र — अर्थात् ऋचाएँ। सूक्त दो संख्याओं से पहचाना जाता है: 1.164 अर्थात् पहले मंडल का एक सौ चौंसठवाँ सूक्त।",
+  rvMandala: "मंडल",
+  rvMandalas: "मंडल",
+  rvSuktas: "सूक्त",
+  rvVerses: "ऋचाएँ",
+  rvRishi: "ऋषि",
+  rvDevata: "देवता",
+  rvMetre: "छंद",
+  rvByDevata: "देवता के अनुसार",
+  rvByDevataBlurb:
+    "प्रत्येक सूक्त उसी देवता के अंतर्गत रखा गया है जिसे उसकी पहली ऋचा संबोधित करती है। जो सूक्त आगे अन्य देवताओं की ओर मुड़ते हैं, वे अपने पृष्ठ पर यह बताते हैं।",
+  rvPrincipallyTo: "मुख्यतः",
+  rvHymnsTo: "इस देवता के सूक्त",
+  rvFullAttribution: "अनुक्रमणी के अनुसार",
+  rvReadByHand: "हाथ से पढ़ा गया",
+  rvTextCompleteTitle: "संस्कृत पाठ पूर्ण है। अनुवाद अभी नहीं।",
+  rvTextCompleteBody:
+    "सभी 1,028 सूक्तों का सत्यापित पाठ, ऋषि, देवता, छंद और ऋचा-संख्या उपलब्ध है। किसी का भी अनुवाद अभी नहीं हुआ — इसलिए इस पृष्ठ पर केवल मूल है; यहाँ कुछ भी अनुवाद नहीं है।",
+  rvTranslatedCount: "1,028 में से अनूदित",
+  rvFamousTitle: "प्रसिद्ध सूक्त",
+  rvSourcesTitle: "स्रोत",
+  rvOpen: "खोलें",
   labelReadNow: "अभी पढ़ें",
 
   labelStotras: "स्तोत्र",
@@ -675,6 +780,7 @@ const hi: UIStrings = {
   labelTemplesCount: "मंदिर",
   labelTempleOne: "मंदिर",
   labelSources: "स्रोत",
+  labelContents: "इस पृष्ठ में",
   labelInDepth: "विस्तार से",
 
   navGita: "गीता",

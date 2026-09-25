@@ -1,7 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { TempleBlock, TempleMonographView } from "@/lib/data";
+import type { TempleMonographView } from "@/lib/data";
 import { Arrow } from "@/components/ui/Arrow";
+import { ProseBlock } from "@/components/content/ProseBlock";
 
 /**
  * One temple, written in depth: the facts bar, then the sections of
@@ -10,51 +11,6 @@ import { Arrow } from "@/components/ui/Arrow";
  *
  * A temple needs no page code — it is a module under seed/temple-pages/.
  */
-
-function Block({ block }: { block: TempleBlock }) {
-  switch (block.kind) {
-    case "para":
-      return <p className="temple-para">{block.text}</p>;
-    case "sub":
-      return (
-        <div className="temple-sub">
-          <h3>{block.title}</h3>
-          {block.paras.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
-      );
-    case "list":
-      return (
-        <>
-          {block.title && <p className="temple-block-title">{block.title}</p>}
-          <dl className="temple-list">
-            {block.items.map((item) => (
-              <div key={item.label} className="temple-list-item">
-                <dt>{item.label}</dt>
-                <dd>{item.text}</dd>
-              </div>
-            ))}
-          </dl>
-        </>
-      );
-    case "rows":
-      return (
-        <>
-          {block.title && <p className="temple-block-title">{block.title}</p>}
-          <ol className="temple-rows">
-            {block.rows.map((row) => (
-              <li key={`${row.when}-${row.name}`} className="temple-row">
-                <span className="temple-row-when">{row.when}</span>
-                <span className="temple-row-name">{row.name}</span>
-                {row.text && <p className="temple-row-text">{row.text}</p>}
-              </li>
-            ))}
-          </ol>
-        </>
-      );
-  }
-}
 
 export function Monograph({
   temple,
@@ -117,7 +73,7 @@ export function Monograph({
             <p className="eyebrow">{section.eyebrow}</p>
             <h2 className="temple-section-title">{section.title}</h2>
             {section.blocks.map((block, i) => (
-              <Block key={i} block={block} />
+              <ProseBlock key={i} block={block} />
             ))}
           </section>
         ))}

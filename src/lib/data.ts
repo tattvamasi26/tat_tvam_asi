@@ -256,6 +256,16 @@ import "./seed/temple-pages/kukke-subramanya";
 import "./seed/temple-pages/kateel";
 import "./seed/temple-pages/mangaladevi";
 import "./seed/temple-pages/kadri-manjunatha";
+// An acharya written in depth registers itself on import, the same way
+// a temple or a readable text does.
+import "./seed/acharya-pages/shankara";
+import {
+  getAcharyaPage,
+  acharyaPageSlugs,
+  type AcharyaBlock,
+  type AcharyaPicture,
+  type AcharyaSection,
+} from "./seed/acharya-pages";
 import { TEMPLE_REGIONS, type TempleRegion } from "./seed/temple-regions";
 import { collectionsOf, getCollection, type TempleCollection } from "./seed/temple-collections";
 import {
@@ -401,6 +411,112 @@ export interface TempleMonographView {
   /** The temples either side of it on the region's page. */
   prev: { href: string; name: string } | null;
   next: { href: string; name: string } | null;
+}
+
+/**
+ * A block as a page renders it. The only difference from the seed
+ * shape is the figure: a section names a picture by src, and the view
+ * resolves it against the page's own pictures so the alt text and the
+ * crop come from where they are declared once.
+ */
+export type AcharyaBlockView =
+  | Exclude<AcharyaBlock, { kind: "figure" }>
+  | { kind: "figure"; src: string; caption: string; alt: string; position: string };
+
+export interface AcharyaSectionView {
+  id: string;
+  eyebrow: string;
+  title: string;
+  standfirst: string | null;
+  blocks: AcharyaBlockView[];
+}
+
+export interface AcharyaMonographView {
+  slug: string;
+  name: string;
+  /** In the reader's script. */
+  nameSanskrit: string;
+  scriptClass: string;
+  /** When he lived, in words — never a bare pair of years. */
+  when: string;
+  tagline: string;
+  facts: [string, string][];
+  quote: string | null;
+  sections: AcharyaSectionView[];
+  hero: ImageView | null;
+  gallery: (ImageView & { caption: string | null })[];
+  sources: { title: string; url: string; note?: string }[];
+  /** For the contents rail: every section, in order. */
+  contents: { id: string; title: string }[];
+}
+
+/** An acharya written in depth. The rest stay summary cards. */
+export function getAcharyaMonograph(slug: string, locale: Locale): AcharyaMonographView | null {
+  const p = getAcharyaPage(slug);
+  if (!p) return null;
+  const c = p.content[locale] ?? p.content.en;
+  const teacher = getTeacherBySlug(slug, locale);
+  const pictures = [p.hero, ...(p.gallery ?? [])].filter(Boolean) as AcharyaPicture[];
+
+  const resolve = (section: AcharyaSection): AcharyaSectionView => ({
+    id: section.id,
+    eyebrow: section.eyebrow,
+    title: section.title,
+    standfirst: section.standfirst ?? null,
+    blocks: section.blocks.map((b): AcharyaBlockView => {
+      // Sanskrit is stored in Devanagari and rendered in the reader's
+      // script, here as everywhere else on the site.
+      if (b.kind === "verse") return { ...b, sanskrit: scriptFor(b.sanskrit, locale) };
+      if (b.kind === "terms") {
+        return {
+          ...b,
+          terms: b.terms.map((t) => (t.sanskrit ? { ...t, sanskrit: scriptFor(t.sanskrit, locale) } : t)),
+        };
+      }
+      if (b.kind === "compass") {
+        return {
+          ...b,
+          centre: scriptFor(b.centre, locale),
+          points: b.points.map((pt) => ({ ...pt, vakya: scriptFor(pt.vakya, locale) })),
+        };
+      }
+      if (b.kind !== "figure") return b;
+      const pic = pictures.find((x) => x.src === b.src);
+      return {
+        kind: "figure",
+        src: b.src,
+        caption: b.caption,
+        alt: pic?.alt[locale] ?? pic?.alt.en ?? "",
+        position: pic?.position ?? "50% 50%",
+      };
+    }),
+  });
+
+  const sections = c.sections.map(resolve);
+
+  return {
+    slug: p.slug,
+    name: teacher?.name ?? p.slug,
+    nameSanskrit: scriptFor(p.nameSanskrit, locale),
+    scriptClass: scriptClass(locale),
+    when: c.when,
+    tagline: c.tagline,
+    facts: c.facts,
+    quote: c.quote ?? null,
+    sections,
+    hero: imageView(p.hero, locale),
+    gallery: (p.gallery ?? []).map((g: AcharyaPicture) => ({
+      ...imageView(g, locale)!,
+      caption: g.caption?.[locale] ?? g.caption?.en ?? null,
+    })),
+    sources: p.sources,
+    contents: sections.map((s) => ({ id: s.id, title: s.title })),
+  };
+}
+
+/** Which acharyas have a monograph; the index uses it for a Read link. */
+export function getAcharyaMonographSlugs(): string[] {
+  return acharyaPageSlugs();
 }
 
 /** A temple written in depth. Short entries have no monograph. */

@@ -1,5 +1,7 @@
 node_modules/
 .next/
+# A build run with NEXT_DIST_DIR, so it does not disturb a dev server.
+.next-*/
 *.tsbuildinfo
 
 # Test output
@@ -27,3 +29,8 @@ node_modules/
 # checked without re-harvesting anything.
 /corpus/rigveda/rv-sasvara-raw.txt
 /corpus/rigveda/suktas/
+
+# A WordPress harvest is somebody else's site, pulled down read-only by
+# scripts/wordpress/fetch.mjs and re-fetchable at any time. What this
+# repo commits is what the editorial layer makes of it, not the dump.
+/corpus/wordpress/

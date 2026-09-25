@@ -53,7 +53,10 @@ export function StotraVideo({
         <span className="stotra-video-kicker">{labels.listen}</span>
         <span className="stotra-video-title">{video.title}</span>
         <span className="stotra-video-channel">
-          {video.channel} ·{" "}
+          {/* The bhajan recitations arrive as bare YouTube ids, with no
+              channel recorded. Print the separator only when there is
+              something on both sides of it. */}
+          {video.channel ? `${video.channel} · ` : null}
           <a href={video.url} target="_blank" rel="noopener noreferrer">
             {labels.watch}
           </a>

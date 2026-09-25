@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // A production build normally writes to .next, which the dev server
+  // is also using — so NEXT_DIST_DIR lets a build run without stopping
+  // dev. Unset, nothing changes.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "res.cloudinary.com" },

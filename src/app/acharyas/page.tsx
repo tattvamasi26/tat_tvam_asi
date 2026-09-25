@@ -27,7 +27,7 @@ export default function TeachersPage() {
           {teachers.map((p, i) => (
             <article key={p.id} className="feature" data-flip={i % 2 === 1 ? "" : undefined}>
               <div className="feature-media">
-                {p.imageUrl && (
+                {p.imageUrl ? (
                   <Image
                     src={p.imageUrl}
                     alt={p.name}
@@ -35,6 +35,12 @@ export default function TeachersPage() {
                     sizes="(max-width: 860px) 100vw, 50vw"
                     style={{ objectFit: "cover", objectPosition: "top center" }}
                   />
+                ) : (
+                  /* No freely licensed photograph exists. His name stands
+                     in its place, as it does for a temple without one. */
+                  <p className={`acharya-nameplate ${scriptClass(locale)}`}>
+                    {scriptFor(p.nameSanskrit, locale)}
+                  </p>
                 )}
               </div>
 
@@ -47,9 +53,11 @@ export default function TeachersPage() {
 
                 <p className="prose clamp-4">{p.biography}</p>
 
-                <blockquote className="lede" style={{ borderLeft: "2px solid var(--gold-dim)", paddingLeft: "1.1rem" }}>
-                  {p.quote}
-                </blockquote>
+                {p.quote && (
+                  <blockquote className="lede" style={{ borderLeft: "2px solid var(--gold-dim)", paddingLeft: "1.1rem" }}>
+                    {p.quote}
+                  </blockquote>
+                )}
 
                 <div className="chips">
                   <span className="chip chip-gold">{p.tradition}</span>

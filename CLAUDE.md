@@ -155,6 +155,186 @@ npx tsx scripts/rigveda/build.ts          # -> src/lib/rigveda/data/
 - `tests/unit/rigveda.test.ts` holds the counts, the completeness, the
   grouping and the Kannada-plain rendering.
 
+**The pages** (`src/app/vedas/rigveda/`), four levels, added 2026-09-23:
+
+```
+/vedas/rigveda                       front door
+/vedas/rigveda/[mandala]             one mandala, its hymns grouped by devata
+/vedas/rigveda/[mandala]/[sukta]     one hymn, all its verses
+/vedas/rigveda/devata/[devata]       every hymn filed under one devata
+```
+
+- They reuse the existing idioms rather than inventing any: `.pagehead`
+  for the index pages, and for a sukta the stotra reader unchanged —
+  `.reader-head` above, the whole text in one `.stotra-text` card
+  below. Only the listing patterns are new (`src/styles/rigveda.css`,
+  `.rv-*`), and they follow `.stotra-row`.
+- `[mandala]` and `[sukta]` must reject a non-numeric segment with
+  `notFound()`: the static `devata` segment wins over `[mandala]`, but
+  nothing else may render an empty mandala.
+- **A row never repeats the heading it sits under.** On a mandala page
+  the hymns are already grouped by devata, so a row prints its
+  attribution only when `mixed` — which is exactly where it says
+  something the heading does not.
+- The sukta page has no `generateStaticParams`: 1,028 prerendered
+  routes cost more build time than they are worth when the page
+  renders dynamically anyway (the locale is a cookie). Mandalas and
+  devatas do prerender.
+- Numbers use `toLocaleString("en-IN")` in every language, as the rest
+  of the site does; `plain()` strips the danda the Anukramani ends many
+  fields with, for display only.
+- The sitemap carries the front door, the ten mandalas and the devatas
+  — not the 1,028 sukta URLs.
+
+### The bhajans are an imported corpus
+
+913 Kannada devotional songs, brought over read-only from
+bhakthilahari.com, which the site's owner also keeps. Like the
+Rigveda they are built and committed as data, not written into
+`src/lib/seed/`, and read through `src/lib/bhajans/`.
+
+```
+node scripts/wordpress/fetch.mjs https://bhakthilahari.com --probe
+node scripts/wordpress/fetch.mjs https://bhakthilahari.com
+node scripts/wordpress/parse-bhajans.mjs
+node scripts/wordpress/build-bhajans.mjs
+```
+
+- **The decisions are in `docs/BHAJANS.md`.** Read it before touching
+  the section.
+- **Nothing is ever written to the source site.** `fetch.mjs` has one
+  function that reaches the network and it sends GET only. WordPress
+  needs no plugin for this: the REST API has been in core since 4.7.
+- **The harvest is git-ignored** (`corpus/wordpress/`) and
+  re-fetchable. What is committed is `src/lib/bhajans/data/` —
+  `spine.json` (every song without its text) and `texts/<devata>.json`.
+- **Load one group, never twenty-two.** `SPINE` is imported directly;
+  `songsIn(devata)` loads a single texts file. Never import
+  `data/texts/*.json` from a page.
+- **These songs have no translation, and the section says so.** The
+  source carries a meaning for 13 posts out of 915. This is a complete
+  text whose translation has not been written — the Rigveda's claim,
+  needing the Rigveda's plain words, on the front door and on every
+  song. Nothing may imply a meaning exists.
+- **A song is Kannada, not Sanskrit stored in Devanagari.** Nothing
+  goes through `scriptFor`; the text is identical in all three
+  languages and carries `lang="kn"` so the script audit skips it.
+  Thirty-nine songs quote a little Devanagari inside an otherwise
+  Kannada text, so the test asserts Kannada dominates rather than that
+  Devanagari is absent.
+- **The transliteration is deliberately not paired stanza-for-stanza**
+  with the Kannada: in four songs of ten the source abridges it.
+  Unlike the stutis it is shown in every language, opening by default
+  except in Kannada — there it is the Kannada reader who does not need
+  it and the English and Hindi reader who cannot read the script.
+- **A devata is scored, never guessed.** `scripts/wordpress/deities.mjs`
+  holds the epithets each devata actually goes by; the composer's
+  ankita is stripped first, or all five hundred `...ವಿಠಲ` signatures
+  would file their songs under Viṭṭhala. A devata must win by a clear
+  margin. 625 of 913 are settled, and where the owner had categorised
+  a post by hand the text agreed 138 times out of 141. The rest sit in
+  `niti` (addressed to the mind, a real form) or `unsorted` (an
+  admitted gap) — a wrong devata is worse than no devata.
+- **The pictures did not come over.** 905 of them, none carrying a
+  licence or an author. The section shows none rather than 905 whose
+  provenance cannot be stated.
+- **Raga and tala are not recorded by the source.** An early pass
+  "found" 227 ragas; every one was the label matching inside an
+  ordinary word (`varagala` → raga `la`). The extractor now demands an
+  explicit label, and `tests/unit/bhajans.test.ts` pins it.
+
+### The acharyas list
+
+`seed/teachers.ts` holds nine acharyas, **in chronological order**,
+each written in all three languages: Shankara, Ramanuja, Basavanna,
+Madhva, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
+Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
+`tests/unit/teachers.test.ts` holds the whole roster to these rules:
+
+- **A contested date is not printed as a known one.** Shankara,
+  Ramanuja and Madhva all have two or more datings in circulation, so
+  their `birth_year`/`death_year` are null and the era string carries
+  the claim. Don't fill them in.
+- **A living teacher has no death year**, and nothing is asserted about
+  him that the matha has not published. Vidhushekhara Bharati's year of
+  birth is not public and is not guessed at.
+- **A picture is used on one of two grounds, and the credit says
+  which.** Either it carries a licence that allows reuse, and the
+  credit names the licence and links to Commons; or the site's owner
+  supplied it, and the credit says so with no source link (the
+  precedent is `seed/stuti-images.ts`). Basavanna, Madhva and the two
+  living Jagadgurus are the owner's; the rest are Commons. Where the
+  file is signed or watermarked by its artist or photographer, that
+  person is named in the credit and the watermark stays on the file —
+  Sri Vidhushekhara Bharati's portrait is the case, and it is **not**
+  under a free licence.
+- **No photograph at all is still a valid state.** `image_url` may be
+  null, and the card then shows the name in the reader's script
+  (`.acharya-nameplate`), the way a temple without a photograph does.
+  Nothing uses it at present; keep it for the next acharya who needs
+  it.
+- **Key works are chip-sized labels**, not full citations — a long one
+  pushed the card past the viewport at 390px. The attribution belongs
+  in the biography.
+- Quotes are given in all three languages or in none; the pages hide
+  the quote rule and the key-works label when empty.
+
+### An acharya written in depth is a monograph
+
+`/acharyas/[slug]` renders one of two things: a **monograph**, when a
+module under `src/lib/seed/acharya-pages/` has registered one, or the
+summary card built from `seed/teachers.ts` when none has. Adi
+Shankaracharya is the first monograph (2026-09-23).
+
+- **The study comes before the page.** `docs/SHANKARA.md` carries the
+  sources, the dating dispute and the editorial decisions; the module
+  is written from it. Read it before changing anything on that page.
+- **It reuses the temples' monograph, it does not fork it.** The block
+  vocabulary (`para`, `sub`, `list`, `rows`) is imported from
+  `seed/temple-pages.ts`, and the renderer is shared:
+  `components/content/ProseBlock.tsx` serves both. The `temple-*` CSS
+  classes are deliberately reused — they style a passage of prose, not
+  a temple. Only the portrait and the Sanskrit name are new
+  (`styles/acharyas.css`).
+- **Registration is an import side effect**, as with texts and
+  temples: the module must be imported in `src/lib/data.ts` or it sits
+  on disk unregistered.
+- **Three rules the Shankara page exists to honour**, and which
+  `tests/unit/acharyas.test.ts` enforces:
+  1. The dates are given as a disagreement — the mathas' own 5th c.
+     BCE traditions, the early-Indology 788–820 CE, Nakamura's 700–750,
+     Potter's late 7th–early 8th. `birth_year`/`death_year` in
+     `teachers.ts` are **null on purpose**; don't fill them in.
+  2. The life is labelled as tradition. Every surviving biography was
+     written five centuries or more after he died.
+  3. The works are three lists — accepted, doubted, attributed.
+     *Vivekachudamani* is doubted and must not be listed as a key work.
+     A stotra of his is "traditionally attributed", never "by".
+- Pictures are Wikimedia Commons under `public/images/acharyas/`, each
+  with licence, author and `sourceUrl`; a unit test reads the JPEG to
+  check the declared size.
+- **The prose is one file per language** (`shankara/en.ts`, `kn.ts`,
+  `hi.ts`), assembled by `shankara/index.ts`, which holds what they
+  share — the pictures and the sources. Adding a section means adding
+  it to all three; the unit test fails otherwise.
+- **Drawn blocks.** On top of the temples' four prose blocks, an
+  acharya page has nine more, declared in `seed/acharya-pages.ts` and
+  rendered by `components/acharyas/AcharyaBlocks.tsx`: `timeline`
+  (dated claims on one band, drawn to scale from `year`), `journey`,
+  `compass`, `layers`, `tiers`, `lineage`, `verse`, `terms`,
+  `figure` (a picture named by `src`, resolved against the page's own
+  pictures). All are plain CSS on semantic markup — no chart library,
+  no canvas — and all collapse to one column on a phone.
+- **Sanskrit inside a drawn block is stored in Devanagari and
+  converted by the view**, not by the content file: `getAcharyaMonograph`
+  passes `verse.sanskrit`, `terms[].sanskrit`, `compass.centre` and
+  `compass.points[].vakya` through `scriptFor`. A unit test asserts
+  both halves — Devanagari in the seed, Kannada on the Kannada page.
+- **Let long compounds break.** The adhyāsa-bhāṣya's opening is one
+  unbroken word of sixty-odd letters; Sanskrit elements that can carry
+  such a string need `overflow-wrap: anywhere` or the page scrolls
+  sideways on a phone.
+
 ### Temples are arranged by region
 
 The routes are `/temples` (the regions), `/temples/[section]` (one region), and `/temples/[section]/[entry]` (a temple, or a circuit). There is one dynamic segment per level, so `[section]` and `[entry]` resolve by data rather than by folder.

@@ -1,0 +1,682 @@
+/* ─────────────────────────────────────────────────────────
+   An acharya written in depth.
+
+   The monograph itself is the temples' — same head, same facts
+   bar, same prose blocks, same gallery. What this file adds is
+   the drawn blocks: a timeline band, a route, a compass of four
+   seats, nested orders of reality, tiers of authorship, a
+   lineage, a verse, a glossary.
+
+   All of it is built from the site's own tokens — paper, card,
+   hairline, marigold, --sacred for Sanskrit — with no dark
+   panels and no effects for their own sake. Each one collapses
+   to a single readable column on a phone, and each is ordinary
+   semantic markup, so a screen reader gets the same content in
+   the same order as the eye.
+   ───────────────────────────────────────────────────────── */
+
+.acharya-sanskrit {
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  line-height: 1.5;
+  color: var(--sacred);
+}
+
+.acharya-hero {
+  display: grid;
+  justify-items: center;
+  gap: 0.6rem;
+  margin: clamp(1.4rem, 3vw, 2.2rem) 0 0;
+}
+
+.acharya-hero-frame {
+  position: relative;
+  width: min(100%, 460px);
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: var(--r);
+  background: var(--paper-2);
+  box-shadow: var(--shadow);
+}
+
+.acharya-hero figcaption {
+  max-width: 52ch;
+  text-align: center;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+.acharya-page .temple-facts {
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+}
+
+/* Where no freely licensed photograph of a teacher exists, his name
+   stands in its place rather than an empty frame — the same answer the
+   temples give. Living teachers are the usual case: a photograph of a
+   living person is rarely free to use, and a misattributed one would
+   be worse than none. */
+.acharya-nameplate {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: clamp(1rem, 4vw, 2.5rem);
+  text-align: center;
+  background: var(--paper-2);
+  color: var(--sacred);
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  line-height: 1.45;
+}
+
+/* ── the contents rail ─────────────────────────────────────── */
+
+.ach-contents {
+  margin: clamp(1.8rem, 4vw, 2.8rem) 0 0;
+  padding: clamp(1.1rem, 2.4vw, 1.6rem) clamp(1.2rem, 2.6vw, 1.8rem);
+  border-radius: var(--r);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+
+.ach-contents ol {
+  display: grid;
+  gap: 0.15rem 1.5rem;
+  margin: 0.7rem 0 0;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+}
+
+.ach-contents a {
+  display: flex;
+  gap: 0.7rem;
+  align-items: baseline;
+  padding: 0.4rem 0;
+  color: var(--ink-2);
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s ease;
+}
+
+.ach-contents a:hover {
+  color: var(--gold);
+}
+
+.ach-contents-n {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--gold-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── section furniture ─────────────────────────────────────── */
+
+.ach-standfirst {
+  max-width: 62ch;
+  margin: 0.2rem 0 1.4rem;
+  font-size: clamp(1.02rem, 1.4vw, 1.14rem);
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.ach-block-title {
+  margin: clamp(1.6rem, 3vw, 2.2rem) 0 0.85rem;
+  font: 700 0.78rem / 1.3 var(--sans);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.ach-note {
+  max-width: 62ch;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* ── the timeline band ─────────────────────────────────────── */
+
+.ach-timeline {
+  margin: clamp(1.4rem, 3vw, 2rem) 0;
+}
+
+.ach-band {
+  position: relative;
+  height: 54px;
+  margin-bottom: 1.1rem;
+}
+
+.ach-band-line {
+  position: absolute;
+  top: 26px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--paper-3), var(--gold-dim), var(--paper-3));
+  border-radius: 2px;
+}
+
+/* The scale behind the pins, so the span can be read as time. */
+.ach-band-tick {
+  position: absolute;
+  top: 32px;
+  transform: translateX(-50%);
+  font-size: 0.72rem;
+  color: var(--ink-4);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.ach-band-tick i {
+  display: block;
+  width: 1px;
+  height: 7px;
+  margin: 0 auto 3px;
+  background: var(--paper-3);
+}
+
+.ach-band-pin {
+  position: absolute;
+  top: 14px;
+  width: 13px;
+  height: 27px;
+  margin-left: -6px;
+  border-radius: 7px;
+  background: var(--card);
+  border: 2px solid var(--gold-dim);
+}
+
+.ach-band-pin.is-held {
+  top: 6px;
+  height: 42px;
+  border-color: var(--saffron);
+  background: var(--marigold, var(--gold-bright));
+  box-shadow: 0 6px 16px -6px rgba(180, 84, 11, 0.55);
+}
+
+.ach-marks {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ach-mark {
+  display: grid;
+  grid-template-columns: minmax(7.5rem, auto) minmax(0, 1fr);
+  gap: 0.3rem 1.1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.ach-mark.is-held {
+  border-color: var(--gold-dim);
+  background: var(--card-2);
+}
+
+.ach-mark-when {
+  font-weight: 700;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.ach-mark-body {
+  display: grid;
+  gap: 0.2rem;
+  line-height: 1.6;
+}
+
+.ach-mark-body span {
+  font-size: 0.92rem;
+  color: var(--ink-2);
+}
+
+@media (max-width: 620px) {
+  .ach-band {
+    display: none; /* the band needs width to mean anything */
+  }
+  .ach-mark {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── the route ─────────────────────────────────────────────── */
+
+.ach-journey ol {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ach-journey li {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0 0 1.4rem 0;
+}
+
+/* the line joining the stops */
+.ach-journey li::before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: 0;
+  width: 2px;
+  background: var(--paper-3);
+}
+
+.ach-journey li:last-child {
+  padding-bottom: 0;
+}
+
+.ach-journey li:last-child::before {
+  display: none;
+}
+
+.ach-stop-n {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--card);
+  border: 2px solid var(--gold-dim);
+  font: 700 0.85rem / 1 var(--sans);
+  color: var(--gold);
+}
+
+.ach-stop-body {
+  display: grid;
+  gap: 0.25rem;
+  padding-top: 0.25rem;
+  line-height: 1.65;
+}
+
+.ach-stop-body strong {
+  font-size: 1.02rem;
+}
+
+.ach-stop-body span {
+  color: var(--ink-2);
+}
+
+/* ── the compass of four seats ─────────────────────────────── */
+
+.ach-compass-grid {
+  position: relative;
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .ach-compass-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      ". north ."
+      "west hub east"
+      ". south .";
+    grid-template-columns: 1fr minmax(120px, 0.55fr) 1fr;
+    align-items: center;
+  }
+  .ach-seat-north {
+    grid-area: north;
+  }
+  .ach-seat-south {
+    grid-area: south;
+  }
+  .ach-seat-east {
+    grid-area: east;
+  }
+  .ach-seat-west {
+    grid-area: west;
+  }
+  .ach-compass-hub {
+    grid-area: hub;
+  }
+}
+
+.ach-seat {
+  display: grid;
+  gap: 0.28rem;
+  padding: clamp(0.9rem, 2vw, 1.15rem);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+}
+
+.ach-seat-dir {
+  font: 700 0.72rem / 1 var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ach-seat-name {
+  font: 700 1.05rem / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+
+.ach-seat-line {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  line-height: 1.55;
+}
+
+.ach-seat-vakya {
+  font-size: 1.02rem;
+  color: var(--sacred);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.ach-compass-hub {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 1rem 0.6rem;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background: var(--paper-2);
+  border: 1px dashed var(--gold-dim);
+  color: var(--sacred);
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  line-height: 1.4;
+}
+
+/* ── nested orders of reality ──────────────────────────────── */
+
+.ach-layer-stack {
+  display: grid;
+  gap: 0;
+}
+
+.ach-layer {
+  display: grid;
+  gap: 0.25rem;
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+  border: 1px solid var(--line);
+  line-height: 1.6;
+}
+
+.ach-layer-0 {
+  background: var(--card);
+  border-radius: var(--r) var(--r) 0 0;
+}
+
+.ach-layer-1 {
+  background: var(--card-2);
+  margin: 0 clamp(0.6rem, 2.5vw, 2rem);
+  border-top: 0;
+}
+
+.ach-layer-2 {
+  background: var(--paper-2);
+  margin: 0 clamp(1.2rem, 5vw, 4rem);
+  border-top: 0;
+  border-radius: 0 0 var(--r) var(--r);
+}
+
+.ach-layer-name {
+  font: 700 1rem / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+
+.ach-layer-text {
+  font-size: 0.93rem;
+  color: var(--ink-2);
+}
+
+/* ── tiers of authorship ───────────────────────────────────── */
+
+.ach-tier-grid {
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+}
+
+.ach-tier {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: clamp(1rem, 2.2vw, 1.3rem);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--gold-dim);
+}
+
+.ach-tier.is-sure {
+  border-top-color: var(--gold);
+}
+
+.ach-tier.is-doubted {
+  border-top-color: var(--saffron-2);
+}
+
+.ach-tier.is-attributed {
+  border-top-color: var(--ink-4);
+}
+
+.ach-tier header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.ach-tier h4 {
+  font: 700 1.02rem / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+
+.ach-tier-count {
+  margin-left: auto;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.ach-tier ul {
+  display: grid;
+  gap: 0.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ach-tier li {
+  font-size: 0.91rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  padding-left: 0.9rem;
+  position: relative;
+}
+
+.ach-tier li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+}
+
+/* ── the lineage ───────────────────────────────────────────── */
+
+.ach-lineage {
+  display: grid;
+  gap: 0;
+}
+
+.ach-gen {
+  display: grid;
+  gap: 0.5rem;
+  padding-bottom: 1.5rem;
+  position: relative;
+}
+
+.ach-gen:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.5rem;
+  width: 2px;
+  height: 1rem;
+  background: var(--paper-3);
+}
+
+.ach-gen-label {
+  text-align: center;
+  font: 700 0.72rem / 1 var(--sans);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.ach-gen-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.ach-person {
+  display: grid;
+  gap: 0.15rem;
+  flex: 1 1 190px;
+  max-width: 280px;
+  padding: 0.75rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.ach-person span {
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+
+/* ── a verse of the text itself ────────────────────────────── */
+
+.ach-verse {
+  margin: clamp(1.5rem, 3.2vw, 2.2rem) 0;
+  padding: clamp(1.2rem, 2.8vw, 1.8rem) clamp(1.2rem, 3vw, 2rem);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  background: var(--paper-2);
+}
+
+/* A Sanskrit compound can be one unbroken word sixty letters long —
+   the adhyasa-bhashya's opening is exactly that — and no container
+   can hold it without being allowed to break inside it. */
+.ach-verse-mula {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  line-height: 1.85;
+  color: var(--sacred);
+  overflow-wrap: anywhere;
+}
+
+.ach-verse-iast {
+  margin-top: 0.45rem;
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.ach-verse blockquote {
+  margin: 0.85rem 0 0;
+  font-size: clamp(1.02rem, 1.5vw, 1.12rem);
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.ach-verse figcaption {
+  margin-top: 0.7rem;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+}
+
+/* ── the words a section turns on ──────────────────────────── */
+
+.ach-terms dl {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.ach-term {
+  padding: 0.85rem 1.05rem;
+  border-radius: var(--r-sm);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+
+.ach-term dt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem;
+  font: 700 0.98rem / 1.4 var(--sans);
+  color: var(--ink);
+}
+
+.ach-term-sa {
+  font-weight: 400;
+  font-size: 1.02rem;
+  color: var(--sacred);
+  overflow-wrap: anywhere;
+}
+
+.ach-term dd {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+/* ── a picture inside its section ──────────────────────────── */
+
+.ach-figure {
+  margin: clamp(1.5rem, 3.2vw, 2.2rem) 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.ach-figure-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--r);
+  background: var(--paper-2);
+  box-shadow: var(--shadow-sm);
+}
+
+.ach-figure figcaption {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+
+/* ── sources ───────────────────────────────────────────────── */
+
+.ach-source-note {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--ink-4);
+  line-height: 1.5;
+}

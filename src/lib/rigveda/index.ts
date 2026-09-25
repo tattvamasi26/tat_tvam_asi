@@ -70,6 +70,15 @@ export type DevataGroup = {
 
 const devataById = new Map(DEVATAS.map((d) => [d.id, d]));
 
+/**
+ * The Anukramani ends many of its fields with a danda, which belongs to
+ * the source's punctuation and not to the name. Strip it for display
+ * only — the stored value stays exactly as harvested.
+ */
+export function plain(value: string): string {
+  return value.replace(/\s*[।॥|]\s*$/, "").trim();
+}
+
 export function devata(id: string): Devata | undefined {
   return devataById.get(id);
 }

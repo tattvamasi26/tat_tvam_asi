@@ -1,0 +1,317 @@
+/* ─────────────────────────────────────────────────────────
+   The Rigveda.
+
+   Four pages — the front door, a mandala, a sukta, and one
+   devata's hymns — built from what the site already has. The
+   sukta reader is the stotra idiom unchanged (.reader-head
+   above, .stotra-text below), because a sukta is one continuous
+   hymn and reads as one. Only the listing patterns are new, and
+   they follow .stotra-row: paper ground, card rows, hairline
+   border, the same radii and shadows.
+
+   As in stotra.css, these rules set SIZES on Sanskrit, never
+   faces: the rules are unlayered and would otherwise beat the
+   .deva / .kannada script classes.
+   ───────────────────────────────────────────────────────── */
+
+/* ── shared: a count beside a label ───────────────────────── */
+
+/* .reader-facts turns every span it contains into a chip, so a value
+   wrapped for its script class would draw a second box inside the
+   first. These are plain text; the chip is the fact itself. */
+.reader-facts .rv-fact,
+.reader-facts .rv-count-n {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-radius: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.reader-facts .rv-count-n {
+  font-weight: 700;
+}
+
+.rv-count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+
+.rv-count-n {
+  font: 700 1.05em / 1 var(--sans);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── the front door ───────────────────────────────────────── */
+
+.rv-arranged {
+  max-width: 62ch;
+  margin-top: 0.4rem;
+}
+
+.rv-grid {
+  display: grid;
+  gap: clamp(0.7rem, 1.6vw, 1rem);
+  grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 30vw, 210px), 1fr));
+}
+
+.rv-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: clamp(1rem, 2.2vw, 1.35rem);
+  border-radius: var(--r);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  color: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .rv-card:hover,
+  .rv-row:hover {
+    border-color: var(--gold-dim);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+}
+
+.rv-card-num {
+  font: 700 clamp(1.9rem, 4.5vw, 2.6rem) / 1 var(--sans);
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.rv-card-name {
+  font: 700 1.02rem / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+
+.rv-card-meta {
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+/* The devatas of a mandala, named under its counts. */
+.rv-card-devatas {
+  font-size: 0.84rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+/* ── devata chips ─────────────────────────────────────────── */
+
+.rv-devatas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rv-devata {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5em;
+  padding: 0.5em 0.95em;
+  border-radius: 999px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.94rem;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+@media (hover: hover) {
+  .rv-devata:hover {
+    border-color: var(--gold-dim);
+    background: var(--card-2);
+  }
+}
+
+.rv-devata-sa {
+  font-size: 1.05em;
+  color: var(--sacred);
+}
+
+.rv-devata-n {
+  color: var(--ink-3);
+  font-size: 0.86em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── a list of hymns ──────────────────────────────────────── */
+
+.rv-group {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: clamp(1.6rem, 3.5vw, 2.4rem);
+}
+
+.rv-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.8rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.rv-group-name {
+  font: 700 clamp(1.15rem, 2.2vw, 1.45rem) / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+
+.rv-group-sa {
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  color: var(--sacred);
+}
+
+.rv-group-n {
+  margin-left: auto;
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.rv-list {
+  display: grid;
+  gap: 0.55rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rv-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.5rem 1.1rem;
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  color: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s var(--ease);
+}
+
+.rv-row-num {
+  min-width: 3.6ch;
+  font: 700 1.02rem / 1 var(--sans);
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.rv-row-body {
+  display: grid;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.rv-row-sa {
+  font-size: 1.05rem;
+  color: var(--sacred);
+  line-height: 1.5;
+}
+
+.rv-row-meta {
+  font-size: 0.84rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+.rv-row-verses {
+  font-size: 0.84rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 560px) {
+  .rv-row {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+  .rv-row-verses {
+    grid-column: 2;
+  }
+}
+
+/* ── the sukta reader ─────────────────────────────────────── */
+
+/* The full Anukramani attribution, printed under the verses where a
+   hymn turns to other gods part-way through. Nothing is concealed by
+   filing the hymn under the devata of its first verse. */
+.rv-attribution {
+  max-width: 68ch;
+  margin: clamp(1.4rem, 3vw, 2rem) auto 0;
+  padding: 1rem 1.2rem;
+  border-radius: var(--r-sm);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+}
+
+.rv-attribution dt {
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.rv-attribution dd {
+  margin: 0.25rem 0 0.9rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.rv-attribution dd:last-child {
+  margin-bottom: 0;
+}
+
+.rv-attribution .rv-sa {
+  color: var(--sacred);
+}
+
+/* Where a value was read out of Sayana by hand, the page says so and
+   quotes the clause it was read from. */
+.rv-witness {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+
+.rv-sources {
+  max-width: 68ch;
+  margin: clamp(1.6rem, 3.5vw, 2.4rem) auto 0;
+  font-size: 0.87rem;
+  color: var(--ink-3);
+  line-height: 1.65;
+}
+
+.rv-sources h2 {
+  font: 700 0.78rem / 1 var(--sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.5rem;
+}
+
+.rv-sources li {
+  margin-bottom: 0.35rem;
+}
+
+.rv-sources a {
+  color: var(--gold);
+}

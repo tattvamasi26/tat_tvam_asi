@@ -19,6 +19,13 @@ export const ROUTES = [
   "/upanishads/kena",
   "/upanishads/mandukya",
   "/vedas",
+  // The Rigveda: its front door, a mandala list, a short hymn and a
+  // long one, and a devata page.
+  "/vedas/rigveda",
+  "/vedas/rigveda/1",
+  "/vedas/rigveda/1/1",
+  "/vedas/rigveda/10/129",
+  "/vedas/rigveda/devata/ushas",
   "/gita",
   "/stutis",
   "/stutis/gayatri",
@@ -29,8 +36,17 @@ export const ROUTES = [
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
   "/bhajans",
+  // One of each kind of bhajan page: a devata group, the niti group,
+  // the admitted gap, and a song with a long Kannada text.
+  "/bhajans/krishna",
+  "/bhajans/niti",
+  "/bhajans/unsorted",
+  "/bhajans/krishna/adidano-ranga-adbhutadindali",
   "/acharyas",
   "/acharyas/adi-shankaracharya",
+  "/acharyas/ramanujacharya",
+  // no free photograph exists for him; the card falls back to his name
+  "/acharyas/bharati-tirtha",
   "/temples",
   "/temples/tulunadu",
   "/temples/tamil-nadu/brihadeeswarar-temple",

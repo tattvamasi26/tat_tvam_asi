@@ -1,0 +1,334 @@
+/* ─────────────────────────────────────────────────────────
+   The bhajans.
+
+   The section borrows the stutis' furniture wherever it can —
+   .pagehead, .stotra-list, .stotra-row, .stotra-text, .stotra-pager,
+   .stotra-video are all reused unchanged — so only what is genuinely
+   new is written here: the standing note about the missing meanings,
+   the group grid, the Haridasa list, and a song's stanzas.
+
+   A song is Kannada on every page. It is not Sanskrit stored in
+   Devanagari, so nothing here converts script; it only has to set the
+   Kannada face and give the lines room to breathe.
+   ───────────────────────────────────────────────────────── */
+
+/* ── what is here, and what is not ──────────────────────────
+   913 songs with no translation is a large thing to say
+   quietly, so this sits at the top of the section and is built to
+   be read rather than skipped. It borrows the paper-2 surface the
+   rest of the site uses for an aside, with a gold edge to mark it
+   as the section speaking about itself. */
+.bh-standing {
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--gold);
+  border-radius: var(--r);
+  padding: clamp(1.1rem, 3vw, 1.8rem) clamp(1.1rem, 3.4vw, 2rem);
+  display: grid;
+  gap: 0.6rem;
+  max-width: 62ch;
+}
+
+.bh-standing-count {
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+.bh-standing-text {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.65;
+}
+
+.bh-standing-source {
+  margin: 0;
+  font-size: 0.86rem;
+  color: var(--ink-4);
+}
+
+/* ── the devatas ────────────────────────────────────────────
+   A tile is a name and a count, nothing else. There is no picture
+   for most of these devatas on this site, and a grid of empty
+   frames would be worse than a grid of names. */
+.bh-groups {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: 0.7rem;
+}
+
+.bh-group {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-width: 0;
+  padding: 0.85rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+@media (hover: hover) {
+  .bh-group:hover {
+    border-color: var(--gold);
+    transform: translateY(-1px);
+  }
+}
+
+.bh-group-name {
+  font-weight: 600;
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.bh-group-count {
+  flex: none;
+  font-size: 0.85rem;
+  color: var(--ink-4);
+  font-variant-numeric: tabular-nums;
+}
+
+/* The two groups that are not devatas sit quieter than the ones
+   that are, because they are a form and an admitted gap. */
+.bh-groups-quiet {
+  margin-top: 0.7rem;
+}
+
+.bh-groups-quiet .bh-group {
+  background: transparent;
+  border-style: dashed;
+}
+
+.bh-groups-quiet .bh-group-name {
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+/* ── the Haridasas ──────────────────────────────────────────
+   Name, dates, the signature he writes into every song, and how
+   many of them are here. The ankita is the point of the row: it is
+   what makes the attribution checkable. */
+.bh-dasas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.bh-dasa {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.7fr) minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  padding: 0.85rem 0.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.bh-dasa:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.bh-dasa-name {
+  font-weight: 600;
+  color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.bh-dasa-when {
+  font-size: 0.86rem;
+  color: var(--ink-4);
+  min-width: 0;
+}
+
+.bh-dasa-ankita {
+  color: var(--sacred);
+  min-width: 0;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+
+.bh-dasa-count {
+  font-size: 0.86rem;
+  color: var(--ink-3);
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .bh-dasa {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .bh-dasa-when {
+    order: 3;
+  }
+
+  .bh-dasa-ankita {
+    order: 4;
+    grid-column: 1 / -1;
+  }
+}
+
+.bh-note {
+  margin: 0;
+  color: var(--ink-3);
+  max-width: 58ch;
+}
+
+/* ── the bhajans entered before this corpus arrived ─────────
+   Four, from beyond Karnataka, with summaries but no text. They are
+   listed plainly and make no claim to be readable. */
+.bh-elsewhere {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.bh-elsewhere-row {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.9rem 0.2rem;
+  border-top: 1px solid var(--line);
+}
+
+.bh-elsewhere-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.bh-elsewhere-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.bh-elsewhere-sanskrit {
+  color: var(--sacred);
+  overflow-wrap: anywhere;
+}
+
+.bh-elsewhere-summary {
+  color: var(--ink-3);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  max-width: 68ch;
+}
+
+/* ── a group's songs ────────────────────────────────────────
+   .stotra-row does the work; these only add the roman line under
+   the Kannada name and keep the chips from pushing the row wide. */
+.bh-row-roman {
+  display: block;
+  font-size: 0.88rem;
+  color: var(--ink-4);
+  margin-top: 0.15rem;
+  overflow-wrap: anywhere;
+}
+
+.bh-row-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.bh-row-meta .chip {
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ── one song ───────────────────────────────────────────────
+   The whole text in one column, each stanza a block, each line on
+   its own line. Kannada wants a generous line-height and no
+   letter-spacing; the e2e audit fails the page otherwise. */
+.bh-title-roman {
+  margin: 0.35rem 0 0;
+  color: var(--ink-4);
+  font-size: 1rem;
+}
+
+.bh-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1.6rem;
+  margin: 1.1rem 0 0;
+}
+
+.bh-facts div {
+  min-width: 0;
+}
+
+.bh-facts dd {
+  margin: 0.1rem 0 0;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+.bh-ankita {
+  margin: 0.9rem 0 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.bh-ankita .kannada {
+  color: var(--sacred);
+  overflow-wrap: anywhere;
+}
+
+.bh-stanzas {
+  display: grid;
+  gap: clamp(1.1rem, 2.6vw, 1.6rem);
+}
+
+.bh-stanza {
+  margin: 0;
+  color: var(--sacred);
+  font-size: clamp(1.02rem, 2.3vw, 1.18rem);
+  line-height: 1.85;
+}
+
+.bh-line {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+/* The transliteration is a second reading of the same song, not a
+   gloss on it, so it is set apart rather than interleaved. */
+.bh-roman {
+  margin-top: clamp(1.4rem, 3vw, 2.2rem);
+  padding-top: clamp(1.2rem, 2.6vw, 1.8rem);
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: clamp(1rem, 2.4vw, 1.4rem);
+}
+
+.bh-stanza-roman {
+  color: var(--ink-2);
+  font-size: clamp(0.96rem, 2vw, 1.05rem);
+  line-height: 1.75;
+}
+
+.bh-pending {
+  margin-top: clamp(1.4rem, 3vw, 2rem);
+}
+
+@media (max-width: 560px) {
+  .bh-facts {
+    gap: 0.4rem 1.1rem;
+  }
+}
