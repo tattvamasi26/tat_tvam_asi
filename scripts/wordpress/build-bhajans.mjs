@@ -16,8 +16,8 @@
 //
 // A song is filed under the devata it addresses. Where that could not
 // be settled from the owner's own category or from the text, it is
-// filed under "unsorted" and the page says so, because a wrong devata
-// is worse than an admitted gap.
+// filed under "bhakti" -- songs of devotion naming no single form --
+// and the page says plainly that the sorting is still going on.
 
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 import path from "node:path";
@@ -41,7 +41,7 @@ const ORDER = [
   "hayagriva", "tulasi", "surya", "shani",
 ];
 
-const UNSORTED = "unsorted";
+const UNSORTED = "bhakti";
 const NITI = "niti";
 
 /**

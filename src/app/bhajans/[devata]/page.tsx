@@ -1,10 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { bhajanStrings } from "@/i18n/bhajans";
 import { bhajanGroups, bhajansIn, bhajanGroupExists, composerName, formName } from "@/lib/bhajans";
 import { bhajanGroup } from "@/lib/bhajans/groups";
+import { groupImage } from "@/lib/bhajans/images";
 import { Arrow } from "@/components/ui/Arrow";
 import { LOCALES } from "@/i18n/config";
 
@@ -18,12 +20,16 @@ export async function generateMetadata({ params }: { params: { devata: string } 
 }
 
 /**
- * One group's songs.
+ * One group.
  *
- * A row says what the heading does not: the composer, the form and
- * whether there is a recitation. It deliberately does not repeat the
- * devata, which is the heading it already sits under — the same rule
- * the Rigveda mandala pages follow.
+ * The head gives the god a face and a sentence. Then the songs, as a
+ * grid of small cards rather than a numbered list — a hundred and
+ * fifty rows is a wall, and the Kannada name is what a reader
+ * actually recognises, so it leads each card.
+ *
+ * A card never repeats the devata it sits under. It carries what the
+ * heading does not: who wrote it, what kind of text it is when that is
+ * not the ordinary one, and whether there is a recitation.
  */
 export default function GroupPage({ params }: { params: { devata: string } }) {
   const { devata } = params;
@@ -34,59 +40,91 @@ export default function GroupPage({ params }: { params: { devata: string } }) {
   const group = bhajanGroup(devata)!;
   const songs = bhajansIn(devata);
   const name = group.name[locale];
+  const local = group.name.kn;
+  const pic = groupImage(devata);
+
+  const blurb =
+    group.kind === "devata"
+      ? b.groupLede(name, songs.length.toLocaleString("en-IN"))
+      : group.kind === "form"
+        ? b.nitiNote
+        : b.openNote;
 
   return (
     <>
       <section className="pagehead">
         <div className="shell pagehead-inner">
           <Link href="/bhajans" className="btn-ghost stutis-back">
-            <Arrow dir="left" /> {bhajanGroups(locale).length > 0 ? b.byDevata : ""}
+            <Arrow dir="left" /> {b.backToAll}
           </Link>
           <h1 className="title">{name}</h1>
-          <p className="lede">
-            {group.kind === "devata"
-              ? b.groupLede(name, songs.length.toLocaleString("en-IN"))
-              : group.kind === "form"
-                ? b.nitiNote
-                : b.unsortedNote}
-          </p>
         </div>
       </section>
 
       <section className="shell stack-lg" style={{ paddingTop: 0 }}>
-        <ol className="stotra-list bh-list">
-          {songs.map((s, i) => {
+        <div className="bh-feature">
+          <div className="bh-feature-media">
+            {pic ? (
+              <Image
+                src={pic.src}
+                alt={pic.alt[locale]}
+                fill
+                sizes="(max-width: 760px) 100vw, 40vw"
+                style={{ objectFit: "cover", objectPosition: pic.position }}
+                priority
+              />
+            ) : (
+              <p className="bh-plate kannada" lang="kn">
+                {local}
+              </p>
+            )}
+          </div>
+          <div className="bh-feature-body">
+            {locale !== "kn" && (
+              <p className="bh-feature-local kannada" lang="kn">
+                {local}
+              </p>
+            )}
+            <p className="lede">{blurb}</p>
+            {pic && (
+              <p className="stutis-credit">
+                {pic.sourceUrl ? (
+                  <a href={pic.sourceUrl} target="_blank" rel="noopener noreferrer">
+                    {pic.credit}
+                  </a>
+                ) : (
+                  pic.credit
+                )}
+              </p>
+            )}
+          </div>
+        </div>
+
+        <ul className="bh-songs">
+          {songs.map((s) => {
             const composer = composerName(s.composer, locale);
             return (
               <li key={s.slug}>
-                <Link href={`/bhajans/${devata}/${s.slug}`} className="stotra-row">
-                  <span className="stotra-row-num" aria-hidden="true">
-                    {(i + 1).toLocaleString("en-IN")}
+                <Link href={`/bhajans/${devata}/${s.slug}`} className="bh-song">
+                  {/* A Kannada song keeps its own script on every page
+                      and says so with lang, so the script audit knows
+                      it is deliberate and not a missed conversion. */}
+                  <span className="bh-song-name kannada" lang="kn">
+                    {s.titleKn}
                   </span>
-                  <span className="stotra-row-body">
-                    {/* The song's own name, in Kannada, on every page:
-                        it is a Kannada text, not Sanskrit stored in
-                        Devanagari, so it is not transliterated into the
-                        reader's script. lang="kn" says so. */}
-                    <span className="stotra-row-name kannada" lang="kn">
-                      {s.titleKn}
-                    </span>
-                    {s.titleEn && <span className="bh-row-roman">{s.titleEn}</span>}
-                  </span>
-                  <span className="stotra-row-meta bh-row-meta">
+                  {s.titleEn && <span className="bh-song-roman">{s.titleEn}</span>}
+                  <span className="bh-song-meta">
                     {composer && <span className="chip">{composer}</span>}
                     {s.form !== "song" && s.form !== "pada" && (
                       <span className="chip">{formName(s.form, locale)}</span>
                     )}
-                    {s.hasVideo && (
-                      <span className="chip chip-gold">{b.labelListen}</span>
-                    )}
+                    {s.hasVideo && <span className="chip chip-gold">{b.labelListen}</span>}
                   </span>
                 </Link>
               </li>
             );
           })}
-        </ol>
+        </ul>
       </section>
     </>
   );

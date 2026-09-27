@@ -1,0 +1,72 @@
+{
+  "ganesha": {
+    "src": "/images/bhajans/ganesha.jpg",
+    "width": 1400,
+    "height": 1050,
+    "credit": "Pradam · CC BY-SA 3.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ganesha_idol_at_Halebidu.JPG"
+  },
+  "krishna": {
+    "src": "/images/bhajans/krishna.jpg",
+    "width": 1400,
+    "height": 1867,
+    "credit": "Raja Ravi Varma · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Krishna_as_Envoy,_by_Raja_Ravi_Varma.jpg"
+  },
+  "vitthala": {
+    "src": "/images/bhajans/vitthala.jpg",
+    "width": 1400,
+    "height": 1859,
+    "credit": "Dr. Raju Kasambe · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vithoba_Vitthala_Panduranga_IMG_20230629_081153_(9)_01.jpg"
+  },
+  "vishnu": {
+    "src": "/images/bhajans/vishnu.jpg",
+    "width": 1400,
+    "height": 2105,
+    "credit": "Jakub Hałun · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Vishnu_-_Jagdish_Temple,_Udaipur_-_20191208_1425_7602.jpg"
+  },
+  "anjaneya": {
+    "src": "/images/bhajans/anjaneya.jpg",
+    "width": 1400,
+    "height": 1050,
+    "credit": "Vi1618 · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Wall_Sculpture_of_Hanuman_Swami_at_Madurai_Temple.JPG"
+  },
+  "shiva": {
+    "src": "/images/bhajans/shiva.jpg",
+    "width": 1400,
+    "height": 2086,
+    "credit": "anonymous, may be Raja Ravi Varma · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Siva-parvati-by-raja-ravi-varma.jpg"
+  },
+  "raghavendra": {
+    "src": "/images/bhajans/raghavendra.jpg",
+    "width": 1400,
+    "height": 1859,
+    "credit": "Rajasekhar1961 · CC0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Raghavendra_swamy_statue_in_SRKPuram_01.jpg"
+  },
+  "saraswati": {
+    "src": "/images/bhajans/saraswati.jpg",
+    "width": 1400,
+    "height": 1867,
+    "credit": "Raja Ravi Varma · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Saraswati_by_Raja_Ravi_Varma.jpg"
+  },
+  "rama": {
+    "src": "/images/bhajans/rama.jpg",
+    "width": 1400,
+    "height": 2147,
+    "credit": "Raja Ravi Varma · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ravi_Varma-Rama-breaking-bow.jpg"
+  },
+  "narasimha": {
+    "src": "/images/bhajans/narasimha.jpg",
+    "width": 1400,
+    "height": 2262,
+    "credit": "Unknown authorUnknown author · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Narasimha_painting.jpg"
+  }
+}

@@ -3,11 +3,16 @@
 import { useState } from "react";
 
 /**
- * One song, whole, in one column — the shape the stotra reader
- * already uses.
+ * One song, whole, in one column.
  *
- * Two things differ from a stotra, and both follow from what these
- * texts are:
+ * The page has one job and this is it, so the card is given the width,
+ * the air and the only strong colour on the page. A sung line needs
+ * more leading than a read one, and a stanza is a unit of breath, so
+ * the stanzas are separated by a rule rather than left to run
+ * together.
+ *
+ * Two things differ from the stotra reader, and both follow from what
+ * these texts are:
  *
  *  1. The song is Kannada, not Sanskrit stored in Devanagari, so it is
  *     never transliterated into the reader's script. It stays Kannada
@@ -16,30 +21,28 @@ import { useState } from "react";
  *     because there a reader who wants the sounds cannot read the
  *     Devanagari. Here the same reasoning points the other way round:
  *     it is the Kannada reader who does not need it, and the English
- *     *and* Hindi reader who cannot read the script at all. So the
- *     transliteration opens by default everywhere except Kannada, and
- *     stays a control rather than being forced on anyone.
+ *     *and* Hindi reader who cannot read the script at all. So it
+ *     opens by default everywhere except Kannada, and stays a control
+ *     rather than being forced on anyone.
  */
 export function BhajanText({
   stanzas,
   transliteration,
-  aligned,
   labels,
   openByDefault,
 }: {
   stanzas: string[][];
   transliteration: string[][];
-  aligned: boolean;
-  labels: { show: string; hide: string; pending: string };
+  labels: { show: string; hide: string; roman: string };
   openByDefault: boolean;
 }) {
   const [open, setOpen] = useState(openByDefault);
   const has = transliteration.length > 0;
 
   return (
-    <div className="stotra-text bh-text">
+    <div className="bh-text">
       {has && (
-        <div className="stotra-text-bar">
+        <div className="bh-text-bar">
           <button
             type="button"
             className="stotra-toggle"
@@ -65,11 +68,13 @@ export function BhajanText({
 
       {has && open && (
         <div className="bh-roman" lang="en">
-          {/* Where the source's transliteration does not run parallel
-              to the Kannada — four songs in ten — it is shown as its
-              own text rather than interleaved, because interleaving
-              would assert a correspondence the source does not have. */}
-          {!aligned && <p className="bh-roman-note" aria-hidden="true" />}
+          {/* The transliteration is a second reading of the same song,
+              not a gloss on it. In four songs out of ten the source's
+              version is abridged relative to the Kannada, so the two
+              are set apart rather than interleaved: interleaving would
+              assert a stanza-for-stanza correspondence the source does
+              not have. */}
+          <p className="bh-roman-label">{labels.roman}</p>
           {transliteration.map((lines, i) => (
             <p key={i} className="bh-stanza bh-stanza-roman">
               {lines.map((line, j) => (
@@ -81,8 +86,6 @@ export function BhajanText({
           ))}
         </div>
       )}
-
-      <p className="notice-uncited bh-pending">{labels.pending}</p>
     </div>
   );
 }

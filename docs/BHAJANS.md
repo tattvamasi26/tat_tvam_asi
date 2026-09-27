@@ -54,11 +54,11 @@ text at all and were left behind.
 existing `StotraVideo`, which loads nothing from YouTube until the
 reader presses play.
 
-**The pictures did not cross.** There are 905 of them, hosted on the
-source site, and not one carries a licence or an author. This site's
-rule is that every picture names its licence and its source, so these
-would each have to be re-sourced. The section shows none rather than
-show 905 whose provenance nobody can state.
+**The source site's pictures did not cross.** There are 905 of them,
+hosted there, and not one carries a licence or an author. This site's
+rule is that every picture names its licence and its source, so none of
+them was used. The section is illustrated instead from Wikimedia
+Commons and from photographs the owner supplied — see §4a.
 
 **No meaning crossed, because there is almost none to take.** Thirteen
 posts of 915 mention a meaning or a translation. So these songs arrive
@@ -107,9 +107,40 @@ declined to settle rather than settling wrongly.
 - `niti` — a nīti pada turns away from the devata and addresses the
   singer's own mind. Purandara Dāsa wrote a great many. Filing them
   under a god would misread them.
-- `unsorted` — 258 songs whose devata could not be settled. They are
-  shown as unsorted and the page says so. A wrong devata is worse than
-  an admitted gap.
+- `bhakti` — "Bhakti padagalu", 258 songs of devotion that name no
+  single form of God. This group was first called "Not yet sorted",
+  which was wrong twice: a Haridasa very often sings to Hari plainly or
+  to his own guru, so naming no single face is a real thing for such a
+  song to be, not a defect — and naming a group after what it lacks
+  tells a reader nothing. A unit test now rejects any group named
+  "unsorted", "unknown", "misc" or "other". The sorting continues
+  underneath; the name does not depend on it finishing.
+
+## 4a. Pictures
+
+Every group that can carry a picture does, because a wall of names is
+what made the first version read as a database dump.
+
+- **Wikimedia Commons**, via `scripts/wordpress/fetch-devata-images.mjs`,
+  which asks the API for each file's real licence and author and
+  refuses anything non-free. Several are Raja Ravi Varma paintings,
+  long out of copyright — a card is 210px wide and a dark temple
+  carving simply does not read at that size. The first pass used
+  carvings and one of them turned out to be a photograph of a
+  **signboard outside** the Pandharpur temple rather than Vitthala.
+  Look at what you downloaded.
+- **The site's owner** supplied the photographs for Ganesha,
+  Venkateshwara, Devi and Lakshmi. Credited to him with no source link,
+  exactly as `seed/stuti-images.ts` already does.
+- **Pinterest is not a source.** The images there are other people's
+  photographs, and several of the files supplied carry explicit
+  copyright notices or photographer watermarks burnt into them. Those
+  were not used. A picture goes in only under a free licence or as the
+  owner's own.
+- A group with no picture shows its name in Kannada on a designed
+  plate (`.bh-plate`). That is a normal state, not a hole to fill with
+  something approximate — and never with a picture of a different
+  devata.
 
 ## 5. Things that are true and easy to get wrong
 

@@ -235,9 +235,23 @@ node scripts/wordpress/build-bhajans.mjs
   a post by hand the text agreed 138 times out of 141. The rest sit in
   `niti` (addressed to the mind, a real form) or `unsorted` (an
   admitted gap) — a wrong devata is worse than no devata.
-- **The pictures did not come over.** 905 of them, none carrying a
-  licence or an author. The section shows none rather than 905 whose
-  provenance cannot be stated.
+- **The source site's 905 pictures did not come over**, none carrying
+  a licence or an author. The group pictures come instead from
+  Wikimedia Commons (`scripts/wordpress/fetch-devata-images.mjs`, which
+  refuses anything non-free) and from four photographs the owner
+  supplied. **Pinterest is not a source**: several files offered from
+  there carry photographer watermarks burnt in, and were not used. A
+  group with no picture shows its name on a designed plate.
+- **Look at a picture before shipping it.** The first Commons pass
+  filed a photograph of a signboard outside the Pandharpur temple as
+  the picture of Vitthala, and three carvings too dark to read at card
+  size. Raja Ravi Varma's paintings are public domain and read at any
+  size.
+- **Never name a group after what it lacks.** The 258 songs naming no
+  single form of God are "Bhakti padagalu", not "unsorted" — a
+  Haridasa singing plainly to Hari is doing a real thing, not failing
+  to be classified. A unit test rejects "unsorted", "unknown", "misc"
+  and "other" as group names.
 - **Raga and tala are not recorded by the source.** An early pass
   "found" 227 ragas; every one was the label matching inside an
   ordinary word (`varagala` → raga `la`). The extractor now demands an

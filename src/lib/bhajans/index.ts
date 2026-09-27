@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import type { BhajanGroup } from "./groups";
 import { BHAJAN_GROUPS, bhajanGroup, haridasa, FORM_NAMES } from "./groups";
 import spineData from "./data/spine.json";
 
@@ -83,14 +84,21 @@ export function bhajanCount(): number {
   return SPINE.songs.length;
 }
 
+export interface BhajanGroupView {
+  id: string;
+  count: number;
+  name: string;
+  kind: BhajanGroup["kind"];
+}
+
 /** The groups that actually hold songs, in the order they are shown. */
-export function bhajanGroups(locale: Locale) {
-  return SPINE.groups
-    .map(({ id, count }) => {
-      const g = bhajanGroup(id);
-      return g ? { id, count, name: g.name[locale], kind: g.kind } : null;
-    })
-    .filter((g): g is { id: string; count: number; name: string; kind: "devata" | "form" | "gap" } => g !== null);
+export function bhajanGroups(locale: Locale): BhajanGroupView[] {
+  const out: BhajanGroupView[] = [];
+  for (const { id, count } of SPINE.groups) {
+    const g = bhajanGroup(id);
+    if (g) out.push({ id, count, name: g.name[locale], kind: g.kind });
+  }
+  return out;
 }
 
 export function bhajanGroupExists(id: string): boolean {

@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { getTranslations } from "@/i18n/server";
-import { sectionsFor } from "@/i18n/sections";
+import { topLevelSectionsFor } from "@/i18n/sections";
 import { nameScriptClass } from "@/i18n/config";
 import { Mark, Rosette } from "@/components/brand/Mark";
 import { Arrow } from "@/components/ui/Arrow";
 
 export function Footer() {
   const { locale, t } = getTranslations();
-  const sections = sectionsFor(locale);
+  const sections = topLevelSectionsFor(locale);
   const year = new Date().getFullYear();
   const nameClass = nameScriptClass(locale);
 

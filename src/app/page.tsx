@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getTranslations } from "@/i18n/server";
 import { nameScriptClass } from "@/i18n/config";
-import { sectionsFor } from "@/i18n/sections";
+import { topLevelSectionsFor } from "@/i18n/sections";
 import {
   getVerseOfTheDay,
   getMahavakyas,
@@ -56,7 +56,7 @@ export default function HomePage() {
   const upanishads = getAllUpanishads(locale);
   const verses = getAllVerses(locale);
   const mathas = getAllMathas(locale);
-  const pillars = sectionsFor(locale);
+  const pillars = topLevelSectionsFor(locale);
 
   // Texts with a complete verse-by-verse reader, from the registry — a
   // fourth text appears here the day it is entered.

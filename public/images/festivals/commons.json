@@ -1,0 +1,114 @@
+{
+  "ugadi": {
+    "src": "/images/festivals/ugadi.jpg",
+    "width": 1600,
+    "height": 1071,
+    "credit": "Kalyan Kanuri · CC BY-SA 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:A_Happy_Ugadi_puja_tray_Telugu_Hindu_New_Year_Vaisakhi.jpg"
+  },
+  "rama-navami": {
+    "src": "/images/festivals/rama-navami.jpg",
+    "width": 1600,
+    "height": 1200,
+    "credit": "AbhiRiksh · CC BY-SA 3.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Rama_Navami_01.jpg"
+  },
+  "akshaya-tritiya": {
+    "src": "/images/festivals/akshaya-tritiya.jpg",
+    "width": 1600,
+    "height": 2133,
+    "credit": "Gaurav Dhwaj Khadka · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Akshay_Tritiya.jpg"
+  },
+  "guru-purnima": {
+    "src": "/images/festivals/guru-purnima.jpg",
+    "width": 1600,
+    "height": 960,
+    "credit": "Neehar Haldar · CC0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Guru_Purnima_celebration.jpg"
+  },
+  "nagara-panchami": {
+    "src": "/images/festivals/nagara-panchami.jpg",
+    "width": 1600,
+    "height": 2408,
+    "credit": "Ananth subray · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Naga_stone_18th_century.JPG"
+  },
+  "varamahalakshmi": {
+    "src": "/images/festivals/varamahalakshmi.jpg",
+    "width": 1600,
+    "height": 1060,
+    "credit": "B.saketh · Attribution · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Varalakshmi_Vratham_-_View.jpg"
+  },
+  "krishna-janmashtami": {
+    "src": "/images/festivals/krishna-janmashtami.jpg",
+    "width": 1600,
+    "height": 1066,
+    "credit": "Pratap Public School, India · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Krishna_janmashtami_5.jpg"
+  },
+  "ganesha-chaturthi": {
+    "src": "/images/festivals/ganesha-chaturthi.jpg",
+    "width": 1600,
+    "height": 1201,
+    "credit": "Happie1Soul · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ganesh_festival.jpg"
+  },
+  "vijayadashami": {
+    "src": "/images/festivals/vijayadashami.jpg",
+    "width": 1600,
+    "height": 808,
+    "credit": "Ananth BS · CC BY 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Dasara_Navaratri_Festival_Lights_Mysore_Palace_India.jpg"
+  },
+  "holi": {
+    "src": "/images/festivals/holi.jpg",
+    "width": 1600,
+    "height": 1067,
+    "credit": "Ramesh Lalwani · CC BY 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Holi_Festival_of_Colors.jpg"
+  },
+  "navaratri": {
+    "src": "/images/festivals/navaratri.jpg",
+    "width": 1600,
+    "height": 1200,
+    "credit": "Technofreak from Bangalore, India · CC BY-SA 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Golu_Kolu_Navratri_Hindu_festival_dolls.jpg"
+  },
+  "deepavali": {
+    "src": "/images/festivals/deepavali.jpg",
+    "width": 1600,
+    "height": 1527,
+    "credit": "Alokjain19883105 · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Diwali_Diyas_2.jpg"
+  },
+  "utthana-dwadashi": {
+    "src": "/images/festivals/utthana-dwadashi.jpg",
+    "width": 1600,
+    "height": 1600,
+    "credit": "Aditya Bendre · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tulsi_Vivaah_ceremony.jpg"
+  },
+  "gita-jayanti": {
+    "src": "/images/festivals/gita-jayanti.jpg",
+    "width": 1600,
+    "height": 616,
+    "credit": "Brahmavadini · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bhagavad_Gita,_19th_Century.jpg"
+  },
+  "makara-sankranti": {
+    "src": "/images/festivals/makara-sankranti.jpg",
+    "width": 1600,
+    "height": 1033,
+    "credit": "Nithi Anand · CC BY 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2015_Tai_Pongal_festival_week,_a_woman_cooking_Pongal_dish.jpg"
+  },
+  "maha-shivaratri": {
+    "src": "/images/festivals/maha-shivaratri.jpg",
+    "width": 1600,
+    "height": 2133,
+    "credit": "Navneesh Ramessur · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:02_Mahashivratree_festival.JPG"
+  }
+}

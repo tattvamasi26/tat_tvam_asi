@@ -35,6 +35,15 @@ export const ROUTES = [
   "/stutis/ganesha/sankatanashana-ganesha-stotram",
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
+  "/shastras",
+  "/festivals",
+  "/practice",
+  // One sitting with a recitation and one without.
+  "/practice/ganapati-japa",
+  "/practice/breath",
+  // A lunar festival, and the one solar one.
+  "/festivals/ganesha-chaturthi",
+  "/festivals/makara-sankranti",
   "/bhajans",
   // One of each kind of bhajan page: a devata group, the niti group,
   // the admitted gap, and a song with a long Kannada text.

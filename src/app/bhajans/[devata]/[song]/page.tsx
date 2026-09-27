@@ -21,10 +21,12 @@ export async function generateMetadata({
 /**
  * One song.
  *
- * The reader is the stotra reader: the head above, the whole text in
- * one card below, the recitation after it. What it does not have is a
- * meaning, and the page says so where a meaning would be rather than
- * leaving the reader to notice the absence.
+ * Everything on this page serves the text. The head is quiet and
+ * centred, the facts are one line rather than a table, and the song
+ * itself gets the card, the measure and the only strong colour.
+ *
+ * What the page does not have is a meaning, and it says so where a
+ * meaning would be rather than leaving the reader to notice.
  */
 export default async function SongPage({ params }: { params: { devata: string; song: string } }) {
   const { devata, song: slug } = params;
@@ -40,7 +42,6 @@ export default async function SongPage({ params }: { params: { devata: string; s
   const composer = composerName(song.composer, locale);
   const dasa = haridasa(song.composer);
 
-  // Where this song sits among its neighbours, for the pager.
   const siblings = bhajansIn(devata);
   const at = siblings.findIndex((s) => s.slug === slug);
   const prev = at > 0 ? siblings[at - 1] : null;
@@ -54,12 +55,14 @@ export default async function SongPage({ params }: { params: { devata: string; s
 
   return (
     <>
-      <header className="reader-head shell">
+      <header className="reader-head shell bh-reader-head">
         <Link href={`/bhajans/${devata}`} className="btn-ghost stutis-back">
           <Arrow dir="left" /> {b.backToGroup(groupName)}
         </Link>
 
-        <h1 className="stotra-title kannada" lang="kn">
+        {/* A Kannada song keeps its own script on every page, and says
+            so with lang, so the script audit knows it is deliberate. */}
+        <h1 className="bh-song-title kannada" lang="kn">
           {song.titleKn}
         </h1>
         {song.titleEn && <p className="bh-title-roman">{song.titleEn}</p>}
@@ -75,11 +78,11 @@ export default async function SongPage({ params }: { params: { devata: string; s
           </dl>
         )}
 
-        {/* The signature inside the song, which is what makes the
-            attribution checkable rather than asserted. */}
+        {/* The signature inside the song — what makes the attribution
+            checkable rather than asserted. */}
         {dasa && (
           <p className="bh-ankita">
-            <span className="fact-label">{b.labelAnkita}</span>{" "}
+            <span className="fact-label">{b.labelAnkita}</span>
             <span className="kannada" lang="kn">
               {dasa.ankita}
             </span>
@@ -91,14 +94,15 @@ export default async function SongPage({ params }: { params: { devata: string; s
         <BhajanText
           stanzas={song.stanzas}
           transliteration={song.transliteration}
-          aligned={song.aligned}
           openByDefault={locale !== "kn"}
           labels={{
             show: b.showTransliteration,
             hide: b.hideTransliteration,
-            pending: b.meaningPending,
+            roman: b.romanLabel,
           }}
         />
+
+        <p className="notice-uncited bh-pending">{b.meaningPending}</p>
 
         {song.video && (
           <StotraVideo
@@ -138,7 +142,7 @@ export default async function SongPage({ params }: { params: { devata: string; s
           )}
         </nav>
 
-        <p className="stutis-credit">
+        <p className="stutis-credit bh-source">
           {b.sourceLine} ·{" "}
           <a href={song.sourceUrl} target="_blank" rel="noopener noreferrer">
             bhakthilahari.com

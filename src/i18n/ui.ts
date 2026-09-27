@@ -20,6 +20,8 @@ export interface UIStrings {
   // ── Navigation
   navTeachings: string;
   navVerses: string;
+  navShastras: string;
+  navBhajans: string;
   navUpanishads: string;
   navTeachers: string;
   navTemples: string;
@@ -225,6 +227,8 @@ const en: UIStrings = {
 
   navTeachings: "Teachings",
   navVerses: "Verses",
+  navShastras: "Shastras & Puranas",
+  navBhajans: "Bhajans",
   navUpanishads: "Upanishads",
   navTeachers: "Acharyas",
   navTemples: "Temples",
@@ -421,6 +425,8 @@ const kn: UIStrings = {
 
   navTeachings: "ಬೋಧನೆಗಳು",
   navVerses: "ಶ್ಲೋಕಗಳು",
+  navShastras: "ಶಾಸ್ತ್ರ ಮತ್ತು ಪುರಾಣ",
+  navBhajans: "ಭಜನೆಗಳು",
   navUpanishads: "ಉಪನಿಷತ್ತುಗಳು",
   navTeachers: "ಆಚಾರ್ಯರು",
   navTemples: "ದೇವಾಲಯಗಳು",
@@ -616,6 +622,8 @@ const hi: UIStrings = {
 
   navTeachings: "उपदेश",
   navVerses: "श्लोक",
+  navShastras: "शास्त्र और पुराण",
+  navBhajans: "भजन",
   navUpanishads: "उपनिषद्",
   navTeachers: "आचार्य",
   navTemples: "मंदिर",

@@ -1,0 +1,37 @@
+{
+  "gayatri": {
+    "src": "/images/practice/gayatri.jpg",
+    "width": 1800,
+    "height": 1200,
+    "credit": "Manilaov1990 · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:The_dawn_at_the_Ganges.jpg"
+  },
+  "ganapati-japa": {
+    "src": "/images/practice/ganapati-japa.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Forestowlet · CC0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Elaeocarpus_ganitrus_02.jpg"
+  },
+  "atharvashirsha": {
+    "src": "/images/practice/atharvashirsha.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Gausanchennai · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brass_lamp.jpg"
+  },
+  "breath": {
+    "src": "/images/practice/breath.jpg",
+    "width": 1800,
+    "height": 1411,
+    "credit": "MohammedSuman22 · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Fog-Shrouded_Kaptai_Lake.jpg"
+  },
+  "silence": {
+    "src": "/images/practice/silence.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Mahendranshiva7 · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tiruvannamalai_Hill.jpg"
+  }
+}

@@ -20,12 +20,39 @@ export interface SectionDef {
   glyph: string;
   label: Record<Locale, string>;
   blurb: Record<Locale, string>;
+  /**
+   * The section this one is reached through. Vedas, Upanishads and
+   * the Gita are branches of shastras, so they are not repeated in
+   * the top-level nav beside it — which was the site showing the
+   * same thing twice. Their URLs are unchanged; only the route in
+   * changed.
+   */
+  parent?: string;
 }
 
 export const SECTIONS: SectionDef[] = [
   {
+    // The map of the whole tradition. It comes first because it is
+    // the page that puts every other section in its place — and it
+    // holds no texts of its own, only links to the sections that do.
+    id: "shastras",
+    href: "/shastras",
+    glyph: "शास्त्र",
+    label: {
+      en: "Shastras & Puranas",
+      kn: "ಶಾಸ್ತ್ರ ಮತ್ತು ಪುರಾಣ",
+      hi: "शास्त्र और पुराण",
+    },
+    blurb: {
+      en: "The whole tradition in one shape — Veda, Vedānta, Vedāṅga, Darśana, Dharma, Āgama, Purāṇa, Itihāsa and the teaching texts.",
+      kn: "ಇಡೀ ಪರಂಪರೆ ಒಂದೇ ಆಕಾರದಲ್ಲಿ — ವೇದ, ವೇದಾಂತ, ವೇದಾಂಗ, ದರ್ಶನ, ಧರ್ಮ, ಆಗಮ, ಪುರಾಣ, ಇತಿಹಾಸ ಮತ್ತು ಪ್ರಕರಣ ಗ್ರಂಥಗಳು.",
+      hi: "पूरी परंपरा एक ही आकार में — वेद, वेदांत, वेदांग, दर्शन, धर्म, आगम, पुराण, इतिहास और प्रकरण ग्रंथ।",
+    },
+  },
+  {
     id: "vedas",
     href: "/vedas",
+    parent: "shastras",
     glyph: "वेद",
     label: {
       en: "Vedas",
@@ -41,6 +68,7 @@ export const SECTIONS: SectionDef[] = [
   {
     id: "upanishads",
     href: "/upanishads",
+    parent: "shastras",
     glyph: "उप",
     label: {
       en: "Upanishads",
@@ -114,6 +142,40 @@ export const SECTIONS: SectionDef[] = [
     },
   },
   {
+    // The first section a reader does rather than reads.
+    id: "practice",
+    href: "/practice",
+    glyph: "अभ्यास",
+    label: {
+      en: "Everyday Vedanta",
+      kn: "ನಿತ್ಯ ವೇದಾಂತ",
+      hi: "रोज़मर्रा वेदांत",
+    },
+    blurb: {
+      en: "Sittings you can actually do — with the site's own texts, and a timer that asks nothing of you but the time.",
+      kn: "ನಿಜವಾಗಿ ಮಾಡಬಹುದಾದ ಕೂರುವಿಕೆಗಳು — ಈ ತಾಣದ ಪಠ್ಯಗಳೊಂದಿಗೆ, ಮತ್ತು ಸಮಯವನ್ನಷ್ಟೇ ಕೇಳುವ ಗಡಿಯಾರದೊಂದಿಗೆ.",
+      hi: "वे बैठकें जो वास्तव में की जा सकें — इस साइट के अपने पाठों के साथ, और ऐसे समय-यंत्र के साथ जो आपसे केवल समय माँगता है।",
+    },
+  },
+  {
+    // A festival has a date, and the date comes round — which makes
+    // this the first section on the site with its own reason for a
+    // reader to return.
+    id: "festivals",
+    href: "/festivals",
+    glyph: "उत्सव",
+    label: {
+      en: "Festivals",
+      kn: "ಹಬ್ಬಗಳು",
+      hi: "पर्व",
+    },
+    blurb: {
+      en: "The year as it is actually kept — what is observed, when, and why. Dates are lunar, not Gregorian.",
+      kn: "ವರ್ಷ ನಿಜವಾಗಿ ಆಚರಿಸಲ್ಪಡುವ ರೀತಿ — ಏನು ಮಾಡುತ್ತಾರೆ, ಯಾವಾಗ, ಏಕೆ. ದಿನಾಂಕಗಳು ಚಾಂದ್ರಮಾನದವು.",
+      hi: "वर्ष जैसा वास्तव में मनाया जाता है — क्या किया जाता है, कब, और क्यों। तिथियाँ चांद्र हैं।",
+    },
+  },
+  {
     id: "bhajans",
     href: "/bhajans",
     glyph: "भजन",
@@ -130,7 +192,10 @@ export const SECTIONS: SectionDef[] = [
   },
 ];
 
-/** Sections resolved for one locale, ready to render. */
+/**
+ * Every section resolved for one locale. Includes the children, since
+ * each section page looks itself up here by id for its own heading.
+ */
 export function sectionsFor(locale: Locale) {
   return SECTIONS.map((s) => ({
     id: s.id,
@@ -138,7 +203,21 @@ export function sectionsFor(locale: Locale) {
     glyph: s.glyph,
     label: s.label[locale] ?? s.label.en,
     blurb: s.blurb[locale] ?? s.blurb.en,
+    parent: s.parent ?? null,
   }));
+}
+
+/**
+ * What the nav, the footer and the home page show: sections a reader
+ * reaches directly. A branch of shastras is reached through it.
+ */
+export function topLevelSectionsFor(locale: Locale) {
+  return sectionsFor(locale).filter((s) => !s.parent);
+}
+
+/** The sections that sit under one parent, in order. */
+export function childSectionsFor(parent: string, locale: Locale) {
+  return sectionsFor(locale).filter((s) => s.parent === parent);
 }
 
 /** Secondary destinations — reference material rather than pillars. */

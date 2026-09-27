@@ -31,7 +31,9 @@ export interface BhajanStrings {
   /** A group page. */
   groupLede: (name: string, n: string) => string;
   nitiNote: string;
-  unsortedNote: string;
+  openNote: string;
+  backToAll: string;
+  romanLabel: string;
 
   /** A song. */
   showTransliteration: string;
@@ -68,8 +70,10 @@ export const BHAJAN_STRINGS: Record<Locale, BhajanStrings> = {
     groupLede: (name, n) => `${n} songs addressed to ${name}.`,
     nitiNote:
       "A niti pada turns away from the devata and speaks to the singer's own mind. Purandara Dasa wrote a great many of them.",
-    unsortedNote:
-      "These songs name no devata clearly enough to file them under one. Rather than guess, they are left here.",
+    openNote:
+      "Songs of devotion that name no single form of God. A Haridasa very often sings to Hari plainly, or to his own guru, and forcing one face onto such a song would misread it. The sorting goes on.",
+    backToAll: "All bhajans",
+    romanLabel: "In roman letters",
 
     showTransliteration: "Show transliteration",
     hideTransliteration: "Hide transliteration",
@@ -104,8 +108,10 @@ export const BHAJAN_STRINGS: Record<Locale, BhajanStrings> = {
     groupLede: (name, n) => `${name} ದೇವರಿಗೆ ಸಲ್ಲಿಸಿದ ${n} ಪದಗಳು.`,
     nitiNote:
       "ನೀತಿ ಪದವು ದೇವತೆಯಿಂದ ತಿರುಗಿ ಹಾಡುಗಾರನ ಸ್ವಂತ ಮನಸ್ಸಿಗೇ ಹೇಳುತ್ತದೆ. ಪುರಂದರ ದಾಸರು ಇಂಥವನ್ನು ಬಹಳ ರಚಿಸಿದ್ದಾರೆ.",
-    unsortedNote:
-      "ಈ ಪದಗಳು ಯಾವ ದೇವತೆಯನ್ನೂ ಸ್ಪಷ್ಟವಾಗಿ ಹೆಸರಿಸುವುದಿಲ್ಲ. ಊಹಿಸುವ ಬದಲು ಅವನ್ನು ಇಲ್ಲಿಯೇ ಇರಿಸಲಾಗಿದೆ.",
+    openNote:
+      "ದೇವರ ಯಾವುದೇ ಒಂದು ರೂಪವನ್ನು ಹೆಸರಿಸದ ಭಕ್ತಿಯ ಪದಗಳು. ಹರಿದಾಸರು ಬಹುವೇಳೆ ಹರಿಯನ್ನೇ ನೇರವಾಗಿ, ಅಥವಾ ತಮ್ಮ ಗುರುವನ್ನೇ ಹಾಡುತ್ತಾರೆ; ಅಂಥ ಪದಕ್ಕೆ ಒಂದೇ ಮುಖವನ್ನು ಹೇರುವುದು ತಪ್ಪು. ವಿಂಗಡಣೆ ನಡೆಯುತ್ತಿದೆ.",
+    backToAll: "ಎಲ್ಲ ಭಜನೆಗಳು",
+    romanLabel: "ರೋಮನ್ ಲಿಪಿಯಲ್ಲಿ",
 
     showTransliteration: "ಲಿಪ್ಯಂತರ ತೋರಿಸು",
     hideTransliteration: "ಲಿಪ್ಯಂತರ ಮರೆಮಾಡು",
@@ -140,8 +146,10 @@ export const BHAJAN_STRINGS: Record<Locale, BhajanStrings> = {
     groupLede: (name, n) => `${name} को सम्बोधित ${n} पद।`,
     nitiNote:
       "नीति पद देवता से मुड़कर गायक के अपने मन से कहता है। पुरंदर दास ने ऐसे बहुत रचे।",
-    unsortedNote:
-      "ये पद किसी देवता का नाम इतना स्पष्ट नहीं लेते कि इन्हें एक के नीचे रखा जाए। अनुमान लगाने के बजाय इन्हें यहीं रखा गया है।",
+    openNote:
+      "भक्ति के वे पद जो ईश्वर का कोई एक रूप नहीं लेते। हरिदास अक्सर सीधे हरि को, या अपने गुरु को गाते हैं; ऐसे पद पर एक चेहरा थोपना उसे गलत पढ़ना होगा। वर्गीकरण चल रहा है।",
+    backToAll: "सभी भजन",
+    romanLabel: "रोमन लिपि में",
 
     showTransliteration: "लिप्यंतरण दिखाएँ",
     hideTransliteration: "लिप्यंतरण छिपाएँ",

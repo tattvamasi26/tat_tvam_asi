@@ -249,6 +249,18 @@ export function getTempleBySlug(slug: string, locale: Locale): TempleView | null
 // temples and its circuits; /temples/[region]/[entry] is one temple
 // written in depth, or one circuit. A temple module registers itself
 // when imported, as the stotras do.
+import { SHASTRA_BRANCHES, type ShastraStatus } from "./seed/shastras";
+import {
+  FESTIVALS,
+  LUNAR_MONTHS,
+  PAKSHAS,
+  TITHIS,
+  monthOrder,
+  type Reckoning,
+} from "./seed/festivals";
+import { festivalImage, type FestivalImage } from "./seed/festival-images";
+import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
+import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
 import "./seed/temple-pages/udupi-krishna-matha";
 import "./seed/temple-pages/dharmasthala";
@@ -1199,4 +1211,231 @@ export function getUpanishadCoverage(
   const t = getFullText(slug);
   if (!t || t.completeness !== "selections") return null;
   return t.covers?.[locale] ?? t.covers?.en ?? null;
+}
+
+// ── The śāstra map ──────────────────────────────────────────
+
+/**
+ * The whole tradition in one shape, resolved for the reader.
+ *
+ * The map holds no texts of its own: it names the nine branches and
+ * says, for each text, whether this site can show it yet and where.
+ * A text that lives in another section carries that section's href,
+ * so the map never becomes a second address for anything.
+ */
+export function getShastraMap(locale: Locale): ShastraBranchView[] {
+  return SHASTRA_BRANCHES.map((branch) => ({
+    id: branch.id,
+    name: branch.name[locale],
+    sanskrit: scriptFor(branch.sanskrit, locale),
+    glyph: scriptFor(branch.glyph, locale),
+    href: branch.href ?? null,
+    lede: branch.lede[locale],
+    // What a reader can actually open in this branch today. The card
+    // prints it, so a branch never looks fuller than it is.
+    readable: branch.texts.filter((t) => t.status !== "planned").length,
+    total: branch.texts.length,
+    texts: branch.texts.map((text) => ({
+      id: text.id,
+      name: text.name[locale],
+      sanskrit: scriptFor(text.sanskrit, locale),
+      note: text.note[locale],
+      href: text.href ?? null,
+      status: text.status,
+    })),
+  }));
+}
+
+export interface ShastraTextView {
+  id: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  note: string;
+  href: string | null;
+  status: ShastraStatus;
+}
+
+export interface ShastraBranchView {
+  id: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  /** Short, for the card's art panel. Already converted. */
+  glyph: string;
+  href: string | null;
+  lede: string;
+  readable: number;
+  total: number;
+  texts: ShastraTextView[];
+}
+
+// ── The festivals ───────────────────────────────────────────
+
+export interface FestivalLinkView {
+  href: string;
+  label: string;
+}
+
+export interface FestivalView {
+  slug: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  reckoning: Reckoning;
+  /**
+   * The date, composed and ready to print: "Chaitra · śukla pakṣa ·
+   * pratipadā". Never a Gregorian date — a lunar festival does not
+   * have one that holds for more than a year.
+   */
+  when: string;
+  /** A day that spans several, or is fixed some other way. */
+  whenNote: string | null;
+  /** The northern month name, where the two reckonings disagree. */
+  alsoCalled: string | null;
+  lede: string;
+  observed: string;
+  significance: string;
+  regional: string | null;
+  links: FestivalLinkView[];
+  /** The photograph, with its alt already in the reader's language. */
+  image: {
+    src: string;
+    width: number;
+    height: number;
+    alt: string;
+    credit: string;
+    sourceUrl: string;
+    position: string;
+  } | null;
+}
+
+function festivalView(f: (typeof FESTIVALS)[number], locale: Locale): FestivalView {
+  // A lunar date is three parts. A solar one has none of them and
+  // leans on its note instead.
+  const parts: string[] = [];
+  if (f.month) parts.push(LUNAR_MONTHS[f.month][locale]);
+  if (f.paksha) parts.push(PAKSHAS[f.paksha][locale]);
+  if (f.tithi) parts.push(TITHIS[f.tithi][locale]);
+
+  return {
+    slug: f.slug,
+    name: f.name[locale],
+    sanskrit: scriptFor(f.sanskrit, locale),
+    reckoning: f.reckoning,
+    when: parts.join(" \u00b7 "),
+    whenNote: f.whenNote?.[locale] ?? null,
+    alsoCalled: f.alsoCalled?.[locale] ?? null,
+    lede: f.lede[locale],
+    observed: f.observed[locale],
+    significance: f.significance[locale],
+    regional: f.regional?.[locale] ?? null,
+    links: (f.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+    image: imageFor(festivalImage(f.slug), locale),
+  };
+}
+
+function imageFor(img: FestivalImage | undefined, locale: Locale) {
+  if (!img) return null;
+  return {
+    src: img.src,
+    width: img.width,
+    height: img.height,
+    alt: img.alt[locale],
+    credit: img.credit,
+    sourceUrl: img.sourceUrl,
+    position: img.position ?? "50% 50%",
+  };
+}
+
+/**
+ * The festivals in the order of the lunar year, which begins at
+ * Chaitra. Makara Sankranti is solar and has no lunar month, so it
+ * sorts by the month it actually falls in.
+ */
+export function getFestivals(locale: Locale): FestivalView[] {
+  return [...FESTIVALS]
+    .sort((a, b) => {
+      const am = a.reckoning === "solar" ? 9.5 : monthOrder(a.month);
+      const bm = b.reckoning === "solar" ? 9.5 : monthOrder(b.month);
+      return am - bm;
+    })
+    .map((f) => festivalView(f, locale));
+}
+
+export function getFestival(slug: string, locale: Locale): FestivalView | null {
+  const f = FESTIVALS.find((x) => x.slug === slug);
+  return f ? festivalView(f, locale) : null;
+}
+
+// ── Vedanta in Everyday Life ────────────────────────────────
+
+export interface PracticeLinkView {
+  href: string;
+  label: string;
+}
+
+export interface PracticeImageView {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  credit: string;
+  sourceUrl: string;
+  position: string;
+}
+
+export interface PracticeView {
+  slug: string;
+  name: string;
+  /** Already in the reader's script; null for a wordless sitting. */
+  sanskrit: string | null;
+  kind: PracticeKind;
+  durations: number[];
+  lede: string;
+  howTo: string[];
+  origin: string;
+  text: PracticeLinkView | null;
+  track: PracticeTrack | null;
+  links: PracticeLinkView[];
+  image: PracticeImageView | null;
+}
+
+function practiceImageView(img: PracticeImage | undefined, locale: Locale): PracticeImageView | null {
+  if (!img) return null;
+  return {
+    src: img.src,
+    width: img.width,
+    height: img.height,
+    alt: img.alt[locale],
+    credit: img.credit,
+    sourceUrl: img.sourceUrl,
+    position: img.position ?? "50% 50%",
+  };
+}
+
+function practiceView(p: (typeof PRACTICES)[number], locale: Locale): PracticeView {
+  return {
+    slug: p.slug,
+    name: p.name[locale],
+    sanskrit: p.sanskrit ? scriptFor(p.sanskrit, locale) : null,
+    kind: p.kind,
+    durations: p.durations,
+    lede: p.lede[locale],
+    howTo: p.howTo[locale],
+    origin: p.origin[locale],
+    text: p.text ? { href: p.text.href, label: p.text.label[locale] } : null,
+    track: p.track ?? null,
+    links: (p.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+    image: practiceImageView(practiceImage(p.slug), locale),
+  };
+}
+
+export function getPractices(locale: Locale): PracticeView[] {
+  return PRACTICES.map((p) => practiceView(p, locale));
+}
+
+export function getPractice(slug: string, locale: Locale): PracticeView | null {
+  const p = PRACTICES.find((x) => x.slug === slug);
+  return p ? practiceView(p, locale) : null;
 }

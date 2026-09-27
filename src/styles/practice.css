@@ -1,0 +1,466 @@
+/* ─────────────────────────────────────────────────────────
+   Vedanta in Everyday Life.
+
+   The one section a reader does rather than reads, so it is built
+   around a single control — the ring — and everything else gets out
+   of its way. Image-led like the festivals, but quieter: these are
+   photographs to sit in front of, not photographs to look at.
+   ───────────────────────────────────────────────────────── */
+
+/* ── what this section will not claim ─────────────────────── */
+.pr-standing {
+  max-width: 62ch;
+  padding-left: clamp(0.9rem, 2.4vw, 1.4rem);
+  border-left: 2px solid var(--gold);
+}
+
+.pr-standing-text {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+/* ── the sittings ─────────────────────────────────────────── */
+.pr-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: clamp(0.9rem, 2.2vw, 1.4rem);
+}
+
+.pr-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg, var(--r));
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s var(--ease, ease), box-shadow 0.3s ease, border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .pr-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow, var(--shadow-sm));
+    border-color: var(--gold);
+  }
+}
+
+.pr-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.pr-frame img {
+  transition: transform 0.9s var(--ease, ease);
+}
+
+@media (hover: hover) {
+  .pr-card:hover .pr-frame img {
+    transform: scale(1.04);
+  }
+}
+
+.pr-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(22, 16, 8, 0.88) 0%,
+    rgba(22, 16, 8, 0.5) 38%,
+    rgba(22, 16, 8, 0.06) 68%,
+    rgba(22, 16, 8, 0.16) 100%
+  );
+}
+
+.pr-frame-foot {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1rem 1.1rem 1.1rem;
+  display: grid;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+/* The lengths available, shown on the card so a reader can tell at a
+   glance whether they have time for this one. */
+.pr-lengths {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-bottom: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pr-length {
+  padding: 0.1rem 0.42rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.2);
+  border: 1px solid rgba(255, 252, 245, 0.3);
+  color: #fffdf8;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.pr-length-unit {
+  color: rgba(255, 249, 235, 0.72);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pr-name {
+  color: #fffdf8;
+  font-size: clamp(1.15rem, 2.8vw, 1.4rem);
+  font-weight: 600;
+  line-height: var(--lh-snug, 1.3);
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.45);
+}
+
+.pr-sanskrit {
+  color: rgba(255, 246, 228, 0.86);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.pr-card-body {
+  padding: 0.95rem 1.1rem 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.pr-lede {
+  color: var(--ink-3);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.pr-more {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ── one sitting: the hero ────────────────────────────────── */
+.pr-hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: clamp(320px, 46vh, 480px);
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.pr-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(20, 14, 6, 0.9) 0%,
+    rgba(20, 14, 6, 0.6) 40%,
+    rgba(20, 14, 6, 0.2) 72%,
+    rgba(20, 14, 6, 0.3) 100%
+  );
+}
+
+.pr-hero-inner {
+  position: relative;
+  padding-block: clamp(1.8rem, 5vw, 3rem);
+  display: grid;
+  gap: 0.3rem;
+  justify-items: start;
+  min-width: 0;
+}
+
+.pr-hero-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.16);
+  border: 1px solid rgba(255, 252, 245, 0.28);
+  color: #fffdf8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+@media (hover: hover) {
+  .pr-hero-back:hover {
+    background: rgba(255, 252, 245, 0.3);
+  }
+}
+
+.pr-hero-title {
+  margin: 0;
+  color: #fffdf8;
+  font-size: clamp(1.8rem, 5.5vw, 3rem);
+  line-height: var(--lh-display, 1.1);
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.4);
+}
+
+.pr-hero-sanskrit {
+  margin: 0;
+  color: rgba(255, 246, 228, 0.9);
+  font-size: clamp(1rem, 2.6vw, 1.3rem);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+
+.pr-hero-lede {
+  margin: 0.6rem 0 0;
+  max-width: 46ch;
+  color: rgba(255, 249, 235, 0.86);
+  line-height: 1.65;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* ── one sitting: the body ────────────────────────────────── */
+.pr-body {
+  max-width: 42rem;
+  margin-inline: auto;
+  padding-block: clamp(2rem, 5vw, 3rem);
+  display: grid;
+  gap: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.pr-section {
+  display: grid;
+  gap: 0.6rem;
+  justify-items: start;
+}
+
+.pr-h2 {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  font-weight: 600;
+}
+
+.pr-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.pr-steps li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+.pr-step-n {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  color: var(--ink-3);
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.pr-origin {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.8;
+}
+
+.pr-no-track {
+  margin: 0;
+  color: var(--ink-4);
+  font-size: 0.92rem;
+}
+
+.pr-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.pr-credit {
+  text-align: center;
+}
+
+/* ── the timer ────────────────────────────────────────────── */
+.sit {
+  display: grid;
+  justify-items: center;
+  gap: 1.1rem;
+  padding: clamp(1.5rem, 4vw, 2.4rem) clamp(1rem, 3vw, 2rem);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg, var(--r));
+  box-shadow: var(--shadow-sm);
+  width: 100%;
+}
+
+.sit-lengths {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.sit-lengths-label {
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  margin-bottom: 0.15rem;
+}
+
+.sit-length {
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-3);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.sit-length[aria-pressed="true"] {
+  background: var(--marigold, var(--gold));
+  border-color: var(--marigold, var(--gold));
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (hover: hover) {
+  .sit-length:not([aria-pressed="true"]):hover {
+    border-color: var(--gold);
+    color: var(--ink-2);
+  }
+}
+
+/* The ring. Plain SVG — no chart library for one circle. */
+.sit-ring {
+  position: relative;
+  width: clamp(190px, 46vw, 250px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.sit-ring svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.sit-ring-track {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 4;
+}
+
+.sit-ring-arc {
+  fill: none;
+  stroke: var(--marigold, var(--gold));
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+.sit-clock {
+  position: relative;
+  margin: 0;
+  font-size: clamp(2.2rem, 7vw, 3rem);
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+
+.sit-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.sit-go {
+  min-width: 8rem;
+  justify-content: center;
+}
+
+.sit-done {
+  margin: 0;
+  color: var(--ink-3);
+  text-align: center;
+  max-width: 34ch;
+}
+
+.sit-record {
+  display: grid;
+  gap: 0.2rem;
+  justify-items: center;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--line);
+  width: 100%;
+}
+
+.sit-record-line {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+}
+
+.sit-record-note {
+  margin: 0;
+  color: var(--ink-4);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .pr-hero {
+    min-height: clamp(280px, 42vh, 380px);
+  }
+}

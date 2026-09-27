@@ -12,6 +12,9 @@ import {
   formName,
 } from "../../src/lib/bhajans";
 import { BHAJAN_GROUPS, bhajanGroup, HARIDASAS, haridasa } from "../../src/lib/bhajans/groups";
+import { groupImage } from "../../src/lib/bhajans/images";
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { BHAJAN_STRINGS } from "../../src/i18n/bhajans";
 import { LOCALES } from "../../src/i18n/config";
 
@@ -164,13 +167,41 @@ test("an unknown group and an unknown song both come back empty", async () => {
 });
 
 test("the two groups that are not devatas say what they are", () => {
-  // "Songs to the mind" is a form and "Not yet sorted" is an admitted
-  // gap. Neither may be presented as a devata.
+  // Neither may be presented as a devata, and neither may be labelled
+  // as a failure: a niti pada is a form, and the bhakti padas are
+  // songs that name no single face of God — which is a thing a
+  // Haridasa song genuinely is, not a filing error.
   assert.equal(bhajanGroup("niti")!.kind, "form");
-  assert.equal(bhajanGroup("unsorted")!.kind, "gap");
+  assert.equal(bhajanGroup("bhakti")!.kind, "open");
   for (const locale of LOCALES) {
     assert.ok(BHAJAN_STRINGS[locale].nitiNote.trim(), `${locale} does not explain the niti group`);
-    assert.ok(BHAJAN_STRINGS[locale].unsortedNote.trim(), `${locale} does not explain the gap`);
+    assert.ok(BHAJAN_STRINGS[locale].openNote.trim(), `${locale} does not explain the bhakti group`);
+    // No group may be named after what it lacks.
+    for (const g of BHAJAN_GROUPS) {
+      assert.ok(
+        !/unsorted|unknown|not yet|misc|other/i.test(g.name.en),
+        `${g.id} is named "${g.name.en}" — name a group for what it is`,
+      );
+    }
+  }
+});
+
+test("every group with songs has a picture or a designed fallback", () => {
+  // A picture is never required, but where one exists it must be on
+  // disk, declare its real size, and say where it came from.
+  for (const g of bhajanGroups("en")) {
+    const pic = groupImage(g.id);
+    if (!pic) continue;
+    const file = path.join(process.cwd(), "public", pic.src);
+    assert.ok(existsSync(file), `${pic.src} is not on disk`);
+    assert.ok(pic.credit.trim(), `${g.id}'s picture has no credit`);
+    assert.ok(
+      pic.sourceUrl || /upplied by the site owner/.test(pic.credit),
+      `${g.id}'s picture has neither a source link nor a credit saying who supplied it`,
+    );
+    for (const locale of LOCALES) {
+      assert.ok(pic.alt[locale]?.trim(), `${g.id}'s picture has no ${locale} alt text`);
+    }
   }
 });
 

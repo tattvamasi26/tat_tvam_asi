@@ -6,12 +6,14 @@ import type { Locale } from "@/i18n/config";
 //  Twenty of these are devatas. Two are not, and both earn their place
 //  by being true rather than tidy:
 //
-//    niti      — a nīti pada turns away from the devata and addresses
-//                the singer's own mind. Purandara Dāsa wrote a great
-//                many. Filing them under a god would misread them.
-//    unsorted  — the songs whose devata could not be settled from the
-//                owner's own category or from the text. They are shown
-//                as unsorted rather than guessed at.
+//    niti    — a nīti pada turns away from the devata and addresses
+//              the singer's own mind. Purandara Dāsa wrote a great
+//              many. Filing them under a god would misread them.
+//    bhakti  — songs of devotion that name no single form of God.
+//              They are not a leftover pile: a Haridasa very often
+//              sings to Hari plainly, or to his guru, and forcing one
+//              face onto such a song would be worse than leaving it
+//              among its own kind. The sorting continues underneath.
 //
 //  Where a devata already has a slug in seed/devatas.ts — ganesha,
 //  shiva, vishnu, devi — that slug is used here too, so the stutis and
@@ -21,8 +23,16 @@ import type { Locale } from "@/i18n/config";
 export interface BhajanGroup {
   id: string;
   name: Record<Locale, string>;
-  /** A devata group takes a devata's name; the other two do not. */
-  kind: "devata" | "form" | "gap";
+  /**
+   * devata - addressed to one named god.
+   * form   - a kind of song rather than an address, such as a niti pada.
+   * open   - devotional songs that name no single form of God. Not a
+   *          gap and not a failure: a great many Haridasa songs simply
+   *          address the Lord as Hari or as the guru, and sorting them
+   *          under one face would misread them. The page says the
+   *          sorting is still going on.
+   */
+  kind: "devata" | "form" | "open";
 }
 
 const G = (id: string, en: string, kn: string, hi: string, kind: BhajanGroup["kind"] = "devata"): BhajanGroup => ({
@@ -53,8 +63,8 @@ export const BHAJAN_GROUPS: BhajanGroup[] = [
   G("tulasi", "Tulasi", "ತುಳಸಿ", "तुळसी"),
   G("surya", "Surya", "ಸೂರ್ಯ", "सूर्य"),
   G("shani", "Shani", "ಶನಿ", "शनि"),
-  G("niti", "Songs to the mind", "ಮನಸ್ಸಿಗೆ ಹೇಳಿದ ಪದಗಳು", "मन से कहे गए पद", "form"),
-  G("unsorted", "Not yet sorted", "ಇನ್ನೂ ವಿಂಗಡಿಸದವು", "अभी वर्गीकृत नहीं", "gap"),
+  G("niti", "Niti padagalu", "ನೀತಿ ಪದಗಳು", "नीति पद", "form"),
+  G("bhakti", "Bhakti padagalu", "ಭಕ್ತಿ ಪದಗಳು", "भक्ति पद", "open"),
 ];
 
 const BY_ID = new Map(BHAJAN_GROUPS.map((g) => [g.id, g]));
