@@ -1,46 +1,65 @@
 import Link from "next/link";
-// Nothing on this page carries a photograph today. The group plate
-// keeps its branch so an owner-supplied picture is one entry in
-// seed/ritual-images.ts rather than a re-wiring; see the note there.
-import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { ritualStrings } from "@/i18n/rituals";
 import { festivalStrings } from "@/i18n/festivals";
-import { getRitualGroups, getSamskaras, getFestivals, getLunarYear } from "@/lib/data";
+import {
+  getYearLens,
+  getDayLens,
+  getLifeLens,
+  getOccasionRites,
+  getRitesOnLens,
+  getSamskaras,
+  getFestivals,
+} from "@/lib/data";
+import { YearWheel } from "@/components/rituals/YearWheel";
+import { DayBand } from "@/components/rituals/DayBand";
+import { LifeLine } from "@/components/rituals/LifeLine";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
   title: "Rituals & Festivals",
   description:
-    "What is actually done — at a birth, at dusk, on the eleventh day of the moon, and once a year in the order of the lunar calendar.",
+    "The year, the day and a life — what is actually done, and when. Dates are lunar, not Gregorian.",
 };
 
 /**
- * The front door of the section.
+ * The front door, entered through time rather than through a
+ * taxonomy.
  *
- * Four things, in this order: what these pages are and are not; the
- * sixteen rites of passage drawn as one arc across a life; the year,
- * which is the festivals; and then the rites themselves, grouped.
+ * The first version of this page was six card lists under six group
+ * headings — saṃskāra, nitya, vrata, yajña, pitṛ, kṣetra — which is a
+ * librarian's shape and not how anybody meets these things. Nobody
+ * wants "the pitṛ group"; they want to know what falls this month,
+ * what is done at dusk, and what happens when a child is born.
  *
- * The arc comes before the groups because it is the one view of the
- * material that a list cannot give — the sixteen are a sequence, and
- * seeing which links are missing is the point rather than a defect of
- * the drawing.
+ * So the page is three lenses and a remainder, largest cycle first:
+ * the year, the day, a life, and the four rites that sit on no
+ * calendar at all. Each lens is a drawing paired with a list — the
+ * drawing carries the shape, the list carries the names and every
+ * link. That pairing is deliberate: it lets the drawings stay
+ * decorative, which means no four-pixel tap targets and nothing
+ * important available only to somebody who can see it.
+ *
+ * The six groups have not gone; a rite's own page still says which
+ * one it belongs to. They are just no longer the way in.
  */
 export default function RitualsPage() {
   const { locale } = getTranslations();
   const s = ritualStrings(locale);
   const f = festivalStrings(locale);
-  const groups = getRitualGroups(locale);
-  const samskaras = getSamskaras(locale);
-  const festivals = getFestivals(locale);
   const sc = scriptClass(locale);
 
-  const rites = groups.reduce((n, g) => n + g.rituals.length, 0);
-  const months = getLunarYear(locale);
+  const year = getYearLens(locale);
+  const day = getDayLens(locale);
+  const dayRites = getRitesOnLens("day", locale);
+  const life = getLifeLens(locale);
+  const occasion = getOccasionRites(locale);
+  const samskaras = getSamskaras(locale);
+  const festivals = getFestivals(locale);
 
+  const rites = day.length + occasion.length + year.recurring.length + year.spans.length + 8;
   const keptLabel = { common: s.keptCommon, rare: s.keptRare, lapsed: s.keptLapsed };
 
   return (
@@ -55,17 +74,135 @@ export default function RitualsPage() {
         </div>
       </section>
 
-      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
+      <section className="shell" style={{ paddingTop: 0 }}>
         <div className="ri-standing">
           <p className="ri-standing-text">{s.standing}</p>
         </div>
+      </section>
 
-        {/* The sixteen, as one sequence. */}
-        <div className="ri-arc-block">
-          <div className="ri-arc-head">
-            <h2 className="ri-arc-title">{s.arcTitle}</h2>
-            <p className="ri-arc-lede">{s.arcLede}</p>
+      {/* ── the year ─────────────────────────────────────── */}
+      <section className="ry-lens" aria-labelledby="lens-year">
+        <div className="shell ry-lens-inner">
+          <div className="ry-lens-head">
+            <h2 className="ry-lens-title" id="lens-year">
+              {s.lensYear}
+            </h2>
+            <p className="ry-lens-lede">{s.lensYearLede}</p>
           </div>
+
+          <div className="ry-figure-pair">
+            <YearWheel
+              year={year}
+              caption={s.lensYearCaption}
+              centre={{ top: s.wheelCentreTop, bottom: s.wheelCentreBottom }}
+            />
+
+            <div className="ry-aside">
+              {/* What repeats, as a rhythm rather than a list of dates. */}
+              <ul className="ry-legend">
+                {year.recurring.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/rituals/${r.slug}`} className="ry-legend-row">
+                      <span className="ry-legend-name">{r.name}</span>
+                      <span className="ry-legend-count">
+                        {s.timesAYear(r.timesAYear.toLocaleString("en-IN"))}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+                {year.spans.map((r) => (
+                  <li key={r.slug}>
+                    <Link href={`/rituals/${r.slug}`} className="ry-legend-row">
+                      <span className="ry-legend-name">{r.name}</span>
+                      <span className="ry-legend-count">{r.lede}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="ry-note">{f.standing}</p>
+            </div>
+          </div>
+
+          <h3 className="ry-sub">{s.monthsHeading}</h3>
+          <ol className="ry-months">
+            {year.months.map((m) => (
+              <li key={m.id} className="ry-month-row" data-empty={m.festivals.length ? "no" : "yes"}>
+                <span className="ry-month-num">{m.index.toLocaleString("en-IN")}</span>
+                <span className="ry-month-name">{m.name}</span>
+                {m.festivals.length ? (
+                  <span className="ry-month-list">
+                    {m.festivals.map((x) => (
+                      <Link key={x.slug} href={`/festivals/${x.slug}`} className="ry-month-fest">
+                        <span className="ry-month-fest-name">{x.name}</span>
+                        <span className="ry-month-fest-when">{x.when}</span>
+                      </Link>
+                    ))}
+                  </span>
+                ) : (
+                  <span className="ry-month-none">{s.noFestivals}</span>
+                )}
+              </li>
+            ))}
+          </ol>
+
+          <Link href="/festivals" className="ry-more">
+            {s.yearLink} <Arrow />
+          </Link>
+        </div>
+      </section>
+
+      {/* ── the day ──────────────────────────────────────── */}
+      <section className="ry-lens" aria-labelledby="lens-day">
+        <div className="shell ry-lens-inner">
+          <div className="ry-lens-head">
+            <h2 className="ry-lens-title" id="lens-day">
+              {s.lensDay}
+            </h2>
+            <p className="ry-lens-lede">{s.lensDayLede}</p>
+          </div>
+
+          <DayBand
+            marks={day}
+            caption={s.lensDayCaption}
+            labels={{ dawn: s.dawn, noon: s.noon, dusk: s.dusk }}
+          />
+
+          <ul className="ri-rows">
+            {dayRites.map((r) => (
+              <li key={r.slug}>
+                <Link href={`/rituals/${r.slug}`} className="ri-row">
+                  <span className="ri-row-body">
+                    <span className="ri-row-name">{r.name}</span>
+                    <span className={`ri-row-sanskrit ${sc}`}>{r.sanskrit}</span>
+                    <span className="ri-row-when">{r.when}</span>
+                    <span className="ri-row-lede">{r.lede}</span>
+                  </span>
+                  <span className="ri-row-more">
+                    {s.read} <Arrow />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* ── a life ───────────────────────────────────────── */}
+      <section className="ry-lens" aria-labelledby="lens-life">
+        <div className="shell ry-lens-inner">
+          <div className="ry-lens-head">
+            <h2 className="ry-lens-title" id="lens-life">
+              {s.lensLife}
+            </h2>
+            <p className="ry-lens-lede">{s.lensLifeLede}</p>
+          </div>
+
+          <LifeLine
+            samskaras={life}
+            caption={s.lensLifeCaption}
+            labels={{ before: s.beforeBirth, years: s.years }}
+          />
 
           <ol className="ri-arc">
             {samskaras.map((k) => {
@@ -79,7 +216,6 @@ export default function RitualsPage() {
                   <span className="ri-arc-kept">{keptLabel[k.kept]}</span>
                 </>
               );
-
               return (
                 <li key={k.id} className="ri-arc-step" data-kept={k.kept}>
                   {k.slug ? (
@@ -93,91 +229,40 @@ export default function RitualsPage() {
               );
             })}
           </ol>
-        </div>
 
-        {/* The year. */}
-        <Link href="/festivals" className="ri-year">
-          <span className="ri-year-words">
-            <span className="ri-year-title">{s.yearTitle}</span>
-            <span className="ri-year-lede">{s.yearLede}</span>
-            <span className="ri-row-more">
-              {s.yearLink} <Arrow />
-            </span>
-          </span>
-          {/* The twelve lunar months, the ones carrying a festival set
-              in the sacred ink. It shows the shape of the year from the
-              section's own data rather than illustrating it with four
-              photographs of crowds. */}
-          <span className="ri-year-months" aria-hidden="true">
-            {months.map((m) => (
-              <span key={m.id} className="ri-year-month" data-has={m.count > 0 ? "yes" : "no"}>
-                {m.name}
-              </span>
-            ))}
-          </span>
-        </Link>
-
-        {/* The year's own rule about dates belongs beside the year, not
-            stranded at the foot of the page. It is the festivals'
-            string, not a second copy of it. */}
-        <div className="ri-standing">
-          <p className="ri-standing-text">{f.standing}</p>
+          <p className="ry-note ry-note-wide">{s.ageNote}</p>
         </div>
       </section>
 
-      {/* One section per group, alternating on the paper the way a
-          devata's page alternates its sections. */}
-      {groups.map((g) => (
-        <section key={g.id} className="ri-group" aria-labelledby={`g-${g.id}`}>
-          <div className="shell ri-group-inner">
-            <div className="ri-group-head">
-              <div className="ri-plate">
-                {g.image ? (
-                  <Image
-                    src={g.image.src}
-                    alt={g.image.alt}
-                    fill
-                    sizes="(max-width: 560px) 100vw, 150px"
-                    style={{ objectFit: "cover", objectPosition: g.image.position }}
-                  />
-                ) : (
-                  <span className={`ri-plate-glyph ${sc}`} aria-hidden="true">
-                    {g.glyph}
-                  </span>
-                )}
-              </div>
-
-              <div className="ri-group-words">
-                <p className="ri-group-count">{s.groupCount(g.rituals.length.toLocaleString("en-IN"))}</p>
-                <h2 className="ri-group-name" id={`g-${g.id}`}>
-                  {g.name}
-                </h2>
-                <span className={`ri-group-sanskrit ${sc}`}>{g.sanskrit}</span>
-                <p className="ri-group-lede">{g.lede}</p>
-              </div>
-            </div>
-
-            <ul className="ri-rows">
-              {g.rituals.map((r) => (
-                <li key={r.slug}>
-                  <Link href={`/rituals/${r.slug}`} className="ri-row">
-                    <span className="ri-row-body">
-                      <span className="ri-row-name">{r.name}</span>
-                      <span className={`ri-row-sanskrit ${sc}`}>{r.sanskrit}</span>
-                      <span className="ri-row-when">{r.when}</span>
-                      <span className="ri-row-lede">{r.lede}</span>
-                    </span>
-                    <span className="ri-row-more">
-                      {s.read} <Arrow />
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      {/* ── on no calendar ───────────────────────────────── */}
+      <section className="ry-lens" aria-labelledby="lens-occasion">
+        <div className="shell ry-lens-inner">
+          <div className="ry-lens-head">
+            <h2 className="ry-lens-title" id="lens-occasion">
+              {s.lensOccasion}
+            </h2>
+            <p className="ry-lens-lede">{s.lensOccasionLede}</p>
           </div>
-        </section>
-      ))}
 
+          <ul className="ri-rows">
+            {occasion.map((r) => (
+              <li key={r.slug}>
+                <Link href={`/rituals/${r.slug}`} className="ri-row">
+                  <span className="ri-row-body">
+                    <span className="ri-row-name">{r.name}</span>
+                    <span className={`ri-row-sanskrit ${sc}`}>{r.sanskrit}</span>
+                    <span className="ri-row-when">{r.when}</span>
+                    <span className="ri-row-lede">{r.lede}</span>
+                  </span>
+                  <span className="ri-row-more">
+                    {s.read} <Arrow />
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
     </>
   );
 }

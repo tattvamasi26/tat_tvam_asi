@@ -4,6 +4,9 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { ritualStrings } from "@/i18n/rituals";
+// The chip pointing into the map is labelled with the map's own name,
+// so the two sections never call it two different things.
+import { shastraStrings } from "@/i18n/shastras";
 import { getRitual, getRituals } from "@/lib/data";
 import { RITUALS } from "@/lib/seed/rituals";
 import { scriptClass } from "@/lib/script";
@@ -40,6 +43,7 @@ export async function generateMetadata({
 export default function RitualPage({ params }: { params: { ritual: string } }) {
   const { locale } = getTranslations();
   const s = ritualStrings(locale);
+  const sh = shastraStrings(locale);
   const r = getRitual(params.ritual, locale);
   if (!r) notFound();
 
@@ -98,6 +102,24 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
           <div className="ri-aside">
             <p className="fact-label">{s.labelRegional}</p>
             <p>{r.regional}</p>
+          </div>
+        )}
+
+        {/* The bridge into the map of the tradition. It is here rather
+            than among the links because it is not a related read — it
+            is the answer to "says who", and the answer differs by
+            rite in a way that is worth noticing. */}
+        {r.prescribedBy && (
+          <div className="ri-section">
+            <h2 className="ri-h2">{s.labelPrescribed}</h2>
+            <p>{r.prescribedBy.note}</p>
+            <ul className="ri-chips">
+              <li>
+                <Link href={r.prescribedBy.href} className="chip">
+                  {sh.title}
+                </Link>
+              </li>
+            </ul>
           </div>
         )}
 

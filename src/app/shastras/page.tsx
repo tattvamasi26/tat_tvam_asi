@@ -2,6 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { shastraStrings } from "@/i18n/shastras";
+// The count of rites a branch lays down is the rites section's own
+// sentence, so it is kept with the rest of that vocabulary.
+import { ritualStrings } from "@/i18n/rituals";
 import { getShastraMap } from "@/lib/data";
 import { shastraProgress } from "@/lib/seed/shastras";
 import { scriptClass } from "@/lib/script";
@@ -32,6 +35,7 @@ export const metadata: Metadata = {
 export default function ShastrasPage() {
   const { locale } = getTranslations();
   const s = shastraStrings(locale);
+  const r = ritualStrings(locale);
   const branches = getShastraMap(locale);
   const { live, partial, total } = shastraProgress();
   const sc = scriptClass(locale);
@@ -78,6 +82,7 @@ export default function ShastrasPage() {
             return (
               <li
                 key={branch.id}
+                id={branch.id}
                 className={`sh-cell${wide ? " is-wide" : ""}`}
               >
                 <article className="sh-card">
@@ -115,6 +120,16 @@ export default function ShastrasPage() {
                         ),
                       )}
                     </ul>
+
+                    {/* The return leg of the bridge. A branch that lays
+                        rites down says so and points at them, so the
+                        map of what is written and the section on what
+                        is done are not two strangers. */}
+                    {branch.rites > 0 && (
+                      <Link href="/rituals" className="sh-rites">
+                        {r.doneBecause(branch.rites.toLocaleString("en-IN"))} <Arrow />
+                      </Link>
+                    )}
                   </div>
                 </article>
               </li>

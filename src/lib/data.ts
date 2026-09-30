@@ -256,6 +256,7 @@ import {
   PAKSHAS,
   TITHIS,
   monthOrder,
+  monthFraction,
   type Reckoning,
 } from "./seed/festivals";
 import { festivalImage, type FestivalImage } from "./seed/festival-images";
@@ -263,9 +264,15 @@ import {
   RITUALS,
   RITUAL_GROUPS,
   SAMSKARAS,
+  PLACEMENT,
+  SAMSKARA_AGE,
   ritualsInGroup,
   ritualsInOrder,
+  ritualsOnLens,
+  ritualsFromBranch,
+  prescriptionFor,
   type Kept,
+  type Lens,
   type RitualGroupId,
 } from "./seed/rituals";
 import { ritualImage, ritualGroupImage, type RitualImage } from "./seed/ritual-images";
@@ -1245,6 +1252,9 @@ export function getShastraMap(locale: Locale): ShastraBranchView[] {
     // prints it, so a branch never looks fuller than it is.
     readable: branch.texts.filter((t) => t.status !== "planned").length,
     total: branch.texts.length,
+    // How many rites this branch lays down — the return leg of the
+    // bridge into Rituals & Festivals.
+    rites: ritualsFromBranch(branch.id).length,
     texts: branch.texts.map((text) => ({
       id: text.id,
       name: text.name[locale],
@@ -1277,6 +1287,8 @@ export interface ShastraBranchView {
   lede: string;
   readable: number;
   total: number;
+  /** How many rites this branch lays down. */
+  rites: number;
   texts: ShastraTextView[];
 }
 
@@ -1484,6 +1496,13 @@ export interface RitualView {
   regional: string | null;
   words: RitualLinkView[];
   links: RitualLinkView[];
+  /**
+   * Which layer of the tradition lays this rite down, and a line about
+   * it. The bridge into /shastras: a saṃskāra is in the Gṛhya Sūtras,
+   * a vrata is Paurāṇika, temple pūjā is Āgamic, and a reader who sees
+   * that has learned something a list of rites cannot teach.
+   */
+  prescribedBy: { branch: string; note: string; href: string } | null;
   /** Null far more often than not — see seed/ritual-images.ts. */
   image: RitualImageView | null;
 }
@@ -1546,6 +1565,12 @@ function ritualView(r: (typeof RITUALS)[number], locale: Locale): RitualView {
     regional: r.regional?.[locale] ?? null,
     words: (r.words ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
     links: (r.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+    prescribedBy: (() => {
+      const p = prescriptionFor(r.slug);
+      return p
+        ? { branch: p.branch, note: p.note[locale], href: `/shastras#${p.branch}` }
+        : null;
+    })(),
     image: ritualImageView(ritualImage(r.slug), locale),
   };
 }
@@ -1618,4 +1643,144 @@ export function getLunarYear(locale: Locale): {
     name: names[locale] ?? names.en,
     count: counted.get(id) ?? 0,
   }));
+}
+
+// ── the three lenses on Rituals & Festivals ─────────────────
+//
+//  The section is entered through time rather than through its six
+//  groups: the year, the day, a life, and the things that sit on no
+//  calendar at all. Each lens is drawn, and each drawing is paired
+//  with a numbered list — the drawing carries the shape, the list
+//  carries the names and the links.
+
+export interface MarkView {
+  slug: string;
+  name: string;
+  /** Degrees clockwise from the top, for the year wheel. */
+  angle?: number;
+  /** Hours from midnight, for the day band. */
+  hours?: number[];
+  /** Years, for the life line. Negative before birth. */
+  age?: number;
+  href: string;
+  /** Distinguishes a festival's dot from a rite's. */
+  kind: "festival" | "rite";
+}
+
+export interface YearMonthView {
+  id: string;
+  name: string;
+  /** 1-based; the lunar year begins at Chaitra. */
+  index: number;
+  festivals: { slug: string; name: string; when: string }[];
+}
+
+export interface YearLensView {
+  months: YearMonthView[];
+  /** The festivals as dots, already placed. */
+  marks: MarkView[];
+  /** Observances that come round many times, as a rhythm not a date. */
+  recurring: { slug: string; name: string; timesAYear: number; lede: string }[];
+  /** Observances that occupy a stretch of the year. */
+  spans: { slug: string; name: string; from: number; to: number; lede: string }[];
+}
+
+const TWO_PI_DEG = 360;
+
+/** The year, ready to draw: twelve months, the festivals placed on them. */
+export function getYearLens(locale: Locale): YearLensView {
+  const order = Object.keys(LUNAR_MONTHS);
+  const at = (month: string) => Math.max(0, order.indexOf(month));
+
+  const marks: MarkView[] = FESTIVALS.map((f) => {
+    // A solar festival has no lunar month of its own; it is placed in
+    // the month it falls in so the wheel is not missing a day people
+    // actually keep.
+    const m = f.month ?? "pausha";
+    const within = monthFraction(f.paksha, f.tithi);
+    return {
+      slug: f.slug,
+      name: f.name[locale],
+      angle: ((at(m) + within) / 12) * TWO_PI_DEG,
+      href: `/festivals/${f.slug}`,
+      kind: "festival" as const,
+    };
+  }).sort((a, b) => (a.angle ?? 0) - (b.angle ?? 0));
+
+  const months: YearMonthView[] = order.map((id, i) => ({
+    id,
+    name: LUNAR_MONTHS[id]?.[locale] ?? id,
+    index: i + 1,
+    festivals: FESTIVALS.filter((f) => (f.month ?? "pausha") === id)
+      .sort((a, b) => monthFraction(a.paksha, a.tithi) - monthFraction(b.paksha, b.tithi))
+      .map((f) => ({
+        slug: f.slug,
+        name: f.name[locale],
+        when: [
+          f.paksha ? PAKSHAS[f.paksha][locale] : null,
+          f.tithi ? TITHIS[f.tithi][locale] : null,
+        ]
+          .filter(Boolean)
+          .join(" · "),
+      })),
+  }));
+
+  const onYear = ritualsOnLens("year");
+  const recurring = onYear
+    .filter((r) => (PLACEMENT[r.slug]?.timesAYear ?? 0) > 1)
+    .map((r) => ({
+      slug: r.slug,
+      name: r.name[locale],
+      timesAYear: PLACEMENT[r.slug]!.timesAYear!,
+      lede: r.when[locale],
+    }));
+
+  const spans = onYear
+    .filter((r) => PLACEMENT[r.slug]?.span)
+    .map((r) => {
+      const [a, b] = PLACEMENT[r.slug]!.span!;
+      return {
+        slug: r.slug,
+        name: r.name[locale],
+        from: (at(a) / 12) * TWO_PI_DEG,
+        to: ((at(b) + 1) / 12) * TWO_PI_DEG,
+        lede: r.when[locale],
+      };
+    });
+
+  return { months, marks, recurring, spans };
+}
+
+/** The day, ready to draw: the rites done at fixed hours. */
+export function getDayLens(locale: Locale): MarkView[] {
+  return ritualsOnLens("day").map((r) => ({
+    slug: r.slug,
+    name: r.name[locale],
+    hours: PLACEMENT[r.slug]?.hours ?? [],
+    href: `/rituals/${r.slug}`,
+    kind: "rite" as const,
+  }));
+}
+
+/** A life, ready to draw: the sixteen placed at their traditional ages. */
+export function getLifeLens(locale: Locale): (SamskaraView & { age: number })[] {
+  return getSamskaras(locale).map((s) => ({ ...s, age: SAMSKARA_AGE[s.id] ?? 0 }));
+}
+
+/** Every rite on one lens, in full, for the list beside the drawing. */
+export function getRitesOnLens(lens: Lens, locale: Locale): RitualView[] {
+  return ritualsOnLens(lens).map((r) => ritualView(r, locale));
+}
+
+/** What belongs to no calendar, and is done when the occasion comes. */
+export function getOccasionRites(locale: Locale): RitualView[] {
+  return getRitesOnLens("occasion", locale);
+}
+
+/** The rites one branch of the map lays down, for the link back. */
+export function getRitesFromBranch(
+  branch: string,
+  locale: Locale,
+): { slug: string; name: string }[] {
+  return ritualsFromBranch(branch).map((r) => ({ slug: r.slug, name: r.name[locale] }));
 }

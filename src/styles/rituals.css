@@ -230,115 +230,6 @@ a.ri-arc-node .ri-arc-name {
   }
 }
 
-/* ── one group of rites ───────────────────────────────────── */
-.ri-group {
-  padding-block: clamp(2rem, 5vw, 3.4rem);
-  background: var(--paper);
-}
-
-.ri-group:nth-of-type(even) {
-  background: var(--paper-2);
-}
-
-.ri-group-inner {
-  display: grid;
-  gap: clamp(1.2rem, 3vw, 1.9rem);
-}
-
-.ri-group-head {
-  display: grid;
-  grid-template-columns: clamp(96px, 16vw, 148px) minmax(0, 1fr);
-  gap: clamp(1rem, 2.6vw, 1.6rem);
-  align-items: center;
-}
-
-@media (max-width: 560px) {
-  .ri-group-head {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  /* The plate is a square beside the words on a wide screen. Stacked,
-     a square becomes a 358px block of nothing much, so it turns into
-     a band instead. */
-  .ri-plate {
-    aspect-ratio: 16 / 7;
-  }
-}
-
-/* A photograph where one exists; otherwise the group's own glyph on
-   a plate. The second is a design, not a hole where a picture failed
-   to load. */
-.ri-plate {
-  position: relative;
-  aspect-ratio: 1;
-  overflow: hidden;
-  border-radius: var(--r);
-  border: 1px solid var(--line);
-  background: var(--card);
-  display: grid;
-  place-items: center;
-}
-
-.ri-plate-glyph {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  padding: 0.5rem;
-  text-align: center;
-  background:
-    radial-gradient(120% 120% at 30% 20%, var(--marigold-soft), transparent 62%),
-    var(--paper-3);
-  color: var(--sacred);
-  font-size: clamp(1.1rem, 3.4vw, 1.7rem);
-  line-height: 1.3;
-  overflow-wrap: anywhere;
-}
-
-/* Kannada sets wider than Devanagari at the same point size, so the
-   same word that fits in Devanagari wraps in Kannada — the lesson the
-   shastras cards already learned with ಉಪನಿಷದ್. ಸಂಸ್ಕಾರ is the longest
-   here. The script class is already on the element. */
-.ri-plate-glyph.kannada {
-  font-size: clamp(0.95rem, 2.9vw, 1.45rem);
-}
-
-.ri-group-words {
-  display: grid;
-  gap: 0.4rem;
-  min-width: 0;
-}
-
-.ri-group-name {
-  margin: 0;
-  font-size: clamp(1.4rem, 3.6vw, 2rem);
-  line-height: var(--lh-snug, 1.3);
-  color: var(--ink);
-  overflow-wrap: anywhere;
-}
-
-.ri-group-sanskrit {
-  color: var(--sacred);
-  font-size: 1.05rem;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-
-.ri-group-lede {
-  margin: 0;
-  max-width: 62ch;
-  color: var(--ink-2);
-  line-height: 1.7;
-}
-
-.ri-group-count {
-  font-size: 0.7rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-4);
-  font-weight: 600;
-}
-
 /* ── a rite, as a row ─────────────────────────────────────── */
 /* Two columns once there is room. One column of full-width rows at
    1440px left a line of text stranded in a great deal of paper. */
@@ -427,88 +318,6 @@ a.ri-arc-node .ri-arc-name {
   .ri-row {
     grid-template-columns: minmax(0, 1fr);
   }
-}
-
-/* ── the band into the festivals ──────────────────────────── */
-.ri-year {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--r-lg);
-  border: 1px solid var(--line);
-  background: var(--card);
-  box-shadow: var(--shadow-sm);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  align-items: stretch;
-  min-height: 210px;
-}
-
-@media (max-width: 760px) {
-  .ri-year {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-.ri-year-words {
-  padding: clamp(1.3rem, 3.2vw, 2.1rem);
-  display: grid;
-  gap: 0.55rem;
-  align-content: center;
-  justify-items: start;
-  min-width: 0;
-}
-
-.ri-year-title {
-  margin: 0;
-  font-size: clamp(1.3rem, 3.2vw, 1.8rem);
-  line-height: var(--lh-snug, 1.3);
-  color: var(--ink);
-}
-
-.ri-year-lede {
-  margin: 0;
-  max-width: 44ch;
-  color: var(--ink-2);
-  line-height: 1.7;
-}
-
-/* The twelve lunar months, in place of photographs. The months that
-   carry a festival are set in the sacred ink and the rest stay faint,
-   so the band shows the shape of the year rather than illustrating it
-   with four pictures of crowds. */
-.ri-year-months {
-  display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  gap: 0.4rem;
-  padding: clamp(1.2rem, 3vw, 1.9rem);
-  border-left: 1px solid var(--line);
-  background: var(--paper-2);
-  min-width: 0;
-}
-
-@media (max-width: 760px) {
-  .ri-year-months {
-    border-left: 0;
-    border-top: 1px solid var(--line);
-  }
-}
-
-.ri-year-month {
-  padding: 0.22rem 0.6rem;
-  border-radius: var(--pill, 999px);
-  border: 1px solid transparent;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--ink-4);
-  overflow-wrap: anywhere;
-}
-
-.ri-year-month[data-has="yes"] {
-  border-color: var(--line-2);
-  background: var(--card);
-  color: var(--sacred);
-  font-weight: 600;
 }
 
 /* ── one rite: the head ───────────────────────────────────── */
@@ -722,4 +531,381 @@ a.ri-arc-node .ri-arc-name {
   .ri-hero {
     min-height: clamp(250px, 38vh, 340px);
   }
+}
+
+/* ─────────────────────────────────────────────────────────
+   The three lenses.
+
+   The section is entered through time, not through its groups, and
+   each lens is a drawing paired with a list: the drawing carries the
+   shape, the list carries the names and every link. Nothing is
+   reachable only by clicking a four-pixel dot.
+
+   The drawings are plain SVG on the site's own tokens — no chart
+   library, nothing that ships JavaScript, and everything server
+   rendered.
+   ───────────────────────────────────────────────────────── */
+
+.ry-lens {
+  padding-block: clamp(2.2rem, 5.5vw, 3.8rem);
+  background: var(--paper);
+}
+
+.ry-lens:nth-of-type(even) {
+  background: var(--paper-2);
+}
+
+.ry-lens-inner {
+  display: grid;
+  gap: clamp(1.3rem, 3vw, 2rem);
+}
+
+.ry-lens-head {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 62ch;
+}
+
+.ry-lens-title {
+  margin: 0;
+  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.ry-lens-lede {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+.ry-sub {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  font-weight: 600;
+}
+
+/* ── the drawings, shared ─────────────────────────────────── */
+.ry-wheel,
+.ry-day,
+.ry-life {
+  margin: 0;
+  min-width: 0;
+}
+
+.ry-wheel svg,
+.ry-day svg,
+.ry-life svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.ry-caption {
+  margin-top: 0.7rem;
+  max-width: 54ch;
+  color: var(--ink-4);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.ry-axis {
+  stroke: var(--line-2);
+  stroke-width: 2;
+}
+
+.ry-axis-tick {
+  stroke: var(--line-2);
+  stroke-width: 1.5;
+}
+
+.ry-axis-label {
+  fill: var(--ink-4);
+  font-size: 11px;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+.ry-dot {
+  fill: var(--sacred);
+}
+
+/* ── the year, as a ring ──────────────────────────────────── */
+.ry-figure-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(1.2rem, 3vw, 2.4rem);
+  align-items: center;
+}
+
+@media (max-width: 860px) {
+  .ry-figure-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.ry-wheel {
+  max-width: 520px;
+  justify-self: center;
+  width: 100%;
+}
+
+.ry-month {
+  fill: var(--marigold);
+  stroke: var(--paper);
+  stroke-width: 1;
+}
+
+.ry-month-n {
+  fill: var(--ink-3);
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+}
+
+.ry-stem {
+  stroke: var(--line-2);
+  stroke-width: 1;
+}
+
+.ry-tick {
+  stroke: var(--gold-dim);
+  stroke-width: 1.5;
+}
+
+.ry-span {
+  fill: none;
+  stroke: var(--saffron);
+  stroke-width: 3;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+
+.ry-centre-top,
+.ry-centre-bottom {
+  text-anchor: middle;
+  fill: var(--ink-3);
+  font-size: 12px;
+}
+
+.ry-centre-top {
+  fill: var(--sacred);
+  font-weight: 600;
+}
+
+/* What sits beside the ring: the rhythms, and the rule about dates. */
+.ry-aside {
+  display: grid;
+  gap: 1rem;
+  align-content: center;
+  min-width: 0;
+}
+
+.ry-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.ry-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.3rem 0.8rem;
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .ry-legend-row:hover {
+    border-color: var(--gold);
+  }
+}
+
+.ry-legend-name {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+}
+
+.ry-legend-count {
+  color: var(--gold);
+  font-size: 0.82rem;
+  overflow-wrap: anywhere;
+}
+
+.ry-note {
+  margin: 0;
+  padding-left: clamp(0.8rem, 2vw, 1.1rem);
+  border-left: 2px solid var(--gold);
+  color: var(--ink-3);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.ry-note-wide {
+  max-width: 68ch;
+}
+
+/* ── month by month ───────────────────────────────────────── */
+.ry-months {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 0.6rem;
+}
+
+.ry-month-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2rem 0.7rem;
+  align-items: baseline;
+  padding: 0.85rem 1rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+
+.ry-month-row[data-empty="yes"] {
+  background: transparent;
+  border-style: dashed;
+}
+
+.ry-month-num {
+  grid-row: span 2;
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--marigold-soft);
+  color: #6b4a00;
+  font-size: 0.74rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.ry-month-row[data-empty="yes"] .ry-month-num {
+  background: var(--paper-2);
+  color: var(--ink-4);
+}
+
+.ry-month-name {
+  font-weight: 600;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.ry-month-list {
+  display: grid;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.ry-month-fest {
+  display: grid;
+  gap: 0.05rem;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.ry-month-fest-name {
+  color: var(--sacred);
+  font-size: 0.92rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) {
+  .ry-month-fest:hover .ry-month-fest-name {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.ry-month-fest-when {
+  color: var(--ink-4);
+  font-size: 0.78rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.ry-month-none {
+  color: var(--ink-4);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.ry-more {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .ry-more:hover {
+    color: var(--sacred);
+  }
+}
+
+/* ── the day ──────────────────────────────────────────────── */
+.ry-sandhi {
+  fill: var(--marigold);
+  opacity: 0.16;
+}
+
+.ry-join {
+  fill: var(--ink-4);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-anchor: middle;
+}
+
+/* ── a life ───────────────────────────────────────────────── */
+.ry-break {
+  stroke: var(--ink-4);
+  stroke-width: 1.5;
+  fill: none;
+}
+
+.ry-life .ry-dot[data-kept="common"] {
+  fill: var(--marigold);
+  stroke: var(--gold);
+  stroke-width: 1.5;
+}
+
+.ry-life .ry-dot[data-kept="rare"] {
+  fill: var(--marigold-soft);
+  stroke: var(--gold-dim);
+  stroke-width: 1.5;
+}
+
+.ry-life .ry-dot[data-kept="lapsed"] {
+  fill: var(--paper);
+  stroke: var(--ink-4);
+  stroke-width: 1.5;
 }

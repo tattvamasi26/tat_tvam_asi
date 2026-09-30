@@ -1021,3 +1021,215 @@ export function ritualsInGroup(group: RitualGroupId): Ritual[] {
 export function ritualsInOrder(): Ritual[] {
   return [...RITUALS].sort((a, b) => a.order - b.order);
 }
+
+// ── where a rite sits in time ───────────────────────────────
+//
+//  The six groups above are a taxonomy, and a taxonomy is not how
+//  anybody meets these things. Nobody wakes up wanting "the pitṛ
+//  group"; they want to know what falls this month, what is done at
+//  dusk, and what happens when a child is born. So the section is
+//  entered through time instead, and this is the map from a rite to
+//  the lens it appears on.
+//
+//  The groups stay — they are still true, and a rite's own page says
+//  which one it belongs to. They are just no longer the front door.
+
+export type Lens = "year" | "day" | "life" | "occasion";
+
+export interface Placement {
+  lens: Lens;
+  /** day: hours from midnight, one entry per time it is done. */
+  hours?: number[];
+  /** year: how many times it comes round in a year. */
+  timesAYear?: number;
+  /** year: a span rather than a point — [first month, last month]. */
+  span?: [string, string];
+}
+
+/**
+ * Every rite is placed. A rite missing from here would silently
+ * vanish from the section's front door, so a test requires all of
+ * them.
+ */
+export const PLACEMENT: Record<string, Placement> = {
+  // The day. Hours are the ordinary ones, not the astronomical
+  // saṃdhis, which move through the year.
+  sandhyavandana: { lens: "day", hours: [6, 12, 18] },
+  puja: { lens: "day", hours: [8.5] },
+  deepa: { lens: "day", hours: [18.5] },
+  agnihotra: { lens: "day", hours: [6.25, 18.25] },
+
+  // The year, by the moon.
+  ekadashi: { lens: "year", timesAYear: 24 },
+  pradosha: { lens: "year", timesAYear: 24 },
+  "sankashtahara-chaturthi": { lens: "year", timesAYear: 12 },
+  chaturmasya: { lens: "year", timesAYear: 1, span: ["ashadha", "kartika"] },
+  "mahalaya-paksha": { lens: "year", timesAYear: 1, span: ["bhadrapada", "ashvina"] },
+
+  // A life.
+  simantonnayana: { lens: "life" },
+  jatakarma: { lens: "life" },
+  namakarana: { lens: "life" },
+  annaprashana: { lens: "life" },
+  chudakarma: { lens: "life" },
+  upanayana: { lens: "life" },
+  vivaha: { lens: "life" },
+  antyeshti: { lens: "life" },
+
+  // On no calendar at all. Saying so is more useful than inventing a
+  // rhythm for them: a śrāddha is annual, but on the tithi somebody
+  // died, which is a different calendar for every family.
+  homa: { lens: "occasion" },
+  shraddha: { lens: "occasion" },
+  tirthayatra: { lens: "occasion" },
+  pradakshina: { lens: "occasion" },
+};
+
+/**
+ * Roughly when in a life each saṃskāra falls, in years, so the line
+ * can be drawn to scale — which is the whole point of drawing it.
+ * Negative is before birth.
+ *
+ * **These are the Gṛhya Sūtras' ages and they disagree with each
+ * other**, most of all about the upanayana, where the age depends on
+ * the varṇa and on whether you count from conception. They are here
+ * to place a dot, not to be quoted: the page says so.
+ */
+export const SAMSKARA_AGE: Record<string, number> = {
+  garbhadhana: -0.8,
+  pumsavana: -0.55,
+  simantonnayana: -0.2,
+  jatakarma: 0,
+  namakarana: 0.03,
+  nishkramana: 0.33,
+  annaprashana: 0.5,
+  chudakarma: 2,
+  karnavedha: 3,
+  upanayana: 8,
+  vedarambha: 8.5,
+  keshanta: 16,
+  samavartana: 24,
+  vivaha: 26,
+  vanaprastha: 52,
+  antyeshti: 78,
+};
+
+export function placementFor(slug: string): Placement | undefined {
+  return PLACEMENT[slug];
+}
+
+export function ritualsOnLens(lens: Lens): Ritual[] {
+  return RITUALS.filter((r) => PLACEMENT[r.slug]?.lens === lens).sort((a, b) => a.order - b.order);
+}
+
+// ── the bridge into the map of the tradition ────────────────
+//
+//  This is the connection between the two halves of the site, and it
+//  is also the most interesting single fact about the rites: they do
+//  not all come from the same place. The saṃskāras are in the Gṛhya
+//  Sūtras, the fire rites in the Śrauta Sūtras — the two halves of
+//  one Vedāṅga. The vratas are almost entirely Paurāṇika and much
+//  later. Temple pūjā is Āgamic and barely Vedic at all.
+//
+//  A reader who sees that has understood something a list of rites
+//  cannot teach: "Hindu ritual" is not one body of practice but
+//  several, laid down at different times by different authorities,
+//  and now done side by side without anybody minding.
+//
+//  `branch` is a branch id in seed/shastras.ts.
+
+export interface Prescription {
+  branch: string;
+  note: Record<Locale, string>;
+}
+
+export const PRESCRIBED_BY: Record<string, Prescription> = {
+  // The Gṛhya Sūtras — the domestic half of the Kalpa Vedāṅga.
+  simantonnayana: { branch: "vedangas", note: GRHYA() },
+  jatakarma: { branch: "vedangas", note: GRHYA() },
+  namakarana: { branch: "vedangas", note: GRHYA() },
+  annaprashana: { branch: "vedangas", note: GRHYA() },
+  chudakarma: { branch: "vedangas", note: GRHYA() },
+  upanayana: { branch: "vedangas", note: GRHYA() },
+  vivaha: { branch: "vedangas", note: GRHYA() },
+  antyeshti: { branch: "vedangas", note: GRHYA() },
+  sandhyavandana: { branch: "vedangas", note: GRHYA() },
+
+  // The Śrauta Sūtras — the solemn half of the same Vedāṅga.
+  agnihotra: { branch: "vedangas", note: SHRAUTA() },
+  homa: { branch: "vedangas", note: SHRAUTA() },
+
+  // The Purāṇas, which is where nearly every vrata comes from.
+  ekadashi: { branch: "puranas", note: PAURANIKA() },
+  pradosha: { branch: "puranas", note: PAURANIKA() },
+  "sankashtahara-chaturthi": { branch: "puranas", note: PAURANIKA() },
+  chaturmasya: { branch: "puranas", note: PAURANIKA() },
+  tirthayatra: { branch: "puranas", note: MAHATMYA() },
+
+  // The Āgamas, which govern what happens in a temple.
+  puja: { branch: "agamas", note: AGAMIC() },
+  pradakshina: { branch: "agamas", note: AGAMIC() },
+
+  // The Dharma Śāstras, where an obligation is stated as law.
+  shraddha: { branch: "dharma", note: DHARMA() },
+  "mahalaya-paksha": { branch: "dharma", note: DHARMA() },
+};
+
+function GRHYA(): Record<Locale, string> {
+  return {
+    en: "The Gṛhya Sūtras — the household half of Kalpa, the Vedāṅga that sets out ritual procedure. Each Vedic school has its own, and they differ in the detail.",
+    kn: "ಗೃಹ್ಯ ಸೂತ್ರಗಳು — ವಿಧಿವಿಧಾನವನ್ನು ನಿರೂಪಿಸುವ ಕಲ್ಪ ವೇದಾಂಗದ ಗೃಹಸ್ಥ ಭಾಗ. ಪ್ರತಿ ವೇದಶಾಖೆಗೂ ತನ್ನದೇ ಇದೆ, ಮತ್ತು ವಿವರಗಳಲ್ಲಿ ಅವು ಭಿನ್ನ.",
+    hi: "गृह्य सूत्र — कल्प वेदांग का गृहस्थ भाग, जो अनुष्ठान-विधि निर्धारित करता है। हर वैदिक शाखा का अपना है, और विवरण में वे भिन्न हैं।",
+  };
+}
+
+function SHRAUTA(): Record<Locale, string> {
+  return {
+    en: "The Śrauta Sūtras — the solemn half of Kalpa, the same Vedāṅga, governing the fires rather than the household.",
+    kn: "ಶ್ರೌತ ಸೂತ್ರಗಳು — ಅದೇ ಕಲ್ಪ ವೇದಾಂಗದ ಶ್ರೌತ ಭಾಗ; ಮನೆಯದಲ್ಲ, ಅಗ್ನಿಗಳ ನಿರ್ವಹಣೆ.",
+    hi: "श्रौत सूत्र — उसी कल्प वेदांग का श्रौत भाग, जो गृहस्थी नहीं, अग्नियों का नियमन करता है।",
+  };
+}
+
+function PAURANIKA(): Record<Locale, string> {
+  return {
+    en: "The Purāṇas. Almost every vrata kept today is Paurāṇika and much later than the Veda, which is why the Vedic texts have nothing to say about it.",
+    kn: "ಪುರಾಣಗಳು. ಇಂದು ಆಚರಿಸುವ ಬಹುತೇಕ ಎಲ್ಲ ವ್ರತವೂ ಪೌರಾಣಿಕ ಮತ್ತು ವೇದಕ್ಕಿಂತ ಬಹಳ ತಡವಾದದ್ದು — ಆದ್ದರಿಂದಲೇ ವೈದಿಕ ಗ್ರಂಥಗಳಲ್ಲಿ ಅದರ ಬಗ್ಗೆ ಏನೂ ಇಲ್ಲ.",
+    hi: "पुराण। आज निभाया जाने वाला लगभग हर व्रत पौराणिक है और वेद से बहुत बाद का — इसीलिए वैदिक ग्रंथ उस पर कुछ नहीं कहते।",
+  };
+}
+
+function MAHATMYA(): Record<Locale, string> {
+  return {
+    en: "The Purāṇas, in their māhātmya sections — the chapters that say what a particular place is worth going to for.",
+    kn: "ಪುರಾಣಗಳು, ಅವುಗಳ ಮಾಹಾತ್ಮ್ಯ ಭಾಗಗಳಲ್ಲಿ — ಒಂದು ಕ್ಷೇತ್ರಕ್ಕೆ ಏಕೆ ಹೋಗಬೇಕೆಂದು ಹೇಳುವ ಅಧ್ಯಾಯಗಳು.",
+    hi: "पुराण, उनके माहात्म्य भागों में — वे अध्याय जो बताते हैं कि किसी स्थान पर जाना किसलिए है।",
+  };
+}
+
+function AGAMIC(): Record<Locale, string> {
+  return {
+    en: "The Āgamas. Almost everything done in a temple today comes from here rather than from the Veda, including the order of the sixteen upacāras.",
+    kn: "ಆಗಮಗಳು. ಇಂದು ದೇವಸ್ಥಾನದಲ್ಲಿ ನಡೆಯುವ ಬಹುತೇಕ ಎಲ್ಲವೂ ವೇದದಿಂದಲ್ಲ, ಇಲ್ಲಿಂದ ಬಂದದ್ದು — ಷೋಡಶೋಪಚಾರಗಳ ಕ್ರಮವೂ ಸೇರಿದಂತೆ.",
+    hi: "आगम। आज मंदिर में जो कुछ होता है उसका अधिकांश वेद से नहीं, यहीं से आता है — षोडशोपचारों का क्रम भी।",
+  };
+}
+
+function DHARMA(): Record<Locale, string> {
+  return {
+    en: "The Dharma Śāstras, where it is stated not as a devotion but as a debt — one of three a person is held to be born owing.",
+    kn: "ಧರ್ಮಶಾಸ್ತ್ರಗಳು — ಇಲ್ಲಿ ಇದು ಭಕ್ತಿಯಾಗಿ ಅಲ್ಲ, ಋಣವಾಗಿ ಹೇಳಲ್ಪಟ್ಟಿದೆ; ಹುಟ್ಟುವಾಗಲೇ ಹೊತ್ತು ಬರುವ ಮೂರರಲ್ಲಿ ಒಂದು.",
+    hi: "धर्मशास्त्र, जहाँ यह भक्ति नहीं, ऋण कहकर रखा गया है — जन्म के साथ उठाए तीन में एक।",
+  };
+}
+
+export function prescriptionFor(slug: string): Prescription | undefined {
+  return PRESCRIBED_BY[slug];
+}
+
+/** The rites that come from one branch of the map, for the link back. */
+export function ritualsFromBranch(branch: string): Ritual[] {
+  return RITUALS.filter((r) => PRESCRIBED_BY[r.slug]?.branch === branch).sort(
+    (a, b) => a.order - b.order,
+  );
+}

@@ -579,3 +579,34 @@ export function monthOrder(month: string | undefined): number {
   if (!month) return 99;
   return Object.keys(LUNAR_MONTHS).indexOf(month);
 }
+
+/**
+ * Where each tithi falls inside its fortnight, as a number.
+ *
+ * Only needed to place a festival on a drawing of the year. A tithi
+ * is not a day and the two drift against each other, so this is good
+ * enough to put a dot in the right part of a month and not good
+ * enough for anything else.
+ */
+export const TITHI_NUMBER: Record<string, number> = {
+  pratipada: 1,
+  tritiya: 3,
+  chaturthi: 4,
+  panchami: 5,
+  saptami: 7,
+  ashtami: 8,
+  navami: 9,
+  dashami: 10,
+  ekadashi: 11,
+  dvadashi: 12,
+  chaturdashi: 14,
+  purnima: 15,
+  amavasya: 15,
+};
+
+/** 0 at the start of the lunar month, 1 at its end. */
+export function monthFraction(paksha: Paksha | undefined, tithi: string | undefined): number {
+  if (!tithi) return 0.5; // a solar festival, or one fixed another way
+  const n = TITHI_NUMBER[tithi] ?? 8;
+  return (paksha === "krishna" ? 15 + n : n) / 30;
+}

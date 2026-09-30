@@ -6,13 +6,24 @@ import {
   RITUALS,
   RITUAL_GROUPS,
   SAMSKARAS,
+  PLACEMENT,
+  SAMSKARA_AGE,
+  PRESCRIBED_BY,
+  ritualsOnLens,
   ritualBySlug,
   ritualsInGroup,
   ritualsInOrder,
 } from "../../src/lib/seed/rituals";
-import { FESTIVALS } from "../../src/lib/seed/festivals";
+import { FESTIVALS, LUNAR_MONTHS } from "../../src/lib/seed/festivals";
 import { PRACTICES } from "../../src/lib/seed/practice";
-import { getRituals, getRitual, getRitualGroups, getSamskaras } from "../../src/lib/data";
+import {
+  getRituals,
+  getRitual,
+  getRitualGroups,
+  getSamskaras,
+  getYearLens,
+  getRitesFromBranch,
+} from "../../src/lib/data";
 import { allRitualImages } from "../../src/lib/seed/ritual-images";
 import { RITUAL_STRINGS } from "../../src/i18n/rituals";
 import { SECTIONS } from "../../src/i18n/sections";
@@ -390,5 +401,119 @@ test("every rite renders without a picture", () => {
   for (const g of getRitualGroups("en")) {
     assert.equal(g.image, null, `group ${g.id} has a picture`);
     assert.ok(g.glyph.trim(), `group ${g.id} has no glyph for its plate`);
+  }
+});
+
+test("every rite is placed on a lens, or it vanishes from the section", () => {
+  // The front door is three lenses and a remainder. A rite missing
+  // from PLACEMENT is written, reachable only by its URL, and linked
+  // from nowhere — which is the failure this test exists to catch.
+  const seen = new Set<string>();
+  for (const r of RITUALS) {
+    const p = PLACEMENT[r.slug];
+    assert.ok(p, `${r.slug} is on no lens`);
+    assert.ok(
+      ["year", "day", "life", "occasion"].includes(p!.lens),
+      `${r.slug} is on lens "${p!.lens}"`,
+    );
+    seen.add(r.slug);
+  }
+  for (const slug of Object.keys(PLACEMENT)) {
+    assert.ok(seen.has(slug), `PLACEMENT has "${slug}", which is not a rite`);
+  }
+
+  // Together the four lenses must account for all of them exactly once.
+  const counted =
+    ritualsOnLens("year").length +
+    ritualsOnLens("day").length +
+    ritualsOnLens("life").length +
+    ritualsOnLens("occasion").length;
+  assert.equal(counted, RITUALS.length);
+});
+
+test("what a lens needs to be drawn is there", () => {
+  for (const r of ritualsOnLens("day")) {
+    const hours = PLACEMENT[r.slug]?.hours ?? [];
+    assert.ok(hours.length > 0, `${r.slug} is on the day with no hour`);
+    for (const h of hours) {
+      assert.ok(h >= 4 && h <= 22, `${r.slug} is placed at ${h}, outside the drawn day`);
+    }
+  }
+
+  for (const r of ritualsOnLens("year")) {
+    const p = PLACEMENT[r.slug]!;
+    assert.ok(
+      (p.timesAYear ?? 0) > 0 || p.span,
+      `${r.slug} is on the year with neither a rhythm nor a span`,
+    );
+    if (p.span) {
+      for (const m of p.span) {
+        assert.ok(m in LUNAR_MONTHS, `${r.slug} spans "${m}", which is not a lunar month`);
+      }
+    }
+  }
+
+  // Every saṃskāra needs an age or it cannot be placed on the line,
+  // and the sixteen must run forward.
+  let last = -Infinity;
+  for (const s of SAMSKARAS) {
+    const age = SAMSKARA_AGE[s.id];
+    assert.equal(typeof age, "number", `${s.id} has no age`);
+    assert.ok(age! >= last, `${s.id} at ${age} falls before the rite that precedes it`);
+    last = age!;
+  }
+  assert.ok(SAMSKARA_AGE.jatakarma === 0, "birth is the origin of the scale");
+});
+
+test("the year wheel places every festival somewhere real", () => {
+  const year = getYearLens("en");
+  assert.equal(year.marks.length, FESTIVALS.length, "a festival is missing from the ring");
+  assert.equal(year.months.length, 12);
+
+  for (const m of year.marks) {
+    assert.ok(
+      (m.angle ?? -1) >= 0 && (m.angle ?? 361) <= 360,
+      `${m.slug} is at ${m.angle} degrees`,
+    );
+  }
+
+  // Each festival appears in exactly one month's list, so the drawing
+  // and the list below it cannot disagree.
+  const listed = year.months.flatMap((m) => m.festivals.map((f) => f.slug));
+  assert.equal(listed.length, FESTIVALS.length);
+  assert.equal(new Set(listed).size, FESTIVALS.length);
+
+  // The lunar year begins at Chaitra; the ring is drawn from there.
+  assert.equal(year.months[0]!.id, "chaitra");
+  assert.equal(year.months[11]!.id, "phalguna");
+});
+
+test("the bridge into the map of the tradition holds at both ends", () => {
+  // A rite says which layer lays it down; the branch says how many
+  // rites come from it. Either half rotting leaves a dead link.
+  const branches = new Set(SHASTRA_BRANCHES.map((b) => b.id));
+
+  for (const [slug, p] of Object.entries(PRESCRIBED_BY)) {
+    assert.ok(ritualBySlug(slug), `PRESCRIBED_BY has "${slug}", which is not a rite`);
+    assert.ok(branches.has(p.branch), `${slug} is laid down by "${p.branch}", which is not a branch`);
+    for (const locale of LOCALES) {
+      assert.ok(p.note[locale]?.trim().length > 30, `${slug}: no ${locale} note on where it is laid down`);
+    }
+  }
+
+  // The view puts an anchor on it that the shastras page can receive.
+  const r = getRitual("upanayana", "en")!;
+  assert.ok(r.prescribedBy, "upanayana does not say where it is laid down");
+  assert.equal(r.prescribedBy!.href, "/shastras#vedangas");
+
+  // And the count the branch prints is the same set, counted the
+  // other way round.
+  for (const b of SHASTRA_BRANCHES) {
+    const fromBranch = getRitesFromBranch(b.id, "en").map((x) => x.slug).sort();
+    const expected = Object.entries(PRESCRIBED_BY)
+      .filter(([, p]) => p.branch === b.id)
+      .map(([slug]) => slug)
+      .sort();
+    assert.deepEqual(fromBranch, expected, `the two ends disagree about ${b.id}`);
   }
 });

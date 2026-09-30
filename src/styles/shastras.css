@@ -243,3 +243,23 @@
     min-height: 116px;
   }
 }
+
+/* The return leg of the bridge into Rituals & Festivals: a branch
+   that lays rites down says how many and points at them. Quiet, and
+   below the texts, because what the branch *is* comes first. */
+.sh-rites {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .sh-rites:hover {
+    color: var(--sacred);
+  }
+}
