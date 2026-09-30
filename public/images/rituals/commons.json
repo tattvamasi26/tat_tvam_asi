@@ -1,0 +1,121 @@
+{
+  "g-samskara": {
+    "src": "/images/rituals/g-samskara.jpg",
+    "width": 1800,
+    "height": 1200,
+    "credit": "Sandeepndas · CC BY-SA 3.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:NoolKettu.JPG"
+  },
+  "g-vrata": {
+    "src": "/images/rituals/g-vrata.jpg",
+    "width": 1800,
+    "height": 1347,
+    "credit": "Ron Clausen · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Crescent_moon_and_Venus.jpg"
+  },
+  "g-yajna": {
+    "src": "/images/rituals/g-yajna.jpg",
+    "width": 1800,
+    "height": 2400,
+    "credit": "Sush Motwani · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Havan_kund_(_Fire_pit_).jpg"
+  },
+  "g-pitru": {
+    "src": "/images/rituals/g-pitru.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Indrajit Das · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Tarpan_or_Tarpana_ritual_-_Bagbazar_ghat_in_Kolkata_02.jpg"
+  },
+  "g-kshetra": {
+    "src": "/images/rituals/g-kshetra.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Ms Sarah Welch · CC0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Chennakesava_temple,_Anekere,_Karnataka_01.jpg"
+  },
+  "annaprashana": {
+    "src": "/images/rituals/annaprashana.jpg",
+    "width": 1800,
+    "height": 1205,
+    "credit": "Nauzer · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:AnnaPrashan_(Anna_Prashan)_-_Hindu_First_Rice_Eating_Ceremony.JPG"
+  },
+  "upanayana": {
+    "src": "/images/rituals/upanayana.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Yurgan Vishujoyshe · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Barthaband_Pooja.jpg"
+  },
+  "vivaha": {
+    "src": "/images/rituals/vivaha.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Symphoney Symphoney · CC BY 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:(A)_Hindu_wedding,_Saptapadi_ritual_before_Agni_Yajna.jpg"
+  },
+  "antyeshti": {
+    "src": "/images/rituals/antyeshti.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Dennis G. Jarvis · CC BY-SA 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Manikarnika_Cremation_Ghat,_Varanasi.jpg"
+  },
+  "sandhyavandana": {
+    "src": "/images/rituals/sandhyavandana.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "User:Rhariram · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Veda_pathashala_students_doing_sandhya_vandanam.JPG"
+  },
+  "puja": {
+    "src": "/images/rituals/puja.jpg",
+    "width": 1800,
+    "height": 1201,
+    "credit": "Pramal · CC BY 2.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:(1)_Aarti_Thali,_Prayer_Plate_India.jpg"
+  },
+  "ekadashi": {
+    "src": "/images/rituals/ekadashi.jpg",
+    "width": 1800,
+    "height": 1159,
+    "credit": "Rajesh Dhungana · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Haribodhani_Ekadashi_Thulo_Ekadashi_Nepal_Festival_Kathmandu_Nepal_Rajesh_Dhungana_(8).jpg"
+  },
+  "sankashtahara-chaturthi": {
+    "src": "/images/rituals/sankashtahara-chaturthi.jpg",
+    "width": 1800,
+    "height": 1200,
+    "credit": "imutkarshpatil · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Ukadiche_Modak_(Rice).jpg"
+  },
+  "agnihotra": {
+    "src": "/images/rituals/agnihotra.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Ilya Mauter · CC BY-SA 3.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Brahmana_performing_fire_sacrifice.JPG"
+  },
+  "shraddha": {
+    "src": "/images/rituals/shraddha.jpg",
+    "width": 1800,
+    "height": 1197,
+    "credit": "Biswarup Ganguly · CC BY 3.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Pinda_Daan_-_Jagannath_Ghat_-_Kolkata_2012-10-15_0685.JPG"
+  },
+  "mahalaya-paksha": {
+    "src": "/images/rituals/mahalaya-paksha.jpg",
+    "width": 1800,
+    "height": 1375,
+    "credit": "Susovan Chakraborty5 · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:TARPAN_RITUAL.jpg"
+  },
+  "pradakshina": {
+    "src": "/images/rituals/pradakshina.jpg",
+    "width": 1800,
+    "height": 1350,
+    "credit": "Dr. Suchet Chaudhary · CC BY-SA 3.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Meenakshi_Temple,_Madurai,_Tamil_Nadu,_India_05.JPG"
+  }
+}

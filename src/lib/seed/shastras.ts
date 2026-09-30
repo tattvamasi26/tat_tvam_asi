@@ -352,7 +352,12 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
           kn: "ವಿಧಿವಿಧಾನ. ಏನು ಮಾಡಬೇಕು, ಯಾವ ಕ್ರಮದಲ್ಲಿ, ಯಾರು.",
           hi: "अनुष्ठान-विधि। क्या किया जाए, किस क्रम में, किसके द्वारा।",
         },
-        status: "planned",
+        // The Kalpa sūtras are where the rites come from, so this is
+        // the branch Rituals & Festivals belongs under. The sūtras
+        // themselves are not entered; what is entered is the practice
+        // they describe, which is why this is partial and not live.
+        href: "/rituals",
+        status: "partial",
       },
     ],
   },

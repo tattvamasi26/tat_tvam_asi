@@ -259,6 +259,16 @@ import {
   type Reckoning,
 } from "./seed/festivals";
 import { festivalImage, type FestivalImage } from "./seed/festival-images";
+import {
+  RITUALS,
+  RITUAL_GROUPS,
+  SAMSKARAS,
+  ritualsInGroup,
+  ritualsInOrder,
+  type Kept,
+  type RitualGroupId,
+} from "./seed/rituals";
+import { ritualImage, ritualGroupImage, type RitualImage } from "./seed/ritual-images";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -1438,4 +1448,145 @@ export function getPractices(locale: Locale): PracticeView[] {
 export function getPractice(slug: string, locale: Locale): PracticeView | null {
   const p = PRACTICES.find((x) => x.slug === slug);
   return p ? practiceView(p, locale) : null;
+}
+
+// ── The rites ───────────────────────────────────────────────
+
+export interface RitualLinkView {
+  href: string;
+  label: string;
+}
+
+export interface RitualImageView {
+  src: string;
+  width: number;
+  height: number;
+  alt: string;
+  credit: string;
+  sourceUrl: string;
+  position: string;
+}
+
+export interface RitualView {
+  slug: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  group: RitualGroupId;
+  /** The group's name, resolved, for the chip on a rite's own page. */
+  groupName: string;
+  order: number;
+  when: string;
+  lede: string;
+  observed: string;
+  significance: string;
+  regional: string | null;
+  words: RitualLinkView[];
+  links: RitualLinkView[];
+  /** Null far more often than not — see seed/ritual-images.ts. */
+  image: RitualImageView | null;
+}
+
+export interface RitualGroupView {
+  id: RitualGroupId;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  /** Also already in the reader's script — the plate prints it raw. */
+  glyph: string;
+  lede: string;
+  rituals: RitualView[];
+  image: RitualImageView | null;
+}
+
+export interface SamskaraView {
+  id: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  marks: string;
+  /** Present only where the rite has a page of its own. */
+  slug: string | null;
+  kept: Kept;
+  /** 1-based, so the arc can print its own numbering. */
+  step: number;
+}
+
+function ritualImageView(img: RitualImage | undefined, locale: Locale): RitualImageView | null {
+  if (!img) return null;
+  return {
+    src: img.src,
+    width: img.width,
+    height: img.height,
+    alt: img.alt[locale],
+    credit: img.credit,
+    sourceUrl: img.sourceUrl,
+    position: img.position ?? "50% 50%",
+  };
+}
+
+function groupNameFor(group: RitualGroupId, locale: Locale): string {
+  const g = RITUAL_GROUPS.find((x) => x.id === group);
+  return g ? g.name[locale] : group;
+}
+
+function ritualView(r: (typeof RITUALS)[number], locale: Locale): RitualView {
+  return {
+    slug: r.slug,
+    name: r.name[locale],
+    sanskrit: scriptFor(r.sanskrit, locale),
+    group: r.group,
+    groupName: groupNameFor(r.group, locale),
+    order: r.order,
+    when: r.when[locale],
+    lede: r.lede[locale],
+    observed: r.observed[locale],
+    significance: r.significance[locale],
+    regional: r.regional?.[locale] ?? null,
+    words: (r.words ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+    links: (r.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+    image: ritualImageView(ritualImage(r.slug), locale),
+  };
+}
+
+/** The groups, each carrying its own rites in order. */
+export function getRitualGroups(locale: Locale): RitualGroupView[] {
+  return RITUAL_GROUPS.map((g) => ({
+    id: g.id,
+    name: g.name[locale],
+    sanskrit: scriptFor(g.sanskrit, locale),
+    // Converted here rather than at the call site, so no page can
+    // print a Devanagari glyph onto a Kannada one. The e2e script
+    // check caught exactly that.
+    glyph: scriptFor(g.glyph, locale),
+    lede: g.lede[locale],
+    rituals: ritualsInGroup(g.id).map((r) => ritualView(r, locale)),
+    image: ritualImageView(ritualGroupImage(g.id), locale),
+  }));
+}
+
+/** Every rite in pager order, straight through the groups. */
+export function getRituals(locale: Locale): RitualView[] {
+  return ritualsInOrder().map((r) => ritualView(r, locale));
+}
+
+export function getRitual(slug: string, locale: Locale): RitualView | null {
+  const r = RITUALS.find((x) => x.slug === slug);
+  return r ? ritualView(r, locale) : null;
+}
+
+/**
+ * The sixteen across a life, in order. Nine of them have no page and
+ * are not meant to: the arc names them so the sequence is whole.
+ */
+export function getSamskaras(locale: Locale): SamskaraView[] {
+  return SAMSKARAS.map((s, i) => ({
+    id: s.id,
+    name: s.name[locale],
+    sanskrit: scriptFor(s.sanskrit, locale),
+    marks: s.marks[locale],
+    slug: s.slug ?? null,
+    kept: s.kept,
+    step: i + 1,
+  }));
 }

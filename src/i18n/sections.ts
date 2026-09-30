@@ -21,9 +21,10 @@ export interface SectionDef {
   label: Record<Locale, string>;
   blurb: Record<Locale, string>;
   /**
-   * The section this one is reached through. Vedas, Upanishads and
-   * the Gita are branches of shastras, so they are not repeated in
-   * the top-level nav beside it — which was the site showing the
+   * The section this one is reached through. The Vedas and the
+   * Upanishads are branches of shastras, and the festivals are the
+   * year within Rituals & Festivals, so neither is repeated in the
+   * top-level nav beside its parent — which was the site showing the
    * same thing twice. Their URLs are unchanged; only the route in
    * changed.
    */
@@ -158,11 +159,32 @@ export const SECTIONS: SectionDef[] = [
     },
   },
   {
+    // Rites and festivals are one subject: both are things done on an
+    // occasion, and splitting them would have put the eleventh tithi
+    // of the moon in one section and the naming on the eleventh day
+    // in another. The front door holds the rites; the year is reached
+    // through it, the way the Vedas are reached through Shastras.
+    id: "rituals",
+    href: "/rituals",
+    glyph: "संस्कार",
+    label: {
+      en: "Rituals & Festivals",
+      kn: "ಆಚರಣೆ ಮತ್ತು ಹಬ್ಬಗಳು",
+      hi: "अनुष्ठान और पर्व",
+    },
+    blurb: {
+      en: "What is actually done — at a birth, at dusk, on the eleventh day of the moon, and once a year in the order of the lunar calendar.",
+      kn: "ನಿಜವಾಗಿ ಏನು ಮಾಡುತ್ತಾರೆ — ಹುಟ್ಟಿನಲ್ಲಿ, ಸಂಜೆಯಲ್ಲಿ, ಚಂದ್ರನ ಹನ್ನೊಂದನೇ ದಿನದಲ್ಲಿ, ಮತ್ತು ವರ್ಷಕ್ಕೊಮ್ಮೆ ಚಾಂದ್ರಮಾನ ಕ್ರಮದಲ್ಲಿ.",
+      hi: "वास्तव में क्या किया जाता है — जन्म पर, सांध्यकाल में, चंद्रमा की ग्यारहवीं तिथि पर, और वर्ष में एक बार चांद्र क्रम में।",
+    },
+  },
+  {
     // A festival has a date, and the date comes round — which makes
     // this the first section on the site with its own reason for a
     // reader to return.
     id: "festivals",
     href: "/festivals",
+    parent: "rituals",
     glyph: "उत्सव",
     label: {
       en: "Festivals",

@@ -366,6 +366,87 @@ The routes are `/temples` (the regions), `/temples/[section]` (one region), and 
 - Photographs come from Wikimedia Commons with the licence and author in each credit; a temple with no free photograph shows its own name in its own script instead. Don't substitute a photo of another temple.
 - Temples used to live at `/temples/<slug>`. Those addresses still work: `[section]` redirects a slug it recognises to the temple's page inside its region. Keep that redirect when adding regions.
 
+### Rituals & Festivals is one section with two halves
+
+`/rituals` is the front door and `/festivals` is the year inside it.
+Both are reached through one nav entry, "Rituals & Festivals", because
+a rite and a festival are the same kind of thing — something done on an
+occasion — and splitting them put the eleventh tithi of the moon in one
+section and the naming on the eleventh day in another. `festivals`
+carries `parent: "rituals"` in `i18n/sections.ts`, the same mechanism
+that puts the Vedas under Shastras, so it is not listed twice.
+
+- **A date is never Gregorian, on either half.** An occasion is a
+  tithi, an hour, or a stage of life. `tests/unit/support/gregorian.ts`
+  holds the one check both halves use; it is case-sensitive about month
+  names and makes "May" prove it is a month, because the naive version
+  reported the modal verb in "before it he may not study the Veda".
+- **The sixteen saṃskāras are all listed, and each says whether it is
+  still performed** (`kept: "common" | "rare" | "lapsed"` in
+  `seed/rituals.ts`). Eight are common, three rare, five lapsed; the
+  prose quotes those numbers in three languages and
+  `tests/unit/rituals.test.ts` pins the split so they cannot drift. The
+  front page draws them as one arc across a life — plain CSS on an
+  `<ol>`, eight to a row, a spine on a phone.
+- **Where a practice is argued over, the disagreement is printed.** Who
+  may be given the upanayana, and who may perform a śrāddha, both have
+  more than one answer in circulation. The pages say so and settle
+  neither.
+- **These pages describe rites; they do not teach them.** A test
+  rejects the second person ("you should", "recite the"). No mantra is
+  given as an instruction; where the site holds the words, the rite
+  links to them.
+- **Most rites have no photograph, and that is the designed case.**
+  Nobody publishes a photograph of a jātakarma. A rite without one gets
+  a paper head with its name in the reader's script (`.ri-hero.is-plain`),
+  which is a different design rather than a smaller version of the
+  photographed head. `seed/ritual-images.ts` treats an id with no alt
+  text as having no picture at all.
+- Rites are reached from `/shastras` under the Vedāṅga **Kalpa**, which
+  is the limb that governs ritual procedure; a unit test holds that
+  link. The sūtras themselves are not entered, so it is `partial`.
+
+Images come from `scripts/images/fetch-commons.mjs rituals`, and the
+picks were made from a contact sheet of 82 candidates viewed at the crop
+the page actually uses. That step is not optional: it is what kept out a
+promotional poster with its caption burnt in, a signboard outside a
+matha, and a gurukula classroom filed under "homa".
+
+### Everyday Vedanta is the one section a reader does
+
+`/practice` holds five sittings built on texts the site already has.
+`components/practice/Sitting.tsx` is the only substantial client
+component on the site.
+
+- **It promises nothing, and a test enforces that** across both the
+  sittings' prose and the section's own strings — the chrome is where a
+  claim creeps in, since a bell and a dark screen are exactly what a
+  wellness app would sell by their supposed effects.
+- **Nothing leaves the machine.** The streak and the preferences live in
+  `localStorage` under `tta_practice_v1` and `tta_practice_prefs_v1`,
+  read in an effect and never during render, and the page says so.
+- **The bell is synthesised, not a file** (`components/practice/bell.ts`):
+  a struck bowl built from four inharmonic partials. An audio file would
+  be a request the page makes on its own, which this section does not
+  do. It also works with no network, which is the state a phone on a mat
+  at six in the morning is often in. Audio can only start inside a click
+  handler, so `wakeAudio()` is called from the button.
+- **The countdown works off a wall-clock end time**, not by decrementing
+  a counter: a background tab throttles timers to once a minute.
+- **An open sitting counts up** and ends when the reader says so,
+  because a timer offering only three lengths implies those are the
+  lengths that count.
+- **Full screen is an overlay first and the Fullscreen API second.** The
+  API is refused often enough that the overlay has to be the thing that
+  works; the request is a bonus that hides the browser chrome. Escape
+  leaves, `fullscreenchange` keeps the two in step, and body scroll is
+  restored on the way out.
+- **The screen wake lock is released** on pause, on finishing and on
+  unmount, and re-taken when the tab becomes visible again. A lock left
+  held keeps somebody's phone lit all day.
+- The recitation sits **inside** the timer panel, using the stotras'
+  player, which still loads nothing from YouTube until it is pressed.
+
 ### Citation and accuracy rules
 
 Don't route around these.

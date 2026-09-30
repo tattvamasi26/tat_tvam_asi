@@ -36,6 +36,11 @@ export const ROUTES = [
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
   "/shastras",
+  "/rituals",
+  // One rite with a photograph, and one without — the head is a
+  // different design in each case.
+  "/rituals/upanayana",
+  "/rituals/jatakarma",
   "/festivals",
   "/practice",
   // One sitting with a recitation and one without.

@@ -72,23 +72,53 @@ export default function SessionPage({ params }: { params: { session: string } })
 
       <section className="shell pr-body">
         {/* The timer first: someone who knows the practice should not
-            have to read past it to begin. */}
+            have to read past it to begin. The recitation goes inside
+            it rather than further down, so the sound and the clock
+            are started from the same place — which is how the sitting
+            is actually done. */}
         <Sitting
+          slug={p.slug}
+          name={p.name}
           durations={p.durations}
           labels={{
             chooseLength: s.chooseLength,
             minutes: s.minutes,
+            open: s.open,
+            openNote: s.openNote,
             begin: s.begin,
             pause: s.pause,
             resume: s.resume,
             reset: s.reset,
+            finish: s.finish,
             done: s.done,
             doneNote: s.doneNote,
+            bell: s.bell,
+            halfwayBell: s.halfwayBell,
+            focus: s.focus,
+            leaveFocus: s.leaveFocus,
+            awake: s.awake,
             streak: s.streak,
             streakNote: s.streakNote,
             sittings: s.sittings,
           }}
-        />
+        >
+          {p.track && (
+            <StotraVideo
+              video={{
+                id: p.track.id,
+                title: p.track.title,
+                channel: p.track.channel,
+                thumb: `https://i.ytimg.com/vi/${p.track.id}/hqdefault.jpg`,
+                url: `https://www.youtube.com/watch?v=${p.track.id}`,
+              }}
+              labels={{
+                listen: s.labelListen,
+                play: t.labelPlayVideo,
+                watch: t.labelWatchOnYouTube,
+              }}
+            />
+          )}
+        </Sitting>
 
         <div className="pr-section">
           <h2 className="pr-h2">{s.labelHowTo}</h2>
@@ -113,23 +143,15 @@ export default function SessionPage({ params }: { params: { session: string } })
           </div>
         )}
 
-        <div className="pr-section">
-          <h2 className="pr-h2">{s.labelListen}</h2>
-          {p.track ? (
-            <StotraVideo
-              video={{
-                id: p.track.id,
-                title: p.track.title,
-                channel: p.track.channel,
-                thumb: `https://i.ytimg.com/vi/${p.track.id}/hqdefault.jpg`,
-                url: `https://www.youtube.com/watch?v=${p.track.id}`,
-              }}
-              labels={{ listen: s.labelListen, play: t.labelPlayVideo, watch: t.labelWatchOnYouTube }}
-            />
-          ) : (
+        {/* The recitation itself now sits in the timer panel above. All
+            that is left here is the case where there is none, which
+            still has to be said rather than left as a blank. */}
+        {!p.track && (
+          <div className="pr-section">
+            <h2 className="pr-h2">{s.labelListen}</h2>
             <p className="pr-no-track">{s.noTrack}</p>
-          )}
-        </div>
+          </div>
+        )}
 
         <div className="pr-section">
           <h2 className="pr-h2">{s.labelOrigin}</h2>

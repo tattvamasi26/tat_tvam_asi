@@ -11,6 +11,7 @@ import { getFestivals, getFestival } from "../../src/lib/data";
 import { FESTIVAL_STRINGS } from "../../src/i18n/festivals";
 import { SECTIONS } from "../../src/i18n/sections";
 import { LOCALES } from "../../src/i18n/config";
+import { gregorianDateIn } from "./support/gregorian";
 
 // The festivals.
 //
@@ -48,10 +49,9 @@ test("slugs are unique", () => {
 test("a lunar festival is never given a Gregorian date", () => {
   // This is the section's whole reason for existing in this shape.
   // "Ganesha Chaturthi is in August" is wrong every other year, and
-  // a month name is the easiest way for it to creep in.
-  const GREGORIAN =
-    /\b(january|february|march|april|may|june|july|august|september|october|november|december)\b|\b(19|20)\d{2}\b/i;
-
+  // a month name is the easiest way for it to creep in. The check is
+  // shared with the rites, whose prose caught it reporting the English
+  // modal verb in "he may not study the Veda".
   for (const f of FESTIVALS) {
     if (f.reckoning === "solar") continue; // a solar date really is near-fixed
     for (const locale of LOCALES) {
@@ -62,11 +62,11 @@ test("a lunar festival is never given a Gregorian date", () => {
         f.regional?.[locale] ?? "",
         f.whenNote?.[locale] ?? "",
       ].join(" ");
-      const hit = prose.match(GREGORIAN);
+      const hit = gregorianDateIn(prose);
       assert.equal(
         hit,
         null,
-        `${f.slug} (${locale}) gives a Gregorian date: "${hit?.[0]}" — lunar festivals move every year`,
+        `${f.slug} (${locale}) gives a Gregorian date: "${hit}" — lunar festivals move every year`,
       );
     }
   }

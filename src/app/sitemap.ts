@@ -3,6 +3,7 @@ import { getTempleRoutes } from "@/lib/data";
 import { DEVATAS, MANDALA_COUNT, suktasFor } from "@/lib/rigveda";
 import { bhajanGroups } from "@/lib/bhajans";
 import { FESTIVALS } from "@/lib/seed/festivals";
+import { RITUALS } from "@/lib/seed/rituals";
 import { PRACTICES } from "@/lib/seed/practice";
 import { LOCALES } from "@/i18n/config";
 import { TEACHERS } from "@/lib/seed/teachers";
@@ -34,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const bhajanRoutes = ["/bhajans", ...bhajanGroups(LOCALES[0]).map((g) => `/bhajans/${g.id}`)];
 
   const festivalRoutes = ["/festivals", ...FESTIVALS.map((f) => `/festivals/${f.slug}`)];
+  const ritualRoutes = ["/rituals", ...RITUALS.map((r) => `/rituals/${r.slug}`)];
   const practiceRoutes = ["/practice", ...PRACTICES.map((p) => `/practice/${p.slug}`)];
 
   return [
@@ -42,6 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...rigvedaRoutes,
     ...acharyaRoutes,
     ...bhajanRoutes,
+    ...ritualRoutes,
     ...festivalRoutes,
     ...practiceRoutes,
   ].map((route) => ({

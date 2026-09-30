@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { festivalStrings } from "@/i18n/festivals";
+import { ritualStrings } from "@/i18n/rituals";
 import { getFestivals } from "@/lib/data";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
@@ -26,6 +27,7 @@ export const metadata: Metadata = {
 export default function FestivalsPage() {
   const { locale } = getTranslations();
   const f = festivalStrings(locale);
+  const r = ritualStrings(locale);
   const festivals = getFestivals(locale);
   const sc = scriptClass(locale);
 
@@ -36,6 +38,12 @@ export default function FestivalsPage() {
           <p className="eyebrow">{f.count(festivals.length.toLocaleString("en-IN"))}</p>
           <h1 className="title">{f.title}</h1>
           <p className="lede">{f.lede}</p>
+          {/* The year is reached through Rituals & Festivals, so it is
+              no longer in the nav. A reader who arrives here from a
+              search engine needs the way up printed on the page. */}
+          <Link href="/rituals" className="chip" style={{ marginTop: "0.5rem" }}>
+            {r.labelGroup} {r.title}
+          </Link>
         </div>
       </section>
 

@@ -169,3 +169,60 @@ test("the section is in the navigation", () => {
     assert.ok(section!.blurb[locale]?.trim(), `the nav has no ${locale} blurb`);
   }
 });
+
+test("the sitting's controls are named in every language", () => {
+  // The timer grew a bell, an open sitting and a full-screen surface.
+  // Each is a string a Server Component hands the client component, so
+  // a missing one is a blank button rather than an error.
+  const CONTROLS = [
+    "open",
+    "openNote",
+    "finish",
+    "bell",
+    "halfwayBell",
+    "focus",
+    "leaveFocus",
+    "awake",
+  ] as const;
+
+  // Google's font subsets omit these, so each device would draw them
+  // in its own system font and the e2e font audit would fail.
+  const TYPED = /[←-⇿−⚠]|[✀-➿]/;
+
+  for (const locale of LOCALES) {
+    const s = PRACTICE_STRINGS[locale];
+    for (const key of CONTROLS) {
+      const v = s[key];
+      assert.equal(typeof v, "string", `${locale}.${key} is missing`);
+      assert.ok(v.trim().length > 0, `${locale}.${key} is empty`);
+      assert.equal(TYPED.test(v), false, `${locale}.${key} has a glyph the fonts do not carry`);
+    }
+  }
+});
+
+test("not one of the section's own strings promises a result either", () => {
+  // The earlier test covers the sittings. This covers the chrome
+  // around them, which is where a claim is likeliest to creep in: a
+  // bell and a dark screen are exactly the things a wellness app
+  // would describe by what they supposedly do for you.
+  const CLAIM =
+    /\b(cure|cures|heal|heals|healing|calm(s|ing)? (your|the) mind|guarantee|guaranteed|will make you|reduces? (stress|anxiety|depression)|improves? (health|memory|focus|sleep)|scientifically proven|boosts?|relax(es|ing)? you)\b/i;
+
+  for (const locale of LOCALES) {
+    for (const [key, value] of Object.entries(PRACTICE_STRINGS[locale])) {
+      if (typeof value !== "string") continue;
+      const hit = value.match(CLAIM);
+      assert.equal(hit, null, `${locale}.${key} claims a result: "${hit?.[0]}"`);
+    }
+  }
+});
+
+test("the timer is told which sitting it is, so it can remember a length", () => {
+  // The component keys its remembered length on the slug. Two sittings
+  // sharing one would silently overwrite each other's choice.
+  const slugs = PRACTICES.map((p) => p.slug);
+  assert.equal(new Set(slugs).size, slugs.length);
+  for (const p of PRACTICES) {
+    assert.ok(p.durations.length >= 2, `${p.slug} offers only one length to remember`);
+  }
+});

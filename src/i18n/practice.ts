@@ -25,12 +25,24 @@ export interface PracticeStrings {
 
   chooseLength: string;
   minutes: string;
+  /** A sitting with no end time, which counts up instead. */
+  open: string;
+  openNote: string;
   begin: string;
   pause: string;
   resume: string;
   reset: string;
+  finish: string;
   done: string;
   doneNote: string;
+
+  /** The two switches that change how a sitting sounds. */
+  bell: string;
+  halfwayBell: string;
+  /** The full-screen surface. */
+  focus: string;
+  leaveFocus: string;
+  awake: string;
 
   /** Carries {n}; substituted on the client. */
   streak: string;
@@ -58,12 +70,21 @@ export const PRACTICE_STRINGS: Record<Locale, PracticeStrings> = {
 
     chooseLength: "How long",
     minutes: "min",
+    open: "Open",
+    openNote: "No end time. It counts up, and you finish when you finish.",
     begin: "Begin",
     pause: "Pause",
     resume: "Resume",
     reset: "Reset",
+    finish: "Finish",
     done: "Done",
     doneNote: "That is the sitting. Nothing more is asked.",
+
+    bell: "Bell",
+    halfwayBell: "Bell at halfway",
+    focus: "Full screen",
+    leaveFocus: "Leave full screen",
+    awake: "The screen stays awake until the sitting ends.",
 
     streak: "{n} days running",
     streakNote: "Kept in this browser only. No account, nothing sent anywhere.",
@@ -88,12 +109,21 @@ export const PRACTICE_STRINGS: Record<Locale, PracticeStrings> = {
 
     chooseLength: "ಎಷ್ಟು ಹೊತ್ತು",
     minutes: "ನಿ",
+    open: "ಮುಕ್ತ",
+    openNote: "ಮುಗಿಯುವ ಹೊತ್ತಿಲ್ಲ. ಸಮಯ ಏರುತ್ತ ಹೋಗುತ್ತದೆ, ನೀವು ಮುಗಿಸಿದಾಗ ಮುಗಿಯುತ್ತದೆ.",
     begin: "ಆರಂಭಿಸಿ",
     pause: "ನಿಲ್ಲಿಸಿ",
     resume: "ಮುಂದುವರಿಸಿ",
     reset: "ಮರುಹೊಂದಿಸಿ",
+    finish: "ಮುಗಿಸಿ",
     done: "ಮುಗಿಯಿತು",
     doneNote: "ಅಷ್ಟೇ ಕೂರುವಿಕೆ. ಇನ್ನೇನೂ ಕೇಳಲಾಗುವುದಿಲ್ಲ.",
+
+    bell: "ಘಂಟೆ",
+    halfwayBell: "ಅರ್ಧದಲ್ಲಿ ಘಂಟೆ",
+    focus: "ಪೂರ್ಣ ಪರದೆ",
+    leaveFocus: "ಪೂರ್ಣ ಪರದೆಯಿಂದ ಹೊರಬನ್ನಿ",
+    awake: "ಕೂರುವಿಕೆ ಮುಗಿಯುವವರೆಗೆ ಪರದೆ ಆರುವುದಿಲ್ಲ.",
 
     streak: "ಸತತ {n} ದಿನ",
     streakNote: "ಈ ಬ್ರೌಸರಿನಲ್ಲಿ ಮಾತ್ರ ಉಳಿಯುತ್ತದೆ. ಖಾತೆ ಇಲ್ಲ, ಎಲ್ಲಿಗೂ ಏನೂ ಕಳುಹಿಸುವುದಿಲ್ಲ.",
@@ -118,12 +148,21 @@ export const PRACTICE_STRINGS: Record<Locale, PracticeStrings> = {
 
     chooseLength: "कितनी देर",
     minutes: "मि",
+    open: "खुली",
+    openNote: "कोई अंत-समय नहीं। समय आगे बढ़ता है, और आप जब पूरा करें तब पूरा।",
     begin: "आरंभ",
     pause: "रोकें",
     resume: "जारी रखें",
     reset: "फिर से",
+    finish: "पूरा करें",
     done: "पूर्ण",
     doneNote: "बस इतनी ही बैठक। और कुछ नहीं माँगा जाता।",
+
+    bell: "घंटा",
+    halfwayBell: "आधे पर घंटा",
+    focus: "पूर्ण स्क्रीन",
+    leaveFocus: "पूर्ण स्क्रीन से बाहर",
+    awake: "बैठक समाप्त होने तक स्क्रीन जागती रहती है।",
 
     streak: "लगातार {n} दिन",
     streakNote: "केवल इसी ब्राउज़र में रहता है। कोई खाता नहीं, कहीं कुछ नहीं भेजा जाता।",

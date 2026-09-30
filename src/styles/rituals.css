@@ -1,0 +1,721 @@
+/* ─────────────────────────────────────────────────────────
+   Rituals & Festivals.
+
+   The festivals half is image-led, because a festival is a public
+   thing somebody photographed. The rites half cannot be: nobody
+   publishes a photograph of a jātakarma, and the photographs of a
+   śrāddha that exist are of somebody's grief. So this half is built
+   to carry its own weight without pictures and to take them where
+   they turn up — the plate at the head of a group is a photograph if
+   there is one and a designed glyph if there is not, and neither
+   looks like the other's fallback.
+
+   The one drawn thing is the arc of sixteen. It follows the acharya
+   monograph's timeline: plain CSS on a semantic list, no chart
+   library, a rail that scrolls as a unit on a wide screen and a
+   spine that runs down the page on a phone.
+   ───────────────────────────────────────────────────────── */
+
+/* ── what these pages are, and are not ────────────────────── */
+.ri-standing {
+  max-width: 62ch;
+  padding-left: clamp(0.9rem, 2.4vw, 1.4rem);
+  border-left: 2px solid var(--gold);
+}
+
+.ri-standing-text {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+/* ── the arc of sixteen ───────────────────────────────────── */
+.ri-arc-block {
+  padding: clamp(1.4rem, 3.4vw, 2.2rem) 0 clamp(1.6rem, 3.6vw, 2.4rem);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  gap: clamp(1.1rem, 2.6vw, 1.6rem);
+}
+
+.ri-arc-head {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 64ch;
+}
+
+.ri-arc-title {
+  margin: 0;
+  font-size: clamp(1.3rem, 3.2vw, 1.8rem);
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.ri-arc-lede {
+  margin: 0;
+  color: var(--ink-3);
+  line-height: 1.7;
+}
+
+/* All sixteen at once, wrapped. A rail that scrolled showed eight and
+   hid the rest, which defeats the point: what this drawing is for is
+   seeing the whole sequence, gaps included. Eight to a row on a wide
+   screen, four on a tablet, and a spine down the page on a phone.
+
+   Each step draws its own connector rather than one line behind the
+   whole list, so the line breaks correctly where the rows do. */
+.ri-arc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  row-gap: clamp(1rem, 2.4vw, 1.6rem);
+}
+
+@media (min-width: 1100px) {
+  .ri-arc {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+.ri-arc-step {
+  position: relative;
+  min-width: 0;
+  padding-right: clamp(0.6rem, 1.6vw, 1rem);
+}
+
+/* The segment from this dot to the next. It runs to the cell edge, so
+   at the end of a row it reads as carrying on below. */
+.ri-arc-step::before {
+  content: "";
+  position: absolute;
+  left: 0.48rem;
+  right: 0;
+  top: 2.02rem;
+  height: 2px;
+  background: var(--line-2);
+}
+
+.ri-arc-step:last-child::before {
+  display: none;
+}
+
+/* Each node is a link when the rite has a page and a plain span when
+   it has not. Both look like part of the same sequence; only the dot
+   and the colour say which. */
+.ri-arc-node {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.ri-arc-dot {
+  position: relative;
+  z-index: 1;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin: 1.6rem 0 0.55rem;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 2px solid var(--ink-4);
+  box-shadow: 0 0 0 4px var(--paper);
+}
+
+.ri-arc-step[data-kept="common"] .ri-arc-dot {
+  background: var(--marigold);
+  border-color: var(--gold);
+}
+
+.ri-arc-step[data-kept="rare"] .ri-arc-dot {
+  background: var(--marigold-soft);
+  border-color: var(--gold-dim);
+}
+
+.ri-arc-n {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.ri-arc-name {
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+a.ri-arc-node .ri-arc-name {
+  color: var(--sacred);
+}
+
+@media (hover: hover) {
+  a.ri-arc-node:hover .ri-arc-name {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.ri-arc-sanskrit {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--ink-3);
+  overflow-wrap: anywhere;
+}
+
+.ri-arc-marks {
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+
+/* Said on every node, because nine of the sixteen are no longer
+   performed and a tidy list would imply otherwise. */
+.ri-arc-kept {
+  justify-self: start;
+  margin-top: 0.1rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: var(--pill, 999px);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: var(--paper-2);
+  color: var(--ink-3);
+}
+
+.ri-arc-step[data-kept="common"] .ri-arc-kept {
+  background: var(--marigold-soft);
+  color: #6b4a00;
+}
+
+/* On a phone the sequence becomes a spine: sixteen items down the
+   page, the connector running vertically on the left. */
+@media (max-width: 760px) {
+  .ri-arc {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 0;
+  }
+
+  .ri-arc-step {
+    padding: 0 0 1.15rem 1.6rem;
+  }
+
+  .ri-arc-step::before {
+    left: 0.44rem;
+    right: auto;
+    top: 0.3rem;
+    bottom: -0.2rem;
+    width: 2px;
+    height: auto;
+  }
+
+  .ri-arc-step:last-child {
+    padding-bottom: 0;
+  }
+
+  .ri-arc-dot {
+    position: absolute;
+    left: 0;
+    top: 0.2rem;
+    margin: 0;
+  }
+
+  .ri-arc-node {
+    gap: 0.16rem;
+  }
+}
+
+/* ── one group of rites ───────────────────────────────────── */
+.ri-group {
+  padding-block: clamp(2rem, 5vw, 3.4rem);
+  background: var(--paper);
+}
+
+.ri-group:nth-of-type(even) {
+  background: var(--paper-2);
+}
+
+.ri-group-inner {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 1.9rem);
+}
+
+.ri-group-head {
+  display: grid;
+  grid-template-columns: clamp(96px, 16vw, 148px) minmax(0, 1fr);
+  gap: clamp(1rem, 2.6vw, 1.6rem);
+  align-items: center;
+}
+
+@media (max-width: 560px) {
+  .ri-group-head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* The plate is a square beside the words on a wide screen. Stacked,
+     a square becomes a 358px block of nothing much, so it turns into
+     a band instead. */
+  .ri-plate {
+    aspect-ratio: 16 / 7;
+  }
+}
+
+/* A photograph where one exists; otherwise the group's own glyph on
+   a plate. The second is a design, not a hole where a picture failed
+   to load. */
+.ri-plate {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--r);
+  border: 1px solid var(--line);
+  background: var(--card);
+  display: grid;
+  place-items: center;
+}
+
+.ri-plate-glyph {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  text-align: center;
+  background:
+    radial-gradient(120% 120% at 30% 20%, var(--marigold-soft), transparent 62%),
+    var(--paper-3);
+  color: var(--sacred);
+  font-size: clamp(1.1rem, 3.4vw, 1.7rem);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+/* Kannada sets wider than Devanagari at the same point size, so the
+   same word that fits in Devanagari wraps in Kannada — the lesson the
+   shastras cards already learned with ಉಪನಿಷದ್. ಸಂಸ್ಕಾರ is the longest
+   here. The script class is already on the element. */
+.ri-plate-glyph.kannada {
+  font-size: clamp(0.95rem, 2.9vw, 1.45rem);
+}
+
+.ri-group-words {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.ri-group-name {
+  margin: 0;
+  font-size: clamp(1.4rem, 3.6vw, 2rem);
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.ri-group-sanskrit {
+  color: var(--sacred);
+  font-size: 1.05rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.ri-group-lede {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.ri-group-count {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  font-weight: 600;
+}
+
+/* ── a rite, as a row ─────────────────────────────────────── */
+/* Two columns once there is room. One column of full-width rows at
+   1440px left a line of text stranded in a great deal of paper. */
+.ri-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
+  gap: 0.7rem;
+}
+
+.ri-rows > li {
+  display: grid;
+  min-width: 0;
+}
+
+.ri-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.7rem 1.2rem;
+  padding: 1.05rem 1.25rem;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .ri-row:hover {
+    border-color: var(--line-2);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+}
+
+.ri-row-body {
+  display: grid;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.ri-row-name {
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: var(--lh-snug, 1.3);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.ri-row-sanskrit {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--sacred);
+  overflow-wrap: anywhere;
+}
+
+.ri-row-when {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--gold);
+}
+
+.ri-row-lede {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+.ri-row-more {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .ri-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── the band into the festivals ──────────────────────────── */
+.ri-year {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: stretch;
+  min-height: 210px;
+}
+
+@media (max-width: 760px) {
+  .ri-year {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.ri-year-words {
+  padding: clamp(1.3rem, 3.2vw, 2.1rem);
+  display: grid;
+  gap: 0.55rem;
+  align-content: center;
+  justify-items: start;
+  min-width: 0;
+}
+
+.ri-year-title {
+  margin: 0;
+  font-size: clamp(1.3rem, 3.2vw, 1.8rem);
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.ri-year-lede {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+/* Four of the year's own photographs, shown as a strip so the band
+   says what it leads to rather than describing it. */
+.ri-year-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  min-width: 0;
+}
+
+.ri-year-tile {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+  min-height: 150px;
+}
+
+.ri-year-tile img {
+  transition: transform 0.9s var(--ease, ease);
+}
+
+@media (hover: hover) {
+  .ri-year:hover .ri-year-tile img {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 760px) {
+  .ri-year-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .ri-year-tile {
+    min-height: 120px;
+  }
+}
+
+/* ── one rite: the head ───────────────────────────────────── */
+.ri-hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: clamp(300px, 44vh, 480px);
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.ri-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(24, 15, 6, 0.9) 0%,
+    rgba(24, 15, 6, 0.6) 38%,
+    rgba(24, 15, 6, 0.2) 70%,
+    rgba(24, 15, 6, 0.32) 100%
+  );
+}
+
+/* No photograph: the rite's name on the site's own paper, in the
+   reader's script, with the group's glyph behind it. Not a smaller
+   version of the photographed head — a different one. */
+.ri-hero.is-plain {
+  align-items: center;
+  min-height: clamp(240px, 34vh, 360px);
+  background:
+    radial-gradient(90% 120% at 82% 18%, var(--marigold-soft), transparent 58%),
+    var(--paper-2);
+  border-bottom: 1px solid var(--line);
+}
+
+.ri-hero-inner {
+  position: relative;
+  padding-block: clamp(1.7rem, 4.6vw, 3rem);
+  display: grid;
+  gap: 0.3rem;
+  justify-items: start;
+  min-width: 0;
+}
+
+.ri-hero-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: var(--pill, 999px);
+  background: rgba(255, 252, 245, 0.16);
+  border: 1px solid rgba(255, 252, 245, 0.28);
+  color: #fffdf8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+@media (hover: hover) {
+  .ri-hero-back:hover {
+    background: rgba(255, 252, 245, 0.3);
+  }
+}
+
+.is-plain .ri-hero-back {
+  background: var(--card);
+  border-color: var(--line);
+  color: var(--ink-2);
+}
+
+@media (hover: hover) {
+  .is-plain .ri-hero-back:hover {
+    background: var(--card-2);
+    border-color: var(--line-2);
+  }
+}
+
+.ri-hero-kicker {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(255, 249, 235, 0.76);
+}
+
+.is-plain .ri-hero-kicker {
+  color: var(--ink-4);
+}
+
+.ri-hero-title {
+  margin: 0;
+  color: #fffdf8;
+  font-size: clamp(1.9rem, 6vw, 3.3rem);
+  line-height: var(--lh-display, 1.1);
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.4);
+}
+
+.is-plain .ri-hero-title {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+.ri-hero-sanskrit {
+  margin: 0;
+  color: rgba(255, 246, 228, 0.92);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+
+.is-plain .ri-hero-sanskrit {
+  color: var(--sacred);
+  text-shadow: none;
+}
+
+.ri-hero-when {
+  margin: 0.85rem 0 0;
+  max-width: 46ch;
+  color: var(--marigold-2, #ffd062);
+  font-size: clamp(0.98rem, 2.6vw, 1.2rem);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+
+.is-plain .ri-hero-when {
+  color: var(--gold);
+  text-shadow: none;
+}
+
+/* ── one rite: the words ──────────────────────────────────── */
+.ri-body {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-block: clamp(2rem, 5vw, 3.4rem);
+  display: grid;
+  gap: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+.ri-lede-big {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+}
+
+.ri-section {
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+}
+
+.ri-section p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.8;
+}
+
+.ri-h2 {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  font-weight: 600;
+}
+
+/* Where a practice is argued over, the argument is printed — so it
+   gets the aside the festivals use for the north-south month names,
+   not a line buried in the body. */
+.ri-aside {
+  padding: clamp(0.9rem, 2.4vw, 1.2rem) clamp(1rem, 2.6vw, 1.4rem);
+  background: var(--paper-2);
+  border-radius: var(--r);
+  border-left: 2px solid var(--gold);
+  display: grid;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.ri-aside p:last-child {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.ri-chips {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.ri-chips .chip {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.ri-credit {
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .ri-hero {
+    min-height: clamp(250px, 38vh, 340px);
+  }
+}

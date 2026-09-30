@@ -464,3 +464,163 @@
     min-height: clamp(280px, 42vh, 380px);
   }
 }
+
+/* ── the sitting's own controls ───────────────────────────── */
+
+/* An open sitting has no end, so it says so where the length would
+   otherwise have been chosen. */
+.sit-open-note {
+  margin: -0.4rem 0 0;
+  max-width: 34ch;
+  text-align: center;
+  color: var(--ink-3);
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+
+/* The two switches that change how a sitting sounds, and the one that
+   changes what it fills. Deliberately quiet: they sit below the
+   control that matters and look like settings, not like actions. */
+.sit-switches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.sit-switch {
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--pill, 999px);
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-4);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.sit-switch[aria-pressed="true"] {
+  background: var(--paper-2);
+  border-color: var(--line-2);
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
+.sit-switch:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+@media (hover: hover) {
+  .sit-switch:not(:disabled):hover {
+    border-color: var(--gold);
+    color: var(--ink-2);
+  }
+}
+
+/* The recitation, inside the panel rather than further down the page,
+   so the sound and the clock are started from one place. */
+.sit-track {
+  width: 100%;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+/* ── the full-screen surface ──────────────────────────────── */
+
+/* The one dark surface in this section, and it earns it: a lit page
+   at six in the morning is the thing a reader came here to get away
+   from. It carries the name, the ring and the controls, and nothing
+   else at all. */
+.sit-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 1.3rem;
+  padding: clamp(1.4rem, 5vw, 3rem);
+  background:
+    radial-gradient(120% 90% at 50% 18%, rgba(245, 181, 35, 0.12), transparent 62%),
+    var(--night, #1b1405);
+  color: var(--on-night, #fbf3df);
+}
+
+.sit-stage:focus {
+  outline: none;
+}
+
+.sit-stage-leave {
+  position: absolute;
+  top: clamp(0.9rem, 3vw, 1.6rem);
+  right: clamp(0.9rem, 3vw, 1.6rem);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--pill, 999px);
+  border: 1px solid rgba(251, 243, 223, 0.28);
+  background: transparent;
+  color: rgba(251, 243, 223, 0.7);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .sit-stage-leave:hover {
+    background: rgba(251, 243, 223, 0.14);
+    color: var(--on-night, #fbf3df);
+  }
+}
+
+.sit-stage-name {
+  margin: 0;
+  max-width: 26ch;
+  text-align: center;
+  font-size: clamp(1.1rem, 3.4vw, 1.5rem);
+  line-height: var(--lh-snug, 1.3);
+  color: rgba(251, 243, 223, 0.86);
+  overflow-wrap: anywhere;
+}
+
+.sit-stage-note {
+  margin: 0;
+  min-height: 1.4em;
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(251, 243, 223, 0.5);
+}
+
+/* The ring is the same drawing on both surfaces; only its colours and
+   its size change. */
+.sit-stage .sit-ring {
+  width: min(62vw, 42vh, 340px);
+}
+
+.sit-stage .sit-ring-track {
+  stroke: rgba(251, 243, 223, 0.16);
+}
+
+.sit-stage .sit-clock {
+  color: var(--on-night, #fbf3df);
+  font-size: clamp(2.6rem, 9vw, 4rem);
+}
+
+.sit-stage .btn-ghost {
+  color: rgba(251, 243, 223, 0.76);
+}
+
+/* The arc sweeps once a second. With reduced motion asked for, it
+   moves in steps instead of gliding — the information is the same and
+   nothing animates. */
+@media (prefers-reduced-motion: reduce) {
+  .sit-ring-arc {
+    transition: none;
+  }
+}
