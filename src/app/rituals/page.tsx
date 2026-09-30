@@ -1,10 +1,13 @@
 import Link from "next/link";
+// Nothing on this page carries a photograph today. The group plate
+// keeps its branch so an owner-supplied picture is one entry in
+// seed/ritual-images.ts rather than a re-wiring; see the note there.
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { ritualStrings } from "@/i18n/rituals";
 import { festivalStrings } from "@/i18n/festivals";
-import { getRitualGroups, getSamskaras, getFestivals } from "@/lib/data";
+import { getRitualGroups, getSamskaras, getFestivals, getLunarYear } from "@/lib/data";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 
@@ -36,9 +39,7 @@ export default function RitualsPage() {
   const sc = scriptClass(locale);
 
   const rites = groups.reduce((n, g) => n + g.rituals.length, 0);
-  // Four of the year's own photographs for the band, so it shows what
-  // it leads to instead of describing it.
-  const strip = festivals.filter((x) => x.image).slice(0, 4);
+  const months = getLunarYear(locale);
 
   const keptLabel = { common: s.keptCommon, rare: s.keptRare, lapsed: s.keptLapsed };
 
@@ -103,18 +104,14 @@ export default function RitualsPage() {
               {s.yearLink} <Arrow />
             </span>
           </span>
-          <span className="ri-year-strip" aria-hidden="true">
-            {strip.map((x) => (
-              <span key={x.slug} className="ri-year-tile">
-                {x.image && (
-                  <Image
-                    src={x.image.src}
-                    alt=""
-                    fill
-                    sizes="(max-width: 760px) 25vw, 15vw"
-                    style={{ objectFit: "cover", objectPosition: x.image.position }}
-                  />
-                )}
+          {/* The twelve lunar months, the ones carrying a festival set
+              in the sacred ink. It shows the shape of the year from the
+              section's own data rather than illustrating it with four
+              photographs of crowds. */}
+          <span className="ri-year-months" aria-hidden="true">
+            {months.map((m) => (
+              <span key={m.id} className="ri-year-month" data-has={m.count > 0 ? "yes" : "no"}>
+                {m.name}
               </span>
             ))}
           </span>

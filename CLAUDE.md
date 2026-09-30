@@ -396,21 +396,32 @@ that puts the Vedas under Shastras, so it is not listed twice.
   rejects the second person ("you should", "recite the"). No mantra is
   given as an instruction; where the site holds the words, the rite
   links to them.
-- **Most rites have no photograph, and that is the designed case.**
-  Nobody publishes a photograph of a jātakarma. A rite without one gets
-  a paper head with its name in the reader's script (`.ri-hero.is-plain`),
-  which is a different design rather than a smaller version of the
-  photographed head. `seed/ritual-images.ts` treats an id with no alt
-  text as having no picture at all.
+- **The rites are drawn, not photographed.** Seventeen licence-checked
+  Commons photographs were fetched for this section and all of them were
+  removed at the owner's word: documentary photographs of other people's
+  ceremonies are not what this site looks like, and a rite is not a thing
+  a stranger's snapshot explains. A group opens with its own glyph on a
+  plate; a rite opens with its name on paper in the reader's script
+  (`.ri-hero.is-plain`). The band leading to the year shows the twelve
+  lunar months, the ones carrying a festival set in the sacred ink,
+  rather than four photographs of crowds.
+- **Do not fill `seed/ritual-images.ts` from an image search.** It is
+  empty on purpose and there is deliberately no `rituals` set in
+  `scripts/images/fetch-commons.mjs` any more, so it cannot be refilled
+  by running a script. A picture here would be one the owner chose or
+  supplied, credited the way `seed/stuti-images.ts` credits theirs — and
+  an owner-supplied credit links nowhere. A unit test holds the registry
+  empty and the image directory gone.
 - Rites are reached from `/shastras` under the Vedāṅga **Kalpa**, which
   is the limb that governs ritual procedure; a unit test holds that
   link. The sūtras themselves are not entered, so it is `partial`.
 
-Images come from `scripts/images/fetch-commons.mjs rituals`, and the
-picks were made from a contact sheet of 82 candidates viewed at the crop
-the page actually uses. That step is not optional: it is what kept out a
-promotional poster with its caption burnt in, a signboard outside a
-matha, and a gurukula classroom filed under "homa".
+The general lesson, which cost two rounds to learn: **do not add
+photographs to a section on your own initiative.** Licence-checking them,
+and even viewing every candidate at the crop the page will use, catches
+the embarrassments — a promotional poster with its caption burnt in, a
+signboard outside a matha, a gurukula classroom filed under "homa" — but
+it does not make the result belong here. The owner picks the pictures.
 
 ### Everyday Vedanta is the one section a reader does
 

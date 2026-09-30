@@ -472,39 +472,43 @@ a.ri-arc-node .ri-arc-name {
   line-height: 1.7;
 }
 
-/* Four of the year's own photographs, shown as a strip so the band
-   says what it leads to rather than describing it. */
-.ri-year-strip {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+/* The twelve lunar months, in place of photographs. The months that
+   carry a festival are set in the sacred ink and the rest stay faint,
+   so the band shows the shape of the year rather than illustrating it
+   with four pictures of crowds. */
+.ri-year-months {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 0.4rem;
+  padding: clamp(1.2rem, 3vw, 1.9rem);
+  border-left: 1px solid var(--line);
+  background: var(--paper-2);
   min-width: 0;
 }
 
-.ri-year-tile {
-  position: relative;
-  overflow: hidden;
-  background: var(--paper-2);
-  min-height: 150px;
-}
-
-.ri-year-tile img {
-  transition: transform 0.9s var(--ease, ease);
-}
-
-@media (hover: hover) {
-  .ri-year:hover .ri-year-tile img {
-    transform: scale(1.05);
-  }
-}
-
 @media (max-width: 760px) {
-  .ri-year-strip {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+  .ri-year-months {
+    border-left: 0;
+    border-top: 1px solid var(--line);
   }
+}
 
-  .ri-year-tile {
-    min-height: 120px;
-  }
+.ri-year-month {
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--pill, 999px);
+  border: 1px solid transparent;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--ink-4);
+  overflow-wrap: anywhere;
+}
+
+.ri-year-month[data-has="yes"] {
+  border-color: var(--line-2);
+  background: var(--card);
+  color: var(--sacred);
+  font-weight: 600;
 }
 
 /* ── one rite: the head ───────────────────────────────────── */

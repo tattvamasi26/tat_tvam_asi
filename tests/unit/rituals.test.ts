@@ -330,13 +330,29 @@ test("the section's own strings are complete, and carry no typed arrows", () => 
   }
 });
 
-test("every picture is on disk, credited, and describes a rite that exists", () => {
-  // The festivals shipped a museum exhibit label by filtering on
-  // licence and filename without opening the results. This cannot
-  // catch a wrong picture — only a person looking at it can — but it
-  // does catch the two failures that follow from one: a file with no
-  // description, and a description left behind pointing at an id that
-  // no longer has a picture.
+test("the rites are drawn, not photographed", () => {
+  // Seventeen licence-checked Commons photographs were fetched for this
+  // section and all of them were removed: documentary photographs of
+  // other people's ceremonies are not what this site looks like, and a
+  // rite is not a thing a stranger's snapshot explains. The pages were
+  // built to work without them, so this is the designed state and not
+  // a gap waiting to be filled.
+  assert.deepEqual(
+    allRitualImages(),
+    [],
+    "a picture has been added to the rites; it must be one the owner chose, not one a script found",
+  );
+
+  // And nothing may be left behind in the repository for a later run to
+  // quietly pick up again.
+  const dir = path.join(process.cwd(), "public", "images", "rituals");
+  const files = existsSync(dir) ? readdirSync(dir) : [];
+  assert.deepEqual(files, [], `public/images/rituals still holds ${files.join(", ")}`);
+});
+
+test("a picture added later has to be described and credited", () => {
+  // The registry stays so an owner-supplied photograph is one entry
+  // rather than a re-wiring. These are the terms it would have to meet.
   const ids = new Set(RITUALS.map((r) => r.slug));
   const groups = new Set(RITUAL_GROUPS.map((g) => `g-${g.id}`));
 
@@ -350,35 +366,29 @@ test("every picture is on disk, credited, and describes a rite that exists", () 
       `${img.src} is described but not on disk`,
     );
     assert.ok(img.credit.trim(), `${id}'s picture has no credit`);
-    assert.match(img.sourceUrl, /^https:\/\//, `${id}'s picture has no source link`);
-    assert.match(
-      img.credit,
-      /Public domain|CC BY|CC0|Attribution/,
-      `${id}'s picture does not name a free licence`,
-    );
+    // Either a free licence with its source, or the owner's own, which
+    // links nowhere — the two grounds seed/stuti-images.ts already uses.
+    const free = /Public domain|CC BY|CC0|Attribution/.test(img.credit);
+    const owner = /upplied by the site owner/.test(img.credit);
+    assert.ok(free || owner, `${id}'s picture names neither a licence nor the owner`);
+    if (free) assert.match(img.sourceUrl ?? "", /^https:\/\//, `${id}'s picture has no source link`);
     for (const locale of LOCALES) {
       assert.ok(img.alt[locale]?.trim().length > 10, `${id}'s picture has no ${locale} alt text`);
     }
   }
 });
 
-test("a rite with no picture is a designed state, not a gap", () => {
-  // Most rites have none and are meant not to: nobody publishes a
-  // photograph of a jātakarma. What must not happen is a rite whose
-  // picture exists on disk but is never shown, or a group whose plate
-  // half-exists.
-  const shown = new Set(allRitualImages().map(([id]) => id));
-  const files = readdirSync(path.join(process.cwd(), "public", "images", "rituals"))
-    .filter((f) => f.endsWith(".jpg"))
-    .map((f) => f.replace(/\.jpg$/, ""));
-
-  for (const f of files) {
-    assert.ok(shown.has(f), `${f}.jpg is in the repository but nothing shows it`);
+test("every rite renders without a picture", () => {
+  // The words are what the page is. A rite has to carry its own head
+  // from its name, its group and its occasion alone.
+  for (const r of getRituals("en")) {
+    assert.equal(r.image, null, `${r.slug} has a picture`);
+    assert.ok(r.name.trim(), `${r.slug} has no name to head the page with`);
+    assert.ok(r.when.trim(), `${r.slug} has no occasion to head the page with`);
+    assert.ok(r.groupName.trim(), `${r.slug} has no group to head the page with`);
   }
-
-  // And the section still works without them: every rite has the words
-  // its page needs whether or not a photograph turned up.
-  for (const r of RITUALS) {
-    assert.ok(r.name.en.trim() && r.when.en.trim(), `${r.slug} cannot render without a picture`);
+  for (const g of getRitualGroups("en")) {
+    assert.equal(g.image, null, `group ${g.id} has a picture`);
+    assert.ok(g.glyph.trim(), `group ${g.id} has no glyph for its plate`);
   }
 });

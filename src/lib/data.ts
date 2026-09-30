@@ -1463,7 +1463,8 @@ export interface RitualImageView {
   height: number;
   alt: string;
   credit: string;
-  sourceUrl: string;
+  /** Null for an owner-supplied picture, which links nowhere. */
+  sourceUrl: string | null;
   position: string;
 }
 
@@ -1520,7 +1521,7 @@ function ritualImageView(img: RitualImage | undefined, locale: Locale): RitualIm
     height: img.height,
     alt: img.alt[locale],
     credit: img.credit,
-    sourceUrl: img.sourceUrl,
+    sourceUrl: img.sourceUrl ?? null,
     position: img.position ?? "50% 50%",
   };
 }
@@ -1588,5 +1589,33 @@ export function getSamskaras(locale: Locale): SamskaraView[] {
     slug: s.slug ?? null,
     kept: s.kept,
     step: i + 1,
+  }));
+}
+
+/**
+ * The twelve lunar months in order from Chaitra, each saying how many
+ * festivals fall in it.
+ *
+ * This is what the band on /rituals shows in place of photographs: the
+ * shape of the year, drawn from the data the section already holds
+ * rather than illustrated with somebody's snapshot of a crowd.
+ */
+export function getLunarYear(locale: Locale): {
+  id: string;
+  name: string;
+  count: number;
+}[] {
+  const counted = new Map<string, number>();
+  for (const f of FESTIVALS) {
+    // A solar festival has no lunar month; it is still in the year, and
+    // is counted under the month it actually falls in.
+    const m = f.month ?? "pausha";
+    counted.set(m, (counted.get(m) ?? 0) + 1);
+  }
+
+  return Object.entries(LUNAR_MONTHS).map(([id, names]) => ({
+    id,
+    name: names[locale] ?? names.en,
+    count: counted.get(id) ?? 0,
   }));
 }

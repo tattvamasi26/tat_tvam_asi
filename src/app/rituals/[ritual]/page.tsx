@@ -152,11 +152,18 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
           )}
         </nav>
 
+        {/* A picture here, if there ever is one, will be one the site's
+            owner chose or supplied — and an owner-supplied credit links
+            nowhere, the way the stutis' pictures already work. */}
         {r.image && (
           <p className="stutis-credit ri-credit">
-            <a href={r.image.sourceUrl} target="_blank" rel="noopener noreferrer">
-              {r.image.credit}
-            </a>
+            {r.image.sourceUrl ? (
+              <a href={r.image.sourceUrl} target="_blank" rel="noopener noreferrer">
+                {r.image.credit}
+              </a>
+            ) : (
+              r.image.credit
+            )}
           </p>
         )}
       </section>

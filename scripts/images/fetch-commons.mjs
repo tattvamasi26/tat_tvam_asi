@@ -48,40 +48,6 @@ const SETS = {
       holi: "A Holi Festival - Krishna Radha and Gopis.jpg",
     },
   },
-  // The rites. Chosen from a contact sheet of 82 candidates, each one
-  // looked at at the size and crop the page will actually show —
-  // which is how the promotional poster with its caption burnt in,
-  // the signboard outside a matha, and the gurukula classroom filed
-  // under "homa" were all kept out. Eight rites have no picture here
-  // and are meant not to; see seed/ritual-images.ts.
-  rituals: {
-    out: "public/images/rituals",
-    width: 1800,
-    picks: {
-      // the plate at the head of each group
-      "g-samskara": "NoolKettu.JPG",
-      "g-vrata": "Crescent moon and Venus.jpg",
-      "g-yajna": "Havan kund ( Fire pit ).jpg",
-      "g-pitru": "Tarpan or Tarpana ritual - Bagbazar ghat in Kolkata 02.jpg",
-      "g-kshetra": "Chennakesava temple, Anekere, Karnataka 01.jpg",
-
-      // the rites
-      annaprashana: "AnnaPrashan (Anna Prashan) - Hindu First Rice Eating Ceremony.JPG",
-      upanayana: "Barthaband Pooja.jpg",
-      vivaha: "(A) Hindu wedding, Saptapadi ritual before Agni Yajna.jpg",
-      antyeshti: "Manikarnika Cremation Ghat, Varanasi.jpg",
-      sandhyavandana: "Veda pathashala students doing sandhya vandanam.JPG",
-      puja: "(1) Aarti Thali, Prayer Plate India.jpg",
-      deepa: "Diya Pujan at Ganga Aarti at Dashashwamedh Ghat, Varanasi.jpg",
-      ekadashi:
-        "Haribodhani Ekadashi Thulo Ekadashi Nepal Festival Kathmandu Nepal Rajesh Dhungana (8).jpg",
-      "sankashtahara-chaturthi": "Ukadiche Modak (Rice).jpg",
-      agnihotra: "Brahmana performing fire sacrifice.JPG",
-      shraddha: "Pinda Daan - Jagannath Ghat - Kolkata 2012-10-15 0685.JPG",
-      "mahalaya-paksha": "TARPAN RITUAL.jpg",
-      pradakshina: "Meenakshi Temple, Madurai, Tamil Nadu, India 05.JPG",
-    },
-  },
   practice: {
     out: "public/images/practice",
     width: 1800,
