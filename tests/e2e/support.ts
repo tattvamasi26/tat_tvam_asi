@@ -69,7 +69,9 @@ export const ROUTES = [
   "/temples/tulunadu/kateel",
   "/temples/tulunadu/nava-vinayakas",
   "/concepts",
+  // One term the schools argue over, and one they do not.
   "/concepts/brahman",
+  "/concepts/karma",
   "/mathas",
   "/verses",
   "/verses/v-sarvam-khalvidam",

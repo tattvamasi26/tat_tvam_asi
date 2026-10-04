@@ -81,6 +81,21 @@ export interface UIStrings {
   labelSignificance: string;
   labelDefinition: string;
   labelRelated: string;
+  /** The five groups the concepts are read in. */
+  conceptGroupReality: string;
+  conceptGroupSelf: string;
+  conceptGroupAction: string;
+  conceptGroupLife: string;
+  conceptGroupPath: string;
+  /** The six terms where Vedanta divides. */
+  labelSchools: string;
+  labelSchoolsNote: string;
+  schoolAdvaita: string;
+  schoolVishishtadvaita: string;
+  schoolDvaita: string;
+  labelSourceText: string;
+  /** Carries {n}; the page substitutes. */
+  conceptCount: string;
   labelCommentary: string;
   labelTranslation: string;
   labelFoundedBy: string;
@@ -286,6 +301,19 @@ const en: UIStrings = {
   labelSignificance: "Significance",
   labelDefinition: "Definition",
   labelRelated: "Related",
+  conceptGroupReality: "What is there",
+  conceptGroupSelf: "What you are",
+  conceptGroupAction: "Action and its consequence",
+  conceptGroupLife: "How a life is ordered",
+  conceptGroupPath: "The way out",
+  labelSchools: "Where Vedanta divides",
+  labelSchoolsNote:
+    "Shankara, Ramanuja and Madhva wrote commentaries on the same Upanishads, the same Gita and the same Brahma Sutras, and reached conclusions that contradict each other. On this term they do not merely differ in emphasis.",
+  schoolAdvaita: "Advaita",
+  schoolVishishtadvaita: "Vishishtadvaita",
+  schoolDvaita: "Dvaita",
+  labelSourceText: "Chiefly set out in",
+  conceptCount: "{n} terms, in five groups.",
   labelCommentary: "Commentary",
   labelTranslation: "Translation",
   labelFoundedBy: "Founded by",
@@ -484,6 +512,19 @@ const kn: UIStrings = {
   labelSignificance: "ಮಹತ್ವ",
   labelDefinition: "ವ್ಯಾಖ್ಯಾನ",
   labelRelated: "ಸಂಬಂಧಿತ",
+  conceptGroupReality: "ಏನಿದೆ",
+  conceptGroupSelf: "ನೀನು ಏನು",
+  conceptGroupAction: "ಕರ್ಮ ಮತ್ತು ಅದರ ಫಲ",
+  conceptGroupLife: "ಬದುಕನ್ನು ಜೋಡಿಸುವ ಕ್ರಮ",
+  conceptGroupPath: "ಹೊರಗಿನ ದಾರಿ",
+  labelSchools: "ವೇದಾಂತ ಎಲ್ಲಿ ಒಡೆಯುತ್ತದೆ",
+  labelSchoolsNote:
+    "ಶಂಕರ, ರಾಮಾನುಜ ಮತ್ತು ಮಧ್ವರು ಅದೇ ಉಪನಿಷತ್ತುಗಳಿಗೆ, ಅದೇ ಗೀತೆಗೆ, ಅದೇ ಬ್ರಹ್ಮಸೂತ್ರಗಳಿಗೆ ಭಾಷ್ಯ ಬರೆದು ಪರಸ್ಪರ ವಿರುದ್ಧವಾದ ತೀರ್ಮಾನಗಳಿಗೆ ತಲುಪಿದರು. ಈ ಪದದ ವಿಷಯದಲ್ಲಿ ಅವರ ನಡುವಿನ ಭೇದ ಕೇವಲ ಒತ್ತಿನದಲ್ಲ.",
+  schoolAdvaita: "ಅದ್ವೈತ",
+  schoolVishishtadvaita: "ವಿಶಿಷ್ಟಾದ್ವೈತ",
+  schoolDvaita: "ದ್ವೈತ",
+  labelSourceText: "ಮುಖ್ಯವಾಗಿ ನಿರೂಪಿತವಾಗಿರುವುದು",
+  conceptCount: "{n} ಪದಗಳು, ಐದು ಗುಂಪುಗಳಲ್ಲಿ.",
   labelCommentary: "ಭಾಷ್ಯ",
   labelTranslation: "ಅನುವಾದ",
   labelFoundedBy: "ಸ್ಥಾಪಕರು",
@@ -681,6 +722,19 @@ const hi: UIStrings = {
   labelSignificance: "महत्व",
   labelDefinition: "परिभाषा",
   labelRelated: "संबंधित",
+  conceptGroupReality: "क्या है",
+  conceptGroupSelf: "तुम क्या हो",
+  conceptGroupAction: "कर्म और उसका फल",
+  conceptGroupLife: "जीवन किस क्रम में बँधा है",
+  conceptGroupPath: "बाहर का मार्ग",
+  labelSchools: "वेदांत कहाँ बँटता है",
+  labelSchoolsNote:
+    "शंकर, रामानुज और मध्व ने उन्हीं उपनिषदों, उसी गीता और उन्हीं ब्रह्मसूत्रों पर भाष्य लिखे और परस्पर विरोधी निष्कर्षों तक पहुँचे। इस शब्द पर उनका भेद केवल बल का नहीं है।",
+  schoolAdvaita: "अद्वैत",
+  schoolVishishtadvaita: "विशिष्टाद्वैत",
+  schoolDvaita: "द्वैत",
+  labelSourceText: "मुख्यतः निरूपित",
+  conceptCount: "{n} शब्द, पाँच समूहों में।",
   labelCommentary: "भाष्य",
   labelTranslation: "अनुवाद",
   labelFoundedBy: "संस्थापक",

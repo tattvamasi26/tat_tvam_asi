@@ -17,6 +17,12 @@ import { VERSES, VERSE_TRANSLATIONS, VERSE_NOTES } from "./seed/verses";
 import { TEACHERS, TEACHER_TRANSLATIONS } from "./seed/teachers";
 import { TEMPLES, TEMPLE_TRANSLATIONS } from "./seed/temples";
 import { CONCEPTS, CONCEPT_TRANSLATIONS } from "./seed/concepts";
+import {
+  CONCEPT_GROUP,
+  SCHOOLS,
+  SOURCE_TEXTS,
+  type ConceptGroup,
+} from "./seed/concepts-more";
 import { MATHAS, MATHA_TRANSLATIONS } from "./seed/mathas";
 import type { SourceRow } from "./seed/types";
 
@@ -101,6 +107,15 @@ export interface ConceptView {
   definition: string;
   detailedExplanation: string;
   relatedConcepts: string[];
+  group: ConceptGroup;
+  /** Where the term is chiefly set out, so a reader can go and look. */
+  sourceText: string | null;
+  /**
+   * The six terms where Vedanta actually divides. Three schools wrote
+   * on the same verses and reached incompatible conclusions; a single
+   * confident sentence here would be a quiet lie.
+   */
+  schools: { advaita: string; vishishtadvaita: string; dvaita: string } | null;
 }
 
 export interface MathaView {
@@ -619,8 +634,26 @@ export function getAllConcepts(locale: Locale): ConceptView[] {
       definition: tr?.definition ?? "",
       detailedExplanation: tr?.detailed_explanation ?? "",
       relatedConcepts: c.related_concepts,
+      group: CONCEPT_GROUP[c.slug] ?? "reality",
+      sourceText: SOURCE_TEXTS[c.slug]?.[locale] ?? null,
+      schools: SCHOOLS[c.slug]
+        ? {
+            advaita: SCHOOLS[c.slug]!.advaita[locale],
+            vishishtadvaita: SCHOOLS[c.slug]!.vishishtadvaita[locale],
+            dvaita: SCHOOLS[c.slug]!.dvaita[locale],
+          }
+        : null,
     };
   });
+}
+
+/** The groups in reading order, each with its concepts. */
+export function getConceptGroups(
+  locale: Locale,
+): { id: ConceptGroup; concepts: ConceptView[] }[] {
+  const order: ConceptGroup[] = ["reality", "self", "action", "life", "path"];
+  const all = getAllConcepts(locale);
+  return order.map((id) => ({ id, concepts: all.filter((c) => c.group === id) }));
 }
 
 export function getConceptBySlug(slug: string, locale: Locale): ConceptView | null {
