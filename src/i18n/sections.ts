@@ -83,6 +83,22 @@ export const SECTIONS: SectionDef[] = [
     },
   },
   {
+    id: "puranas",
+    href: "/puranas",
+    parent: "shastras",
+    glyph: "पुराण",
+    label: {
+      en: "The Puranas",
+      kn: "ಪುರಾಣಗಳು",
+      hi: "पुराण",
+    },
+    blurb: {
+      en: "Eighteen Mahapuranas — what each one is, what is in it, and what came out of it into practice.",
+      kn: "ಹದಿನೆಂಟು ಮಹಾಪುರಾಣಗಳು — ಪ್ರತಿಯೊಂದೂ ಏನು, ಅದರಲ್ಲಿ ಏನಿದೆ, ಮತ್ತು ಅದರಿಂದ ಆಚರಣೆಗೆ ಏನು ಬಂತು.",
+      hi: "अठारह महापुराण — प्रत्येक क्या है, उसमें क्या है, और उससे आचरण में क्या आया।",
+    },
+  },
+  {
     id: "gita",
     href: "/gita",
     glyph: "गीता",

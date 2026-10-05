@@ -36,6 +36,11 @@ export const ROUTES = [
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
   "/shastras",
+  "/puranas",
+  // The most read of the eighteen, and one with a disputed place
+  // in the list.
+  "/puranas/bhagavata",
+  "/puranas/shiva",
   "/rituals",
   // One rite with a photograph, and one without — the head is a
   // different design in each case.

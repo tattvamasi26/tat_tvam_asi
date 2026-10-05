@@ -24,6 +24,7 @@ import "@/styles/shastras.css";
 import "@/styles/festivals.css";
 import "@/styles/rituals.css";
 import "@/styles/concepts.css";
+import "@/styles/puranas.css";
 import "@/styles/practice.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";

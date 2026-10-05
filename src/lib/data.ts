@@ -291,6 +291,14 @@ import {
   type RitualGroupId,
 } from "./seed/rituals";
 import { ritualImage, ritualGroupImage, type RitualImage } from "./seed/ritual-images";
+import {
+  PURANAS,
+  puranaBySlug,
+  puranasInOrder,
+  puranasByGuna,
+  traditionalVerseTotal,
+  type PuranaGuna,
+} from "./seed/puranas";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -1601,7 +1609,14 @@ function ritualView(r: (typeof RITUALS)[number], locale: Locale): RitualView {
     prescribedBy: (() => {
       const p = prescriptionFor(r.slug);
       return p
-        ? { branch: p.branch, note: p.note[locale], href: `/shastras#${p.branch}` }
+        ? {
+            branch: p.branch,
+            note: p.note[locale],
+            // A branch with a section of its own is linked to it;
+            // the rest anchor into the map.
+            href:
+              SHASTRA_BRANCHES.find((b) => b.id === p.branch)?.href ?? `/shastras#${p.branch}`,
+          }
         : null;
     })(),
     image: ritualImageView(ritualImage(r.slug), locale),
@@ -1816,4 +1831,74 @@ export function getRitesFromBranch(
   locale: Locale,
 ): { slug: string; name: string }[] {
   return ritualsFromBranch(branch).map((r) => ({ slug: r.slug, name: r.name[locale] }));
+}
+
+// ── The Purāṇas ─────────────────────────────────────────────
+
+export interface PuranaLinkView {
+  href: string;
+  label: string;
+}
+
+export interface PuranaView {
+  slug: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  order: number;
+  deity: string;
+  /** As the tradition gives it, never as a count. */
+  verses: number;
+  guna: PuranaGuna;
+  lede: string;
+  about: string;
+  known: string;
+  note: string | null;
+  links: PuranaLinkView[];
+}
+
+function puranaView(p: (typeof PURANAS)[number], locale: Locale): PuranaView {
+  return {
+    slug: p.slug,
+    name: p.name[locale],
+    sanskrit: scriptFor(p.sanskrit, locale),
+    order: p.order,
+    deity: p.deity[locale],
+    verses: p.verses,
+    guna: p.guna,
+    lede: p.lede[locale],
+    about: p.about[locale],
+    known: p.known[locale],
+    note: p.note?.[locale] ?? null,
+    links: (p.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+  };
+}
+
+/** All eighteen, in the order the lists give them. */
+export function getPuranas(locale: Locale): PuranaView[] {
+  return puranasInOrder().map((p) => puranaView(p, locale));
+}
+
+export function getPurana(slug: string, locale: Locale): PuranaView | null {
+  const p = puranaBySlug(slug);
+  return p ? puranaView(p, locale) : null;
+}
+
+/**
+ * The three classes the Padma Purāṇa sorts them into. Sectarian, and
+ * the page says so — it is a ranking made from inside the contest.
+ */
+export function getPuranasByGuna(
+  locale: Locale,
+): { guna: PuranaGuna; puranas: PuranaView[] }[] {
+  const order: PuranaGuna[] = ["sattvika", "rajasa", "tamasa"];
+  return order.map((guna) => ({
+    guna,
+    puranas: puranasByGuna(guna).map((p) => puranaView(p, locale)),
+  }));
+}
+
+/** The traditional total, added up from the figures the tradition gives. */
+export function getTraditionalVerseTotal(): number {
+  return traditionalVerseTotal();
 }
