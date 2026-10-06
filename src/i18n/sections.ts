@@ -99,6 +99,22 @@ export const SECTIONS: SectionDef[] = [
     },
   },
   {
+    id: "cosmos",
+    href: "/cosmos",
+    parent: "puranas",
+    glyph: "कालः",
+    label: {
+      en: "Time and the cosmos",
+      kn: "ಕಾಲ ಮತ್ತು ವಿಶ್ವ",
+      hi: "काल और विश्व",
+    },
+    blurb: {
+      en: "The scheme of ages, worlds and dissolutions the Puranas work out in more detail than almost anything else they contain.",
+      kn: "ಯುಗ, ಲೋಕ ಮತ್ತು ಪ್ರಳಯಗಳ ಯೋಜನೆ — ಪುರಾಣಗಳು ತಮ್ಮಲ್ಲಿನ ಬಹುತೇಕ ಯಾವುದಕ್ಕಿಂತಲೂ ಹೆಚ್ಚು ವಿವರವಾಗಿ ರೂಪಿಸಿದ್ದು.",
+      hi: "युग, लोक और प्रलय की वह व्यवस्था जिसे पुराण अपने भीतर की लगभग हर वस्तु से अधिक विस्तार से गढ़ते हैं।",
+    },
+  },
+  {
     id: "gita",
     href: "/gita",
     glyph: "गीता",

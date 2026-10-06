@@ -305,6 +305,20 @@ import {
   storiesInOrder,
   storiesFromPurana,
 } from "./seed/stories";
+import {
+  TIME_UNITS,
+  YUGAS,
+  LOKAS,
+  DVIPAS,
+  PRALAYAS,
+  NOW,
+} from "./seed/cosmos";
+import {
+  COSMOS_TOPICS,
+  topicBySlug,
+  topicsInOrder,
+  type CosmosSection,
+} from "./seed/cosmos-topics";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -1964,4 +1978,142 @@ export function getStory(slug: string, locale: Locale): StoryView | null {
 /** The stories one Purāṇa carries, for the link from its own page. */
 export function getStoriesFromPurana(purana: string, locale: Locale): StoryView[] {
   return storiesFromPurana(purana).map((s) => storyView(s, locale));
+}
+
+// ── Time and the cosmos ─────────────────────────────────────
+
+export interface TimeUnitView {
+  id: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  seconds: number;
+  defined: string;
+}
+
+export interface YugaView {
+  id: string;
+  name: string;
+  sanskrit: string;
+  years: number;
+  parts: number;
+  character: string;
+}
+
+export interface LokaView {
+  id: string;
+  name: string;
+  sanskrit: string;
+  level: number;
+  gloss: string;
+}
+
+export interface DvipaView {
+  id: string;
+  name: string;
+  sanskrit: string;
+  ring: number;
+  sea: string;
+  note: string | null;
+}
+
+export interface PralayaView {
+  id: string;
+  name: string;
+  sanskrit: string;
+  when: string;
+  what: string;
+}
+
+export function getTimeUnits(locale: Locale): TimeUnitView[] {
+  return TIME_UNITS.map((u) => ({
+    id: u.id,
+    name: u.name[locale],
+    sanskrit: scriptFor(u.sanskrit, locale),
+    seconds: u.seconds,
+    defined: u.defined[locale],
+  }));
+}
+
+export function getYugas(locale: Locale): YugaView[] {
+  return YUGAS.map((y) => ({
+    id: y.id,
+    name: y.name[locale],
+    sanskrit: scriptFor(y.sanskrit, locale),
+    years: y.years,
+    parts: y.parts,
+    character: y.character[locale],
+  }));
+}
+
+export function getLokas(locale: Locale): LokaView[] {
+  return LOKAS.map((l) => ({
+    id: l.id,
+    name: l.name[locale],
+    sanskrit: scriptFor(l.sanskrit, locale),
+    level: l.level,
+    gloss: l.gloss[locale],
+  }));
+}
+
+export function getDvipas(locale: Locale): DvipaView[] {
+  return DVIPAS.map((d) => ({
+    id: d.id,
+    name: d.name[locale],
+    sanskrit: scriptFor(d.sanskrit, locale),
+    ring: d.ring,
+    sea: d.sea[locale],
+    note: d.note?.[locale] ?? null,
+  }));
+}
+
+export function getPralayas(locale: Locale): PralayaView[] {
+  return PRALAYAS.map((p) => ({
+    id: p.id,
+    name: p.name[locale],
+    sanskrit: scriptFor(p.sanskrit, locale),
+    when: p.when[locale],
+    what: p.what[locale],
+  }));
+}
+
+/** Where the Purāṇas place the present moment. */
+export function getNow(locale: Locale) {
+  return {
+    brahmaYear: NOW.brahmaYear,
+    manvantara: NOW.manvantara,
+    manu: NOW.manu[locale],
+    mahayuga: NOW.mahayuga,
+    yuga: getYugas(locale).find((y) => y.id === NOW.yuga) ?? null,
+    kaliStartBCE: NOW.kaliStartBCE,
+  };
+}
+
+export interface CosmosTopicView {
+  slug: string;
+  name: string;
+  sanskrit: string;
+  order: number;
+  lede: string;
+  sections: CosmosSection[];
+}
+
+function topicView(t: (typeof COSMOS_TOPICS)[number], locale: Locale): CosmosTopicView {
+  return {
+    slug: t.slug,
+    name: t.name[locale],
+    sanskrit: scriptFor(t.sanskrit, locale),
+    order: t.order,
+    lede: t.lede[locale],
+    sections: t.content[locale],
+  };
+}
+
+export function getCosmosTopics(locale: Locale): CosmosTopicView[] {
+  return topicsInOrder().map((t) => topicView(t, locale));
+}
+
+export function getCosmosTopic(slug: string, locale: Locale): CosmosTopicView | null {
+  const t = topicBySlug(slug);
+  return t ? topicView(t, locale) : null;
 }
