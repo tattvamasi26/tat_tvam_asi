@@ -27,6 +27,9 @@ export const ROUTES = [
   "/vedas/rigveda/10/129",
   "/vedas/rigveda/devata/ushas",
   "/gita",
+  // The shortest chapter, and the one whose verse count is disputed.
+  "/gita/12",
+  "/gita/13",
   "/stutis",
   "/stutis/gayatri",
   "/stutis/gayatri/gayatri-mantra",

@@ -319,6 +319,12 @@ import {
   topicsInOrder,
   type CosmosSection,
 } from "./seed/cosmos-topics";
+import {
+  GITA_CHAPTER_NOTES,
+  gitaChapter,
+  gitaChaptersInOrder,
+  gitaVerseTotal,
+} from "./seed/gita-chapters";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -2116,4 +2122,64 @@ export function getCosmosTopics(locale: Locale): CosmosTopicView[] {
 export function getCosmosTopic(slug: string, locale: Locale): CosmosTopicView | null {
   const t = topicBySlug(slug);
   return t ? topicView(t, locale) : null;
+}
+
+// ── The Gītā's eighteen chapters ────────────────────────────
+
+export interface GitaChapterLinkView {
+  href: string;
+  label: string;
+}
+
+export interface GitaChapterView {
+  n: number;
+  key: string;
+  slug: string;
+  name: string;
+  /** Already in the reader's script, taken from seed/corpus.ts. */
+  sanskrit: string;
+  verses: number;
+  lede: string;
+  argument: string;
+  turn: string;
+  note: string | null;
+  links: GitaChapterLinkView[];
+}
+
+function gitaChapterView(c: (typeof GITA_CHAPTER_NOTES)[number], locale: Locale): GitaChapterView {
+  // The Sanskrit title comes from the corpus row rather than being
+  // retyped here, so this section introduces no new Sanskrit.
+  const row = GITA_CHAPTERS[c.n - 1];
+  return {
+    n: c.n,
+    key: c.key,
+    slug: row?.slug ?? `gita-${c.n}-${c.key}`,
+    name: c.name[locale],
+    sanskrit: scriptFor(row?.name_sanskrit ?? "", locale),
+    verses: c.verses,
+    lede: c.lede[locale],
+    argument: c.argument[locale],
+    turn: c.turn[locale],
+    note: c.note?.[locale] ?? null,
+    links: (c.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+  };
+}
+
+export function getGitaChapters(locale: Locale): GitaChapterView[] {
+  return gitaChaptersInOrder().map((c) => gitaChapterView(c, locale));
+}
+
+export function getGitaChapter(n: number, locale: Locale): GitaChapterView | null {
+  const c = gitaChapter(n);
+  return c ? gitaChapterView(c, locale) : null;
+}
+
+/**
+ * The chapters sum to 701 while the Gītā is universally called seven
+ * hundred verses. Chapter 13 is why: it has 34 or 35 depending on
+ * whether Arjuna's opening question is counted. Both numbers are
+ * returned so the page can say so rather than quietly print one.
+ */
+export function getGitaVerseCounts(): { summed: number; traditional: number } {
+  return { summed: gitaVerseTotal(), traditional: 700 };
 }
