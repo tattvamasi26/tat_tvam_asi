@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { puranaStrings } from "@/i18n/puranas";
-import { getPurana, getPuranas } from "@/lib/data";
+import { storyStrings } from "@/i18n/stories";
+import { getPurana, getPuranas, getStoriesFromPurana } from "@/lib/data";
 import { PURANAS } from "@/lib/seed/puranas";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
@@ -35,11 +36,13 @@ export async function generateMetadata({
 export default function PuranaPage({ params }: { params: { purana: string } }) {
   const { locale } = getTranslations();
   const s = puranaStrings(locale);
+  const st = storyStrings(locale);
   const p = getPurana(params.purana, locale);
   if (!p) notFound();
 
   const sc = scriptClass(locale);
   const all = getPuranas(locale);
+  const stories = getStoriesFromPurana(params.purana, locale);
   const at = all.findIndex((x) => x.slug === p.slug);
   const prev = at > 0 ? all[at - 1] : null;
   const next = at >= 0 && at < all.length - 1 ? all[at + 1] : null;
@@ -96,6 +99,23 @@ export default function PuranaPage({ params }: { params: { purana: string } }) {
           <div className="pu-aside">
             <p className="fact-label">{s.labelNote}</p>
             <p>{p.note}</p>
+          </div>
+        )}
+
+        {/* The stories this one carries, which is the commonest
+            reason anybody arrives at a Purana at all. */}
+        {stories.length > 0 && (
+          <div className="st-from">
+            <h2 className="pu-h2">{st.fromThis}</h2>
+            <ul className="st-from-list">
+              {stories.map((x) => (
+                <li key={x.slug}>
+                  <Link href={`/puranas/stories/${x.slug}`} className="chip chip-gold">
+                    {x.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 

@@ -299,6 +299,12 @@ import {
   traditionalVerseTotal,
   type PuranaGuna,
 } from "./seed/puranas";
+import {
+  STORIES,
+  storyBySlug,
+  storiesInOrder,
+  storiesFromPurana,
+} from "./seed/stories";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -1901,4 +1907,61 @@ export function getPuranasByGuna(
 /** The traditional total, added up from the figures the tradition gives. */
 export function getTraditionalVerseTotal(): number {
   return traditionalVerseTotal();
+}
+
+// ── The stories ─────────────────────────────────────────────
+
+export interface StoryLinkView {
+  href: string;
+  label: string;
+}
+
+export interface StoryView {
+  slug: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  order: number;
+  told: string;
+  purana: string;
+  /** The Purāṇa's own name, resolved, for the chip. */
+  puranaName: string;
+  lede: string;
+  story: string;
+  /** Always framed as a reading, never as what the story says. */
+  reading: string;
+  differs: string | null;
+  links: StoryLinkView[];
+}
+
+function storyView(s: (typeof STORIES)[number], locale: Locale): StoryView {
+  const p = PURANAS.find((x) => x.slug === s.purana);
+  return {
+    slug: s.slug,
+    name: s.name[locale],
+    sanskrit: scriptFor(s.sanskrit, locale),
+    order: s.order,
+    told: s.told[locale],
+    purana: s.purana,
+    puranaName: p ? p.name[locale] : s.purana,
+    lede: s.lede[locale],
+    story: s.story[locale],
+    reading: s.reading[locale],
+    differs: s.differs?.[locale] ?? null,
+    links: (s.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+  };
+}
+
+export function getStories(locale: Locale): StoryView[] {
+  return storiesInOrder().map((s) => storyView(s, locale));
+}
+
+export function getStory(slug: string, locale: Locale): StoryView | null {
+  const s = storyBySlug(slug);
+  return s ? storyView(s, locale) : null;
+}
+
+/** The stories one Purāṇa carries, for the link from its own page. */
+export function getStoriesFromPurana(purana: string, locale: Locale): StoryView[] {
+  return storiesFromPurana(purana).map((s) => storyView(s, locale));
 }

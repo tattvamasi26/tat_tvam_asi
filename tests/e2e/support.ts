@@ -41,6 +41,10 @@ export const ROUTES = [
   // in the list.
   "/puranas/bhagavata",
   "/puranas/shiva",
+  "/puranas/stories",
+  // One story whose tellings differ, and one whose do not.
+  "/puranas/stories/samudra-manthana",
+  "/puranas/stories/prithu",
   "/rituals",
   // One rite with a photograph, and one without — the head is a
   // different design in each case.
