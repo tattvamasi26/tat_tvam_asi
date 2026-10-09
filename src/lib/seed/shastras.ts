@@ -368,6 +368,7 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
     name: { en: "The six systems", kn: "ಷಡ್ದರ್ಶನಗಳು", hi: "षड्दर्शन" },
     sanskrit: "षड्दर्शनानि",
     glyph: "दर्शन",
+    href: "/darshanas",
     lede: {
       en: "Not six religions — six ways of asking what is real and how anyone could know it. They argue with each other, at length, for centuries.",
       kn: "ಆರು ಧರ್ಮಗಳಲ್ಲ — ಯಾವುದು ಸತ್ಯ ಮತ್ತು ಅದನ್ನು ಹೇಗೆ ತಿಳಿಯಬಹುದು ಎಂದು ಕೇಳುವ ಆರು ಮಾರ್ಗಗಳು. ಇವು ಪರಸ್ಪರ ಶತಮಾನಗಳ ಕಾಲ ವಾದಿಸುತ್ತವೆ.",
@@ -383,7 +384,8 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
           kn: "ತರ್ಕ ಮತ್ತು ಪ್ರಮಾಣ. ವಾದ ಸರಿಯೆಂದು ತೋರಿಸುವುದು ಹೇಗೆ.",
           hi: "तर्क और प्रमाण। कोई तर्क सही है यह कैसे सिद्ध होता है।",
         },
-        status: "planned",
+        href: "/darshanas/nyaya",
+        status: "live",
       },
       {
         id: "vaisheshika",
@@ -394,7 +396,8 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
           kn: "ಜಗತ್ತು ಯಾವುದರಿಂದ ಆಗಿದೆ. ಗ್ರೀಕರಿಗಿಂತ ಹಳೆಯ ಪರಮಾಣುವಾದ.",
           hi: "संसार किससे बना है। यूनानियों से पुराना परमाणुवाद।",
         },
-        status: "planned",
+        href: "/darshanas/vaisheshika",
+        status: "live",
       },
       {
         id: "sankhya",
@@ -405,7 +408,8 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
           kn: "ಪುರುಷ ಮತ್ತು ಪ್ರಕೃತಿ — ಚೈತನ್ಯ ಮತ್ತು ನಿಸರ್ಗ, ಬೇರೆಬೇರೆಯಾಗಿ. ಎಪ್ಪತ್ತೆರಡು ಕಾರಿಕೆಗಳಲ್ಲಿ ಇಡೀ ಶಾಸ್ತ್ರ.",
           hi: "पुरुष और प्रकृति — चेतन और जड़, पृथक्। बहत्तर कारिकाओं में पूरा शास्त्र।",
         },
-        status: "planned",
+        href: "/darshanas/sankhya",
+        status: "live",
       },
       {
         id: "yoga",
@@ -416,7 +420,8 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
           kn: "ಪತಂಜಲಿಯ ೧೯೬ ಸೂತ್ರಗಳು. ಸಾಂಖ್ಯದ ನಕ್ಷೆ, ಸಾಧನೆಯಾಗಿ ಮಾರ್ಪಟ್ಟದ್ದು.",
           hi: "पतंजलि के १९६ सूत्र। सांख्य का मानचित्र, साधना में बदला हुआ।",
         },
-        status: "planned",
+        href: "/darshanas/yoga",
+        status: "live",
       },
       {
         id: "mimamsa",
@@ -427,7 +432,8 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
           kn: "ವೇದ ಏನನ್ನು ವಿಧಿಸುತ್ತದೆ, ಒಂದು ವಾಕ್ಯ ಹೇಗೆ ಕರ್ತವ್ಯವನ್ನು ಹೇರುತ್ತದೆ. ಭಾರತೀಯ ಅರ್ಥನಿರ್ಣಯ ಶಾಸ್ತ್ರವನ್ನು ಕಟ್ಟಿದ ಶಾಖೆ.",
           hi: "वेद क्या विधान करता है, और एक वाक्य किसी को कैसे बाध्य करता है। भारतीय व्याख्या-शास्त्र गढ़ने वाली शाखा।",
         },
-        status: "planned",
+        href: "/darshanas/mimamsa",
+        status: "live",
       },
       {
         id: "vedanta-darshana",
@@ -438,7 +444,7 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
           kn: "ಉತ್ತರಮೀಮಾಂಸಾ — ವೇದದ ಅಂತ್ಯ. ಇದರ ಗ್ರಂಥಗಳು ಮೇಲಿನ ಮೂರು, ಇದರ ಆಚಾರ್ಯರು ಆಚಾರ್ಯರ ವಿಭಾಗದಲ್ಲಿ.",
           hi: "उत्तरमीमांसा — वेद का अंत। इसके ग्रंथ ऊपर के तीन हैं, और इसके आचार्य आचार्य अनुभाग में।",
         },
-        href: "/acharyas",
+        href: "/darshanas/vedanta",
         status: "live",
       },
     ],

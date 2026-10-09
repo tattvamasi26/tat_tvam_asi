@@ -325,6 +325,22 @@ import {
   gitaChaptersInOrder,
   gitaVerseTotal,
 } from "./seed/gita-chapters";
+import {
+  DARSHANAS,
+  PRAMANAS,
+  PAIRS,
+  CONTRAST,
+  AVAYAVAS,
+  TATTVA_TIERS,
+  PURUSHA,
+  darshanaBySlug,
+  darshanasInOrder,
+  pairById,
+  tattvaCount,
+  type PramanaId,
+  type StructureItem,
+} from "./seed/darshanas";
+import { darshanaProse, type DarshanaSection } from "./seed/darshana-pages";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -2182,4 +2198,210 @@ export function getGitaChapter(n: number, locale: Locale): GitaChapterView | nul
  */
 export function getGitaVerseCounts(): { summed: number; traditional: number } {
   return { summed: gitaVerseTotal(), traditional: 700 };
+}
+
+// ── The six darsanas ────────────────────────────────────────
+
+export interface StructureItemView {
+  id: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  gloss: string;
+}
+
+export interface PramanaView extends StructureItemView {
+  n: number;
+}
+
+export interface DarshanaLinkView {
+  href: string;
+  label: string;
+}
+
+/** One row of the acceptance grid — a school, or a position outside the six. */
+export interface PramanaRowView {
+  id: string;
+  name: string;
+  sanskrit: string;
+  /** Null where the school's epistemology does not use this list at all. */
+  accepts: PramanaId[] | null;
+  /** Where the row leads, for the six; null for the contrast rows. */
+  href: string | null;
+  note: string | null;
+}
+
+export interface DarshanaPairView {
+  id: string;
+  label: string;
+  note: string;
+  members: { slug: string; name: string; sanskrit: string; role: string }[];
+}
+
+export interface DarshanaView {
+  slug: string;
+  order: number;
+  name: string;
+  sanskrit: string;
+  glyph: string;
+  question: string;
+  lede: string;
+  pramanas: PramanaId[];
+  pramanaNote: string | null;
+  ishvara: string;
+  root: {
+    name: string;
+    sanskrit: string;
+    author: string;
+    dating: string;
+    extent: string | null;
+  };
+  structure: {
+    label: string;
+    note: string;
+    items: StructureItemView[];
+  } | null;
+  pair: DarshanaPairView | null;
+  sections: DarshanaSection[];
+  links: DarshanaLinkView[];
+}
+
+function structureItemView(i: StructureItem, locale: Locale): StructureItemView {
+  return {
+    id: i.id,
+    name: i.name[locale] ?? i.name.en,
+    sanskrit: scriptFor(i.sanskrit, locale),
+    gloss: i.gloss[locale] ?? i.gloss.en,
+  };
+}
+
+/** The six means of knowledge, numbered as the grid's columns are. */
+export function getPramanas(locale: Locale): PramanaView[] {
+  return PRAMANAS.map((p) => ({ ...structureItemView(p, locale), n: p.n }));
+}
+
+function pairView(id: string, locale: Locale): DarshanaPairView | null {
+  const p = pairById(id);
+  if (!p) return null;
+  return {
+    id: p.id,
+    label: p.label[locale] ?? p.label.en,
+    note: p.note[locale] ?? p.note.en,
+    members: p.members.flatMap((slug) => {
+      const d = darshanaBySlug(slug);
+      if (!d) return [];
+      return [
+        {
+          slug,
+          name: d.name[locale] ?? d.name.en,
+          sanskrit: scriptFor(d.sanskrit, locale),
+          role: p.roles[slug]?.[locale] ?? p.roles[slug]?.en ?? "",
+        },
+      ];
+    }),
+  };
+}
+
+export function getDarshanaPairs(locale: Locale): DarshanaPairView[] {
+  return PAIRS.flatMap((p) => {
+    const v = pairView(p.id, locale);
+    return v ? [v] : [];
+  });
+}
+
+function darshanaView(d: (typeof DARSHANAS)[number], locale: Locale): DarshanaView {
+  return {
+    slug: d.slug,
+    order: d.order,
+    name: d.name[locale] ?? d.name.en,
+    sanskrit: scriptFor(d.sanskrit, locale),
+    glyph: scriptFor(d.glyph, locale),
+    question: d.question[locale] ?? d.question.en,
+    lede: d.lede[locale] ?? d.lede.en,
+    pramanas: d.pramanas,
+    pramanaNote: d.pramanaNote?.[locale] ?? null,
+    ishvara: d.ishvara[locale] ?? d.ishvara.en,
+    root: {
+      name: d.root.name[locale] ?? d.root.name.en,
+      sanskrit: scriptFor(d.root.sanskrit, locale),
+      author: d.root.author[locale] ?? d.root.author.en,
+      dating: d.root.dating[locale] ?? d.root.dating.en,
+      extent: d.root.extent?.[locale] ?? null,
+    },
+    structure: d.structure
+      ? {
+          label: d.structure.label[locale] ?? d.structure.label.en,
+          note: d.structure.note[locale] ?? d.structure.note.en,
+          items: d.structure.items.map((i) => structureItemView(i, locale)),
+        }
+      : null,
+    pair: pairView(d.pair, locale),
+    sections: darshanaProse(d.slug, locale),
+    links: d.links.map((l) => ({ href: l.href, label: l.label[locale] ?? l.label.en })),
+  };
+}
+
+export function getDarshanas(locale: Locale): DarshanaView[] {
+  return darshanasInOrder().map((d) => darshanaView(d, locale));
+}
+
+export function getDarshana(slug: string, locale: Locale): DarshanaView | null {
+  const d = darshanaBySlug(slug);
+  return d ? darshanaView(d, locale) : null;
+}
+
+/**
+ * The acceptance grid, in two parts.
+ *
+ * The six are above the rule and the three positions outside them are
+ * below it. The Jain row carries `accepts: null` on purpose — its
+ * epistemology uses a classification of its own, and a tidy row of
+ * dots would misrepresent it.
+ */
+export function getPramanaGrid(locale: Locale): {
+  schools: PramanaRowView[];
+  others: PramanaRowView[];
+} {
+  return {
+    schools: darshanasInOrder().map((d) => ({
+      id: d.slug,
+      name: d.name[locale] ?? d.name.en,
+      sanskrit: scriptFor(d.sanskrit, locale),
+      accepts: d.pramanas,
+      href: `/darshanas/${d.slug}`,
+      note: d.pramanaNote?.[locale] ?? null,
+    })),
+    others: CONTRAST.map((c) => ({
+      id: c.id,
+      name: c.name[locale] ?? c.name.en,
+      sanskrit: scriptFor(c.sanskrit, locale),
+      accepts: c.pramanas,
+      href: null,
+      note: c.note[locale] ?? c.note.en,
+    })),
+  };
+}
+
+/** Nyaya's five-membered argument, with the example its own texts use. */
+export function getAvayavas(locale: Locale) {
+  return AVAYAVAS.map((a) => ({
+    id: a.id,
+    name: a.name[locale] ?? a.name.en,
+    sanskrit: scriptFor(a.sanskrit, locale),
+    step: a.step[locale] ?? a.step.en,
+    example: a.example[locale] ?? a.example.en,
+  }));
+}
+
+/** Sankhya's twenty-five: purusa apart, and the cascade in tiers. */
+export function getTattvas(locale: Locale) {
+  return {
+    purusha: structureItemView(PURUSHA, locale),
+    tiers: TATTVA_TIERS.map((t) => ({
+      id: t.id,
+      label: t.label[locale] ?? t.label.en,
+      items: t.items.map((i) => structureItemView(i, locale)),
+    })),
+    count: tattvaCount(),
+  };
 }

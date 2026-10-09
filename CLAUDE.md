@@ -423,6 +423,33 @@ the embarrassments — a promotional poster with its caption burnt in, a
 signboard outside a matha, a gurukula classroom filed under "homa" — but
 it does not make the result belong here. The owner picks the pictures.
 
+### The six darśanas
+
+`/darshanas` (front door) and `/darshanas/[school]` (six pages), reached
+through Shastras (`parent: "shastras"`). Structured data is in
+`seed/darshanas.ts`; the prose is one file per language in
+`seed/darshana-pages/` (`en.ts`, `kn.ts`, `hi.ts`), the Shankara
+arrangement, held to the same section ids and block kinds by
+`tests/unit/darshanas.test.ts`.
+
+- **Three corrections lead the front door, and a test pins each**:
+  the list of six is a later convention, not how the schools formed;
+  āstika means accepting the Veda, not theism (Sāṅkhya argues there is
+  no God, Mīmāṃsā gives one nothing to do — both āstika); and six is
+  not all there were (`CONTRAST`: Buddhist, Jain, Cārvāka).
+- **`ishvara` is prose, never a boolean**, because that is the field
+  the popular account gets wrong.
+- **The Jain row of the pramāṇa grid is `null` on purpose.** Jain
+  epistemology has its own list; forcing it onto the Nyāya six would
+  be tidy and false.
+- **A disputed count carries its note** (Vaiśeṣika, Mīmāṃsā, Vedānta).
+- **The drawings are CSS on semantic markup, not SVG** — a real
+  `<table>` for the grid, nested lists for Sāṅkhya's twenty-five and
+  Nyāya's five members. They show labelled structure in three scripts,
+  which SVG text cannot wrap. The grid must fit a phone outright: the
+  audit fails any sideways-scrolling region, so below 600px the count
+  column is dropped instead.
+
 ### Everyday Vedanta is the one section a reader does
 
 `/practice` holds five sittings built on texts the site already has.

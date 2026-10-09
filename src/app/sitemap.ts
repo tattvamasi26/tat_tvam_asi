@@ -7,6 +7,7 @@ import { RITUALS } from "@/lib/seed/rituals";
 import { PURANAS } from "@/lib/seed/puranas";
 import { STORIES } from "@/lib/seed/stories";
 import { COSMOS_TOPICS } from "@/lib/seed/cosmos-topics";
+import { DARSHANAS } from "@/lib/seed/darshanas";
 import { GITA_CHAPTER_NOTES } from "@/lib/seed/gita-chapters";
 import { PRACTICES } from "@/lib/seed/practice";
 import { LOCALES } from "@/i18n/config";
@@ -42,6 +43,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const ritualRoutes = ["/rituals", ...RITUALS.map((r) => `/rituals/${r.slug}`)];
   const gitaRoutes = ["/gita", ...GITA_CHAPTER_NOTES.map((c) => `/gita/${c.n}`)];
   const cosmosRoutes = ["/cosmos", ...COSMOS_TOPICS.map((t) => `/cosmos/${t.slug}`)];
+  const darshanaRoutes = ["/darshanas", ...DARSHANAS.map((d) => `/darshanas/${d.slug}`)];
   const puranaRoutes = [
     "/puranas",
     ...PURANAS.map((p) => `/puranas/${p.slug}`),
@@ -59,6 +61,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...ritualRoutes,
     ...puranaRoutes,
     ...cosmosRoutes,
+    ...darshanaRoutes,
     ...gitaRoutes,
     ...festivalRoutes,
     ...practiceRoutes,

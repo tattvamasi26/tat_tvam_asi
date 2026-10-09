@@ -39,6 +39,13 @@ export const ROUTES = [
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
   "/shastras",
+  // Two drawn blocks on the front door, both CSS rather than SVG, and
+  // the two schools that carry a drawing of their own.
+  "/darshanas",
+  "/darshanas/nyaya",
+  "/darshanas/sankhya",
+  // The school whose means-of-knowledge count is disputed inside it.
+  "/darshanas/mimamsa",
   "/puranas",
   // The most read of the eighteen, and one with a disputed place
   // in the list.

@@ -115,6 +115,25 @@ export const SECTIONS: SectionDef[] = [
     },
   },
   {
+    // Reached through Shastras, where the Darśana branch sits. It is
+    // not a top-level pillar: a reader arrives at the six systems
+    // after the texts, not instead of them.
+    id: "darshanas",
+    href: "/darshanas",
+    parent: "shastras",
+    glyph: "दर्शन",
+    label: {
+      en: "The six darshanas",
+      kn: "ಷಡ್ದರ್ಶನಗಳು",
+      hi: "षड्दर्शन",
+    },
+    blurb: {
+      en: "Nyaya, Vaisheshika, Sankhya, Yoga, Mimamsa and Vedanta — three questions asked twice each, and how far each school will trust a means of knowledge.",
+      kn: "ನ್ಯಾಯ, ವೈಶೇಷಿಕ, ಸಾಂಖ್ಯ, ಯೋಗ, ಮೀಮಾಂಸಾ ಮತ್ತು ವೇದಾಂತ — ಎರಡೆರಡು ಬಾರಿ ಕೇಳಿದ ಮೂರು ಪ್ರಶ್ನೆಗಳು, ಮತ್ತು ಪ್ರತಿ ಶಾಖೆ ಪ್ರಮಾಣವನ್ನು ಎಷ್ಟು ನಂಬುತ್ತದೆ.",
+      hi: "न्याय, वैशेषिक, सांख्य, योग, मीमांसा और वेदांत — दो-दो बार पूछे गए तीन प्रश्न, और हर शाखा प्रमाण पर कितना भरोसा करती है।",
+    },
+  },
+  {
     id: "gita",
     href: "/gita",
     glyph: "गीता",

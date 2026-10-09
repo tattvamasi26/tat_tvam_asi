@@ -1,0 +1,929 @@
+/* ─────────────────────────────────────────────────────────
+   The six darśanas.
+
+   Built on the patterns the section already has: `.pagehead` and
+   `.pu-hero` for the heads, `.temple-section` and the shared
+   ProseBlock for the prose, `.chip` for the links, `.da-lens`
+   following `.co-lens` exactly so the alternating paper reads the
+   same as the cosmos pages.
+
+   What is new is four drawn blocks, and all four are plain CSS on
+   semantic markup rather than SVG. That is a deliberate departure
+   from the cosmos drawings and the reason is the scripts: every one
+   of these shows labelled structure, not a quantity, and a label
+   reading "पूर्वमीमांसा" or "ಅನುಪಲಬ್ಧಿ" needs text that wraps and a
+   font the audit can account for. SVG text gives neither. The
+   acharya pages' drawn blocks are the precedent.
+   ───────────────────────────────────────────────────────── */
+
+/* ── the three standing notes ─────────────────────────────── */
+.da-standing {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.9rem, 2vw, 1.3rem);
+  max-width: 68ch;
+}
+
+.da-standing > li {
+  padding-left: clamp(0.9rem, 2.4vw, 1.4rem);
+  border-left: 2px solid var(--gold);
+}
+
+.da-standing-text {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+/* ── a section band, following .co-lens ───────────────────── */
+.da-lens {
+  padding-block: clamp(2rem, 5vw, 3.4rem);
+  background: var(--paper);
+}
+
+.da-lens:nth-of-type(even) {
+  background: var(--paper-2);
+}
+
+.da-lens-inner {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 1.9rem);
+}
+
+.da-lens-head {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 62ch;
+}
+
+.da-lens-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.8vw, 2.2rem);
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.da-lens-lede {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+/* ── the three pairs ──────────────────────────────────────── */
+.da-pairs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(1.1rem, 2.6vw, 1.6rem);
+}
+
+.da-pair {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.da-pair-label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.da-pair-n {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: none;
+  border-radius: 999px;
+  background: var(--marigold-soft);
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Two halves joined by a seam. The seam is the point of the drawing:
+   these are one subject approached twice, not two subjects. */
+.da-pair-halves {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--line-2);
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.da-pair-half {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  padding: clamp(0.9rem, 2.2vw, 1.3rem);
+  background: var(--paper);
+  text-decoration: none;
+  transition: background 160ms ease;
+}
+
+.da-lens:nth-of-type(even) .da-pair-half {
+  background: var(--paper-2);
+}
+
+@media (hover: hover) {
+  .da-pair-half:hover {
+    background: var(--marigold-soft);
+  }
+}
+
+.da-pair-half:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -3px;
+}
+
+.da-pair-role {
+  font-size: 0.72rem;
+  letter-spacing: var(--ls-eyebrow, 0.08em);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+html:lang(kn) .da-pair-role,
+html:lang(hi) .da-pair-role {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.da-pair-name {
+  font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.da-pair-sanskrit {
+  color: var(--sacred);
+  font-size: 1rem;
+}
+
+.da-pair-read {
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.da-pair-note {
+  margin: 0;
+  max-width: 72ch;
+  color: var(--ink-2);
+  line-height: 1.7;
+  font-size: 0.94rem;
+}
+
+@media (max-width: 680px) {
+  .da-pair-halves {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── the acceptance grid ──────────────────────────────────── */
+.da-grid-figure {
+  margin: 0;
+  display: grid;
+  gap: clamp(0.9rem, 2.2vw, 1.3rem);
+}
+
+/* The table fits the page at every width rather than scrolling
+   sideways: the rendering audit forbids a sideways-scrolling region,
+   and a matrix a reader has to pan across is a matrix they cannot
+   compare. Below 600px the count column goes (each school's card
+   repeats it) and the cells tighten. */
+.da-grid-scroll {
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.da-lens:nth-of-type(even) .da-grid-scroll {
+  background: var(--paper-2);
+}
+
+.da-grid {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .da-grid thead th:last-child,
+  .da-grid-count {
+    display: none;
+  }
+
+  .da-grid thead th,
+  .da-grid td {
+    padding-inline: 0.25rem;
+  }
+
+  .da-grid-row-head {
+    padding-inline: 0.7rem 0.4rem;
+    font-size: 0.9rem;
+  }
+}
+
+.da-grid thead th {
+  padding: 0.7rem 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--ink-3);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  border-bottom: 1px solid var(--line-2);
+  white-space: nowrap;
+}
+
+.da-grid thead th:first-child {
+  text-align: start;
+  padding-inline-start: clamp(0.8rem, 2vw, 1.1rem);
+}
+
+.da-grid thead th:last-child {
+  text-align: end;
+  padding-inline-end: clamp(0.8rem, 2vw, 1.1rem);
+}
+
+.da-grid-row-head {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.6rem clamp(0.8rem, 2vw, 1.1rem);
+  text-align: start;
+  font-weight: 600;
+  border-bottom: 1px solid var(--line);
+}
+
+.da-grid tbody tr:last-child .da-grid-row-head,
+.da-grid tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.da-grid-link {
+  justify-self: start;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold-dim);
+}
+
+@media (hover: hover) {
+  .da-grid-link:hover {
+    color: var(--gold);
+  }
+}
+
+.da-grid-row-sanskrit {
+  color: var(--sacred);
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+.da-grid td {
+  padding: 0.6rem 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Accepted is a filled mark; not accepted is an empty ring, so the
+   cell is never simply blank and a reader can tell the difference
+   between "no" and "no data". */
+.da-dot {
+  display: inline-block;
+  width: 0.72rem;
+  height: 0.72rem;
+  border-radius: 999px;
+  border: 1.5px solid var(--line-2);
+  background: transparent;
+}
+
+.da-grid td[data-state="yes"] .da-dot {
+  background: var(--sacred);
+  border-color: var(--sacred);
+}
+
+/* The Jain row: nothing to show, and a dash rather than a ring, so it
+   does not read as six refusals. */
+.da-grid td[data-state="na"] .da-dot {
+  width: 0.72rem;
+  height: 0;
+  border-radius: 0;
+  border: 0;
+  border-top: 1.5px dashed var(--ink-4);
+}
+
+.da-grid-count {
+  text-align: end !important;
+  padding-inline-end: clamp(0.8rem, 2vw, 1.1rem) !important;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* The rule between the six and the rest. */
+.da-grid-others {
+  border-top: 2px solid var(--line-2);
+}
+
+.da-grid-others .da-grid-row-head,
+.da-grid-others td {
+  color: var(--ink-2);
+}
+
+.da-grid-caption {
+  max-width: 62ch;
+  color: var(--ink-4);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.da-legend {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.da-legend-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 0.7rem clamp(1rem, 2.4vw, 1.6rem);
+}
+
+.da-legend-list > li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+}
+
+.da-legend-n {
+  display: inline-grid;
+  place-items: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 999px;
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.da-legend-body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.da-legend-name {
+  font-weight: 620;
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.da-legend-sanskrit {
+  color: var(--sacred);
+  font-size: 0.88rem;
+}
+
+.da-legend-gloss {
+  color: var(--ink-3);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+/* ── the six as cards ─────────────────────────────────────── */
+.da-grid-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: clamp(0.9rem, 2.2vw, 1.3rem);
+}
+
+.da-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(0.8rem, 2vw, 1.1rem);
+  height: 100%;
+  padding: clamp(1rem, 2.4vw, 1.4rem);
+  border: 1px solid var(--line-2);
+  border-radius: 14px;
+  background: var(--paper);
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+@media (hover: hover) {
+  .da-card:hover {
+    border-color: var(--gold-dim);
+    transform: translateY(-2px);
+  }
+}
+
+.da-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.da-card-glyph {
+  align-self: start;
+  color: var(--gold-dim);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  writing-mode: vertical-rl;
+  max-height: 7rem;
+  overflow: hidden;
+}
+
+.da-card-body {
+  display: grid;
+  gap: 0.3rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.da-card-name {
+  font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.da-card-sanskrit {
+  color: var(--sacred);
+  font-size: 1rem;
+}
+
+.da-card-question {
+  margin-top: 0.25rem;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  font-weight: 560;
+}
+
+.da-card-lede {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.da-card-foot {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.da-card-count {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.da-card-read {
+  font-size: 0.82rem;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* ── the positions outside the six ────────────────────────── */
+.da-others {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: clamp(0.8rem, 2vw, 1.1rem);
+}
+
+.da-other {
+  padding: clamp(0.9rem, 2.2vw, 1.2rem);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--paper);
+}
+
+.da-lens:nth-of-type(even) .da-other {
+  background: var(--paper-2);
+}
+
+.da-other-head {
+  margin: 0 0 0.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.7rem;
+}
+
+.da-other-name {
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.da-other-sanskrit {
+  color: var(--sacred);
+  font-size: 0.95rem;
+}
+
+.da-other-count {
+  margin-inline-start: auto;
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.da-other-note {
+  margin: 0;
+  max-width: 76ch;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* ── one school's page ────────────────────────────────────── */
+.da-question {
+  max-width: 62ch;
+  padding-left: clamp(0.9rem, 2.4vw, 1.4rem);
+  border-left: 3px solid var(--gold);
+}
+
+.da-question-text {
+  margin: 0.2rem 0 0;
+  font-size: clamp(1.1rem, 2.6vw, 1.45rem);
+  line-height: var(--lh-snug, 1.35);
+  color: var(--ink);
+}
+
+.da-root {
+  margin-top: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.da-root-sanskrit {
+  color: var(--sacred);
+}
+
+.da-count {
+  margin: 0 0 0.6rem;
+  font-size: 0.86rem;
+  color: var(--ink-3);
+}
+
+.da-pramana-chips,
+.da-pair-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.da-pramana-note {
+  margin: 0.8rem 0 0;
+  max-width: 70ch;
+  padding-left: clamp(0.8rem, 2vw, 1.1rem);
+  border-left: 2px solid var(--gold-dim);
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.da-structure-note {
+  margin: 0 0 1rem;
+  max-width: 72ch;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+/* ── a numbered structure, following .co-rungs ────────────── */
+.da-structure {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 0.7rem clamp(1rem, 2.4vw, 1.6rem);
+}
+
+.da-structure-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+  padding-block: 0.4rem;
+  border-top: 1px solid var(--line);
+}
+
+.da-structure-n {
+  display: inline-grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.1rem;
+  border-radius: 999px;
+  background: var(--marigold-soft);
+  color: var(--gold);
+  font-size: 0.74rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.da-structure-body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.da-structure-name {
+  font-weight: 620;
+  color: var(--ink);
+}
+
+.da-structure-sanskrit {
+  color: var(--sacred);
+  font-size: 0.92rem;
+}
+
+.da-structure-gloss {
+  color: var(--ink-3);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+/* ── Nyāya's five members ─────────────────────────────────── */
+.da-avayavas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.da-avayava {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(0.7rem, 2vw, 1.1rem);
+  padding-block: clamp(0.8rem, 2vw, 1.1rem);
+  border-top: 1px solid var(--line);
+}
+
+.da-avayava:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+/* The spine: the number sits on a line that runs the length of the
+   chain, so the five read as one argument rather than five notes. */
+.da-avayava-n {
+  position: relative;
+  display: inline-grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  flex: none;
+  border-radius: 999px;
+  background: var(--paper);
+  border: 1.5px solid var(--gold-dim);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.da-avayava:not(:last-child) .da-avayava-n::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1.5px;
+  height: calc(100% + 2.2rem);
+  background: var(--line-2);
+  transform: translateX(-50%);
+}
+
+.da-avayava-body {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.da-avayava-head {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 0.7rem;
+}
+
+.da-avayava-name {
+  font-weight: 650;
+  color: var(--ink);
+  font-size: 1.02rem;
+}
+
+.da-avayava-sanskrit {
+  color: var(--sacred);
+  font-size: 0.95rem;
+}
+
+.da-avayava-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.7rem clamp(1rem, 2.4vw, 1.6rem);
+}
+
+.da-avayava-step,
+.da-avayava-example {
+  margin: 0;
+  display: grid;
+  gap: 0.2rem;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+/* The example is the line the reader remembers, so it is set in the
+   sacred ink and reads as quoted matter rather than explanation. */
+.da-avayava-example {
+  padding-left: clamp(0.7rem, 1.8vw, 1rem);
+  border-left: 2px solid var(--marigold);
+  color: var(--ink);
+}
+
+@media (max-width: 680px) {
+  .da-avayava-cols {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── Sāṅkhya's twenty-five ────────────────────────────────── */
+.da-tattvas {
+  margin: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.da-tattva-frame {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr);
+  gap: clamp(0.9rem, 2.4vw, 1.5rem);
+  align-items: start;
+}
+
+/* Apart from the cascade, and shown apart: its own surface, its own
+   column, and no connecting line anywhere. That absence is the
+   drawing's whole content. */
+.da-purusha {
+  position: sticky;
+  top: 5rem;
+  display: grid;
+  gap: 0.3rem;
+  padding: clamp(1rem, 2.4vw, 1.4rem);
+  border: 1.5px solid var(--sacred);
+  border-radius: 14px;
+  background: var(--paper);
+}
+
+.da-purusha-name {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+  font-weight: 680;
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.da-purusha-sanskrit {
+  margin: 0;
+  color: var(--sacred);
+  font-size: 1.1rem;
+}
+
+.da-purusha-gloss {
+  margin: 0.2rem 0 0;
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.da-cascade {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.da-tier {
+  position: relative;
+  padding: clamp(0.7rem, 1.8vw, 1rem) 0 clamp(0.7rem, 1.8vw, 1rem) clamp(1rem, 2.6vw, 1.5rem);
+  border-left: 2px solid var(--line-2);
+}
+
+/* A node on the spine, marking that this tier is produced by the one
+   above it. */
+.da-tier::before {
+  content: "";
+  position: absolute;
+  left: -0.3rem;
+  top: clamp(0.95rem, 2.2vw, 1.3rem);
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--marigold);
+  border: 1px solid var(--gold-dim);
+}
+
+.da-tier-label {
+  margin: 0 0 0.45rem;
+  font-size: 0.74rem;
+  letter-spacing: var(--ls-eyebrow, 0.08em);
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+html:lang(kn) .da-tier-label,
+html:lang(hi) .da-tier-label {
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 0.8rem;
+}
+
+.da-tier-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9.5rem, 1fr));
+  gap: 0.5rem;
+}
+
+.da-tattva {
+  display: grid;
+  gap: 0.05rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+  min-width: 0;
+}
+
+.da-tattva-name {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.da-tattva-sanskrit {
+  color: var(--sacred);
+  font-size: 0.88rem;
+}
+
+.da-tattva-gloss {
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.da-tattva-caption {
+  display: grid;
+  gap: 0.3rem;
+  max-width: 64ch;
+  color: var(--ink-4);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.da-tattva-count {
+  color: var(--gold);
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 860px) {
+  .da-tattva-frame {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .da-purusha {
+    position: static;
+  }
+}
