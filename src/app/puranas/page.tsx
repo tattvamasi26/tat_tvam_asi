@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { puranaStrings } from "@/i18n/puranas";
+import { puranaUi } from "@/i18n/purana-ui";
 import { getPuranas, getPuranasByGuna, getTraditionalVerseTotal } from "@/lib/data";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
@@ -9,103 +10,126 @@ import { Arrow } from "@/components/ui/Arrow";
 export const metadata: Metadata = {
   title: "The Puranas",
   description:
-    "Eighteen Mahapuranas — what each one is, what is in it, and what came out of it into practice.",
+    "Eighteen Mahapuranas — what each one is, how it is arranged, what is in it, and what came out of it into practice.",
 };
 
 /**
  * The eighteen, in the order the lists give them.
  *
  * Order first and grading second, deliberately. The famous three-way
- * sort into sāttvika, rājasa and tāmasa is quoted everywhere, and it
- * comes from inside the Padma Purāṇa — a Vaiṣṇava text that puts the
- * Vaiṣṇava Purāṇas top and the Śaiva ones bottom. Leading with it
- * would be repeating a partisan ranking as though it were a neutral
- * classification, so it sits below the list with its provenance
- * attached.
+ * sort into sāttvika, rājasa and tāmasa comes from inside the Padma
+ * Purāṇa — a Vaiṣṇava text that puts the Vaiṣṇava Purāṇas top and the
+ * Śaiva ones bottom. Leading with it would repeat a partisan ranking as
+ * though it were a neutral classification, so it sits below the list,
+ * smaller, with its provenance attached.
  *
- * The verse counts are printed because the tradition gives them and
- * because the scale is the point — four hundred thousand verses, of
- * which Skanda alone claims a fifth. They are labelled as figures
- * rather than counts.
+ * The list is rows, not cards: eighteen of a kind read best as one
+ * scannable column. Each row carries the Purāṇa's length as a bar on
+ * one scale, because the scale is the point — Skanda alone claims a
+ * fifth of the four hundred thousand — and the bar says it faster than
+ * eighteen numbers. The figures are labelled tradition, not counts.
  */
 export default function PuranasPage() {
   const { locale } = getTranslations();
   const s = puranaStrings(locale);
+  const u = puranaUi(locale);
   const puranas = getPuranas(locale);
   const graded = getPuranasByGuna(locale);
   const sc = scriptClass(locale);
+  const longest = Math.max(...puranas.map((p) => p.verses));
 
-  const gunaLabel: Record<string, string> = {
-    sattvika: s.gunaSattvika,
-    rajasa: s.gunaRajasa,
-    tamasa: s.gunaTamasa,
-  };
+  const grade = {
+    sattvika: { title: u.groupSattvika, lede: u.groupSattvikaLede },
+    rajasa: { title: u.groupRajasa, lede: u.groupRajasaLede },
+    tamasa: { title: u.groupTamasa, lede: u.groupTamasaLede },
+  } as const;
 
   return (
     <>
       <section className="pagehead">
         <div className="shell pagehead-inner">
           <p className="eyebrow">
-            {s.count(
-              puranas.length.toLocaleString("en-IN"),
-              getTraditionalVerseTotal().toLocaleString("en-IN"),
-            )}
+            {s.count(puranas.length.toLocaleString("en-IN"), getTraditionalVerseTotal().toLocaleString("en-IN"))}
           </p>
           <h1 className="title">{s.title}</h1>
           <p className="lede">{s.lede}</p>
         </div>
       </section>
 
-      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
-        <div className="pu-standing">
-          <p className="pu-standing-text">{s.standing}</p>
+      {/* The two other parts of the section, as the way on. */}
+      <section className="shell pu2-also" aria-label={u.alsoTitle}>
+        <Link href="/puranas/stories" className="rf-tab" data-active="no">
+          <span className="rf-tab-top">
+            <span className="rf-tab-label">{u.storiesTitle}</span>
+            <span className="rf-tab-go" aria-hidden="true">
+              <Arrow />
+            </span>
+          </span>
+          <span className="rf-tab-blurb">{u.storiesBlurb}</span>
+        </Link>
+        <Link href="/cosmos" className="rf-tab" data-active="no">
+          <span className="rf-tab-top">
+            <span className="rf-tab-label">{u.cosmosTitle}</span>
+            <span className="rf-tab-go" aria-hidden="true">
+              <Arrow />
+            </span>
+          </span>
+          <span className="rf-tab-blurb">{u.cosmosBlurb}</span>
+        </Link>
+      </section>
+
+      <section className="shell pu2-list-wrap">
+        <div className="pu2-list-head">
+          <h2 className="pu2-h2">{u.scaleTitle}</h2>
+          <p className="pu2-lede">{u.scaleLede}</p>
         </div>
 
-        <ol className="pu-grid">
+        <ol className="pu2-list">
           {puranas.map((p) => (
             <li key={p.slug}>
-              <Link href={`/puranas/${p.slug}`} className="pu-card">
-                <span className="pu-n">{p.order.toLocaleString("en-IN")}</span>
-                <span className="pu-body">
-                  <span className="pu-name">{p.name}</span>
-                  <span className={`pu-sanskrit ${sc}`}>{p.sanskrit}</span>
-                  <span className="pu-lede">{p.lede}</span>
-                  <span className="pu-meta">
-                    <span className="pu-deity">{p.deity}</span>
-                    {/* A figure the tradition gives, not a count. The
-                        note under the list says so. */}
-                    <span className="pu-verses">
-                      {s.verseUnit(p.verses.toLocaleString("en-IN"))}
-                    </span>
-                  </span>
+              <Link href={`/puranas/${p.slug}`} className="pu2-row">
+                <span className="pu2-n">{p.order.toLocaleString("en-IN")}</span>
+                <span className="pu2-main">
+                  <span className="pu2-name">{p.name}</span>
+                  <span className={`pu2-sanskrit ${sc}`}>{p.sanskrit}</span>
+                  <span className="pu2-lede-row">{p.lede}</span>
                 </span>
-                <span className="pu-more">
-                  {s.read} <Arrow />
+                <span className="pu2-deity">{p.deity}</span>
+                <span className="pu2-size">
+                  <span className="pu2-bar" aria-hidden="true">
+                    <span className="pu2-bar-fill" style={{ width: `${(p.verses / longest) * 100}%` }} />
+                  </span>
+                  <span className="pu2-verses">{s.verseUnit(p.verses.toLocaleString("en-IN"))}</span>
                 </span>
               </Link>
             </li>
           ))}
         </ol>
 
-        <p className="pu-note">{s.verseNote}</p>
+        <p className="pu2-note">{s.verseNote}</p>
       </section>
 
-      {/* The grading, with its provenance attached. */}
-      <section className="pu-guna" aria-labelledby="pu-guna">
-        <div className="shell pu-guna-inner">
-          <h2 className="pu-guna-title" id="pu-guna">
-            {`${s.gunaSattvika} · ${s.gunaRajasa} · ${s.gunaTamasa}`}
-          </h2>
-          <p className="pu-guna-note">{s.gunaNote}</p>
+      {/* The grading, below the list and smaller, with where it is from. */}
+      <section className="rf-band pu2-grades" aria-labelledby="pu2-grades">
+        <div className="shell">
+          <div className="pu2-list-head">
+            <h2 className="pu2-h2" id="pu2-grades">
+              {u.gradeTitle}
+            </h2>
+            <p className="pu2-lede">{u.groupNote}</p>
+          </div>
 
-          <div className="pu-guna-cols">
+          <div className="pu2-grade-grid">
             {graded.map((g) => (
-              <div key={g.guna} className="pu-guna-col" data-guna={g.guna}>
-                <h3 className="pu-guna-head">{gunaLabel[g.guna]}</h3>
-                <ul className="pu-guna-list">
+              <div key={g.guna} className="pu2-grade">
+                <h3 className="pu2-grade-title">{grade[g.guna].title}</h3>
+                <p className="pu2-grade-lede">{grade[g.guna].lede}</p>
+                <ul className="pu2-grade-list">
                   {g.puranas.map((p) => (
                     <li key={p.slug}>
-                      <Link href={`/puranas/${p.slug}`}>{p.name}</Link>
+                      <Link href={`/puranas/${p.slug}`} className="chip">
+                        {p.name}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -113,6 +137,10 @@ export default function PuranasPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="shell rf-closing">
+        <p className="rf-closing-text">{s.standing}</p>
       </section>
     </>
   );

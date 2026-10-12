@@ -3,9 +3,12 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { puranaStrings } from "@/i18n/puranas";
+import { puranaUi } from "@/i18n/purana-ui";
+import { rfStrings } from "@/i18n/rf";
 import { storyStrings } from "@/i18n/stories";
 import { getPurana, getPuranas, getStoriesFromPurana } from "@/lib/data";
 import { PURANAS } from "@/lib/seed/puranas";
+import { Glance } from "@/components/rf/Depth";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 import { LOCALES } from "@/i18n/config";
@@ -26,16 +29,19 @@ export async function generateMetadata({
 /**
  * One Purāṇa.
  *
- * Four questions in the same order every time: what it leans to and
- * how long it is; what is in it; what came out of it into practice;
- * and — where there is one — what about it is disputed. That last
- * section is absent on most of them and present on five, which is
- * itself informative: the list of eighteen is less settled than it is
- * usually printed.
+ * The same page shape as a rite or a festival: a head, an at-a-glance
+ * panel beside the text, then the body in the order a reader wants
+ * it — what is in it, how it is arranged, the passages they have
+ * probably already met, what came out of it, and where it is disputed.
+ * That last section is present on five of the eighteen, which is
+ * itself informative: the list is less settled than it is usually
+ * printed.
  */
 export default function PuranaPage({ params }: { params: { purana: string } }) {
   const { locale } = getTranslations();
   const s = puranaStrings(locale);
+  const u = puranaUi(locale);
+  const rf = rfStrings(locale);
   const st = storyStrings(locale);
   const p = getPurana(params.purana, locale);
   if (!p) notFound();
@@ -53,109 +59,138 @@ export default function PuranaPage({ params }: { params: { purana: string } }) {
     tamasa: s.gunaTamasa,
   };
 
+  const glance: [string, string][] = [
+    [s.labelDeity, p.deity],
+    [s.labelVerses, s.verseUnit(p.verses.toLocaleString("en-IN"))],
+    [u.labelOrder, `${p.order.toLocaleString("en-IN")} / ${all.length.toLocaleString("en-IN")}`],
+    [s.labelGuna, gunaLabel[p.guna]],
+  ];
+
   return (
     <>
-      <section className="pu-hero">
-        <div className="shell pu-hero-inner">
-          <Link href="/puranas" className="pu-hero-back">
-            <Arrow dir="left" /> {s.back}
-          </Link>
-          <p className="pu-hero-kicker">{p.order.toLocaleString("en-IN")}</p>
-          <h1 className="pu-hero-title">{p.name}</h1>
-          <p className={`pu-hero-sanskrit ${sc}`}>{p.sanskrit}</p>
-          <p className="pu-hero-lede">{p.lede}</p>
+      <section className="rf-dhero">
+        <div className="shell rf-dhero-inner">
+          <nav className="rf-crumbs" aria-label={s.title}>
+            <Link href="/puranas">{s.title}</Link>
+          </nav>
+          <h1 className="rf-dhero-title">{p.name}</h1>
+          <p className={`rf-dhero-sanskrit ${sc}`}>{p.sanskrit}</p>
+          <p className="rf-dhero-lede">{p.lede}</p>
         </div>
       </section>
 
-      <section className="shell pu-body">
-        <div className="pu-facts">
-          <div className="fact">
-            <div className="fact-label">{s.labelDeity}</div>
-            <div className="fact-value">{p.deity}</div>
-          </div>
-          <div className="fact">
-            <div className="fact-label">{s.labelVerses}</div>
-            <div className="fact-value">{p.verses.toLocaleString("en-IN")}</div>
-          </div>
-          <div className="fact">
-            <div className="fact-label">{s.labelGuna}</div>
-            <div className="fact-value">{gunaLabel[p.guna]}</div>
-          </div>
-        </div>
+      <section className="shell rf-detail">
+        <Glance title={rf.labelAtAGlance} rows={glance} />
 
-        <div className="pu-section">
-          <h2 className="pu-h2">{s.labelAbout}</h2>
-          <p>{p.about}</p>
-        </div>
+        <div className="rf-main">
+          <p className="rf-intro">{p.about}</p>
 
-        <div className="pu-section">
-          <h2 className="pu-h2">{s.labelKnown}</h2>
-          <p>{p.known}</p>
-        </div>
-
-        {/* Present on five of the eighteen, absent on the rest — which
-            is itself worth noticing. */}
-        {p.note && (
-          <div className="pu-aside">
-            <p className="fact-label">{s.labelNote}</p>
-            <p>{p.note}</p>
-          </div>
-        )}
-
-        {/* The stories this one carries, which is the commonest
-            reason anybody arrives at a Purana at all. */}
-        {stories.length > 0 && (
-          <div className="st-from">
-            <h2 className="pu-h2">{st.fromThis}</h2>
-            <ul className="st-from-list">
-              {stories.map((x) => (
-                <li key={x.slug}>
-                  <Link href={`/puranas/stories/${x.slug}`} className="chip chip-gold">
-                    {x.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {p.links.length > 0 && (
-          <div className="pu-section">
-            <h2 className="pu-h2">{s.labelElsewhere}</h2>
-            <ul className="pu-chips">
-              {p.links.map((l) => (
-                <li key={l.href}>
-                  <Link href={l.href} className="chip chip-gold">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        <p className="pu-note">{s.verseNote}</p>
-
-        <nav className="stotra-pager">
-          {prev ? (
-            <Link href={`/puranas/${prev.slug}`} className="pager-link" data-dir="prev">
-              <span className="pager-label">
-                <Arrow dir="left" /> {s.previous}
-              </span>
-              <span className="pager-name">{prev.name}</span>
-            </Link>
-          ) : (
-            <span />
+          {p.depth && (
+            <section className="rf-block" aria-labelledby="pu-parts">
+              <h2 className="rf-h2" id="pu-parts">
+                {u.labelParts}
+              </h2>
+              <ol className="rf-steps">
+                {p.depth.parts.map(([name, text], i) => (
+                  <li key={name} className="rf-step">
+                    <span className="rf-step-n" aria-hidden="true">
+                      {(i + 1).toLocaleString("en-IN")}
+                    </span>
+                    <div className="rf-step-body">
+                      <h3 className="rf-step-name">{name}</h3>
+                      <p className="rf-step-text">{text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </section>
           )}
-          {next && (
-            <Link href={`/puranas/${next.slug}`} className="pager-link" data-dir="next">
-              <span className="pager-label">
-                {s.next} <Arrow dir="right" />
-              </span>
-              <span className="pager-name">{next.name}</span>
-            </Link>
+
+          {p.depth && p.depth.passages.length > 0 && (
+            <section className="rf-block" aria-labelledby="pu-passages">
+              <h2 className="rf-h2" id="pu-passages">
+                {u.labelPassages}
+              </h2>
+              <ul className="rf-days">
+                {p.depth.passages.map(([name, text]) => (
+                  <li key={name} className="rf-day">
+                    <h3 className="rf-day-name">{name}</h3>
+                    <p className="rf-day-text">{text}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
-        </nav>
+
+          <section className="rf-block">
+            <h2 className="rf-h2">{s.labelKnown}</h2>
+            <p className="rf-para">{p.known}</p>
+          </section>
+
+          {/* Present on five of the eighteen, absent on the rest — which
+              is itself worth noticing. */}
+          {p.note && (
+            <div className="rf-callout">
+              <p className="rf-callout-label">{s.labelNote}</p>
+              <p>{p.note}</p>
+            </div>
+          )}
+
+          {/* The stories this one carries, which is the commonest
+              reason anybody arrives at a Purāṇa at all. */}
+          {stories.length > 0 && (
+            <section className="rf-block">
+              <h2 className="rf-h2">{st.fromThis}</h2>
+              <ul className="rf-chips">
+                {stories.map((x) => (
+                  <li key={x.slug}>
+                    <Link href={`/puranas/stories/${x.slug}`} className="chip chip-gold">
+                      {x.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {p.links.length > 0 && (
+            <section className="rf-block">
+              <h2 className="rf-h2">{s.labelElsewhere}</h2>
+              <ul className="rf-chips">
+                {p.links.map((l) => (
+                  <li key={l.href}>
+                    <Link href={l.href} className="chip">
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          <p className="rf-para rf-muted">{s.verseNote}</p>
+
+          <nav className="stotra-pager">
+            {prev ? (
+              <Link href={`/puranas/${prev.slug}`} className="pager-link" data-dir="prev">
+                <span className="pager-label">
+                  <Arrow dir="left" /> {s.previous}
+                </span>
+                <span className="pager-name">{prev.name}</span>
+              </Link>
+            ) : (
+              <span />
+            )}
+            {next && (
+              <Link href={`/puranas/${next.slug}`} className="pager-link" data-dir="next">
+                <span className="pager-label">
+                  {s.next} <Arrow dir="right" />
+                </span>
+                <span className="pager-name">{next.name}</span>
+              </Link>
+            )}
+          </nav>
+        </div>
       </section>
     </>
   );

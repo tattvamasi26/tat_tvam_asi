@@ -660,3 +660,227 @@
   color: var(--ink-2);
   line-height: 1.75;
 }
+
+/* ─────────────────────────────────────────────────────────
+   The index, redesigned (pu2-*).
+
+   The eighteen as one scannable column of rows rather than a grid of
+   mostly empty cards: number, name and one line, the deity, and the
+   length as a bar on a single scale. The two onward links reuse the
+   Rituals & Festivals tab (.rf-tab), and the grading panel below sits
+   in a band (.rf-band), so the section shares its shapes with the rest.
+   ───────────────────────────────────────────────────────── */
+
+.pu2-also {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.8vw, 1.1rem);
+  padding-top: 0;
+}
+
+@media (max-width: 560px) {
+  .pu2-also {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.pu2-list-wrap {
+  display: grid;
+  gap: clamp(1rem, 2.6vw, 1.5rem);
+  padding-block: clamp(2rem, 5vw, 3.2rem);
+}
+
+.pu2-list-head {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 64ch;
+  margin-bottom: 0.4rem;
+}
+
+.pu2-h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  font-weight: 650;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+}
+
+.pu2-lede {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.pu2-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.pu2-list > li + li {
+  border-top: 1px solid var(--line);
+}
+
+.pu2-row {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 2.2fr) minmax(0, 1fr) minmax(9rem, 1fr);
+  gap: clamp(0.7rem, 2vw, 1.4rem);
+  align-items: center;
+  padding: clamp(0.85rem, 2vw, 1.1rem) clamp(1rem, 2.4vw, 1.5rem);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background 160ms ease;
+}
+
+@media (hover: hover) {
+  .pu2-row:hover {
+    background: var(--card-2);
+  }
+}
+
+.pu2-row:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: -3px;
+}
+
+.pu2-n {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--marigold-soft);
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.pu2-main {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.pu2-name {
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+}
+
+.pu2-sanskrit {
+  color: var(--sacred);
+  font-size: 0.92rem;
+}
+
+.pu2-lede-row {
+  margin-top: 0.15rem;
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.pu2-deity {
+  color: var(--ink-2);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.pu2-size {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.pu2-bar {
+  display: block;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+
+.pu2-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--marigold), var(--saffron-2));
+}
+
+.pu2-verses {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.pu2-note {
+  margin: 0;
+  max-width: 70ch;
+  color: var(--ink-3);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+@media (max-width: 860px) {
+  .pu2-row {
+    grid-template-columns: 2.2rem minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .pu2-deity,
+  .pu2-size {
+    grid-column: 2;
+  }
+}
+
+/* The grading, smaller and below the list. */
+.pu2-grade-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.8vw, 1.1rem);
+}
+
+.pu2-grade {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+  padding: clamp(1rem, 2.2vw, 1.3rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+}
+
+.pu2-grade-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+}
+
+.pu2-grade-lede {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.pu2-grade-list {
+  list-style: none;
+  margin: 0.3rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+@media (max-width: 860px) {
+  .pu2-grade-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

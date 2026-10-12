@@ -343,6 +343,7 @@ import {
 import { darshanaProse, type DarshanaSection } from "./seed/darshana-pages";
 import { depthFor, type Depth } from "./seed/rite-depth";
 import { RTUS, SOLAR_RTU } from "./seed/rtus";
+import { puranaDepthFor, type PuranaDepth } from "./seed/purana-depth";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -1908,6 +1909,8 @@ export interface PuranaView {
   known: string;
   note: string | null;
   links: PuranaLinkView[];
+  /** Its divisions and best-known passages — see seed/purana-depth. */
+  depth: PuranaDepth | null;
 }
 
 function puranaView(p: (typeof PURANAS)[number], locale: Locale): PuranaView {
@@ -1924,6 +1927,7 @@ function puranaView(p: (typeof PURANAS)[number], locale: Locale): PuranaView {
     known: p.known[locale],
     note: p.note?.[locale] ?? null,
     links: (p.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+    depth: puranaDepthFor(p.slug, locale),
   };
 }
 
