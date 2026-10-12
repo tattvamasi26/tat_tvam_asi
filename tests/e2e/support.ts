@@ -59,8 +59,7 @@ export const ROUTES = [
   "/cosmos",
   "/cosmos/reckoning",
   "/rituals",
-  // One rite with a photograph, and one without — the head is a
-  // different design in each case.
+  // The rite with the most steps, and a short one.
   "/rituals/upanayana",
   "/rituals/jatakarma",
   "/festivals",
@@ -68,9 +67,12 @@ export const ROUTES = [
   // One sitting with a recitation and one without.
   "/practice/ganapati-japa",
   "/practice/breath",
-  // A lunar festival, and the one solar one.
+  // A lunar festival, and the one solar one. Both are kept over
+  // several days, so the day cards are covered too.
   "/festivals/ganesha-chaturthi",
   "/festivals/makara-sankranti",
+  // A festival with no picture: the head is its name on a plate.
+  "/festivals/gita-jayanti",
   "/bhajans",
   // One of each kind of bhajan page: a devata group, the niti group,
   // the admitted gap, and a song with a long Kannada text.

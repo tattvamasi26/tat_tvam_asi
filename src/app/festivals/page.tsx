@@ -3,92 +3,165 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { festivalStrings } from "@/i18n/festivals";
-import { ritualStrings } from "@/i18n/rituals";
-import { getFestivals } from "@/lib/data";
+import { rfStrings } from "@/i18n/rf";
+import { getFestivalSeasons, getFestivals, getRituals, getYearLens } from "@/lib/data";
+import { RfHead, JumpBar } from "@/components/rf/RfHead";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
-  title: "Festivals",
-  description: "The year as it is actually kept — what is observed, when, and why. Dates are lunar, not Gregorian.",
+  title: "Festivals — Rituals & Festivals",
+  description:
+    "The year as it is kept, through its six seasons — what is done on each festival, in order, and why. Dates are lunar, not Gregorian.",
 };
 
 /**
- * The festivals, in the order of the lunar year.
+ * The Festivals half of Rituals & Festivals.
  *
- * Image-led on purpose. A festival is a thing people *see* — lamps,
- * dolls on shelves, a clay Ganesha, a pot boiling over — and a page
- * about them that leads with type reads as a reference work rather
- * than as the year it describes.
+ * Arranged by the six seasons rather than the twelve months: twelve
+ * rows of which three are empty read as a calendar with holes in it,
+ * while six seasons read as the year the festivals actually describe.
+ * Each season is a band in the same shape as the Rituals half's
+ * groups — its name and character held on the left, its festivals on
+ * the right — so the two halves are visibly one section.
  *
- * The lunar date still sits on every card, over the photograph, since
- * it is what makes this section different from a list of articles.
+ * A festival with no picture gets its name set on a plate in the
+ * reader's script, never a blank grey box. A picture is only ever one
+ * the owner chose.
  */
 export default function FestivalsPage() {
   const { locale } = getTranslations();
   const f = festivalStrings(locale);
-  const r = ritualStrings(locale);
-  const festivals = getFestivals(locale);
+  const rf = rfStrings(locale);
   const sc = scriptClass(locale);
+
+  const seasons = getFestivalSeasons(locale);
+  const festivalsCount = getFestivals(locale).length;
+  const ritesCount = getRituals(locale).length;
+  const recurring = getYearLens(locale).recurring;
 
   return (
     <>
-      <section className="pagehead">
-        <div className="shell pagehead-inner">
-          <p className="eyebrow">{f.count(festivals.length.toLocaleString("en-IN"))}</p>
-          <h1 className="title">{f.title}</h1>
-          <p className="lede">{f.lede}</p>
-          {/* The year is reached through Rituals & Festivals, so it is
-              no longer in the nav. A reader who arrives here from a
-              search engine needs the way up printed on the page. */}
-          <Link href="/rituals" className="chip" style={{ marginTop: "0.5rem" }}>
-            {r.labelGroup} {r.title}
-          </Link>
-        </div>
+      <RfHead
+        active="festivals"
+        ritesCount={ritesCount}
+        festivalsCount={festivalsCount}
+        strings={{
+          title: rf.sectionTitle,
+          lede: rf.sectionLede,
+          rituals: rf.tabRituals,
+          ritualsBlurb: rf.tabRitualsBlurb,
+          festivals: rf.tabFestivals,
+          festivalsBlurb: rf.tabFestivalsBlurb,
+          countRites: rf.countRites,
+          countFestivals: rf.countFestivals,
+        }}
+      />
+
+      <JumpBar
+        label={rf.jumpTo}
+        items={seasons.map((x) => ({ id: x.id, name: x.name, count: x.festivals.length }))}
+      />
+
+      <section className="shell rf-note-wrap">
+        <p className="rf-note">{f.standing}</p>
       </section>
 
-      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
-        <div className="fe-standing">
-          <p className="fe-standing-text">{f.standing}</p>
+      {seasons.map((season, si) => (
+        <section key={season.id} id={season.id} className="rf-band" aria-labelledby={`h-${season.id}`}>
+          <div className="shell rf-band-inner">
+            <header className="rf-band-head">
+              <span className="rf-band-n">{String(si + 1).padStart(2, "0")}</span>
+              <h2 className="rf-band-title" id={`h-${season.id}`}>
+                {season.name}
+              </h2>
+              <p className={`rf-band-sanskrit ${sc}`}>{season.sanskrit}</p>
+              <p className="rf-band-months">
+                {rf.seasonMonths.replace("{a}", season.months[0]).replace("{b}", season.months[1])}
+              </p>
+              <p className="rf-band-lede">{season.character}</p>
+              <p className="rf-band-count">
+                {rf.countFestivals.replace("{n}", season.festivals.length.toLocaleString("en-IN"))}
+              </p>
+            </header>
+
+            <div className="rf-band-body">
+              <ul className="rf-fcards">
+                {season.festivals.map((x) => (
+                  <li key={x.slug}>
+                    <Link href={`/festivals/${x.slug}`} className="rf-fcard">
+                      <span className={`rf-fcard-frame${x.image ? "" : " is-plate"}`}>
+                        {x.image ? (
+                          <Image
+                            src={x.image.src}
+                            alt=""
+                            fill
+                            sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 30vw"
+                            style={{ objectFit: "cover", objectPosition: x.image.position }}
+                          />
+                        ) : (
+                          <span className={`rf-plate-name ${sc}`} aria-hidden="true">
+                            {x.sanskrit}
+                          </span>
+                        )}
+                        <span className={`rf-fcard-kind${x.reckoning === "solar" ? " is-solar" : ""}`}>
+                          {x.reckoning === "solar" ? f.solar : f.lunar}
+                        </span>
+                      </span>
+
+                      <span className="rf-fcard-body">
+                        <span className="rf-fcard-when">{x.when || x.whenNote}</span>
+                        <span className="rf-fcard-name">{x.name}</span>
+                        <span className="rf-fcard-lede">{x.lede}</span>
+                        <span className="rf-card-foot">
+                          {x.depth?.days ? (
+                            <span className="rf-card-meta">
+                              {rf.daysCount.replace("{n}", x.depth.days.length.toLocaleString("en-IN"))}
+                            </span>
+                          ) : x.depth ? (
+                            <span className="rf-card-meta">
+                              {rf.stepsCount.replace("{n}", x.depth.steps.length.toLocaleString("en-IN"))}
+                            </span>
+                          ) : null}
+                          <span className="rf-card-go">
+                            {f.read} <Arrow />
+                          </span>
+                        </span>
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* The days that come round every month are vows, and live in
+          the Rituals half; this is the bridge to them. */}
+      <section className="shell rf-monthly">
+        <div className="rf-monthly-head">
+          <h2 className="rf-monthly-title">{rf.everyMonthTitle}</h2>
+          <p className="rf-monthly-lede">{rf.everyMonthLede}</p>
         </div>
-
-        <ol className="fe-grid">
-          {festivals.map((x) => (
-            <li key={x.slug}>
-              <Link href={`/festivals/${x.slug}`} className="fe-card">
-                <span className="fe-frame">
-                  {x.image && (
-                    <Image
-                      src={x.image.src}
-                      alt=""
-                      fill
-                      sizes="(max-width: 700px) 100vw, 33vw"
-                      style={{ objectFit: "cover", objectPosition: x.image.position }}
-                    />
-                  )}
-                  <span className="fe-scrim" aria-hidden="true" />
-
-                  <span className={`fe-chip${x.reckoning === "solar" ? " is-solar" : ""}`}>
-                    {x.reckoning === "solar" ? f.solar : f.lunar}
-                  </span>
-
-                  <span className="fe-frame-foot">
-                    <span className="fe-frame-name">{x.name}</span>
-                    <span className={`fe-frame-sanskrit ${sc}`}>{x.sanskrit}</span>
-                  </span>
+        <ul className="rf-monthly-list">
+          {recurring.map((r) => (
+            <li key={r.slug}>
+              <Link href={`/rituals/${r.slug}`} className="rf-monthly-row">
+                <span className="rf-monthly-name">{r.name}</span>
+                <span className="rf-monthly-count">
+                  {rf.timesAYear.replace("{n}", r.timesAYear.toLocaleString("en-IN"))}
                 </span>
-
-                <span className="fe-card-body">
-                  <span className="fe-when-date">{x.when || x.whenNote}</span>
-                  <span className="fe-lede">{x.lede}</span>
-                  <span className="fe-more">
-                    {f.read} <Arrow />
-                  </span>
+                <span className="rf-monthly-go" aria-hidden="true">
+                  <Arrow />
                 </span>
               </Link>
             </li>
           ))}
-        </ol>
+        </ul>
+        <Link href="/rituals#vrata" className="rf-more">
+          {rf.tabRituals} <Arrow />
+        </Link>
       </section>
     </>
   );

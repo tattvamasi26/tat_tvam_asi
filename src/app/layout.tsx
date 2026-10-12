@@ -23,6 +23,7 @@ import "@/styles/bhajans.css";
 import "@/styles/shastras.css";
 import "@/styles/festivals.css";
 import "@/styles/rituals.css";
+import "@/styles/rf.css";
 import "@/styles/concepts.css";
 import "@/styles/puranas.css";
 import "@/styles/cosmos.css";

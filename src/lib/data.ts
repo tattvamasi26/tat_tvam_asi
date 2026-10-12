@@ -341,6 +341,8 @@ import {
   type StructureItem,
 } from "./seed/darshanas";
 import { darshanaProse, type DarshanaSection } from "./seed/darshana-pages";
+import { depthFor, type Depth } from "./seed/rite-depth";
+import { RTUS, SOLAR_RTU } from "./seed/rtus";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -1403,6 +1405,10 @@ export interface FestivalView {
   significance: string;
   regional: string | null;
   links: FestivalLinkView[];
+  /** The steps, what is used, and the days — see seed/rite-depth. */
+  depth: Depth | null;
+  /** The month's id, for grouping by season. Null for a solar festival. */
+  month: string | null;
   /** The photograph, with its alt already in the reader's language. */
   image: {
     src: string;
@@ -1436,6 +1442,8 @@ function festivalView(f: (typeof FESTIVALS)[number], locale: Locale): FestivalVi
     significance: f.significance[locale],
     regional: f.regional?.[locale] ?? null,
     links: (f.links ?? []).map((l) => ({ href: l.href, label: l.label[locale] })),
+    depth: depthFor(f.slug, locale),
+    month: f.month ?? null,
     image: imageFor(festivalImage(f.slug), locale),
   };
 }
@@ -1586,6 +1594,8 @@ export interface RitualView {
    * that has learned something a list of rites cannot teach.
    */
   prescribedBy: { branch: string; note: string; href: string } | null;
+  /** The steps and what is used — see seed/rite-depth. */
+  depth: Depth | null;
   /** Null far more often than not — see seed/ritual-images.ts. */
   image: RitualImageView | null;
 }
@@ -1661,6 +1671,7 @@ function ritualView(r: (typeof RITUALS)[number], locale: Locale): RitualView {
           }
         : null;
     })(),
+    depth: depthFor(r.slug, locale),
     image: ritualImageView(ritualImage(r.slug), locale),
   };
 }
@@ -2404,4 +2415,35 @@ export function getTattvas(locale: Locale) {
     })),
     count: tattvaCount(),
   };
+}
+
+// ── The festivals by season ─────────────────────────────────
+
+export interface SeasonView {
+  id: string;
+  name: string;
+  /** Already in the reader's script. */
+  sanskrit: string;
+  /** The season's two lunar months, resolved. */
+  months: [string, string];
+  character: string;
+  festivals: FestivalView[];
+}
+
+/**
+ * The six seasons, each with its festivals in year order. Every
+ * festival lands in exactly one; a solar one goes by SOLAR_RTU.
+ */
+export function getFestivalSeasons(locale: Locale): SeasonView[] {
+  const all = getFestivals(locale);
+  return RTUS.map((r) => ({
+    id: r.id,
+    name: r.name[locale],
+    sanskrit: scriptFor(r.sanskrit, locale),
+    months: [LUNAR_MONTHS[r.months[0]][locale], LUNAR_MONTHS[r.months[1]][locale]] as [string, string],
+    character: r.character[locale],
+    festivals: all.filter((f) =>
+      f.month ? r.months.includes(f.month) : SOLAR_RTU[f.slug] === r.id,
+    ),
+  }));
 }

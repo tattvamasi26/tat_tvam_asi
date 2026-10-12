@@ -1,0 +1,1099 @@
+/* ─────────────────────────────────────────────────────────
+   Rituals & Festivals — the two-tab section.
+
+   Replaces the single long page of drawings with two halves under
+   one head. Built on the site's own tokens: paper and --paper-2
+   bands, white --card surfaces at --r with --shadow-sm, marigold
+   for the one filled state (the active tab, as the masthead's
+   "Start reading" pill uses it), --sacred for Sanskrit, --gold for
+   small labels.
+
+   One shape does most of the work: the band. A heading column on the
+   left — number, name, Sanskrit, one line, a count — held in place
+   on a wide screen while its cards scroll past on the right. The
+   Rituals half's six groups and the Festivals half's six seasons are
+   both bands, so the two halves read as one section.
+
+   Indic text: no letter-spacing, no italic, and line-heights on the
+   --lh-* tokens, which relax under html:lang(kn) and html:lang(hi).
+   No element that can carry a script class has its font-family set
+   here; the script classes do that.
+   ───────────────────────────────────────────────────────── */
+
+/* ── the head and its two tabs ───────────────────────────── */
+.rf-head {
+  padding-block: clamp(2.25rem, 6vw, 4.5rem) clamp(1.4rem, 3vw, 2.2rem);
+}
+
+.rf-head-inner {
+  display: grid;
+  gap: clamp(0.8rem, 2vw, 1.1rem);
+}
+
+.rf-head-title {
+  margin: 0;
+}
+
+.rf-head-lede {
+  margin: 0;
+  max-width: 60ch;
+}
+
+.rf-tabs {
+  margin-top: clamp(0.8rem, 2.4vw, 1.4rem);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.7rem, 1.8vw, 1.1rem);
+}
+
+.rf-tab {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  padding: clamp(1.1rem, 2.6vw, 1.6rem);
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+@media (hover: hover) {
+  .rf-tab[data-active="no"]:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+    border-color: var(--gold-dim);
+  }
+}
+
+.rf-tab:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* The page the reader is on: filled, the way the masthead's one
+   primary button is. */
+.rf-tab[data-active="yes"] {
+  background: var(--marigold);
+  border-color: var(--marigold);
+  box-shadow: 0 18px 40px -22px rgba(181, 120, 0, 0.6);
+}
+
+.rf-tab-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.rf-tab-label {
+  font-size: clamp(1.35rem, 3.2vw, 2rem);
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.2);
+  letter-spacing: var(--track-head);
+}
+
+.rf-tab-go {
+  display: inline-grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: none;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  color: var(--ink-2);
+}
+
+.rf-tab[data-active="yes"] .rf-tab-go {
+  border-color: rgba(42, 31, 8, 0.25);
+  color: var(--ink);
+}
+
+.rf-tab-count {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.rf-tab[data-active="yes"] .rf-tab-count {
+  color: var(--ink);
+}
+
+.rf-tab-blurb {
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.rf-tab[data-active="yes"] .rf-tab-blurb {
+  color: var(--ink);
+}
+
+@media (max-width: 560px) {
+  .rf-tabs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── the jump bar ─────────────────────────────────────────── */
+.rf-jump {
+  position: sticky;
+  top: var(--masthead-space);
+  z-index: 20;
+  padding-block: 0.6rem;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.rf-jump-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.rf-jump-label {
+  flex: none;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.rf-jump-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.rf-jump-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--line-2);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--ink);
+  font-size: 0.84rem;
+  font-weight: 560;
+  line-height: 1.3;
+  text-decoration: none;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+@media (hover: hover) {
+  .rf-jump-pill:hover {
+    background: var(--marigold-soft);
+    border-color: var(--gold-dim);
+  }
+}
+
+.rf-jump-n {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.35rem;
+  height: 1.35rem;
+  padding-inline: 0.3rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+  font-size: 0.72rem;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+/* On a phone the bar wraps and stays where it is. */
+@media (max-width: 760px) {
+  .rf-jump {
+    position: static;
+    background: transparent;
+    backdrop-filter: none;
+  }
+
+  .rf-jump-label {
+    display: none;
+  }
+}
+
+/* ── a band: one group of rites, or one season ────────────── */
+.rf-band {
+  padding-block: clamp(2.2rem, 5vw, 3.6rem);
+  scroll-margin-top: calc(var(--masthead-space) + 4.5rem);
+}
+
+.rf-band:nth-of-type(odd) {
+  background: var(--paper-2);
+}
+
+.rf-band-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2.4fr);
+  gap: clamp(1.4rem, 4vw, 3.2rem);
+  align-items: start;
+}
+
+.rf-band-head {
+  position: sticky;
+  top: calc(var(--masthead-space) + 5rem);
+  display: grid;
+  gap: 0.35rem;
+}
+
+.rf-band-n {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.rf-band-title {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-weight: 650;
+  line-height: var(--lh-title, 1.1);
+  letter-spacing: var(--track-title);
+  color: var(--ink);
+}
+
+.rf-band-sanskrit {
+  margin: 0;
+  color: var(--sacred);
+  font-size: 1.15rem;
+}
+
+.rf-band-months {
+  margin: 0.2rem 0 0;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.rf-band-lede {
+  margin: 0.3rem 0 0;
+  color: var(--ink-2);
+  font-size: 0.94rem;
+  line-height: 1.7;
+}
+
+.rf-band-count {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.rf-band-body {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 1.8rem);
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .rf-band-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rf-band-head {
+    position: static;
+  }
+}
+
+/* ── a rite's card ────────────────────────────────────────── */
+.rf-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr));
+  gap: clamp(0.7rem, 1.6vw, 1rem);
+}
+
+.rf-cards > li {
+  display: flex;
+}
+
+.rf-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: clamp(1rem, 2.2vw, 1.3rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+@media (hover: hover) {
+  .rf-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+    border-color: var(--gold-dim);
+  }
+}
+
+.rf-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.rf-card-name {
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.25);
+}
+
+.rf-card-sanskrit {
+  color: var(--sacred);
+  font-size: 0.98rem;
+}
+
+.rf-card-lede {
+  margin-top: 0.25rem;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.rf-card-when {
+  margin-top: 0.2rem;
+  color: var(--ink-3);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.rf-card-foot {
+  margin-top: auto;
+  padding-top: 0.7rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.rf-card-meta {
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+}
+
+.rf-card-go {
+  margin-inline-start: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* ── the sixteen saṃskāras ────────────────────────────────── */
+.rf-sixteen {
+  display: grid;
+  gap: 0.9rem;
+  padding: clamp(1rem, 2.4vw, 1.4rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  background: var(--card);
+}
+
+.rf-sixteen-head {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.rf-sixteen-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.25);
+}
+
+.rf-sixteen-lede {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.rf-sixteen-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.rf-sixteen-grid > li {
+  display: flex;
+}
+
+.rf-k {
+  flex: 1;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 0.15rem;
+  padding: 0.65rem 0.7rem;
+  border-radius: var(--r-sm);
+  background: var(--paper);
+  border: 1px solid transparent;
+  text-decoration: none;
+  color: var(--ink);
+  min-width: 0;
+}
+
+.rf-k.is-link {
+  border-color: var(--gold-dim);
+  background: var(--card-2);
+}
+
+@media (hover: hover) {
+  .rf-k.is-link:hover {
+    background: var(--marigold-soft);
+  }
+}
+
+.rf-k-n {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.rf-k-name {
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.25);
+  overflow-wrap: anywhere;
+}
+
+.rf-k-marks {
+  color: var(--ink-3);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.rf-k-kept {
+  margin-top: 0.35rem;
+  justify-self: start;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 650;
+  line-height: 1.4;
+  background: var(--paper-2);
+  color: var(--ink-3);
+}
+
+.rf-k-kept[data-kept="common"] {
+  background: var(--marigold-soft);
+  color: var(--gold);
+}
+
+@media (max-width: 1100px) {
+  .rf-sixteen-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .rf-sixteen-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ── a festival's card ────────────────────────────────────── */
+.rf-fcards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: clamp(0.8rem, 1.8vw, 1.1rem);
+}
+
+.rf-fcards > li {
+  display: flex;
+}
+
+.rf-fcard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--ink);
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
+}
+
+@media (hover: hover) {
+  .rf-fcard:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+  }
+}
+
+.rf-fcard:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.rf-fcard-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 5 / 4;
+  background: var(--paper-2);
+}
+
+/* No picture: the festival's own name, set large in its script on a
+   warm plate — never a grey box. */
+.rf-fcard-frame.is-plate {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(120% 90% at 50% 110%, rgba(245, 181, 35, 0.35), transparent 60%),
+    var(--card-2);
+}
+
+.rf-plate-name {
+  color: var(--sacred);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.4;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.rf-fcard-kind {
+  position: absolute;
+  top: 0.7rem;
+  left: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 244, 0.92);
+  color: var(--ink-2);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.rf-fcard-kind.is-solar {
+  background: var(--marigold);
+  color: var(--ink);
+}
+
+.rf-fcard-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: clamp(0.9rem, 2vw, 1.15rem);
+}
+
+.rf-fcard-when {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.rf-fcard-name {
+  font-size: 1.15rem;
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.25);
+}
+
+.rf-fcard-lede {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+/* ── the standing notes ───────────────────────────────────── */
+.rf-note-wrap {
+  padding-top: clamp(1.2rem, 3vw, 1.8rem);
+}
+
+.rf-note {
+  margin: 0;
+  max-width: 70ch;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.rf-closing {
+  padding-block: clamp(2rem, 5vw, 3rem);
+}
+
+.rf-closing-text {
+  margin: 0;
+  max-width: 68ch;
+  padding-left: 1.1rem;
+  border-left: 2px solid var(--gold);
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+/* ── every month ──────────────────────────────────────────── */
+.rf-monthly {
+  padding-block: clamp(2.2rem, 5vw, 3.4rem);
+  display: grid;
+  gap: 1rem;
+}
+
+.rf-monthly-head {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.rf-monthly-title {
+  margin: 0;
+  font-size: clamp(1.4rem, 3vw, 1.9rem);
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.2);
+}
+
+.rf-monthly-lede {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.rf-monthly-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.6rem;
+}
+
+.rf-monthly-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: var(--card);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+@media (hover: hover) {
+  .rf-monthly-row:hover {
+    border-color: var(--gold-dim);
+    background: var(--card-2);
+  }
+}
+
+.rf-monthly-name {
+  font-weight: 620;
+}
+
+.rf-monthly-count {
+  margin-inline-start: auto;
+  font-size: 0.8rem;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.rf-monthly-go {
+  color: var(--ink-3);
+}
+
+.rf-more {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+/* ── a detail page's head ─────────────────────────────────── */
+.rf-dhero {
+  position: relative;
+  padding-block: clamp(2.2rem, 5vw, 3.6rem) clamp(2rem, 5vw, 3.2rem);
+  background:
+    radial-gradient(90% 120% at 100% 0%, rgba(245, 181, 35, 0.22), transparent 60%),
+    var(--paper-2);
+  overflow: hidden;
+}
+
+.rf-dhero.has-image {
+  min-height: clamp(26rem, 62vh, 36rem);
+  display: flex;
+  align-items: flex-end;
+  background: var(--ink);
+}
+
+.rf-dhero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 14, 4, 0.15) 0%, rgba(20, 14, 4, 0.25) 45%, rgba(20, 14, 4, 0.82) 100%);
+}
+
+.rf-dhero-inner {
+  position: relative;
+  display: grid;
+  gap: 0.45rem;
+  width: 100%;
+}
+
+.rf-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.82rem;
+  font-weight: 560;
+  color: var(--ink-3);
+}
+
+.rf-crumbs a {
+  color: var(--ink-2);
+  text-decoration: none;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 244, 0.7);
+  border: 1px solid var(--line);
+}
+
+.rf-dhero.has-image .rf-crumbs {
+  color: rgba(255, 252, 244, 0.7);
+}
+
+.rf-dhero-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  font-weight: 650;
+  line-height: var(--lh-display, 1);
+  letter-spacing: var(--track-display);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.rf-dhero-sanskrit {
+  margin: 0;
+  color: var(--sacred);
+  font-size: clamp(1.2rem, 2.6vw, 1.6rem);
+}
+
+.rf-dhero-lede,
+.rf-dhero-when {
+  margin: 0.3rem 0 0;
+  max-width: 54ch;
+  color: var(--ink-2);
+  font-size: clamp(1rem, 1.8vw, 1.15rem);
+  line-height: 1.6;
+}
+
+.rf-dhero-when {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.rf-dhero.has-image .rf-dhero-title,
+.rf-dhero.has-image .rf-dhero-lede {
+  color: #fffcf4;
+}
+
+.rf-dhero.has-image .rf-dhero-sanskrit {
+  color: #f7e3b5;
+}
+
+.rf-dhero.has-image .rf-dhero-when {
+  color: var(--marigold-2);
+}
+
+/* ── a detail page's body ─────────────────────────────────── */
+.rf-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(15rem, 19rem);
+  grid-template-areas: "main glance";
+  gap: clamp(1.6rem, 4vw, 3.4rem);
+  align-items: start;
+  padding-block: clamp(2rem, 5vw, 3.4rem);
+}
+
+.rf-main {
+  grid-area: main;
+  display: grid;
+  gap: clamp(1.6rem, 3.6vw, 2.4rem);
+  min-width: 0;
+  max-width: 46rem;
+}
+
+.rf-glance {
+  grid-area: glance;
+  position: sticky;
+  top: calc(var(--masthead-space) + 1rem);
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+}
+
+.rf-glance-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.rf-glance-list {
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.rf-glance-row {
+  display: grid;
+  gap: 0.15rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
+.rf-glance-row:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.rf-glance-row dt {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.rf-glance-row dd {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+@media (max-width: 900px) {
+  .rf-detail {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "glance" "main";
+  }
+
+  .rf-glance {
+    position: static;
+  }
+}
+
+.rf-intro-lede {
+  margin: 0;
+  font-size: clamp(1.15rem, 2.2vw, 1.35rem);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.rf-intro {
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+
+.rf-block {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.rf-h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.6vw, 1.6rem);
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.2);
+  color: var(--ink);
+}
+
+.rf-para {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--ink-2);
+}
+
+.rf-muted {
+  font-size: 0.92rem;
+  color: var(--ink-3);
+}
+
+/* The steps: a numbered spine, because the order is the content. */
+.rf-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+}
+
+.rf-step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr);
+  gap: 0.9rem;
+  padding-bottom: 1.2rem;
+}
+
+.rf-step:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: calc(1.2rem - 1px);
+  top: 2.5rem;
+  bottom: 0.2rem;
+  width: 2px;
+  background: var(--line-2);
+}
+
+.rf-step-n {
+  display: inline-grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  background: var(--marigold-soft);
+  border: 1px solid var(--gold-dim);
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.rf-step-body {
+  padding-top: 0.35rem;
+  min-width: 0;
+}
+
+.rf-step-name {
+  margin: 0 0 0.2rem;
+  font-size: 1.02rem;
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.rf-step-text {
+  margin: 0;
+  line-height: 1.75;
+  color: var(--ink-2);
+}
+
+/* What is used: a quiet grid of tags. */
+.rf-needs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.rf-need {
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line-2);
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+/* The days, as cards in a row that wrap. */
+.rf-days {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+  gap: 0.7rem;
+}
+
+.rf-day {
+  display: grid;
+  gap: 0.25rem;
+  align-content: start;
+  padding: 0.95rem 1rem;
+  border-radius: var(--r);
+  background: var(--card);
+  border: 1px solid var(--line);
+}
+
+.rf-day-n {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.rf-day-name {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 650;
+  line-height: var(--lh-snug, 1.3);
+}
+
+.rf-day-text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-2);
+}
+
+.rf-callout {
+  padding: 1.1rem 1.25rem;
+  border-radius: var(--r);
+  background: var(--paper-2);
+  border-left: 3px solid var(--gold);
+}
+
+.rf-callout p {
+  margin: 0;
+  line-height: 1.75;
+  color: var(--ink);
+}
+
+.rf-callout .rf-callout-label {
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--gold);
+}
+
+.rf-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}

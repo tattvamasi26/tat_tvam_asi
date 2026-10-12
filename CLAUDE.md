@@ -368,7 +368,24 @@ The routes are `/temples` (the regions), `/temples/[section]` (one region), and 
 
 ### Rituals & Festivals is one section with two halves
 
-`/rituals` is the front door and `/festivals` is the year inside it.
+`/rituals` (the Rituals tab) and `/festivals` (the Festivals tab) sit
+under one shared head, `components/rf/RfHead.tsx`: the title and two
+large tabs, the active one filled in marigold, then a jump bar. Both
+halves are built from the same shape, the **band** (`styles/rf.css`):
+a heading column held on the left, cards on the right. Rituals has one
+band per group (the sixteen saṃskāras open the first); Festivals has
+one per season — the six ṛtus in `seed/rtus.ts`, two lunar months each,
+with the solar Makara Saṅkrānti placed by `SOLAR_RTU`. The old drawings
+(year wheel, day band, life line) are no longer on these pages.
+
+**Depth lives in `seed/rite-depth/`** — one file per language, keyed by
+slug: each rite's and festival's steps in order, what is used, and for
+a festival kept over several days, the days. `tests/unit/rite-depth.test.ts`
+holds the three languages to the same counts and rejects instruction.
+Detail pages render it with `components/rf/Depth.tsx` beside an
+at-a-glance panel. A festival with no picture shows its name on a plate,
+never a grey box.
+
 Both are reached through one nav entry, "Rituals & Festivals", because
 a rite and a festival are the same kind of thing — something done on an
 occasion — and splitting them put the eleventh tithi of the moon in one
@@ -386,8 +403,8 @@ that puts the Vedas under Shastras, so it is not listed twice.
   `seed/rituals.ts`). Eight are common, three rare, five lapsed; the
   prose quotes those numbers in three languages and
   `tests/unit/rituals.test.ts` pins the split so they cannot drift. The
-  front page draws them as one arc across a life — plain CSS on an
-  `<ol>`, eight to a row, a spine on a phone.
+  Rituals tab shows all sixteen as a grid of tiles, the written-up ones
+  outlined and linked.
 - **Where a practice is argued over, the disagreement is printed.** Who
   may be given the upanayana, and who may perform a śrāddha, both have
   more than one answer in circulation. The pages say so and settle
