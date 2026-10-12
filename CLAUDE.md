@@ -440,6 +440,28 @@ the embarrassments — a promotional poster with its caption burnt in, a
 signboard outside a matha, a gurukula classroom filed under "homa" — but
 it does not make the result belong here. The owner picks the pictures.
 
+### The śāstra map and the Purāṇas
+
+- **`/shastras` is arranged in three tiers** (`seed/shastra-tiers.ts`):
+  what is heard (śruti), what is remembered (smṛti), and what is built
+  on them. Each tier is an `.rf-band`; each branch a `.sh2-card` in the
+  site's own palette (the old pastel `tone-*` panels are gone from it).
+- **No branch leads nowhere.** Four have sections (`href`); the other
+  six — Vedānta, Vedāṅgas, Dharma, Āgama, Itihāsa, teaching texts —
+  have a page at `/shastras/[branch]` written in
+  `seed/shastra-pages/{en,kn,hi}.ts`: a few paragraphs on the branch and
+  one on every text. A branch with a section redirects there from
+  `/shastras/[branch]`, so there is never a second page about it.
+  `tests/unit/shastra-pages.test.ts` holds this.
+- **`/puranas` lists the eighteen as rows in list order**, each with
+  its length as a bar on one scale. The Padma Purāṇa's guṇa grading is
+  a smaller panel below, under its own names (sāttvika, rājasa, tāmasa)
+  — not named by deity, since the rājasa six include the Kṛṣṇa-leaning
+  Brahmavaivarta. Each Purāṇa's page carries its divisions and
+  best-known passages from `seed/purana-depth/{en,kn,hi}.ts`.
+- Detail pages across Rituals, Festivals, Purāṇas and branches share
+  one shape: `.rf-dhero`, then `.rf-detail` with the `Glance` panel.
+
 ### The six darśanas
 
 `/darshanas` (front door) and `/darshanas/[school]` (six pages), reached

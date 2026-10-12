@@ -39,6 +39,9 @@ export const ROUTES = [
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
   "/shastras",
+  // A branch page with six texts, and one carrying a contested text.
+  "/shastras/vedangas",
+  "/shastras/dharma",
   // Two drawn blocks on the front door, both CSS rather than SVG, and
   // the two schools that carry a drawing of their own.
   "/darshanas",

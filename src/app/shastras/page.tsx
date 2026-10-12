@@ -2,140 +2,141 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { shastraStrings } from "@/i18n/shastras";
+import { shastraUi } from "@/i18n/shastra-ui";
 // The count of rites a branch lays down is the rites section's own
 // sentence, so it is kept with the rest of that vocabulary.
 import { ritualStrings } from "@/i18n/rituals";
-import { getShastraMap } from "@/lib/data";
+import { getShastraTiers } from "@/lib/data";
 import { shastraProgress } from "@/lib/seed/shastras";
+import { JumpBar } from "@/components/rf/RfHead";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 
 export const metadata: Metadata = {
   title: "Shastras & Puranas",
   description:
-    "The whole tradition in one place — Veda, Upaniṣads, Vedānta, Vedāṅga, Darśana, Dharma, Āgama, Purāṇa, Itihāsa and the teaching texts.",
+    "The whole tradition in one place — what is heard, what is remembered, and what is built on them: Veda, Upaniṣads, Vedāṅga, Dharma, Itihāsa, Purāṇa, Vedānta, Darśana, Āgama and the teaching texts.",
 };
 
 /**
- * Shastras and Puranas — the section that holds the texts.
+ * Shastras and Puranas — the map of the whole tradition.
  *
- * The Vedas, the Upaniṣads and the Gītā are reached through here
- * rather than from the top-level nav, because listing them in both
- * places was the site saying the same thing twice.
+ * Arranged by the distinction the tradition itself draws first: what
+ * is heard (śruti), what is remembered (smṛti), and what is built on
+ * both. Each tier is a band in the shape the rest of the site now
+ * uses, and each branch a card in the site's own palette — the pastel
+ * art panels it replaced were the one place the site's colours went
+ * off.
  *
- * What it is not is a second home for those texts. A branch card
- * links to the section that already holds it; a hymn keeps one
- * address, /vedas/rigveda, and never gains a second under /shastras.
- *
- * The first two cards are the Vedas and the Upaniṣads, and they are
- * wider than the rest. That is not decoration — they are the two
- * branches with real depth behind them, and the page should say so
- * before it says anything else.
+ * Every branch now leads somewhere. Four have sections of their own;
+ * the other six have a page here that says what the branch is and
+ * gives a paragraph on each of its texts. Neither ever holds a second
+ * copy of a text that lives elsewhere: a readable text's chip still
+ * links to the section that holds it.
  */
 export default function ShastrasPage() {
   const { locale } = getTranslations();
   const s = shastraStrings(locale);
+  const u = shastraUi(locale);
   const r = ritualStrings(locale);
-  const branches = getShastraMap(locale);
+  const tiers = getShastraTiers(locale);
   const { live, partial, total } = shastraProgress();
   const sc = scriptClass(locale);
+  const branchCount = tiers.reduce((n, t) => n + t.branches.length, 0);
 
   return (
     <>
       <section className="pagehead">
         <div className="shell pagehead-inner">
-          <p className="eyebrow">
-            {branches.length.toLocaleString("en-IN")} {s.branches}
-          </p>
+          <p className="eyebrow">{u.countBranches.replace("{n}", branchCount.toLocaleString("en-IN"))}</p>
           <h1 className="title">{s.title}</h1>
           <p className="lede">{s.lede}</p>
+          <p className="sh2-progress">
+            {s.progress((live + partial).toLocaleString("en-IN"), total.toLocaleString("en-IN"))}
+          </p>
         </div>
       </section>
 
-      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
-        <div className="sh-standing">
-          <p className="sh-standing-count">
-            {s.progress((live + partial).toLocaleString("en-IN"), total.toLocaleString("en-IN"))}
-          </p>
-          <p className="sh-standing-text">{s.standing}</p>
-        </div>
+      <JumpBar
+        label={u.labelTier}
+        items={tiers.map((t) => ({ id: t.id, name: t.name, count: t.branches.length }))}
+      />
 
-        <ul className="sh-grid">
-          {branches.map((branch, i) => {
-            // The two developed branches lead, at double width.
-            const wide = i < 2;
-            const head = (
-              <>
-                <span className={`sh-art tone-${i % 7}`} aria-hidden="true">
-                  <span className={`sh-art-glyph ${sc}`}>{branch.glyph}</span>
-                </span>
-                <span className="sh-card-body">
-                  <span className="sh-card-title">
-                    <span className="sh-card-name">{branch.name}</span>
-                    {branch.href && <Arrow />}
-                  </span>
-                  <span className="sh-card-lede">{branch.lede}</span>
-                </span>
-              </>
-            );
+      {tiers.map((tier, ti) => (
+        <section key={tier.id} id={tier.id} className="rf-band" aria-labelledby={`h-${tier.id}`}>
+          <div className="shell rf-band-inner">
+            <header className="rf-band-head">
+              <span className="rf-band-n">{String(ti + 1).padStart(2, "0")}</span>
+              <h2 className="rf-band-title" id={`h-${tier.id}`}>
+                {tier.name}
+              </h2>
+              {tier.sanskrit && <p className={`rf-band-sanskrit ${sc}`}>{tier.sanskrit}</p>}
+              <p className="rf-band-lede">{tier.lede}</p>
+            </header>
 
-            return (
-              <li
-                key={branch.id}
-                id={branch.id}
-                className={`sh-cell${wide ? " is-wide" : ""}`}
-              >
-                <article className="sh-card">
-                  {branch.href ? (
-                    <Link href={branch.href} className="sh-card-head">
-                      {head}
-                    </Link>
-                  ) : (
-                    <div className="sh-card-head">{head}</div>
-                  )}
+            <ul className="sh2-cards">
+              {tier.branches.map((b) => (
+                <li key={b.id} id={b.id}>
+                  <article className="sh2-card">
+                    <div className="sh2-card-head">
+                      <span className={`sh2-glyph ${sc}`} aria-hidden="true">
+                        {b.glyph}
+                      </span>
+                      <h3 className="sh2-name">
+                        {b.page ? <Link href={b.page}>{b.name}</Link> : b.name}
+                      </h3>
+                      <p className={`sh2-sanskrit ${sc}`}>{b.sanskrit}</p>
+                    </div>
 
-                  <div className="sh-card-foot">
-                    <p className="sh-count">
-                      {branch.readable > 0
-                        ? s.readableOf(
-                            branch.readable.toLocaleString("en-IN"),
-                            branch.total.toLocaleString("en-IN"),
-                          )
-                        : s.noneYet}
-                    </p>
-                    <ul className="sh-chips">
-                      {branch.texts.map((text) =>
-                        text.href ? (
-                          <li key={text.id}>
-                            <Link href={text.href} className="chip chip-gold" title={text.note}>
-                              {text.name}
+                    <p className="sh2-lede">{b.lede}</p>
+
+                    <ul className="sh2-chips">
+                      {b.texts.map((t) =>
+                        t.href ? (
+                          <li key={t.id}>
+                            <Link href={t.href} className="chip chip-gold" title={t.note}>
+                              {t.name}
                             </Link>
                           </li>
                         ) : (
-                          <li key={text.id}>
-                            <span className="chip sh-chip-quiet" title={text.note}>
-                              {text.name}
+                          <li key={t.id}>
+                            <span className="chip sh-chip-quiet" title={t.note}>
+                              {t.name}
                             </span>
                           </li>
                         ),
                       )}
                     </ul>
 
-                    {/* The return leg of the bridge. A branch that lays
-                        rites down says so and points at them, so the
-                        map of what is written and the section on what
-                        is done are not two strangers. */}
-                    {branch.rites > 0 && (
-                      <Link href="/rituals" className="sh-rites">
-                        {r.doneBecause(branch.rites.toLocaleString("en-IN"))} <Arrow />
+                    {/* The return leg of the bridge into the rites. */}
+                    {b.rites > 0 && (
+                      <Link href="/rituals" className="sh2-rites">
+                        {r.doneBecause(b.rites.toLocaleString("en-IN"))} <Arrow />
                       </Link>
                     )}
-                  </div>
-                </article>
-              </li>
-            );
-          })}
-        </ul>
+
+                    <div className="sh2-foot">
+                      <span className="sh2-count">
+                        {b.readable > 0
+                          ? s.readableOf(b.readable.toLocaleString("en-IN"), b.total.toLocaleString("en-IN"))
+                          : s.noneYet}
+                      </span>
+                      {b.page && (
+                        <Link href={b.page} className="sh2-open">
+                          {u.open} <Arrow />
+                        </Link>
+                      )}
+                    </div>
+                  </article>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ))}
+
+      <section className="shell rf-closing">
+        <p className="rf-closing-text">{s.standing}</p>
       </section>
     </>
   );

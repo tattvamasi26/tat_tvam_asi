@@ -344,6 +344,8 @@ import { darshanaProse, type DarshanaSection } from "./seed/darshana-pages";
 import { depthFor, type Depth } from "./seed/rite-depth";
 import { RTUS, SOLAR_RTU } from "./seed/rtus";
 import { puranaDepthFor, type PuranaDepth } from "./seed/purana-depth";
+import { branchPageFor, BRANCHES_WITH_PAGES } from "./seed/shastra-pages";
+import { SHASTRA_TIERS } from "./seed/shastra-tiers";
 import { PRACTICES, type PracticeKind, type PracticeTrack } from "./seed/practice";
 import { practiceImage, type PracticeImage } from "./seed/practice-images";
 import "./seed/temple-pages/kollur-mookambika";
@@ -1333,6 +1335,9 @@ export function getShastraMap(locale: Locale): ShastraBranchView[] {
     sanskrit: scriptFor(branch.sanskrit, locale),
     glyph: scriptFor(branch.glyph, locale),
     href: branch.href ?? null,
+    // Where the card leads: the section that holds the branch, or its
+    // own page here when it has no section. Never nowhere.
+    page: branch.href ?? (BRANCHES_WITH_PAGES.includes(branch.id) ? `/shastras/${branch.id}` : null),
     lede: branch.lede[locale],
     // What a reader can actually open in this branch today. The card
     // prints it, so a branch never looks fuller than it is.
@@ -1370,6 +1375,8 @@ export interface ShastraBranchView {
   /** Short, for the card's art panel. Already converted. */
   glyph: string;
   href: string | null;
+  /** Where the card leads: the branch's section, or its page here. */
+  page: string | null;
   lede: string;
   readable: number;
   total: number;
@@ -2450,4 +2457,51 @@ export function getFestivalSeasons(locale: Locale): SeasonView[] {
       f.month ? r.months.includes(f.month) : SOLAR_RTU[f.slug] === r.id,
     ),
   }));
+}
+
+// ── One branch of the shastra map, written out ──────────────
+
+export interface ShastraTierView {
+  id: string;
+  name: string;
+  /** Already in the reader's script, where the tier has one. */
+  sanskrit: string | null;
+  lede: string;
+  branches: ShastraBranchView[];
+}
+
+/** The ten branches arranged in the tradition's own three tiers. */
+export function getShastraTiers(locale: Locale): ShastraTierView[] {
+  const map = getShastraMap(locale);
+  return SHASTRA_TIERS.map((t) => ({
+    id: t.id,
+    name: t.name[locale],
+    sanskrit: t.sanskrit ? scriptFor(t.sanskrit, locale) : null,
+    lede: t.lede[locale],
+    branches: t.branches.flatMap((id) => map.filter((b) => b.id === id)),
+  }));
+}
+
+export interface ShastraBranchPageView extends ShastraBranchView {
+  tier: string;
+  about: string[];
+  /** Each text with its fuller paragraph. */
+  details: (ShastraTextView & { detail: string | null })[];
+}
+
+/**
+ * A branch with no section of its own, written out. Null for a branch
+ * that has a section — that page is the section, not this one.
+ */
+export function getShastraBranch(id: string, locale: Locale): ShastraBranchPageView | null {
+  const page = branchPageFor(id, locale);
+  const branch = getShastraMap(locale).find((b) => b.id === id);
+  if (!page || !branch) return null;
+  const tier = SHASTRA_TIERS.find((t) => t.branches.includes(id));
+  return {
+    ...branch,
+    tier: tier ? tier.name[locale] : "",
+    about: page.about,
+    details: branch.texts.map((t) => ({ ...t, detail: page.texts[t.id] ?? null })),
+  };
 }

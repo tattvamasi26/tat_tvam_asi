@@ -263,3 +263,223 @@
     color: var(--sacred);
   }
 }
+
+/* ─────────────────────────────────────────────────────────
+   The map, redesigned (sh2-*).
+
+   The ten branches sit in the three tiers as bands (.rf-band, shared
+   with Rituals & Festivals and the Purāṇas), and each branch is a
+   card in the site's own palette — paper, ink, gold — replacing the
+   pastel art panels, which were the one place the site's colours went
+   off. A branch's own page lists its texts as cards with a status pill.
+   ───────────────────────────────────────────────────────── */
+
+.sh2-progress {
+  margin: 0;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: var(--marigold-soft);
+  color: var(--gold);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.sh2-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: clamp(0.8rem, 1.8vw, 1.1rem);
+  min-width: 0;
+}
+
+.sh2-cards > li {
+  display: flex;
+  scroll-margin-top: calc(var(--masthead-space) + 5rem);
+}
+
+.sh2-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(1.1rem, 2.4vw, 1.4rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+@media (hover: hover) {
+  .sh2-card:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--gold-dim);
+  }
+}
+
+.sh2-card-head {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.sh2-glyph {
+  color: var(--gold-dim);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.sh2-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-head);
+}
+
+.sh2-name a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .sh2-name a:hover {
+    color: var(--gold);
+  }
+}
+
+.sh2-sanskrit {
+  margin: 0;
+  color: var(--sacred);
+  font-size: 0.98rem;
+}
+
+.sh2-lede {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.sh2-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.sh2-rites {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.sh2-foot {
+  margin-top: auto;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sh2-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.sh2-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* A branch's page: its texts. */
+.sh2-texts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.sh2-text {
+  display: grid;
+  gap: 0.45rem;
+  padding: clamp(1rem, 2.2vw, 1.25rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+}
+
+.sh2-text[data-status="live"],
+.sh2-text[data-status="partial"] {
+  border-color: var(--gold-dim);
+}
+
+.sh2-text-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+}
+
+.sh2-text-name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+}
+
+.sh2-text-sanskrit {
+  color: var(--sacred);
+  font-size: 0.95rem;
+}
+
+.sh2-status {
+  margin-inline-start: auto;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.sh2-status[data-status="live"] {
+  background: var(--marigold);
+  color: var(--ink);
+}
+
+.sh2-status[data-status="partial"] {
+  background: var(--marigold-soft);
+  color: var(--gold);
+}
+
+.sh2-text-note {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 560;
+  line-height: 1.6;
+}
+
+.sh2-text-detail {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
