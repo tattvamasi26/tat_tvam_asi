@@ -5,6 +5,7 @@ import { ritualStrings } from "@/i18n/rituals";
 import { rfStrings } from "@/i18n/rf";
 import { getRitualGroups, getSamskaras, getFestivals } from "@/lib/data";
 import { RfHead, JumpBar } from "@/components/rf/RfHead";
+import { RiteArt } from "@/components/rituals/RiteArt";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 
@@ -67,6 +68,9 @@ export default function RitualsPage() {
         <section key={g.id} id={g.id} className="rf-band" aria-labelledby={`h-${g.id}`}>
           <div className="shell rf-band-inner">
             <header className="rf-band-head">
+              <div className="rf-band-art">
+                <RiteArt art={g.id} label={g.name} />
+              </div>
               <span className="rf-band-n">{String(gi + 1).padStart(2, "0")}</span>
               <h2 className="rf-band-title" id={`h-${g.id}`}>
                 {g.name}
@@ -117,7 +121,10 @@ export default function RitualsPage() {
               <ul className="rf-cards">
                 {g.rituals.map((r) => (
                   <li key={r.slug}>
-                    <Link href={`/rituals/${r.slug}`} className="rf-card">
+                    <Link href={`/rituals/${r.slug}`} className="rf-card has-art">
+                      <span className="rf-card-art" aria-hidden="true">
+                        <RiteArt art={r.slug} label="" />
+                      </span>
                       <span className="rf-card-name">{r.name}</span>
                       <span className={`rf-card-sanskrit ${sc}`}>{r.sanskrit}</span>
                       <span className="rf-card-lede">{r.lede}</span>

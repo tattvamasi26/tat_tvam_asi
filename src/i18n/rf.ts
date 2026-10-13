@@ -49,6 +49,8 @@ export interface RfStrings {
   stepsCount: string;
   /** Carries {n}. */
   daysCount: string;
+  /** The credit under a drawing made for the site. */
+  drawnCredit: string;
 }
 
 export const RF_STRINGS: Record<Locale, RfStrings> = {
@@ -85,6 +87,7 @@ export const RF_STRINGS: Record<Locale, RfStrings> = {
     labelSeason: "Season",
     stepsCount: "{n} steps",
     daysCount: "{n} days",
+    drawnCredit: "Illustration drawn for this site.",
   },
 
   kn: {
@@ -120,6 +123,7 @@ export const RF_STRINGS: Record<Locale, RfStrings> = {
     labelSeason: "ಋತು",
     stepsCount: "{n} ಹೆಜ್ಜೆಗಳು",
     daysCount: "{n} ದಿನಗಳು",
+    drawnCredit: "ಈ ತಾಣಕ್ಕಾಗಿ ಬಿಡಿಸಿದ ಚಿತ್ರ.",
   },
 
   hi: {
@@ -155,6 +159,7 @@ export const RF_STRINGS: Record<Locale, RfStrings> = {
     labelSeason: "ऋतु",
     stepsCount: "{n} चरण",
     daysCount: "{n} दिन",
+    drawnCredit: "इस साइट के लिए बनाया गया चित्र।",
   },
 };
 

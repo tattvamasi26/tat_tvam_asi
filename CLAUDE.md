@@ -413,6 +413,13 @@ that puts the Vedas under Shastras, so it is not listed twice.
   rejects the second person ("you should", "recite the"). No mantra is
   given as an instruction; where the site holds the words, the rite
   links to them.
+- **Each rite and group has an illustration drawn for the site**
+  (`components/rituals/RiteArt.tsx`): inline SVG on the site's tokens, no
+  text, showing the object that defines the rite — the thread and staff,
+  seven footprints by the fire, the agnihotra's three altars. Shown on the
+  cards, in each group's band head and in a rite's page head, credited
+  "Illustration drawn for this site". It is not a photograph and never
+  claims to be one.
 - **The rites are drawn, not photographed.** Seventeen licence-checked
   Commons photographs were fetched for this section and all of them were
   removed at the owner's word: documentary photographs of other people's

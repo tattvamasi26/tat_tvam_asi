@@ -11,6 +11,7 @@ import { shastraStrings } from "@/i18n/shastras";
 import { getRitual, getRituals } from "@/lib/data";
 import { RITUALS } from "@/lib/seed/rituals";
 import { StepList, NeedList, Glance } from "@/components/rf/Depth";
+import { RiteArt, hasRiteArt } from "@/components/rituals/RiteArt";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 import { LOCALES } from "@/i18n/config";
@@ -65,7 +66,7 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
 
   return (
     <>
-      <section className={`rf-dhero${r.image ? " has-image" : ""}`}>
+      <section className={`rf-dhero${r.image ? " has-image" : hasRiteArt(r.slug) ? " has-art" : ""}`}>
         {r.image && (
           <>
             <Image
@@ -88,6 +89,12 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
           <h1 className="rf-dhero-title">{r.name}</h1>
           <p className={`rf-dhero-sanskrit ${sc}`}>{r.sanskrit}</p>
           <p className="rf-dhero-lede">{r.lede}</p>
+          {!r.image && hasRiteArt(r.slug) && (
+            <figure className="rf-dhero-art">
+              <RiteArt art={r.slug} label={r.name} />
+              <figcaption>{rf.drawnCredit}</figcaption>
+            </figure>
+          )}
         </div>
       </section>
 
