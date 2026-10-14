@@ -98,8 +98,37 @@ async function info(title, width) {
   };
 }
 
+// The size of a JPEG as it actually is, read from its frame header.
+// Commons serves its own standard thumbnail widths now rather than the
+// one asked for, so the size in the API's answer is not the size of
+// the file that arrives — and every manifest used to record the wrong
+// one. The page lays a picture out from these numbers, so they come
+// from the bytes.
+function jpegSize(b) {
+  if (b[0] !== 0xff || b[1] !== 0xd8) return null;
+  let i = 2;
+  while (i + 9 < b.length) {
+    if (b[i] !== 0xff) {
+      i++;
+      continue;
+    }
+    const marker = b[i + 1];
+    const length = b.readUInt16BE(i + 2);
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+      return { height: b.readUInt16BE(i + 5), width: b.readUInt16BE(i + 7) };
+    }
+    i += 2 + length;
+  }
+  return null;
+}
+
 const setName = process.argv[2];
-const set = SETS[setName];
+// A set may also live in scripts/images/sets/<name>.json, as
+// { "out": "...", "width": 1600, "picks": { id: "File title.jpg" } } —
+// the titles copied from the candidate manifest that was reviewed,
+// never retyped.
+const setFile = path.join("scripts/images/sets", `${setName}.json`);
+const set = SETS[setName] ?? (existsSync(setFile) ? JSON.parse(await readFile(setFile, "utf8")) : undefined);
 if (!set) {
   console.error(`usage: node scripts/images/fetch-commons.mjs <${Object.keys(SETS).join("|")}>`);
   process.exit(1);
@@ -153,15 +182,20 @@ for (const [id, title] of Object.entries(set.picks)) {
   const bytes = Buffer.from(await res.arrayBuffer());
   await writeFile(path.join(set.out, `${id}.jpg`), bytes);
 
+  const real = jpegSize(bytes) ?? { width: meta.width, height: meta.height };
+  // A PNG original is served as PNG. It is saved under .jpg all the
+  // same, which the browser forgives and the size test does not: say
+  // so, and convert it to a real JPEG before committing.
+  if (!jpegSize(bytes)) console.log(`${id.padEnd(22)} NOT A JPEG — convert before committing`);
   manifest[id] = {
     src: `/images/${path.basename(set.out)}/${id}.jpg`,
-    width: meta.width,
-    height: meta.height,
+    width: real.width,
+    height: real.height,
     credit: `${meta.author || "Wikimedia Commons"} · ${meta.licence} · Wikimedia Commons`,
     sourceUrl: meta.descriptionUrl,
   };
   console.log(
-    `${id.padEnd(22)} ${String(meta.width).padStart(4)}x${String(meta.height).padEnd(4)} ${meta.licence.padEnd(14)} ${Math.round(bytes.length / 1024)}KB`,
+    `${id.padEnd(22)} ${String(real.width).padStart(4)}x${String(real.height).padEnd(4)} ${meta.licence.padEnd(14)} ${Math.round(bytes.length / 1024)}KB`,
   );
   await sleep(PAUSE);
 }

@@ -11,6 +11,8 @@ import { BRANCHES_WITH_PAGES } from "@/lib/seed/shastra-pages";
 import { Glance } from "@/components/rf/Depth";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { HeadPicture, hasHeadPicture } from "@/components/content/HeadPicture";
+import { sectionImage, sectionArt } from "@/lib/seed/section-images";
 import { LOCALES } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -51,6 +53,8 @@ export default function ShastraBranchPage({ params }: { params: { branch: string
   }
 
   const sc = scriptClass(locale);
+  const picture = sectionImage("branch", b.id);
+  const art = sectionArt("branch", b.id);
   const status = { live: s.statusLive, partial: s.statusPartial, planned: s.statusPlanned };
 
   const glance: [string, string][] = [
@@ -66,7 +70,7 @@ export default function ShastraBranchPage({ params }: { params: { branch: string
 
   return (
     <>
-      <section className="rf-dhero">
+      <section className={`rf-dhero${hasHeadPicture(picture, art) ? " has-art" : ""}`}>
         <div className="shell rf-dhero-inner">
           <nav className="rf-crumbs" aria-label={s.title}>
             <Link href="/shastras">{s.title}</Link>
@@ -74,6 +78,7 @@ export default function ShastraBranchPage({ params }: { params: { branch: string
           <h1 className="rf-dhero-title">{b.name}</h1>
           <p className={`rf-dhero-sanskrit ${sc}`}>{b.sanskrit}</p>
           <p className="rf-dhero-lede">{b.lede}</p>
+          <HeadPicture locale={locale} image={picture} art={art} label={b.name} drawnCredit={rf.drawnCredit} />
         </div>
       </section>
 

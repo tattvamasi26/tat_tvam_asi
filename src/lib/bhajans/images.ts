@@ -55,6 +55,20 @@ const OWNED: Record<string, Omit<GroupImage, "alt"> & { alt: Record<Locale, stri
       hi: "मुकुटधारी गणेश की निकट छवि — मुड़ी हुई सूँड़ और फैला हुआ कान",
     },
   },
+  // The same painting the owner supplied for Madhva's acharya card:
+  // Madhva teaching, flanked by Hanuman and Bhima.
+  madhva: {
+    src: "/images/acharyas/madhvacharya.jpg",
+    width: 1024,
+    height: 1536,
+    position: "50% 30%",
+    credit: OWNER,
+    alt: {
+      en: "Madhvacharya teaching, flanked by Hanuman and Bhima — a devotional painting",
+      kn: "ಹನುಮಂತ ಮತ್ತು ಭೀಮರ ನಡುವೆ ಉಪದೇಶಿಸುತ್ತಿರುವ ಮಧ್ವಾಚಾರ್ಯರು — ಭಕ್ತಿ ಚಿತ್ರ",
+      hi: "हनुमान और भीम के बीच उपदेश देते मध्वाचार्य — भक्ति चित्र",
+    },
+  },
   venkateshwara: {
     src: "/images/bhajans/venkateshwara.jpg",
     width: 1080,
@@ -95,6 +109,41 @@ const OWNED: Record<string, Omit<GroupImage, "alt"> & { alt: Record<Locale, stri
 
 /** Alt text for the Commons pictures, which the manifest cannot carry. */
 const COMMONS_ALT: Record<string, Record<Locale, string>> = {
+  subramanya: {
+    en: "Subrahmaṇya on his peacock — painting",
+    kn: "ನವಿಲಿನ ಮೇಲೆ ಸುಬ್ರಹ್ಮಣ್ಯ — ಚಿತ್ರ",
+    hi: "मोर पर सुब्रह्मण्य — चित्र",
+  },
+  ayyappa: {
+    en: "Ayyappa — an old painting",
+    kn: "ಅಯ್ಯಪ್ಪ — ಹಳೆಯ ಚಿತ್ರ",
+    hi: "अय्यप्पा — एक पुराना चित्र",
+  },
+  dattatreya: {
+    en: "Dattātreya, three-headed, with the cow and the four dogs — Raja Ravi Varma",
+    kn: "ಮೂರು ತಲೆಯ ದತ್ತಾತ್ರೇಯ, ಹಸು ಮತ್ತು ನಾಲ್ಕು ನಾಯಿಗಳೊಡನೆ — ರಾಜಾ ರವಿವರ್ಮ",
+    hi: "त्रिमुख दत्तात्रेय, गाय और चार कुत्तों के साथ — राजा रवि वर्मा",
+  },
+  tulasi: {
+    en: "A tulasī plant on its raised stand in a courtyard",
+    kn: "ಅಂಗಳದಲ್ಲಿ ಎತ್ತರದ ಕಟ್ಟೆಯ ಮೇಲೆ ತುಳಸಿ",
+    hi: "आँगन में ऊँचे चबूतरे पर तुलसी",
+  },
+  surya: {
+    en: "Sūrya in his chariot — Poona painting, about 1800",
+    kn: "ರಥದಲ್ಲಿ ಸೂರ್ಯ — ಪುಣೆಯ ಚಿತ್ರ, ಸುಮಾರು 1800",
+    hi: "रथ में सूर्य — पुणे का चित्र, लगभग 1800",
+  },
+  shani: {
+    en: "Śani riding his crow — engraving after Sonnerat",
+    kn: "ಕಾಗೆಯ ಮೇಲೆ ಶನಿ — ಸೊನೆರಾ ಆಧರಿತ ಕೆತ್ತನೆಚಿತ್ರ",
+    hi: "कौए पर शनि — सोनेरा के आधार पर उत्कीर्ण चित्र",
+  },
+  bhakti: {
+    en: "Purandara Dāsa with tambura and cymbals — painting",
+    kn: "ತಂಬೂರಿ ಮತ್ತು ತಾಳದೊಂದಿಗೆ ಪುರಂದರ ದಾಸರು — ಚಿತ್ರ",
+    hi: "तानपुरा और करताल के साथ पुरंदर दास — चित्र",
+  },
   krishna: {
     en: "Krishna as envoy, a painting by Raja Ravi Varma",
     kn: "ದೂತನಾಗಿ ನಿಂತ ಕೃಷ್ಣ — ರಾಜಾ ರವಿವರ್ಮರ ಚಿತ್ರ",
@@ -156,7 +205,7 @@ const IMAGES: Record<string, GroupImage> = {};
 for (const [id, entry] of Object.entries(FROM_COMMONS)) {
   const alt = COMMONS_ALT[id];
   if (!alt) continue; // no alt text written yet means the picture is not used
-  IMAGES[id] = { ...entry, position: "50% 40%", alt };
+  IMAGES[id] = { ...entry, position: id === "bhakti" ? "50% 60%" : "50% 40%", alt };
 }
 // The owner's photographs take precedence where he supplied one.
 for (const [id, entry] of Object.entries(OWNED)) IMAGES[id] = entry;

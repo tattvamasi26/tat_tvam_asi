@@ -1,0 +1,9 @@
+{
+  "out": "public/images/darshanas",
+  "width": 1400,
+  "picks": {
+    "sankhya": "Kapila.jpg",
+    "yoga": "Patanjali Painting.jpg",
+    "vedanta": "Shankara-Disciples-River.jpg"
+  }
+}

@@ -531,6 +531,35 @@ component on the site.
 - The recitation sits **inside** the timer panel, using the stotras'
   player, which still loads nothing from YouTube until it is pressed.
 
+### Pictures across the site
+
+- **Sources, in order of preference**: public-domain or freely licensed
+  paintings, manuscripts and sculpture from Wikimedia Commons; then a
+  drawing made for the site (`components/rituals/RiteArt.tsx`, inline
+  SVG on the site's tokens, credited "Illustration drawn for this
+  site"); then nothing. A specific temple gets only a real photograph of
+  that temple — Sowthadka, Pavanje and Hattiangadi have none on Commons
+  and keep their name plates until the owner supplies one.
+- **How a picture gets in**: candidates are searched and looked at on a
+  contact sheet; the chosen titles go into
+  `scripts/images/sets/<set>.json`, copied from the reviewed manifest,
+  never retyped; `node scripts/images/fetch-commons.mjs <set>` downloads
+  them licence-checked into `public/images/<set>/commons.json`. The
+  Purāṇas, Stories, darśanas and branch pages read them through
+  `seed/section-images.ts`, which shows a picture only once its alt text
+  is written in all three languages, and names a drawing (`ART`) where
+  no picture exists.
+- **Sizes come from the bytes.** Commons serves its own standard widths,
+  so the fetcher reads each JPEG's real size from its header; seventy
+  manifest entries were wrong before this. A PNG original arrives as
+  PNG and must be converted to a real JPEG before committing.
+  `tests/unit/pictures.test.ts` checks every manifest on the site.
+- **Rejected, and why** (so they are not proposed again): a Bhāgavata
+  folio of the gopīs' clothes, a disembowelling for Prahlāda, Veda
+  manuscripts titled "1500–1200 BCE", a fan-made postage stamp for
+  Kaṇāda, a palm-leaf photo with its caption burnt in, lizards for
+  "Āgama", Jain hell scenes for the cosmos.
+
 ### Citation and accuracy rules
 
 Don't route around these.

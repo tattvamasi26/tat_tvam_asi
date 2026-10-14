@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { RiteArt } from "@/components/rituals/RiteArt";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
@@ -73,6 +74,8 @@ export default function GroupPage({ params }: { params: { devata: string } }) {
                 style={{ objectFit: "cover", objectPosition: pic.position }}
                 priority
               />
+            ) : devata === "niti" ? (
+              <RiteArt art="bhajan-niti" label={name} />
             ) : (
               <p className="bh-plate kannada" lang="kn">
                 {local}

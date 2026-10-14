@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Thumb } from "@/components/content/Thumb";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { storyStrings } from "@/i18n/stories";
@@ -49,7 +50,8 @@ export default function StoriesPage() {
         <ol className="st-grid">
           {stories.map((x) => (
             <li key={x.slug}>
-              <Link href={`/puranas/stories/${x.slug}`} className="st-card">
+              <Link href={`/puranas/stories/${x.slug}`} className="st-card has-pic">
+                <Thumb kind="story" slug={x.slug} label={x.name} locale={locale} />
                 <span className="st-body">
                   <span className="st-name">{x.name}</span>
                   <span className={`st-sanskrit ${sc}`}>{x.sanskrit}</span>

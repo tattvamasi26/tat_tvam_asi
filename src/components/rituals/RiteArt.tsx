@@ -442,6 +442,136 @@ const ART: Record<string, ReactNode> = {
       <circle cx={200} cy={74} r={6} fill={MARIGOLD} />
     </>
   ),
+  // ── beyond the rites: drawings for places no picture exists ──
+
+  // Pṛthu: the earth as a cow, and the king's bow.
+  "story-prithu": (
+    <>
+      <Halo y={130} r={92} />
+      <path d="M118,62 Q60,140 118,218" fill="none" stroke={SACRED} strokeWidth={7} strokeLinecap="round" />
+      <line x1={118} y1={62} x2={118} y2={218} stroke={INK} strokeWidth={1.5} />
+      <g transform="translate(220 160)">
+        <ellipse cx={0} cy={0} rx={70} ry={34} fill={PAPER} stroke={INK} strokeWidth={3} />
+        <path d="M60,-14 C80,-30 104,-22 104,-4 C104,10 86,16 70,10 Z" fill={PAPER} stroke={INK} strokeWidth={3} />
+        <path d="M86,-24 C84,-40 94,-46 100,-44 M74,-22 C68,-38 58,-42 52,-38" {...LINE} strokeWidth={3} />
+        {[-50, -24, 24, 50].map((x) => (
+          <line key={x} x1={x} y1={28} x2={x} y2={64} stroke={INK} strokeWidth={4} strokeLinecap="round" />
+        ))}
+        <circle cx={-14} cy={-6} r={11} fill={MARIGOLD} />
+        <circle cx={22} cy={8} r={8} fill={SAFFRON} />
+        <path d="M-68,-6 C-90,0 -92,24 -84,40" {...LINE} strokeWidth={3} />
+      </g>
+    </>
+  ),
+
+  // The niti songs, addressed to the mind: the tambura and the cymbals.
+  "bhajan-niti": (
+    <>
+      <Halo y={130} r={96} />
+      <path d="M230,40 L196,168" stroke={SACRED} strokeWidth={12} strokeLinecap="round" />
+      <circle cx={186} cy={196} r={48} fill={GOLD} stroke={INK} strokeWidth={3} />
+      <circle cx={186} cy={196} r={14} fill={SACRED} opacity={0.4} />
+      {[-4, 0, 4, 8].map((d) => (
+        <line key={d} x1={226 + d} y1={44} x2={190 + d} y2={182} stroke={PAPER} strokeWidth={1} opacity={0.8} />
+      ))}
+      <g transform="translate(292 186)">
+        <ellipse cx={-14} cy={0} rx={22} ry={8} fill={MARIGOLD} stroke={INK} strokeWidth={2.5} />
+        <ellipse cx={14} cy={14} rx={22} ry={8} fill={MARIGOLD} stroke={INK} strokeWidth={2.5} />
+        <path d="M-14,-8 C-6,-26 14,-20 14,6" {...LINE} strokeWidth={2} />
+      </g>
+    </>
+  ),
+
+  // Nyāya's own example: smoke on the hill, therefore fire.
+  "darshana-nyaya": (
+    <>
+      <path d="M40,236 L170,92 L300,236 Z" fill="var(--paper-3)" stroke={INK} strokeWidth={3} strokeLinejoin="round" />
+      <Flame x={170} y={112} s={0.7} />
+      {[0, 1, 2].map((i) => (
+        <path key={i} d={`M${170 + i * 10},${80 - i * 14} c-16,-10 4,-22 -8,-34 c-10,-10 10,-18 2,-28`} fill="none" stroke="var(--ink-4)" strokeWidth={5 - i} strokeLinecap="round" opacity={0.8 - i * 0.2} />
+      ))}
+      {[0, 1, 2, 3, 4].map((i) => (
+        <circle key={i} cx={322} cy={74 + i * 34} r={11} fill={i === 4 ? MARIGOLD : PAPER} stroke={INK} strokeWidth={2.5} />
+      ))}
+      <line x1={322} y1={85} x2={322} y2={199} stroke={INK} strokeWidth={2} opacity={0.5} />
+    </>
+  ),
+
+  // Mīmāṃsā: the Veda as injunction, above the altar it governs.
+  "darshana-mimamsa": (
+    <>
+      <Halo y={140} />
+      <rect x={96} y={52} width={208} height={40} rx={8} fill="var(--paper-3)" stroke={INK} strokeWidth={3} />
+      {[64, 72, 80].map((y) => (
+        <line key={y} x1={112} x2={288} y1={y} y2={y} stroke="var(--ink-4)" strokeWidth={2.5} strokeLinecap="round" />
+      ))}
+      <circle cx={200} cy={72} r={4} fill={INK} />
+      <Flame x={200} y={176} s={1.1} />
+      <path d="M140,190 H260 V206 H140 Z" fill={SACRED} />
+      <path d="M154,206 H246 V222 H154 Z" fill={GOLD} />
+    </>
+  ),
+
+  // Vedānta: the three starting points, and the lamp.
+  "branch-vedanta": (
+    <>
+      <Halo y={130} r={96} />
+      {[0, 1, 2].map((i) => (
+        <g key={i} transform={`translate(200 196) rotate(${(i - 1) * 16}) translate(-110 ${-i * 4})`}>
+          <rect width={220} height={30} rx={7} fill={[GOLD, "var(--paper-3)", SAFFRON][i]} stroke={INK} strokeWidth={2.5} />
+          <line x1={20} x2={200} y1={15} y2={15} stroke={INK} strokeWidth={1.5} opacity={0.4} />
+        </g>
+      ))}
+      <Lamp x={200} y={112} s={1} />
+    </>
+  ),
+
+  // Āgama: the temple and the lamp in its sanctum.
+  "branch-agamas": (
+    <>
+      <Halo y={120} r={94} />
+      <path d="M140,212 L150,104 L170,104 L176,76 L188,76 L192,52 L208,52 L212,76 L224,76 L230,104 L250,104 L260,212 Z" fill={SACRED} />
+      <circle cx={200} cy={44} r={8} fill={MARIGOLD} />
+      <path d="M176,212 V164 C176,140 224,140 224,164 V212 Z" fill="var(--paper-2)" />
+      <Flame x={200} y={196} s={0.55} />
+      <path d="M120,212 H280 V226 H120 Z" fill={GOLD} />
+    </>
+  ),
+  // Vaiśeṣika: atoms, then two to a dyad, then three dyads to the
+  // first thing that can be seen.
+  "darshana-vaisheshika": (
+    <>
+      <Halo y={140} r={96} />
+      <circle cx={92} cy={140} r={10} fill={SACRED} />
+      <g fill={SACRED}>
+        <circle cx={172} cy={140} r={10} />
+        <circle cx={196} cy={140} r={10} />
+      </g>
+      <line x1={172} y1={140} x2={196} y2={140} stroke={INK} strokeWidth={2} />
+      {[[282, 108], [258, 156], [306, 156]].map(([x, y], i) => (
+        <g key={i}>
+          <circle cx={x - 12} cy={y} r={10} fill={MARIGOLD} stroke={INK} strokeWidth={2} />
+          <circle cx={x + 12} cy={y} r={10} fill={MARIGOLD} stroke={INK} strokeWidth={2} />
+        </g>
+      ))}
+      <path d="M282,108 L258,156 L306,156 Z" fill="none" stroke={INK} strokeWidth={1.5} strokeDasharray="3 4" />
+      <path d="M118,140 H150 M222,140 H240" stroke="var(--ink-4)" strokeWidth={3} strokeLinecap="round" />
+    </>
+  ),
+
+  // The teaching texts: a short book on palm leaves, tied, and a lamp.
+  "branch-prakarana": (
+    <>
+      <Halo y={130} r={96} />
+      {[0, 1, 2, 3].map((i) => (
+        <rect key={i} x={96} y={156 - i * 12} width={208} height={14} rx={6} fill={i % 2 ? GOLD : "var(--paper-3)"} stroke={INK} strokeWidth={2} />
+      ))}
+      <circle cx={150} cy={135} r={4} fill={INK} />
+      <circle cx={250} cy={135} r={4} fill={INK} />
+      <path d="M150,135 C150,190 250,190 250,135" {...LINE} stroke={SACRED} strokeWidth={2.5} />
+      <Lamp x={200} y={210} s={0.8} />
+    </>
+  ),
 };
 
 /** Whether this slug or group has a drawing. */

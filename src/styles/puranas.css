@@ -729,7 +729,7 @@
 
 .pu2-row {
   display: grid;
-  grid-template-columns: 2.2rem minmax(0, 2.2fr) minmax(0, 1fr) minmax(9rem, 1fr);
+  grid-template-columns: 4.4rem minmax(0, 2.2fr) minmax(0, 1fr) minmax(9rem, 1fr);
   gap: clamp(0.7rem, 2vw, 1.4rem);
   align-items: center;
   padding: clamp(0.85rem, 2vw, 1.1rem) clamp(1rem, 2.4vw, 1.5rem);
@@ -829,7 +829,7 @@
 
 @media (max-width: 860px) {
   .pu2-row {
-    grid-template-columns: 2.2rem minmax(0, 1fr);
+    grid-template-columns: 4.4rem minmax(0, 1fr);
     align-items: start;
   }
 

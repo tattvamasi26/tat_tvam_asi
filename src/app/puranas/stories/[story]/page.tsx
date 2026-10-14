@@ -7,6 +7,9 @@ import { getStory, getStories } from "@/lib/data";
 import { STORIES } from "@/lib/seed/stories";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { HeadPicture, hasHeadPicture } from "@/components/content/HeadPicture";
+import { sectionImage, sectionArt } from "@/lib/seed/section-images";
+import { rfStrings } from "@/i18n/rf";
 import { LOCALES } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -43,17 +46,20 @@ export default function StoryPage({ params }: { params: { story: string } }) {
   const at = all.findIndex((y) => y.slug === x.slug);
   const prev = at > 0 ? all[at - 1] : null;
   const next = at >= 0 && at < all.length - 1 ? all[at + 1] : null;
+  const picture = sectionImage("story", x.slug);
+  const art = sectionArt("story", x.slug);
 
   return (
     <>
-      <section className="pu-hero">
-        <div className="shell pu-hero-inner">
-          <Link href="/puranas/stories" className="pu-hero-back">
-            <Arrow dir="left" /> {s.back}
-          </Link>
-          <h1 className="pu-hero-title">{x.name}</h1>
-          <p className={`pu-hero-sanskrit ${sc}`}>{x.sanskrit}</p>
-          <p className="pu-hero-lede">{x.lede}</p>
+      <section className={`rf-dhero${hasHeadPicture(picture, art) ? " has-art" : ""}`}>
+        <div className="shell rf-dhero-inner">
+          <nav className="rf-crumbs" aria-label={s.back}>
+            <Link href="/puranas/stories">{s.back}</Link>
+          </nav>
+          <h1 className="rf-dhero-title">{x.name}</h1>
+          <p className={`rf-dhero-sanskrit ${sc}`}>{x.sanskrit}</p>
+          <p className="rf-dhero-lede">{x.lede}</p>
+          <HeadPicture locale={locale} image={picture} art={art} label={x.name} drawnCredit={rfStrings(locale).drawnCredit} />
         </div>
       </section>
 

@@ -1171,3 +1171,90 @@
     margin-top: 1rem;
   }
 }
+
+/* A credited painting in the same place a rite's drawing sits. */
+.rf-dhero-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  background: var(--paper-2);
+}
+
+.rf-dhero-art figcaption a {
+  color: var(--ink-3);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+@media (hover: hover) {
+  .rf-dhero-art figcaption a:hover {
+    color: var(--gold);
+  }
+}
+
+/* ── small pictures on index cards and rows ─────────────────── */
+.thumb {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.thumb .rite-art {
+  position: absolute;
+  inset: 0;
+}
+
+/* Purāṇa rows: a square picture with the number laid on its corner. */
+.pu2-thumb {
+  position: relative;
+  display: block;
+  width: 4.4rem;
+}
+
+.pu2-thumb .thumb {
+  width: 4.4rem;
+  aspect-ratio: 1;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+}
+
+.pu2-thumb .pu2-n {
+  position: absolute;
+  left: -0.45rem;
+  top: -0.45rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  font-size: 0.72rem;
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* Stories: a picture across the top of each card. */
+.st-card.has-pic {
+  overflow: hidden;
+}
+
+.st-card.has-pic > .thumb {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 9;
+  margin: -1.1rem -1.25rem 0.8rem;
+  border-bottom: 1px solid var(--line);
+}
+
+/* Darśanas: a picture where the glyph was. */
+.da-card-pic {
+  display: block;
+  width: 5.2rem;
+}
+
+.da-card-pic .thumb {
+  width: 5.2rem;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line);
+}

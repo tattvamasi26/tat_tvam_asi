@@ -1,0 +1,23 @@
+{
+  "sankhya": {
+    "src": "/images/darshanas/sankhya.jpg",
+    "width": 1400,
+    "height": 1730,
+    "credit": "Company School · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Kapila.jpg"
+  },
+  "yoga": {
+    "src": "/images/darshanas/yoga.jpg",
+    "width": 1178,
+    "height": 2022,
+    "credit": "Unknown authorUnknown author · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Patanjali_Painting.jpg"
+  },
+  "vedanta": {
+    "src": "/images/darshanas/vedanta.jpg",
+    "width": 1400,
+    "height": 903,
+    "credit": "Unknown authorUnknown author · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Shankara-Disciples-River.jpg"
+  }
+}

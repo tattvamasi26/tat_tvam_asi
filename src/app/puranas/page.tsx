@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Thumb } from "@/components/content/Thumb";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { puranaStrings } from "@/i18n/puranas";
@@ -88,7 +89,10 @@ export default function PuranasPage() {
           {puranas.map((p) => (
             <li key={p.slug}>
               <Link href={`/puranas/${p.slug}`} className="pu2-row">
-                <span className="pu2-n">{p.order.toLocaleString("en-IN")}</span>
+                <span className="pu2-thumb" aria-hidden="true">
+                  <Thumb kind="purana" slug={p.slug} label="" locale={locale} />
+                  <span className="pu2-n">{p.order.toLocaleString("en-IN")}</span>
+                </span>
                 <span className="pu2-main">
                   <span className="pu2-name">{p.name}</span>
                   <span className={`pu2-sanskrit ${sc}`}>{p.sanskrit}</span>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { RiteArt } from "@/components/rituals/RiteArt";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { sectionsFor } from "@/i18n/sections";
@@ -8,7 +9,6 @@ import { bhajanGroups, bhajanCount, composerCounts } from "@/lib/bhajans";
 import { bhajanGroup } from "@/lib/bhajans/groups";
 import { groupImage } from "@/lib/bhajans/images";
 import { getBhajans } from "@/lib/data";
-import { scriptClass } from "@/lib/script";
 
 export const metadata: Metadata = {
   title: "Bhajans",
@@ -61,6 +61,10 @@ export default function BhajansPage() {
                 sizes="(max-width: 700px) 50vw, 210px"
                 style={{ objectFit: "cover", objectPosition: pic.position }}
               />
+            ) : g.id === "niti" ? (
+              /* The songs addressed to the mind have no devata to show;
+                 the site's drawing of the tambura and cymbals stands in. */
+              <RiteArt art="bhajan-niti" label={g.name} />
             ) : (
               /* No picture is a designed state, not an empty frame:
                  the name stands in its place, as it does for a temple
@@ -139,7 +143,12 @@ export default function BhajansPage() {
               {elsewhere.map((x) => (
                 <li key={x.id} className="bh-elsewhere-row">
                   <span className="bh-elsewhere-name">{x.name}</span>
-                  <span className={`bh-elsewhere-sanskrit ${scriptClass(locale)}`}>{x.nameSanskrit}</span>
+                  {/* A Gujarati song, a Hindi āratī, a Sanskrit stotra: each
+                      title as it is written, in Devanagari on every page,
+                      and marked so — it is not Sanskrit to be converted. */}
+                  <span className="bh-elsewhere-sanskrit deva" lang="und-Deva">
+                    {x.nameSanskrit}
+                  </span>
                   <span className="bh-elsewhere-summary">{x.summary}</span>
                 </li>
               ))}

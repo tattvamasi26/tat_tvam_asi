@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Thumb } from "@/components/content/Thumb";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { darshanaStrings } from "@/i18n/darshanas";
@@ -136,8 +137,8 @@ export default function DarshanasPage() {
           {schools.map((d) => (
             <li key={d.slug}>
               <Link href={`/darshanas/${d.slug}`} className="da-card">
-                <span className={`da-card-glyph ${sc}`} aria-hidden="true">
-                  {d.glyph}
+                <span className="da-card-pic" aria-hidden="true">
+                  <Thumb kind="darshana" slug={d.slug} label="" locale={locale} />
                 </span>
                 <span className="da-card-body">
                   <span className="da-card-name">{d.name}</span>
