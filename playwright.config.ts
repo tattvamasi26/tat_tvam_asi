@@ -30,6 +30,11 @@ export default defineConfig({
   use: {
     baseURL: process.env.BASE_URL ?? `http://localhost:${PORT}`,
     channel: "chrome",
+    // Headless Chrome names itself "HeadlessChrome", which the site's
+    // bot guard (src/lib/security/bots.ts) refuses. The tests read as
+    // an ordinary Chrome.
+    userAgent:
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
     contextOptions: { reducedMotion: "reduce" },
     trace: "retain-on-failure",
   },

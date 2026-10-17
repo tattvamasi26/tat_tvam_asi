@@ -172,6 +172,8 @@
 
 .rv-group-sa {
   font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  /* Tiro has one weight; inherited heading bold would be faked. */
+  font-weight: 400;
   color: var(--sacred);
 }
 
@@ -224,6 +226,8 @@
   font-size: 1.05rem;
   color: var(--sacred);
   line-height: 1.5;
+  /* Some attributions are one long compound with no space to break at. */
+  overflow-wrap: anywhere;
 }
 
 .rv-row-meta {
@@ -314,4 +318,11 @@
 
 .rv-sources a {
   color: var(--gold);
+}
+
+/* A devatā whose name is given only in Sanskrit heads its page in
+   Devanagari even on an English page; Indic script takes no tracking. */
+.pagehead .title.deva,
+.pagehead .title.kannada {
+  letter-spacing: 0;
 }

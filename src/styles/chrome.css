@@ -626,6 +626,17 @@
   color: var(--on-night-2);
 }
 
+.footer-base-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-color: rgba(251, 243, 223, 0.35);
+}
+
+.footer-base-link:hover {
+  color: var(--on-night, #fbf3df);
+}
+
 @keyframes pop-in {
   from {
     opacity: 0;

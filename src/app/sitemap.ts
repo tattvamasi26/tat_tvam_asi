@@ -16,7 +16,7 @@ import { TEACHERS } from "@/lib/seed/teachers";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://tattvamasi.in";
-  const staticRoutes = ["/", "/verses", "/upanishads", "/teachers", "/temples", "/concepts", "/mathas", "/search", "/about", "/vedas", "/vedas/rigveda", "/acharyas", "/shastras"];
+  const staticRoutes = ["/", "/verses", "/upanishads", "/teachers", "/temples", "/concepts", "/mathas", "/search", "/about", "/rights", "/vedas", "/vedas/rigveda", "/acharyas", "/shastras"];
 
   // Every region and everything inside it, so a temple written in
   // depth is reachable from the sitemap rather than only by link.

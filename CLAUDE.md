@@ -590,6 +590,42 @@ Don't route around these.
   - Never store Sanskrit in Kannada script in the seed data.
   - Text that is in another language on purpose (a temple's own Kannada name on an English page) carries a `lang` attribute; the script check skips `[lang]` elements.
 
+### Security and anti-copying
+
+Read `docs/SECURITY.md` before touching any of this. The short version:
+
+- **AI crawlers are refused twice.** robots.txt disallows every token in
+  `AI_CRAWLERS` (`src/lib/security/bots.ts`), and the middleware sends a
+  403 to the ones that name themselves in their User-Agent. To add a
+  crawler, add it to that one list.
+- **Copying tools are refused** by User-Agent: curl, python-requests,
+  HeadlessChrome and the like. This is also why
+  `playwright.config.ts` sets an ordinary Chrome User-Agent. Without it
+  every e2e test gets a 403.
+- **The trap.** `/archive-index` is linked invisibly from the footer and
+  disallowed in robots.txt. Anything that requests it is banned for an
+  hour. Never link it visibly, and never make it a `<Link>`: a prefetch
+  would ban real readers.
+- **The rate limit is in memory**: 120 pages a minute and 1,200 an hour,
+  per address. Prefetches and pictures don't count, and neither does a
+  request with no client address (local, tests). The image optimiser
+  reads `/images/` with no headers, so pictures refuse only named AI
+  crawlers.
+- **Headers live in `next.config.js`**, HSTS in the middleware (off
+  localhost). Any new outside host must be added to the CSP there: a
+  picture host to `img-src`, an embed to `frame-src`. The optimiser's
+  `remotePatterns` must also list only hosts actually used.
+- **There is no public JSON API.** `/api/search` was removed because it
+  served the corpus to anyone. Don't add a data endpoint without
+  same-origin checks and a rate limit.
+- `/rights` (`src/i18n/rights.ts`) is the notice the TDM headers,
+  `/.well-known/tdmrep.json` and `/ai.txt` point to. It claims only the
+  site's own work. The texts and the credited pictures aren't the site's
+  to reserve.
+- `tests/unit/security.test.ts` pins all of it.
+- **Open item:** Next 14.2.35 carries npm-audit advisories whose only
+  fix is Next 16.
+
 ### Supabase and `/admin`
 
 - `src/lib/supabase.ts` is server-only. It exports three clients:

@@ -104,6 +104,7 @@ export const ROUTES = [
   "/verses/v-sarvam-khalvidam",
   "/search?q=brahman",
   "/about",
+  "/rights",
   "/this-page-does-not-exist",
 ];
 
