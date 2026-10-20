@@ -5,6 +5,14 @@ import path from "node:path";
 import { createRequire } from "node:module";
 import { AI_CRAWLERS, TRAP_PATH, classify } from "../../src/lib/security/bots";
 import { RateLimiter } from "../../src/lib/security/rate-limit";
+import {
+  clientAddress,
+  isDisguisedScript,
+  isProbe,
+  isRouterPrefetch,
+  isUncounted,
+  ipv6Prefix64,
+} from "../../src/lib/security/guard";
 import robots from "../../src/app/robots";
 import { rightsStrings } from "../../src/i18n/rights";
 import { LOCALES } from "../../src/i18n/config";
@@ -162,4 +170,111 @@ test("the rights notice says the same thing in every language", () => {
     assert.match(all, /2019\/790/, l);
     assert.match(all, /tdmrep\.json/, l);
   }
+});
+
+// ---- Second round (2026-10-19): the bypasses the first round left open.
+
+function h(map: Record<string, string>) {
+  const m = new Map(Object.entries(map).map(([k, v]) => [k.toLowerCase(), v]));
+  return { get: (k: string) => m.get(k.toLowerCase()) ?? null, has: (k: string) => m.has(k.toLowerCase()) };
+}
+
+test("the client is the address our proxy saw, not the one the client claims", () => {
+  // One proxy appends what it saw; what is to its left the client wrote.
+  assert.equal(clientAddress(h({ "x-forwarded-for": "1.2.3.4, 203.0.113.9" }), null, 1), "203.0.113.9");
+  // Claiming to be this machine no longer earns a pass.
+  const spoof = clientAddress(h({ "x-forwarded-for": "127.0.0.1, 203.0.113.9" }), null, 1);
+  assert.equal(spoof, "203.0.113.9");
+  assert.equal(isUncounted(spoof), false);
+  // Two proxies (a CDN, then nginx): the client is second from the right.
+  assert.equal(clientAddress(h({ "x-forwarded-for": "9.9.9.9, 198.51.100.7, 10.0.0.2" }), null, 2), "198.51.100.7");
+  // The platform's own address wins over any header.
+  assert.equal(clientAddress(h({ "x-forwarded-for": "1.1.1.1" }), "198.51.100.1", 1), "198.51.100.1");
+  // A port is not a different client.
+  assert.equal(clientAddress(h({ "x-forwarded-for": "203.0.113.9:51234" }), null, 1), "203.0.113.9");
+  // Nothing at all: this machine, uncounted.
+  assert.equal(isUncounted(clientAddress(h({}), null, 1)), true);
+  // A header that is there but holds rubbish is counted, not waved through.
+  assert.equal(isUncounted(clientAddress(h({ "x-forwarded-for": "<script>" }), null, 1)), false);
+  assert.equal(isUncounted(clientAddress(h({ "x-real-ip": "nonsense" }), null, 1)), false);
+});
+
+test("an IPv6 client is counted by its /64, so it cannot rotate addresses", () => {
+  const a = clientAddress(h({}), "2001:db8:abcd:12:1::1", 1);
+  const b = clientAddress(h({}), "2001:db8:abcd:12:ffff:ffff:ffff:fffe", 1);
+  assert.equal(a, b);
+  assert.notEqual(a, clientAddress(h({}), "2001:db8:abcd:13::1", 1));
+  assert.equal(ipv6Prefix64("2001:db8::1"), "2001:db8:0:0::/64");
+  assert.equal(clientAddress(h({}), "::ffff:203.0.113.9", 1), "203.0.113.9");
+});
+
+test("only the router's own prefetch is counted as one", () => {
+  assert.equal(isRouterPrefetch(h({ "next-router-prefetch": "1", rsc: "1" })), true);
+  // These used to put a whole page outside the rate limit.
+  assert.equal(isRouterPrefetch(h({ purpose: "prefetch" })), false);
+  assert.equal(isRouterPrefetch(h({ "sec-purpose": "prefetch" })), false);
+  assert.equal(isRouterPrefetch(h({ "next-router-prefetch": "1" })), false);
+});
+
+test("a script wearing a browser's User-Agent is caught by what it leaves out", () => {
+  const chrome = BROWSERS[0];
+  // What requests, httpx or a bare fetch send with a borrowed UA.
+  assert.equal(isDisguisedScript(chrome, h({ accept: "*/*" })), true);
+  // A real browser, old Safari without Sec-Fetch included.
+  for (const ua of BROWSERS) {
+    assert.equal(isDisguisedScript(ua, h({ "accept-language": "en-IN", "sec-fetch-mode": "navigate" })), false, ua);
+    assert.equal(isDisguisedScript(ua, h({ "accept-language": "kn" })), false, ua);
+  }
+  // Search engines are dealt with by name, not held to browser headers.
+  for (const ua of SEARCH_ENGINES) assert.equal(isDisguisedScript(ua, h({})), false, ua);
+});
+
+test("scanners probing for other platforms' secrets are caught; real paths are not", () => {
+  for (const p of ["/.env", "/.env.local", "/.git/config", "/wp-login.php", "/wp-admin/", "/xmlrpc.php",
+    "/index.php", "/phpmyadmin/", "/backup.sql", "/.aws/credentials", "/cgi-bin/x"]) {
+    assert.equal(isProbe(p), true, p);
+  }
+  for (const p of ["/", "/upanishads/isha", "/rights", "/.well-known/tdmrep.json",
+    "/.well-known/security.txt", "/images/stutis/ganesha.jpg", "/vedas/rigveda/1/1", "/admin"]) {
+    assert.equal(isProbe(p), false, p);
+  }
+});
+
+test("a flood of addresses evicts the oldest, and never wipes the crawler being counted", () => {
+  const rl = new RateLimiter([{ limit: 3, ms: 60_000 }], 100);
+  const t0 = 5_000_000;
+  rl.hit("crawler", t0);
+  rl.hit("crawler", t0 + 1);
+  rl.hit("crawler", t0 + 2);
+  // Two hundred one-off addresses, the crawler still active among them.
+  for (let i = 0; i < 200; i++) {
+    rl.hit(`noise-${i}`, t0 + 10 + i);
+    if (i % 50 === 0) rl.hit("crawler", t0 + 10 + i);
+  }
+  assert.ok(rl.size <= 101, String(rl.size));
+  // The fourth hit within the minute is still over the limit.
+  assert.equal(rl.hit("crawler", t0 + 300), true);
+});
+
+test("a copied passage carries its source in every language", () => {
+  for (const l of LOCALES) {
+    const s = rightsStrings(l);
+    assert.ok(s.copySource.trim(), l);
+    assert.ok(s.copyTerms.trim(), l);
+  }
+  const footer = readFileSync(path.join(root, "src/components/layout/Footer.tsx"), "utf8");
+  assert.match(footer, /<CopyAttribution /);
+  const hook = readFileSync(path.join(root, "src/components/security/CopyAttribution.tsx"), "utf8");
+  // Copying is never blocked outright, only annotated.
+  assert.doesNotMatch(hook, /user-select|oncontextmenu|contextmenu/);
+  assert.match(hook, /\/rights/);
+});
+
+test("the middleware uses the guarded address and prefetch checks", () => {
+  const mw = readFileSync(path.join(root, "src/middleware.ts"), "utf8");
+  assert.match(mw, /clientAddress\(request\.headers, request\.ip\)/);
+  assert.match(mw, /isRouterPrefetch\(/);
+  assert.doesNotMatch(mw, /"purpose"/);
+  assert.match(mw, /isDisguisedScript\(/);
+  assert.match(mw, /isProbe\(/);
 });

@@ -611,6 +611,20 @@ Read `docs/SECURITY.md` before touching any of this. The short version:
   request with no client address (local, tests). The image optimiser
   reads `/images/` with no headers, so pictures refuse only named AI
   crawlers.
+- **The client address is never the client's word.** `clientAddress()`
+  in `src/lib/security/guard.ts` takes `request.ip`, or the
+  `X-Forwarded-For` entry our proxy appended (counted from the right,
+  `TRUSTED_PROXY_HOPS`), and groups IPv6 by /64. Only a request with no
+  address at all is uncounted. A fake `Purpose: prefetch` header earns
+  nothing: only the router's own prefetch (`Next-Router-Prefetch` with
+  `RSC: 1`) counts as one, against its own allowance. A browser
+  User-Agent sent with neither `Sec-Fetch-Mode` nor `Accept-Language` is
+  a script and gets a 403. Scanner probes (`/.env`, `*.php`, `/wp-*`)
+  are banned for fifteen minutes.
+- **Copying is annotated, never blocked.** `CopyAttribution` (in the
+  footer) appends the page URL and `/rights` to any copied passage of 40+
+  characters. Don't add `user-select: none` or right-click blocking: they
+  stop no copier and break the site for readers; a test rejects them.
 - **Headers live in `next.config.js`**, HSTS in the middleware (off
   localhost). Any new outside host must be added to the CSP there: a
   picture host to `img-src`, an embed to `frame-src`. The optimiser's

@@ -28,6 +28,8 @@ export class RateLimiter {
     const longest = Math.max(...this.windows.map((w) => w.ms));
     const times = (this.hits.get(key) ?? []).filter((t) => now - t < longest);
     times.push(now);
+    // Re-inserted so the map's order is least recently seen first.
+    this.hits.delete(key);
     this.hits.set(key, times);
 
     return this.windows.some(
@@ -48,9 +50,9 @@ export class RateLimiter {
     return false;
   }
 
-  /** Drops stale entries once a minute, and everything if memory runs away. */
+  /** Drops stale entries once a minute, and the oldest if memory runs away. */
   private sweep(now: number): void {
-    if (now - this.lastSweep < 60_000) return;
+    if (now - this.lastSweep < 60_000 && this.hits.size <= this.maxKeys) return;
     this.lastSweep = now;
     const longest = Math.max(...this.windows.map((w) => w.ms));
     for (const [k, times] of this.hits) {
@@ -59,6 +61,28 @@ export class RateLimiter {
     for (const [k, until] of this.blocked) {
       if (until <= now) this.blocked.delete(k);
     }
-    if (this.hits.size > this.maxKeys) this.hits.clear();
+    evictOldest(this.hits, this.maxKeys);
+    evictOldest(this.blocked, this.maxKeys);
+  }
+
+  /** How many clients are being tracked (for tests). */
+  get size(): number {
+    return this.hits.size;
+  }
+}
+
+/**
+ * Trims a map back to 90% of `max`, oldest entries first (a Map keeps
+ * insertion order). Clearing it outright, as this once did, handed a
+ * clean slate to every client being counted, including the crawler
+ * that was about to be stopped, to anyone who could make enough
+ * distinct addresses appear.
+ */
+function evictOldest<K, V>(map: Map<K, V>, max: number): void {
+  if (map.size <= max) return;
+  let excess = map.size - Math.floor(max * 0.9);
+  for (const k of map.keys()) {
+    if (excess-- <= 0) break;
+    map.delete(k);
   }
 }

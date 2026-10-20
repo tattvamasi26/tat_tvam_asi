@@ -40,6 +40,9 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self'",
   "frame-ancestors 'none'",
+  // Production is https only; a stray http:// reference is upgraded
+  // rather than loaded in the clear. Not in dev, which runs on http.
+  ...(isDev ? [] : ["upgrade-insecure-requests"]),
 ].join("; ");
 
 const securityHeaders = [

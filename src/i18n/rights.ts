@@ -16,12 +16,18 @@ export interface RightsStrings {
   lede: string;
   sections: { heading: string; body: string[] }[];
   footerLink: string;
+  /** Appended to a copied passage: "Source: Tat Tvam Asi, <url>". */
+  copySource: string;
+  /** "Reuse terms: <url>/rights". */
+  copyTerms: string;
 }
 
 const en: RightsStrings = {
   title: "Rights and reuse",
   lede: "What on this site may be used, and how.",
   footerLink: "Rights and reuse",
+  copySource: "Source",
+  copyTerms: "Terms of reuse",
   sections: [
     {
       heading: "What belongs to the site",
@@ -58,6 +64,8 @@ const kn: RightsStrings = {
   title: "ಹಕ್ಕುಗಳು ಮತ್ತು ಮರುಬಳಕೆ",
   lede: "ಈ ತಾಣದಲ್ಲಿರುವುದನ್ನು ಯಾವುದನ್ನು, ಹೇಗೆ ಬಳಸಬಹುದು.",
   footerLink: "ಹಕ್ಕುಗಳು ಮತ್ತು ಮರುಬಳಕೆ",
+  copySource: "ಮೂಲ",
+  copyTerms: "ಮರುಬಳಕೆಯ ನಿಯಮಗಳು",
   sections: [
     {
       heading: "ತಾಣಕ್ಕೆ ಸೇರಿದ್ದು",
@@ -94,6 +102,8 @@ const hi: RightsStrings = {
   title: "अधिकार और पुनः उपयोग",
   lede: "इस साइट पर क्या, और कैसे, उपयोग किया जा सकता है।",
   footerLink: "अधिकार और पुनः उपयोग",
+  copySource: "स्रोत",
+  copyTerms: "पुनः उपयोग की शर्तें",
   sections: [
     {
       heading: "साइट का अपना",

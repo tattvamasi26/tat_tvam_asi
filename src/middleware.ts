@@ -2,40 +2,50 @@ import { NextResponse, type NextRequest } from "next/server";
 import { LOCALE_COOKIE, isLocale } from "@/i18n/config";
 import { classify, TRAP_PATH } from "@/lib/security/bots";
 import { RateLimiter } from "@/lib/security/rate-limit";
+import {
+  clientAddress,
+  isDisguisedScript,
+  isProbe,
+  isRouterPrefetch,
+  isUncounted,
+} from "@/lib/security/guard";
 
 /**
  * Runs before every request. In order:
  *
  * 1. The bot guard. AI crawlers and copying tools that name themselves
- *    are refused with 403; robots.txt has already told them no.
- * 2. The trap. A client that requests the invisible trap link is
- *    copying the site, and is refused for an hour.
- * 3. The rate limit, counted on pages only — router prefetches and
- *    pictures don't count, so a reader never meets it.
+ *    are refused with 403; robots.txt has already told them no. So is a
+ *    script that borrows a browser's User-Agent but none of the headers
+ *    every browser sends with it.
+ * 2. The traps. A client that requests the invisible trap link is
+ *    copying the site, and is refused for an hour; one probing for
+ *    other platforms' admin pages or secret files, for fifteen minutes.
+ * 3. The rate limit, counted on pages. The router's own prefetches are
+ *    counted separately against a larger allowance, since a long list
+ *    of links prefetches many at once; pictures are not counted.
  * 4. `?lang=kn`: the parameter is written to the locale cookie and
  *    stripped by a redirect, so any page can be shared in a language.
  *
  * The response headers that apply to every file, including the static
- * ones this never sees, are in next.config.js.
+ * ones this never sees, are in next.config.js. The decisions themselves
+ * are in lib/security/guard.ts, where they are tested.
  */
 
 // 120 pages a minute, 1,200 an hour. Reading at full tilt is a page
 // every few seconds.
-const limiter = new RateLimiter([
+const pages = new RateLimiter([
   { limit: 120, ms: 60_000 },
   { limit: 1_200, ms: 3_600_000 },
 ]);
+// A Rigveda mandala lists nearly two hundred hymns, and the router
+// prefetches each link as it scrolls into view.
+const prefetches = new RateLimiter([
+  { limit: 600, ms: 60_000 },
+  { limit: 6_000, ms: 3_600_000 },
+]);
 const TRAP_BAN_MS = 3_600_000;
-
-function clientKey(request: NextRequest): string {
-  const forwarded = request.headers.get("x-forwarded-for");
-  return (
-    forwarded?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    request.ip ||
-    "local"
-  );
-}
+const PROBE_BAN_MS = 900_000;
+const REFUSAL = "Automated access to this site is not permitted. See /rights.";
 
 function refuse(status: 403 | 429, message: string): NextResponse {
   return new NextResponse(message, {
@@ -55,12 +65,13 @@ function isLocalHost(host: string | null): boolean {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const key = clientKey(request);
-  // No client address: this machine (`next start` with no proxy in
-  // front, where the tests run) or the image optimiser's internal read.
-  // Never banned or counted, or one trap hit would lock out everyone
-  // behind the same missing address.
-  const isLoopback = key === "local" || /^(127\.|::1$|::ffff:127\.)/.test(key);
+  const key = clientAddress(request.headers, request.ip);
+  // No client address at all: this machine (`next start` with no proxy
+  // in front, where the tests run) or the image optimiser's internal
+  // read. Never banned or counted, or one trap hit would lock out
+  // everyone behind the same missing address. An address a request
+  // merely *claims* (127.0.0.1 in X-Forwarded-For) gets no such pass.
+  const uncounted = isUncounted(key);
 
   // 1 — who is asking. A picture refuses only the AI crawlers: the
   // image optimiser reads /images/ through an internal request that
@@ -69,28 +80,28 @@ export function middleware(request: NextRequest) {
   // middleware runs at all, so it is guarded only at the edge; see
   // docs/SECURITY.md.)
   const isPicture = pathname.startsWith("/images/");
-  const verdict = classify(request.headers.get("user-agent"));
-  if (verdict === "ai" || (verdict === "scraper" && !isPicture)) {
-    return refuse(403, "Automated access to this site is not permitted. See /rights.");
+  const ua = request.headers.get("user-agent");
+  const verdict = classify(ua);
+  if (verdict === "ai") return refuse(403, REFUSAL);
+  if (!isPicture && (verdict === "scraper" || isDisguisedScript(ua, request.headers))) {
+    return refuse(403, REFUSAL);
   }
 
-  // 2 — the trap
+  // 2 — the traps
   if (pathname === TRAP_PATH) {
-    if (!isLoopback) limiter.block(key, TRAP_BAN_MS);
-    return refuse(403, "Automated access to this site is not permitted. See /rights.");
+    if (!uncounted) pages.block(key, TRAP_BAN_MS);
+    return refuse(403, REFUSAL);
   }
-  if (limiter.isBlocked(key)) {
-    return refuse(403, "Automated access to this site is not permitted. See /rights.");
+  if (isProbe(pathname)) {
+    if (!uncounted) pages.block(key, PROBE_BAN_MS);
+    return refuse(403, REFUSAL);
   }
+  if (pages.isBlocked(key)) return refuse(403, REFUSAL);
 
   // 3 — how often
-  const isPrefetch =
-    request.headers.has("next-router-prefetch") ||
-    request.headers.get("purpose") === "prefetch" ||
-    request.headers.get("sec-purpose")?.includes("prefetch");
-  const isAsset = isPicture;
-  if (!isPrefetch && !isAsset && !isLoopback && limiter.hit(key)) {
-    return refuse(429, "Too many requests. Please slow down.");
+  if (!isPicture && !uncounted) {
+    const limiter = isRouterPrefetch(request.headers) ? prefetches : pages;
+    if (limiter.hit(key)) return refuse(429, "Too many requests. Please slow down.");
   }
 
   // 4 — the language parameter

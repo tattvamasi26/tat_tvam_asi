@@ -68,6 +68,50 @@ search.
 The tests run as an ordinary Chrome User-Agent (`playwright.config.ts`),
 since headless Chrome names itself and would be refused.
 
+### 2a. Second round (2026-10-19)
+
+The decisions now live in `src/lib/security/guard.ts`, apart from Next,
+so each one is unit-tested. This round closed bypasses in the first:
+
+- **The client's own address claim is ignored.** The first round counted
+  the *leftmost* `X-Forwarded-For` entry, which the client writes. A
+  copier could name a new address on every request and never be counted,
+  or send `127.0.0.1` and be treated as this machine: never counted, never
+  banned. Now the address is the platform's (`request.ip` on Vercel) or
+  the entry our own proxy appended, counted from the right.
+  `TRUSTED_PROXY_HOPS` (default 1) says how many proxies of ours append
+  to the header. Only a request with no address at all is exempt. A
+  header holding rubbish is counted as one shared client.
+- **IPv6 is counted per /64**, the block one subscriber gets. Otherwise
+  one machine could rotate through 2^64 addresses.
+- **A fake prefetch is no longer free.** Any request carrying
+  `Purpose: prefetch` used to skip the rate limit and still get the whole
+  page. Now only the router's own prefetch counts as one. It sends both
+  `Next-Router-Prefetch` and `RSC: 1`. Even those are counted, against a
+  separate allowance of 600 a minute and 6,000 an hour.
+- **A borrowed User-Agent is caught.** A script that sends a browser's
+  User-Agent but neither `Sec-Fetch-Mode` nor `Accept-Language` gets
+  `403`. Every browser since 2020 sends the first, and every browser ever
+  sends the second. Self-declared crawlers (Googlebot, link previewers)
+  are judged by name instead.
+- **Scanners are refused for fifteen minutes.** That covers requests for
+  `/.env`, `/.git`, `/wp-login.php`, `*.php`, `/phpmyadmin`, database
+  dumps and the like. The site has none of these, so nobody reading it
+  ever asks for one. `/.well-known/` is never treated as a probe.
+- **Memory pressure no longer resets the count.** When the limiter
+  tracks too many addresses, it drops the least recently seen. It used to
+  clear everything, which gave the crawler it was about to stop a clean
+  slate.
+- **A copied passage carries its source.** Copying is still allowed
+  (see "The limit to be honest about"). When a reader copies 40
+  characters or more, the clipboard gets the passage plus a line naming
+  the page and `/rights`, in the reader's language. Pasted into another
+  site, the text arrives carrying its source and the notice that forbids
+  republishing it
+  (`src/components/security/CopyAttribution.tsx`). A word or a name is
+  copied unchanged.
+- **`upgrade-insecure-requests`** is added to the CSP in production.
+
 **What this does not stop:** a scraper that sends a real browser's
 User-Agent, reads slowly, rotates addresses and ignores the hidden link.
 That is what step 4 is for.
@@ -161,17 +205,22 @@ host:
    it: Vercel **BotID**, or Cloudflare **Super Bot Fight Mode** /
    Turnstile. Then headless browsers pretending to be Chrome are refused
    too.
-3. **Add a rate-limit rule at the edge** (Vercel WAF or Cloudflare), for
+3. **Set `TRUSTED_PROXY_HOPS`** if more than one proxy of yours sits in
+   front of `next start`, for example a CDN and then nginx (that is 2).
+   On Vercel nothing is needed: the platform's own address is used. With
+   **no** proxy at all, the forwarding headers are the client's to write,
+   so never expose `next start` directly.
+4. **Add a rate-limit rule at the edge** (Vercel WAF or Cloudflare), for
    example 300 requests a minute per IP. The in-app limiter counts per
    server process; the edge counts across every instance.
-4. **Keep `X-Forwarded-For` set** if anything sits in front of
+5. **Keep `X-Forwarded-For` set** if anything sits in front of
    `next start`.
-5. **Set the Supabase auth URL allow-list** to the production domain, and
+6. **Set the Supabase auth URL allow-list** to the production domain, and
    keep email sign-ups **disabled**. The admin account is created by
    hand.
-6. **Submit the domain to the HSTS preload list** (hstspreload.org) once
+7. **Submit the domain to the HSTS preload list** (hstspreload.org) once
    https is live everywhere.
-7. **Watch for copies.** A periodic search for a distinctive sentence
+8. **Watch for copies.** A periodic search for a distinctive sentence
    from the site, or Google Alerts on one, finds a copy; the rights
    notice and the TDM reservation are what a takedown notice cites.
 

@@ -6,12 +6,14 @@ import { Mark, Rosette } from "@/components/brand/Mark";
 import { Arrow } from "@/components/ui/Arrow";
 import { rightsStrings } from "@/i18n/rights";
 import { TRAP_PATH } from "@/lib/security/bots";
+import { CopyAttribution } from "@/components/security/CopyAttribution";
 
 export function Footer() {
   const { locale, t } = getTranslations();
   const sections = topLevelSectionsFor(locale);
   const year = new Date().getFullYear();
   const nameClass = nameScriptClass(locale);
+  const rights = rightsStrings(locale);
 
   // Reference pages, kept apart from the pillars.
   const reference = [
@@ -69,7 +71,7 @@ export function Footer() {
         <span>
           © {year} Tat tvam asi · {t.footerRights} ·{" "}
           <Link href="/rights" className="footer-base-link">
-            {rightsStrings(locale).footerLink}
+            {rights.footerLink}
           </Link>
         </span>
         <span>{t.heroTagline}</span>
@@ -81,6 +83,7 @@ export function Footer() {
       <a href={TRAP_PATH} rel="nofollow" tabIndex={-1} aria-hidden="true" hidden lang="en">
         Archive index
       </a>
+      <CopyAttribution sourceLabel={rights.copySource} termsLabel={rights.copyTerms} />
     </footer>
   );
 }
