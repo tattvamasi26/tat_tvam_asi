@@ -111,6 +111,43 @@ The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotr
   - A picture cropped from its original says "cropped" in its credit.
   - Each one must clearly show the devata. The owner chooses among candidates before one goes in.
 
+### The stotra collection: checked against a printed page
+
+Besides the hand-entered stotras, the stutis carry a **collection**: the
+Sanskrit alone, taken from the *Bṛhat Stotra Ratnākara*, vol. 1 (Madras,
+1953), as transcribed on Wikisource, and checked syllable by syllable
+against the scanned page. Read `docs/STOTRAS.md` first.
+
+- **Wikisource's "validated" pages still carry OCR slips.** No stotra is
+  published on that status. `scripts/stotras/collate.mjs` compares each
+  stotra with an independent transcription on stotranidhi.com, and
+  every disagreement is settled on the scan
+  (`fetch-scan.mjs`, `crop-scan.ps1`).
+- **Each decision is recorded** in `src/lib/stotra-corpus/checked/<slug>.json`:
+  - a correction from the scan;
+  - a misprint in the book;
+  - a reading of the book's kept against the witness, quoted exactly as
+    it stands in the text (sandhi-joined);
+  - the printed page.
+
+  `build.mjs` publishes only verified stotras and fails on a record
+  whose stotra is not verified.
+- **stotranidhi's texts are never copied.** It publishes no licence. Its
+  list is the coverage target, and its text is used only to check.
+- On the page:
+  - The text is in the reader's script, with IAST on English pages
+    (`src/lib/iast.ts`, made by rule).
+  - A notice says the translation is not written yet.
+  - The full record of how the text was checked follows, as data, so
+    it reads the same in every language.
+- A devata opens once it has a stotra of either kind; `status:
+  "planned"` in `devatas.ts` only means none is entered. A devata with
+  no chosen picture shows its name on the bhajans' plate.
+- Verses are numbered by their place in the stotra.
+- **Load one devata's texts, never all.** `data/texts/<devata>.json` is
+  loaded by `corpusVerses()`. A test fails any page importing it
+  directly.
+
 ### The Rigveda is a built corpus, not seed files
 
 The Rigveda is eighty times the rest of the site's verse corpus, so it

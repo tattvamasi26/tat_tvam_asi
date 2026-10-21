@@ -112,6 +112,11 @@ export const COMPOSERS: Record<string, Record<Locale, string>> = {
     kn: "ಸಂಪ್ರದಾಯದಂತೆ ವಸಿಷ್ಠ ಮಹರ್ಷಿಗಳ ಕೃತಿ",
     hi: "परंपरा से महर्षि वसिष्ठ की रचना मानी जाती है",
   },
+  brahmananda: {
+    en: "Composed by Paramahamsa Svami Brahmananda, as the book records",
+    kn: "ಪರಮಹಂಸ ಸ್ವಾಮಿ ಬ್ರಹ್ಮಾನಂದರ ಕೃತಿ ಎಂದು ಪುಸ್ತಕ ದಾಖಲಿಸುತ್ತದೆ",
+    hi: "पुस्तक के अनुसार परमहंस स्वामी ब्रह्मानंद की रचना",
+  },
   ravana: {
     en: "Traditionally attributed to Ravana",
     kn: "ಸಂಪ್ರದಾಯದಂತೆ ರಾವಣನ ಕೃತಿ",

@@ -131,16 +131,72 @@ the page says so.
 
 ## Progress
 
-The batch checked so far is in `src/lib/stotra-corpus/checked/`.
-Coverage, measured against stotranidhi's Kannada list:
+The checked stotras are in `src/lib/stotra-corpus/checked/`.
+
+**Measured against stotranidhi's Kannada list**
 
 | | stotras |
 |---|---|
 | stotranidhi's Kannada list (distinct) | about 1,700 |
 | in the Bṛhat Stotra Ratnākara, vol. 1 | 105 |
 | of those, with a stotranidhi witness | 67 |
-| checked and on the site | see `checked/` |
+| checked and on the site (2026-10-21) | 15 |
 
-Stotras in the book with no witness on stotranidhi can still be checked.
-Read the whole text against the scan, not just the disputed places, and
-record it the same way.
+**On the site (first batch, 2026-10-21)**
+
+- **Śiva:**
+  - Śivapañcākṣara
+  - Nirvāṇaṣaṭkam
+  - Nirvāṇadaśakam
+  - Candraśekharāṣṭakam
+  - Vedasāra Śivastava
+  - Dvādaśa Jyotirliṅga
+  - Śivatāṇḍava
+  - Ardhanārīśvara
+  - Dāridryadahana
+  - Śiva Nāmāvalyaṣṭakam
+  - Śaṅkarāṣṭakam
+  - Yatipañcakam
+  - Manīṣāpañcakam
+- **Bhairava:** Kālabhairavāṣṭakam
+- **Subrahmaṇya:** Subrahmaṇyāṣṭakam
+
+**What the checking turned up in this batch**
+
+- About 40 transcription errors corrected from the scan.
+- Five misprints in the book itself, each corrected only where the sense
+  and the witness agree, and recorded as the book's:
+  - प्रभामिराम
+  - वै नमः for वै यमः
+  - कचि-
+  - कृति-
+  - करालम्बम्
+- Over 80 places where the book genuinely reads differently from the
+  witness. All are kept and listed.
+
+**What the checking tools now handle**
+
+- `refrain`: a refrain abbreviated with dots, or cut to its first word
+  with no dots (`bare`).
+- `split`: two verses run together where the transcription lost a danda.
+- `drop`: a running head the segmenter took in.
+- `misprints`: a misprint the transcriber had already put right.
+- Variant kinds:
+  - `extra`: text the witness adds.
+  - `order`: a verse the witness places elsewhere.
+  - `whole`: a verse the witness lacks.
+
+### Next
+
+- **The rest of the book with a witness**, about 52 stotras. The largest
+  are the sahasranāmas, Śivānandalaharī and Dakṣiṇāmūrtyaṣṭakam. The
+  last needs care: the witness arranges its verses differently.
+- **The 38 stotras in the book with no witness.** Among them are
+  Ādityahṛdayam, Sūryāṣṭakam and Bilvāṣṭakam.
+  - Read every line against the scan, not just the disputed places.
+  - Record the result the same way, with `whole` variants saying the
+    verse was read in full.
+- **Devī, Viṣṇu and the rest of stotranidhi's list.**
+  - These need a second printed edition on Wikisource (volume 2 of the
+    Ratnākara is not there), or permission from stotranidhi.
+  - Write to stotranidhi first; it is the shortest way to everything.

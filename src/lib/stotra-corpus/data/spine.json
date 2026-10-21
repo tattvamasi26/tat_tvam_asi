@@ -1136,6 +1136,47 @@
   "variants": []
  },
  {
+  "slug": "shiva-namavali-ashtakam",
+  "devata": "shiva",
+  "title": "शिवनामावल्यष्टकम्",
+  "name": "Shiva Namavali Ashtakam",
+  "composer": "shankara",
+  "verseCount": 9,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    323,
+    324
+   ],
+   "scans": [
+    {
+     "page": 331,
+     "revid": 320402,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/331"
+    },
+    {
+     "page": 332,
+     "revid": 320403,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/332"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/shiva-namavali-ashtakam-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": true,
+  "corrections": [],
+  "variants": [
+   {
+    "verse": "5",
+    "kind": "reading",
+    "reading": "सर्वहृदयैकनिवास",
+    "witness": "सर्वहृदयैकनिवास नाथ",
+    "extra": null,
+    "page": 323
+   }
+  ]
+ },
+ {
   "slug": "daridrya-dahana-shiva-stotram",
   "devata": "shiva",
   "title": "दारिद्र्यदहनशिवस्तोत्रम्",
@@ -1235,6 +1276,121 @@
     "witness": null,
     "extra": null,
     "page": 352
+   }
+  ]
+ },
+ {
+  "slug": "shankara-ashtakam",
+  "devata": "shiva",
+  "title": "शङ्कराष्टकम्",
+  "name": "Shankara Ashtakam",
+  "composer": "brahmananda",
+  "verseCount": 9,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    353,
+    354
+   ],
+   "scans": [
+    {
+     "page": 361,
+     "revid": 320440,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/361"
+    },
+    {
+     "page": 362,
+     "revid": 320439,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/362"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/sri-shankara-ashtakam-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": false,
+  "corrections": [
+   {
+    "verse": "2",
+    "from": "जगत्त्रर्याफालम्",
+    "to": "जगत्त्रयीफालम्",
+    "page": 353,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "देहिनां वन्दे ।",
+    "to": "देहिनां वन्दे ॥",
+    "page": 353,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "दालयावेशम्",
+    "to": "हृदालयावेशम्",
+    "page": 353,
+    "kind": "transcription"
+   },
+   {
+    "verse": "7",
+    "from": "करतलकलिवपिनाकं",
+    "to": "करतलकलितपिनाकं",
+    "page": 353,
+    "kind": "transcription"
+   },
+   {
+    "verse": "8",
+    "from": "भूतिविभूषितकार्य",
+    "to": "भूतिविभूषितकायं",
+    "page": 354,
+    "kind": "transcription"
+   },
+   {
+    "verse": "8",
+    "from": "विवर्जिवापायम्",
+    "to": "विवर्जितापायम्",
+    "page": 354,
+    "kind": "transcription"
+   },
+   {
+    "verse": "8",
+    "from": "प्रातनिरन्तरं",
+    "to": "प्रातर्निरन्तरं",
+    "page": 354,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "2",
+    "kind": "reading",
+    "reading": "जगत्त्रयीफालम्",
+    "witness": "जगत्त्रयीपालम्",
+    "extra": null,
+    "page": 353
+   },
+   {
+    "verse": "5",
+    "kind": "reading",
+    "reading": "स्वान्तेषु देहिनां",
+    "witness": "स्वान्तेषु देवानां",
+    "extra": null,
+    "page": 353
+   },
+   {
+    "verse": "7",
+    "kind": "reading",
+    "reading": "विगतजराकं",
+    "witness": "विगतजलाकं",
+    "extra": null,
+    "page": 353
+   },
+   {
+    "verse": "8",
+    "kind": "reading",
+    "reading": "भूतिविभूषितकायं",
+    "witness": "भूतविभूषितकायं",
+    "extra": null,
+    "page": 354
    }
   ]
  },
