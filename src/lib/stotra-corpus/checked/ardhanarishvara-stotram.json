@@ -1,0 +1,20 @@
+{
+  "editionTitle": "अर्धनारीश्वरस्तोत्रम्",
+  "startPage": 329,
+  "slug": "ardhanarishvara-stotram",
+  "name": "Ardhanarishvara Stotram",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/ardhanarishwara-stotram-in-kannada/",
+  "refrain": { "from": "नमः", "full": "नमः शिवायै च नमः शिवाय" },
+  "corrections": [
+    { "verse": "2", "from": "चितारजापुञ्ज", "to": "चितारजःपुञ्ज", "page": 321, "kind": "transcription" },
+    { "verse": "3", "from": "पादाब्जराजस्फणि", "to": "पादाब्जराजत्फणि", "page": 321, "kind": "transcription" },
+    { "verse": "4", "from": "विकासिपङ्केरुलोचनाय", "to": "विकासिपङ्केरुहलोचनाय", "page": 321, "kind": "transcription" },
+    { "verse": "5", "from": "कलितालकाय", "to": "कलितालकायै", "page": 321, "kind": "transcription" },
+    { "verse": "6", "from": "तटित्प्रभाताभ्रजटाधराय", "to": "तटित्प्रभाताम्रजटाधराय", "page": 322, "kind": "transcription" },
+    { "verse": "7", "from": "जगजनन्यै", "to": "जगज्जनन्यै", "page": 322, "kind": "transcription" }
+  ],
+  "variants": []
+}

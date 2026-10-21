@@ -55,7 +55,12 @@ test("the texts are Sanskrit in Devanagari, and the corrections are in them", as
     // Devanagari, spaces, the dandas, avagraha — nothing typed in another script.
     assert.doesNotMatch(all, /[A-Za-zಀ-೿|:]/, `${s.slug}: a stray letter or mark`);
     assert.doesNotMatch(all, /\.\.\.|…/, `${s.slug}: an abbreviated refrain left in`);
-    for (const c of s.corrections) assert.ok(all.includes(c.to), `${s.slug}: correction "${c.to}" not in the text`);
+    for (const c of s.corrections) {
+      // A correction restoring the book's abbreviated refrain ("दारिद्र्य ...")
+      // is then written out in full, so its dots are not in the text.
+      if (s.refrainExpanded && /\.\.\./.test(c.to)) continue;
+      assert.ok(all.includes(c.to), `${s.slug}: correction "${c.to}" not in the text`);
+    }
     // A word broken across lines at a hyphen is one word to look for.
     const joined = all.replace(/-\s*\n/g, "").replace(/\n/g, " ");
     for (const v of s.variants) if (v.reading) assert.ok(joined.includes(v.reading), `${s.slug}: kept reading "${v.reading}" not in the text`);

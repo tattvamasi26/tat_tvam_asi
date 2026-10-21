@@ -107,6 +107,11 @@ export const COMPOSERS: Record<string, Record<Locale, string>> = {
     kn: "ಸಂಪ್ರದಾಯದಂತೆ ಆದಿ ಶಂಕರಾಚಾರ್ಯರ ಕೃತಿ",
     hi: "परंपरा से आदि शंकराचार्य की रचना मानी जाती है",
   },
+  vasishtha: {
+    en: "Traditionally attributed to the sage Vasishtha",
+    kn: "ಸಂಪ್ರದಾಯದಂತೆ ವಸಿಷ್ಠ ಮಹರ್ಷಿಗಳ ಕೃತಿ",
+    hi: "परंपरा से महर्षि वसिष्ठ की रचना मानी जाती है",
+  },
   ravana: {
     en: "Traditionally attributed to Ravana",
     kn: "ಸಂಪ್ರದಾಯದಂತೆ ರಾವಣನ ಕೃತಿ",

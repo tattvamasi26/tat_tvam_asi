@@ -1061,6 +1061,184 @@
   ]
  },
  {
+  "slug": "ardhanarishvara-stotram",
+  "devata": "shiva",
+  "title": "अर्धनारीश्वरस्तोत्रम्",
+  "name": "Ardhanarishvara Stotram",
+  "composer": "shankara",
+  "verseCount": 9,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    321,
+    322
+   ],
+   "scans": [
+    {
+     "page": 329,
+     "revid": 320400,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/329"
+    },
+    {
+     "page": 330,
+     "revid": 320401,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/330"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/ardhanarishwara-stotram-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": true,
+  "corrections": [
+   {
+    "verse": "2",
+    "from": "चितारजापुञ्ज",
+    "to": "चितारजःपुञ्ज",
+    "page": 321,
+    "kind": "transcription"
+   },
+   {
+    "verse": "3",
+    "from": "पादाब्जराजस्फणि",
+    "to": "पादाब्जराजत्फणि",
+    "page": 321,
+    "kind": "transcription"
+   },
+   {
+    "verse": "4",
+    "from": "विकासिपङ्केरुलोचनाय",
+    "to": "विकासिपङ्केरुहलोचनाय",
+    "page": 321,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "कलितालकाय",
+    "to": "कलितालकायै",
+    "page": 321,
+    "kind": "transcription"
+   },
+   {
+    "verse": "6",
+    "from": "तटित्प्रभाताभ्रजटाधराय",
+    "to": "तटित्प्रभाताम्रजटाधराय",
+    "page": 322,
+    "kind": "transcription"
+   },
+   {
+    "verse": "7",
+    "from": "जगजनन्यै",
+    "to": "जगज्जनन्यै",
+    "page": 322,
+    "kind": "transcription"
+   }
+  ],
+  "variants": []
+ },
+ {
+  "slug": "daridrya-dahana-shiva-stotram",
+  "devata": "shiva",
+  "title": "दारिद्र्यदहनशिवस्तोत्रम्",
+  "name": "Daridrya Dahana Shiva Stotram",
+  "composer": "vasishtha",
+  "verseCount": 9,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    351,
+    352
+   ],
+   "scans": [
+    {
+     "page": 359,
+     "revid": 320442,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/359"
+    },
+    {
+     "page": 360,
+     "revid": 320441,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/360"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/daridrya-dahana-shiva-stotram-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": true,
+  "corrections": [
+   {
+    "verse": "2",
+    "from": "गजराजविमर्दनाय दारिद्य",
+    "to": "गजराजविमर्दनाय दारिद्र्य ... ॥",
+    "page": 351,
+    "kind": "transcription"
+   },
+   {
+    "verse": "4",
+    "from": "मञ्जिरपाद",
+    "to": "मञ्जीरपाद",
+    "page": 351,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "दारिद्र्यम्...",
+    "to": "दारिद्र्य ...",
+    "page": 352,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "3",
+    "kind": "reading",
+    "reading": "उग्राय दुर्गभवसागर",
+    "witness": "उग्राय दुःखभवसागर",
+    "extra": null,
+    "page": 351
+   },
+   {
+    "verse": "4",
+    "kind": "reading",
+    "reading": "भालेक्षणाय",
+    "witness": "फालेक्षणाय",
+    "extra": null,
+    "page": 351
+   },
+   {
+    "verse": "6",
+    "kind": "extra",
+    "reading": null,
+    "witness": null,
+    "extra": "गौरीविलासभवनाय महेश्वराय पञ्चाननाय शरणागतकल्पकाय शर्वाय सर्वजगतामधिपाय तस्मै दारिद्र्यदुःखदहनाय नमः शिवाय",
+    "page": 352
+   },
+   {
+    "verse": "9",
+    "kind": "reading",
+    "reading": "सर्वरोगनिवारणम्",
+    "witness": "सर्वदारिद्र्यनाशनम्",
+    "extra": null,
+    "page": 352
+   },
+   {
+    "verse": "9",
+    "kind": "reading",
+    "reading": "पुत्रपौत्राभिवर्धनम्",
+    "witness": "पुत्रपौत्रादिवर्धनम्",
+    "extra": null,
+    "page": 352
+   },
+   {
+    "verse": "9",
+    "kind": "reading",
+    "reading": "त्रिसन्ध्यं यः पठेन्नित्यं स हि स्वर्गमवाप्नुयात्",
+    "witness": null,
+    "extra": null,
+    "page": 352
+   }
+  ]
+ },
+ {
   "slug": "yati-panchakam",
   "devata": "shiva",
   "title": "यतिपञ्चकम्",

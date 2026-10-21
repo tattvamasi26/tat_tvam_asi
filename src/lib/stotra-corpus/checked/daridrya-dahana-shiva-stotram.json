@@ -1,0 +1,27 @@
+{
+  "editionTitle": "दारिद्र्यदहनशिवस्तोत्रम्",
+  "startPage": 359,
+  "slug": "daridrya-dahana-shiva-stotram",
+  "name": "Daridrya Dahana Shiva Stotram",
+  "devata": "shiva",
+  "composer": "vasishtha",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/daridrya-dahana-shiva-stotram-in-kannada/",
+  "refrain": { "from": "दारिद्र्य", "full": "दारिद्र्यदुःखदहनाय नमः शिवाय" },
+  "corrections": [
+    { "verse": "#2", "from": "गजराजविमर्दनाय दारिद्य", "to": "गजराजविमर्दनाय दारिद्र्य ... ॥", "page": 351, "kind": "transcription", "why": "The print has दारिद्र्य …॥ ending verse 2; the transcription lost the letters, the dots and the danda, and so ran verses 2 and 3 together." },
+    { "verse": "#3", "from": "मञ्जिरपाद", "to": "मञ्जीरपाद", "page": 351, "kind": "transcription" },
+    { "verse": "#4", "from": "दारिद्र्यम्...", "to": "दारिद्र्य ...", "page": 352, "kind": "transcription" }
+  ],
+  "split": [
+    { "verse": "#2", "after": "गजराजविमर्दनाय दारिद्र्य", "why": "The danda restored above ends verse 2 here." }
+  ],
+  "variants": [
+    { "verse": "#2b", "reading": "उग्राय दुर्गभवसागर", "witness": "उग्राय दुःखभवसागर", "page": 351 },
+    { "verse": "#3", "reading": "भालेक्षणाय", "witness": "फालेक्षणाय", "page": 351 },
+    { "verse": "#5", "extra": "गौरीविलासभवनाय महेश्वराय पञ्चाननाय शरणागतकल्पकाय शर्वाय सर्वजगतामधिपाय तस्मै दारिद्र्यदुःखदहनाय नमः शिवाय", "page": 352, "note": "The witness has a further verse before this one; the book does not print it." },
+    { "verse": "#8", "reading": "सर्वरोगनिवारणम्", "witness": "सर्वदारिद्र्यनाशनम्", "page": 352 },
+    { "verse": "#8", "reading": "पुत्रपौत्राभिवर्धनम्", "witness": "पुत्रपौत्रादिवर्धनम्", "page": 352 },
+    { "verse": "#8", "reading": "त्रिसन्ध्यं यः पठेन्नित्यं स हि स्वर्गमवाप्नुयात्", "witness": null, "page": 352, "note": "A third line the book prints and the witness does not." }
+  ]
+}

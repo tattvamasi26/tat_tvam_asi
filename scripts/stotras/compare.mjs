@@ -96,13 +96,20 @@ export function hunks(result, context = 6) {
       last.bEnd = Math.max(last.bEnd, e.op === "ins" ? e.b + 1 : e.b);
     } else runs.push({ aStart: e.a, aEnd: e.op === "del" ? e.a + 1 : e.a, bStart: e.b, bEnd: e.op === "ins" ? e.b + 1 : e.b });
   }
-  return runs.map((r) => ({
-    at: r.aStart,
-    edition: A.slice(r.aStart, r.aEnd).join(""),
-    witness: B.slice(r.bStart, r.bEnd).join(""),
-    before: A.slice(Math.max(0, r.aStart - context), r.aStart).join(""),
-    after: A.slice(r.aEnd, r.aEnd + context).join(""),
-  }));
+  return runs.map((r) => {
+    // Trim what the two sides share at either end, so a run that the
+    // diff drew as "भानु → …भानु" reads as the insertion it is.
+    let { aStart, aEnd, bStart, bEnd } = r;
+    while (aStart < aEnd && bStart < bEnd && A[aEnd - 1] === B[bEnd - 1]) aEnd--, bEnd--;
+    while (aStart < aEnd && bStart < bEnd && A[aStart] === B[bStart]) aStart++, bStart++;
+    return {
+      at: aStart,
+      edition: A.slice(aStart, aEnd).join(""),
+      witness: B.slice(bStart, bEnd).join(""),
+      before: A.slice(Math.max(0, aStart - context), aStart).join(""),
+      after: A.slice(aEnd, aEnd + context).join(""),
+    };
+  });
 }
 
 // ── The checked records ────────────────────────────────────
@@ -150,6 +157,18 @@ export function applyChecks(stotra, check) {
     const count = joined.split(c.from).length - 1;
     if (count !== 1) throw new Error(`${check.file}: verse ${c.verse}: "${c.from}" found ${count} times`);
     v.lines = joined.replace(c.from, c.to).split("\n");
+  }
+  // Two verses the transcription ran together, because it lost the
+  // danda between them: split after the line that ends the first.
+  for (const sp of check.split ?? []) {
+    const i = verses.findIndex((v) => v.label === String(sp.verse));
+    if (i < 0) throw new Error(`${check.file}: no verse ${sp.verse} to split`);
+    const v = verses[i];
+    const at = v.lines.findIndex((l) => l.includes(sp.after));
+    if (at < 0 || at === v.lines.length - 1) throw new Error(`${check.file}: cannot split verse ${sp.verse} after "${sp.after}"`);
+    const rest = { ...v, n: null, lines: v.lines.slice(at + 1), label: `${v.label}b` };
+    v.lines = v.lines.slice(0, at + 1);
+    verses.splice(i + 1, 0, rest);
   }
   if (check.refrain) {
     // The book prints a repeated refrain once and abbreviates it after:
