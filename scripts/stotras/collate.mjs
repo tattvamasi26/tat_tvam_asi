@@ -136,6 +136,10 @@ for (const s of stotras) {
         const covered = (check?.variants ?? []).some((k) => {
           if (String(k.verse) !== label) return false;
           if (k.whole) return true; // a verse the witness lacks altogether
+          // Text the witness adds that the book does not have: settles an
+          // insertion only, and only of that text.
+          if (k.extra) return h.edition === "" && norm(k.extra).includes(h.witness);
+          if (!k.reading) return false;
           // A final nasal is written ं or म् by what follows: try both.
           const base = norm(k.reading);
           const forms = new Set([base, base.replace(/ं$/, "म्"), base.replace(/म्$/, "ं")]);

@@ -2,6 +2,7 @@
 // to settle a reading against the printed book.
 //
 //   node scripts/stotras/fetch-scan.mjs 98 99      -> corpus/stotras/scans/098.jpg …
+//   SCAN_WIDTH=2400 node scripts/stotras/fetch-scan.mjs 98  -> 098-hi.jpg (for crop-scan.ps1)
 //
 // The page images are rendered by Wikimedia from the PDF on Commons.
 
@@ -16,7 +17,8 @@ const width = Number(process.env.SCAN_WIDTH ?? 1400);
 
 for (const arg of process.argv.slice(2)) {
   const page = Number(arg);
-  const file = join(OUT, `${String(page).padStart(3, "0")}.jpg`);
+  // A wider rendering, for reading one line closely, is kept beside the plain one.
+  const file = join(OUT, `${String(page).padStart(3, "0")}${width > 1400 ? "-hi" : ""}.jpg`);
   if (existsSync(file)) continue;
   const r = await api({ action: "query", prop: "imageinfo", titles: FILE, iiprop: "url", iiurlwidth: String(width), iiurlparam: `page${page}-${width}px` });
   const url = r.query.pages[0].imageinfo?.[0]?.thumburl;

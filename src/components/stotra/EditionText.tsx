@@ -90,7 +90,15 @@ export function EditionText({
               {stotra.variants.map((v, i) => (
                 <li key={i}>
                   {labels.verse} {v.verse}:{" "}
-                  {v.reading ? (
+                  {v.kind === "extra" ? (
+                    <>
+                      {s.witnessAdds} ({pageRef(v.page)})
+                    </>
+                  ) : v.kind === "order" ? (
+                    <>
+                      {s.witnessOrder} ({pageRef(v.page)})
+                    </>
+                  ) : v.reading ? (
                     <>
                       {sa(v.reading)} ({s.witnessHas} {v.witness ? sa(v.witness) : "—"}; {pageRef(v.page)})
                     </>

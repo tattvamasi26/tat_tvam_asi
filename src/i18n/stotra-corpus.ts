@@ -21,6 +21,8 @@ export interface StotraCorpusStrings {
   variantsTitle: string;
   witnessHas: string;
   witnessLacks: string;
+  witnessAdds: string;
+  witnessOrder: string;
   scansLink: string;
   witnessLink: string;
   checkedOn: string;
@@ -42,6 +44,8 @@ const en: StotraCorpusStrings = {
   variantsTitle: "The book's readings, kept",
   witnessHas: "the other transcription has",
   witnessLacks: "not in the other transcription",
+  witnessAdds: "the other transcription adds a passage the book does not print",
+  witnessOrder: "placed elsewhere in the other transcription; read in full on the scan",
   scansLink: "The scans, page by page",
   witnessLink: "The transcription it was checked against",
   checkedOn: "Checked",
@@ -63,6 +67,8 @@ const kn: StotraCorpusStrings = {
   variantsTitle: "ಉಳಿಸಿಕೊಂಡ ಪುಸ್ತಕದ ಪಾಠಗಳು",
   witnessHas: "ಇನ್ನೊಂದು ಲಿಪ್ಯಂತರದಲ್ಲಿ",
   witnessLacks: "ಇನ್ನೊಂದು ಲಿಪ್ಯಂತರದಲ್ಲಿ ಇಲ್ಲ",
+  witnessAdds: "ಪುಸ್ತಕದಲ್ಲಿ ಇಲ್ಲದ ಒಂದು ಭಾಗ ಇನ್ನೊಂದು ಲಿಪ್ಯಂತರದಲ್ಲಿ ಹೆಚ್ಚುವರಿಯಾಗಿ ಇದೆ",
+  witnessOrder: "ಇನ್ನೊಂದು ಲಿಪ್ಯಂತರದಲ್ಲಿ ಬೇರೆ ಸ್ಥಾನದಲ್ಲಿದೆ; ಸ್ಕ್ಯಾನ್‌ನಲ್ಲಿ ಪೂರ್ಣವಾಗಿ ಓದಲಾಗಿದೆ",
   scansLink: "ಪುಟದಿಂದ ಪುಟಕ್ಕೆ ಸ್ಕ್ಯಾನ್‌ಗಳು",
   witnessLink: "ಹೋಲಿಸಿದ ಲಿಪ್ಯಂತರ",
   checkedOn: "ಪರಿಶೀಲಿಸಿದ ದಿನ",
@@ -84,6 +90,8 @@ const hi: StotraCorpusStrings = {
   variantsTitle: "पुस्तक के पाठ, जो रखे गए",
   witnessHas: "दूसरे लिप्यंतरण में",
   witnessLacks: "दूसरे लिप्यंतरण में नहीं",
+  witnessAdds: "दूसरे लिप्यंतरण में एक अंश अतिरिक्त है जो पुस्तक में नहीं छपा",
+  witnessOrder: "दूसरे लिप्यंतरण में दूसरे स्थान पर; स्कैन पर पूरा पढ़ा गया",
   scansLink: "पृष्ठ-दर-पृष्ठ स्कैन",
   witnessLink: "जिस लिप्यंतरण से मिलाया गया",
   checkedOn: "जाँच की तिथि",

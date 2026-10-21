@@ -1,0 +1,26 @@
+{
+  "editionTitle": "द्वादशज्योतिर्लिङ्गस्तोत्रम्",
+  "startPage": 254,
+  "slug": "dvadasha-jyotirlinga-stotram",
+  "name": "Dvadasha Jyotirlinga Stotram",
+  "devata": "shiva",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/dvadasa-jyothirlinga-stotram-in-kannada/",
+  "drop": [
+    { "verse": "4", "line": "द्वादशज्योतिलिङ्गस्तोत्रम्", "why": "The running head of printed p. 247, taken into the verse by the segmenter." }
+  ],
+  "corrections": [],
+  "variants": [
+    { "verse": "1", "reading": "विदशेऽतिरम्ये", "witness": "विशदेऽतिरम्ये", "page": 246 },
+    { "verse": "1", "reading": "भक्तिप्रदानाय", "witness": "भक्तप्रदानाय", "page": 246 },
+    { "verse": "2", "reading": "श्रीशैलसङ्गे विबुधातिसङ्गे", "witness": "श्रीशैलशृङ्गे विविधप्रसङ्गे", "page": 246 },
+    { "verse": "2", "reading": "तुलाद्रितुङ्गेऽपि मुदा वसन्तम्", "witness": "शेषाद्रिशृङ्गेऽपि सदा वसन्तम्", "page": 246 },
+    { "verse": "2", "reading": "मल्लिकपूर्वमेकं", "witness": "मल्लिकपूर्वमेनं", "page": 246 },
+    { "verse": "4", "reading": "मोङ्कारमीशं", "witness": "वसन्तं ओङ्कारमीशं", "page": 247 },
+    { "verse": "10", "reading": "यो डाकिनीशाकिनिकासमाजैर्निषेव्यमाणः", "witness": "यं डाकिनीशाकिनीकासमाजे निषेव्यमाणं", "page": 248 },
+    { "verse": "10", "reading": "पदप्रसिद्धः", "witness": "पदप्रसिद्धं", "page": 248 },
+    { "verse": "12", "reading": "नित्यं महोदारतरस्वभावं", "witness": "वन्दे महोदारतरस्वभावं", "page": 249 },
+    { "verse": "13", "reading": "मनुजाऽतिभक्त्या", "witness": "मनुजोऽतिभक्त्या", "page": 249 },
+    { "verse": "13", "reading": "तदालोक्यनिशं", "witness": "तदालोक्यनिजं", "page": 249 }
+  ]
+}

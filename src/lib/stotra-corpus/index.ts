@@ -31,10 +31,18 @@ export interface CorpusCorrection {
 /** A place where the book reads differently from the witness, and the book's reading is kept. */
 export interface CorpusVariant {
   verse: string;
+  /**
+   * "reading": the book reads differently here. "absent": the witness
+   * lacks this verse. "order": the witness has it in another place.
+   * "extra": the witness adds text the book does not print.
+   */
+  kind: "reading" | "absent" | "order" | "extra";
   /** The book's reading, or null where the whole verse is the book's alone. */
   reading: string | null;
   /** What the witness has instead, or null where it has nothing. */
   witness: string | null;
+  /** Text the witness adds that the book does not print at all. */
+  extra: string | null;
   page: number;
 }
 

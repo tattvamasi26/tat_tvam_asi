@@ -1,0 +1,22 @@
+{
+  "editionTitle": "वेदसारशिवस्तवः",
+  "startPage": 258,
+  "slug": "vedasara-shiva-stava",
+  "name": "Vedasara Shiva Stava",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/vedasara-siva-stotram-in-kannada/",
+  "corrections": [
+    { "verse": "2", "from": "पञ्चवक्रम्", "to": "पञ्चवक्त्रम्", "page": 250, "kind": "transcription", "why": "Checked at enlargement: the conjunct is क्त्र." },
+    { "verse": "3", "from": "पञ्चवक्रम्", "to": "पञ्चवक्त्रम्", "page": 250, "kind": "transcription" },
+    { "verse": "6", "from": "प्रीष्मो", "to": "ग्रीष्मो", "page": 251, "kind": "transcription" },
+    { "verse": "8", "from": "श्रुविज्ञान", "to": "श्रुतिज्ञान", "page": 252, "kind": "transcription" }
+  ],
+  "variants": [
+    { "verse": "3", "reading": "गवेन्द्रादिरूढं गणातीतरूपम्", "witness": "गवेन्द्राधिरूढं गुणातीतरूपम्", "page": 250, "note": "Checked at enlargement." },
+    { "verse": "4", "reading": "विश्वरूप", "witness": "विश्वरूपः", "page": 251 },
+    { "verse": "6", "reading": "न ग्रीष्मो न शीतं", "witness": "न चोष्णं न शीतं", "page": 251 },
+    { "verse": "11", "reading": "लिङ्गात्मकं", "witness": "लिङ्गात्मके", "page": 252 }
+  ]
+}

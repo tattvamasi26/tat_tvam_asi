@@ -19,15 +19,15 @@ export function norm(s) {
     .replace(/[‌‍]/g, "")
     .replace(/ळ/g, "ल")
     .replace(/ऽ/g, "")
-    .replace(/[ङञणनम]्(?=[क-घच-झट-ढत-धप-भ])/g, "ं")
-    .replace(/म्(?=\s|$|[।॥|])/g, "ं")
     .replace(/[\s।॥|.,;:'"()\[\]{}\-–—_*0-9०-९?!]/g, "")
+    // Nasals: one rule, applied the same way to both texts once the
+    // spaces are gone, so a word end and a verse end level alike.
+    .replace(/[ङञणन]्(?=[क-घच-झट-ढत-धप-भ])/g, "ं")
+    .replace(/म्(?=[क-हअ-औ]|$)/g, "ं")
     .replace(/श्श/g, "ःश")
     .replace(/स्स/g, "ःस")
     .replace(/ष्ष/g, "ःष")
-    .replace(/र्([क-ह])्\1/g, "र्$1")
-    .replace(/ं(?=[यरलवशषसह])/g, "म्")
-    .replace(/म्$/, "ं");
+    .replace(/र्([क-ह])्\1/g, "र्$1");
 }
 
 function bigrams(s) {
@@ -159,6 +159,12 @@ export function applyChecks(stotra, check) {
     const esc = from.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const re = new RegExp(`${esc}[^\\s.।॥]*\\s*(?:\\.\\s*){2,}|${esc}[^\\s.।॥]*\\s*…`, "g");
     for (const v of verses) v.lines = v.lines.map((l) => l.replace(re, full + " ").replace(/\s+॥/, " ॥"));
+    // Some books cut the refrain to its first word with no dots at all
+    // ("…त्तदेको ॥"); `bare: true` writes that out too, at a line's end.
+    if (check.refrain.bare) {
+      const bare = new RegExp(`${esc}\\s*॥\\s*$`);
+      for (const v of verses) v.lines = v.lines.map((l) => (l.includes(full) ? l : l.replace(bare, `${full} ॥`)));
+    }
   }
   if (check.drop) {
     // Lines the segmenter took in that are not the stotra's (a running
@@ -184,8 +190,9 @@ export function cleanWitness(text) {
   const lines = text.split("\n").filter((l) => l.trim());
   const out = [];
   for (const [i, l] of lines.entries()) {
-    if (/स्तोत्रनिधि|→|Click|पुस्तक|ग्रंथ|पारायण/.test(l)) continue;
-    if (/^\s*इति/.test(l) && /(सम्पूर्ण|संपूर्ण|समाप्त|विरचित|कृत)/.test(l)) break;
+    if (/स्तोत्रनिधि|→|Click|पुस्तक|ग्रंथ|पारायण|इन्नष्टु|नोडि/.test(l)) continue;
+    // Its colophon: "इति …" naming the work, never ending in a verse number.
+    if (/^\s*इति/.test(l) && !/[०-९0-9]\s*[॥|]*\s*$/.test(l) && /(सम्पूर्ण|संपूर्ण|समाप्त|विरचित|कृत|स्तोत्र|स्तव|स्तुति|ष्टक)/.test(l)) break;
     if (i === 0 && !/[।॥|]/.test(l)) continue; // its title
     out.push(l);
   }

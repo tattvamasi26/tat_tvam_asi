@@ -66,7 +66,14 @@ for (const [startPage, check] of [...checks].sort((a, b) => a[0] - b[0])) {
     checkedOn: check.checkedOn,
     refrainExpanded: Boolean(check.refrain),
     corrections: (check.corrections ?? []).map(({ verse, from, to, page, kind }) => ({ verse: String(verse).replace(/^#/, ""), from, to, page, kind })),
-    variants: (check.variants ?? []).map(({ verse, reading, witness, page }) => ({ verse: String(verse).replace(/^#/, ""), reading: reading ?? null, witness: witness ?? null, page })),
+    variants: (check.variants ?? []).map(({ verse, reading, witness, extra, whole, order, page }) => ({
+      verse: String(verse).replace(/^#/, ""),
+      kind: extra ? "extra" : whole ? (order ? "order" : "absent") : "reading",
+      reading: reading ?? null,
+      witness: witness ?? null,
+      extra: extra ?? null,
+      page,
+    })),
   });
   (texts[check.devata] ??= {})[check.slug] = verses.map((v) => ({
     n: v.label.replace(/^#/, ""),

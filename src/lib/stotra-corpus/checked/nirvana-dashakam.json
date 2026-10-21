@@ -1,0 +1,31 @@
+{
+  "editionTitle": "निर्वाणदशकम्",
+  "startPage": 261,
+  "slug": "nirvana-dashakam",
+  "name": "Nirvana Dashakam",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/nirvana-dasakam-in-kannada/",
+  "refrain": { "from": "तदेको", "full": "तदेकोऽवशिष्टः शिवः केवलोऽहम्", "bare": true },
+  "corrections": [
+    { "verse": "5", "from": "ह्स्वं", "to": "ह्रस्वं", "page": 253, "kind": "transcription" },
+    { "verse": "5", "from": "कत्वान्तदेको", "to": "कत्वात्तदेको", "page": 253, "kind": "transcription" },
+    { "verse": "9", "from": "जगन्तुच्छ", "to": "जगत्तुच्छ", "page": 254, "kind": "transcription" }
+  ],
+  "variants": [
+    { "verse": "1", "reading": "र्न खं नेंद्रियं", "witness": "न खं नेन्द्रियं (after वायुः)", "page": 253 },
+    { "verse": "1", "reading": "अनैकान्तिकत्वात्", "witness": "अनेकान्तिकत्वात्", "page": 253 },
+    { "verse": "1", "reading": "स्तदेकोऽवशिष्टः", "witness": "तदेकोऽवशिष्टः (after सिद्धः)", "page": 253 },
+    { "verse": "2", "reading": "अनात्माश्रयोऽहं", "witness": "अनात्माश्रयाहं", "page": 253 },
+    { "verse": "3", "reading": "न देवा न यज्ञा", "witness": "न वेदा न यज्ञा", "page": 253 },
+    { "verse": "5", "whole": true, "order": true, "witness": null, "page": 253, "note": "The witness gives verses 5, 6 and 8 in another order; each was read in full on the scan. The book reads न ह्रस्वं दीर्घम्, the witness न ह्रस्वं न दीर्घम्." },
+    { "verse": "6", "whole": true, "order": true, "witness": null, "page": 254, "note": "Read in full on the scan (see verse 5). The book reads तेजसः, checked at enlargement; the witness has तैजसः." },
+    { "verse": "7", "reading": "स्वरूपावबोधाद्विकल्पासहिष्णुस्तदेको", "witness": "स्वरूपावबोधीविकल्पासहिष्णुः तदेको", "page": 254 },
+    { "verse": "8", "whole": true, "order": true, "witness": null, "page": 254, "note": "Read in full on the scan (see verse 5)." },
+    { "verse": "9", "reading": "व्यापकत्वादितत्त्वात्प्रयोगा", "witness": "व्यापकत्वाद्धितत्त्वप्रयोगा", "page": 254, "note": "The print is faint at तत्त्व/तत्व; the transcription's तत्त्व is kept." },
+    { "verse": "9", "reading": "तदन्यस्तदेको", "witness": "तदन्यत्तदेको", "page": 254 },
+    { "verse": "10", "reading": "न्न चाकेवलत्वं न वा केवलत्वम्", "witness": "त् न वाकेवलत्वं न चाकेवलत्वम्", "page": 254 },
+    { "verse": "10", "reading": "वेदान्तसिद्धं", "witness": "वेदान्तसिद्धिं", "page": 254 }
+  ]
+}
