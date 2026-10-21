@@ -34,3 +34,10 @@ node_modules/
 # scripts/wordpress/fetch.mjs and re-fetchable at any time. What this
 # repo commits is what the editorial layer makes of it, not the dump.
 /corpus/wordpress/
+
+# The stotra harvest: the Wikisource pages and transcription of the
+# Brihat Stotra Ratnakara, the witness pages read only to check it, the
+# page scans, and stotranidhi's list. All re-fetchable by the scripts in
+# scripts/stotras/. What the repo commits is the check record for each
+# stotra (src/lib/stotra-corpus/checked/) and the built texts.
+/corpus/stotras/

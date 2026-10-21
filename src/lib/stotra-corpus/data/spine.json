@@ -1,0 +1,262 @@
+[
+ {
+  "slug": "kalabhairava-ashtakam",
+  "devata": "bhairava",
+  "title": "कालभैरवाष्टकम्",
+  "name": "Kalabhairava Ashtakam",
+  "composer": "shankara",
+  "verseCount": 9,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    257,
+    258,
+    259
+   ],
+   "scans": [
+    {
+     "page": 265,
+     "revid": 320321,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/265"
+    },
+    {
+     "page": 266,
+     "revid": 320323,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/266"
+    },
+    {
+     "page": 267,
+     "revid": 320327,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/267"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/kalabhairava-ashtakam-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": true,
+  "corrections": [
+   {
+    "verse": "6",
+    "from": "प्रभामिराम",
+    "to": "प्रभाभिराम",
+    "page": 258,
+    "kind": "misprint"
+   },
+   {
+    "verse": "8",
+    "from": "भूतसङ्गनायकं",
+    "to": "भूतसङ्घनायकं",
+    "page": 258,
+    "kind": "transcription"
+   },
+   {
+    "verse": "8",
+    "from": "कोशिका",
+    "to": "काशिका",
+    "page": 258,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "1",
+    "reading": "योगिवृन्द",
+    "witness": "योगिबृन्द",
+    "page": 257
+   },
+   {
+    "verse": "4",
+    "reading": "स्थितं",
+    "witness": "स्थिरं",
+    "page": 257
+   },
+   {
+    "verse": "4",
+    "reading": "विग्रहम् । विनिक्वणन्",
+    "witness": "विग्रहं निक्वणन्",
+    "page": 258
+   },
+   {
+    "verse": "5",
+    "reading": "स्वर्णवर्णशेषपाशशोभिताङ्गमण्डलं",
+    "witness": "स्वर्णवर्णकेशपाशशोभिताङ्गनिर्मलं",
+    "page": 258
+   },
+   {
+    "verse": "6",
+    "reading": "करालदंष्ट्रमोक्षणं",
+    "witness": "करालदंष्ट्रभूषणं",
+    "page": 258
+   },
+   {
+    "verse": "7",
+    "reading": "जालमुग्रपापशासनम्",
+    "witness": "जालमुग्रशासनम्",
+    "page": 258
+   },
+   {
+    "verse": "7",
+    "reading": "कपालमालिकन्धरं",
+    "witness": "कपालमालिकाधरं",
+    "page": 258
+   },
+   {
+    "verse": "8",
+    "reading": "काशिवासलोक",
+    "witness": "काशिवासिलोक",
+    "page": 258
+   },
+   {
+    "verse": "9",
+    "reading": "ज्ञानमुक्तिसाधनं",
+    "witness": "ज्ञानमुक्तिसाधकं",
+    "page": 259
+   }
+  ]
+ },
+ {
+  "slug": "shiva-panchakshara-stotram",
+  "devata": "shiva",
+  "title": "शिवपञ्चाक्षरस्तोत्रम्",
+  "name": "Shiva Panchakshara Stotram",
+  "composer": "shankara",
+  "verseCount": 6,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    234,
+    235
+   ],
+   "scans": [
+    {
+     "page": 242,
+     "revid": 319409,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/242"
+    },
+    {
+     "page": 243,
+     "revid": 319404,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/243"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/shiva-panchakshara-stotram-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": false,
+  "corrections": [
+   {
+    "verse": "5",
+    "from": "जटाघराय",
+    "to": "जटाधराय",
+    "page": 235,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "1",
+    "reading": "विलोचनाय",
+    "witness": "त्रिलोचनाय",
+    "page": 234
+   },
+   {
+    "verse": "6",
+    "reading": null,
+    "witness": null,
+    "page": 235
+   }
+  ]
+ },
+ {
+  "slug": "nirvana-shatkam",
+  "devata": "shiva",
+  "title": "निर्वाणषट्कम्",
+  "name": "Nirvana Shatkam",
+  "composer": "shankara",
+  "verseCount": 6,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    255,
+    256
+   ],
+   "scans": [
+    {
+     "page": 263,
+     "revid": 320319,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/263"
+    },
+    {
+     "page": 264,
+     "revid": 320320,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/264"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/nirvana-shatkam-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": true,
+  "corrections": [
+   {
+    "verse": "2",
+    "from": "पचवायु",
+    "to": "पञ्चवायु",
+    "page": 255,
+    "kind": "transcription"
+   },
+   {
+    "verse": "2",
+    "from": "ने वा",
+    "to": "र्न वा",
+    "page": 255,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "जातिभेदः .",
+    "to": "जातिभेदः",
+    "page": 256,
+    "kind": "transcription"
+   },
+   {
+    "verse": "6",
+    "from": "चासाङ्गतं",
+    "to": "चासङ्गतं",
+    "page": 256,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "1",
+    "reading": "न च श्रोत्रजिह्वे",
+    "witness": "न कर्णं न जिह्वा",
+    "page": 255
+   },
+   {
+    "verse": "2",
+    "reading": "वाक्पाणिपादं",
+    "witness": "वाक्पाणिपादौ",
+    "page": 255
+   },
+   {
+    "verse": "5",
+    "reading": "माता च जन्म",
+    "witness": "माता न जन्म",
+    "page": 256
+   },
+   {
+    "verse": "6",
+    "reading": "न चासङ्गतं",
+    "witness": "न चासंगतं",
+    "page": 256
+   },
+   {
+    "verse": "6",
+    "reading": "न मेयश्",
+    "witness": "न बन्धश्",
+    "page": 256
+   }
+  ]
+ }
+]

@@ -5,12 +5,19 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "@/i18n/server";
 import { DEFAULT_LOCALE } from "@/i18n/config";
 import {
+  getCorpusStotraPage,
   getDevata,
-  getStotraNeighbours,
+
+  getStotraNeighboursAny,
   getStotraParams,
   getStotraVerses,
   getStotraView,
+  type StotraView,
 } from "@/lib/data";
+import { corpusStotra } from "@/lib/stotra-corpus";
+import { stotraCorpusStrings } from "@/i18n/stotra-corpus";
+import { EditionText } from "@/components/stotra/EditionText";
+import { Caution } from "@/components/ui/Caution";
 import { LanguageChoice } from "@/components/content/LanguageChoice";
 import { StotraText } from "@/components/stotra/StotraText";
 import { StotraVideo } from "@/components/stotra/StotraVideo";
@@ -23,6 +30,10 @@ import { Arrow } from "@/components/ui/Arrow";
  * closed until the reader opens it, and the stotras either side of it.
  *
  * A stotra registers itself in seed/stotras.ts and needs no page code.
+ *
+ * A stotra from the collection (lib/stotra-corpus) has the same head,
+ * then its Sanskrit alone with the notice that it is not translated,
+ * then the record of how it was checked (EditionText).
  */
 
 export function generateStaticParams() {
@@ -31,18 +42,21 @@ export function generateStaticParams() {
 
 export function generateMetadata({ params }: { params: { stotra: string } }): Metadata {
   const s = getStotraView(params.stotra, DEFAULT_LOCALE);
-  return s ? { title: s.name, description: s.summary } : {};
+  if (s) return { title: s.name, description: s.summary };
+  const c = corpusStotra(params.stotra);
+  return c ? { title: c.name, description: `${c.title} — Sanskrit text` } : {};
 }
 
-export default function StotraPage({ params }: { params: { devata: string; stotra: string } }) {
+export default async function StotraPage({ params }: { params: { devata: string; stotra: string } }) {
   const { locale, t } = getTranslations();
   const s = getStotraView(params.stotra, locale);
-  if (!s || s.devata !== params.devata) notFound();
+  if (!s) return <CorpusStotraPage params={params} />;
+  if (s.devata !== params.devata) notFound();
   const d = getDevata(s.devata, locale);
   if (!d) notFound();
 
   const verses = getStotraVerses(s.slug, locale);
-  const { prev, next } = getStotraNeighbours(s.slug, locale);
+  const { prev, next } = getStotraNeighboursAny(s.slug, s.devata, locale);
 
   return (
     <div className="reader stotra-page">
@@ -152,5 +166,91 @@ export default function StotraPage({ params }: { params: { devata: string; stotr
         </Link>
       </footer>
     </div>
+  );
+}
+
+/** A stotra from the collection: the Sanskrit alone, and how it was checked. */
+async function CorpusStotraPage({ params }: { params: { devata: string; stotra: string } }) {
+  const { locale, t } = getTranslations();
+  const page = await getCorpusStotraPage(params.stotra, locale);
+  if (!page || page.stotra.devata !== params.devata) notFound();
+  const d = getDevata(page.stotra.devata, locale);
+  if (!d) notFound();
+  const s = page.view;
+  const strings = stotraCorpusStrings(locale);
+  const { prev, next } = getStotraNeighboursAny(s.slug, d.slug, locale);
+
+  return (
+    <div className="reader stotra-page">
+      <header className="reader-head shell">
+        <Link href={`/stutis/${d.slug}`} className="reader-kicker">
+          {d.name}
+        </Link>
+
+        <h1 className={`reader-title stotra-title ${s.scriptClass}`}>{s.nameSanskrit}</h1>
+        {s.name !== s.nameSanskrit && <p className="reader-name">{s.name}</p>}
+        {locale === "en" && <p className="translit reader-iast">{s.nameIast}</p>}
+
+        <div className="reader-facts">
+          <span>{s.origin}</span>
+          {s.composer && <span>{s.composer}</span>}
+        </div>
+
+        <LanguageChoice current={locale} label={t.chooseLanguage} />
+
+        <p className="reader-partial">
+          <Caution /> <strong>{strings.textOnlyTitle}</strong> {strings.textOnlyBody}
+        </p>
+      </header>
+
+      <div className="shell-narrow">
+        <EditionText page={page} locale={locale} labels={{ verse: t.labelVerse, showIast: locale === "en" }} />
+      </div>
+
+      <footer className="shell-narrow stotra-foot">
+        <Pager prev={prev} next={next} label={d.name} t={t} />
+        <Link href={`/stutis/${d.slug}`} className="btn-ghost">
+          <Arrow dir="left" /> {d.name}
+        </Link>
+      </footer>
+    </div>
+  );
+}
+
+function Pager({
+  prev,
+  next,
+  label,
+  t,
+}: {
+  prev: StotraView | null;
+  next: StotraView | null;
+  label: string;
+  t: { labelPrevious: string; labelNext: string };
+}) {
+  if (!prev && !next) return null;
+  return (
+    <nav className="stotra-pager" aria-label={label}>
+      {prev ? (
+        <Link href={prev.href} className="pager-link" data-dir="prev">
+          <span className="pager-label">
+            <Arrow dir="left" /> {t.labelPrevious}
+          </span>
+          <span className="pager-name">{prev.name}</span>
+        </Link>
+      ) : (
+        <span />
+      )}
+      {next ? (
+        <Link href={next.href} className="pager-link" data-dir="next">
+          <span className="pager-label">
+            {t.labelNext} <Arrow />
+          </span>
+          <span className="pager-name">{next.name}</span>
+        </Link>
+      ) : (
+        <span />
+      )}
+    </nav>
   );
 }

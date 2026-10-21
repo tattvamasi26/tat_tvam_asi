@@ -5,7 +5,8 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "@/i18n/server";
 import { sectionsFor } from "@/i18n/sections";
 import { DEFAULT_LOCALE } from "@/i18n/config";
-import { getDevata, getDevatas, getStotraGroups, type ImageView, type StotraGroup } from "@/lib/data";
+import { getDevata, getDevatas, getStotraGroups, type ImageView, type StotraSection } from "@/lib/data";
+import { stotraCorpusStrings } from "@/i18n/stotra-corpus";
 import { Arrow } from "@/components/ui/Arrow";
 
 /**
@@ -35,16 +36,22 @@ export default function DevataPage({ params }: { params: { devata: string } }) {
   const sectioned = groups.length > 1;
   const section = sectionsFor(locale).find((s) => s.id === "stutis")!;
 
-  const heading: Record<StotraGroup, string> = {
+  const corpus = stotraCorpusStrings(locale);
+  const heading: Record<StotraSection, string> = {
     daily: t.labelGroupDaily,
     vedic: t.labelGroupVedic,
     stotra: t.labelGroupStotra,
+    edition: corpus.groupTitle,
   };
-  const note: Record<StotraGroup, string> = {
+  const note: Record<StotraSection, string> = {
     daily: t.labelGroupDailyNote,
     vedic: t.labelGroupVedicNote,
     stotra: t.labelGroupStotraNote,
+    edition: corpus.groupNote,
   };
+  // The collection's section always says what it is, even alone on the
+  // page: its note is where a reader learns there is no translation.
+  const titled = (g: StotraSection) => sectioned || g === "edition";
 
   // Numbered straight through the sections, in the order they are said.
   const starts: number[] = [];
@@ -60,8 +67,8 @@ export default function DevataPage({ params }: { params: { devata: string } }) {
       <section className="pagehead">
         <div className="shell">
           <div className="feature devata-feature">
-            {d.image && (
-              <div className="feature-media devata-feature-media">
+            <div className="feature-media devata-feature-media">
+              {d.image ? (
                 <Image
                   src={d.image.src}
                   alt={d.image.alt}
@@ -70,8 +77,14 @@ export default function DevataPage({ params }: { params: { devata: string } }) {
                   sizes="(max-width: 860px) 100vw, 40vw"
                   style={{ objectFit: "cover", objectPosition: d.image.position }}
                 />
-              </div>
-            )}
+              ) : (
+                // No picture chosen yet: the name on the designed plate the
+                // bhajans and temples use, never an empty frame.
+                <p className={`bh-plate ${d.scriptClass}`} aria-hidden="true">
+                  {d.nameSanskrit}
+                </p>
+              )}
+            </div>
             <div className="feature-body">
               <Link href="/stutis" className="eyebrow">
                 {section.label}
@@ -139,9 +152,9 @@ export default function DevataPage({ params }: { params: { devata: string } }) {
             )}
             <div className="stotra-group-body">
               <h2 id={`stotras-${g.group}`} className="stutis-h2">
-                {sectioned ? heading[g.group] : t.labelStotras}
+                {titled(g.group) ? heading[g.group] : t.labelStotras}
               </h2>
-              {sectioned && <p className="stotra-group-note">{note[g.group]}</p>}
+              {titled(g.group) && <p className="stotra-group-note">{note[g.group]}</p>}
               <ol className="stotra-list" start={starts[gi]}>
                 {g.stotras.map((s, i) => (
                   <li key={s.slug}>
@@ -149,7 +162,11 @@ export default function DevataPage({ params }: { params: { devata: string } }) {
                       <span className="stotra-row-num">{starts[gi] + i}</span>
                       <span className="stotra-row-body">
                         <span className="stotra-row-name">{s.name}</span>
-                        <span className={`stotra-row-sanskrit ${s.scriptClass}`}>{s.nameSanskrit}</span>
+                        {/* On a Kannada or Hindi page a collection stotra's name is the
+                            Sanskrit itself; it is not printed twice. */}
+                        {s.nameSanskrit !== s.name && (
+                          <span className={`stotra-row-sanskrit ${s.scriptClass}`}>{s.nameSanskrit}</span>
+                        )}
                         <span className="stotra-row-summary">{s.summary}</span>
                       </span>
                       <span className="stotra-row-meta">

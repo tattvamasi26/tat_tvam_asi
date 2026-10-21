@@ -1,0 +1,24 @@
+{
+  "editionTitle": "निर्वाणषट्कम्",
+  "startPage": 263,
+  "slug": "nirvana-shatkam",
+  "name": "Nirvana Shatkam",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/nirvana-shatkam-in-kannada/",
+  "refrain": { "from": "चिदा", "full": "चिदानन्दरूपः शिवोऽहं शिवोऽहम्" },
+  "corrections": [
+    { "verse": "2", "from": "पचवायु", "to": "पञ्चवायु", "page": 255, "kind": "transcription" },
+    { "verse": "2", "from": "ने वा", "to": "र्न वा", "page": 255, "kind": "transcription", "why": "The र् is carried over from the line above." },
+    { "verse": "5", "from": "जातिभेदः .", "to": "जातिभेदः", "page": 256, "kind": "transcription", "why": "A stray full stop; the print has none." },
+    { "verse": "6", "from": "चासाङ्गतं", "to": "चासङ्गतं", "page": 256, "kind": "transcription" }
+  ],
+  "variants": [
+    { "verse": "1", "reading": "न च श्रोत्रजिह्वे", "witness": "न कर्णं न जिह्वा", "page": 255, "note": "The witness follows the more common recension." },
+    { "verse": "2", "reading": "वाक्पाणिपादं", "witness": "वाक्पाणिपादौ", "page": 255 },
+    { "verse": "5", "reading": "माता च जन्म", "witness": "माता न जन्म", "page": 256 },
+    { "verse": "6", "reading": "न चासङ्गतं", "witness": "न चासंगतं", "page": 256 },
+    { "verse": "6", "reading": "न मेयश्", "witness": "न बन्धश्", "page": 256 }
+  ]
+}

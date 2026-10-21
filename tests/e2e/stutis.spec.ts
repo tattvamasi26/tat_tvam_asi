@@ -35,7 +35,8 @@ test.describe("the stutis", () => {
     const cards = page.locator(".devata-card");
     await expect(cards.nth(0)).toHaveAttribute("href", "/stutis/gayatri");
     await expect(cards.nth(1)).toHaveAttribute("href", "/stutis/ganesha");
-    await expect(page.locator(".coming-soon-list li")).toHaveCount(3);
+    // Vishnu and Devi; Shiva opened with the stotra collection.
+    await expect(page.locator(".coming-soon-list li")).toHaveCount(2);
   });
 
   test("they sit on the site's paper: no dark panel, no animated or drawn background", async ({ page, baseURL }) => {
@@ -127,8 +128,29 @@ test.describe("the stutis", () => {
     await expect(page.locator(".stotra-video iframe")).toHaveAttribute("src", /youtube-nocookie\.com\/embed\/7nIZcKM-BiM/);
   });
 
+  test("a stotra from the collection shows the Sanskrit alone, says so, and shows how it was checked", async ({ page, baseURL }) => {
+    await openPage(page, baseURL!, "/stutis/bhairava/kalabhairava-ashtakam", "en");
+    await expect(page.locator(".reader-partial")).toContainText("translation is not written");
+    await expect(page.locator(".stotra-verse")).toHaveCount(9);
+    // No meaning to open: none is written.
+    await expect(page.locator(".stotra-toggle")).toHaveCount(0);
+    // The refrain the book abbreviates is written out.
+    await expect(page.locator(".stotra-verse").nth(2)).toContainText("काशिकापुराधिनाथकालभैरवं भजे");
+    // Transliteration on the English page.
+    await expect(page.locator(".stotra-verse-iast").first()).toContainText("devarājasevyamāna");
+    // The record: the edition, the corrections, the readings kept, the scans.
+    const notes = page.locator(".edition-notes");
+    await expect(notes).toContainText("Bṛhat Stotra Ratnākara");
+    await expect(notes.locator("li", { hasText: "प्रभाभिराम" })).toContainText("misprint");
+    await expect(notes.locator("a[href*='wikisource.org']").first()).toBeVisible();
+
+    await openPage(page, baseURL!, "/stutis/bhairava/kalabhairava-ashtakam", "kn");
+    await expect(page.locator(".stotra-verse-iast")).toHaveCount(0);
+    await expect(page.locator(".stotra-verse-mula").first()).toContainText("ದೇವರಾಜ");
+  });
+
   test("a devata still to come has no page, and neither does a stotra under the wrong devata", async ({ page }) => {
-    expect((await page.goto("/stutis/shiva"))?.status()).toBe(404);
+    expect((await page.goto("/stutis/vishnu"))?.status()).toBe(404);
     expect((await page.goto("/stutis/gayatri/ganesha-pancharatnam"))?.status()).toBe(404);
   });
 });

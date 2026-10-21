@@ -1016,6 +1016,17 @@ import "./seed/stotras/ganesha-bhujangam";
 import "./seed/stotras/ganeshashtakam";
 import { DEVATAS, type DevataImage, type DevataRow } from "./seed/devatas";
 import { getStotra, stotrasOf, stotraSlugs, type StotraGroup } from "./seed/stotras";
+import {
+  COMPOSERS,
+  EDITIONS,
+  SPINE as CORPUS_SPINE,
+  corpusStotra,
+  corpusStotrasOf,
+  corpusVerses,
+  type CorpusStotra,
+} from "./stotra-corpus";
+import { devanagariToIast } from "./iast";
+import { stotraCorpusStrings } from "@/i18n/stotra-corpus";
 
 export type { StotraGroup };
 
@@ -1124,27 +1135,36 @@ function devataView(d: DevataRow, locale: Locale): DevataView {
           })(),
         }
       : null,
-    stotraCount: stotrasOf(d.slug).length,
+    stotraCount: stotrasOf(d.slug).length + corpusStotrasOf(d.slug).length,
   };
+}
+
+/**
+ * A devata has a page once there is a stotra to read under them —
+ * one entered by hand, or one from the collection (lib/stotra-corpus).
+ * `status: "planned"` in devatas.ts only says that none is entered yet.
+ */
+function isOpen(d: DevataRow): boolean {
+  return d.status === "open" || stotrasOf(d.slug).length > 0 || corpusStotrasOf(d.slug).length > 0;
 }
 
 /** Devatas with stotras to read, in order: Gāyatrī first. */
 export function getDevatas(locale: Locale): DevataView[] {
-  return DEVATAS.filter((d) => d.status === "open")
+  return DEVATAS.filter(isOpen)
     .sort((a, b) => a.order - b.order)
-    .map((d) => devataView(d, locale));
+    .map((d) => ({ ...devataView(d, locale), status: "open" as const }));
 }
 
 /** An open devata; planned ones have no page yet. */
 export function getDevata(slug: string, locale: Locale): DevataView | null {
-  const d = DEVATAS.find((x) => x.slug === slug && x.status === "open");
-  return d ? devataView(d, locale) : null;
+  const d = DEVATAS.find((x) => x.slug === slug && isOpen(x));
+  return d ? { ...devataView(d, locale), status: "open" } : null;
 }
 
 /** Devatas still being entered, with the stotras already summarised for them. */
 export function getPlannedDevatas(locale: Locale): { devata: DevataView; stotras: PlannedStuti[] }[] {
   const readable = new Set(stotraSlugs());
-  return DEVATAS.filter((d) => d.status === "planned")
+  return DEVATAS.filter((d) => !isOpen(d))
     .sort((a, b) => a.order - b.order)
     .map((d) => ({
       devata: devataView(d, locale),
@@ -1204,8 +1224,15 @@ export function getStotraViews(devata: string, locale: Locale): StotraView[] {
 
 const GROUP_ORDER: StotraGroup[] = ["daily", "vedic", "stotra"];
 
+/**
+ * The sections of a devata's page: the three the hand-entered stotras
+ * are filed in, then "edition" for the stotras from the collection,
+ * which carry the Sanskrit alone.
+ */
+export type StotraSection = StotraGroup | "edition";
+
 export interface StotraGroupView {
-  group: StotraGroup;
+  group: StotraSection;
   /** The picture beside this section, if the devata has one for it. */
   image: ImageView | null;
   stotras: StotraView[];
@@ -1215,11 +1242,78 @@ export interface StotraGroupView {
 export function getStotraGroups(devata: string, locale: Locale): StotraGroupView[] {
   const row = DEVATAS.find((d) => d.slug === devata);
   const all = getStotraViews(devata, locale);
-  return GROUP_ORDER.map((group) => ({
+  const handEntered: StotraGroupView[] = GROUP_ORDER.map((group) => ({
     group,
     image: imageView(row?.groupImages?.[group], locale),
     stotras: all.filter((s) => s.group === group),
-  })).filter((g) => g.stotras.length > 0);
+  }));
+  const edition: StotraGroupView = {
+    group: "edition",
+    image: null,
+    stotras: corpusStotrasOf(devata).map((c) => corpusStotraView(c, locale)),
+  };
+  return [...handEntered, edition].filter((g) => g.stotras.length > 0);
+}
+
+// ── The stotra collection (lib/stotra-corpus) ─────────────────
+
+/** A collection stotra, shaped like a hand-entered one for the lists. */
+function corpusStotraView(c: CorpusStotra, locale: Locale): StotraView {
+  const pages = c.edition.printedPages;
+  const strings = stotraCorpusStrings(locale);
+  return {
+    slug: c.slug,
+    devata: c.devata,
+    href: `/stutis/${c.devata}/${c.slug}`,
+    // In English the name readers search for; elsewhere the Sanskrit
+    // itself, in the reader's script, is the name.
+    name: locale === "en" ? c.name : scriptFor(c.title, locale),
+    nameSanskrit: scriptFor(c.title, locale),
+    nameIast: devanagariToIast(c.title),
+    scriptClass: scriptClass(locale),
+    summary: `${EDITIONS[c.edition.book].title[locale]}, ${strings.pageAbbr} ${pages[0]}${pages.length > 1 ? `–${pages.at(-1)}` : ""}`,
+    keyTeaching: "",
+    origin: EDITIONS[c.edition.book].title[locale],
+    composer: c.composer ? COMPOSERS[c.composer]?.[locale] ?? null : null,
+    metre: null,
+    verseCount: c.verseCount,
+    firstLine: "",
+    coverage: null,
+    group: "stotra",
+    video: null,
+    image: null,
+  };
+}
+
+export interface CorpusStotraPage {
+  view: StotraView;
+  stotra: CorpusStotra;
+  edition: (typeof EDITIONS)[keyof typeof EDITIONS];
+  verses: { n: string; sanskrit: string[]; iast: string[] }[];
+}
+
+/** One collection stotra with its text, in the reader's script. */
+export async function getCorpusStotraPage(slug: string, locale: Locale): Promise<CorpusStotraPage | null> {
+  const c = corpusStotra(slug);
+  if (!c) return null;
+  const verses = await corpusVerses(c);
+  return {
+    view: corpusStotraView(c, locale),
+    stotra: c,
+    edition: EDITIONS[c.edition.book],
+    verses: verses.map((v) => ({
+      n: v.n,
+      sanskrit: v.lines.map((l) => scriptFor(l, locale)),
+      iast: v.lines.map((l) => devanagariToIast(l)),
+    })),
+  };
+}
+
+/** The stotras either side of one on its devata's page, whichever kind. */
+export function getStotraNeighboursAny(slug: string, devata: string, locale: Locale) {
+  const list = getStotraGroups(devata, locale).flatMap((g) => g.stotras);
+  const i = list.findIndex((x) => x.slug === slug);
+  return { prev: i > 0 ? list[i - 1] : null, next: i >= 0 ? list[i + 1] ?? null : null };
 }
 
 /** The verses, shaped for the same VerseStage the Upanishad reader uses. */
@@ -1260,9 +1354,12 @@ export function getStotraNeighbours(slug: string, locale: Locale) {
   return { prev: list[i - 1] ?? null, next: list[i + 1] ?? null };
 }
 
-/** Every readable stotra's route segments. */
+/** Every readable stotra's route segments, both kinds. */
 export function getStotraParams(): { devata: string; stotra: string }[] {
-  return stotraSlugs().map((slug) => ({ devata: getStotra(slug)!.devata, stotra: slug }));
+  return [
+    ...stotraSlugs().map((slug) => ({ devata: getStotra(slug)!.devata, stotra: slug })),
+    ...CORPUS_SPINE.map((c) => ({ devata: c.devata, stotra: c.slug })),
+  ];
 }
 
 // ── Nava Vinayakas of Tulunadu ───────────────────────────────

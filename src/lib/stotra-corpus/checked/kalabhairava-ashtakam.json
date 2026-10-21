@@ -1,0 +1,27 @@
+{
+  "editionTitle": "कालभैरवाष्टकम्",
+  "startPage": 265,
+  "slug": "kalabhairava-ashtakam",
+  "name": "Kalabhairava Ashtakam",
+  "devata": "bhairava",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/kalabhairava-ashtakam-in-kannada/",
+  "refrain": { "from": "काशिका", "full": "काशिकापुराधिनाथकालभैरवं भजे" },
+  "corrections": [
+    { "verse": "6", "from": "प्रभामिराम", "to": "प्रभाभिराम", "page": 258, "kind": "misprint", "why": "The book prints प्रभामिराम; the sense, प्रभा + अभिराम, and the witness both require भि." },
+    { "verse": "8", "from": "भूतसङ्गनायकं", "to": "भूतसङ्घनायकं", "page": 258, "kind": "transcription", "why": "The print reads सङ्घ; the witness agrees." },
+    { "verse": "8", "from": "कोशिका", "to": "काशिका", "page": 258, "kind": "transcription" }
+  ],
+  "variants": [
+    { "verse": "1", "reading": "योगिवृन्द", "witness": "योगिबृन्द", "page": 257 },
+    { "verse": "4", "reading": "स्थितं", "witness": "स्थिरं", "page": 257 },
+    { "verse": "4", "reading": "विग्रहम् । विनिक्वणन्", "witness": "विग्रहं निक्वणन्", "page": 258 },
+    { "verse": "5", "reading": "स्वर्णवर्णशेषपाशशोभिताङ्गमण्डलं", "witness": "स्वर्णवर्णकेशपाशशोभिताङ्गनिर्मलं", "page": 258 },
+    { "verse": "6", "reading": "करालदंष्ट्रमोक्षणं", "witness": "करालदंष्ट्रभूषणं", "page": 258 },
+    { "verse": "7", "reading": "जालमुग्रपापशासनम्", "witness": "जालमुग्रशासनम्", "page": 258, "note": "Checked at enlargement." },
+    { "verse": "7", "reading": "कपालमालिकन्धरं", "witness": "कपालमालिकाधरं", "page": 258 },
+    { "verse": "8", "reading": "काशिवासलोक", "witness": "काशिवासिलोक", "page": 258 },
+    { "verse": "9", "reading": "ज्ञानमुक्तिसाधनं", "witness": "ज्ञानमुक्तिसाधकं", "page": 259 }
+  ]
+}

@@ -286,6 +286,9 @@
 .stotra-verse-iast p {
   font-size: clamp(0.92rem, 1.2vw, 1.02rem);
   line-height: 1.55;
+  /* A compound transliterates as one long word
+     (ratnapādukāprabhābhirāmapādayugmakaṃ): let it break on a phone. */
+  overflow-wrap: anywhere;
 }
 
 .stotra-verse-meaning {
@@ -586,4 +589,55 @@ html:lang(hi) .stotra-verse-meaning {
   .stotra-video-play {
     transition: none;
   }
+}
+
+/* ── A stotra from the collection: how its text was checked ──
+   The record under the text: the edition, the method, every correction
+   made from the scan and every reading of the book's that was kept. Set
+   as the Rigveda's sources are, small and quiet below the reading. */
+.edition-notes {
+  max-width: 68ch;
+  margin: clamp(1.6rem, 3.5vw, 2.4rem) 0 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+.edition-notes h2 {
+  margin-bottom: 0.6rem;
+  font: 700 0.78rem / 1.3 var(--sans);
+  color: var(--gold);
+}
+.edition-notes h3 {
+  margin: 1.2rem 0 0.4rem;
+  font: 600 0.84rem / var(--lh-snug) var(--sans);
+  color: var(--ink-2);
+}
+.edition-notes p + p {
+  margin-top: 0.6rem;
+}
+.edition-notes ul {
+  display: grid;
+  gap: 0.3rem;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+.edition-notes a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 2px;
+}
+.edition-notes .edition-links {
+  margin-top: 1.2rem;
+  padding-left: 0;
+  list-style: none;
+}
+.edition-notes .arrow {
+  vertical-align: -0.12em;
+}
+/* A reading quoted in the record, in the reader's script. */
+.edition-sa {
+  color: var(--sacred);
+  font-size: 1.05em;
+  overflow-wrap: anywhere;
 }

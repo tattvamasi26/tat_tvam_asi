@@ -38,6 +38,10 @@ export const ROUTES = [
   "/stutis/ganesha/sankatanashana-ganesha-stotram",
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
+  "/stutis/shiva",
+  "/stutis/shiva/nirvana-shatkam",
+  "/stutis/bhairava",
+  "/stutis/bhairava/kalabhairava-ashtakam",
   "/shastras",
   // A branch page with six texts, and one carrying a contested text.
   "/shastras/vedangas",
