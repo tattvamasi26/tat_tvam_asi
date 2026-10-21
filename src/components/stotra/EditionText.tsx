@@ -36,9 +36,10 @@ export function EditionText({
     <>
       <section className="stotra-text">
         <ol className="stotra-verses">
-          {verses.map((v) => (
-            <li key={v.n} id={`v${v.n}`} className="stotra-verse">
-              <span className="stotra-verse-num" aria-label={`${labels.verse} ${v.n}`}>
+          {verses.map((v, i) => (
+            // Keyed by place: a book may leave some verses unnumbered.
+            <li key={i} id={v.n ? `v${v.n}` : undefined} className="stotra-verse">
+              <span className="stotra-verse-num" aria-label={v.n ? `${labels.verse} ${v.n}` : undefined}>
                 {v.n}
               </span>
               <div className="stotra-verse-body">

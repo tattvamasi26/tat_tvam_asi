@@ -71,7 +71,7 @@ export interface CorpusStotra {
 }
 
 export interface CorpusVerse {
-  /** The verse number to show. */
+  /** The verse number to show: its place in the stotra. */
   n: string;
   lines: string[];
 }
@@ -106,6 +106,11 @@ export const COMPOSERS: Record<string, Record<Locale, string>> = {
     en: "Traditionally attributed to Adi Shankaracharya",
     kn: "ಸಂಪ್ರದಾಯದಂತೆ ಆದಿ ಶಂಕರಾಚಾರ್ಯರ ಕೃತಿ",
     hi: "परंपरा से आदि शंकराचार्य की रचना मानी जाती है",
+  },
+  ravana: {
+    en: "Traditionally attributed to Ravana",
+    kn: "ಸಂಪ್ರದಾಯದಂತೆ ರಾವಣನ ಕೃತಿ",
+    hi: "परंपरा से रावण की रचना मानी जाती है",
   },
 };
 

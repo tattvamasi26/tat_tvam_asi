@@ -47,6 +47,17 @@ for (const [startPage, check] of [...checks].sort((a, b) => a[0] - b[0])) {
   seen.add(check.slug);
 
   const verses = applyChecks(s, check).filter((v) => v.lines.length);
+  // Verses are numbered on the page by their place in the stotra. That
+  // is the book's own numbering almost everywhere; where the book leaves
+  // some unnumbered or numbers a preface apart (Manīṣāpañcaka), one
+  // plain sequence is clearer, and the record's page references still
+  // lead to the print.
+  const place = new Map(verses.map((v, i) => [v.label, String(i + 1)]));
+  const at = (verse) => {
+    const n = place.get(String(verse));
+    if (!n) problems.push(`${check.file}: names verse ${verse}, which it does not have`);
+    return n;
+  };
   const pages = s.pages.filter((p) => s.quality[p] !== undefined);
   if (pages.some((p) => s.quality[p] === "not-proofread")) problems.push(`${check.file}: spans a page not yet proofread on Wikisource`);
 
@@ -65,9 +76,9 @@ for (const [startPage, check] of [...checks].sort((a, b) => a[0] - b[0])) {
     witness: check.witness,
     checkedOn: check.checkedOn,
     refrainExpanded: Boolean(check.refrain),
-    corrections: (check.corrections ?? []).map(({ verse, from, to, page, kind }) => ({ verse: String(verse).replace(/^#/, ""), from, to, page, kind })),
+    corrections: (check.corrections ?? []).map(({ verse, from, to, page, kind }) => ({ verse: at(verse), from, to, page, kind })),
     variants: (check.variants ?? []).map(({ verse, reading, witness, extra, whole, order, page }) => ({
-      verse: String(verse).replace(/^#/, ""),
+      verse: at(verse),
       kind: extra ? "extra" : whole ? (order ? "order" : "absent") : "reading",
       reading: reading ?? null,
       witness: witness ?? null,
@@ -75,8 +86,8 @@ for (const [startPage, check] of [...checks].sort((a, b) => a[0] - b[0])) {
       page,
     })),
   });
-  (texts[check.devata] ??= {})[check.slug] = verses.map((v) => ({
-    n: v.label.replace(/^#/, ""),
+  (texts[check.devata] ??= {})[check.slug] = verses.map((v, i) => ({
+    n: String(i + 1),
     lines: v.lines.map((l) => l.replace(/\s+/g, " ").trim()),
   }));
 }

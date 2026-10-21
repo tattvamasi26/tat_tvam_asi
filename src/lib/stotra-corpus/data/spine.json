@@ -330,6 +330,243 @@
   ]
  },
  {
+  "slug": "shiva-tandava-stotram",
+  "devata": "shiva",
+  "title": "रावणकृतशिवताण्डवस्तोत्रम्",
+  "name": "Shiva Tandava Stotram",
+  "composer": "ravana",
+  "verseCount": 14,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    242,
+    243,
+    244,
+    245
+   ],
+   "scans": [
+    {
+     "page": 250,
+     "revid": 319413,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/250"
+    },
+    {
+     "page": 251,
+     "revid": 319398,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/251"
+    },
+    {
+     "page": 252,
+     "revid": 319414,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/252"
+    },
+    {
+     "page": 253,
+     "revid": 320309,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/253"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/shiva-tandav-stotram-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": false,
+  "corrections": [
+   {
+    "verse": "1",
+    "from": "भ्रमन्निल्लिम्प",
+    "to": "भ्रमन्निलिम्प",
+    "page": 242,
+    "kind": "transcription"
+   },
+   {
+    "verse": "2",
+    "from": "स्फुरदिगन्त",
+    "to": "स्फुरद्दिगन्त",
+    "page": 242,
+    "kind": "transcription"
+   },
+   {
+    "verse": "2",
+    "from": "कचिच्चिदम्बरे",
+    "to": "क्वचिच्चिदम्बरे",
+    "page": 242,
+    "kind": "misprint"
+   },
+   {
+    "verse": "3",
+    "from": "बिभर्तुं",
+    "to": "बिभर्तु",
+    "page": 242,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "पञ्चस्रायकं",
+    "to": "पञ्चसायकं",
+    "page": 243,
+    "kind": "transcription"
+   },
+   {
+    "verse": "7",
+    "from": "कृतिसिन्धुरः",
+    "to": "कृत्तिसिन्धुरः",
+    "page": 243,
+    "kind": "misprint"
+   },
+   {
+    "verse": "7",
+    "from": "जगध्दुरन्धरः",
+    "to": "जगद्धुरन्धरः",
+    "page": 243,
+    "kind": "transcription"
+   },
+   {
+    "verse": "10",
+    "from": "जयत्वधभ्र",
+    "to": "जयत्वदभ्र",
+    "page": 244,
+    "kind": "transcription"
+   },
+   {
+    "verse": "14",
+    "from": "दशवक्रगीतं",
+    "to": "दशवक्त्रगीतं",
+    "page": 245,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "1",
+    "kind": "extra",
+    "reading": null,
+    "witness": null,
+    "extra": "जटाटवीगलज्जलप्रवाहपावितस्थले गलेऽवलम्ब्य लम्बितां भुजङ्गतुङ्गमालिकाम् डमड्डमड्डमड्डमन्निनादवड्डमर्वयं चकार चण्डताण्डवं तनोतु नः शिवः शिवम्",
+    "page": 242
+   },
+   {
+    "verse": "1",
+    "kind": "reading",
+    "reading": "जटाकटाह",
+    "witness": "जटाकटाकटाह",
+    "extra": null,
+    "page": 242
+   },
+   {
+    "verse": "2",
+    "kind": "reading",
+    "reading": "च्चिदम्बरे",
+    "witness": "द्दिगम्बरे",
+    "extra": null,
+    "page": 242
+   },
+   {
+    "verse": "6",
+    "kind": "reading",
+    "reading": "करालभाल",
+    "witness": "करालफाल",
+    "extra": null,
+    "page": 243
+   },
+   {
+    "verse": "6",
+    "kind": "reading",
+    "reading": "धनञ्जयाधरीकृत",
+    "witness": "धनञ्जयाहुतीकृत",
+    "extra": null,
+    "page": 243
+   },
+   {
+    "verse": "6",
+    "kind": "reading",
+    "reading": "मतिर्मम",
+    "witness": "रतिर्मम",
+    "extra": null,
+    "page": 243
+   },
+   {
+    "verse": "7",
+    "kind": "reading",
+    "reading": "प्रबन्धबन्धुकन्धरः",
+    "witness": "प्रबन्धबद्धकन्धरः",
+    "extra": null,
+    "page": 243
+   },
+   {
+    "verse": "8",
+    "kind": "reading",
+    "reading": "कालिमच्छटाविडम्बिकण्ठकन्धरारुचिप्रबन्ध",
+    "witness": "कालिमप्रभावलम्बिकण्ठकन्दलीरुचिप्रबद्ध",
+    "extra": null,
+    "page": 243
+   },
+   {
+    "verse": "9",
+    "kind": "reading",
+    "reading": "अगर्व",
+    "witness": "अखर्व",
+    "extra": null,
+    "page": 244
+   },
+   {
+    "verse": "10",
+    "kind": "reading",
+    "reading": "भुजङ्गमस्फुरद्धगद्धगद्विनिर्गमत्कराल",
+    "witness": "भुजङ्गमश्वसद्विनिर्गमत्क्रमस्फुरत्कराल",
+    "extra": null,
+    "page": 244
+   },
+   {
+    "verse": "11",
+    "kind": "reading",
+    "reading": "समं प्रवर्तयन्मनः कदा सदाशिवं भजे",
+    "witness": "समप्रवृत्तिकः कदा सदाशिवं भजाम्यहम्",
+    "extra": null,
+    "page": 244
+   },
+   {
+    "verse": "12",
+    "kind": "reading",
+    "reading": "शिरःस्थमञ्जलिं",
+    "witness": "शिरस्थमञ्जलिं",
+    "extra": null,
+    "page": 244
+   },
+   {
+    "verse": "12",
+    "kind": "reading",
+    "reading": "विमुक्तलोललोचनाललाम",
+    "witness": "विलोललोललोचनो ललाम",
+    "extra": null,
+    "page": 245
+   },
+   {
+    "verse": "13",
+    "kind": "reading",
+    "reading": "हरे गुरौ स भक्तिमाशु",
+    "witness": "हरे गुरौ सुभक्तिमाशु",
+    "extra": null,
+    "page": 245
+   },
+   {
+    "verse": "13",
+    "kind": "reading",
+    "reading": "देहिनां तु शङ्करस्य",
+    "witness": "देहिनां सुशङ्करस्य",
+    "extra": null,
+    "page": 245
+   },
+   {
+    "verse": "14",
+    "kind": "reading",
+    "reading": "शम्भुपूजनमिदं",
+    "witness": "शम्भुपूजनपरं",
+    "extra": null,
+    "page": 245
+   }
+  ]
+ },
+ {
   "slug": "dvadasha-jyotirlinga-stotram",
   "devata": "shiva",
   "title": "द्वादशज्योतिर्लिङ्गस्तोत्रम्",
@@ -820,6 +1057,200 @@
     "witness": "न बन्धश्",
     "extra": null,
     "page": 256
+   }
+  ]
+ },
+ {
+  "slug": "yati-panchakam",
+  "devata": "shiva",
+  "title": "यतिपञ्चकम्",
+  "name": "Yati Panchakam",
+  "composer": "shankara",
+  "verseCount": 6,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    519
+   ],
+   "scans": [
+    {
+     "page": 527,
+     "revid": 319450,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/527"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/yati-panchakam-kaupeena-panchakam-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": false,
+  "corrections": [
+   {
+    "verse": "6",
+    "from": "कौपीनपश्चरत्नस्य",
+    "to": "कौपीनपञ्चरत्नस्य",
+    "page": 519,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "5",
+    "kind": "reading",
+    "reading": "पञ्चाक्षरं पावन",
+    "witness": "ब्रह्माक्षरं पावन",
+    "extra": null,
+    "page": 519
+   }
+  ]
+ },
+ {
+  "slug": "manisha-panchakam",
+  "devata": "shiva",
+  "title": "मनीषापञ्चकम्",
+  "name": "Manisha Panchakam",
+  "composer": "shankara",
+  "verseCount": 9,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    520,
+    521
+   ],
+   "scans": [
+    {
+     "page": 528,
+     "revid": 319686,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/528"
+    },
+    {
+     "page": 529,
+     "revid": 319698,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/529"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/manisha-panchakam-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": false,
+  "corrections": [
+   {
+    "verse": "4",
+    "from": "काश्चनघटी",
+    "to": "काञ्चनघटी",
+    "page": 520,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "दृढमज्ञापि",
+    "to": "दृढप्रज्ञापि",
+    "page": 520,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "यस्यास्तिचे.",
+    "to": "यस्यास्तिचे-",
+    "page": 520,
+    "kind": "transcription"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "2",
+    "kind": "reading",
+    "reading": "शङ्करस्सोऽपि चण्डालः",
+    "witness": "शङ्करस्योऽपि चाण्डालस्",
+    "extra": null,
+    "page": 520
+   },
+   {
+    "verse": "3",
+    "kind": "extra",
+    "reading": null,
+    "witness": null,
+    "extra": "चाण्डालोवाच",
+    "page": 520
+   },
+   {
+    "verse": "3",
+    "kind": "reading",
+    "reading": "यतिवर दूरीकर्तुं",
+    "witness": "द्विजवर दूरीकर्तुं",
+    "extra": null,
+    "page": 520
+   },
+   {
+    "verse": "4",
+    "kind": "extra",
+    "reading": null,
+    "witness": null,
+    "extra": "यतिवर",
+    "page": 520
+   },
+   {
+    "verse": "4",
+    "kind": "reading",
+    "reading": "किंगङ्गाम्बुनि",
+    "witness": "किं गङ्गाम्बुधि",
+    "extra": null,
+    "page": 520
+   },
+   {
+    "verse": "4",
+    "kind": "reading",
+    "reading": "चण्डालवीधी",
+    "witness": "चाण्डालवीथी",
+    "extra": null,
+    "page": 520
+   },
+   {
+    "verse": "5",
+    "kind": "extra",
+    "reading": null,
+    "witness": null,
+    "extra": "शङ्कर उवाच",
+    "page": 520
+   },
+   {
+    "verse": "5",
+    "kind": "reading",
+    "reading": "च्चण्डालोऽस्तु",
+    "witness": "च्चाण्डालोऽस्तु",
+    "extra": null,
+    "page": 520
+   },
+   {
+    "verse": "6",
+    "kind": "reading",
+    "reading": "चण्डालोऽस्तु",
+    "witness": "चाण्डालोऽस्तु",
+    "extra": null,
+    "page": 521
+   },
+   {
+    "verse": "7",
+    "kind": "reading",
+    "reading": "भूतं भावि च",
+    "witness": "भूतं भाति च",
+    "extra": null,
+    "page": 521
+   },
+   {
+    "verse": "8",
+    "kind": "reading",
+    "reading": "रहमित्यन्तस्फुटा",
+    "witness": "रहमित्यन्तःस्फुटा",
+    "extra": null,
+    "page": 521
+   },
+   {
+    "verse": "9",
+    "kind": "extra",
+    "reading": null,
+    "witness": null,
+    "extra": "दासस्तेऽहं देहदृष्ट्यास्मि शम्भो जातस्तेंऽशो जीवदृष्ट्या त्रिदृष्टे सर्वस्यात्मन्नात्मदृष्ट्या त्वमेवेत्येवं मे धीर्निश्चिता सर्वशास्त्रैः",
+    "page": 521
    }
   ]
  }

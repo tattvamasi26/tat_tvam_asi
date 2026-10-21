@@ -1,0 +1,16 @@
+{
+  "editionTitle": "यतिपञ्चकम्",
+  "startPage": 527,
+  "slug": "yati-panchakam",
+  "name": "Yati Panchakam",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/yati-panchakam-kaupeena-panchakam-in-kannada/",
+  "corrections": [
+    { "verse": "6", "from": "कौपीनपश्चरत्नस्य", "to": "कौपीनपञ्चरत्नस्य", "page": 519, "kind": "transcription" }
+  ],
+  "variants": [
+    { "verse": "5", "reading": "पञ्चाक्षरं पावन", "witness": "ब्रह्माक्षरं पावन", "page": 519 }
+  ]
+}
