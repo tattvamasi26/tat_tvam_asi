@@ -76,7 +76,12 @@ for (const [startPage, check] of [...checks].sort((a, b) => a[0] - b[0])) {
     witness: check.witness,
     checkedOn: check.checkedOn,
     refrainExpanded: Boolean(check.refrain),
-    corrections: (check.corrections ?? []).map(({ verse, from, to, page, kind }) => ({ verse: at(verse), from, to, page, kind })),
+    corrections: [
+      ...(check.corrections ?? []).map(({ verse, from, to, page, kind }) => ({ verse: at(verse), from, to, page, kind })),
+      // A misprint the transcriber already put right: nothing to apply,
+      // but the reader is told the book reads otherwise.
+      ...(check.misprints ?? []).map(({ verse, printed, reads, page }) => ({ verse: at(verse), from: printed, to: reads, page, kind: "misprint" })),
+    ],
     variants: (check.variants ?? []).map(({ verse, reading, witness, extra, whole, order, page }) => ({
       verse: at(verse),
       kind: extra ? "extra" : whole ? (order ? "order" : "absent") : "reading",

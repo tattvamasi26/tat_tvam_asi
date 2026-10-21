@@ -130,8 +130,22 @@ export const DEVATAS: DevataRow[] = [
     },
   },
   {
-    slug: "shiva",
+    slug: "subrahmanya",
     order: 3,
+    status: "planned",
+    name_sanskrit: "सुब्रह्मण्य",
+    name_iast: "Subrahmaṇya",
+    name: { en: "Subrahmanya", kn: "ಸುಬ್ರಹ್ಮಣ್ಯ", hi: "सुब्रह्मण्य" },
+    epithet: { en: "Skanda, son of Shiva", kn: "ಶಿವಪುತ್ರ ಸ್ಕಂದ", hi: "शिवपुत्र स्कंद" },
+    blurb: {
+      en: "Subrahmanya, also called Skanda, Kartikeya and Murugan, is the son of Shiva and Parvati and the commander of the gods.",
+      kn: "ಸ್ಕಂದ, ಕಾರ್ತಿಕೇಯ, ಮುರುಗ ಎಂದೂ ಕರೆಯಲ್ಪಡುವ ಸುಬ್ರಹ್ಮಣ್ಯನು ಶಿವಪಾರ್ವತಿಯರ ಪುತ್ರ ಮತ್ತು ದೇವಸೇನಾಪತಿ.",
+      hi: "सुब्रह्मण्य, जिन्हें स्कंद, कार्तिकेय और मुरुगन भी कहते हैं, शिव और पार्वती के पुत्र और देवताओं के सेनापति हैं।",
+    },
+  },
+  {
+    slug: "shiva",
+    order: 4,
     status: "planned",
     name_sanskrit: "शिव",
     name_iast: "Śiva",
@@ -145,7 +159,7 @@ export const DEVATAS: DevataRow[] = [
   },
   {
     slug: "bhairava",
-    order: 4,
+    order: 5,
     status: "planned",
     name_sanskrit: "भैरव",
     name_iast: "Bhairava",
@@ -159,7 +173,7 @@ export const DEVATAS: DevataRow[] = [
   },
   {
     slug: "vishnu",
-    order: 5,
+    order: 6,
     status: "planned",
     name_sanskrit: "विष्णु",
     name_iast: "Viṣṇu",
@@ -173,7 +187,7 @@ export const DEVATAS: DevataRow[] = [
   },
   {
     slug: "devi",
-    order: 6,
+    order: 7,
     status: "planned",
     name_sanskrit: "देवी",
     name_iast: "Devī",

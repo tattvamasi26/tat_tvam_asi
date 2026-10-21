@@ -1431,5 +1431,195 @@
     "page": 521
    }
   ]
+ },
+ {
+  "slug": "subrahmanya-ashtakam",
+  "devata": "subrahmanya",
+  "title": "सुब्रह्मण्याष्टकम्",
+  "name": "Subrahmanya Ashtakam",
+  "composer": null,
+  "verseCount": 10,
+  "edition": {
+   "book": "bsr-1",
+   "printedPages": [
+    120,
+    121,
+    122
+   ],
+   "scans": [
+    {
+     "page": 128,
+     "revid": 318655,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/128"
+    },
+    {
+     "page": 129,
+     "revid": 318691,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/129"
+    },
+    {
+     "page": 130,
+     "revid": 318712,
+     "wikisource": "पृष्ठम्:बृहत्स्तोत्ररत्नाकरः (प्रथमः भागः).pdf/130"
+    }
+   ]
+  },
+  "witness": "https://stotranidhi.com/kn/subrahmanya-ashtakam-in-kannada/",
+  "checkedOn": "2026-10-21",
+  "refrainExpanded": false,
+  "corrections": [
+   {
+    "verse": "3",
+    "from": "भाग्यप्रदातपरिपूरित",
+    "to": "भाग्यप्रदानपरिपूरित",
+    "page": 120,
+    "kind": "transcription"
+   },
+   {
+    "verse": "5",
+    "from": "करालम्बम्",
+    "to": "करावलम्बम्",
+    "page": 121,
+    "kind": "misprint"
+   }
+  ],
+  "variants": [
+   {
+    "verse": "1",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 120
+   },
+   {
+    "verse": "2",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 120
+   },
+   {
+    "verse": "3",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 120
+   },
+   {
+    "verse": "4",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 121
+   },
+   {
+    "verse": "5",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 121
+   },
+   {
+    "verse": "6",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 121
+   },
+   {
+    "verse": "7",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 121
+   },
+   {
+    "verse": "8",
+    "kind": "reading",
+    "reading": "वल्लीसनाथ",
+    "witness": "वल्लीशनाथ",
+    "extra": null,
+    "page": 122
+   },
+   {
+    "verse": "2",
+    "kind": "reading",
+    "reading": "देवाधिदेवसुत देवगणाधिनाथ",
+    "witness": "देवादिदेवनुत देवगणाधिनाथ",
+    "extra": null,
+    "page": 120
+   },
+   {
+    "verse": "3",
+    "kind": "reading",
+    "reading": "नित्यान्नदाननिरताखिलरोगहारिन्",
+    "witness": "नित्यान्नदाननिरताखिलरोगहारिन् तस्मात्",
+    "extra": null,
+    "page": 120
+   },
+   {
+    "verse": "3",
+    "kind": "reading",
+    "reading": "भाग्यप्रदानपरिपूरितभक्तकाम",
+    "witness": "प्रदानपरिपूरितभक्तकाम भाग्य",
+    "extra": null,
+    "page": 120
+   },
+   {
+    "verse": "4",
+    "kind": "reading",
+    "reading": "चापादिशस्त्र",
+    "witness": "पाशादिशस्त्र",
+    "extra": null,
+    "page": 120
+   },
+   {
+    "verse": "4",
+    "kind": "extra",
+    "reading": null,
+    "witness": null,
+    "extra": "चापादि",
+    "page": 121
+   },
+   {
+    "verse": "5",
+    "kind": "reading",
+    "reading": "देवाधिदेवरथ",
+    "witness": "देवादिदेवरथ",
+    "extra": null,
+    "page": 121
+   },
+   {
+    "verse": "5",
+    "kind": "reading",
+    "reading": "देवेन्द्रपीठनकरं",
+    "witness": "देवेन्द्रपीठनगरं",
+    "extra": null,
+    "page": 121
+   },
+   {
+    "verse": "6",
+    "kind": "reading",
+    "reading": "हारादिरत्नमणियुक्तकिरीटहार",
+    "witness": "हीरादिरत्नमणियुक्तकिरीटहार हारादि",
+    "extra": null,
+    "page": 121
+   },
+   {
+    "verse": "6",
+    "kind": "reading",
+    "reading": "कवचाभिराम",
+    "witness": "कवचाभिरामं",
+    "extra": null,
+    "page": 121
+   }
+  ]
  }
 ]
