@@ -155,6 +155,13 @@ That is what step 4 is for.
     server (`src/lib/supabase.ts` is `server-only`).
   - **Origin check.** Next rejects a server action whose `Origin` does
     not match the host, which closes off CSRF.
+- **Readers' accounts** (`docs/ACCOUNTS.md`).
+  - Google sign-in runs on the server, with PKCE.
+  - The return path is checked, so the flow is not an open redirect.
+  - Sessions are verified with `getUser()`.
+  - Sign-out is POST only and same-origin.
+  - `profiles` has no public read. Column grants keep any future
+    payment column out of a reader's reach.
 - **Database.** RLS is enabled on all 25 tables; the public role can only
   read. Writes go through the service role behind `requireAdmin()`.
 - **Secrets.** `.env.local` is git-ignored and has never been committed
@@ -215,9 +222,10 @@ host:
    server process; the edge counts across every instance.
 5. **Keep `X-Forwarded-For` set** if anything sits in front of
    `next start`.
-6. **Set the Supabase auth URL allow-list** to the production domain, and
-   keep email sign-ups **disabled**. The admin account is created by
-   hand.
+6. **Set the Supabase auth URL allow-list** to the production domain's
+   `/auth/callback`. Keep email sign-ups **disabled**: readers come in
+   through Google (`docs/ACCOUNTS.md`), and the admin account is
+   created by hand.
 7. **Submit the domain to the HSTS preload list** (hstspreload.org) once
    https is live everywhere.
 8. **Watch for copies.** A periodic search for a distinctive sentence

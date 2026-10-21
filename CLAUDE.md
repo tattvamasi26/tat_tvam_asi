@@ -640,6 +640,28 @@ Read `docs/SECURITY.md` before touching any of this. The short version:
 - **Open item:** Next 14.2.35 carries npm-audit advisories whose only
   fix is Next 16.
 
+### Readers' accounts
+
+Readers can sign in with Google. It is optional: no page is behind it.
+Read `docs/ACCOUNTS.md` first.
+
+- The flow is `/signin`, then `/auth/google`, then Supabase and Google,
+  then `/auth/callback`, then `/account`. It all runs in route handlers
+  on the server (PKCE). There is no client component.
+- `safeNext()` in `src/lib/auth-paths.ts` is the only way a return path
+  is chosen. Never redirect to a raw `next` parameter.
+- Read the reader with `currentReader()` (`src/lib/auth.ts`). It calls
+  `getUser()`. Never use `getSession()` on the server.
+- The middleware refreshes the session only where `readsSession()`
+  says so. Don't widen that to every page.
+- `profiles` is the one table **without** a public-read policy, on
+  purpose.
+  - A reader may update only the columns granted to `authenticated`.
+  - Add payment columns without a grant.
+- The words are in `src/i18n/account.ts`, held to the same keys in all
+  three languages. If more data is ever kept, the "What is kept"
+  sentence changes with it.
+
 ### Supabase and `/admin`
 
 - `src/lib/supabase.ts` is server-only. It exports three clients:
@@ -655,7 +677,7 @@ Read `docs/SECURITY.md` before touching any of this. The short version:
   - `verses (text_id, locator)`
   - `translations (verse_id, language, source_id)`
   - `(parent_id, language)` on every `*_translations` table
-- A new table needs RLS enabled and a public-read policy in the same change.
+- A new table needs RLS enabled and a public-read policy in the same change. The exception is `profiles`, which is private.
 
 ### UI
 

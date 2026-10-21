@@ -29,6 +29,7 @@ import "@/styles/puranas.css";
 import "@/styles/cosmos.css";
 import "@/styles/darshanas.css";
 import "@/styles/practice.css";
+import "@/styles/account.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { getLocale } from "@/i18n/server";

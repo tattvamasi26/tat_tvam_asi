@@ -1,4 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { readsSession } from "@/lib/auth-paths";
 import { LOCALE_COOKIE, isLocale } from "@/i18n/config";
 import { classify, TRAP_PATH } from "@/lib/security/bots";
 import { RateLimiter } from "@/lib/security/rate-limit";
@@ -63,7 +65,7 @@ function isLocalHost(host: string | null): boolean {
   return !host || /^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(host);
 }
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const key = clientAddress(request.headers, request.ip);
   // No client address at all: this machine (`next start` with no proxy
@@ -121,6 +123,15 @@ export function middleware(request: NextRequest) {
     response = NextResponse.next();
   }
 
+  // 5 — a signed-in reader's session, refreshed where a page reads it.
+  // A Server Component cannot write cookies, so a token refreshed there
+  // is never saved, and the next refresh, with the spent token, fails.
+  // Only on these paths: elsewhere a page never looks at the session,
+  // and asking Supabase on every page would cost every reader a call.
+  if (readsSession(pathname) && !response.headers.has("location")) {
+    response = await refreshSession(request, response);
+  }
+
   // HSTS only off localhost: sent to localhost it would pin every other
   // project on this machine to https.
   if (!isLocalHost(request.headers.get("host"))) {
@@ -129,11 +140,36 @@ export function middleware(request: NextRequest) {
       "max-age=63072000; includeSubDomains; preload",
     );
   }
-  if (pathname.startsWith("/admin")) {
+  if (pathname.startsWith("/admin") || readsSession(pathname)) {
     response.headers.set("x-robots-tag", "noindex, nofollow, noarchive");
     response.headers.set("cache-control", "no-store");
   }
   return response;
+}
+
+async function refreshSession(request: NextRequest, response: NextResponse): Promise<NextResponse> {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return response;
+  let out = response;
+  try {
+    const supabase = createServerClient(url, key, {
+      cookies: {
+        getAll: () => request.cookies.getAll(),
+        setAll: (cookies: { name: string; value: string; options: CookieOptions }[]) => {
+          // The page rendering this request must see the new tokens
+          // too, or it refreshes again with the spent one.
+          for (const { name, value } of cookies) request.cookies.set(name, value);
+          out = NextResponse.next({ request });
+          for (const { name, value, options } of cookies) out.cookies.set(name, value, options);
+        },
+      },
+    });
+    await supabase.auth.getUser();
+  } catch {
+    // Supabase unreachable: the page itself will find no reader.
+  }
+  return out;
 }
 
 export const config = {

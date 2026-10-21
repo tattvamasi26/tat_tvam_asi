@@ -7,6 +7,7 @@ import { SiteNav } from "./SiteNav";
 import { MastheadLinks } from "./MastheadLinks";
 import { Wordmark } from "@/components/brand/Mark";
 import { scriptFor, scriptClass } from "@/lib/script";
+import { accountStrings } from "@/i18n/account";
 
 /**
  * The floating masthead.
@@ -17,6 +18,7 @@ import { scriptFor, scriptClass } from "@/lib/script";
  */
 export function Navbar() {
   const { locale, t } = getTranslations();
+  const account = accountStrings(locale);
   // Glyphs in the reader's script, like every other Sanskrit on the site.
   const sections = topLevelSectionsFor(locale).map((s) => ({ ...s, glyph: scriptFor(s.glyph, locale) }));
 
@@ -39,6 +41,7 @@ export function Navbar() {
     { href: "/verses", label: t.navVerses },
     { href: "/search", label: t.navSearch },
     { href: "/about", label: t.navAbout },
+    { href: "/account", label: account.navAccount },
   ];
 
   return (
@@ -55,6 +58,16 @@ export function Navbar() {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="17" height="17" aria-hidden="true">
               <circle cx="11" cy="11" r="7" />
               <path d="M20 20l-3.5-3.5" strokeLinecap="round" />
+            </svg>
+          </Link>
+
+          {/* Always the same link, signed in or not: the masthead stays
+              the same on every page and costs no session lookup. The
+              account page sends a signed-out reader to sign in. */}
+          <Link href="/account" className="icon-btn" aria-label={account.navAccount} prefetch={false}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="17" height="17" aria-hidden="true">
+              <circle cx="12" cy="8.5" r="3.8" />
+              <path d="M4.5 20c1.3-3.6 4.2-5.4 7.5-5.4s6.2 1.8 7.5 5.4" strokeLinecap="round" />
             </svg>
           </Link>
 

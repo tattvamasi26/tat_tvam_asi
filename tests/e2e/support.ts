@@ -105,6 +105,7 @@ export const ROUTES = [
   "/search?q=brahman",
   "/about",
   "/rights",
+  "/signin",
   "/this-page-does-not-exist",
 ];
 

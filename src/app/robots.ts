@@ -17,7 +17,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin", "/api/", TRAP_PATH],
+        disallow: ["/admin", "/api/", "/account", "/auth/", "/signin", TRAP_PATH],
       },
     ],
     sitemap: "https://tattvamasi.in/sitemap.xml",
