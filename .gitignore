@@ -45,3 +45,4 @@ node_modules/
 # Sign-in setup secrets (scripts/setup-auth.mjs). Never commit.
 /.env.setup
 /.env.local.bak
+/supabase/.temp/
