@@ -69,3 +69,68 @@
     gap: 1rem;
   }
 }
+
+/* The email form: a labelled field and its button, one above the other. */
+.account-form {
+  width: 100%;
+  display: grid;
+  gap: 0.85rem;
+  justify-items: start;
+}
+
+.account-field {
+  width: 100%;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.account-input {
+  width: 100%;
+  max-width: 26rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 1rem / 1.4 var(--sans);
+}
+.account-input:focus-visible {
+  outline: 2px solid var(--marigold);
+  outline-offset: 1px;
+  border-color: var(--marigold);
+}
+
+.account-code {
+  max-width: 12rem;
+  letter-spacing: 0.3em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* "or", set on a rule between the two ways in. */
+.account-or {
+  width: 100%;
+  max-width: 26rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+}
+.account-or::before,
+.account-or::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--line);
+}
+
+.account-link {
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-size: 0.88rem;
+}

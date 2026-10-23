@@ -24,3 +24,6 @@ export function safeNext(raw: string | null | undefined): string {
 export function readsSession(pathname: string): boolean {
   return /^\/(account|signin|admin|auth)(\/|$)/.test(pathname);
 }
+
+/** Holds the address a sign-in code was sent to, between the two steps. */
+export const EMAIL_COOKIE = "tta_signin_email";

@@ -41,3 +41,7 @@ node_modules/
 # scripts/stotras/. What the repo commits is the check record for each
 # stotra (src/lib/stotra-corpus/checked/) and the built texts.
 /corpus/stotras/
+
+# Sign-in setup secrets (scripts/setup-auth.mjs). Never commit.
+/.env.setup
+/.env.local.bak

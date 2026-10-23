@@ -73,3 +73,38 @@ test("the sign-in pages are kept out of search and the start is never prefetched
   assert.doesNotMatch(out, /export async function GET/);
   assert.match(out, /status: 403/);
 });
+
+test("sign-in never sends a reader to a provider that is off or a project that is down", () => {
+  const page = read("src/app/signin/page.tsx");
+  assert.match(page, /await authStatus\(\)/);
+  assert.match(page, /status\.google && \(/, "the Google button is shown only when Google is on");
+  assert.match(page, /status\.email && \(/, "the email form is shown only when email codes are on");
+  const google = read("src/app/auth/google/route.ts");
+  assert.match(google, /status\.state !== "ready" \|\| !status\.google/);
+  // The status check reads Supabase's public settings, and email codes
+  // need SMTP the setup script switches on.
+  const status = read("src/lib/auth-status.ts");
+  assert.match(status, /\/auth\/v1\/settings/);
+  assert.match(status, /SIGNIN_EMAIL === "on"/);
+});
+
+test("the email-code actions validate their input and keep the address out of the URL", () => {
+  const actions = read("src/app/signin/actions.ts");
+  assert.match(actions, /^"use server";/);
+  assert.match(actions, /z\.string\(\)\.trim\(\)\.toLowerCase\(\)\.email\(\)/);
+  assert.ok(actions.includes("regex(/^\\d{6,10}$/)"), "the code must be 6–10 digits");
+  assert.match(actions, /httpOnly: true/);
+  assert.doesNotMatch(actions, /email=\$\{/, "the address is never put in a redirect");
+  // Every export of a "use server" file is a public endpoint.
+  const exported = [...actions.matchAll(/export async function (\w+)/g)].map((m) => m[1]).sort();
+  assert.deepEqual(exported, ["sendCode", "startOver", "verifyCode"]);
+});
+
+test("the setup script's secrets never reach git", () => {
+  const ignore = read(".gitignore");
+  assert.match(ignore, /^\/\.env\.setup$/m);
+  assert.match(ignore, /^\/\.env\.local\.bak$/m);
+  const example = read(".env.setup.example");
+  assert.match(example, /^SUPABASE_ACCESS_TOKEN=$/m, "the example carries no real token");
+  assert.match(example, /^GOOGLE_CLIENT_SECRET=$/m);
+});

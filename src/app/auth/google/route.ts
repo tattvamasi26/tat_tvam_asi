@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { isSupabaseConfigured, supabaseServer } from "@/lib/supabase";
 import { siteOrigin } from "@/lib/auth";
+import { authStatus } from "@/lib/auth-status";
 import { safeNext } from "@/lib/auth-paths";
 
 /**
@@ -15,6 +16,12 @@ export async function GET(request: NextRequest) {
   const origin = siteOrigin(request);
   const next = safeNext(request.nextUrl.searchParams.get("next"));
   if (!isSupabaseConfigured()) return NextResponse.redirect(`${origin}/signin`);
+  // Never hand the reader to Google unless it is switched on and the
+  // project answers: an old link or a bookmark lands back on sign-in.
+  const status = await authStatus();
+  if (status.state !== "ready" || !status.google) {
+    return NextResponse.redirect(`${origin}/signin?error=unavailable`);
+  }
 
   const supabase = await supabaseServer();
   const { data, error } = await supabase.auth.signInWithOAuth({

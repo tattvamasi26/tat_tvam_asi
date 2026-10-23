@@ -67,40 +67,46 @@ sign-in time the account page shows.
 
 ## Switching it on
 
-The code is done. These are settings, made once:
+`npm run setup:auth` (`scripts/setup-auth.mjs`) does the Supabase side. It finds or creates the project, applies `supabase/schema.sql`, configures sign-in and writes the keys into `.env.local`. It is safe to run again. Only two things need a person, because neither has an API.
 
-1. **A Supabase project.** The project URL in `.env.local` no longer
-   resolves (checked 2026-10-21), so it was deleted or paused.
-   - Create or restore a project.
-   - Run `supabase/schema.sql` in its SQL editor.
-   - Put its URL and keys in `.env.local` and in the host's
-     environment.
-2. **A Google OAuth client.** In Google Cloud Console, go to *APIs &
-   Services*, then *Credentials*, then *Create credentials*, then *OAuth
-   client ID*. Choose type *Web application*.
-   - Authorised JavaScript origins: `https://tattvamasi.in`, and
-     `http://localhost:3000` for development.
-   - Authorised redirect URI:
-     `https://<project-ref>.supabase.co/auth/v1/callback`. This is the
-     Supabase address, not the site's.
-   - On the consent screen, give the site's name and logo. List only
-     the `email`, `profile` and `openid` scopes.
-3. **In Supabase, go to Authentication, then Providers, then Google.**
-   Turn it on and paste the client ID and secret.
-4. **In Supabase, go to Authentication, then URL Configuration.**
-   - Site URL: `https://tattvamasi.in`.
-   - Redirect URLs: `https://tattvamasi.in/auth/callback` and
-     `http://localhost:3000/auth/callback`. Supabase refuses to return
-     a reader anywhere not on this list.
-5. **Set `NEXT_PUBLIC_SITE_URL=https://tattvamasi.in`** in production.
-   Then the return address never depends on the request's `Host`
-   header.
-6. **Keep email sign-ups disabled.** Readers come in through Google. The
-   admin's password account is made by hand.
+**Step 1: a Supabase access token (2 minutes).**
 
-The admin is unchanged: `/admin` still requires `user.email ===
-ADMIN_EMAIL`. A reader who signs in with Google gets their own account
-page and nothing more.
+1. Sign in at supabase.com. Your old project there no longer exists, so a new one will be made.
+2. Click your avatar (bottom left), then **Account preferences**, then **Access Tokens**, then **Generate new token**.
+3. Copy `.env.setup.example` to `.env.setup` and paste the token as `SUPABASE_ACCESS_TOKEN`.
+4. Run `npm run setup:auth`. It prints the address Google will need.
+
+**Step 2: a Google OAuth client (5 minutes).**
+
+1. Open console.cloud.google.com and choose or create a project.
+2. Go to **APIs & Services**, then **OAuth consent screen**:
+   - user type **External**;
+   - app name "Tat Tvam Asi", with your email as the support and developer contact;
+   - scopes: leave the defaults (`email`, `profile`, `openid`);
+   - then **Publish app**, so anyone can sign in, not only test users.
+3. Go to **APIs & Services**, then **Credentials**, then **Create credentials**, then **OAuth client ID**, with type **Web application**:
+   - **Authorised JavaScript origins**: `http://localhost:3000`, and the live address once deployed.
+   - **Authorised redirect URIs**: the address step 1 printed, `https://<project-ref>.supabase.co/auth/v1/callback`.
+4. Paste the client ID and secret into `.env.setup` as `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET`.
+5. Run `npm run setup:auth` again, then restart the dev server.
+
+"Continue with Google" now appears on `/signin` and works.
+
+**Optional: sign-in by email code.** Supabase's own mailer only delivers to members of your Supabase team, so email codes for the public need an SMTP service.
+
+1. Resend's free tier is enough: verify a domain there and create an API key.
+2. Put the `SMTP_*` values in `.env.setup`, as described in the example file.
+3. Run the script again.
+
+The sign-in page offers the email form only once this is done (`SIGNIN_EMAIL=on`).
+
+**When the site goes live.**
+
+1. Set `SITE_URL` to the live address and run the script again.
+2. Add the same `NEXT_PUBLIC_*`, `SUPABASE_SERVICE_ROLE_KEY`, `NEXT_PUBLIC_SITE_URL` and `SIGNIN_EMAIL` values to the host's environment.
+3. Add the live address to the Google client's JavaScript origins.
+
+**What readers see meanwhile.** The sign-in page checks Supabase before offering anything (`src/lib/auth-status.ts`). It shows Google only if Google is on, the email form only if email codes are on, and otherwise "Sign-in is not available right now". It never sends a reader to a project that does not answer.
 
 ## Before taking payment
 
