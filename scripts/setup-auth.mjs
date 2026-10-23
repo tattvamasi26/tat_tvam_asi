@@ -79,9 +79,19 @@ const step = (n, s) => console.log(`\n${n}. ${s}`);
 // ── 1. The project ─────────────────────────────────────────
 step(1, `Supabase project "${NAME}"`);
 const projects = await api("GET", "/projects");
-let project = projects.find((p) => p.name === NAME);
+// By its id when given (SUPABASE_PROJECT_REF), else by name, else the
+// account's only project — a free project paused for inactivity is
+// restored rather than replaced, so nothing in it is lost.
+let project =
+  projects.find((p) => p.id === cfg.SUPABASE_PROJECT_REF) ??
+  projects.find((p) => p.name === NAME) ??
+  (projects.length === 1 && !cfg.SUPABASE_PROJECT_NAME ? projects[0] : undefined);
 if (project) {
-  console.log(`   found: ${project.id} (${project.region})`);
+  console.log(`   found: ${project.id} "${project.name}" (${project.region}), status ${project.status}`);
+  if (["INACTIVE", "PAUSED"].includes(project.status)) {
+    console.log("   it is paused; restoring it (this keeps its data)");
+    await api("POST", `/projects/${project.id}/restore`, {});
+  }
 } else {
   const orgs = await api("GET", "/organizations");
   const org = cfg.SUPABASE_ORG_ID ? orgs.find((o) => o.id === cfg.SUPABASE_ORG_ID || o.slug === cfg.SUPABASE_ORG_ID) : orgs[0];
@@ -132,10 +142,6 @@ const auth = {
   // is signing in on.
   mailer_otp_exp: 3600,
   mailer_otp_length: 6,
-  mailer_subjects_magic_link: "Your Tat Tvam Asi sign-in code",
-  mailer_templates_magic_link_content: codeEmail("Sign in"),
-  mailer_subjects_confirmation: "Your Tat Tvam Asi sign-in code",
-  mailer_templates_confirmation_content: codeEmail("Welcome"),
   external_google_enabled: google,
   ...(google ? { external_google_client_id: cfg.GOOGLE_CLIENT_ID, external_google_secret: cfg.GOOGLE_CLIENT_SECRET } : {}),
   ...(smtp
@@ -146,6 +152,12 @@ const auth = {
         smtp_pass: cfg.SMTP_PASS,
         smtp_admin_email: cfg.SMTP_SENDER_EMAIL,
         smtp_sender_name: cfg.SMTP_SENDER_NAME || "Tat Tvam Asi",
+        // Supabase lets a free project change its email templates only
+        // once it sends through its own SMTP.
+        mailer_subjects_magic_link: "Your Tat Tvam Asi sign-in code",
+        mailer_templates_magic_link_content: codeEmail("Sign in"),
+        mailer_subjects_confirmation: "Your Tat Tvam Asi sign-in code",
+        mailer_templates_confirmation_content: codeEmail("Welcome"),
       }
     : {}),
 };
