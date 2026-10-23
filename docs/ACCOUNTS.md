@@ -45,6 +45,17 @@ reading meter, below). It is built so that payment can be added later.
   a phone. Sent by the meter (`?reason=limit`), it says the free pages
   are used and shows them as five filled pips.
 
+## Staying signed in
+
+A reader signs in once per browser. The session lives in Supabase's
+cookies, kept for 400 days; the access token lasts an hour and the
+middleware renews it with the refresh token on any reading page or
+account page, so the reader never sees it expire. On the project,
+`sessions_timebox` and `sessions_inactivity_timeout` are both 0 (no
+forced sign-out). A reader is signed out only by pressing Sign out,
+clearing the site's cookies, or a different browser or device. Signing
+in again there is one click: Google remembers the account.
+
 ## The reading meter
 
 A reader may open **five reading pages a month** without an account.

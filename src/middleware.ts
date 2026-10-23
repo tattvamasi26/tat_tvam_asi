@@ -194,7 +194,7 @@ export async function middleware(request: NextRequest) {
   }
   if (!redirecting && (gated || readsSession(pathname))) {
     // For the masthead's account button only; never trusted for access.
-    if (signedIn) response.cookies.set(SIGNED_IN_COOKIE, "1", { path: "/", sameSite: "lax", maxAge: 7 * 86_400 });
+    if (signedIn) response.cookies.set(SIGNED_IN_COOKIE, "1", { path: "/", sameSite: "lax", maxAge: 400 * 86_400 });
     else if (request.cookies.has(SIGNED_IN_COOKIE)) response.cookies.delete(SIGNED_IN_COOKIE);
   }
 
