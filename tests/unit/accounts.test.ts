@@ -61,7 +61,7 @@ test("the sign-in pages are kept out of search and the start is never prefetched
   const star = rules.find((x) => x.userAgent === "*")!;
   for (const p of ["/account", "/auth/", "/signin"]) assert.ok((star.disallow as string[]).includes(p), p);
   const signin = read("src/app/signin/page.tsx");
-  assert.match(signin, /<a className="btn btn-outline account-google" href=\{`\/auth\/google/);
+  assert.match(signin, /<a className="auth-google" href=\{`\/auth\/google/);
   assert.doesNotMatch(signin, /<Link[^>]*auth\/google/);
   // The server reads the verified user, never the unverified cookie.
   const auth = read("src/lib/auth.ts");

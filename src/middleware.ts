@@ -1,6 +1,22 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createServerClient, type CookieOptions } from "@supabase/ssr";
 import { readsSession } from "@/lib/auth-paths";
+import { authStatus } from "@/lib/auth-status";
+import {
+  COOKIELESS_DAILY,
+  FREE_READS,
+  LEFT_COOKIE,
+  METER_COOKIE,
+  SIGNED_IN_COOKIE,
+  WINDOW_MS,
+  decide,
+  decodeMeter,
+  encodeMeter,
+  isGatedPath,
+  isVerifiedCrawler,
+  meterSecret,
+  pageId,
+} from "@/lib/security/reading-gate";
 import { LOCALE_COOKIE, isLocale } from "@/i18n/config";
 import { classify, TRAP_PATH } from "@/lib/security/bots";
 import { RateLimiter } from "@/lib/security/rate-limit";
@@ -45,6 +61,8 @@ const prefetches = new RateLimiter([
   { limit: 600, ms: 60_000 },
   { limit: 6_000, ms: 3_600_000 },
 ]);
+// Reading pages opened by a client that keeps no cookies, per address.
+const cookieless = new RateLimiter([{ limit: COOKIELESS_DAILY, ms: 86_400_000 }]);
 const TRAP_BAN_MS = 3_600_000;
 const PROBE_BAN_MS = 900_000;
 const REFUSAL = "Automated access to this site is not permitted. See /rights.";
@@ -108,6 +126,10 @@ export async function middleware(request: NextRequest) {
 
   // 4 — the language parameter
   const lang = request.nextUrl.searchParams.get("lang");
+  // A reading page tells the layout so, for its schema.org markup.
+  const gated = isGatedPath(pathname);
+  const forward = new Headers(request.headers);
+  if (gated) forward.set("x-tta-metered", "1");
   let response: NextResponse;
   if (isLocale(lang)) {
     const url = request.nextUrl.clone();
@@ -120,7 +142,7 @@ export async function middleware(request: NextRequest) {
       secure: !isLocalHost(request.headers.get("host")),
     });
   } else {
-    response = NextResponse.next();
+    response = NextResponse.next({ request: { headers: forward } });
   }
 
   // 5 — a signed-in reader's session, refreshed where a page reads it.
@@ -128,8 +150,52 @@ export async function middleware(request: NextRequest) {
   // is never saved, and the next refresh, with the spent token, fails.
   // Only on these paths: elsewhere a page never looks at the session,
   // and asking Supabase on every page would cost every reader a call.
-  if (readsSession(pathname) && !response.headers.has("location")) {
-    response = await refreshSession(request, response);
+  const redirecting = response.headers.has("location");
+  let signedIn = false;
+  if (!redirecting && (readsSession(pathname) || (gated && hasSessionCookie(request)))) {
+    const r = await refreshSession(request, response, forward);
+    response = r.response;
+    signedIn = r.signedIn;
+  }
+
+  // 6 — the reading meter (lib/security/reading-gate.ts). A few reading
+  // pages are free; then the reader signs in. Only where sign-in works,
+  // so nobody is ever walled off from a way in that is switched off.
+  if (gated && !redirecting && !signedIn && (await meterIsOn())) {
+    const ip = request.ip ?? rightmostForwarded(request.headers);
+    if (!(await isVerifiedCrawler(ua, ip))) {
+      // A router prefetch never counts and never carries a reading page
+      // to a signed-out reader: it would read past the meter unseen.
+      if (isRouterPrefetch(request.headers)) return new NextResponse(null, { status: 204 });
+
+      const secret = meterSecret()!;
+      const raw = request.cookies.get(METER_COOKIE)?.value;
+      // A client that never sends the cookie back is counted by address.
+      if (!raw && !uncounted && cookieless.hit(key)) return toSignIn(request, pathname);
+      const decision = decide(await decodeMeter(raw, secret), await pageId(pathname));
+      if (!decision.allow) return toSignIn(request, pathname);
+
+      const secure = !isLocalHost(request.headers.get("host"));
+      response.cookies.set(METER_COOKIE, await encodeMeter(decision.meter, secret), {
+        path: "/",
+        httpOnly: true,
+        sameSite: "lax",
+        secure,
+        maxAge: Math.ceil((decision.meter.since + WINDOW_MS - Date.now()) / 1000),
+      });
+      // Read by the page's notice only; the signed cookie is what counts.
+      response.cookies.set(LEFT_COOKIE, String(FREE_READS - decision.meter.read.length), {
+        path: "/",
+        sameSite: "lax",
+        secure,
+        maxAge: 30 * 86_400,
+      });
+    }
+  }
+  if (!redirecting && (gated || readsSession(pathname))) {
+    // For the masthead's account button only; never trusted for access.
+    if (signedIn) response.cookies.set(SIGNED_IN_COOKIE, "1", { path: "/", sameSite: "lax", maxAge: 7 * 86_400 });
+    else if (request.cookies.has(SIGNED_IN_COOKIE)) response.cookies.delete(SIGNED_IN_COOKIE);
   }
 
   // HSTS only off localhost: sent to localhost it would pin every other
@@ -147,11 +213,46 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
-async function refreshSession(request: NextRequest, response: NextResponse): Promise<NextResponse> {
+/** Is the meter switched on? Only where a reader can actually sign in. */
+async function meterIsOn(): Promise<boolean> {
+  if (process.env.READING_GATE === "off" || !meterSecret()) return false;
+  const status = await authStatus();
+  return status.state === "ready" && (status.google || status.email);
+}
+
+/** A Supabase session cookie is present (it is verified before it counts). */
+function hasSessionCookie(request: NextRequest): boolean {
+  return request.cookies.getAll().some((c) => /^sb-.+-auth-token/.test(c.name));
+}
+
+/** The address the platform or our proxy saw, unaltered, for crawler checks. */
+function rightmostForwarded(headers: Headers): string | null {
+  const chain = (headers.get("x-forwarded-for") ?? "").split(",").map((x) => x.trim()).filter(Boolean);
+  return chain.at(-1) ?? null;
+}
+
+/** Out of free pages: to sign-in, which brings the reader back here after. */
+function toSignIn(request: NextRequest, pathname: string): NextResponse {
+  const url = request.nextUrl.clone();
+  url.pathname = "/signin";
+  url.search = "";
+  url.searchParams.set("reason", "limit");
+  url.searchParams.set("next", pathname);
+  const res = NextResponse.redirect(url, 307);
+  res.headers.set("cache-control", "no-store");
+  return res;
+}
+
+async function refreshSession(
+  request: NextRequest,
+  response: NextResponse,
+  forward: Headers,
+): Promise<{ response: NextResponse; signedIn: boolean }> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return response;
+  if (!url || !key) return { response, signedIn: false };
   let out = response;
+  let signedIn = false;
   try {
     const supabase = createServerClient(url, key, {
       cookies: {
@@ -160,16 +261,19 @@ async function refreshSession(request: NextRequest, response: NextResponse): Pro
           // The page rendering this request must see the new tokens
           // too, or it refreshes again with the spent one.
           for (const { name, value } of cookies) request.cookies.set(name, value);
-          out = NextResponse.next({ request });
+          forward.set("cookie", request.headers.get("cookie") ?? "");
+          out = NextResponse.next({ request: { headers: forward } });
           for (const { name, value, options } of cookies) out.cookies.set(name, value, options);
         },
       },
     });
-    await supabase.auth.getUser();
+    // getUser asks Supabase to verify the token; a forged cookie fails.
+    const { data } = await supabase.auth.getUser();
+    signedIn = Boolean(data.user);
   } catch {
     // Supabase unreachable: the page itself will find no reader.
   }
-  return out;
+  return { response: out, signedIn };
 }
 
 export const config = {

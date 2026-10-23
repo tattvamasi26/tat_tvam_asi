@@ -162,6 +162,11 @@ That is what step 4 is for.
   - Sign-out is POST only and same-origin.
   - `profiles` has no public read. Column grants keep any future
     payment column out of a reader's reach.
+- **The reading meter** (`docs/ACCOUNTS.md`). Five reading pages a
+  month without an account, counted in an HMAC-signed cookie; then
+  sign-in. A client with no cookies is counted by address. It is a
+  further brake on bulk copying: past five pages a scraper needs a
+  signed-in Google account, and its session can be ended.
 - **Database.** RLS is enabled on all 25 tables; the public role can only
   read. Writes go through the service role behind `requireAdmin()`.
 - **Secrets.** `.env.local` is git-ignored and has never been committed

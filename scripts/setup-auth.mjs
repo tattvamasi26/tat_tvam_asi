@@ -174,7 +174,11 @@ const service = keys.find((k) => k.name === "service_role")?.api_key;
 if (!anon || !service) throw new Error("Could not read the project's anon and service_role keys.");
 
 const envFile = join(ROOT, ".env.local");
+// The reading meter's signing secret: made once, then kept, so readers'
+// free-page counts survive a re-run.
+const existingSecret = readEnvFile(envFile).METER_SECRET;
 const set = {
+  METER_SECRET: existingSecret || randomBytes(32).toString("base64url"),
   NEXT_PUBLIC_SUPABASE_URL: url,
   NEXT_PUBLIC_SUPABASE_ANON_KEY: anon,
   SUPABASE_SERVICE_ROLE_KEY: service,

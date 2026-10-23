@@ -8,6 +8,7 @@ import { MastheadLinks } from "./MastheadLinks";
 import { Wordmark } from "@/components/brand/Mark";
 import { scriptFor, scriptClass } from "@/lib/script";
 import { accountStrings } from "@/i18n/account";
+import { AccountButton } from "@/components/account/AccountButton";
 
 /**
  * The floating masthead.
@@ -61,15 +62,7 @@ export function Navbar() {
             </svg>
           </Link>
 
-          {/* Always the same link, signed in or not: the masthead stays
-              the same on every page and costs no session lookup. The
-              account page sends a signed-out reader to sign in. */}
-          <Link href="/account" className="icon-btn" aria-label={account.navAccount} prefetch={false}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="17" height="17" aria-hidden="true">
-              <circle cx="12" cy="8.5" r="3.8" />
-              <path d="M4.5 20c1.3-3.6 4.2-5.4 7.5-5.4s6.2 1.8 7.5 5.4" strokeLinecap="round" />
-            </svg>
-          </Link>
+          <AccountButton signInLabel={account.signIn} accountLabel={account.yourAccount} />
 
           <LanguageSwitcher current={locale} label={t.chooseLanguage} />
 

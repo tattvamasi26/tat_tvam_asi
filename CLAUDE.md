@@ -689,8 +689,9 @@ Read `docs/SECURITY.md` before touching any of this. The short version:
 
 ### Readers' accounts
 
-Readers can sign in with Google. It is optional: no page is behind it.
-Read `docs/ACCOUNTS.md` first.
+Readers can sign in with Google. Five reading pages a month are free;
+then the reader signs in, free, to read on. Read `docs/ACCOUNTS.md`
+first.
 
 - The flow is `/signin`, then `/auth/google`, then Supabase and Google,
   then `/auth/callback`, then `/account`. It all runs in route handlers
@@ -700,7 +701,15 @@ Read `docs/ACCOUNTS.md` first.
 - Read the reader with `currentReader()` (`src/lib/auth.ts`). It calls
   `getUser()`. Never use `getSession()` on the server.
 - The middleware refreshes the session only where `readsSession()`
-  says so. Don't widen that to every page.
+  says so, or on a reading page that carries a session cookie. Don't
+  widen that to every page.
+- **The reading meter** is `src/lib/security/reading-gate.ts` plus step
+  6 of the middleware. A new kind of reading page must be added to
+  `GATED`; an index never is. The count is an HMAC-signed cookie; the
+  meter is on only when `authStatus()` says a way in works; verified
+  Google and Bing crawlers read freely and the page declares
+  `isAccessibleForFree: false`. `READING_GATE=off` switches it off.
+  An e2e test may open at most five reading pages per browser context.
 - `profiles` is the one table **without** a public-read policy, on
   purpose.
   - A reader may update only the columns granted to `authenticated`.

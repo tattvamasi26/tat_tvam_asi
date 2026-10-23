@@ -1,8 +1,8 @@
 # Readers' accounts
 
-Readers can sign in with Google. An account is optional: every page
-reads the same without one. Today it tells the site who its readers
-are. It is built so that payment can be added later.
+Readers can sign in with Google. A few reading pages are free without
+an account; after that the reader signs in, free, to read on (the
+reading meter, below). It is built so that payment can be added later.
 
 ## How it works
 
@@ -29,15 +29,59 @@ are. It is built so that payment can be added later.
   asks Supabase to verify the token. The second only decodes a cookie,
   which anyone can write.
 - **The middleware refreshes the session** on `/account`, `/signin`,
-  `/auth/*` and `/admin` only.
+  `/auth/*` and `/admin`, and on a reading page that carries a
+  session cookie (the meter must know who is signed in).
   - A Server Component cannot write cookies. A refresh there would be
     lost, and the spent token would fail the next time.
   - Elsewhere no page reads the session. So a reader on an ordinary
     page never costs the site a call to Supabase.
 - **Sign-out is POST only**, from the account page. It refuses a request
   from another site's origin.
-- The masthead's account button is the same link for everybody. The
-  account page sends a signed-out reader to sign in.
+- The masthead's account button opens sign-in for a signed-out reader
+  (returning them to the page they were on) and the account page for
+  a signed-in one.
+- **The sign-in page is set in the site's feature card**: a Rigveda
+  manuscript on the left, the words on the right, a band above them on
+  a phone. Sent by the meter (`?reason=limit`), it says the free pages
+  are used and shows them as five filled pips.
+
+## The reading meter
+
+A reader may open **five reading pages a month** without an account.
+The sixth sends them to sign in, and sign-in brings them back to that
+page. The code is `src/lib/security/reading-gate.ts` and step 6 of
+`src/middleware.ts`.
+
+- **A reading page is one item inside a section**: a text, a stotra, a
+  hymn, a temple or acharya written up, a festival, a song. Indexes,
+  section pages, the home page, search, `/rights` and `/practice` are
+  never counted. Opening a page already read does not count again.
+  The list of patterns is `GATED`; the unit test holds both sides.
+- **The count is a cookie signed with HMAC** (`tta_meter`, httpOnly),
+  so it cannot be edited. It holds the window's start and eight hex
+  digits of each page's path hash. A reader who deletes it starts
+  again; that is accepted. This is a door, not a vault.
+- **A client that keeps no cookies** is counted by address instead,
+  thirty reading pages a day, in memory.
+- **Google's and Bing's crawlers read freely**, but only once their
+  address is checked against the ranges each engine publishes. A
+  client that merely says "Googlebot" is metered. Each metered page
+  carries schema.org `isAccessibleForFree: false` markup, which is
+  how Google asks a site to declare this, so it is not cloaking.
+- **A router prefetch of a reading page gets an empty 204** for a
+  signed-out reader. Otherwise the pages linked from a page would be
+  read past the meter unseen.
+- **It is on only where sign-in works.** The middleware checks
+  `authStatus()`: if Supabase is down, or no way in is switched on,
+  every page is open. `READING_GATE=off` switches it off by hand.
+  The secret is `METER_SECRET`, written once by `npm run setup:auth`;
+  changing it gives every reader a fresh allowance.
+- **The reader is told before the wall.** With two or fewer free pages
+  left, a small card at the foot of a reading page says so
+  (`components/account/MeterNotice.tsx`). It reads `tta_meter_left`,
+  a plain cookie that is only a hint. The masthead's account button
+  reads `tta_signed_in` the same way, to choose between sign-in and
+  the account page. Neither cookie grants anything.
 
 ## What is stored
 

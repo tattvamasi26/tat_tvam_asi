@@ -1,124 +1,169 @@
-/* Sign-in and the reader's account. One card in the narrow column,
-   built from the same tokens as the cards and the at-a-glance panel. */
+/* Sign-in, the reader's account, and the reading meter's notice.
 
-.account-card {
+   Sign-in is set in the site's feature block: one large rounded card on
+   the paper, a manuscript held on the left, the words on the right. On a
+   phone the picture becomes a short band above the words. Nothing here
+   is dark; the accents are the site's marigold and gold. */
+
+.auth {
+  padding-block: clamp(1.5rem, 5vw, 4rem) clamp(3rem, 7vw, 5.5rem);
+}
+
+.auth-card {
   display: grid;
-  gap: 1.25rem;
-  justify-items: start;
-  padding: clamp(1.25rem, 3vw, 1.75rem);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  max-width: 68rem;
+  margin-inline: auto;
+  overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: var(--r-lg);
+  border-radius: var(--r-xl);
   background: var(--card);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow);
 }
 
-.account-card .rule {
-  width: 100%;
-  margin: 0.25rem 0 0;
-}
-
-.account-google {
-  gap: 0.65rem;
-}
-
-.account-notice {
-  margin-top: 0;
-  /* The shared notice fits its content; on this card a long Kannada or
-     Hindi sentence must wrap inside it instead. */
-  display: flex;
-  width: 100%;
-  max-width: 100%;
-  overflow-wrap: anywhere;
-}
-
-.account-kept {
-  margin: -0.5rem 0 0;
-}
-
-.account-list {
-  width: 100%;
+.auth-media {
+  position: relative;
   margin: 0;
+  min-height: 34rem;
+  background: var(--paper-2);
+}
+.auth-media::after {
+  /* A soft wash at the foot, so the credit stays legible on the page. */
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 7rem;
+  background: linear-gradient(to top, rgba(43, 31, 6, 0.55), transparent);
+  pointer-events: none;
+}
+.auth-media-credit {
+  position: absolute;
+  z-index: 1;
+  left: 1.25rem;
+  right: 1.25rem;
+  bottom: 1rem;
+  font-size: 0.74rem;
+  line-height: 1.4;
+  color: #fffaf0;
+}
+
+.auth-body {
   display: grid;
-  gap: 0.85rem;
+  align-content: center;
+  justify-items: start;
+  gap: 1.15rem;
+  padding: clamp(1.5rem, 4.5vw, 3.5rem);
+  min-width: 0;
 }
 
-.account-row {
-  display: grid;
-  gap: 0.15rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--line);
-}
-
-.account-row:first-child {
-  padding-top: 0;
-  border-top: 0;
-}
-
-.account-row dt {
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--ink-3);
-}
-
-.account-row dd {
+.auth-title {
   margin: 0;
-  font-size: 1rem;
-  line-height: 1.55;
-  color: var(--ink);
-  overflow-wrap: anywhere;
+  font-size: clamp(2.1rem, 4.4vw, 3.4rem);
+}
+.auth-lede {
+  margin: 0;
+  max-width: 34rem;
 }
 
-@media (min-width: 600px) {
-  .account-row {
-    grid-template-columns: 10rem 1fr;
-    align-items: baseline;
-    gap: 1rem;
+@media (max-width: 860px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+    border-radius: var(--r-lg);
+  }
+  .auth-media {
+    min-height: 0;
+    aspect-ratio: 16 / 7;
   }
 }
 
-/* The email form: a labelled field and its button, one above the other. */
-.account-form {
-  width: 100%;
-  display: grid;
-  gap: 0.85rem;
-  justify-items: start;
-}
-
-.account-field {
-  width: 100%;
-  display: grid;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink-2);
-}
-
-.account-input {
-  width: 100%;
-  max-width: 26rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--line-2);
+/* The meter: five pips, the used ones filled. */
+.auth-meter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.85rem;
+  padding: 0.7rem 1rem;
   border-radius: var(--r);
-  background: var(--paper);
+  background: var(--marigold-soft);
+}
+.auth-meter-pips {
+  display: inline-flex;
+  gap: 0.3rem;
+}
+.auth-meter-pip {
+  width: 1.6rem;
+  height: 0.45rem;
+  border-radius: var(--pill);
+  background: rgba(138, 97, 0, 0.18);
+}
+.auth-meter-pip[data-on] {
+  background: var(--gold-bright);
+}
+.auth-meter-text {
+  font: 600 0.88rem / var(--lh-snug) var(--sans);
+  color: var(--gold);
+}
+
+/* A problem, said plainly. */
+.auth-alert {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  width: 100%;
+  margin: 0;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(185, 133, 0, 0.35);
+  border-radius: var(--r);
+  background: var(--card-2);
+  font-size: 0.92rem;
+  line-height: 1.5;
   color: var(--ink);
-  font: 500 1rem / 1.4 var(--sans);
-}
-.account-input:focus-visible {
-  outline: 2px solid var(--marigold);
-  outline-offset: 1px;
-  border-color: var(--marigold);
+  overflow-wrap: anywhere;
 }
 
-.account-code {
-  max-width: 12rem;
-  letter-spacing: 0.3em;
-  font-variant-numeric: tabular-nums;
-}
-
-/* "or", set on a rule between the two ways in. */
-.account-or {
+/* The ways in. */
+.auth-actions {
   width: 100%;
   max-width: 26rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.auth-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 3.4rem;
+  padding: 0.8rem 1.25rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--pill);
+  background: #fff;
+  color: var(--ink);
+  font: 600 1rem / 1.3 var(--sans);
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.auth-google svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+}
+@media (hover: hover) {
+  .auth-google:hover {
+    border-color: var(--ink-3);
+    box-shadow: var(--shadow);
+    transform: translateY(-1px);
+  }
+}
+.auth-google:focus-visible,
+.auth-textbtn:focus-visible {
+  outline: 2px solid var(--marigold);
+  outline-offset: 3px;
+}
+
+.auth-or {
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -126,17 +171,245 @@
   font-size: 0.82rem;
   color: var(--ink-3);
 }
-.account-or::before,
-.account-or::after {
+.auth-or::before,
+.auth-or::after {
   content: "";
   flex: 1;
   height: 1px;
   background: var(--line);
 }
 
-.account-link {
+.auth-form {
+  display: grid;
+  gap: 0.75rem;
+}
+.auth-field {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.auth-input {
+  width: 100%;
+  min-height: 3.1rem;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 1rem / 1.4 var(--sans);
+}
+.auth-input:focus-visible {
+  outline: 2px solid var(--marigold);
+  outline-offset: 1px;
+  border-color: var(--marigold);
+}
+.auth-code {
+  font-size: 1.35rem;
+  letter-spacing: 0.35em;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.auth-submit {
+  width: 100%;
+  justify-content: center;
+}
+.auth-textbtn {
+  padding: 0.2rem 0;
   border: 0;
   background: none;
   cursor: pointer;
-  font-size: 0.88rem;
+  font: 600 0.9rem / 1.3 var(--sans);
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Three reassurances, on the home page's marigold circles. */
+.auth-points {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0.4rem 0 0;
+  padding: 1.15rem 0 0;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+.auth-point {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: start;
+  min-width: 0;
+}
+.auth-point-icon {
+  display: grid;
+  place-items: center;
+  width: 2.3rem;
+  height: 2.3rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--marigold-2), var(--marigold));
+  color: var(--ink);
+}
+.auth-point-icon svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+.auth-point-title {
+  display: block;
+  font: 650 0.9rem / var(--lh-snug) var(--sans);
+  color: var(--ink);
+}
+.auth-point-note {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+@media (max-width: 600px) {
+  .auth-points {
+    grid-template-columns: 1fr;
+  }
+}
+
+.auth-foot {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem 1.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+}
+.auth-foot p {
+  margin: 0;
+}
+.auth-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* The account page. */
+.auth-who {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.auth-avatar {
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, var(--marigold-2), var(--marigold));
+  font: 700 1.25rem / 1 var(--sans);
+  color: var(--ink);
+}
+.auth-rows {
+  width: 100%;
+  margin: 0;
+  display: grid;
+}
+.auth-row {
+  display: grid;
+  gap: 0.15rem;
+  padding-block: 0.8rem;
+  border-top: 1px solid var(--line);
+}
+.auth-row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.auth-row dt {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+.auth-row dd {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+@media (min-width: 600px) {
+  .auth-row {
+    grid-template-columns: 9rem 1fr;
+    align-items: baseline;
+    gap: 1rem;
+  }
+}
+.auth-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* The meter's notice on a reading page: a small card at the foot of
+   the screen, shown only when two or fewer free pages are left. */
+.meter-notice {
+  position: fixed;
+  z-index: 60;
+  left: 50%;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  width: min(40rem, calc(100% - 2rem));
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 1rem;
+  padding: 0.75rem 0.75rem 0.75rem 1.15rem;
+  border: 1px solid var(--line-2);
+  border-radius: var(--r-lg);
+  background: var(--card);
+  box-shadow: var(--shadow-lg);
+  animation: meter-in 0.4s var(--ease) both;
+}
+.meter-notice-text {
+  flex: 1 1 14rem;
+  margin: 0;
+  font: 600 0.92rem / 1.45 var(--sans);
+  color: var(--ink);
+}
+.meter-notice-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.meter-notice-close {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+@media (hover: hover) {
+  .meter-notice-close:hover {
+    background: var(--paper-2);
+    color: var(--ink);
+  }
+}
+@keyframes meter-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 0.75rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .meter-notice {
+    animation: none;
+  }
+}
+@media print {
+  .meter-notice {
+    display: none;
+  }
 }
