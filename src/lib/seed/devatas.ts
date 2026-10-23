@@ -142,6 +142,20 @@ export const DEVATAS: DevataRow[] = [
       kn: "ಸ್ಕಂದ, ಕಾರ್ತಿಕೇಯ, ಮುರುಗ ಎಂದೂ ಕರೆಯಲ್ಪಡುವ ಸುಬ್ರಹ್ಮಣ್ಯನು ಶಿವಪಾರ್ವತಿಯರ ಪುತ್ರ ಮತ್ತು ದೇವಸೇನಾಪತಿ.",
       hi: "सुब्रह्मण्य, जिन्हें स्कंद, कार्तिकेय और मुरुगन भी कहते हैं, शिव और पार्वती के पुत्र और देवताओं के सेनापति हैं।",
     },
+    image: {
+      src: "/images/stutis/subrahmanya-bronze-jambavanodai.jpg",
+      width: 1280,
+      height: 2809,
+      position: "50% 18%",
+      credit: "Subrahmanya, bronze, 13th century, from Jambavanodai, Thanjavur district — photograph by Sailko, CC BY 3.0, via Wikimedia Commons",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Subrahmanya,_xiii_secolo,_da_jambavanodai,_thanjavur_district_01.jpg",
+      alt: {
+        en: "A thirteenth-century bronze of Subrahmanya, four-armed, standing on a lotus base.",
+        kn: "ಕಮಲಪೀಠದ ಮೇಲೆ ನಿಂತಿರುವ ಚತುರ್ಭುಜ ಸುಬ್ರಹ್ಮಣ್ಯನ ಹದಿಮೂರನೆಯ ಶತಮಾನದ ಕಂಚಿನ ಮೂರ್ತಿ.",
+        hi: "कमल पीठ पर खड़े चतुर्भुज सुब्रह्मण्य की तेरहवीं सदी की कांस्य प्रतिमा।",
+      },
+    },
   },
   {
     slug: "shiva",
@@ -156,6 +170,19 @@ export const DEVATAS: DevataRow[] = [
       kn: "ಶಿವನನ್ನು ಲಿಂಗರೂಪದಲ್ಲಿ ಪೂಜಿಸಲಾಗುತ್ತದೆ. ಅವನ ಅನೇಕ ಸ್ತೋತ್ರಗಳು ಸಂಪ್ರದಾಯದಂತೆ ಆದಿ ಶಂಕರಾಚಾರ್ಯರ ಕೃತಿಗಳು.",
       hi: "शिव की पूजा लिंग रूप में होती है। उनके कई स्तोत्र परंपरा से आदि शंकराचार्य के माने जाते हैं।",
     },
+    image: {
+      src: "/images/stutis/shiva-nataraja-chola-bronze-cleveland.jpg",
+      width: 1280,
+      height: 1600,
+      position: "50% 35%",
+      credit: "Nataraja, Shiva as Lord of the Dance, Chola bronze, Tamil Nadu, c. 1100 — Cleveland Museum of Art, CC0",
+      sourceUrl: "https://commons.wikimedia.org/wiki/File:Clevelandart_1930.331.jpg",
+      alt: {
+        en: "A Chola bronze of Shiva as Nataraja, dancing in a ring of flames.",
+        kn: "ಜ್ವಾಲಾವೃತ್ತದೊಳಗೆ ನರ್ತಿಸುತ್ತಿರುವ ನಟರಾಜ ಶಿವನ ಚೋಳರ ಕಾಲದ ಕಂಚಿನ ಮೂರ್ತಿ.",
+        hi: "ज्वालाओं के वृत्त में नृत्य करते नटराज शिव की चोल कालीन कांस्य प्रतिमा।",
+      },
+    },
   },
   {
     slug: "bhairava",
@@ -169,6 +196,20 @@ export const DEVATAS: DevataRow[] = [
       en: "Bhairava is the fierce form of Shiva. As Kala Bhairava he is the guardian of Kashi.",
       kn: "ಭೈರವನು ಶಿವನ ಉಗ್ರರೂಪ. ಕಾಲಭೈರವನಾಗಿ ಅವನು ಕಾಶಿಯ ರಕ್ಷಕ.",
       hi: "भैरव शिव का उग्र रूप हैं। काल भैरव के रूप में वे काशी के रक्षक हैं।",
+    },
+    image: {
+      src: "/images/stutis/bhairava-chola-bronze.jpg",
+      width: 1280,
+      height: 2102,
+      position: "50% 22%",
+      credit: "Bhairava, Chola bronze, Tamil Nadu, 10th–11th century — photograph by Sailko, CC BY-SA 3.0, via Wikimedia Commons",
+      sourceUrl:
+        "https://commons.wikimedia.org/wiki/File:Tamil_nadu,_epoca_cola,_bhairava,_la_forma_terribile_di_shiva,_x-xi_sec..JPG",
+      alt: {
+        en: "A Chola bronze of Bhairava, four-armed, with flaming hair, standing.",
+        kn: "ಜ್ವಾಲಾಕೇಶಿಯಾದ ಚತುರ್ಭುಜ ಭೈರವನ ನಿಂತಿರುವ ಚೋಳರ ಕಾಲದ ಕಂಚಿನ ಮೂರ್ತಿ.",
+        hi: "ज्वाला जैसे केशों वाले चतुर्भुज भैरव की खड़ी चोल कालीन कांस्य प्रतिमा।",
+      },
     },
   },
   {

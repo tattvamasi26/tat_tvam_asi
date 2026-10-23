@@ -61,14 +61,24 @@ export function EditionText({
         </ol>
       </section>
 
-      <section className="edition-notes" aria-labelledby="edition-notes-title">
-        <h2 id="edition-notes-title">{s.editionTitle}</h2>
+      {/* The record is for whoever wants it; a reader sees one line.
+          Closed by default, so it never stands between them and the text. */}
+      <details className="edition-notes">
+        <summary>
+          <span className="edition-summary-line">
+            {s.checkedLine} · {edition.title[locale]}, {s.pageAbbr}{" "}
+            {pages.length > 1 ? `${pages[0]}–${pages.at(-1)}` : pages[0]}
+          </span>
+          <span className="edition-summary-open">{s.editionTitle}</span>
+        </summary>
         <p>
           {sa(edition.titleSa)} · {edition.title[locale]}, {edition.detail[locale]}. {s.printedPages}:{" "}
           {pages.length > 1 ? `${pages[0]}–${pages.at(-1)}` : pages[0]}.
         </p>
         <p>{s.method}</p>
         {stotra.refrainExpanded && <p>{s.refrain}</p>}
+        {stotra.spacingAdjusted && <p>{s.spacing}</p>}
+        {stotra.reflowed && <p>{s.reflowed}</p>}
 
         {stotra.corrections.length > 0 && (
           <>
@@ -139,7 +149,7 @@ export function EditionText({
             {s.checkedOn}: {checked}
           </li>
         </ul>
-      </section>
+      </details>
     </>
   );
 }

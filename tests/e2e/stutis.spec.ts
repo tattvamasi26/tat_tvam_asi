@@ -141,6 +141,9 @@ test.describe("the stutis", () => {
     // The record: the edition, the corrections, the readings kept, the scans.
     const notes = page.locator(".edition-notes");
     await expect(notes).toContainText("Bṛhat Stotra Ratnākara");
+    // The record is folded under one line until the reader opens it.
+    await expect(notes).not.toHaveAttribute("open", "");
+    await notes.locator("summary").click();
     await expect(notes.locator("li", { hasText: "प्रभाभिराम" })).toContainText("misprint");
     await expect(notes.locator("a[href*='wikisource.org']").first()).toBeVisible();
 

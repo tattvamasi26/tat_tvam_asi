@@ -170,19 +170,50 @@ export function applyChecks(stotra, check) {
     v.lines = v.lines.slice(0, at + 1);
     verses.splice(i + 1, 0, rest);
   }
+  // Word spacing the book's typesetting got wrong ("केवल माश्रयन्तः").
+  // Spacing only: a "fix" that changes any letter is refused.
+  for (const sp of check.spacing ?? []) {
+    const v = verseAt(verses, sp.verse);
+    if (!v) throw new Error(`${check.file}: no verse ${sp.verse} for spacing`);
+    if (sp.from.replace(/\s/g, "") !== sp.to.replace(/\s/g, "")) {
+      throw new Error(`${check.file}: spacing "${sp.from}" → "${sp.to}" changes more than spaces`);
+    }
+    const joined = v.lines.join("\n");
+    if (joined.split(sp.from).length - 1 < 1) throw new Error(`${check.file}: verse ${sp.verse}: "${sp.from}" not found`);
+    v.lines = joined.split(sp.from).join(sp.to).split("\n");
+  }
   if (check.refrain) {
     // The book prints a repeated refrain once and abbreviates it after:
     // "काशिका ...", "चिदा...", "चिदानन्द ...". Any start of the refrain
-    // followed by dots is written out in full.
+    // followed by dots is written out in full — on a line of its own, as
+    // the book sets the first one. Where sandhi joins it to the word
+    // before ("मोक्षश्चिदा"), the joining consonants go down with it and
+    // the line above ends in a hyphen ("मोक्ष-" / "श्चिदानन्द…"), which
+    // is how the book prints verse 1.
     const { from, full } = check.refrain;
     const esc = from.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    const re = new RegExp(`${esc}[^\\s.।॥]*\\s*(?:\\.\\s*){2,}|${esc}[^\\s.।॥]*\\s*…`, "g");
-    for (const v of verses) v.lines = v.lines.map((l) => l.replace(re, full + " ").replace(/\s+॥/, " ॥"));
-    // Some books cut the refrain to its first word with no dots at all
-    // ("…त्तदेको ॥"); `bare: true` writes that out too, at a line's end.
-    if (check.refrain.bare) {
-      const bare = new RegExp(`${esc}\\s*॥\\s*$`);
-      for (const v of verses) v.lines = v.lines.map((l) => (l.includes(full) ? l : l.replace(bare, `${full} ॥`)));
+    const dotted = new RegExp(`${esc}[^\\s.।॥]*\\s*(?:\\.\\s*){2,}|${esc}[^\\s.।॥]*\\s*…`);
+    // Some books cut it to its first word with no dots at all ("…त्तदेको ॥").
+    const bare = check.refrain.bare ? new RegExp(`${esc}\\s*(?=॥\\s*$)`) : null;
+    for (const v of verses) {
+      const out = [];
+      for (const l of v.lines) {
+        const m = dotted.exec(l) ?? (bare && !l.includes(full) ? bare.exec(l) : null);
+        if (!m) {
+          out.push(l);
+          continue;
+        }
+        const before = l.slice(0, m.index);
+        const tail = `${full} ${l.slice(m.index + m[0].length).trim()}`.replace(/\s+॥/, " ॥").trim();
+        if (!before.trim()) out.push(tail);
+        else if (/\s$/.test(before)) out.push(before.trimEnd(), tail);
+        else {
+          const carry = /((?:[क-हक़-य़]्)+)$/.exec(before);
+          if (carry) out.push(before.slice(0, -carry[1].length) + "-", carry[1] + tail);
+          else out.push(before + tail);
+        }
+      }
+      v.lines = out;
     }
   }
   if (check.drop) {

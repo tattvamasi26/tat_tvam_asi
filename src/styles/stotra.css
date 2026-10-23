@@ -641,3 +641,30 @@ html:lang(hi) .stotra-verse-meaning {
   font-size: 1.05em;
   overflow-wrap: anywhere;
 }
+
+/* The record folded under one line: what it was checked against, and
+   the words to open the rest. */
+.edition-notes > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.9rem;
+  cursor: pointer;
+  list-style: none;
+}
+.edition-notes > summary::-webkit-details-marker {
+  display: none;
+}
+.edition-summary-line {
+  color: var(--ink-3);
+}
+.edition-summary-open {
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 2px;
+}
+.edition-notes[open] > summary {
+  margin-bottom: 0.9rem;
+}

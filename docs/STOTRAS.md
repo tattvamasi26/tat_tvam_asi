@@ -174,6 +174,15 @@ The checked stotras are in `src/lib/stotra-corpus/checked/`.
 - Over 80 places where the book genuinely reads differently from the
   witness. All are kept and listed.
 
+**Set for reading, not as the book typeset it** (2026-10-23, after the
+owner found the first batch hard to read)
+
+- Refrains are written out on their own line.
+- Prose-set verses are reset as half-verse lines.
+- Word spacing the print got wrong is fixed through `spacing`
+  (spaces only, enforced).
+- The checking record is folded under one line.
+
 **What the checking tools now handle**
 
 - `refrain`: a refrain abbreviated with dots, or cut to its first word

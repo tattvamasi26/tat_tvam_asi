@@ -34,6 +34,8 @@
   "witness": "https://stotranidhi.com/kn/kalabhairava-ashtakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": true,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "6",
@@ -167,6 +169,8 @@
   "witness": "https://stotranidhi.com/kn/chandrasekhara-ashtakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": true,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "2",
@@ -301,6 +305,8 @@
   "witness": "https://stotranidhi.com/kn/shiva-panchakshara-stotram-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "5",
@@ -370,6 +376,8 @@
   "witness": "https://stotranidhi.com/kn/shiva-tandav-stotram-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": true,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "1",
@@ -607,6 +615,8 @@
   "witness": "https://stotranidhi.com/kn/dvadasa-jyothirlinga-stotram-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": true,
+  "reflowed": false,
   "corrections": [],
   "variants": [
    {
@@ -734,6 +744,8 @@
   "witness": "https://stotranidhi.com/kn/vedasara-siva-stotram-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "2",
@@ -828,6 +840,8 @@
   "witness": "https://stotranidhi.com/kn/nirvana-dasakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": true,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "5",
@@ -987,6 +1001,8 @@
   "witness": "https://stotranidhi.com/kn/nirvana-shatkam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": true,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "2",
@@ -1089,6 +1105,8 @@
   "witness": "https://stotranidhi.com/kn/ardhanarishwara-stotram-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": true,
+  "spacingAdjusted": true,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "2",
@@ -1164,6 +1182,8 @@
   "witness": "https://stotranidhi.com/kn/shiva-namavali-ashtakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": true,
+  "spacingAdjusted": true,
+  "reflowed": false,
   "corrections": [],
   "variants": [
    {
@@ -1205,6 +1225,8 @@
   "witness": "https://stotranidhi.com/kn/daridrya-dahana-shiva-stotram-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": true,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "2",
@@ -1308,6 +1330,8 @@
   "witness": "https://stotranidhi.com/kn/sri-shankara-ashtakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "2",
@@ -1417,6 +1441,8 @@
   "witness": "https://stotranidhi.com/kn/yati-panchakam-kaupeena-panchakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": true,
+  "reflowed": true,
   "corrections": [
    {
     "verse": "6",
@@ -1466,6 +1492,8 @@
   "witness": "https://stotranidhi.com/kn/manisha-panchakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": true,
+  "reflowed": true,
   "corrections": [
    {
     "verse": "4",
@@ -1525,7 +1553,7 @@
    {
     "verse": "4",
     "kind": "reading",
-    "reading": "किंगङ्गाम्बुनि",
+    "reading": "किं गङ्गाम्बुनि",
     "witness": "किं गङ्गाम्बुधि",
     "extra": null,
     "page": 520
@@ -1623,6 +1651,8 @@
   "witness": "https://stotranidhi.com/kn/subrahmanya-ashtakam-in-kannada/",
   "checkedOn": "2026-10-21",
   "refrainExpanded": false,
+  "spacingAdjusted": false,
+  "reflowed": false,
   "corrections": [
    {
     "verse": "3",

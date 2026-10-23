@@ -144,6 +144,16 @@ against the scanned page. Read `docs/STOTRAS.md` first.
   "planned"` in `devatas.ts` only means none is entered. A devata with
   no chosen picture shows its name on the bhajans' plate.
 - Verses are numbered by their place in the stotra.
+- **Layout is not the book's typesetting.**
+  - A refrain the book abbreviates is written out on a line of its own,
+    as the book prints the first one.
+  - A verse the book set like prose (a daṇḍa in mid-line, words broken
+    wherever the page ran out) is reset as half-verse lines.
+  - Word spacing the print got wrong is fixed through `spacing` in the
+    check record, which refuses any change other than spaces.
+  - Readers complained about all three; keep them fixed.
+- The record of how a text was checked is folded under one line
+  (`<details>`). It is for whoever wants it, not in the reader's way.
 - **Load one devata's texts, never all.** `data/texts/<devata>.json` is
   loaded by `corpusVerses()`. A test fails any page importing it
   directly.

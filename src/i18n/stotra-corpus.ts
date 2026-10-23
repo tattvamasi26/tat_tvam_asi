@@ -26,6 +26,9 @@ export interface StotraCorpusStrings {
   scansLink: string;
   witnessLink: string;
   checkedOn: string;
+  checkedLine: string;
+  spacing: string;
+  reflowed: string;
 }
 
 const en: StotraCorpusStrings = {
@@ -49,6 +52,9 @@ const en: StotraCorpusStrings = {
   scansLink: "The scans, page by page",
   witnessLink: "The transcription it was checked against",
   checkedOn: "Checked",
+  checkedLine: "Checked against the printed page",
+  spacing: "Word spacing follows the usual division of words where the book's typesetting splits a word or runs two together. No letter is changed.",
+  reflowed: "Verses the book prints like prose are set here as half-verse lines.",
 };
 
 const kn: StotraCorpusStrings = {
@@ -72,6 +78,9 @@ const kn: StotraCorpusStrings = {
   scansLink: "ಪುಟದಿಂದ ಪುಟಕ್ಕೆ ಸ್ಕ್ಯಾನ್‌ಗಳು",
   witnessLink: "ಹೋಲಿಸಿದ ಲಿಪ್ಯಂತರ",
   checkedOn: "ಪರಿಶೀಲಿಸಿದ ದಿನ",
+  checkedLine: "ಮುದ್ರಿತ ಪುಟದೊಂದಿಗೆ ಪರಿಶೀಲಿಸಲಾಗಿದೆ",
+  spacing: "ಪುಸ್ತಕದ ಅಚ್ಚಿನಲ್ಲಿ ಪದವನ್ನು ಒಡೆದ ಅಥವಾ ಎರಡು ಪದಗಳನ್ನು ಸೇರಿಸಿದ ಕಡೆ, ಸಾಮಾನ್ಯ ಪದವಿಭಾಗದಂತೆ ಅಂತರ ನೀಡಲಾಗಿದೆ. ಯಾವ ಅಕ್ಷರವನ್ನೂ ಬದಲಿಸಿಲ್ಲ.",
+  reflowed: "ಪುಸ್ತಕವು ಗದ್ಯದಂತೆ ಮುದ್ರಿಸಿರುವ ಶ್ಲೋಕಗಳನ್ನು ಇಲ್ಲಿ ಅರ್ಧಶ್ಲೋಕದ ಸಾಲುಗಳಾಗಿ ಜೋಡಿಸಲಾಗಿದೆ.",
 };
 
 const hi: StotraCorpusStrings = {
@@ -95,6 +104,9 @@ const hi: StotraCorpusStrings = {
   scansLink: "पृष्ठ-दर-पृष्ठ स्कैन",
   witnessLink: "जिस लिप्यंतरण से मिलाया गया",
   checkedOn: "जाँच की तिथि",
+  checkedLine: "छपे पृष्ठ से जाँचा गया",
+  spacing: "जहाँ पुस्तक की छपाई में शब्द टूटा या दो शब्द जुड़ गए, वहाँ सामान्य शब्द-विभाजन के अनुसार अंतर दिया गया है। कोई अक्षर नहीं बदला गया।",
+  reflowed: "जिन श्लोकों को पुस्तक गद्य की तरह छापती है, वे यहाँ आधे-श्लोक की पंक्तियों में रखे गए हैं।",
 };
 
 const ALL: Record<Locale, StotraCorpusStrings> = { en, kn, hi };

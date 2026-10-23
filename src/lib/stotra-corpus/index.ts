@@ -66,6 +66,10 @@ export interface CorpusStotra {
   checkedOn: string;
   /** The book abbreviates a repeated refrain; it is written out here. */
   refrainExpanded: boolean;
+  /** Word spacing put right where the book's typesetting split or ran words together. */
+  spacingAdjusted: boolean;
+  /** Verses the book set like prose, set here as half-verse lines. */
+  reflowed: boolean;
   corrections: CorpusCorrection[];
   variants: CorpusVariant[];
 }

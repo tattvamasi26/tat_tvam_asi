@@ -23,6 +23,12 @@
 
 .account-notice {
   margin-top: 0;
+  /* The shared notice fits its content; on this card a long Kannada or
+     Hindi sentence must wrap inside it instead. */
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  overflow-wrap: anywhere;
 }
 
 .account-kept {

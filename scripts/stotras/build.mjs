@@ -76,6 +76,8 @@ for (const [startPage, check] of [...checks].sort((a, b) => a[0] - b[0])) {
     witness: check.witness,
     checkedOn: check.checkedOn,
     refrainExpanded: Boolean(check.refrain),
+    spacingAdjusted: Boolean(check.spacing?.length),
+    reflowed: verses.some((v) => layout(v.lines).length !== v.lines.length),
     corrections: [
       ...(check.corrections ?? []).map(({ verse, from, to, page, kind }) => ({ verse: at(verse), from, to, page, kind })),
       // A misprint the transcriber already put right: nothing to apply,
@@ -93,8 +95,30 @@ for (const [startPage, check] of [...checks].sort((a, b) => a[0] - b[0])) {
   });
   (texts[check.devata] ??= {})[check.slug] = verses.map((v, i) => ({
     n: String(i + 1),
-    lines: v.lines.map((l) => l.replace(/\s+/g, " ").trim()),
+    lines: layout(v.lines),
   }));
+}
+
+/**
+ * A verse's lines as the page sets them. Most verses keep the book's
+ * lines, one quarter-verse to a line. A verse the book set like prose —
+ * a daṇḍa in the middle of a line, words broken wherever the page ran
+ * out ("कौपीन-" / "वन्तः") — is joined up and set again as half-verses,
+ * one line ending at each daṇḍa. Only line breaks and spaces change.
+ */
+function layout(lines) {
+  const tidy = lines.map((l) => l.replace(/\s+/g, " ").trim());
+  const prose = tidy.some((l) => /[।॥]\s*\S/.test(l.replace(/[।॥]\s*$/, "")));
+  if (!prose) return tidy;
+  let joined = "";
+  for (const l of tidy) {
+    if (joined.endsWith("-")) joined = joined.slice(0, -1) + l;
+    else joined = joined ? `${joined} ${l}` : l;
+  }
+  return joined
+    .split(/(?<=।)\s*/)
+    .map((s) => s.trim())
+    .filter(Boolean);
 }
 
 if (problems.length) {

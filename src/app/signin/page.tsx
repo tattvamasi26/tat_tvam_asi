@@ -70,7 +70,7 @@ export default async function SignInPage({
               <Caution /> {status.state === "unreachable" ? s.unavailable : s.notSwitchedOn}
               {process.env.NODE_ENV !== "production" && (
                 // For the site's owner on their own machine, never shown live.
-                <> Run <code>npm run setup:auth</code> (docs/ACCOUNTS.md).</>
+                <> Run npm run setup:auth (see docs/ACCOUNTS.md).</>
               )}
             </p>
           ) : onCodeStep ? (
