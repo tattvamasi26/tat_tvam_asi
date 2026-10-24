@@ -140,7 +140,7 @@ export const TIME_UNITS: TimeUnit[] = [
     defined: {
       en: "432,000 years. Every other figure in the scheme is a multiple of this one.",
       kn: "೪,೩೨,೦೦೦ ವರ್ಷ. ಈ ಯೋಜನೆಯ ಉಳಿದೆಲ್ಲ ಅಂಕಿಯೂ ಇದರ ಗುಣಕ.",
-      hi: "४,३२,००० वर्ष। इस व्यवस्था का हर दूसरा अंक इसी का गुणक है।",
+      hi: "४,३२,००० वर्ष। इस व्यवस्था के शेष सभी अंक इसी के गुणक हैं।",
     },
   },
   {
@@ -277,7 +277,7 @@ export const LOKAS: Loka[] = [
   { id: "svar", name: { en: "Svar", kn: "ಸ್ವರ್", hi: "स्वर्" }, sanskrit: "स्वर्लोकः", level: 2,
     gloss: { en: "Heaven — a long stay, not a permanent one.", kn: "ಸ್ವರ್ಗ — ದೀರ್ಘ ವಾಸ, ಶಾಶ್ವತವಲ್ಲ.", hi: "स्वर्ग — लंबा निवास, स्थायी नहीं।" } },
   { id: "bhuvas", name: { en: "Bhuvas", kn: "ಭುವಸ್", hi: "भुवस्" }, sanskrit: "भुवर्लोकः", level: 1,
-    gloss: { en: "The space between earth and sun.", kn: "ಭೂಮಿ ಮತ್ತು ಸೂರ್ಯನ ನಡುವಿನ ಅವಕಾಶ.", hi: "पृथ्वी और सूर्य के बीच का अवकाश।" } },
+    gloss: { en: "The space between earth and sun.", kn: "ಭೂಮಿ ಮತ್ತು ಸೂರ್ಯನ ನಡುವಿನ ಅಂತರಿಕ್ಷ.", hi: "पृथ्वी और सूर्य के बीच का अंतरिक्ष।" } },
   { id: "bhu", name: { en: "Bhū", kn: "ಭೂ", hi: "भू" }, sanskrit: "भूलोकः", level: 0,
     gloss: { en: "Here. The only one of the fourteen where karma can be made.", kn: "ಇಲ್ಲಿ. ಹದಿನಾಲ್ಕರಲ್ಲಿ ಕರ್ಮ ಮಾಡಬಹುದಾದ ಏಕೈಕ ಲೋಕ.", hi: "यहाँ। चौदह में एकमात्र लोक जहाँ कर्म किया जा सकता है।" } },
   { id: "atala", name: { en: "Atala", kn: "ಅತಲ", hi: "अतल" }, sanskrit: "अतलम्", level: -1,

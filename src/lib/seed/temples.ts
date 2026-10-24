@@ -62,13 +62,13 @@ export const TEMPLE_TRANSLATIONS: TempleTranslationRow[] = [
   // ── Meenakshi
   { temple_id: "tp-meenakshi", language: "en", name: "Meenakshi Amman Temple", location: "Madurai", state: "Tamil Nadu", dynasty: "Nayak", architecture_style: "Dravidian", presiding_deity: "Meenakshi (Parvati)",
     description: "One of the largest temple complexes in India, with fourteen gopurams covered in thousands of painted sculptures. Its corridors encode the sixty-four sacred games of Shiva.",
-    significance: "The temple encodes an entire cosmos in its plan; walking through it is walking through a living scripture. The rituals performed here have continued without interruption for over a thousand years." },
+    significance: "The temple encodes an entire cosmos in its plan; walking through it is walking through a living scripture. The worship here goes back more than a thousand years." },
   { temple_id: "tp-meenakshi", language: "kn", name: "ಮೀನಾಕ್ಷಿ ಅಮ್ಮನ್ ದೇವಾಲಯ", location: "ಮಧುರೈ", state: "ತಮಿಳುನಾಡು", dynasty: "ನಾಯಕ", architecture_style: "ದ್ರಾವಿಡ", presiding_deity: "ಮೀನಾಕ್ಷಿ (ಪಾರ್ವತಿ)",
     description: "ಭಾರತದ ಅತಿ ದೊಡ್ಡ ದೇವಾಲಯ ಸಂಕೀರ್ಣಗಳಲ್ಲಿ ಒಂದು; ಸಾವಿರಾರು ವರ್ಣಚಿತ್ರಿತ ಶಿಲ್ಪಗಳಿಂದ ಆವೃತವಾದ ಹದಿನಾಲ್ಕು ಗೋಪುರಗಳಿವೆ. ಇದರ ಪ್ರಾಕಾರಗಳು ಶಿವನ ಅರವತ್ತನಾಲ್ಕು ತಿರುವಿಳೈಯಾಡಲ್‌ಗಳನ್ನು ಒಳಗೊಂಡಿವೆ.",
-    significance: "ದೇವಾಲಯದ ಯೋಜನೆಯಲ್ಲಿಯೇ ಇಡೀ ಬ್ರಹ್ಮಾಂಡವಿದೆ; ಅದರೊಳಗೆ ನಡೆಯುವುದೆಂದರೆ ಜೀವಂತ ಶಾಸ್ತ್ರದೊಳಗೆ ನಡೆದಂತೆ. ಇಲ್ಲಿ ನಡೆಯುವ ಪೂಜಾವಿಧಿಗಳು ಸಾವಿರ ವರ್ಷಗಳಿಗೂ ಹೆಚ್ಚು ಕಾಲ ಅವಿಚ್ಛಿನ್ನವಾಗಿ ಮುಂದುವರಿದಿವೆ." },
+    significance: "ದೇವಾಲಯದ ಯೋಜನೆಯಲ್ಲಿಯೇ ಇಡೀ ಬ್ರಹ್ಮಾಂಡವಿದೆ; ಅದರೊಳಗೆ ನಡೆಯುವುದೆಂದರೆ ಜೀವಂತ ಶಾಸ್ತ್ರದೊಳಗೆ ನಡೆದಂತೆ. ಇಲ್ಲಿನ ಪೂಜೆಯ ಪರಂಪರೆ ಸಾವಿರ ವರ್ಷಗಳಿಗೂ ಹಿಂದಿನದು." },
   { temple_id: "tp-meenakshi", language: "hi", name: "मीनाक्षी अम्मन मंदिर", location: "मदुरै", state: "तमिलनाडु", dynasty: "नायक", architecture_style: "द्रविड़", presiding_deity: "मीनाक्षी (पार्वती)",
     description: "भारत के सबसे बड़े मंदिर परिसरों में से एक, जिसमें हज़ारों रंगीन मूर्तियों से ढके चौदह गोपुरम हैं। इसके प्राकार शिव की चौंसठ लीलाओं को अंकित करते हैं।",
-    significance: "मंदिर की योजना में ही सम्पूर्ण ब्रह्मांड निहित है; इसमें चलना जीवंत शास्त्र में चलना है। यहाँ के अनुष्ठान एक हज़ार वर्षों से अधिक समय से अटूट रूप से चले आ रहे हैं।" },
+    significance: "मंदिर की योजना में ही सम्पूर्ण ब्रह्मांड निहित है; इसमें चलना जीवंत शास्त्र में चलना है। यहाँ की पूजा की परंपरा एक हज़ार वर्षों से भी पुरानी है।" },
 
   // ── Konark
   { temple_id: "tp-konark", language: "en", name: "Konark Sun Temple", location: "Konark", state: "Odisha", dynasty: "Eastern Ganga", architecture_style: "Kalinga", presiding_deity: "Surya (the Sun)",

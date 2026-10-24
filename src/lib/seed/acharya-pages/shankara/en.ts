@@ -253,7 +253,7 @@ export const en: AcharyaContent = {
           kind: "figure",
           src: "/images/acharyas/shankara/kalady-janmabhumi.jpg",
           caption:
-            "Kalady, on the Periyar in Kerala — the birthplace by tradition, and the place a fifth of the hagiographies do not name.",
+            "Kalady, on the Periyar in Kerala — the birthplace by tradition, and the place one of the five hagiographies above does not name: it has him born at Chidambaram.",
         },
       ],
     },

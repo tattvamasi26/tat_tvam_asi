@@ -129,9 +129,9 @@ export const FESTIVALS: Festival[] = [
       hi: "नीम और गुड़ ही उस दिन का पूरा उपदेश हैं, और वह प्रसन्न करने वाला नहीं है: वर्ष दोनों लाएगा, दोनों एक ही कौर में खाए जाते हैं, और आरंभ से पहले ही उसे स्वीकारने को कहा जाता है।",
     },
     regional: {
-      en: "The same day is Gudi Padwa in Maharashtra and Cheti Chand for Sindhis. Tamil Nadu and Kerala keep a solar new year instead, a fortnight later.",
-      kn: "ಅದೇ ದಿನ ಮಹಾರಾಷ್ಟ್ರದಲ್ಲಿ ಗುಡಿ ಪಾಡ್ವಾ, ಸಿಂಧಿಗಳಿಗೆ ಚೇಟಿ ಚಾಂದ್. ತಮಿಳುನಾಡು ಮತ್ತು ಕೇರಳ ಬದಲಾಗಿ ಸೌರಮಾನ ಹೊಸವರ್ಷವನ್ನು, ಒಂದು ಪಕ್ಷದ ನಂತರ ಆಚರಿಸುತ್ತವೆ.",
-      hi: "वही दिन महाराष्ट्र में गुड़ी पड़वा और सिंधियों के लिए चेटी चंड है। तमिलनाडु और केरल इसके बजाय सौर नववर्ष, एक पखवाड़े बाद मनाते हैं।",
+      en: "The same day is Gudi Padwa in Maharashtra, and Sindhis keep Cheti Chand on the day after. Tamil Nadu and Kerala keep a solar new year instead, some weeks later.",
+      kn: "ಅದೇ ದಿನ ಮಹಾರಾಷ್ಟ್ರದಲ್ಲಿ ಗುಡಿ ಪಾಡ್ವಾ; ಸಿಂಧಿಗಳು ಮರುದಿನ ಚೇಟಿ ಚಾಂದ್ ಆಚರಿಸುತ್ತಾರೆ. ತಮಿಳುನಾಡು ಮತ್ತು ಕೇರಳ ಬದಲಾಗಿ ಸೌರಮಾನ ಹೊಸವರ್ಷವನ್ನು, ಕೆಲವು ವಾರಗಳ ನಂತರ ಆಚರಿಸುತ್ತವೆ.",
+      hi: "वही दिन महाराष्ट्र में गुड़ी पड़वा है, और सिंधी अगले दिन चेटी चंड मनाते हैं। तमिलनाडु और केरल इसके बजाय सौर नववर्ष, कुछ सप्ताह बाद मनाते हैं।",
     },
   },
 
@@ -149,9 +149,9 @@ export const FESTIVALS: Festival[] = [
       hi: "राम का जन्म — मध्यरात्रि नहीं, मध्याह्न।",
     },
     observed: {
-      en: "The Rāmāyaṇa is read. Pānaka, kosambari and majjige are made and given away — the drinks of a Karnataka summer, because the festival falls in the heat.",
-      kn: "ರಾಮಾಯಣ ಪಾರಾಯಣ ನಡೆಯುತ್ತದೆ. ಪಾನಕ, ಕೋಸಂಬರಿ, ಮಜ್ಜಿಗೆ ಮಾಡಿ ಹಂಚುತ್ತಾರೆ — ಕರ್ನಾಟಕದ ಬೇಸಿಗೆಯ ಪಾನೀಯಗಳು, ಏಕೆಂದರೆ ಹಬ್ಬ ಬಿಸಿಲಲ್ಲಿ ಬರುತ್ತದೆ.",
-      hi: "रामायण का पाठ होता है। पानक, कोसंबरी और मट्ठा बनाकर बाँटा जाता है — कर्नाटक की गर्मी के पेय, क्योंकि यह पर्व धूप में आता है।",
+      en: "The Rāmāyaṇa is read. Pānaka, kosambari and majjige are made and given away — the food and drink of a Karnataka summer, because the festival falls in the heat.",
+      kn: "ರಾಮಾಯಣ ಪಾರಾಯಣ ನಡೆಯುತ್ತದೆ. ಪಾನಕ, ಕೋಸಂಬರಿ, ಮಜ್ಜಿಗೆ ಮಾಡಿ ಹಂಚುತ್ತಾರೆ — ಕರ್ನಾಟಕದ ಬೇಸಿಗೆಯ ತಿನಿಸು-ಪಾನೀಯಗಳು, ಏಕೆಂದರೆ ಹಬ್ಬ ಬಿಸಿಲಲ್ಲಿ ಬರುತ್ತದೆ.",
+      hi: "रामायण का पाठ होता है। पानक, कोसंबरी और मट्ठा बनाकर बाँटा जाता है — कर्नाटक की गर्मी का खान-पान, क्योंकि यह पर्व धूप में आता है।",
     },
     significance: {
       en: "Kṛṣṇa is born at midnight and Rāma at noon, and the tradition makes something of the contrast: one arrives in secret and in danger, the other in full daylight to a waiting city.",
@@ -180,8 +180,8 @@ export const FESTIVALS: Festival[] = [
     },
     significance: {
       en: "The older weight of the day is on the giving, not the buying. The gold trade's version is recent.",
-      kn: "ಆ ದಿನದ ಪ್ರಾಚೀನ ತೂಕ ಕೊಳ್ಳುವುದರ ಮೇಲಲ್ಲ, ಕೊಡುವುದರ ಮೇಲಿದೆ. ಚಿನ್ನದ ವ್ಯಾಪಾರದ ಆವೃತ್ತಿ ಇತ್ತೀಚಿನದು.",
-      hi: "इस दिन का पुराना भार खरीदने पर नहीं, देने पर है। सोने के व्यापार वाला रूप हाल का है।",
+      kn: "ಆ ದಿನದ ಹಳೆಯ ಒತ್ತು ಕೊಳ್ಳುವುದರ ಮೇಲಲ್ಲ, ಕೊಡುವುದರ ಮೇಲಿದೆ. ಚಿನ್ನದ ವ್ಯಾಪಾರದ ಆವೃತ್ತಿ ಇತ್ತೀಚಿನದು.",
+      hi: "इस दिन का पुराना बल खरीदने पर नहीं, देने पर है। सोने के व्यापार वाला रूप हाल का है।",
     },
   },
 
@@ -206,7 +206,7 @@ export const FESTIVALS: Festival[] = [
     significance: {
       en: "It is also called Vyāsa Pūrṇimā. He is credited with arranging the Vedas into four and composing the Mahābhārata, so the day honours transmission itself — the act of carrying something forward without losing it.",
       kn: "ಇದನ್ನು ವ್ಯಾಸ ಪೂರ್ಣಿಮಾ ಎಂದೂ ಕರೆಯುತ್ತಾರೆ. ವೇದವನ್ನು ನಾಲ್ಕಾಗಿ ವಿಂಗಡಿಸಿದ್ದೂ, ಮಹಾಭಾರತ ರಚಿಸಿದ್ದೂ ಅವರೇ ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ; ಹಾಗಾಗಿ ಈ ದಿನ ಪರಂಪರೆಯ ಹಸ್ತಾಂತರವನ್ನೇ ಗೌರವಿಸುತ್ತದೆ — ಕಳೆದುಕೊಳ್ಳದೆ ಮುಂದೆ ಸಾಗಿಸುವ ಕ್ರಿಯೆಯನ್ನು.",
-      hi: "इसे व्यास पूर्णिमा भी कहते हैं। वेद को चार में बाँटने और महाभारत रचने का श्रेय उन्हीं को है, इसलिए यह दिन संचरण को ही सम्मान देता है — बिना खोए आगे ले जाने की क्रिया को।",
+      hi: "इसे व्यास पूर्णिमा भी कहते हैं। वेद को चार में बाँटने और महाभारत रचने का श्रेय उन्हीं को है, इसलिए यह दिन परंपरा के हस्तांतरण को ही सम्मान देता है — बिना खोए आगे ले जाने की क्रिया को।",
     },
     links: [L("/acharyas", "The acharyas", "ಆಚಾರ್ಯರು", "आचार्य")],
   },
@@ -227,12 +227,12 @@ export const FESTIVALS: Festival[] = [
     observed: {
       en: "Milk and tambittu are offered at the nāga stones that stand under trees in almost every Karnataka village. Nothing is dug or ploughed that day.",
       kn: "ಕರ್ನಾಟಕದ ಬಹುತೇಕ ಪ್ರತಿ ಹಳ್ಳಿಯಲ್ಲೂ ಮರದಡಿ ನಿಂತ ನಾಗರಕಲ್ಲುಗಳಿಗೆ ಹಾಲು, ತಂಬಿಟ್ಟು ಅರ್ಪಿಸುತ್ತಾರೆ. ಅಂದು ಅಗೆಯುವುದಿಲ್ಲ, ಉಳುವುದಿಲ್ಲ.",
-      hi: "कर्नाटक के लगभग हर गाँव में पेड़ के नीचे खड़े नागकल्लों पर दूध और तंबिट्टु चढ़ाया जाता है। उस दिन न खोदा जाता है, न हल चलाया जाता है।",
+      hi: "कर्नाटक के लगभग हर गाँव में पेड़ के नीचे खड़ी नाग-शिलाओं पर दूध और तंबिट्टु चढ़ाया जाता है। उस दिन न खोदा जाता है, न हल चलाया जाता है।",
     },
     significance: {
       en: "The prohibition on digging is the point, and it is practical as much as devotional: this is when the ground is full of them and both sides are best left alone.",
-      kn: "ಅಗೆಯದಿರುವ ನಿಷೇಧವೇ ಮುಖ್ಯ, ಮತ್ತು ಅದು ಭಕ್ತಿಯಷ್ಟೇ ವ್ಯಾವಹಾರಿಕ: ಈ ಕಾಲದಲ್ಲಿ ನೆಲ ಅವುಗಳಿಂದ ತುಂಬಿರುತ್ತದೆ, ಎರಡೂ ಕಡೆಯವರು ಪರಸ್ಪರ ದೂರವಿರುವುದೇ ಒಳ್ಳೆಯದು.",
-      hi: "न खोदने का निषेध ही मुख्य बात है, और वह भक्ति जितना ही व्यावहारिक है: इस समय भूमि उनसे भरी रहती है, और दोनों पक्षों का एक-दूसरे से दूर रहना ही भला है।",
+      kn: "ಅಗೆಯದಿರುವ ನಿಷೇಧವೇ ಮುಖ್ಯ, ಮತ್ತು ಅದು ಭಕ್ತಿಯದಷ್ಟೇ ವ್ಯಾವಹಾರಿಕವೂ ಹೌದು: ಈ ಕಾಲದಲ್ಲಿ ನೆಲ ಅವುಗಳಿಂದ ತುಂಬಿರುತ್ತದೆ, ಎರಡೂ ಕಡೆಯವರು ಪರಸ್ಪರ ದೂರವಿರುವುದೇ ಒಳ್ಳೆಯದು.",
+      hi: "न खोदने का निषेध ही मुख्य बात है, और वह जितना भक्ति का है उतना ही व्यावहारिक भी: इस समय भूमि उनसे भरी रहती है, और दोनों पक्षों का एक-दूसरे से दूर रहना ही भला है।",
     },
     links: [L("/temples/tulunadu/kukke-subramanya", "Kukke Subramanya", "ಕುಕ್ಕೆ ಸುಬ್ರಹ್ಮಣ್ಯ", "कुक्के सुब्रह्मण्य")],
   },
@@ -257,7 +257,7 @@ export const FESTIVALS: Festival[] = [
     },
     observed: {
       en: "A kalaśa is dressed as the goddess — a pot, a coconut, a face, and all the ornaments the household has. Women invite each other, and the day ends in giving away what was prepared.",
-      kn: "ಕಲಶವನ್ನು ದೇವಿಯಂತೆ ಅಲಂಕರಿಸುತ್ತಾರೆ — ಕಳಶ, ತೆಂಗಿನಕಾಯಿ, ಮುಖ, ಮತ್ತು ಮನೆಯಲ್ಲಿರುವ ಎಲ್ಲ ಒಡವೆ. ಹೆಂಗಸರು ಪರಸ್ಪರ ಕರೆಯುತ್ತಾರೆ, ದಿನ ಮಾಡಿದ್ದನ್ನು ಹಂಚುವುದರಲ್ಲಿ ಮುಗಿಯುತ್ತದೆ.",
+      kn: "ಕಲಶವನ್ನು ದೇವಿಯಂತೆ ಅಲಂಕರಿಸುತ್ತಾರೆ — ಚೊಂಬು, ತೆಂಗಿನಕಾಯಿ, ಮುಖ, ಮತ್ತು ಮನೆಯಲ್ಲಿರುವ ಎಲ್ಲ ಒಡವೆ. ಹೆಂಗಸರು ಪರಸ್ಪರ ಕರೆಯುತ್ತಾರೆ, ದಿನ ಮಾಡಿದ್ದನ್ನು ಹಂಚುವುದರಲ್ಲಿ ಮುಗಿಯುತ್ತದೆ.",
       hi: "कलश को देवी की तरह सजाया जाता है — घड़ा, नारियल, मुख, और घर के सारे आभूषण। स्त्रियाँ एक-दूसरे को बुलाती हैं, और दिन बनाए हुए को बाँटने में समाप्त होता है।",
     },
     significance: {
@@ -318,7 +318,7 @@ export const FESTIVALS: Festival[] = [
     observed: {
       en: "Twenty-one blades of garike are offered, and modaka. The Atharvaśīrṣa is recited. On the last day the image is carried to water and let go.",
       kn: "ಇಪ್ಪತ್ತೊಂದು ಗರಿಕೆ ಮತ್ತು ಮೋದಕ ಅರ್ಪಿಸುತ್ತಾರೆ. ಅಥರ್ವಶೀರ್ಷ ಪಠಿಸುತ್ತಾರೆ. ಕೊನೆಯ ದಿನ ಮೂರ್ತಿಯನ್ನು ನೀರಿಗೆ ಒಯ್ದು ಬಿಡುತ್ತಾರೆ.",
-      hi: "इक्कीस गरिके और मोदक अर्पित किए जाते हैं। अथर्वशीर्ष का पाठ होता है। अंतिम दिन मूर्ति को जल तक ले जाकर छोड़ दिया जाता है।",
+      hi: "इक्कीस दूर्वा और मोदक अर्पित किए जाते हैं। अथर्वशीर्ष का पाठ होता है। अंतिम दिन मूर्ति को जल तक ले जाकर छोड़ दिया जाता है।",
     },
     significance: {
       en: "The immersion is not an afterthought to the festival; it is the festival. The god is welcomed as a guest, kept as long as a guest is kept, and then walked to the water and dissolved.",
@@ -334,7 +334,7 @@ export const FESTIVALS: Festival[] = [
 
   {
     slug: "navaratri",
-    name: { en: "Śāradā Navarātri", kn: "ಶರನ್ನವರಾತ್ರಿ", hi: "शारदीय नवरात्रि" },
+    name: { en: "Śārada Navarātri", kn: "ಶರನ್ನವರಾತ್ರಿ", hi: "शारदीय नवरात्रि" },
     sanskrit: "नवरात्रम्",
     reckoning: "lunar",
     month: "ashvina",
@@ -351,9 +351,9 @@ export const FESTIVALS: Festival[] = [
       hi: "देवी के लिए नौ रातें, और वह एकमात्र पर्व जो दिन नहीं, ऋतु है।",
     },
     observed: {
-      en: "In Karnataka a gombe habba is set up — dolls on stepped shelves, added to over generations. Books and tools are laid before the Goddess on the ninth day and not touched.",
-      kn: "ಕರ್ನಾಟಕದಲ್ಲಿ ಗೊಂಬೆ ಹಬ್ಬ — ಮೆಟ್ಟಿಲು ಮೆಟ್ಟಿಲಾದ ಜಗಲಿಯ ಮೇಲೆ ಗೊಂಬೆಗಳು, ತಲೆಮಾರುಗಳಿಂದ ಸೇರಿಸಿಕೊಂಡು ಬಂದವು. ಒಂಬತ್ತನೇ ದಿನ ಪುಸ್ತಕ ಮತ್ತು ಸಾಧನಗಳನ್ನು ದೇವಿಯ ಮುಂದೆ ಇಟ್ಟು ಮುಟ್ಟುವುದಿಲ್ಲ.",
-      hi: "कर्नाटक में गोंबे हब्बा सजता है — सीढ़ीनुमा तख्तों पर गुड़ियाँ, पीढ़ियों से जोड़ी हुईं। नवें दिन पुस्तकें और औज़ार देवी के सामने रखकर छुए नहीं जाते।",
+      en: "In Karnataka a gombe habba is set up — dolls on stepped shelves, added to over generations. Books are laid before the Goddess on the day of the Mūla star and tools on the ninth day, and neither is touched until Vijayadaśamī.",
+      kn: "ಕರ್ನಾಟಕದಲ್ಲಿ ಗೊಂಬೆ ಹಬ್ಬ — ಮೆಟ್ಟಿಲು ಮೆಟ್ಟಿಲಾಗಿ ಜೋಡಿಸಿದ ಹಲಗೆಗಳ ಮೇಲೆ ಗೊಂಬೆಗಳು, ತಲೆಮಾರುಗಳಿಂದ ಸೇರಿಸಿಕೊಂಡು ಬಂದವು. ಮೂಲಾ ನಕ್ಷತ್ರದ ದಿನ ಪುಸ್ತಕಗಳನ್ನು, ಒಂಬತ್ತನೇ ದಿನ ಉಪಕರಣಗಳನ್ನು ದೇವಿಯ ಮುಂದೆ ಇಟ್ಟು ವಿಜಯದಶಮಿಯವರೆಗೆ ಮುಟ್ಟುವುದಿಲ್ಲ.",
+      hi: "कर्नाटक में गोंबे हब्बा सजता है — सीढ़ीनुमा तख्तों पर गुड़ियाँ, पीढ़ियों से जोड़ी हुईं। पुस्तकें और औज़ार देवी के सामने रखे जाते हैं — पुस्तकें मूल नक्षत्र के दिन, औज़ार नवें दिन — और विजयादशमी तक छुए नहीं जाते।",
     },
     significance: {
       en: "Āyudha Pūjā on the ninth day puts down the tools of every trade — a lathe, a lorry, a laptop — and the rest is as much the point as the worship.",
@@ -362,8 +362,8 @@ export const FESTIVALS: Festival[] = [
     },
     regional: {
       en: "Bengal keeps the same nights as Durgā Pūjā, with a different shape entirely. Gujarat dances them.",
-      kn: "ಬಂಗಾಳ ಅದೇ ರಾತ್ರಿಗಳನ್ನು ದುರ್ಗಾ ಪೂಜೆಯಾಗಿ, ಸಂಪೂರ್ಣ ಬೇರೆ ರೂಪದಲ್ಲಿ ಆಚರಿಸುತ್ತದೆ. ಗುಜರಾತ್ ಅವನ್ನು ಕುಣಿಯುತ್ತದೆ.",
-      hi: "बंगाल उन्हीं रातों को दुर्गा पूजा के रूप में, बिलकुल अलग आकार में मनाता है। गुजरात उन्हें नाचता है।",
+      kn: "ಬಂಗಾಳ ಅದೇ ರಾತ್ರಿಗಳನ್ನು ದುರ್ಗಾ ಪೂಜೆಯಾಗಿ, ಸಂಪೂರ್ಣ ಬೇರೆ ರೂಪದಲ್ಲಿ ಆಚರಿಸುತ್ತದೆ. ಗುಜರಾತ್ ಅವನ್ನು ಕುಣಿದು ಆಚರಿಸುತ್ತದೆ.",
+      hi: "बंगाल उन्हीं रातों को दुर्गा पूजा के रूप में, बिलकुल अलग आकार में मनाता है। गुजरात उन्हें नाचकर मनाता है।",
     },
     links: [L("/bhajans/devi", "Songs to the Devi", "ದೇವಿಗೆ ಪದಗಳು", "देवी के पद")],
   },
@@ -383,8 +383,8 @@ export const FESTIVALS: Festival[] = [
     },
     observed: {
       en: "A child's first letters are written today. The banni tree is honoured and its leaves exchanged. Mysore's procession is the best known in the south.",
-      kn: "ಮಗುವಿನ ಮೊದಲ ಅಕ್ಷರ ಇಂದು ಬರೆಸಲಾಗುತ್ತದೆ. ಬನ್ನಿ ಮರವನ್ನು ಪೂಜಿಸಿ ಎಲೆ ಹಂಚಿಕೊಳ್ಳುತ್ತಾರೆ. ಮೈಸೂರಿನ ಮೆರವಣಿಗೆ ದಕ್ಷಿಣದಲ್ಲಿ ಅತಿ ಪ್ರಸಿದ್ಧ.",
-      hi: "बच्चे के पहले अक्षर आज लिखवाए जाते हैं। बन्नी वृक्ष की पूजा कर पत्ते बाँटे जाते हैं। मैसूर का जुलूस दक्षिण में सबसे प्रसिद्ध है।",
+      kn: "ಮಗುವಿಗೆ ಇಂದು ಮೊದಲ ಅಕ್ಷರ ಬರೆಸಲಾಗುತ್ತದೆ. ಬನ್ನಿ ಮರವನ್ನು ಪೂಜಿಸಿ ಎಲೆ ಹಂಚಿಕೊಳ್ಳುತ್ತಾರೆ. ಮೈಸೂರಿನ ಮೆರವಣಿಗೆ ದಕ್ಷಿಣದಲ್ಲಿ ಅತಿ ಪ್ರಸಿದ್ಧ.",
+      hi: "बच्चे के पहले अक्षर आज लिखवाए जाते हैं। शमी (बन्नी) वृक्ष की पूजा कर पत्ते बाँटे जाते हैं। मैसूर का जुलूस दक्षिण में सबसे प्रसिद्ध है।",
     },
     significance: {
       en: "Two stories meet on the same day: Durgā's victory over Mahiṣāsura, and Rāma's over Rāvaṇa. The tradition has never chosen between them, and both are kept.",
@@ -404,7 +404,7 @@ export const FESTIVALS: Festival[] = [
     whenNote: {
       en: "Three or four days, from Naraka Chaturdaśī to Bali Pāḍyami.",
       kn: "ಮೂರು ಅಥವಾ ನಾಲ್ಕು ದಿನಗಳು, ನರಕ ಚತುರ್ದಶಿಯಿಂದ ಬಲಿ ಪಾಡ್ಯಮಿಯವರೆಗೆ.",
-      hi: "तीन या चार दिन, नरक चतुर्दशी से बलि पाड़्यमी तक।",
+      hi: "तीन या चार दिन, नरक चतुर्दशी से बलि प्रतिपदा तक।",
     },
     lede: {
       en: "Lamps on the darkest night of the year, which is what the name says.",
@@ -414,11 +414,11 @@ export const FESTIVALS: Festival[] = [
     observed: {
       en: "The oil bath before dawn on Naraka Chaturdaśī. Lakṣmī pūjā on the new moon. Lamps along every ledge, and in Karnataka the cattle honoured on Bali Pāḍyami.",
       kn: "ನರಕ ಚತುರ್ದಶಿಯಂದು ಬೆಳಗಿನ ಜಾವದ ಎಣ್ಣೆ ಸ್ನಾನ. ಅಮಾವಾಸ್ಯೆಯಂದು ಲಕ್ಷ್ಮೀ ಪೂಜೆ. ಪ್ರತಿ ಅಂಚಿನಲ್ಲೂ ದೀಪ, ಮತ್ತು ಕರ್ನಾಟಕದಲ್ಲಿ ಬಲಿ ಪಾಡ್ಯಮಿಯಂದು ಗೋಪೂಜೆ.",
-      hi: "नरक चतुर्दशी को भोर से पहले तेल स्नान। अमावस्या को लक्ष्मी पूजा। हर मुँडेर पर दीप, और कर्नाटक में बलि पाड़्यमी को गोपूजा।",
+      hi: "नरक चतुर्दशी को भोर से पहले तेल स्नान। अमावस्या को लक्ष्मी पूजा। हर मुँडेर पर दीप, और कर्नाटक में बलि प्रतिपदा को गोपूजा।",
     },
     significance: {
       en: "The day is built on a new moon on purpose. The lamps are not decoration on a bright night; they are the only light there is.",
-      kn: "ಈ ದಿನವನ್ನು ಉದ್ದೇಶಪೂರ್ವಕವಾಗಿ ಅಮಾವಾಸ್ಯೆಯ ಮೇಲೆ ಕಟ್ಟಲಾಗಿದೆ. ದೀಪಗಳು ಬೆಳಗುವ ರಾತ್ರಿಯ ಅಲಂಕಾರವಲ್ಲ; ಅವೇ ಇರುವ ಏಕೈಕ ಬೆಳಕು.",
+      kn: "ಈ ದಿನವನ್ನು ಉದ್ದೇಶಪೂರ್ವಕವಾಗಿ ಅಮಾವಾಸ್ಯೆಯ ಮೇಲೆ ಕಟ್ಟಲಾಗಿದೆ. ದೀಪಗಳು ಬೆಳದಿಂಗಳ ರಾತ್ರಿಯ ಅಲಂಕಾರವಲ್ಲ; ಅವೇ ಇರುವ ಏಕೈಕ ಬೆಳಕು.",
       hi: "यह दिन जान-बूझकर अमावस्या पर रखा गया है। दीप किसी उजली रात का शृंगार नहीं; वही एकमात्र प्रकाश हैं।",
     },
     regional: {
@@ -492,7 +492,7 @@ export const FESTIVALS: Festival[] = [
     },
     lede: {
       en: "The one major festival fixed to the sun, not the moon — which is why it alone barely moves.",
-      kn: "ಚಂದ್ರನಿಗಲ್ಲ, ಸೂರ್ಯನಿಗೆ ಜೋಡಿಸಿದ ಏಕೈಕ ಪ್ರಮುಖ ಹಬ್ಬ — ಆದ್ದರಿಂದಲೇ ಇದೊಂದೇ ಬಹುತೇಕ ಜರುಗುವುದಿಲ್ಲ.",
+      kn: "ಚಂದ್ರನಿಗಲ್ಲ, ಸೂರ್ಯನಿಗೆ ಜೋಡಿಸಿದ ಏಕೈಕ ಪ್ರಮುಖ ಹಬ್ಬ — ಆದ್ದರಿಂದಲೇ ಇದರ ದಿನ ಮಾತ್ರ ಬಹುತೇಕ ಸರಿಯುವುದಿಲ್ಲ.",
       hi: "एकमात्र बड़ा पर्व जो चंद्र नहीं, सूर्य से बँधा है — इसीलिए केवल यही मुश्किल से खिसकता है।",
     },
     observed: {
@@ -538,7 +538,7 @@ export const FESTIVALS: Festival[] = [
     significance: {
       en: "Almost every other festival is kept in daylight. This one is defined by staying awake through the dark, and the fasting and the vigil are the observance — not the preparation for it.",
       kn: "ಉಳಿದ ಬಹುತೇಕ ಹಬ್ಬಗಳು ಹಗಲಲ್ಲಿ ನಡೆಯುತ್ತವೆ. ಇದು ಕತ್ತಲಲ್ಲಿ ಎಚ್ಚರವಿರುವುದರಿಂದಲೇ ವ್ಯಾಖ್ಯಾನಿಸಲ್ಪಡುತ್ತದೆ; ಉಪವಾಸ ಮತ್ತು ಜಾಗರಣೆಯೇ ಆಚರಣೆ — ಅದಕ್ಕೆ ಸಿದ್ಧತೆಯಲ್ಲ.",
-      hi: "लगभग हर दूसरा पर्व उजाले में मनाया जाता है। यह अँधेरे में जागते रहने से ही परिभाषित होता है; उपवास और जागरण ही आचरण हैं — उसकी तैयारी नहीं।",
+      hi: "लगभग शेष सभी पर्व उजाले में मनाए जाते हैं। यह अँधेरे में जागते रहने से ही परिभाषित होता है; उपवास और जागरण ही आचरण हैं — उसकी तैयारी नहीं।",
     },
     links: [L("/bhajans/shiva", "Songs to Shiva", "ಶಿವನಿಗೆ ಪದಗಳು", "शिव के पद")],
   },
@@ -558,12 +558,12 @@ export const FESTIVALS: Festival[] = [
     },
     observed: {
       en: "The bonfire is lit at night and circled. In Karnataka the day is Kāmadahana, and the burning is of Kāma rather than of Holikā.",
-      kn: "ರಾತ್ರಿ ಕಾಮನ ಬೆಂಕಿ ಹಚ್ಚಿ ಸುತ್ತು ಬರುತ್ತಾರೆ. ಕರ್ನಾಟಕದಲ್ಲಿ ಈ ದಿನ ಕಾಮದಹನ — ಸುಡುವುದು ಹೋಲಿಕೆಯನ್ನಲ್ಲ, ಕಾಮನನ್ನು.",
-      hi: "रात में होलिका जलाई जाती है और परिक्रमा होती है। कर्नाटक में यह दिन कामदहन है — जलाया जाता है होलिका को नहीं, काम को।",
+      kn: "ರಾತ್ರಿ ಕಾಮನ ಬೆಂಕಿ ಹಚ್ಚಿ ಸುತ್ತು ಬರುತ್ತಾರೆ. ಕರ್ನಾಟಕದಲ್ಲಿ ಈ ದಿನ ಕಾಮದಹನ — ಸುಡುವುದು ಹೋಲಿಕಾಳನ್ನಲ್ಲ, ಕಾಮನನ್ನು.",
+      hi: "रात में अलाव जलाकर उसकी परिक्रमा की जाती है। कर्नाटक में यह दिन कामदहन है — जलाया जाता है होलिका को नहीं, काम को।",
     },
     significance: {
       en: "Two different stories are burnt in the same fire depending on where you stand: Holikā in the north, Kāma in the south. It is one of the clearest cases of a single festival carrying two meanings without either yielding.",
-      kn: "ನೀವು ಎಲ್ಲಿ ನಿಂತಿದ್ದೀರಿ ಎಂಬುದರ ಮೇಲೆ ಅದೇ ಬೆಂಕಿಯಲ್ಲಿ ಎರಡು ಬೇರೆ ಕಥೆಗಳು ಸುಡುತ್ತವೆ: ಉತ್ತರದಲ್ಲಿ ಹೋಲಿಕಾ, ದಕ್ಷಿಣದಲ್ಲಿ ಕಾಮ. ಒಂದೇ ಹಬ್ಬ ಎರಡು ಅರ್ಥಗಳನ್ನು, ಯಾವುದೂ ಬಿಟ್ಟುಕೊಡದೆ ಹೊತ್ತಿರುವ ಅತ್ಯಂತ ಸ್ಪಷ್ಟ ಉದಾಹರಣೆಗಳಲ್ಲಿ ಇದೊಂದು.",
+      kn: "ನೀವು ಎಲ್ಲಿ ನಿಂತಿದ್ದೀರಿ ಎಂಬುದನ್ನು ಅವಲಂಬಿಸಿ ಅದೇ ಬೆಂಕಿಯಲ್ಲಿ ಎರಡು ಬೇರೆ ಕಥೆಗಳು ಸುಡುತ್ತವೆ: ಉತ್ತರದಲ್ಲಿ ಹೋಲಿಕಾ, ದಕ್ಷಿಣದಲ್ಲಿ ಕಾಮ. ಒಂದೇ ಹಬ್ಬ ಎರಡು ಅರ್ಥಗಳನ್ನು, ಯಾವುದೂ ಬಿಟ್ಟುಕೊಡದೆ ಹೊತ್ತಿರುವ ಅತ್ಯಂತ ಸ್ಪಷ್ಟ ಉದಾಹರಣೆಗಳಲ್ಲಿ ಇದೊಂದು.",
       hi: "आप कहाँ खड़े हैं इसके अनुसार उसी आग में दो अलग कथाएँ जलती हैं: उत्तर में होलिका, दक्षिण में काम। यह एक ही पर्व के दो अर्थ ढोने का, और किसी के न झुकने का, सबसे स्पष्ट उदाहरण है।",
     },
   },

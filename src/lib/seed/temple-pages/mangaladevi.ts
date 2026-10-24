@@ -104,7 +104,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "The temple is built in the Kerala manner found along this coast and the Western Ghats. A two-storeyed gopura opens the way in, its upper floor of wooden trails covering the Kottupura, the hall where the drums are beaten at festivals. A rectangular wall, the Kshetra-Madilluka, encloses all the shrines, and the metal-plated Dwajasthamba stands on the axis from the tower to the sanctum.",
+              text: "The temple is built in the Kerala manner found along this coast and the Western Ghats. A two-storeyed gopura opens the way in, its upper floor of wooden trellis covering the Kottupura, the hall where the drums are beaten at festivals. A rectangular wall, the Kshetra-Madilluka, encloses all the shrines, and the metal-plated Dwajasthamba stands on the axis from the tower to the sanctum.",
             },
             {
               kind: "list",

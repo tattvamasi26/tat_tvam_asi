@@ -167,7 +167,7 @@ export const DEVATAS: DevataRow[] = [
     epithet: { en: "The auspicious one", kn: "ಮಂಗಳಕರ", hi: "कल्याणकारी" },
     blurb: {
       en: "Shiva is worshipped as the linga. Many of the stotras to him are traditionally attributed to Adi Shankaracharya.",
-      kn: "ಶಿವನನ್ನು ಲಿಂಗರೂಪದಲ್ಲಿ ಪೂಜಿಸಲಾಗುತ್ತದೆ. ಅವನ ಅನೇಕ ಸ್ತೋತ್ರಗಳು ಸಂಪ್ರದಾಯದಂತೆ ಆದಿ ಶಂಕರಾಚಾರ್ಯರ ಕೃತಿಗಳು.",
+      kn: "ಶಿವನನ್ನು ಲಿಂಗರೂಪದಲ್ಲಿ ಪೂಜಿಸಲಾಗುತ್ತದೆ. ಅವನ ಅನೇಕ ಸ್ತೋತ್ರಗಳನ್ನು ಪರಂಪರೆಯಲ್ಲಿ ಆದಿ ಶಂಕರಾಚಾರ್ಯರದೆಂದು ಹೇಳಲಾಗುತ್ತದೆ.",
       hi: "शिव की पूजा लिंग रूप में होती है। उनके कई स्तोत्र परंपरा से आदि शंकराचार्य के माने जाते हैं।",
     },
     image: {

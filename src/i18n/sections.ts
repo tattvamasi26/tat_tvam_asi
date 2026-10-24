@@ -201,7 +201,7 @@ export const SECTIONS: SectionDef[] = [
     label: {
       en: "Everyday Vedanta",
       kn: "ನಿತ್ಯ ವೇದಾಂತ",
-      hi: "रोज़मर्रा वेदांत",
+      hi: "रोज़मर्रा का वेदांत",
     },
     blurb: {
       en: "Sittings you can actually do — with the site's own texts, and a timer that asks nothing of you but the time.",

@@ -165,8 +165,8 @@ export const PAIRS: DarshanaPair[] = [
     label: { en: "The map and the practice", kn: "ನಕ್ಷೆ ಮತ್ತು ಸಾಧನೆ", hi: "मानचित्र और साधना" },
     note: {
       en: "Sāṅkhya sets out twenty-five constituents and says where the trouble lies; Yoga takes the same twenty-five and asks what can be done about it. The Yoga Sūtra argues for almost none of its metaphysics, because Sāṅkhya had already argued for it.",
-      kn: "ಸಾಂಖ್ಯ ಇಪ್ಪತ್ತೈದು ತತ್ತ್ವಗಳನ್ನು ಮಂಡಿಸಿ ತೊಂದರೆ ಎಲ್ಲಿದೆ ಎಂದು ಹೇಳುತ್ತದೆ; ಯೋಗ ಅದೇ ಇಪ್ಪತ್ತೈದನ್ನು ತೆಗೆದುಕೊಂಡು ಅದರ ಬಗ್ಗೆ ಏನು ಮಾಡಬಹುದು ಎಂದು ಕೇಳುತ್ತದೆ. ಯೋಗಸೂತ್ರ ತನ್ನ ತತ್ತ್ವಶಾಸ್ತ್ರಕ್ಕೆ ಬಹುತೇಕ ವಾದವನ್ನೇ ಮಾಡುವುದಿಲ್ಲ, ಏಕೆಂದರೆ ಸಾಂಖ್ಯ ಈಗಾಗಲೇ ಮಾಡಿಬಿಟ್ಟಿತ್ತು.",
-      hi: "सांख्य पच्चीस तत्त्व रखकर बताता है कि कठिनाई कहाँ है; योग उन्हीं पच्चीस को लेकर पूछता है कि उसका क्या किया जा सकता है। योगसूत्र अपने तत्त्वशास्त्र के लिए लगभग कोई तर्क नहीं देता, क्योंकि सांख्य वह तर्क पहले ही दे चुका था।",
+      kn: "ಸಾಂಖ್ಯ ಇಪ್ಪತ್ತೈದು ತತ್ತ್ವಗಳನ್ನು ಮಂಡಿಸಿ ತೊಂದರೆ ಎಲ್ಲಿದೆ ಎಂದು ಹೇಳುತ್ತದೆ; ಯೋಗ ಅದೇ ಇಪ್ಪತ್ತೈದನ್ನು ತೆಗೆದುಕೊಂಡು ಅದರ ಬಗ್ಗೆ ಏನು ಮಾಡಬಹುದು ಎಂದು ಕೇಳುತ್ತದೆ. ಯೋಗಸೂತ್ರ ತನ್ನ ತತ್ತ್ವಮೀಮಾಂಸೆಗೆ ಬಹುತೇಕ ವಾದವನ್ನೇ ಮಾಡುವುದಿಲ್ಲ, ಏಕೆಂದರೆ ಸಾಂಖ್ಯ ಈಗಾಗಲೇ ಮಾಡಿಬಿಟ್ಟಿತ್ತು.",
+      hi: "सांख्य पच्चीस तत्त्व रखकर बताता है कि कठिनाई कहाँ है; योग उन्हीं पच्चीस को लेकर पूछता है कि उसका क्या किया जा सकता है। योगसूत्र अपनी तत्त्वमीमांसा के लिए लगभग कोई तर्क नहीं देता, क्योंकि सांख्य वह तर्क पहले ही दे चुका था।",
     },
     roles: {
       sankhya: { en: "What the parts are", kn: "ಅಂಗಗಳು ಯಾವುವು", hi: "अंग कौन से हैं" },
@@ -370,7 +370,7 @@ export const TATTVA_TIERS: TattvaTier[] = [
         "ಅಹಂಕಾರ",
         "अहंकार",
         "The I-maker. Not pride but the bare sense of being a separate one.",
-        "ನಾನೆಂಬುದನ್ನು ಮಾಡುವುದು. ಗರ್ವವಲ್ಲ, ಬೇರೊಬ್ಬನಾಗಿರುವ ಬರಿಯ ಭಾವ.",
+        "ನಾನೆಂಬುದನ್ನು ಮಾಡುವುದು. ಗರ್ವವಲ್ಲ, ತಾನು ಪ್ರತ್ಯೇಕ ಎಂಬ ಬರಿಯ ಭಾವ.",
         "मैं-कार। अभिमान नहीं, पृथक् होने का नितांत बोध।",
       ),
       item(
@@ -494,9 +494,9 @@ export const DARSHANAS: Darshana[] = [
       hi: "कुछ भी कैसे जाना जाता है, और कोई तर्क सही है यह कैसे दिखाया जाता है?",
     },
     lede: {
-      en: "The school that built the rules of argument the others then had to argue by. Of its sixteen categories, seven are about the ways a debate goes wrong.",
-      kn: "ಉಳಿದವರು ಬಳಸಬೇಕಾದ ವಾದದ ನಿಯಮಗಳನ್ನು ಕಟ್ಟಿದ ಶಾಖೆ. ಇದರ ಹದಿನಾರು ಪದಾರ್ಥಗಳಲ್ಲಿ ಏಳು ವಾದ ಕೆಡುವ ಬಗೆಗಳ ಕುರಿತು.",
-      hi: "उस शाखा ने तर्क के वे नियम बनाए जिनसे फिर शेष सबको तर्क करना पड़ा। इसके सोलह पदार्थों में सात इस विषय पर हैं कि वाद कैसे बिगड़ता है।",
+      en: "The school that built the rules of argument the others then had to argue by. Of its sixteen categories, seven are about debate, and most of those about the ways it goes wrong.",
+      kn: "ಉಳಿದವರು ಬಳಸಬೇಕಾದ ವಾದದ ನಿಯಮಗಳನ್ನು ಕಟ್ಟಿದ ಶಾಖೆ. ಇದರ ಹದಿನಾರು ಪದಾರ್ಥಗಳಲ್ಲಿ ಏಳು ವಾದದ ಕುರಿತು, ಅವುಗಳಲ್ಲಿ ಹೆಚ್ಚಿನವು ವಾದ ಕೆಡುವ ಬಗೆಗಳ ಕುರಿತು.",
+      hi: "उस शाखा ने तर्क के वे नियम बनाए जिनसे फिर शेष सबको तर्क करना पड़ा। इसके सोलह पदार्थों में सात वाद के विषय में हैं, और उनमें अधिकांश इस पर कि वाद कैसे बिगड़ता है।",
     },
     root: {
       name: { en: "Nyāya Sūtra", kn: "ನ್ಯಾಯಸೂತ್ರ", hi: "न्यायसूत्र" },
@@ -516,7 +516,7 @@ export const DARSHANAS: Darshana[] = [
     pramanas: ["pratyaksha", "anumana", "upamana", "shabda"],
     ishvara: {
       en: "Argues for one, and supplies the arguments. The later Nyāya of Udayana works the proof out at length, which makes this the one school of the six that treats God as a conclusion rather than an assumption or an irrelevance.",
-      kn: "ದೇವರಿದ್ದಾನೆಂದು ವಾದಿಸುತ್ತದೆ, ಮತ್ತು ವಾದಗಳನ್ನೇ ಒದಗಿಸುತ್ತದೆ. ಉದಯನನ ನಂತರದ ನ್ಯಾಯ ಸಾಧನೆಯನ್ನು ವಿಸ್ತಾರವಾಗಿ ಮಾಡುತ್ತದೆ — ಆದ್ದರಿಂದ ಆರರಲ್ಲಿ ದೇವರನ್ನು ಊಹೆಯಾಗಿಯೂ ಅಪ್ರಸ್ತುತವಾಗಿಯೂ ಅಲ್ಲದೆ ನಿಗಮನವಾಗಿ ನಡೆಸಿಕೊಳ್ಳುವ ಒಂದೇ ಶಾಖೆ ಇದು.",
+      kn: "ದೇವರಿದ್ದಾನೆಂದು ವಾದಿಸುತ್ತದೆ, ಮತ್ತು ವಾದಗಳನ್ನೇ ಒದಗಿಸುತ್ತದೆ. ಉದಯನನ ನಂತರದ ನ್ಯಾಯ ಈ ಸಿದ್ಧಿಯನ್ನು ವಿಸ್ತಾರವಾಗಿ ರೂಪಿಸುತ್ತದೆ — ಆದ್ದರಿಂದ ಆರರಲ್ಲಿ ದೇವರನ್ನು ಊಹೆಯಾಗಿಯೂ ಅಪ್ರಸ್ತುತವಾಗಿಯೂ ಅಲ್ಲದೆ ನಿಗಮನವಾಗಿ ನಡೆಸಿಕೊಳ್ಳುವ ಒಂದೇ ಶಾಖೆ ಇದು.",
       hi: "ईश्वर के पक्ष में तर्क करता है, और तर्क स्वयं देता है। उदयन का परवर्ती न्याय इस सिद्धि को विस्तार से करता है — इसलिए छहों में यही एक शाखा है जो ईश्वर को मान्यता या अप्रासंगिकता नहीं, निगमन मानती है।",
     },
     structure: {
@@ -662,7 +662,7 @@ export const DARSHANAS: Darshana[] = [
     pramanas: ["pratyaksha", "anumana", "shabda"],
     ishvara: {
       en: "None, and argued for: the Kārikā holds that nothing in the world requires a maker, and the school is called nirīśvara — without a Lord — in the texts that disagree with it. It is āstika all the same, because it accepts the Veda. That one fact is enough to retire the idea that āstika means theist.",
-      kn: "ಇಲ್ಲ, ಮತ್ತು ವಾದಿಸಿ ಹಾಗೆ: ಜಗತ್ತಿನಲ್ಲಿ ಯಾವುದಕ್ಕೂ ಕರ್ತೃ ಬೇಕಿಲ್ಲ ಎಂದು ಕಾರಿಕೆ ಹಿಡಿಯುತ್ತದೆ, ಮತ್ತು ಇದನ್ನು ವಿರೋಧಿಸುವ ಗ್ರಂಥಗಳಲ್ಲಿ ಈ ಶಾಖೆಯನ್ನು ನಿರೀಶ್ವರ ಎಂದು ಕರೆಯಲಾಗಿದೆ. ಆದರೂ ಇದು ಆಸ್ತಿಕ, ಏಕೆಂದರೆ ವೇದವನ್ನು ಒಪ್ಪುತ್ತದೆ. ಆಸ್ತಿಕ ಎಂದರೆ ದೇವರನ್ನು ನಂಬುವವನು ಎಂಬ ಕಲ್ಪನೆಯನ್ನು ಕೈಬಿಡಲು ಈ ಒಂದು ಸಂಗತಿಯೇ ಸಾಕು.",
+      kn: "ಇಲ್ಲ, ಮತ್ತು ಅದನ್ನು ವಾದಿಸಿ ಸ್ಥಾಪಿಸುತ್ತದೆ: ಜಗತ್ತಿನಲ್ಲಿ ಯಾವುದಕ್ಕೂ ಕರ್ತೃ ಬೇಕಿಲ್ಲ ಎಂದು ಕಾರಿಕೆ ಹಿಡಿಯುತ್ತದೆ, ಮತ್ತು ಇದನ್ನು ವಿರೋಧಿಸುವ ಗ್ರಂಥಗಳಲ್ಲಿ ಈ ಶಾಖೆಯನ್ನು ನಿರೀಶ್ವರ ಎಂದು ಕರೆಯಲಾಗಿದೆ. ಆದರೂ ಇದು ಆಸ್ತಿಕ, ಏಕೆಂದರೆ ವೇದವನ್ನು ಒಪ್ಪುತ್ತದೆ. ಆಸ್ತಿಕ ಎಂದರೆ ದೇವರನ್ನು ನಂಬುವವನು ಎಂಬ ಕಲ್ಪನೆಯನ್ನು ಕೈಬಿಡಲು ಈ ಒಂದು ಸಂಗತಿಯೇ ಸಾಕು.",
       hi: "कोई नहीं, और तर्कपूर्वक: कारिका मानती है कि संसार में किसी को कर्ता की आवश्यकता नहीं, और जो ग्रंथ इससे असहमत हैं वे इस शाखा को निरीश्वर कहते हैं। तथापि यह आस्तिक है, क्योंकि वेद को मानती है। आस्तिक का अर्थ ईश्वरवादी है — यह धारणा छोड़ने के लिए यही एक तथ्य पर्याप्त है।",
     },
     links: [
@@ -688,7 +688,7 @@ export const DARSHANAS: Darshana[] = [
     },
     lede: {
       en: "The stilling of the mind's turnings, in under two hundred sūtras. Posture gets three of them.",
-      kn: "ಮನಸ್ಸಿನ ತಿರುವುಗಳನ್ನು ನಿಲ್ಲಿಸುವುದು, ಇನ್ನೂರಕ್ಕಿಂತ ಕಡಿಮೆ ಸೂತ್ರಗಳಲ್ಲಿ. ಆಸನಕ್ಕೆ ಮೂರು ಸಿಗುತ್ತವೆ.",
+      kn: "ಮನಸ್ಸಿನ ವೃತ್ತಿಗಳನ್ನು ನಿಲ್ಲಿಸುವುದು, ಇನ್ನೂರಕ್ಕಿಂತ ಕಡಿಮೆ ಸೂತ್ರಗಳಲ್ಲಿ. ಆಸನಕ್ಕೆ ಮೂರು ಸಿಗುತ್ತವೆ.",
       hi: "मन की वृत्तियों का निरोध, दो सौ से कम सूत्रों में। आसन को उनमें तीन मिलते हैं।",
     },
     root: {
@@ -698,12 +698,12 @@ export const DARSHANAS: Darshana[] = [
       dating: {
         en: "Usually placed between the second and fourth centuries. Whether this Patañjali is the grammarian of the same name is disputed and not settled here.",
         kn: "ಸಾಮಾನ್ಯವಾಗಿ ಎರಡನೇ ಮತ್ತು ನಾಲ್ಕನೇ ಶತಮಾನಗಳ ನಡುವೆ ಇಡಲಾಗುತ್ತದೆ. ಈ ಪತಂಜಲಿಯೇ ಅದೇ ಹೆಸರಿನ ವ್ಯಾಕರಣಕಾರನೇ ಎಂಬುದು ವಿವಾದಿತ, ಮತ್ತು ಇಲ್ಲಿ ಬಗೆಹರಿಸಲಾಗಿಲ್ಲ.",
-        hi: "सामान्यतः दूसरी और चौथी शताब्दी के बीच रखा जाता है। यह पतंजलि वही नाम के व्याकरणकार हैं या नहीं, यह विवादित है और यहाँ तय नहीं किया गया।",
+        hi: "सामान्यतः दूसरी और चौथी शताब्दी के बीच रखा जाता है। ये पतंजलि उसी नाम के व्याकरणकार हैं या नहीं, यह विवादित है और यहाँ तय नहीं किया गया।",
       },
       extent: {
         en: "A hundred and ninety-five or ninety-six sūtras in four parts, depending on the recension.",
-        kn: "ನಾಲ್ಕು ಪಾದಗಳಲ್ಲಿ ನೂರ ತೊಂಬತ್ತೈದು ಅಥವಾ ತೊಂಬತ್ತಾರು ಸೂತ್ರಗಳು, ಪಾಠಭೇದದ ಮೇಲೆ.",
-        hi: "चार पादों में एक सौ पंचानबे या छियानबे सूत्र, पाठभेद के अनुसार।",
+        kn: "ನಾಲ್ಕು ಪಾದಗಳಲ್ಲಿ ನೂರ ತೊಂಬತ್ತೈದು ಅಥವಾ ತೊಂಬತ್ತಾರು ಸೂತ್ರಗಳು, ಪಾಠಭೇದವನ್ನು ಅವಲಂಬಿಸಿ.",
+        hi: "चार पादों में एक सौ पंचानवे या छियानवे सूत्र, पाठभेद के अनुसार।",
       },
     },
     pramanas: ["pratyaksha", "anumana", "shabda"],
@@ -732,15 +732,15 @@ export const DARSHANAS: Darshana[] = [
         item("yama", "यमः", "Restraints", "ಯಮ", "यम", "Five: not harming, truth, not stealing, continence, not accumulating", "ಐದು: ಅಹಿಂಸೆ, ಸತ್ಯ, ಅಸ್ತೇಯ, ಬ್ರಹ್ಮಚರ್ಯ, ಅಪರಿಗ್ರಹ", "पाँच: अहिंसा, सत्य, अस्तेय, ब्रह्मचर्य, अपरिग्रह"),
         item("niyama", "नियमः", "Observances", "ನಿಯಮ", "नियम", "Five: cleanness, contentment, austerity, study, surrender", "ಐದು: ಶೌಚ, ಸಂತೋಷ, ತಪಸ್, ಸ್ವಾಧ್ಯಾಯ, ಈಶ್ವರಪ್ರಣಿಧಾನ", "पाँच: शौच, संतोष, तप, स्वाध्याय, ईश्वरप्रणिधान"),
         item("asana", "आसनम्", "Posture", "ಆಸನ", "आसन", "Steady and comfortable. That is the whole definition", "ಸ್ಥಿರ ಮತ್ತು ಸುಖ. ವ್ಯಾಖ್ಯಾನ ಅಷ್ಟೇ", "स्थिर और सुखद। परिभाषा इतनी ही"),
-        item("pranayama", "प्राणायामः", "Regulation of breath", "ಪ್ರಾಣಾಯಾಮ", "प्राणायाम", "The pause between in and out", "ಒಳಗೆ ಮತ್ತು ಹೊರಗೆಗಳ ನಡುವಿನ ವಿರಾಮ", "भीतर और बाहर के बीच का विराम"),
+        item("pranayama", "प्राणायामः", "Regulation of breath", "ಪ್ರಾಣಾಯಾಮ", "प्राणायाम", "The pause between in and out", "ಒಳಉಸಿರು ಮತ್ತು ಹೊರಉಸಿರಿನ ನಡುವಿನ ವಿರಾಮ", "भीतर और बाहर के बीच का विराम"),
         item("pratyahara", "प्रत्याहारः", "Withdrawal", "ಪ್ರತ್ಯಾಹಾರ", "प्रत्याहार", "The senses stop following their objects", "ಇಂದ್ರಿಯಗಳು ತಮ್ಮ ವಿಷಯಗಳನ್ನು ಹಿಂಬಾಲಿಸುವುದನ್ನು ನಿಲ್ಲಿಸುತ್ತವೆ", "इंद्रियाँ अपने विषयों का अनुसरण छोड़ देती हैं"),
-        item("dharana", "धारणा", "Holding", "ಧಾರಣಾ", "धारणा", "Attention kept on one place", "ಗಮನವನ್ನು ಒಂದೇ ಎಡೆ ಇರಿಸುವುದು", "ध्यान एक ही स्थान पर टिकाना"),
+        item("dharana", "धारणा", "Holding", "ಧಾರಣಾ", "धारणा", "Attention kept on one place", "ಗಮನವನ್ನು ಒಂದೇ ಎಡೆ ಇರಿಸುವುದು", "चित्त को एक ही स्थान पर टिकाना"),
         item("dhyana", "ध्यानम्", "Dwelling", "ಧ್ಯಾನ", "ध्यान", "Attention staying there without being held", "ಹಿಡಿದಿಡದೆಯೇ ಗಮನ ಅಲ್ಲಿಯೇ ಉಳಿಯುವುದು", "पकड़े बिना ध्यान वहीं रहना"),
         item("samadhi", "समाधिः", "Absorption", "ಸಮಾಧಿ", "समाधि", "The distinction between attending and attended drops", "ಗಮನಿಸುವುದು ಮತ್ತು ಗಮನಿಸಲ್ಪಡುವುದರ ಭೇದ ಬಿದ್ದುಹೋಗುತ್ತದೆ", "ध्याता और ध्येय का भेद गिर जाता है"),
       ],
     },
     links: [
-      { href: "/practice", label: { en: "Everyday Vedanta", kn: "ನಿತ್ಯ ವೇದಾಂತ", hi: "रोज़मर्रा वेदांत" } },
+      { href: "/practice", label: { en: "Everyday Vedanta", kn: "ನಿತ್ಯ ವೇದಾಂತ", hi: "रोज़मर्रा का वेदांत" } },
       { href: "/concepts/vairagya", label: { en: "Vairāgya", kn: "ವೈರಾಗ್ಯ", hi: "वैराग्य" } },
     ],
   },
@@ -761,7 +761,7 @@ export const DARSHANAS: Darshana[] = [
     lede: {
       en: "The school that worked out how to read, and therefore the one Indian law quotes. It holds the Veda to be authorless, and gives God nothing to do.",
       kn: "ಓದುವುದು ಹೇಗೆ ಎಂಬುದನ್ನು ರೂಪಿಸಿದ ಶಾಖೆ, ಆದ್ದರಿಂದ ಭಾರತೀಯ ಕಾನೂನು ಉಲ್ಲೇಖಿಸುವ ಶಾಖೆ. ವೇದ ಅಪೌರುಷೇಯ ಎಂದು ಹಿಡಿಯುತ್ತದೆ, ಮತ್ತು ದೇವರಿಗೆ ಮಾಡಲು ಏನನ್ನೂ ಕೊಡುವುದಿಲ್ಲ.",
-      hi: "जिस शाखा ने यह गढ़ा कि पढ़ना कैसे है, और इसीलिए जिसे भारतीय विधि उद्धृत करती है। वेद को अपौरुषेय मानती है, और ईश्वर को करने के लिए कुछ नहीं देती।",
+      hi: "जिस शाखा ने यह निर्धारित किया कि पढ़ा कैसे जाए, और इसीलिए जिसे भारतीय विधि उद्धृत करती है। वेद को अपौरुषेय मानती है, और ईश्वर को करने के लिए कुछ नहीं देती।",
     },
     root: {
       name: { en: "Mīmāṃsā Sūtra", kn: "ಮೀಮಾಂಸಾಸೂತ್ರ", hi: "मीमांसासूत्र" },
@@ -803,7 +803,7 @@ export const DARSHANAS: Darshana[] = [
       items: [
         item("shruti-m", "श्रुतिः", "The direct word", "ಶ್ರುತಿ", "श्रुति", "What the text actually says, before anything is read into it", "ಪಠ್ಯ ನಿಜವಾಗಿ ಏನು ಹೇಳುತ್ತದೆ, ಅದರಲ್ಲಿ ಏನನ್ನೂ ಓದುವ ಮೊದಲು", "पाठ वस्तुतः क्या कहता है, उसमें कुछ पढ़े जाने से पहले"),
         item("linga-m", "लिङ्गम्", "What the word implies", "ಲಿಂಗ", "लिंग", "The force a term carries of itself", "ಪದ ತನ್ನಿಂದ ತಾನೇ ಹೊರುವ ಬಲ", "शब्द स्वयं जो बल रखता है"),
-        item("vakya-m", "वाक्यम्", "The sentence", "ವಾಕ್ಯ", "वाक्य", "What the whole statement, read together, must mean", "ಇಡೀ ಹೇಳಿಕೆಯನ್ನು ಒಟ್ಟಾಗಿ ಓದಿದರೆ ಏನಾಗಬೇಕು", "पूरा कथन साथ पढ़ने पर क्या अर्थ देना चाहिए"),
+        item("vakya-m", "वाक्यम्", "The sentence", "ವಾಕ್ಯ", "वाक्य", "What the whole statement, read together, must mean", "ಇಡೀ ಹೇಳಿಕೆಯನ್ನು ಒಟ್ಟಾಗಿ ಓದಿದರೆ ಏನು ಅರ್ಥ ಕೊಡಬೇಕು", "पूरा कथन साथ पढ़ने पर क्या अर्थ देना चाहिए"),
         item("prakarana-m", "प्रकरणम्", "The context", "ಪ್ರಕರಣ", "प्रकरण", "The passage it belongs to, and what that passage is doing", "ಅದು ಸೇರಿದ ಪ್ರಕರಣ, ಮತ್ತು ಆ ಪ್ರಕರಣ ಏನು ಮಾಡುತ್ತಿದೆ", "वह प्रसंग जिसका वह अंग है, और वह प्रसंग क्या कर रहा है"),
         item("sthana-m", "स्थानम्", "The position", "ಸ್ಥಾನ", "स्थान", "Where it stands in the order of the rite", "ಯಜ್ಞದ ಕ್ರಮದಲ್ಲಿ ಅದು ನಿಲ್ಲುವೆಡೆ", "अनुष्ठान के क्रम में वह कहाँ है"),
         item("samakhya-m", "समाख्या", "The name", "ಸಮಾಖ್ಯಾ", "समाख्या", "What it is called — the weakest ground, and used only when the rest are silent", "ಅದನ್ನು ಏನೆಂದು ಕರೆಯುತ್ತಾರೆ — ಅತಿ ದುರ್ಬಲ ನೆಲೆ, ಉಳಿದವು ಮೌನವಾದಾಗ ಮಾತ್ರ ಬಳಕೆ", "उसे क्या कहते हैं — सबसे दुर्बल आधार, शेष चुप हों तभी प्रयुक्त"),
@@ -830,7 +830,7 @@ export const DARSHANAS: Darshana[] = [
     },
     lede: {
       en: "Uttara Mīmāṃsā, the later enquiry — and the one darśana that did not settle into a single position. Three schools read the same three books and disagreed completely.",
-      kn: "ಉತ್ತರಮೀಮಾಂಸಾ, ನಂತರದ ವಿಚಾರ — ಮತ್ತು ಒಂದೇ ನಿಲುವಿಗೆ ನೆಲೆಗೊಳ್ಳದ ಏಕೈಕ ದರ್ಶನ. ಮೂರು ಶಾಖೆಗಳು ಅದೇ ಮೂರು ಗ್ರಂಥಗಳನ್ನು ಓದಿ ಸಂಪೂರ್ಣ ಭಿನ್ನರಾದರು.",
+      kn: "ಉತ್ತರಮೀಮಾಂಸಾ, ನಂತರದ ವಿಚಾರ — ಮತ್ತು ಒಂದೇ ನಿಲುವಿಗೆ ನೆಲೆಗೊಳ್ಳದ ಏಕೈಕ ದರ್ಶನ. ಮೂರು ಶಾಖೆಗಳು ಅದೇ ಮೂರು ಗ್ರಂಥಗಳನ್ನು ಓದಿ ಸಂಪೂರ್ಣವಾಗಿ ಭಿನ್ನಮತ ತಳೆದವು.",
       hi: "उत्तरमीमांसा, परवर्ती विचार — और वह एक दर्शन जो किसी एक पक्ष पर स्थिर नहीं हुआ। तीन शाखाओं ने वही तीन ग्रंथ पढ़े और पूर्णतः असहमत रहीं।",
     },
     root: {
@@ -867,12 +867,12 @@ export const DARSHANAS: Darshana[] = [
       },
       note: {
         en: "A school of Vedānta is founded by commenting on all three, which is the reason there can be disagreement at all: the books are fixed and the readings are not. Each of the three is a section of this site.",
-        kn: "ಈ ಮೂರಕ್ಕೂ ಭಾಷ್ಯ ಬರೆದೇ ವೇದಾಂತದ ಶಾಖೆ ಸ್ಥಾಪಿತವಾಗುತ್ತದೆ; ಭಿನ್ನಮತ ಸಾಧ್ಯವಾಗುವುದಕ್ಕೆ ಕಾರಣವೇ ಇದು: ಗ್ರಂಥಗಳು ನಿಶ್ಚಿತ, ಓದುಗಳು ಅಲ್ಲ. ಮೂರರಲ್ಲಿ ಪ್ರತಿಯೊಂದೂ ಈ ತಾಣದ ಒಂದು ವಿಭಾಗ.",
-        hi: "इन तीनों पर भाष्य लिखकर ही वेदांत की शाखा स्थापित होती है; असहमति संभव होने का कारण यही है: ग्रंथ निश्चित हैं, पाठ नहीं। तीनों में से प्रत्येक इस साइट का एक अनुभाग है।",
+        kn: "ಈ ಮೂರಕ್ಕೂ ಭಾಷ್ಯ ಬರೆದೇ ವೇದಾಂತದ ಶಾಖೆ ಸ್ಥಾಪಿತವಾಗುತ್ತದೆ; ಭಿನ್ನಮತ ಸಾಧ್ಯವಾಗುವುದಕ್ಕೆ ಕಾರಣವೇ ಇದು: ಗ್ರಂಥಗಳು ನಿಶ್ಚಿತ, ಅವುಗಳ ವ್ಯಾಖ್ಯಾನಗಳು ಅಲ್ಲ. ಮೂರರಲ್ಲಿ ಪ್ರತಿಯೊಂದೂ ಈ ತಾಣದ ಒಂದು ವಿಭಾಗ.",
+        hi: "इन तीनों पर भाष्य लिखकर ही वेदांत की शाखा स्थापित होती है; असहमति संभव होने का कारण यही है: ग्रंथ निश्चित हैं, उनकी व्याख्याएँ नहीं। तीनों में से प्रत्येक इस साइट का एक अनुभाग है।",
       },
       items: [
         item("upanishads-v", "उपनिषदः", "The Upaniṣads", "ಉಪನಿಷತ್ತುಗಳು", "उपनिषद्", "The heard portion the whole argument rests on", "ಇಡೀ ವಾದ ನಿಲ್ಲುವ ಶ್ರುತಿಭಾಗ", "जिस पर पूरा तर्क टिका है वह श्रुति-भाग"),
-        item("gita-v", "भगवद्गीता", "The Bhagavad Gītā", "ಭಗವದ್ಗೀತಾ", "भगवद्गीता", "The remembered portion, and the one text all three wrote on verse by verse", "ಸ್ಮೃತಿಭಾಗ, ಮತ್ತು ಮೂರೂ ಶ್ಲೋಕಶ್ಲೋಕವಾಗಿ ಬರೆದ ಒಂದೇ ಗ್ರಂಥ", "स्मृति-भाग, और वह एक पाठ जिस पर तीनों ने श्लोक-श्लोक लिखा"),
+        item("gita-v", "भगवद्गीता", "The Bhagavad Gītā", "ಭಗವದ್ಗೀತಾ", "भगवद्गीता", "The remembered portion, which all three commented on verse by verse", "ಸ್ಮೃತಿಭಾಗ, ಮೂರೂ ಶ್ಲೋಕಶ್ಲೋಕವಾಗಿ ಭಾಷ್ಯ ಬರೆದದ್ದು", "स्मृति-भाग, जिस पर तीनों ने श्लोक-श्लोक भाष्य लिखा"),
         item("brahma-sutra-v", "ब्रह्मसूत्राणि", "The Brahma Sūtras", "ಬ್ರಹ್ಮಸೂತ್ರಗಳು", "ब्रह्मसूत्र", "The reasoned portion, too compressed to read without a commentary", "ನ್ಯಾಯಭಾಗ, ಭಾಷ್ಯವಿಲ್ಲದೆ ಓದಲಾಗದಷ್ಟು ಸಂಕ್ಷಿಪ್ತ", "न्याय-भाग, भाष्य के बिना पढ़ा न जा सके इतना संक्षिप्त"),
       ],
     },

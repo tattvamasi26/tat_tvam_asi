@@ -86,7 +86,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     argument: {
       en: "Krishna answers first with metaphysics — the self is not born and does not die, so the grief is misplaced — and then, abruptly, stops arguing from that and starts arguing from duty and from the manner of acting. The chapter ends with a long portrait of the person who is steady in understanding.",
       kn: "ಕೃಷ್ಣ ಮೊದಲು ತತ್ತ್ವದಿಂದ ಉತ್ತರಿಸುತ್ತಾನೆ — ಆತ್ಮ ಹುಟ್ಟುವುದೂ ಇಲ್ಲ ಸಾಯುವುದೂ ಇಲ್ಲ, ಆದ್ದರಿಂದ ಈ ದುಃಖ ಅಸ್ಥಾನದ್ದು — ಆಮೇಲೆ ಥಟ್ಟನೆ ಆ ನೆಲೆಯಿಂದ ವಾದಿಸುವುದನ್ನು ನಿಲ್ಲಿಸಿ ಕರ್ತವ್ಯದಿಂದಲೂ ಕರ್ಮ ಮಾಡುವ ರೀತಿಯಿಂದಲೂ ವಾದಿಸತೊಡಗುತ್ತಾನೆ. ಸ್ಥಿತಪ್ರಜ್ಞನ ದೀರ್ಘ ಚಿತ್ರದೊಂದಿಗೆ ಅಧ್ಯಾಯ ಮುಗಿಯುತ್ತದೆ.",
-      hi: "कृष्ण पहले तत्त्व से उत्तर देते हैं — आत्मा न जन्मती है न मरती, अतः यह शोक अस्थानी है — और फिर अचानक उस आधार से तर्क छोड़कर कर्तव्य और कर्म करने की रीति से तर्क करने लगते हैं। अध्याय स्थितप्रज्ञ के दीर्घ चित्र पर समाप्त होता है।",
+      hi: "कृष्ण पहले तत्त्व से उत्तर देते हैं — आत्मा न जन्मती है न मरती, अतः यह शोक अनुचित है — और फिर अचानक उस आधार से तर्क छोड़कर कर्तव्य और कर्म करने की रीति से तर्क करने लगते हैं। अध्याय स्थितप्रज्ञ के दीर्घ चित्र पर समाप्त होता है।",
     },
     turn: {
       en: "The shift from what the self is to what Arjuna should do. Every later chapter is an expansion of one half or the other of that turn, which is why this chapter is often read on its own.",
@@ -107,7 +107,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     },
     argument: {
       en: "Arjuna asks the obvious question the last chapter left open. The answer is that nobody can stop acting — staying still is also a kind of doing — and that the world is held up by a cycle of giving in which sacrifice is the model. A person of standing is also told that others copy what they do, which makes the question not only personal.",
-      kn: "ಹಿಂದಿನ ಅಧ್ಯಾಯ ತೆರೆದಿಟ್ಟ ಸ್ಪಷ್ಟ ಪ್ರಶ್ನೆಯನ್ನು ಅರ್ಜುನ ಕೇಳುತ್ತಾನೆ. ಉತ್ತರ: ಕರ್ಮ ಬಿಡಲು ಯಾರಿಗೂ ಆಗದು — ಸುಮ್ಮನಿರುವುದೂ ಒಂದು ಬಗೆಯ ಮಾಡುವಿಕೆಯೇ — ಮತ್ತು ಜಗತ್ತು ನಿಂತಿರುವುದು ಕೊಡುವ ಚಕ್ರದ ಮೇಲೆ, ಅದಕ್ಕೆ ಯಜ್ಞವೇ ಮಾದರಿ. ತನ್ನನ್ನು ನೋಡಿ ಉಳಿದವರು ಅನುಕರಿಸುತ್ತಾರೆ ಎಂದೂ ಹೇಳಲಾಗುತ್ತದೆ — ಆದ್ದರಿಂದ ಇದು ಕೇವಲ ವೈಯಕ್ತಿಕ ಪ್ರಶ್ನೆಯಲ್ಲ.",
+      kn: "ಹಿಂದಿನ ಅಧ್ಯಾಯ ತೆರೆದಿಟ್ಟ ಸ್ಪಷ್ಟ ಪ್ರಶ್ನೆಯನ್ನು ಅರ್ಜುನ ಕೇಳುತ್ತಾನೆ. ಉತ್ತರ: ಕರ್ಮ ಬಿಡಲು ಯಾರಿಗೂ ಆಗದು — ಸುಮ್ಮನಿರುವುದೂ ಒಂದು ಬಗೆಯ ಮಾಡುವಿಕೆಯೇ — ಮತ್ತು ಜಗತ್ತು ನಿಂತಿರುವುದು ಕೊಡುವ ಚಕ್ರದ ಮೇಲೆ, ಅದಕ್ಕೆ ಯಜ್ಞವೇ ಮಾದರಿ. ಶ್ರೇಷ್ಠನಾದವನು ಮಾಡುವುದನ್ನು ಉಳಿದವರು ಅನುಕರಿಸುತ್ತಾರೆ ಎಂದೂ ಹೇಳಲಾಗುತ್ತದೆ — ಆದ್ದರಿಂದ ಇದು ಕೇವಲ ವೈಯಕ್ತಿಕ ಪ್ರಶ್ನೆಯಲ್ಲ.",
       hi: "पिछले अध्याय ने जो स्पष्ट प्रश्न खुला छोड़ा था, अर्जुन वही पूछता है। उत्तर यह कि कर्म कोई छोड़ नहीं सकता — निष्क्रिय रहना भी एक प्रकार का करना है — और जगत् देने के उस चक्र पर टिका है जिसका आदर्श यज्ञ है। यह भी कहा जाता है कि प्रतिष्ठित व्यक्ति जो करता है उसे दूसरे दोहराते हैं, जिससे प्रश्न केवल व्यक्तिगत नहीं रह जाता।",
     },
     turn: {
@@ -129,7 +129,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     },
     argument: {
       en: "Krishna says this teaching is old and was lost, and that he has taught it before — which prompts Arjuna to ask how, since Krishna was born after the people named. The answer is the avatāra passage: he takes birth when dharma weakens. The rest of the chapter sorts kinds of sacrifice, and ends by calling knowledge the fire that reduces action to ash.",
-      kn: "ಈ ಬೋಧನೆ ಹಳೆಯದು, ನಡುವೆ ಕಳೆದುಹೋಯಿತು, ಮತ್ತು ತಾನು ಇದನ್ನು ಮೊದಲೇ ಕಲಿಸಿದ್ದೆ ಎಂದು ಕೃಷ್ಣ ಹೇಳುತ್ತಾನೆ — ಹೆಸರಿಸಿದವರ ನಂತರ ಹುಟ್ಟಿದ ನೀನು ಹೇಗೆ ಎಂದು ಅರ್ಜುನ ಕೇಳುತ್ತಾನೆ. ಉತ್ತರವೇ ಅವತಾರದ ಭಾಗ: ಧರ್ಮ ಕುಂದಿದಾಗ ತಾನು ಜನಿಸುತ್ತೇನೆ. ಉಳಿದ ಅಧ್ಯಾಯ ಯಜ್ಞಗಳ ಬಗೆಗಳನ್ನು ವಿಂಗಡಿಸಿ, ಕರ್ಮವನ್ನು ಬೂದಿ ಮಾಡುವ ಅಗ್ನಿ ಜ್ಞಾನವೇ ಎಂದು ಮುಗಿಯುತ್ತದೆ.",
+      kn: "ಈ ಬೋಧನೆ ಹಳೆಯದು, ನಡುವೆ ಕಳೆದುಹೋಯಿತು, ಮತ್ತು ತಾನು ಇದನ್ನು ಮೊದಲೇ ಕಲಿಸಿದ್ದೆ ಎಂದು ಕೃಷ್ಣ ಹೇಳುತ್ತಾನೆ — ಹೆಸರಿಸಿದವರ ನಂತರ ಹುಟ್ಟಿದ ನೀನು ಹೇಗೆ ಎಂದು ಅರ್ಜುನ ಕೇಳುತ್ತಾನೆ. ಉತ್ತರವೇ ಅವತಾರದ ಭಾಗ: ಧರ್ಮ ಕುಂದಿದಾಗ ಅವನು ಜನಿಸುತ್ತಾನೆ. ಉಳಿದ ಅಧ್ಯಾಯ ಯಜ್ಞಗಳ ಬಗೆಗಳನ್ನು ವಿಂಗಡಿಸಿ, ಕರ್ಮವನ್ನು ಬೂದಿ ಮಾಡುವ ಅಗ್ನಿ ಜ್ಞಾನವೇ ಎಂದು ಮುಗಿಯುತ್ತದೆ.",
       hi: "कृष्ण कहते हैं कि यह उपदेश पुराना है, बीच में लुप्त हो गया, और वे इसे पहले दे चुके हैं — जिस पर अर्जुन पूछता है कि जिनके नाम लिए गए उनके बाद जन्मे आप कैसे। उत्तर ही अवतार-प्रसंग है: धर्म क्षीण होने पर वे जन्म लेते हैं। शेष अध्याय यज्ञों के प्रकार छाँटता है और ज्ञान को वह अग्नि कहकर समाप्त होता है जो कर्म को भस्म कर देती है।",
     },
     turn: {
@@ -151,7 +151,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     },
     argument: {
       en: "Renouncing action and acting without attachment both reach the same place, and the second is easier. The person described here acts constantly and is untouched by it, like a lotus leaf in water — the image the chapter is remembered for.",
-      kn: "ಕರ್ಮ ತ್ಯಾಗ ಮತ್ತು ಆಸಕ್ತಿಯಿಲ್ಲದ ಕರ್ಮ — ಎರಡೂ ಒಂದೇ ಕಡೆ ತಲುಪುತ್ತವೆ, ಮತ್ತು ಎರಡನೆಯದು ಸುಲಭ. ಇಲ್ಲಿ ವರ್ಣಿಸಿದ ವ್ಯಕ್ತಿ ನಿರಂತರ ಕರ್ಮ ಮಾಡುತ್ತಾನೆ ಮತ್ತು ಅದರಿಂದ ಅಂಟಿಕೊಳ್ಳುವುದಿಲ್ಲ — ನೀರಿನಲ್ಲಿನ ತಾವರೆ ಎಲೆಯಂತೆ; ಈ ಅಧ್ಯಾಯ ನೆನಪಿನಲ್ಲಿ ಉಳಿಯುವುದು ಆ ಚಿತ್ರದಿಂದ.",
+      kn: "ಕರ್ಮ ತ್ಯಾಗ ಮತ್ತು ಆಸಕ್ತಿಯಿಲ್ಲದ ಕರ್ಮ — ಎರಡೂ ಒಂದೇ ಕಡೆ ತಲುಪುತ್ತವೆ, ಮತ್ತು ಎರಡನೆಯದು ಸುಲಭ. ಇಲ್ಲಿ ವರ್ಣಿಸಿದ ವ್ಯಕ್ತಿ ನಿರಂತರ ಕರ್ಮ ಮಾಡುತ್ತಾನೆ ಮತ್ತು ಅದು ಅವನಿಗೆ ಅಂಟುವುದಿಲ್ಲ — ನೀರಿನಲ್ಲಿನ ತಾವರೆ ಎಲೆಯಂತೆ; ಈ ಅಧ್ಯಾಯ ನೆನಪಿನಲ್ಲಿ ಉಳಿಯುವುದು ಆ ಚಿತ್ರದಿಂದ.",
       hi: "कर्म का त्याग और अनासक्त कर्म — दोनों एक ही स्थान पहुँचते हैं, और दूसरा सरल है। यहाँ वर्णित व्यक्ति निरंतर कर्म करता है और उससे लिप्त नहीं होता — जल में कमलपत्र की तरह; यह अध्याय उसी चित्र से याद रहता है।",
     },
     turn: {
@@ -173,14 +173,14 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     argument: {
       en: "A seat neither too high nor too low, food and sleep neither too much nor too little, the mind brought back each time it wanders. The steady mind is likened to a lamp in a place out of the wind. Arjuna objects that the mind is as hard to hold as the wind itself, and is told that it is — and that practice and dispassion do it anyway.",
       kn: "ಅತಿ ಎತ್ತರವೂ ಅಲ್ಲದ ಅತಿ ತಗ್ಗೂ ಅಲ್ಲದ ಆಸನ, ಅತಿಯೂ ಅಲ್ಲದ ಅತಿ ಕಡಿಮೆಯೂ ಅಲ್ಲದ ಆಹಾರ ಮತ್ತು ನಿದ್ರೆ, ಅಲೆದಾಡಿದಾಗಲೆಲ್ಲ ಮರಳಿಸಲ್ಪಡುವ ಮನಸ್ಸು. ಸ್ಥಿರ ಮನಸ್ಸನ್ನು ಗಾಳಿಯಿಲ್ಲದ ಕಡೆಯ ದೀಪಕ್ಕೆ ಹೋಲಿಸಲಾಗಿದೆ. ಮನಸ್ಸನ್ನು ಹಿಡಿಯುವುದು ಗಾಳಿಯನ್ನು ಹಿಡಿಯುವಷ್ಟೇ ಕಷ್ಟ ಎಂದು ಅರ್ಜುನ ಆಕ್ಷೇಪಿಸುತ್ತಾನೆ; ಹೌದು ಎಂದೇ ಉತ್ತರ ಸಿಗುತ್ತದೆ — ಮತ್ತು ಅಭ್ಯಾಸ ಹಾಗೂ ವೈರಾಗ್ಯ ಅದನ್ನು ಮಾಡಿಯೇ ಮಾಡುತ್ತವೆ.",
-      hi: "न बहुत ऊँचा न बहुत नीचा आसन, न अधिक न अत्यल्प आहार और निद्रा, और भटकने पर हर बार लौटाया गया मन। स्थिर मन की उपमा वायुरहित स्थान के दीपक से दी गई है। अर्जुन आपत्ति करता है कि मन को थामना वायु को थामने जितना कठिन है, और उत्तर मिलता है कि है — और अभ्यास तथा वैराग्य फिर भी वह कर लेते हैं।",
+      hi: "न बहुत ऊँचा न बहुत नीचा आसन, न अधिक न अत्यल्प आहार और निद्रा, और भटकने पर हर बार लौटाया गया मन। स्थिर मन की उपमा वायुरहित स्थान के दीपक से दी गई है। अर्जुन आपत्ति करता है कि मन को थामना वायु को थामने जितना कठिन है, और उत्तर मिलता है कि हाँ, है — और अभ्यास तथा वैराग्य फिर भी वह कर लेते हैं।",
     },
     turn: {
       en: "Arjuna asks what becomes of somebody who tries and fails, and is told that no effort of this kind is wasted — the clearest reassurance in the book.",
       kn: "ಪ್ರಯತ್ನಿಸಿ ಸೋತವನ ಗತಿ ಏನು ಎಂದು ಅರ್ಜುನ ಕೇಳುತ್ತಾನೆ; ಈ ಬಗೆಯ ಯಾವ ಪ್ರಯತ್ನವೂ ವ್ಯರ್ಥವಾಗುವುದಿಲ್ಲ ಎಂದು ಉತ್ತರ — ಗ್ರಂಥದಲ್ಲಿನ ಅತಿ ಸ್ಪಷ್ಟ ಆಶ್ವಾಸನೆ.",
       hi: "अर्जुन पूछता है कि जो प्रयत्न करके चूक जाए उसका क्या होता है, और उत्तर मिलता है कि इस प्रकार का कोई प्रयत्न व्यर्थ नहीं जाता — पुस्तक का सबसे स्पष्ट आश्वासन।",
     },
-    links: [L("/practice", "Everyday Vedanta", "ನಿತ್ಯ ವೇದಾಂತ", "रोज़मर्रा वेदांत")],
+    links: [L("/practice", "Everyday Vedanta", "ನಿತ್ಯ ವೇದಾಂತ", "रोज़मर्रा का वेदांत")],
   },
   {
     n: 7,
@@ -195,7 +195,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     argument: {
       en: "Two natures are distinguished, a lower one of the elements and mind and a higher one that holds the world up. Four kinds of people are said to turn to God — those in trouble, those who want to know, those who want something, and those who already know — and the last is called the dearest, with the others not dismissed.",
       kn: "ಎರಡು ಪ್ರಕೃತಿಗಳನ್ನು ಬೇರ್ಪಡಿಸಲಾಗುತ್ತದೆ — ಭೂತ ಮತ್ತು ಮನಸ್ಸಿನ ಅಪರಾ, ಮತ್ತು ಜಗತ್ತನ್ನು ಹೊತ್ತಿರುವ ಪರಾ. ನಾಲ್ಕು ಬಗೆಯವರು ದೇವರ ಕಡೆ ತಿರುಗುತ್ತಾರೆ ಎನ್ನಲಾಗಿದೆ — ಕಷ್ಟದಲ್ಲಿರುವವರು, ತಿಳಿಯಬಯಸುವವರು, ಏನನ್ನೋ ಬಯಸುವವರು, ಮತ್ತು ಈಗಾಗಲೇ ತಿಳಿದವರು — ಕೊನೆಯವನನ್ನು ಅತಿ ಪ್ರಿಯನೆಂದು ಕರೆಯಲಾಗಿದೆ, ಉಳಿದವರನ್ನು ತಳ್ಳಿಹಾಕದೆ.",
-      hi: "दो प्रकृतियाँ अलग की जाती हैं — भूतों और मन की अपरा, और जगत् को धारण करने वाली परा। चार प्रकार के लोग ईश्वर की ओर मुड़ते हैं कहा गया है — दुःखी, जिज्ञासु, अर्थार्थी, और ज्ञानी — और अंतिम को सबसे प्रिय कहा गया है, शेष को नकारे बिना।",
+      hi: "दो प्रकृतियाँ अलग की जाती हैं — भूतों और मन की अपरा, और जगत् को धारण करने वाली परा। कहा गया है कि चार प्रकार के लोग ईश्वर की ओर मुड़ते हैं — दुःखी, जिज्ञासु, अर्थार्थी, और ज्ञानी — और अंतिम को सबसे प्रिय कहा गया है, शेष को नकारे बिना।",
     },
     turn: {
       en: "The list of four. It is the book's most generous sentence about motive: wanting something is still a way of turning up.",
@@ -211,12 +211,12 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     lede: {
       en: "The hour of death, and the two roads the dead are said to take.",
       kn: "ಮರಣದ ಗಳಿಗೆ, ಮತ್ತು ಸತ್ತವರು ಹಿಡಿಯುತ್ತಾರೆಂದು ಹೇಳಲಾದ ಎರಡು ದಾರಿಗಳು.",
-      hi: "मृत्यु की घड़ी, और मृतकों के बताए गए दो मार्ग।",
+      hi: "मृत्यु की घड़ी, और वे दो मार्ग जिन पर मृतकों का जाना बताया गया है।",
     },
     argument: {
       en: "Arjuna asks a series of short definitional questions and gets short answers. The chapter then says that what a person is holding in mind at the end carries them, and sets out the two paths — one of light from which there is no return, one of smoke from which there is.",
       kn: "ಅರ್ಜುನ ಸಾಲಾಗಿ ಚಿಕ್ಕ ವ್ಯಾಖ್ಯಾನ ಪ್ರಶ್ನೆಗಳನ್ನು ಕೇಳುತ್ತಾನೆ, ಚಿಕ್ಕ ಉತ್ತರಗಳು ಸಿಗುತ್ತವೆ. ನಂತರ ಅಧ್ಯಾಯ ಹೇಳುತ್ತದೆ: ಕೊನೆಯ ಗಳಿಗೆಯಲ್ಲಿ ಮನಸ್ಸಿನಲ್ಲಿ ಹಿಡಿದಿದ್ದೇ ಒಯ್ಯುತ್ತದೆ; ಮತ್ತು ಎರಡು ದಾರಿಗಳನ್ನು ನಿರೂಪಿಸುತ್ತದೆ — ಮರಳಿ ಬರುವಿಕೆ ಇಲ್ಲದ ಬೆಳಕಿನದ್ದು, ಮತ್ತು ಮರಳಿ ಬರುವಿಕೆ ಇರುವ ಹೊಗೆಯದ್ದು.",
-      hi: "अर्जुन कई छोटे परिभाषात्मक प्रश्न पूछता है और छोटे उत्तर पाता है। फिर अध्याय कहता है कि अंत समय मन में जो धारण है वही ले जाता है; और दो मार्ग बताता है — प्रकाश का, जिससे लौटना नहीं, और धूम का, जिससे लौटना है।",
+      hi: "अर्जुन कई छोटे परिभाषात्मक प्रश्न पूछता है और छोटे उत्तर पाता है। फिर अध्याय कहता है कि अंत समय मन में जो धारण किया हो वही ले जाता है; और दो मार्ग बताता है — प्रकाश का, जिससे लौटना नहीं, और धूम का, जिससे लौटना है।",
     },
     turn: {
       en: "The two roads, which the Upaniṣads had already set out. This is one of the clearest places where the Gītā is visibly building on them rather than starting fresh.",
@@ -236,9 +236,9 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
       hi: "पुस्तक का सबसे उदार अध्याय, और जिस पर भक्ति-परंपराएँ खड़ी हैं।",
     },
     argument: {
-      en: "The teaching is called a secret and then given away. What is offered in devotion is accepted whatever it is, a leaf or water will do, and nobody is excluded by birth or by past conduct. The chapter also says that God is equal towards all beings and yet present in those who turn.",
-      kn: "ಬೋಧನೆಯನ್ನು ರಹಸ್ಯವೆಂದು ಕರೆದು ಆಮೇಲೆ ಕೊಟ್ಟುಬಿಡಲಾಗುತ್ತದೆ. ಭಕ್ತಿಯಿಂದ ಅರ್ಪಿಸಿದ್ದು ಏನೇ ಇರಲಿ ಸ್ವೀಕೃತ — ಒಂದು ಎಲೆ ಅಥವಾ ನೀರು ಸಾಕು — ಮತ್ತು ಹುಟ್ಟಿನಿಂದಾಗಲಿ ಹಿಂದಿನ ನಡತೆಯಿಂದಾಗಲಿ ಯಾರನ್ನೂ ಹೊರಗಿಡುವುದಿಲ್ಲ. ದೇವರು ಎಲ್ಲ ಜೀವಿಗಳಿಗೂ ಸಮಾನ, ಆದರೂ ತಿರುಗುವವರಲ್ಲಿ ಇದ್ದಾನೆ ಎಂದೂ ಅಧ್ಯಾಯ ಹೇಳುತ್ತದೆ.",
-      hi: "उपदेश को रहस्य कहकर फिर दे दिया जाता है। भक्ति से जो अर्पित हो वह जो भी हो, स्वीकार है — एक पत्र या जल पर्याप्त — और जन्म या पूर्व आचरण से कोई बाहर नहीं। अध्याय यह भी कहता है कि ईश्वर सब प्राणियों के प्रति समान है, और फिर भी जो मुड़ते हैं उनमें उपस्थित।",
+      en: "The teaching is called a secret and then given away. What is offered in devotion is accepted whatever it is, a leaf or water will do, and nobody is excluded by birth or by past conduct. The chapter also says that God is equal towards all beings and yet present in those who turn to him.",
+      kn: "ಬೋಧನೆಯನ್ನು ರಹಸ್ಯವೆಂದು ಕರೆದು ಆಮೇಲೆ ಕೊಟ್ಟುಬಿಡಲಾಗುತ್ತದೆ. ಭಕ್ತಿಯಿಂದ ಅರ್ಪಿಸಿದ್ದು ಏನೇ ಇರಲಿ ಸ್ವೀಕೃತ — ಒಂದು ಎಲೆ ಅಥವಾ ನೀರು ಸಾಕು — ಮತ್ತು ಹುಟ್ಟಿನಿಂದಾಗಲಿ ಹಿಂದಿನ ನಡತೆಯಿಂದಾಗಲಿ ಯಾರನ್ನೂ ಹೊರಗಿಡುವುದಿಲ್ಲ. ದೇವರು ಎಲ್ಲ ಜೀವಿಗಳಿಗೂ ಸಮಾನ, ಆದರೂ ತನ್ನತ್ತ ತಿರುಗುವವರಲ್ಲಿ ಇದ್ದಾನೆ ಎಂದೂ ಅಧ್ಯಾಯ ಹೇಳುತ್ತದೆ.",
+      hi: "उपदेश को रहस्य कहकर फिर दे दिया जाता है। भक्ति से जो अर्पित हो वह जो भी हो, स्वीकार है — एक पत्र या जल पर्याप्त — और जन्म या पूर्व आचरण से कोई बाहर नहीं। अध्याय यह भी कहता है कि ईश्वर सब प्राणियों के प्रति समान है, और फिर भी जो उसकी ओर मुड़ते हैं उनमें उपस्थित है।",
     },
     turn: {
       en: "The leaf and the water. One line removes cost as a condition of approach, and a great deal of later devotional practice follows from it.",
@@ -264,7 +264,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     },
     turn: {
       en: "The catalogue form itself. It makes the teaching portable: anything a person is looking at can be the thing they are looking through.",
-      kn: "ಪಟ್ಟಿಯ ರೂಪವೇ. ಅದು ಬೋಧನೆಯನ್ನು ಜೊತೆಗೊಯ್ಯುವಂತೆ ಮಾಡುತ್ತದೆ: ನೋಡುತ್ತಿರುವ ಯಾವುದೂ ಅದರ ಮೂಲಕ ನೋಡುವ ವಸ್ತುವಾಗಬಲ್ಲದು.",
+      kn: "ಪಟ್ಟಿಯ ರೂಪವೇ. ಅದು ಬೋಧನೆಯನ್ನು ಜೊತೆಗೊಯ್ಯುವಂತೆ ಮಾಡುತ್ತದೆ: ನೋಡುತ್ತಿರುವ ಯಾವುದೇ ವಸ್ತು ಅದರ ಮೂಲಕ ನೋಡುವ ವಸ್ತುವಾಗಬಲ್ಲದು.",
       hi: "सूची का रूप ही। वह उपदेश को साथ ले चलने योग्य बनाता है: जिसे भी देख रहे हों वही वह बन सकता है जिसके भीतर से देखा जाए।",
     },
   },
@@ -281,7 +281,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     argument: {
       en: "The form shown has no edges — mouths, eyes and arms without number, every being running into it. Arjuna's reaction moves from wonder to terror within a few verses, and he ends by apologising for every time he treated Krishna casually as a friend. The form is withdrawn and the familiar one returns.",
       kn: "ತೋರಿಸಲಾದ ರೂಪಕ್ಕೆ ಅಂಚುಗಳಿಲ್ಲ — ಲೆಕ್ಕವಿಲ್ಲದ ಬಾಯಿ, ಕಣ್ಣು, ತೋಳುಗಳು; ಎಲ್ಲ ಜೀವಿಗಳೂ ಅದರೊಳಗೆ ಓಡುತ್ತಿವೆ. ಕೆಲವೇ ಶ್ಲೋಕಗಳಲ್ಲಿ ಅರ್ಜುನನ ಪ್ರತಿಕ್ರಿಯೆ ವಿಸ್ಮಯದಿಂದ ಭೀತಿಗೆ ಸರಿಯುತ್ತದೆ, ಮತ್ತು ಕೃಷ್ಣನನ್ನು ಗೆಳೆಯನೆಂದು ಹಗುರವಾಗಿ ನಡೆಸಿಕೊಂಡ ಪ್ರತಿ ಸಲಕ್ಕೂ ಕ್ಷಮೆ ಕೇಳಿ ಮುಗಿಸುತ್ತಾನೆ. ರೂಪ ಹಿಂತೆಗೆಯಲ್ಪಟ್ಟು ಪರಿಚಿತ ರೂಪ ಮರಳುತ್ತದೆ.",
-      hi: "दिखाए गए रूप की कोई सीमा नहीं — अनगिनत मुख, नेत्र और भुजाएँ, हर प्राणी उसी में दौड़ता हुआ। कुछ ही श्लोकों में अर्जुन की प्रतिक्रिया विस्मय से भय तक पहुँचती है, और वह कृष्ण को मित्र मानकर जितनी बार हल्के में लिया उस हर बार के लिए क्षमा माँगते हुए समाप्त करता है। रूप समेट लिया जाता है और परिचित रूप लौटता है।",
+      hi: "दिखाए गए रूप की कोई सीमा नहीं — अनगिनत मुख, नेत्र और भुजाएँ, हर प्राणी उसी में दौड़ता हुआ। कुछ ही श्लोकों में अर्जुन की प्रतिक्रिया विस्मय से भय तक पहुँचती है, और वह कृष्ण को मित्र मानकर जितनी बार उन्हें हल्के में लिया उस हर बार के लिए क्षमा माँगते हुए समाप्त करता है। रूप समेट लिया जाता है और परिचित रूप लौटता है।",
     },
     turn: {
       en: "The apology. It is the only place in the book where Arjuna's relationship with Krishna is itself the subject, and it is what makes the vision matter rather than merely impress.",
@@ -391,8 +391,8 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     },
     argument: {
       en: "The first list is short and the second long, which is itself telling: the chapter spends most of its length describing the person who thinks the world has no moral order, takes himself to be self-made, and works from appetite. Three gates are named at the end, and shutting them is the instruction.",
-      kn: "ಮೊದಲ ಪಟ್ಟಿ ಚಿಕ್ಕದು, ಎರಡನೆಯದು ದೀರ್ಘ — ಅದೇ ಸೂಚಕ: ಜಗತ್ತಿಗೆ ನೈತಿಕ ಕ್ರಮವಿಲ್ಲವೆಂದು ಭಾವಿಸುವ, ತಾನೇ ತನ್ನನ್ನು ಮಾಡಿಕೊಂಡೆನೆಂದು ತಿಳಿಯುವ, ಹಸಿವಿನಿಂದ ನಡೆಯುವ ವ್ಯಕ್ತಿಯನ್ನು ವರ್ಣಿಸುವುದರಲ್ಲೇ ಅಧ್ಯಾಯ ತನ್ನ ಬಹುಭಾಗ ಕಳೆಯುತ್ತದೆ. ಕೊನೆಯಲ್ಲಿ ಮೂರು ಬಾಗಿಲುಗಳನ್ನು ಹೆಸರಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವನ್ನು ಮುಚ್ಚುವುದೇ ಸೂಚನೆ.",
-      hi: "पहली सूची छोटी है और दूसरी लंबी, और यही सूचक है: अध्याय अपनी अधिकांश लंबाई उस व्यक्ति के वर्णन में लगाता है जो मानता है कि जगत् में कोई नैतिक क्रम नहीं, स्वयं को स्वयंनिर्मित समझता है, और भूख से चलता है। अंत में तीन द्वार गिनाए जाते हैं, और उन्हें बंद करना ही निर्देश है।",
+      kn: "ಮೊದಲ ಪಟ್ಟಿ ಚಿಕ್ಕದು, ಎರಡನೆಯದು ದೀರ್ಘ — ಅದೇ ಸೂಚಕ: ಜಗತ್ತಿಗೆ ನೈತಿಕ ಕ್ರಮವಿಲ್ಲವೆಂದು ಭಾವಿಸುವ, ತಾನೇ ತನ್ನನ್ನು ಮಾಡಿಕೊಂಡೆನೆಂದು ತಿಳಿಯುವ, ಕಾಮನೆಗಳಿಂದ ನಡೆಯುವ ವ್ಯಕ್ತಿಯನ್ನು ವರ್ಣಿಸುವುದರಲ್ಲೇ ಅಧ್ಯಾಯ ತನ್ನ ಬಹುಭಾಗ ಕಳೆಯುತ್ತದೆ. ಕೊನೆಯಲ್ಲಿ ಮೂರು ಬಾಗಿಲುಗಳನ್ನು ಹೆಸರಿಸಲಾಗಿದೆ, ಮತ್ತು ಅವನ್ನು ಮುಚ್ಚುವುದೇ ಸೂಚನೆ.",
+      hi: "पहली सूची छोटी है और दूसरी लंबी, और यही सूचक है: अध्याय अपनी अधिकांश लंबाई उस व्यक्ति के वर्णन में लगाता है जो मानता है कि जगत् में कोई नैतिक क्रम नहीं, स्वयं को स्वयंनिर्मित समझता है, और कामनाओं से चलता है। अंत में तीन द्वार गिनाए जाते हैं, और उन्हें बंद करना ही निर्देश है।",
     },
     turn: {
       en: "The shutting of the three gates. After several chapters of metaphysics the instruction becomes short and practical again.",
@@ -413,7 +413,7 @@ export const GITA_CHAPTER_NOTES: GitaChapter[] = [
     argument: {
       en: "Arjuna asks about people who have faith but do not follow the rules, and the answer turns on what kind of faith it is. The chapter then applies the three strands to ordinary things — what is eaten, what is given, what is undertaken — and sorts each. Giving is sorted by when, where and to whom, not by how much.",
       kn: "ಶ್ರದ್ಧೆ ಇದ್ದೂ ವಿಧಿ ಪಾಲಿಸದವರ ಬಗ್ಗೆ ಅರ್ಜುನ ಕೇಳುತ್ತಾನೆ, ಮತ್ತು ಉತ್ತರ ಅದು ಯಾವ ಬಗೆಯ ಶ್ರದ್ಧೆ ಎಂಬುದರ ಮೇಲೆ ನಿಲ್ಲುತ್ತದೆ. ನಂತರ ಅಧ್ಯಾಯ ಮೂರು ಗುಣಗಳನ್ನು ಸಾಮಾನ್ಯ ವಿಷಯಗಳಿಗೆ ಅನ್ವಯಿಸುತ್ತದೆ — ಏನು ತಿನ್ನುತ್ತಾರೆ, ಏನು ಕೊಡುತ್ತಾರೆ, ಏನು ಕೈಗೊಳ್ಳುತ್ತಾರೆ — ಮತ್ತು ಪ್ರತಿಯೊಂದನ್ನೂ ವಿಂಗಡಿಸುತ್ತದೆ. ದಾನವನ್ನು ಎಷ್ಟು ಎಂಬುದರಿಂದಲ್ಲ, ಯಾವಾಗ, ಎಲ್ಲಿ, ಯಾರಿಗೆ ಎಂಬುದರಿಂದ ವಿಂಗಡಿಸಲಾಗಿದೆ.",
-      hi: "अर्जुन उन लोगों के विषय में पूछता है जिनमें श्रद्धा है पर विधि का पालन नहीं, और उत्तर इस पर टिकता है कि वह किस प्रकार की श्रद्धा है। फिर अध्याय तीनों गुणों को साधारण वस्तुओं पर लागू करता है — क्या खाया जाता है, क्या दिया जाता है, क्या उठाया जाता है — और हर एक को छाँटता है। दान कितना है इससे नहीं, कब, कहाँ और किसे दिया गया इससे छाँटा जाता है।",
+      hi: "अर्जुन उन लोगों के विषय में पूछता है जिनमें श्रद्धा है पर विधि का पालन नहीं, और उत्तर इस पर टिकता है कि वह किस प्रकार की श्रद्धा है। फिर अध्याय तीनों गुणों को साधारण वस्तुओं पर लागू करता है — क्या खाया जाता है, क्या दिया जाता है, क्या हाथ में लिया जाता है — और हर एक को छाँटता है। दान कितना है इससे नहीं, कब, कहाँ और किसे दिया गया इससे छाँटा जाता है।",
     },
     turn: {
       en: "The claim that a person is made of their faith. It makes the chapter's sorting descriptive rather than prescriptive: you can see which way you lean without being told to be otherwise.",

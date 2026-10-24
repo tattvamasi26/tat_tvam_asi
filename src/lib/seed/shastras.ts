@@ -294,7 +294,7 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
         sanskrit: "शिक्षा",
         note: {
           en: "Phonetics. How each syllable is made, and why mispronouncing one matters.",
-          kn: "ಶಬ್ದಶಾಸ್ತ್ರ. ಪ್ರತಿ ಅಕ್ಷರ ಹೇಗೆ ಹುಟ್ಟುತ್ತದೆ, ತಪ್ಪಾಗಿ ಉಚ್ಚರಿಸಿದರೆ ಏಕೆ ಮುಖ್ಯ.",
+          kn: "ಧ್ವನಿಶಾಸ್ತ್ರ. ಪ್ರತಿ ಅಕ್ಷರ ಹೇಗೆ ಹುಟ್ಟುತ್ತದೆ, ಮತ್ತು ಒಂದನ್ನು ತಪ್ಪಾಗಿ ಉಚ್ಚರಿಸುವುದು ಏಕೆ ಮುಖ್ಯ.",
           hi: "ध्वनिशास्त्र। हर अक्षर कैसे बनता है, और गलत उच्चारण क्यों मायने रखता है।",
         },
         status: "planned",
@@ -392,9 +392,9 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
         name: { en: "Vaiśeṣika", kn: "ವೈಶೇಷಿಕ", hi: "वैशेषिक" },
         sanskrit: "वैशेषिकम्",
         note: {
-          en: "What the world is made of. An atomism older than the Greeks'.",
-          kn: "ಜಗತ್ತು ಯಾವುದರಿಂದ ಆಗಿದೆ. ಗ್ರೀಕರಿಗಿಂತ ಹಳೆಯ ಪರಮಾಣುವಾದ.",
-          hi: "संसार किससे बना है। यूनानियों से पुराना परमाणुवाद।",
+          en: "What the world is made of. An atomism reached by a different road from the Greeks'.",
+          kn: "ಜಗತ್ತು ಯಾವುದರಿಂದ ಆಗಿದೆ. ಗ್ರೀಕರದಕ್ಕಿಂತ ಬೇರೆ ದಾರಿಯಿಂದ ತಲುಪಿದ ಪರಮಾಣುವಾದ.",
+          hi: "संसार किससे बना है। यूनानियों से भिन्न मार्ग से पहुँचा परमाणुवाद।",
         },
         href: "/darshanas/vaisheshika",
         status: "live",
@@ -442,7 +442,7 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
         note: {
           en: "Uttara Mīmāṃsā — the end of the Veda. Its texts are the three above, and its teachers are in the acharyas.",
           kn: "ಉತ್ತರಮೀಮಾಂಸಾ — ವೇದದ ಅಂತ್ಯ. ಇದರ ಗ್ರಂಥಗಳು ಮೇಲಿನ ಮೂರು, ಇದರ ಆಚಾರ್ಯರು ಆಚಾರ್ಯರ ವಿಭಾಗದಲ್ಲಿ.",
-          hi: "उत्तरमीमांसा — वेद का अंत। इसके ग्रंथ ऊपर के तीन हैं, और इसके आचार्य आचार्य अनुभाग में।",
+          hi: "उत्तरमीमांसा — वेद का अंत। इसके ग्रंथ ऊपर के तीन हैं, और इसके आचार्य 'आचार्य' अनुभाग में हैं।",
         },
         href: "/darshanas/vedanta",
         status: "live",
@@ -458,8 +458,8 @@ export const SHASTRA_BRANCHES: ShastraBranch[] = [
     glyph: "धर्म",
     lede: {
       en: "Duty, law and social order. These were one set of competing opinions in their own time, never a single law-book, and this site will say so.",
-      kn: "ಕರ್ತವ್ಯ, ಕಾನೂನು ಮತ್ತು ಸಮಾಜವ್ಯವಸ್ಥೆ. ಇವು ತಮ್ಮ ಕಾಲದಲ್ಲಿ ಪರಸ್ಪರ ಸ್ಪರ್ಧಿಸುವ ಹಲವು ಅಭಿಪ್ರಾಯಗಳಲ್ಲಿ ಒಂದು, ಎಂದೂ ಏಕೈಕ ಧರ್ಮಗ್ರಂಥವಲ್ಲ — ಈ ತಾಣ ಅದನ್ನು ಹೇಳುತ್ತದೆ.",
-      hi: "कर्तव्य, विधि और समाज-व्यवस्था। ये अपने समय में परस्पर प्रतिस्पर्धी मतों में से एक थे, कभी एकमात्र विधि-ग्रंथ नहीं — यह साइट यही कहेगी।",
+      kn: "ಕರ್ತವ್ಯ, ಕಾನೂನು ಮತ್ತು ಸಮಾಜವ್ಯವಸ್ಥೆ. ಇವು ತಮ್ಮ ಕಾಲದಲ್ಲಿ ಪರಸ್ಪರ ಸ್ಪರ್ಧಿಸುವ ಅಭಿಪ್ರಾಯಗಳ ಒಂದು ಗುಚ್ಛ, ಎಂದೂ ಏಕೈಕ ಕಾನೂನು ಗ್ರಂಥವಲ್ಲ — ಈ ತಾಣ ಅದನ್ನು ಹೇಳುತ್ತದೆ.",
+      hi: "कर्तव्य, विधि और समाज-व्यवस्था। ये अपने समय में परस्पर प्रतिस्पर्धी मतों का एक समूह थे, कभी एकमात्र विधि-ग्रंथ नहीं — यह साइट यही कहेगी।",
     },
     texts: [
       {

@@ -142,9 +142,9 @@ export const PURANAS: Purana[] = [
       hi: "अठारह में सबसे सुघड़, और विद्वान् जिसे प्रायः आदर्श पुराण कहते हैं वही।",
     },
     about: {
-      en: "Alone among the eighteen it actually covers the five subjects a Purāṇa is supposed to cover — creation, dissolution and remaking, the ages of the Manus, the genealogies of gods and kings — and it does so in order and without padding.",
-      kn: "ಹದಿನೆಂಟರಲ್ಲಿ ಇದೊಂದೇ ಪುರಾಣ ವಹಿಸಬೇಕಾದ ಐದು ವಿಷಯಗಳನ್ನೂ ನಿಜವಾಗಿ ವಹಿಸುತ್ತದೆ — ಸೃಷ್ಟಿ, ಪ್ರಳಯ ಮತ್ತು ಮರುಸೃಷ್ಟಿ, ಮನ್ವಂತರಗಳು, ದೇವತೆಗಳ ಮತ್ತು ರಾಜರ ವಂಶಾವಳಿ — ಮತ್ತು ಕ್ರಮವಾಗಿ, ತುಂಬುಮಾತಿಲ್ಲದೆ.",
-      hi: "अठारह में केवल यही उन पाँच विषयों को वस्तुतः निभाता है जो पुराण को निभाने चाहिए — सृष्टि, प्रलय और पुनःसृष्टि, मन्वंतर, देवताओं और राजाओं की वंशावली — और वह भी क्रम से, बिना भराव के।",
+      en: "More closely than any other of the eighteen it covers the five subjects a Purāṇa is supposed to cover — creation, dissolution and remaking, the ages of the Manus, the genealogies of gods and kings — and it does so in order and without padding.",
+      kn: "ಪುರಾಣ ವಹಿಸಬೇಕಾದ ಐದು ವಿಷಯಗಳನ್ನು ಹದಿನೆಂಟರಲ್ಲಿ ಬೇರಾವುದಕ್ಕಿಂತಲೂ ಹೆಚ್ಚು ನಿಷ್ಠೆಯಿಂದ ಇದು ವಹಿಸುತ್ತದೆ — ಸೃಷ್ಟಿ, ಪ್ರಳಯ ಮತ್ತು ಮರುಸೃಷ್ಟಿ, ಮನ್ವಂತರಗಳು, ದೇವತೆಗಳ ಮತ್ತು ರಾಜರ ವಂಶಾವಳಿ — ಮತ್ತು ಕ್ರಮವಾಗಿ, ತುಂಬುಮಾತಿಲ್ಲದೆ.",
+      hi: "पुराण को जिन पाँच विषयों को निभाना चाहिए, उन्हें अठारह में यह किसी भी अन्य से अधिक निष्ठा से निभाता है — सृष्टि, प्रलय और पुनःसृष्टि, मन्वंतर, देवताओं और राजाओं की वंशावली — और वह भी क्रम से, बिना भराव के।",
     },
     known: {
       en: "The story of Prahlāda, and the ten avatāras set out as a sequence rather than scattered.",
@@ -206,7 +206,7 @@ export const PURANAS: Purana[] = [
     known: {
       en: "Almost every Kṛṣṇa story anybody can tell, and the nine ways of bhakti that the devotional traditions are built on.",
       kn: "ಯಾರಾದರೂ ಹೇಳಬಲ್ಲ ಬಹುತೇಕ ಪ್ರತಿ ಕೃಷ್ಣ ಕಥೆ, ಮತ್ತು ಭಕ್ತಿ ಪರಂಪರೆಗಳು ನಿಂತಿರುವ ನವವಿಧ ಭಕ್ತಿ.",
-      hi: "जो भी कृष्ण-कथा कोई सुना सकता है उसकी लगभग सब, और नवविधा भक्ति जिस पर भक्ति-परंपराएँ खड़ी हैं।",
+      hi: "लगभग हर वह कृष्ण-कथा जो कोई सुना सकता है, और नवविधा भक्ति जिस पर भक्ति-परंपराएँ खड़ी हैं।",
     },
     note: {
       en: "Some lists give the eighteenth place to the Devī Bhāgavata instead, and the two have been argued over for centuries.",
@@ -256,9 +256,9 @@ export const PURANAS: Purana[] = [
       hi: "सबसे छोटों में एक, और किसी भी पुराण का सर्वाधिक पाठ किया जाने वाला अंश इसी में है।",
     },
     about: {
-      en: "A frame of questions put to sages by birds, within which sit cosmology, dharma, and the thirteen chapters called the Devī Māhātmya.",
-      kn: "ಪಕ್ಷಿಗಳು ಋಷಿಗಳಿಗೆ ಕೇಳುವ ಪ್ರಶ್ನೆಗಳ ಚೌಕಟ್ಟು; ಅದರೊಳಗೆ ಸೃಷ್ಟಿವಿಜ್ಞಾನ, ಧರ್ಮ, ಮತ್ತು ದೇವೀ ಮಾಹಾತ್ಮ್ಯ ಎಂಬ ಹದಿಮೂರು ಅಧ್ಯಾಯಗಳು.",
-      hi: "पक्षियों द्वारा ऋषियों से पूछे प्रश्नों का ढाँचा; उसके भीतर सृष्टिविज्ञान, धर्म, और देवी माहात्म्य नामक तेरह अध्याय।",
+      en: "A frame of questions put by a sage to birds, within which sit cosmology, dharma, and the thirteen chapters called the Devī Māhātmya.",
+      kn: "ಋಷಿಯೊಬ್ಬ ಪಕ್ಷಿಗಳಿಗೆ ಕೇಳುವ ಪ್ರಶ್ನೆಗಳ ಚೌಕಟ್ಟು; ಅದರೊಳಗೆ ಸೃಷ್ಟಿವಿಜ್ಞಾನ, ಧರ್ಮ, ಮತ್ತು ದೇವೀ ಮಾಹಾತ್ಮ್ಯ ಎಂಬ ಹದಿಮೂರು ಅಧ್ಯಾಯಗಳು.",
+      hi: "एक ऋषि द्वारा पक्षियों से पूछे प्रश्नों का ढाँचा; उसके भीतर सृष्टिविज्ञान, धर्म, और देवी माहात्म्य नामक तेरह अध्याय।",
     },
     known: {
       en: "The Devī Māhātmya, recited through all nine nights of Navarātri, in which the goddess kills Mahiṣa, Śumbha and Niśumbha.",
@@ -287,7 +287,7 @@ export const PURANAS: Purana[] = [
     },
     known: {
       en: "It is the standard source for how a temple is laid out and how an image is proportioned.",
-      kn: "ದೇವಾಲಯವನ್ನು ಹೇಗೆ ಹಾಕಬೇಕು, ಮೂರ್ತಿಯ ಪ್ರಮಾಣ ಹೇಗಿರಬೇಕು ಎಂಬುದಕ್ಕೆ ಇದೇ ಪ್ರಮಾಣ ಗ್ರಂಥ.",
+      kn: "ದೇವಾಲಯವನ್ನು ಹೇಗೆ ವಿನ್ಯಾಸಗೊಳಿಸಬೇಕು, ಮೂರ್ತಿಯ ಪ್ರಮಾಣ ಹೇಗಿರಬೇಕು ಎಂಬುದಕ್ಕೆ ಇದೇ ಪ್ರಮಾಣ ಗ್ರಂಥ.",
       hi: "मंदिर का विन्यास कैसे हो और प्रतिमा का प्रमाण क्या हो — इसके लिए यही मानक स्रोत है।",
     },
     links: [L("/temples", "Temples", "ದೇವಾಲಯಗಳು", "मंदिर")],
@@ -302,8 +302,8 @@ export const PURANAS: Purana[] = [
     guna: "rajasa",
     lede: {
       en: "Named for what is to come, and the most obviously added to of the eighteen.",
-      kn: "ಮುಂದೆ ಬರುವುದರ ಹೆಸರಿನದು, ಮತ್ತು ಹದಿನೆಂಟರಲ್ಲಿ ಅತಿ ಸ್ಪಷ್ಟವಾಗಿ ಸೇರಿಸಲ್ಪಟ್ಟದ್ದು.",
-      hi: "आने वाले के नाम पर, और अठारह में सबसे स्पष्ट रूप से बाद में जोड़ा गया।",
+      kn: "ಮುಂದೆ ಬರುವುದರ ಹೆಸರಿನದು, ಮತ್ತು ಹದಿನೆಂಟರಲ್ಲಿ ಅತಿ ಸ್ಪಷ್ಟವಾಗಿ ನಂತರದ ಸೇರ್ಪಡೆಗಳಿರುವುದು.",
+      hi: "आने वाले के नाम पर, और अठारह में वह जिसमें सबसे स्पष्ट रूप से बाद में जोड़ हुए।",
     },
     about: {
       en: "Sun worship, vratas and festivals, and social duty. Its surviving recensions also contain passages on events of the last few centuries, which no manuscript tradition can account for as original.",
@@ -331,8 +331,8 @@ export const PURANAS: Purana[] = [
     guna: "rajasa",
     lede: {
       en: "The text that gives Rādhā her theology.",
-      kn: "ರಾಧೆಗೆ ತತ್ತ್ವಶಾಸ್ತ್ರವನ್ನು ಕೊಡುವ ಗ್ರಂಥ.",
-      hi: "जो ग्रंथ राधा को उनका तत्त्वशास्त्र देता है।",
+      kn: "ರಾಧೆಗೆ ದೈವತತ್ತ್ವವನ್ನು ಕೊಡುವ ಗ್ರಂಥ.",
+      hi: "जो ग्रंथ राधा को उनका देवी-तत्त्व देता है।",
     },
     about: {
       en: "Four khaṇḍas on Brahmā, on Prakṛti, on Gaṇeśa and on Kṛṣṇa's birth. Kṛṣṇa here is not an avatāra of Viṣṇu but the supreme himself, with Rādhā as his inseparable power.",
@@ -364,9 +364,9 @@ export const PURANAS: Purana[] = [
       hi: "सृष्टिविज्ञान, युग, और शिव के रूप तथा अवतार — उस अनादि ज्योतिस्तंभ की कथा के चारों ओर रचे गए, जिसका अंत न ब्रह्मा को मिला न विष्णु को।",
     },
     known: {
-      en: "The jyotirliṅga story, which is where the word liṅga gets its sense of a mark or sign rather than anything anatomical.",
-      kn: "ಜ್ಯೋತಿರ್ಲಿಂಗದ ಕಥೆ — ಲಿಂಗ ಎಂಬ ಪದಕ್ಕೆ ಶಾರೀರಿಕವಾದ ಯಾವುದೇ ಅರ್ಥಕ್ಕಿಂತ ಗುರುತು ಅಥವಾ ಚಿಹ್ನೆ ಎಂಬ ಅರ್ಥ ಬರುವುದು ಇಲ್ಲಿಂದಲೇ.",
-      hi: "ज्योतिर्लिंग की कथा — जहाँ से लिंग शब्द को किसी शारीरिक अर्थ के बजाय चिह्न या संकेत का अर्थ मिलता है।",
+      en: "The jyotirliṅga story, which reads liṅga in its plain Sanskrit sense of a mark or sign rather than anything anatomical.",
+      kn: "ಜ್ಯೋತಿರ್ಲಿಂಗದ ಕಥೆ — ಇಲ್ಲಿ ಲಿಂಗ ಎಂಬ ಪದ ತನ್ನ ಸಾಮಾನ್ಯ ಸಂಸ್ಕೃತ ಅರ್ಥದಲ್ಲಿದೆ: ಶಾರೀರಿಕವಾದ ಯಾವುದೂ ಅಲ್ಲ, ಗುರುತು ಅಥವಾ ಚಿಹ್ನೆ.",
+      hi: "ज्योतिर्लिंग की कथा — जिसमें लिंग शब्द अपने सामान्य संस्कृत अर्थ में है: किसी शारीरिक अर्थ में नहीं, चिह्न या संकेत।",
     },
   },
   {
@@ -443,7 +443,7 @@ export const PURANAS: Purana[] = [
     known: {
       en: "Bali, who is honoured rather than condemned, and whose yearly return is kept as Onam in Kerala and as Balipāḍyami at Dīpāvali.",
       kn: "ಬಲಿ — ಖಂಡಿಸಲ್ಪಡುವುದಿಲ್ಲ, ಗೌರವಿಸಲ್ಪಡುತ್ತಾನೆ; ಅವನ ವಾರ್ಷಿಕ ಮರಳುವಿಕೆಯನ್ನು ಕೇರಳದಲ್ಲಿ ಓಣಂ ಆಗಿ, ದೀಪಾವಳಿಯಲ್ಲಿ ಬಲಿಪಾಡ್ಯಮಿಯಾಗಿ ಆಚರಿಸುತ್ತಾರೆ.",
-      hi: "बलि — निंदित नहीं, सम्मानित; उनकी वार्षिक वापसी केरल में ओणम और दीपावली में बलिपाड्यमि के रूप में मनाई जाती है।",
+      hi: "बलि — निंदित नहीं, सम्मानित; उनकी वार्षिक वापसी केरल में ओणम और दीपावली में बलि प्रतिपदा के रूप में मनाई जाती है।",
     },
     links: [L("/festivals/deepavali", "Dīpāvali", "ದೀಪಾವಳಿ", "दीपावली")],
   },
@@ -513,7 +513,7 @@ export const PURANAS: Purana[] = [
     about: {
       en: "Two very different halves. The first is medicine, gemmology, grammar and statecraft; the second, the Pretakalpa, is what the soul meets after death and what the living owe it.",
       kn: "ಎರಡು ಬಹು ಭಿನ್ನ ಭಾಗಗಳು. ಮೊದಲನೆಯದು ವೈದ್ಯ, ರತ್ನಶಾಸ್ತ್ರ, ವ್ಯಾಕರಣ ಮತ್ತು ರಾಜನೀತಿ; ಎರಡನೆಯದು ಪ್ರೇತಕಲ್ಪ — ಮರಣದ ನಂತರ ಆತ್ಮ ಎದುರಿಸುವುದು ಮತ್ತು ಬದುಕಿರುವವರು ಅದಕ್ಕೆ ಸಲ್ಲಿಸಬೇಕಾದದ್ದು.",
-      hi: "दो बहुत भिन्न भाग। पहला चिकित्सा, रत्नशास्त्र, व्याकरण और राजनीति; दूसरा प्रेतकल्प — मृत्यु के बाद आत्मा जिससे मिलती है और जीवित जो उसे देते हैं।",
+      hi: "दो बहुत भिन्न भाग। पहला चिकित्सा, रत्नशास्त्र, व्याकरण और राजनीति; दूसरा प्रेतकल्प — मृत्यु के बाद आत्मा जिससे मिलती है और जीवितों का उसके प्रति क्या ऋण है।",
     },
     known: {
       en: "The Pretakalpa, and with it the whole shape of the ten days after a death.",

@@ -91,7 +91,7 @@ export const EN: DepthBook = {
     steps: [
       ["At the house", "The body is washed, laid with the head to the south, dressed and garlanded, and a lamp is lit beside it."],
       ["Carried", "It is carried to the cremation ground on a bier. The son who will perform the rite walks in front with fire carried in a pot."],
-      ["The pyre", "He walks round the pyre with water and fire, and lights it. In many families the skull is broken once the fire has done its work."],
+      ["The pyre", "He walks round the pyre with water and fire, and lights it. In many families the skull is broken while the body burns — the kapāla-kriyā."],
       ["The bones", "On the second or third day the bones are gathered and later given to a river, the Gaṅgā if the family can reach it."],
       ["Ten days", "For ten days rice-balls are offered, one each day, to the one who has died, now held to be travelling."],
       ["The joining", "On the eleventh or twelfth day the sapiṇḍīkaraṇa joins the dead to the ancestors, and on the thirteenth the house is out of mourning."],
@@ -439,7 +439,7 @@ export const EN: DepthBook = {
 
   "maha-shivaratri": {
     steps: [
-      ["The fast", "Food is not taken through the day, and water by the strictest."],
+      ["The fast", "Food is not taken through the day, and by the strictest not even water."],
       ["The night", "The night is kept awake, with japa of Om namaḥ śivāya."],
       ["Four watches", "The liṅga is bathed four times, once in each watch of the night — milk, curd, ghee, honey."],
       ["Bilva", "Bilva leaves, three to a stem, are offered."],

@@ -174,7 +174,7 @@ export const SAMSKARAS: Samskara[] = [
     marks: {
       en: "Conception, undertaken deliberately rather than left to happen.",
       kn: "ಗರ್ಭಧಾರಣೆ — ಆಗುತ್ತದೆ ಎಂದು ಬಿಡುವ ಬದಲು ಸಂಕಲ್ಪಿಸಿ ಕೈಗೊಳ್ಳುವುದು.",
-      hi: "गर्भधारण — हो जाने पर छोड़ने के बजाय संकल्प से किया गया।",
+      hi: "गर्भधारण — अपने आप होने के लिए छोड़ने के बजाय संकल्पपूर्वक किया गया।",
     },
     kept: "lapsed",
   },
@@ -398,7 +398,7 @@ export const RITUALS: Ritual[] = [
     },
     lede: {
       en: "The rite of the first hour, now almost always displaced by the hospital and done later or not at all.",
-      kn: "ಮೊದಲ ಗಳಿಗೆಯ ಸಂಸ್ಕಾರ — ಈಗ ಬಹುತೇಕ ಆಸ್ಪತ್ರೆಯಿಂದ ಹಿಂದೆ ಸರಿದು, ಆಮೇಲೆ ಮಾಡಲಾಗುತ್ತದೆ ಅಥವಾ ಮಾಡುವುದೇ ಇಲ್ಲ.",
+      kn: "ಮೊದಲ ಗಳಿಗೆಯ ಸಂಸ್ಕಾರ — ಈಗ ಬಹುತೇಕ ಆಸ್ಪತ್ರೆಯ ಕಾರಣ ತನ್ನ ಸಮಯದಿಂದ ಸರಿದು, ಆಮೇಲೆ ಮಾಡಲಾಗುತ್ತದೆ ಅಥವಾ ಮಾಡುವುದೇ ಇಲ್ಲ.",
       hi: "पहले घंटे का संस्कार — अब प्रायः अस्पताल से विस्थापित, बाद में किया जाता है या नहीं किया जाता।",
     },
     observed: {
@@ -436,7 +436,7 @@ export const RITUALS: Ritual[] = [
     },
     significance: {
       en: "A name in this tradition is not a label chosen for how it sounds; it is an address, and the older texts expect it to be a devatā's. That is why so many people are called after gods and so few after qualities — and why the name said in the ear is often not the one used at home.",
-      kn: "ಈ ಪರಂಪರೆಯಲ್ಲಿ ಹೆಸರು ಕೇಳಲು ಚೆನ್ನಾಗಿದೆ ಎಂದು ಆರಿಸಿದ ಹಚ್ಚೆಯಲ್ಲ; ಅದು ಒಂದು ಸಂಬೋಧನೆ, ಮತ್ತು ಹಳೆಯ ಗ್ರಂಥಗಳು ಅದು ದೇವತೆಯ ಹೆಸರೇ ಆಗಿರಬೇಕೆಂದು ನಿರೀಕ್ಷಿಸುತ್ತವೆ. ಆದ್ದರಿಂದಲೇ ಇಷ್ಟು ಜನರಿಗೆ ದೇವರ ಹೆಸರು ಮತ್ತು ಇಷ್ಟು ಕಡಿಮೆ ಜನರಿಗೆ ಗುಣಗಳ ಹೆಸರು — ಮತ್ತು ಕಿವಿಯಲ್ಲಿ ಹೇಳಿದ ಹೆಸರು ಮನೆಯಲ್ಲಿ ಬಳಸುವುದಕ್ಕಿಂತ ಬೇರೆಯಾಗಿರುವುದೂ ಅದೇ ಕಾರಣಕ್ಕೆ.",
+      kn: "ಈ ಪರಂಪರೆಯಲ್ಲಿ ಹೆಸರು ಕೇಳಲು ಚೆನ್ನಾಗಿದೆ ಎಂದು ಆರಿಸಿದ ಹಣೆಪಟ್ಟಿಯಲ್ಲ; ಅದು ಒಂದು ಸಂಬೋಧನೆ, ಮತ್ತು ಹಳೆಯ ಗ್ರಂಥಗಳು ಅದು ದೇವತೆಯ ಹೆಸರೇ ಆಗಿರಬೇಕೆಂದು ನಿರೀಕ್ಷಿಸುತ್ತವೆ. ಆದ್ದರಿಂದಲೇ ಇಷ್ಟು ಜನರಿಗೆ ದೇವರ ಹೆಸರು ಮತ್ತು ಇಷ್ಟು ಕಡಿಮೆ ಜನರಿಗೆ ಗುಣಗಳ ಹೆಸರು — ಮತ್ತು ಕಿವಿಯಲ್ಲಿ ಹೇಳಿದ ಹೆಸರು ಮನೆಯಲ್ಲಿ ಬಳಸುವುದಕ್ಕಿಂತ ಬೇರೆಯಾಗಿರುವುದೂ ಅದೇ ಕಾರಣಕ್ಕೆ.",
       hi: "इस परंपरा में नाम सुनने में अच्छा लगने से चुना गया लेबल नहीं है; वह एक संबोधन है, और पुराने ग्रंथ अपेक्षा करते हैं कि वह किसी देवता का हो। इसीलिए इतने लोगों के नाम देवताओं के हैं और इतने कम गुणों के — और कान में कहा गया नाम घर में चलने वाले नाम से अलग होना भी इसी कारण।",
     },
     regional: {
@@ -460,17 +460,17 @@ export const RITUALS: Ritual[] = [
     lede: {
       en: "The first mouthful of cooked food, given by the family and not by the mother.",
       kn: "ಮೊದಲ ತುತ್ತು ಬೇಯಿಸಿದ ಆಹಾರ — ತಾಯಿ ಕೊಡುವುದಲ್ಲ, ಕುಟುಂಬ ಕೊಡುವುದು.",
-      hi: "पका भोजन का पहला कौर, माता नहीं, परिवार देता है।",
+      hi: "पके भोजन का पहला कौर, माता नहीं, परिवार देता है।",
     },
     observed: {
       en: "Rice cooked with ghee, sometimes with a little honey or payasa, is given on a silver or gold spoon — commonly by the maternal uncle, who has a part in most of a Kannada child's rites. Many families then set out a tray of objects and let the child reach for one.",
       kn: "ತುಪ್ಪದಲ್ಲಿ ಬೇಯಿಸಿದ ಅನ್ನ, ಕೆಲವೊಮ್ಮೆ ಸ್ವಲ್ಪ ಜೇನು ಅಥವಾ ಪಾಯಸದ ಜೊತೆಗೆ, ಬೆಳ್ಳಿ ಅಥವಾ ಚಿನ್ನದ ಚಮಚದಿಂದ ಕೊಡುತ್ತಾರೆ — ಸಾಮಾನ್ಯವಾಗಿ ಸೋದರಮಾವ, ಕನ್ನಡ ಮಗುವಿನ ಬಹುತೇಕ ಸಂಸ್ಕಾರಗಳಲ್ಲಿ ಪಾತ್ರವಿರುವವನು. ಆಮೇಲೆ ಹಲವು ಕುಟುಂಬಗಳು ಒಂದು ತಟ್ಟೆಯಲ್ಲಿ ವಸ್ತುಗಳನ್ನು ಇಟ್ಟು ಮಗು ಒಂದನ್ನು ಎತ್ತಿಕೊಳ್ಳಲು ಬಿಡುತ್ತವೆ.",
-      hi: "घी में पका चावल, कभी थोड़े शहद या पायस के साथ, चाँदी या सोने के चम्मच से दिया जाता है — प्रायः मामा के हाथ से, जिसकी कन्नड शिशु के अधिकांश संस्कारों में भूमिका होती है। फिर बहुत परिवार एक थाल में वस्तुएँ रखकर शिशु को एक उठाने देते हैं।",
+      hi: "घी में पका चावल, कभी थोड़े शहद या पायस के साथ, चाँदी या सोने के चम्मच से दिया जाता है — प्रायः मामा के हाथ से, जिसकी कन्नड शिशु के अधिकांश संस्कारों में भूमिका होती है। फिर अनेक परिवार एक थाल में वस्तुएँ रखकर शिशु को एक उठाने देते हैं।",
     },
     significance: {
       en: "Up to this day the child has lived on one person. After it, it eats what the house eats. The rite marks a transfer of responsibility rather than a milestone in growth, which is why the food is given by somebody other than the mother.",
       kn: "ಈ ದಿನದವರೆಗೆ ಮಗು ಒಬ್ಬ ವ್ಯಕ್ತಿಯ ಮೇಲೆ ಬದುಕಿದೆ. ಇದಾದ ಮೇಲೆ ಮನೆ ತಿನ್ನುವುದನ್ನೇ ಅದೂ ತಿನ್ನುತ್ತದೆ. ಈ ಸಂಸ್ಕಾರ ಬೆಳವಣಿಗೆಯ ಮೈಲಿಗಲ್ಲನ್ನಲ್ಲ, ಹೊಣೆ ವರ್ಗಾವಣೆಯನ್ನು ಗುರುತಿಸುತ್ತದೆ — ಆದ್ದರಿಂದಲೇ ಆಹಾರವನ್ನು ತಾಯಿಯಲ್ಲದ ಬೇರೊಬ್ಬರು ಕೊಡುತ್ತಾರೆ.",
-      hi: "इस दिन तक शिशु एक व्यक्ति पर जिया है। इसके बाद वह वही खाता है जो घर खाता है। यह संस्कार विकास का पड़ाव नहीं, उत्तरदायित्व का हस्तांतरण चिह्नित करता है — इसीलिए भोजन माता के अतिरिक्त कोई देता है।",
+      hi: "इस दिन तक शिशु एक व्यक्ति पर जिया है। इसके बाद वह वही खाता है जो घर खाता है। यह संस्कार विकास का पड़ाव नहीं, उत्तरदायित्व का हस्तांतरण चिह्नित करता है — इसीलिए भोजन माता के अतिरिक्त कोई और देता है।",
     },
   },
 
@@ -562,14 +562,14 @@ export const RITUALS: Ritual[] = [
       hi: "क्रम लंबा है, पर चार कर्म उसे उठाते हैं: कन्यादान, देना; पाणिग्रहण, हाथ थामना; अग्नि प्रज्वलित कर परिक्रमा; और सप्तपदी, साथ उठाए सात पग, प्रत्येक की अपनी पंक्ति। दक्षिण के बहुत भाग में ताली या मंगलसूत्र बाँधा जाता है; उत्तर में सिंदूर लगाया जाता है। दोनों क्षेत्रीय हैं, और विवाह इनमें से किसी से नहीं होता।",
     },
     significance: {
-      en: "It is the seventh step. The Gṛhya Sūtras and the Dharma Śāstras agree that the marriage is complete at the saptapadī, before the fire and in company — which is why a wedding needs witnesses and a priest but not a ring, and why the garlands, the tāli and the reception are all, strictly, afterwards. The fire is there as the witness that cannot be disputed.",
-      kn: "ಅದು ಏಳನೇ ಹೆಜ್ಜೆ. ಗೃಹ್ಯ ಸೂತ್ರಗಳು ಮತ್ತು ಧರ್ಮಶಾಸ್ತ್ರಗಳು ಒಪ್ಪುತ್ತವೆ: ಮದುವೆ ಸಪ್ತಪದಿಯಲ್ಲಿ ಪೂರ್ಣವಾಗುತ್ತದೆ, ಅಗ್ನಿಯ ಮುಂದೆ ಮತ್ತು ಜನರ ನಡುವೆ — ಆದ್ದರಿಂದಲೇ ಮದುವೆಗೆ ಸಾಕ್ಷಿಗಳು ಮತ್ತು ಪುರೋಹಿತ ಬೇಕು, ಉಂಗುರ ಬೇಡ; ಮತ್ತು ಹಾರ, ತಾಳಿ, ಆರತಕ್ಷತೆ ಎಲ್ಲವೂ ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಆಮೇಲೆ. ವಿವಾದಿಸಲಾಗದ ಸಾಕ್ಷಿಯಾಗಿ ಅಗ್ನಿ ಅಲ್ಲಿದೆ.",
-      hi: "वह सातवाँ पग है। गृह्य सूत्र और धर्मशास्त्र सहमत हैं: विवाह सप्तपदी पर पूर्ण होता है, अग्नि के सम्मुख और लोगों के बीच — इसीलिए विवाह को साक्षी और पुरोहित चाहिए, अँगूठी नहीं; और माला, ताली, स्वागत — सब कड़े अर्थ में बाद के हैं। जिस साक्षी पर विवाद न हो सके, उस रूप में अग्नि वहाँ है।",
+      en: "It is the seventh step. The Gṛhya Sūtras and the Dharma Śāstras agree that the marriage is complete at the saptapadī, before the fire and in company — which is why a wedding needs witnesses and a priest but not a ring, and why the garlands, the tāli and the reception are all, strictly, additions to it. The fire is there as the witness that cannot be disputed.",
+      kn: "ಅದು ಏಳನೇ ಹೆಜ್ಜೆ. ಗೃಹ್ಯ ಸೂತ್ರಗಳು ಮತ್ತು ಧರ್ಮಶಾಸ್ತ್ರಗಳು ಒಪ್ಪುತ್ತವೆ: ಮದುವೆ ಸಪ್ತಪದಿಯಲ್ಲಿ ಪೂರ್ಣವಾಗುತ್ತದೆ, ಅಗ್ನಿಯ ಮುಂದೆ ಮತ್ತು ಜನರ ನಡುವೆ — ಆದ್ದರಿಂದಲೇ ಮದುವೆಗೆ ಸಾಕ್ಷಿಗಳು ಮತ್ತು ಪುರೋಹಿತ ಬೇಕು, ಉಂಗುರ ಬೇಡ; ಮತ್ತು ಹಾರ, ತಾಳಿ, ಆರತಕ್ಷತೆ ಎಲ್ಲವೂ ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಹೇಳುವುದಾದರೆ ಅದಕ್ಕೆ ಸೇರ್ಪಡೆಗಳು. ವಿವಾದಿಸಲಾಗದ ಸಾಕ್ಷಿಯಾಗಿ ಅಗ್ನಿ ಅಲ್ಲಿದೆ.",
+      hi: "वह सातवाँ पग है। गृह्य सूत्र और धर्मशास्त्र सहमत हैं: विवाह सप्तपदी पर पूर्ण होता है, अग्नि के सम्मुख और लोगों के बीच — इसीलिए विवाह को साक्षी और पुरोहित चाहिए, अँगूठी नहीं; और माला, ताली, स्वागत — सब कड़े अर्थ में उसके ऊपर जोड़ हैं। जिस साक्षी पर विवाद न हो सके, उस रूप में अग्नि वहाँ है।",
     },
     regional: {
-      en: "In Karnataka the bride's maternal uncle carries her in, and the dhāre — water poured over the joined hands — stands where kanyādāna stands elsewhere. Tulu and Kodava weddings are performed without a brāhmaṇa priest at all, by the elders of the two houses.",
-      kn: "ಕರ್ನಾಟಕದಲ್ಲಿ ವಧುವನ್ನು ಸೋದರಮಾವ ಎತ್ತಿಕೊಂಡು ಬರುತ್ತಾನೆ, ಮತ್ತು ಧಾರೆ — ಜೋಡಿಸಿದ ಕೈಗಳ ಮೇಲೆ ಸುರಿಯುವ ನೀರು — ಬೇರೆಡೆ ಕನ್ಯಾದಾನ ನಿಲ್ಲುವ ಜಾಗದಲ್ಲಿ ನಿಲ್ಲುತ್ತದೆ. ತುಳು ಮತ್ತು ಕೊಡವ ಮದುವೆಗಳು ಬ್ರಾಹ್ಮಣ ಪುರೋಹಿತನಿಲ್ಲದೆಯೇ, ಎರಡೂ ಮನೆಗಳ ಹಿರಿಯರಿಂದ ನಡೆಯುತ್ತವೆ.",
-      hi: "कर्नाटक में वधू को मामा गोद में लाता है, और धारे — जुड़े हाथों पर डाला जल — वहाँ खड़ा होता है जहाँ अन्यत्र कन्यादान। तुलु और कोडव विवाह किसी ब्राह्मण पुरोहित के बिना, दोनों घरों के बड़े-बूढ़ों द्वारा संपन्न होते हैं।",
+      en: "In Karnataka the bride's maternal uncle carries her in, and the dhāre — water poured over the joined hands — stands where kanyādāna stands elsewhere. Kodava weddings, and those of several Tulu-speaking communities, are performed without a brāhmaṇa priest, by the elders of the two houses.",
+      kn: "ಕರ್ನಾಟಕದಲ್ಲಿ ವಧುವನ್ನು ಸೋದರಮಾವ ಎತ್ತಿಕೊಂಡು ಬರುತ್ತಾನೆ, ಮತ್ತು ಧಾರೆ — ಜೋಡಿಸಿದ ಕೈಗಳ ಮೇಲೆ ಸುರಿಯುವ ನೀರು — ಬೇರೆಡೆ ಕನ್ಯಾದಾನ ನಿಲ್ಲುವ ಜಾಗದಲ್ಲಿ ನಿಲ್ಲುತ್ತದೆ. ಕೊಡವ ಮದುವೆಗಳು, ಮತ್ತು ತುಳು ಮಾತನಾಡುವ ಹಲವು ಸಮುದಾಯಗಳ ಮದುವೆಗಳು, ಬ್ರಾಹ್ಮಣ ಪುರೋಹಿತನಿಲ್ಲದೆಯೇ, ಎರಡೂ ಮನೆಗಳ ಹಿರಿಯರಿಂದ ನಡೆಯುತ್ತವೆ.",
+      hi: "कर्नाटक में वधू को मामा गोद में लाता है, और धारे — जुड़े हाथों पर डाला जल — वहाँ खड़ा होता है जहाँ अन्यत्र कन्यादान। कोडव विवाह, और कई तुलुभाषी समुदायों के विवाह, किसी ब्राह्मण पुरोहित के बिना, दोनों घरों के बड़े-बूढ़ों द्वारा संपन्न होते हैं।",
     },
   },
 
@@ -591,8 +591,8 @@ export const RITUALS: Ritual[] = [
     },
     observed: {
       en: "The body is washed, wrapped and carried out feet first, and cremated — by the eldest son where there is one, and otherwise by the nearest kin who can be found. The fire is carried from the house. Ten, eleven or twelve days of observance follow, ending in the first śrāddha; the ashes are taken to running water. A sannyāsin and a very young child are not cremated.",
-      kn: "ದೇಹವನ್ನು ತೊಳೆದು, ಸುತ್ತಿ, ಕಾಲು ಮುಂದೆ ಮಾಡಿ ಹೊರಗೆ ಒಯ್ದು ದಹಿಸುತ್ತಾರೆ — ಹಿರಿಯ ಮಗನಿದ್ದರೆ ಅವನಿಂದ, ಇಲ್ಲದಿದ್ದರೆ ಸಿಗುವ ಹತ್ತಿರದ ಬಂಧುವಿನಿಂದ. ಅಗ್ನಿಯನ್ನು ಮನೆಯಿಂದಲೇ ಒಯ್ಯುತ್ತಾರೆ. ಹತ್ತು, ಹನ್ನೊಂದು ಅಥವಾ ಹನ್ನೆರಡು ದಿನಗಳ ಆಚರಣೆ ನಂತರ, ಮೊದಲ ಶ್ರಾದ್ಧದಲ್ಲಿ ಮುಗಿಯುತ್ತದೆ; ಚಿತಾಭಸ್ಮವನ್ನು ಹರಿಯುವ ನೀರಿಗೆ ಒಯ್ಯುತ್ತಾರೆ. ಸನ್ಯಾಸಿಯನ್ನು ಮತ್ತು ಬಹಳ ಚಿಕ್ಕ ಮಗುವನ್ನು ದಹಿಸುವುದಿಲ್ಲ.",
-      hi: "देह को धोकर, लपेटकर, पैर आगे कर बाहर ले जाया और दाह किया जाता है — जहाँ ज्येष्ठ पुत्र हो उससे, अन्यथा जो निकटतम स्वजन मिले उससे। अग्नि घर से ही ले जाई जाती है। दस, ग्यारह या बारह दिन का आचरण चलता है और प्रथम श्राद्ध पर पूरा होता है; भस्म बहते जल में ले जाई जाती है। संन्यासी और अति शिशु का दाह नहीं होता।",
+      kn: "ದೇಹವನ್ನು ತೊಳೆದು, ಸುತ್ತಿ, ಕಾಲು ಮುಂದೆ ಮಾಡಿ ಹೊರಗೆ ಒಯ್ದು ದಹಿಸುತ್ತಾರೆ — ಹಿರಿಯ ಮಗನಿದ್ದರೆ ಅವನಿಂದ, ಇಲ್ಲದಿದ್ದರೆ ಸಿಗುವ ಹತ್ತಿರದ ಬಂಧುವಿನಿಂದ. ಅಗ್ನಿಯನ್ನು ಮನೆಯಿಂದಲೇ ಒಯ್ಯುತ್ತಾರೆ. ಹತ್ತು, ಹನ್ನೊಂದು ಅಥವಾ ಹನ್ನೆರಡು ದಿನಗಳ ಆಚರಣೆ ನಂತರ, ಮೊದಲ ಶ್ರಾದ್ಧದಲ್ಲಿ ಮುಗಿಯುತ್ತದೆ; ಚಿತಾಭಸ್ಮವನ್ನು ಹರಿಯುವ ನೀರಿಗೆ ಒಯ್ಯುತ್ತಾರೆ. ಸಂನ್ಯಾಸಿಯನ್ನು ಮತ್ತು ಬಹಳ ಚಿಕ್ಕ ಮಗುವನ್ನು ದಹಿಸುವುದಿಲ್ಲ.",
+      hi: "देह को धोकर, लपेटकर, पैर आगे कर बाहर ले जाया और दाह किया जाता है — जहाँ ज्येष्ठ पुत्र हो उससे, अन्यथा जो निकटतम स्वजन मिले उससे। अग्नि घर से ही ले जाई जाती है। दस, ग्यारह या बारह दिन का आचरण चलता है और प्रथम श्राद्ध पर पूरा होता है; भस्म बहते जल में ले जाई जाती है। संन्यासी और अत्यंत छोटे शिशु का दाह नहीं होता।",
     },
     significance: {
       en: "The rite is addressed to the fire as a carrier, not as a destroyer: what is offered is the body, in the same grammar as any other offering, with the person understood to have already left. That is also why it is called a saṃskāra at all — the sixteen are a sequence of makings, and this is held to be the last of them rather than the undoing of the rest.",
@@ -623,13 +623,13 @@ export const RITUALS: Ritual[] = [
     },
     observed: {
       en: "Water is sipped, the breath is held, water is sprinkled and then thrown towards the sun as arghya, the Gāyatrī is said a fixed number of times, and the sun is addressed standing. Ten minutes at the outside. It is done alone, and it needs no priest, no image and nothing but water.",
-      kn: "ನೀರು ಆಚಮನ, ಪ್ರಾಣಾಯಾಮ, ಮಾರ್ಜನ, ನಂತರ ಸೂರ್ಯನ ಕಡೆಗೆ ಅರ್ಘ್ಯವಾಗಿ ನೀರು ಎರಚುವುದು, ಗಾಯತ್ರಿಯನ್ನು ನಿಗದಿತ ಸಂಖ್ಯೆ ಜಪಿಸುವುದು, ಮತ್ತು ನಿಂತು ಸೂರ್ಯನನ್ನು ಉಪಸ್ಥಾನ ಮಾಡುವುದು. ಹೆಚ್ಚೆಂದರೆ ಹತ್ತು ನಿಮಿಷ. ಒಬ್ಬರೇ ಮಾಡುವುದು; ಪುರೋಹಿತ, ಮೂರ್ತಿ ಬೇಕಿಲ್ಲ, ನೀರಲ್ಲದೆ ಬೇರೇನೂ ಬೇಕಿಲ್ಲ.",
+      kn: "ಆಚಮನ, ಪ್ರಾಣಾಯಾಮ, ಮಾರ್ಜನ, ನಂತರ ಸೂರ್ಯನ ಕಡೆಗೆ ಅರ್ಘ್ಯವಾಗಿ ನೀರು ಎರಚುವುದು, ಗಾಯತ್ರಿಯನ್ನು ನಿಗದಿತ ಸಂಖ್ಯೆ ಜಪಿಸುವುದು, ಮತ್ತು ನಿಂತು ಸೂರ್ಯನನ್ನು ಉಪಸ್ಥಾನ ಮಾಡುವುದು. ಹೆಚ್ಚೆಂದರೆ ಹತ್ತು ನಿಮಿಷ. ಒಬ್ಬರೇ ಮಾಡುವುದು; ಪುರೋಹಿತ, ಮೂರ್ತಿ ಬೇಕಿಲ್ಲ, ನೀರಲ್ಲದೆ ಬೇರೇನೂ ಬೇಕಿಲ್ಲ.",
       hi: "आचमन, प्राणायाम, मार्जन, फिर सूर्य की ओर अर्घ्य रूप में जल, नियत संख्या में गायत्री जप, और खड़े होकर सूर्य का उपस्थान। अधिकतम दस मिनट। अकेले किया जाता है; पुरोहित, प्रतिमा नहीं चाहिए, जल के सिवा कुछ नहीं चाहिए।",
     },
     significance: {
       en: "The arghya is the oldest part and the least understood: in the Brāhmaṇas the water is thrown at the demons who attack the sun at the joins of the day, and the person doing it is helping. Nothing in the rite asks for anything. That is unusual enough among daily observances to be worth noticing — it is a duty discharged at a fixed hour, and the tradition's argument for it is simply that the hour has come.",
       kn: "ಅರ್ಘ್ಯ ಅತಿ ಪ್ರಾಚೀನ ಭಾಗ ಮತ್ತು ಅತಿ ಕಡಿಮೆ ಅರ್ಥವಾದದ್ದು: ಬ್ರಾಹ್ಮಣಗಳಲ್ಲಿ ದಿನದ ಸಂಧಿಗಳಲ್ಲಿ ಸೂರ್ಯನ ಮೇಲೆ ಎರಗುವ ರಾಕ್ಷಸರ ಮೇಲೆ ನೀರು ಎರಚಲಾಗುತ್ತದೆ, ಮತ್ತು ಮಾಡುವವನು ಸಹಾಯ ಮಾಡುತ್ತಿದ್ದಾನೆ. ಈ ಕರ್ಮದಲ್ಲಿ ಯಾವುದೂ ಏನನ್ನೂ ಕೇಳುವುದಿಲ್ಲ. ನಿತ್ಯ ಆಚರಣೆಗಳಲ್ಲಿ ಇದು ಗಮನಿಸುವಷ್ಟು ಅಪರೂಪ — ನಿಗದಿತ ಹೊತ್ತಿನಲ್ಲಿ ತೀರಿಸುವ ಕರ್ತವ್ಯ, ಮತ್ತು ಪರಂಪರೆಯ ಕಾರಣ ಇಷ್ಟೇ: ಹೊತ್ತು ಬಂದಿದೆ.",
-      hi: "अर्घ्य सबसे प्राचीन अंश है और सबसे कम समझा गया: ब्राह्मण ग्रंथों में दिन के संधिकालों पर सूर्य पर आक्रमण करने वाले असुरों पर जल फेंका जाता है, और करने वाला सहायता कर रहा है। इस कर्म में कुछ भी कुछ नहीं माँगता। नित्य आचरणों में यह ध्यान देने योग्य असामान्य है — नियत घड़ी पर चुकाया गया दायित्व, और परंपरा का कारण इतना ही: घड़ी आ गई है।",
+      hi: "अर्घ्य सबसे प्राचीन अंश है और सबसे कम समझा गया: ब्राह्मण ग्रंथों में दिन के संधिकालों पर सूर्य पर आक्रमण करने वाले असुरों पर जल फेंका जाता है, और करने वाला सहायता कर रहा है। इस कर्म में कुछ भी कुछ नहीं माँगता। नित्य आचरणों में यह इतना असामान्य है कि ध्यान देने योग्य है — नियत घड़ी पर चुकाया गया दायित्व, और परंपरा का कारण इतना ही: घड़ी आ गई है।",
     },
     words: [L("/stutis/gayatri/gayatri-mantra", "The Gāyatrī", "ಗಾಯತ್ರೀ", "गायत्री")],
     links: [L("/practice/gayatri", "Sitting with it", "ಅದರೊಂದಿಗೆ ಕೂರುವುದು", "उसके साथ बैठना")],
@@ -700,14 +700,14 @@ export const RITUALS: Ritual[] = [
     group: "vrata",
     order: 12,
     when: {
-      en: "The eleventh tithi of both fortnights — twenty-four days a year, and twenty-six in an adhika month.",
-      kn: "ಎರಡೂ ಪಕ್ಷಗಳ ಹನ್ನೊಂದನೇ ತಿಥಿ — ವರ್ಷಕ್ಕೆ ಇಪ್ಪತ್ತನಾಲ್ಕು ದಿನ, ಅಧಿಕ ಮಾಸದಲ್ಲಿ ಇಪ್ಪತ್ತಾರು.",
-      hi: "दोनों पक्षों की ग्यारहवीं तिथि — वर्ष में चौबीस दिन, अधिक मास में छब्बीस।",
+      en: "The eleventh tithi of both fortnights — twenty-four days a year, and twenty-six in a year with an adhika month.",
+      kn: "ಎರಡೂ ಪಕ್ಷಗಳ ಹನ್ನೊಂದನೇ ತಿಥಿ — ವರ್ಷಕ್ಕೆ ಇಪ್ಪತ್ತನಾಲ್ಕು ದಿನ, ಅಧಿಕ ಮಾಸವಿರುವ ವರ್ಷದಲ್ಲಿ ಇಪ್ಪತ್ತಾರು.",
+      hi: "दोनों पक्षों की ग्यारहवीं तिथि — वर्ष में चौबीस दिन, अधिक मास वाले वर्ष में छब्बीस।",
     },
     lede: {
-      en: "The commonest fast in the tradition, and the only observance that comes twice a month all year.",
-      kn: "ಪರಂಪರೆಯಲ್ಲಿನ ಅತಿ ಸಾಮಾನ್ಯ ಉಪವಾಸ, ಮತ್ತು ವರ್ಷವಿಡೀ ತಿಂಗಳಿಗೆ ಎರಡು ಬಾರಿ ಬರುವ ಒಂದೇ ಆಚರಣೆ.",
-      hi: "परंपरा का सबसे आम उपवास, और वर्ष भर मास में दो बार आने वाला एकमात्र आचरण।",
+      en: "The commonest fast in the tradition, and — with pradoṣa — one of the two observances that come twice a month all year.",
+      kn: "ಪರಂಪರೆಯಲ್ಲಿನ ಅತಿ ಸಾಮಾನ್ಯ ಉಪವಾಸ, ಮತ್ತು ಪ್ರದೋಷದೊಂದಿಗೆ, ವರ್ಷವಿಡೀ ತಿಂಗಳಿಗೆ ಎರಡು ಬಾರಿ ಬರುವ ಎರಡು ಆಚರಣೆಗಳಲ್ಲಿ ಒಂದು.",
+      hi: "परंपरा का सबसे आम उपवास, और प्रदोष के साथ, वर्ष भर मास में दो बार आने वाले दो आचरणों में एक।",
     },
     observed: {
       en: "Grain is given up for the day — rice, wheat and pulses — and many keep to fruit, milk and the tubers allowed for the fast. Some take nothing at all. The fast is broken the next morning at a fixed hour called pāraṇa, and breaking it late counts against the observance rather than adding to it.",
@@ -716,13 +716,13 @@ export const RITUALS: Ritual[] = [
     },
     significance: {
       en: "Fasting here is not abstinence for its own sake: the eleventh tithi is held to be when the mind is least held down by the body, which is why the day is given to reading and japa rather than simply to hunger. A fast with nothing put in its place is, on the tradition's own account, a wasted day.",
-      kn: "ಇಲ್ಲಿ ಉಪವಾಸ ತನಗಾಗಿಯೇ ಇರುವ ವಿರಕ್ತಿಯಲ್ಲ: ಹನ್ನೊಂದನೇ ತಿಥಿಯಲ್ಲಿ ಮನಸ್ಸು ದೇಹದಿಂದ ಅತಿ ಕಡಿಮೆ ಒತ್ತಲ್ಪಡುತ್ತದೆ ಎಂಬ ನಂಬಿಕೆ — ಆದ್ದರಿಂದಲೇ ಆ ದಿನವನ್ನು ಬರೀ ಹಸಿವಿಗಲ್ಲ, ಪಾರಾಯಣ ಮತ್ತು ಜಪಕ್ಕೆ ಕೊಡುತ್ತಾರೆ. ಜಾಗದಲ್ಲಿ ಬೇರೇನೂ ಇಡದ ಉಪವಾಸ, ಪರಂಪರೆಯ ಪ್ರಕಾರವೇ, ವ್ಯರ್ಥ ದಿನ.",
+      kn: "ಇಲ್ಲಿ ಉಪವಾಸ ತನಗಾಗಿಯೇ ಇರುವ ವಿರಕ್ತಿಯಲ್ಲ: ಹನ್ನೊಂದನೇ ತಿಥಿಯಲ್ಲಿ ಮನಸ್ಸು ದೇಹದಿಂದ ಅತಿ ಕಡಿಮೆ ಒತ್ತಲ್ಪಡುತ್ತದೆ ಎಂಬ ನಂಬಿಕೆ — ಆದ್ದರಿಂದಲೇ ಆ ದಿನವನ್ನು ಬರೀ ಹಸಿವಿಗಲ್ಲ, ಪಾರಾಯಣ ಮತ್ತು ಜಪಕ್ಕೆ ಕೊಡುತ್ತಾರೆ. ಅದರ ಜಾಗದಲ್ಲಿ ಬೇರೇನನ್ನೂ ಇಡದ ಉಪವಾಸ, ಪರಂಪರೆಯ ಪ್ರಕಾರವೇ, ವ್ಯರ್ಥ ದಿನ.",
       hi: "यहाँ उपवास अपने लिए किया संयम नहीं: ग्यारहवीं तिथि पर मन देह से सबसे कम दबा माना जाता है — इसीलिए वह दिन केवल भूख को नहीं, पाठ और जप को दिया जाता है। जिसके स्थान पर कुछ न रखा जाए, वह उपवास परंपरा के अपने हिसाब से व्यर्थ दिन है।",
     },
     regional: {
-      en: "Mādhva and Śrī Vaiṣṇava households keep it most strictly, and in Karnataka the two in Kārtika and the one before Vaikuṇṭha are kept by families who fast on no other day.",
-      kn: "ಮಾಧ್ವ ಮತ್ತು ಶ್ರೀವೈಷ್ಣವ ಮನೆಗಳು ಇದನ್ನು ಅತಿ ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಆಚರಿಸುತ್ತವೆ, ಮತ್ತು ಕರ್ನಾಟಕದಲ್ಲಿ ಕಾರ್ತಿಕದ ಎರಡು ಮತ್ತು ವೈಕುಂಠದ ಮೊದಲಿನದು — ಬೇರೆ ಯಾವ ದಿನವೂ ಉಪವಾಸ ಮಾಡದ ಕುಟುಂಬಗಳೂ ಇವನ್ನು ಆಚರಿಸುತ್ತವೆ.",
-      hi: "माध्व और श्रीवैष्णव घर इसे सबसे कठोरता से निभाते हैं, और कर्नाटक में कार्तिक की दो तथा वैकुंठ से पूर्व की एकादशी वे परिवार भी रखते हैं जो और किसी दिन उपवास नहीं करते।",
+      en: "Mādhva and Śrī Vaiṣṇava households keep it most strictly, and in Karnataka the two in Kārtika and Vaikuṇṭha Ekādaśī are kept by families who fast on no other day.",
+      kn: "ಮಾಧ್ವ ಮತ್ತು ಶ್ರೀವೈಷ್ಣವ ಮನೆಗಳು ಇದನ್ನು ಅತಿ ಕಟ್ಟುನಿಟ್ಟಾಗಿ ಆಚರಿಸುತ್ತವೆ, ಮತ್ತು ಕರ್ನಾಟಕದಲ್ಲಿ ಕಾರ್ತಿಕದ ಎರಡು ಮತ್ತು ವೈಕುಂಠ ಏಕಾದಶಿ — ಬೇರೆ ಯಾವ ದಿನವೂ ಉಪವಾಸ ಮಾಡದ ಕುಟುಂಬಗಳೂ ಇವನ್ನು ಆಚರಿಸುತ್ತವೆ.",
+      hi: "माध्व और श्रीवैष्णव घर इसे सबसे कठोरता से निभाते हैं, और कर्नाटक में कार्तिक की दो तथा वैकुंठ एकादशी वे परिवार भी रखते हैं जो और किसी दिन उपवास नहीं करते।",
     },
   },
 
@@ -733,9 +733,9 @@ export const RITUALS: Ritual[] = [
     group: "vrata",
     order: 13,
     when: {
-      en: "The hour and a half after sunset on the thirteenth tithi.",
-      kn: "ಹದಿಮೂರನೇ ತಿಥಿಯ ಸೂರ್ಯಾಸ್ತದ ನಂತರದ ಒಂದೂವರೆ ತಾಸು.",
-      hi: "त्रयोदशी को सूर्यास्त के बाद का डेढ़ घंटा।",
+      en: "The twilight of the thirteenth tithi, about an hour and a half on either side of sunset.",
+      kn: "ಹದಿಮೂರನೇ ತಿಥಿಯ ಸಂಜೆ, ಸೂರ್ಯಾಸ್ತದ ಎರಡೂ ಕಡೆ ಸುಮಾರು ಒಂದೂವರೆ ತಾಸು.",
+      hi: "त्रयोदशी की संध्या — सूर्यास्त के दोनों ओर लगभग डेढ़ घंटा।",
     },
     lede: {
       en: "An observance measured in a single hour rather than a day, and the busiest hour of the fortnight in a Śiva temple.",
@@ -748,9 +748,9 @@ export const RITUALS: Ritual[] = [
       hi: "उस अवधि में अभिषेक होता है, और गर्भगृह के सामने के नंदी का भी। गृहस्थ उसके पूरा होने तक हल्का उपवास रखते हैं। त्रयोदशी सोमवार को पड़े तो सोम-प्रदोष — सामान्य से कई गुना भीड़।",
     },
     significance: {
-      en: "The hour is chosen for what it is held to commemorate: the churning of the ocean, and the moment Śiva took the poison that came up before the nectar did. Pradoṣa means exactly that — the first fault of the night, when what is wrong appears before what is wanted.",
-      kn: "ಆ ತಾಸನ್ನು ಆರಿಸಿರುವುದು ಅದು ನೆನಪಿಸುವುದೆಂದು ನಂಬುವ ವಿಷಯಕ್ಕಾಗಿ: ಸಮುದ್ರಮಥನ, ಮತ್ತು ಅಮೃತಕ್ಕೆ ಮೊದಲು ಬಂದ ವಿಷವನ್ನು ಶಿವ ತೆಗೆದುಕೊಂಡ ಕ್ಷಣ. ಪ್ರದೋಷ ಎಂದರೆ ನಿಖರವಾಗಿ ಅದೇ — ರಾತ್ರಿಯ ಮೊದಲ ದೋಷ, ಬೇಕಾದದ್ದಕ್ಕೆ ಮೊದಲು ಕೆಟ್ಟದ್ದು ಕಾಣಿಸುವ ಹೊತ್ತು.",
-      hi: "यह घड़ी उसी के लिए चुनी गई है जिसका वह स्मरण मानी जाती है: समुद्र मंथन, और वह क्षण जब अमृत से पहले निकले विष को शिव ने लिया। प्रदोष का अर्थ ठीक वही है — रात्रि का पहला दोष, जब वांछित से पहले अवांछित प्रकट होता है।",
+      en: "The hour is chosen for what it is held to commemorate: the churning of the ocean, and the moment Śiva took the poison that came up before the nectar did. Pradoṣa is the fall of evening, and the tradition reads the word as the first fault of the night, when what is wrong appears before what is wanted.",
+      kn: "ಆ ತಾಸನ್ನು ಆರಿಸಿರುವುದು ಅದು ನೆನಪಿಸುವುದೆಂದು ನಂಬುವ ವಿಷಯಕ್ಕಾಗಿ: ಸಮುದ್ರಮಥನ, ಮತ್ತು ಅಮೃತಕ್ಕೆ ಮೊದಲು ಬಂದ ವಿಷವನ್ನು ಶಿವ ತೆಗೆದುಕೊಂಡ ಕ್ಷಣ. ಪ್ರದೋಷ ಎಂದರೆ ಸಂಜೆಯ ಆರಂಭ; ಪರಂಪರೆ ಆ ಪದವನ್ನು ರಾತ್ರಿಯ ಮೊದಲ ದೋಷ ಎಂದೂ ಓದುತ್ತದೆ — ಬೇಕಾದದ್ದಕ್ಕೆ ಮೊದಲು ಕೆಟ್ಟದ್ದು ಕಾಣಿಸುವ ಹೊತ್ತು.",
+      hi: "यह घड़ी उसी के लिए चुनी गई है जिसका वह स्मरण मानी जाती है: समुद्र मंथन, और वह क्षण जब अमृत से पहले निकले विष को शिव ने लिया। प्रदोष का अर्थ है संध्या का आरंभ; परंपरा इस शब्द को रात्रि का पहला दोष भी पढ़ती है — जब वांछित से पहले अवांछित प्रकट होता है।",
     },
   },
 
@@ -807,17 +807,17 @@ export const RITUALS: Ritual[] = [
     },
     lede: {
       en: "The one observance that lasts a season, and the only one that stops a sannyāsin walking.",
-      kn: "ಒಂದು ಋತುವಿಡೀ ಇರುವ ಒಂದೇ ಆಚರಣೆ, ಮತ್ತು ಸನ್ಯಾಸಿಯ ನಡಿಗೆಯನ್ನು ನಿಲ್ಲಿಸುವ ಒಂದೇ ಒಂದು.",
+      kn: "ಒಂದು ಋತುವಿಡೀ ಇರುವ ಒಂದೇ ಆಚರಣೆ, ಮತ್ತು ಸಂನ್ಯಾಸಿಯ ನಡಿಗೆಯನ್ನು ನಿಲ್ಲಿಸುವ ಒಂದೇ ಒಂದು.",
       hi: "जो एक ऋतु भर चलता है वही एक आचरण, और संन्यासी का चलना रोकने वाला एकमात्र।",
     },
     observed: {
       en: "A sannyāsin stays in one place for the four months and does not travel; this is when a maṭha's head is reliably where his maṭha is, and when the Chāturmāsya lectures are given. Householders give up one food a month — commonly greens in the first, curd in the second, milk in the third, and pulses in the fourth. No marriage is performed in the period.",
-      kn: "ಸನ್ಯಾಸಿ ನಾಲ್ಕು ತಿಂಗಳು ಒಂದೇ ಕಡೆ ಇರುತ್ತಾರೆ, ಪ್ರಯಾಣಿಸುವುದಿಲ್ಲ; ಮಠಾಧಿಪತಿ ತನ್ನ ಮಠದಲ್ಲೇ ಇರುವುದು ಖಚಿತವಾಗಿ ಈ ಕಾಲದಲ್ಲಿ, ಮತ್ತು ಚಾತುರ್ಮಾಸ್ಯದ ಪ್ರವಚನಗಳು ನಡೆಯುವುದೂ ಆಗ. ಗೃಹಸ್ಥರು ತಿಂಗಳಿಗೆ ಒಂದು ಆಹಾರ ಬಿಡುತ್ತಾರೆ — ಸಾಮಾನ್ಯವಾಗಿ ಮೊದಲನೆಯದರಲ್ಲಿ ಸೊಪ್ಪು, ಎರಡನೆಯದರಲ್ಲಿ ಮೊಸರು, ಮೂರನೆಯದರಲ್ಲಿ ಹಾಲು, ನಾಲ್ಕನೆಯದರಲ್ಲಿ ಬೇಳೆ. ಈ ಅವಧಿಯಲ್ಲಿ ಮದುವೆ ನಡೆಯುವುದಿಲ್ಲ.",
+      kn: "ಸಂನ್ಯಾಸಿ ನಾಲ್ಕು ತಿಂಗಳು ಒಂದೇ ಕಡೆ ಇರುತ್ತಾರೆ, ಪ್ರಯಾಣಿಸುವುದಿಲ್ಲ; ಮಠಾಧಿಪತಿ ತನ್ನ ಮಠದಲ್ಲೇ ಇರುವುದು ಖಚಿತವಾಗಿ ಈ ಕಾಲದಲ್ಲಿ, ಮತ್ತು ಚಾತುರ್ಮಾಸ್ಯದ ಪ್ರವಚನಗಳು ನಡೆಯುವುದೂ ಆಗ. ಗೃಹಸ್ಥರು ತಿಂಗಳಿಗೆ ಒಂದು ಆಹಾರ ಬಿಡುತ್ತಾರೆ — ಸಾಮಾನ್ಯವಾಗಿ ಮೊದಲನೆಯದರಲ್ಲಿ ಸೊಪ್ಪು, ಎರಡನೆಯದರಲ್ಲಿ ಮೊಸರು, ಮೂರನೆಯದರಲ್ಲಿ ಹಾಲು, ನಾಲ್ಕನೆಯದರಲ್ಲಿ ಬೇಳೆ. ಈ ಅವಧಿಯಲ್ಲಿ ಮದುವೆ ನಡೆಯುವುದಿಲ್ಲ.",
       hi: "संन्यासी चार मास एक ही स्थान पर रहते हैं, यात्रा नहीं करते; मठाधिपति अपने मठ में निश्चित रूप से इसी काल में होते हैं, और चातुर्मास्य के प्रवचन तब ही होते हैं। गृहस्थ मास में एक आहार छोड़ते हैं — प्रायः पहले में साग, दूसरे में दही, तीसरे में दूध, चौथे में दालें। इस अवधि में विवाह नहीं होता।",
     },
     significance: {
       en: "The reason given is practical before it is spiritual: in the rains the paths are washed out and the ground is full of small life that a walking mendicant cannot avoid treading on. An observance built to prevent harm rather than to earn merit is rarer in the tradition than one might expect, and this is the clearest example of it.",
-      kn: "ಕೊಡುವ ಕಾರಣ ಆಧ್ಯಾತ್ಮಿಕಕ್ಕೆ ಮೊದಲು ಪ್ರಾಯೋಗಿಕ: ಮಳೆಯಲ್ಲಿ ದಾರಿಗಳು ಕೊಚ್ಚಿಹೋಗುತ್ತವೆ ಮತ್ತು ನೆಲ ನಡೆಯುವ ಸನ್ಯಾಸಿ ತಪ್ಪಿಸಲಾಗದ ಸಣ್ಣ ಜೀವಗಳಿಂದ ತುಂಬಿರುತ್ತದೆ. ಪುಣ್ಯ ಗಳಿಸಲಲ್ಲ, ಹಾನಿ ತಪ್ಪಿಸಲು ಕಟ್ಟಿದ ಆಚರಣೆ ಪರಂಪರೆಯಲ್ಲಿ ನಿರೀಕ್ಷೆಗಿಂತ ಅಪರೂಪ, ಮತ್ತು ಇದು ಅದರ ಅತಿ ಸ್ಪಷ್ಟ ಉದಾಹರಣೆ.",
+      kn: "ಕೊಡುವ ಕಾರಣ ಆಧ್ಯಾತ್ಮಿಕಕ್ಕೆ ಮೊದಲು ಪ್ರಾಯೋಗಿಕ: ಮಳೆಯಲ್ಲಿ ದಾರಿಗಳು ಕೊಚ್ಚಿಹೋಗುತ್ತವೆ ಮತ್ತು ನೆಲ ನಡೆಯುವ ಸಂನ್ಯಾಸಿ ತಪ್ಪಿಸಲಾಗದ ಸಣ್ಣ ಜೀವಗಳಿಂದ ತುಂಬಿರುತ್ತದೆ. ಪುಣ್ಯ ಗಳಿಸಲಲ್ಲ, ಹಾನಿ ತಪ್ಪಿಸಲು ಕಟ್ಟಿದ ಆಚರಣೆ ಪರಂಪರೆಯಲ್ಲಿ ನಿರೀಕ್ಷೆಗಿಂತ ಅಪರೂಪ, ಮತ್ತು ಇದು ಅದರ ಅತಿ ಸ್ಪಷ್ಟ ಉದಾಹರಣೆ.",
       hi: "जो कारण दिया जाता है वह आध्यात्मिक से पहले व्यावहारिक है: वर्षा में मार्ग बह जाते हैं और भूमि उन छोटे जीवों से भरी होती है जिन्हें चलता संन्यासी बचा नहीं सकता। पुण्य कमाने के लिए नहीं, हानि रोकने के लिए बना आचरण परंपरा में अपेक्षा से दुर्लभ है, और यह उसका सबसे स्पष्ट उदाहरण है।",
     },
     links: [L("/mathas", "The mathas", "ಮಠಗಳು", "मठ")],
@@ -838,17 +838,17 @@ export const RITUALS: Ritual[] = [
     lede: {
       en: "A fire kindled for one occasion, and the commonest form in which anyone still meets the Vedic rite.",
       kn: "ಒಂದು ಸಂದರ್ಭಕ್ಕಾಗಿ ಹೊತ್ತಿಸಿದ ಅಗ್ನಿ, ಮತ್ತು ವೈದಿಕ ಕರ್ಮವನ್ನು ಇಂದಿಗೂ ಯಾರಾದರೂ ಎದುರಾಗುವ ಅತಿ ಸಾಮಾನ್ಯ ರೂಪ.",
-      hi: "एक अवसर के लिए प्रज्वलित अग्नि, और वैदिक कर्म से आज भी किसी का मिलना जिस रूप में सबसे आम है।",
+      hi: "एक अवसर के लिए प्रज्वलित अग्नि, और वह रूप जिसमें आज भी कोई वैदिक कर्म से सबसे अधिक मिलता है।",
     },
     observed: {
       en: "A kuṇḍa is built, the fire is kindled and named, and ghee and a prepared mixture are offered into it with a mantra. The offering is made at the word svāhā, and at each one the giver says idaṃ na mama — this is not mine. At the end the fire is not put out but allowed to go down.",
-      kn: "ಕುಂಡ ರಚಿಸಿ, ಅಗ್ನಿ ಹೊತ್ತಿಸಿ ಹೆಸರಿಟ್ಟು, ತುಪ್ಪ ಮತ್ತು ಸಿದ್ಧಪಡಿಸಿದ ಸಮಗ್ರಿಯನ್ನು ಮಂತ್ರದೊಂದಿಗೆ ಅದರಲ್ಲಿ ಅರ್ಪಿಸುತ್ತಾರೆ. ಸ್ವಾಹಾ ಎಂಬ ಪದದಲ್ಲಿ ಅರ್ಪಣೆ ನಡೆಯುತ್ತದೆ, ಮತ್ತು ಪ್ರತಿಯೊಂದರಲ್ಲೂ ಅರ್ಪಿಸುವವನು ಇದಂ ನ ಮಮ ಎನ್ನುತ್ತಾನೆ — ಇದು ನನ್ನದಲ್ಲ. ಕೊನೆಯಲ್ಲಿ ಅಗ್ನಿಯನ್ನು ಆರಿಸುವುದಿಲ್ಲ, ತಗ್ಗಲು ಬಿಡುತ್ತಾರೆ.",
+      kn: "ಕುಂಡ ರಚಿಸಿ, ಅಗ್ನಿ ಹೊತ್ತಿಸಿ ಹೆಸರಿಟ್ಟು, ತುಪ್ಪ ಮತ್ತು ಸಿದ್ಧಪಡಿಸಿದ ಸಾಮಗ್ರಿಯನ್ನು ಮಂತ್ರದೊಂದಿಗೆ ಅದರಲ್ಲಿ ಅರ್ಪಿಸುತ್ತಾರೆ. ಸ್ವಾಹಾ ಎಂಬ ಪದದಲ್ಲಿ ಅರ್ಪಣೆ ನಡೆಯುತ್ತದೆ, ಮತ್ತು ಪ್ರತಿಯೊಂದರಲ್ಲೂ ಅರ್ಪಿಸುವವನು ಇದಂ ನ ಮಮ ಎನ್ನುತ್ತಾನೆ — ಇದು ನನ್ನದಲ್ಲ. ಕೊನೆಯಲ್ಲಿ ಅಗ್ನಿಯನ್ನು ಆರಿಸುವುದಿಲ್ಲ, ತಗ್ಗಲು ಬಿಡುತ್ತಾರೆ.",
       hi: "कुंड बनाकर, अग्नि प्रज्वलित कर उसे नाम देकर, घी और तैयार सामग्री मंत्र के साथ उसमें अर्पित की जाती है। अर्पण स्वाहा शब्द पर होता है, और प्रत्येक पर अर्पण करने वाला कहता है इदं न मम — यह मेरा नहीं। अंत में अग्नि बुझाई नहीं जाती, शांत होने दी जाती है।",
     },
     significance: {
       en: "Those three words are the whole rite. Everything offered is first declared not to belong to the person offering it, and the fire is there because it is the one recipient that visibly does not give anything back. The Upaniṣads take this apart at length and keep the grammar while moving the fire inside — which is why the same vocabulary turns up in a chapter that has no fire in it at all.",
       kn: "ಆ ಮೂರು ಪದಗಳೇ ಇಡೀ ಕರ್ಮ. ಅರ್ಪಿಸುವ ಪ್ರತಿಯೊಂದೂ ಮೊದಲು ಅರ್ಪಿಸುವವನಿಗೆ ಸೇರಿದ್ದಲ್ಲ ಎಂದು ಘೋಷಿಸಲಾಗುತ್ತದೆ, ಮತ್ತು ಅಗ್ನಿ ಅಲ್ಲಿರುವುದು ಅದೇ ಒಂದೇ ಸ್ವೀಕರಿಸುವವನು ಕಣ್ಣಿಗೆ ಕಾಣುವಂತೆ ಏನನ್ನೂ ಮರಳಿ ಕೊಡುವುದಿಲ್ಲ ಎಂಬ ಕಾರಣಕ್ಕೆ. ಉಪನಿಷತ್ತುಗಳು ಇದನ್ನು ವಿಸ್ತಾರವಾಗಿ ಬಿಡಿಸಿ, ವ್ಯಾಕರಣವನ್ನು ಉಳಿಸಿಕೊಂಡು ಅಗ್ನಿಯನ್ನು ಒಳಗೆ ಸರಿಸುತ್ತವೆ — ಆದ್ದರಿಂದಲೇ ಅಗ್ನಿಯೇ ಇಲ್ಲದ ಅಧ್ಯಾಯದಲ್ಲಿ ಅದೇ ಪದಸಂಪತ್ತು ಕಾಣಿಸುತ್ತದೆ.",
-      hi: "वे तीन शब्द ही पूरा कर्म हैं। जो भी अर्पित होता है उसे पहले अर्पण करने वाले का न होना घोषित किया जाता है, और अग्नि वहाँ इसलिए है कि वही एक ग्राहक है जो प्रत्यक्षतः कुछ लौटाता नहीं। उपनिषद् इसे विस्तार से खोलते हैं और व्याकरण रखकर अग्नि को भीतर ले जाते हैं — इसीलिए वही शब्दावली उस अध्याय में भी आती है जिसमें अग्नि नहीं है।",
+      hi: "वे तीन शब्द ही पूरा कर्म हैं। जो भी अर्पित होता है उसे पहले अर्पण करने वाले का न होना घोषित किया जाता है, और अग्नि वहाँ इसलिए है कि वही एक ग्रहीता है जो प्रत्यक्षतः कुछ लौटाता नहीं। उपनिषद् इसे विस्तार से खोलते हैं और व्याकरण रखकर अग्नि को भीतर ले जाते हैं — इसीलिए वही शब्दावली उस अध्याय में भी आती है जिसमें अग्नि नहीं है।",
     },
     links: [L("/upanishads", "The Upanishads on it", "ಇದರ ಬಗ್ಗೆ ಉಪನಿಷತ್ತುಗಳು", "इस पर उपनिषद्")],
   },
@@ -1000,7 +1000,7 @@ export const RITUALS: Ritual[] = [
     },
     significance: {
       en: "Keeping the right side towards a person is the ordinary courtesy of an older world — the same gesture as offering with the right hand — and a temple is laid out to make it possible: the prākāra exists so there is somewhere to do this. The rite is therefore architectural before it is devotional, which is why a temple with no circuit is describing something about itself.",
-      kn: "ಬಲಭಾಗವನ್ನು ವ್ಯಕ್ತಿಯ ಕಡೆ ಇಡುವುದು ಹಳೆಯ ಲೋಕದ ಸಾಮಾನ್ಯ ಸೌಜನ್ಯ — ಬಲಗೈಯಿಂದ ಕೊಡುವ ಅದೇ ಸನ್ನೆ — ಮತ್ತು ಅದು ಸಾಧ್ಯವಾಗುವಂತೆಯೇ ದೇವಸ್ಥಾನವನ್ನು ಹಾಕಲಾಗಿದೆ: ಇದನ್ನು ಮಾಡಲು ಜಾಗ ಇರಬೇಕೆಂದೇ ಪ್ರಾಕಾರ ಇದೆ. ಆದ್ದರಿಂದ ಈ ಕರ್ಮ ಭಕ್ತಿಗೆ ಮೊದಲು ವಾಸ್ತುಶಿಲ್ಪದ ವಿಷಯ — ಸುತ್ತೇ ಇಲ್ಲದ ದೇವಸ್ಥಾನ ತನ್ನ ಬಗ್ಗೆ ಏನನ್ನೋ ಹೇಳುತ್ತಿದೆ.",
+      kn: "ಬಲಭಾಗವನ್ನು ವ್ಯಕ್ತಿಯ ಕಡೆ ಇಡುವುದು ಹಳೆಯ ಲೋಕದ ಸಾಮಾನ್ಯ ಸೌಜನ್ಯ — ಬಲಗೈಯಿಂದ ಕೊಡುವ ಅದೇ ಸನ್ನೆ — ಮತ್ತು ಅದು ಸಾಧ್ಯವಾಗುವಂತೆಯೇ ದೇವಸ್ಥಾನವನ್ನು ವಿನ್ಯಾಸಗೊಳಿಸಲಾಗಿದೆ: ಇದನ್ನು ಮಾಡಲು ಜಾಗ ಇರಬೇಕೆಂದೇ ಪ್ರಾಕಾರ ಇದೆ. ಆದ್ದರಿಂದ ಈ ಕರ್ಮ ಭಕ್ತಿಗೆ ಮೊದಲು ವಾಸ್ತುಶಿಲ್ಪದ ವಿಷಯ — ಸುತ್ತೇ ಇಲ್ಲದ ದೇವಸ್ಥಾನ ತನ್ನ ಬಗ್ಗೆ ಏನನ್ನೋ ಹೇಳುತ್ತಿದೆ.",
       hi: "दाहिना भाग किसी की ओर रखना पुराने संसार का सामान्य शिष्टाचार है — दाहिने हाथ से देने का वही संकेत — और मंदिर इसी को संभव बनाने के लिए रचा जाता है: यह करने को स्थान हो, इसलिए प्राकार है। अतः यह कर्म भक्ति से पहले वास्तु का विषय है — जिस मंदिर में परिक्रमा नहीं, वह अपने विषय में कुछ कह रहा है।",
     },
     links: [L("/temples", "How a temple is laid out", "ದೇವಸ್ಥಾನದ ರಚನೆ", "मंदिर की रचना")],

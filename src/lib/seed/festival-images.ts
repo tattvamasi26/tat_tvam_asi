@@ -48,9 +48,9 @@ const ALT: Record<string, Record<Locale, string>> = {
     hi: "वसंतिका — वसंत का मूर्त रूप; राजा रवि वर्मा का मुद्रण",
   },
   "rama-navami": {
-    en: "The Ramapanchayan — Rama and Sita enthroned with Lakshmana, Bharata, Shatrughna and Hanuman, after Raja Ravi Varma",
-    kn: "ರಾಮಪಂಚಾಯನ — ಲಕ್ಷ್ಮಣ, ಭರತ, ಶತ್ರುಘ್ನ ಮತ್ತು ಹನುಮಂತನೊಡನೆ ಸಿಂಹಾಸನಸ್ಥ ರಾಮ-ಸೀತೆಯರು; ರಾಜಾ ರವಿವರ್ಮರ ಶೈಲಿ",
-    hi: "रामपंचायन — लक्ष्मण, भरत, शत्रुघ्न और हनुमान सहित सिंहासनस्थ राम-सीता; राजा रवि वर्मा शैली",
+    en: "The Rama Panchayatana — Rama and Sita enthroned with Lakshmana, Bharata, Shatrughna and Hanuman, after Raja Ravi Varma",
+    kn: "ರಾಮಪಂಚಾಯತನ — ಲಕ್ಷ್ಮಣ, ಭರತ, ಶತ್ರುಘ್ನ ಮತ್ತು ಹನುಮಂತನೊಡನೆ ಸಿಂಹಾಸನಸ್ಥ ರಾಮ-ಸೀತೆಯರು; ರಾಜಾ ರವಿವರ್ಮರ ಶೈಲಿ",
+    hi: "रामपंचायतन — लक्ष्मण, भरत, शत्रुघ्न और हनुमान सहित सिंहासनस्थ राम-सीता; राजा रवि वर्मा शैली",
   },
   "akshaya-tritiya": {
     en: "Gajalakshmi — Lakshmi bathed by elephants, seated on a lotus",
@@ -64,7 +64,7 @@ const ALT: Record<string, Record<Locale, string>> = {
   },
   "nagara-panchami": {
     en: "Krishna dancing on the hood of the serpent king Kaliya, in a miniature painting",
-    kn: "ನಾಗರಾಜ ಕಾಳಿಂಗನ ಫಣೆಯ ಮೇಲೆ ನರ್ತಿಸುತ್ತಿರುವ ಕೃಷ್ಣ — ಲಘುಚಿತ್ರ",
+    kn: "ನಾಗರಾಜ ಕಾಳಿಂಗನ ಹೆಡೆಯ ಮೇಲೆ ನರ್ತಿಸುತ್ತಿರುವ ಕೃಷ್ಣ — ಲಘುಚಿತ್ರ",
     hi: "नागराज कालिय के फण पर नृत्य करते कृष्ण — लघुचित्र",
   },
   varamahalakshmi: {

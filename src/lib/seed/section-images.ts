@@ -72,11 +72,11 @@ const ALT: Record<ImageKind, Record<string, Record<Locale, string>>> = {
     dhruva: a("The boy Dhruva in meditation as Viṣṇu appears before him — painting", "ಧ್ಯಾನದಲ್ಲಿರುವ ಬಾಲಕ ಧ್ರುವನ ಮುಂದೆ ವಿಷ್ಣು ಪ್ರತ್ಯಕ್ಷನಾಗುವುದು — ಚಿತ್ರ", "ध्यानमग्न बालक ध्रुव के सामने विष्णु का प्रकट होना — चित्र"),
     prahlada: a("Narasiṃha, the man-lion — oil painting", "ನರಸಿಂಹ — ತೈಲಚಿತ್ರ", "नरसिंह — तैलचित्र"),
     "samudra-manthana": a("Gods and demons churning the ocean of milk — painting, Metropolitan Museum of Art", "ದೇವಾಸುರರು ಕ್ಷೀರಸಮುದ್ರವನ್ನು ಮಥಿಸುವುದು — ಚಿತ್ರ, ಮೆಟ್ರೊಪಾಲಿಟನ್ ವಸ್ತುಸಂಗ್ರಹಾಲಯ", "देव और असुर क्षीरसागर का मंथन करते हुए — चित्र, मेट्रोपॉलिटन संग्रहालय"),
-    "vamana-bali": a("Vāmana being blessed by King Bali — painting, Metropolitan Museum of Art", "ರಾಜ ಬಲಿಯಿಂದ ಆಶೀರ್ವಾದ ಪಡೆಯುತ್ತಿರುವ ವಾಮನ — ಚಿತ್ರ, ಮೆಟ್ರೊಪಾಲಿಟನ್ ವಸ್ತುಸಂಗ್ರಹಾಲಯ", "राजा बलि से सम्मानित होते वामन — चित्र, मेट्रोपॉलिटन संग्रहालय"),
+    "vamana-bali": a("Vāmana being blessed by King Bali — painting, Metropolitan Museum of Art", "ರಾಜ ಬಲಿಯಿಂದ ಆಶೀರ್ವಾದ ಪಡೆಯುತ್ತಿರುವ ವಾಮನ — ಚಿತ್ರ, ಮೆಟ್ರೊಪಾಲಿಟನ್ ವಸ್ತುಸಂಗ್ರಹಾಲಯ", "राजा बलि से आशीर्वाद पाते वामन — चित्र, मेट्रोपॉलिटन संग्रहालय"),
     "gajendra-moksha": a("Viṣṇu coming to free the elephant king from the crocodile — Kota painting, 19th century", "ಮೊಸಳೆಯಿಂದ ಗಜೇಂದ್ರನನ್ನು ಬಿಡಿಸಲು ಬರುತ್ತಿರುವ ವಿಷ್ಣು — ಕೋಟಾ ಚಿತ್ರ, 19ನೇ ಶತಮಾನ", "मगर से गजराज को छुड़ाने आते विष्णु — कोटा चित्र, 19वीं शताब्दी"),
     "mahishasura-mardini": a("Durgā slaying the buffalo demon Mahiṣa — painting", "ಮಹಿಷಾಸುರನನ್ನು ಸಂಹರಿಸುತ್ತಿರುವ ದುರ್ಗೆ — ಚಿತ್ರ", "महिषासुर का वध करती दुर्गा — चित्र"),
     jadabharata: a("Bharata saving the fawn — illustration", "ಜಿಂಕೆಮರಿಯನ್ನು ಕಾಪಾಡುತ್ತಿರುವ ಭರತ — ಚಿತ್ರ", "मृगशावक को बचाते भरत — चित्र"),
-    markandeya: a("The boy Mārkaṇḍeya clinging to the liṅga as Śiva strikes down Yama — Raja Ravi Varma", "ಲಿಂಗವನ್ನು ತಬ್ಬಿದ ಬಾಲಕ ಮಾರ್ಕಂಡೇಯ, ಶಿವ ಯಮನನ್ನು ತಡೆಯುವುದು — ರಾಜಾ ರವಿವರ್ಮ", "लिंग से लिपटा बालक मार्कंडेय, शिव यम को रोकते हुए — राजा रवि वर्मा"),
+    markandeya: a("The boy Mārkaṇḍeya clinging to the liṅga as Śiva strikes down Yama — Raja Ravi Varma", "ಲಿಂಗವನ್ನು ತಬ್ಬಿದ ಬಾಲಕ ಮಾರ್ಕಂಡೇಯ, ಶಿವ ಯಮನನ್ನು ಕೆಡವುವುದು — ರಾಜಾ ರವಿವರ್ಮ", "लिंग से लिपटा बालक मार्कंडेय, शिव यम को गिराते हुए — राजा रवि वर्मा"),
   },
   darshana: {
     sankhya: a("Kapila, the sage held to have founded Sāṅkhya — Company painting", "ಸಾಂಖ್ಯದ ಸ್ಥಾಪಕನೆಂದು ನಂಬುವ ಋಷಿ ಕಪಿಲ — ಕಂಪನಿ ಶೈಲಿಯ ಚಿತ್ರ", "सांख्य के प्रवर्तक माने गए ऋषि कपिल — कंपनी शैली का चित्र"),

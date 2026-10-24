@@ -491,7 +491,7 @@ const kn: UIStrings = {
   conceptsTitle: "ಪರಿಕಲ್ಪನೆಗಳು",
   conceptsBlurb: "ವೇದಾಂತದ ಪಾರಿಭಾಷಿಕ ಪದಗಳು, ನಿಖರವಾಗಿ ವಿವರಿಸಲಾಗಿದೆ.",
   mathasTitle: "ನಾಲ್ಕು ಮಠಗಳು",
-  mathasBlurb: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಸ್ಥಾಪಿಸಿದ ನಾಲ್ಕು ದಿಗ್ಪೀಠಗಳು.",
+  mathasBlurb: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಸ್ಥಾಪಿಸಿದ ನಾಲ್ಕು ದಿಕ್ಪೀಠಗಳು.",
 
   labelVeda: "ವೇದ",
   labelVerseCount: "ಶ್ಲೋಕಗಳು",
@@ -548,7 +548,7 @@ const kn: UIStrings = {
   backHome: "ಮುಖಪುಟಕ್ಕೆ",
   uncitedNotice: "ತಾಣದ ಸ್ವಂತ ಸಾರಾಂಶ — ಇನ್ನೂ ಆಕರ ಸಹಿತ ವಿದ್ವತ್ ಅನುವಾದವಲ್ಲ.",
   footerTagline: "ಸನಾತನ ಧರ್ಮದ ಆಕರ ಗ್ರಂಥ — ಪಠ್ಯ, ದೇವಾಲಯ, ಆಚಾರ್ಯರು ಮತ್ತು ಪರಂಪರೆಗಳು.",
-  footerRights: "ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
+  footerRights: "ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
   footerExplore: "ಅನ್ವೇಷಿಸಿ",
   footerAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
 
