@@ -222,6 +222,9 @@ host:
    On Vercel nothing is needed: the platform's own address is used. With
    **no** proxy at all, the forwarding headers are the client's to write,
    so never expose `next start` directly.
+   Never set `RATE_LIMIT=off` on a deployed site. It exists only to run
+   the rendering audit against a local build, and exempts loopback
+   addresses, which a same-host proxy would make every reader.
 4. **Add a rate-limit rule at the edge** (Vercel WAF or Cloudflare), for
    example 300 requests a minute per IP. The in-app limiter counts per
    server process; the edge counts across every instance.

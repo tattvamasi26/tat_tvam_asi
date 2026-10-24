@@ -930,3 +930,22 @@ html:lang(hi) .da-tier-label {
     position: static;
   }
 }
+
+/* The smallest phones: the Kannada and Hindi column labels may wrap,
+   and the row labels give up a little padding, so the six columns still
+   fit 320px without scrolling. */
+@media (max-width: 380px) {
+  .da-grid thead th {
+    white-space: normal;
+    padding-inline: 0.1rem;
+    font-size: 0.7rem;
+  }
+  .da-grid td {
+    padding-inline: 0.1rem;
+  }
+  .da-grid-row-head {
+    padding-inline: 0.55rem 0.25rem;
+    font-size: 0.84rem;
+  }
+}
+

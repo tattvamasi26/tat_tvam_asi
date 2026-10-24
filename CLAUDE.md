@@ -23,7 +23,7 @@ npm run dev              # http://localhost:3000 — needs no .env.local and no 
 npx tsc --noEmit         # typecheck (add --incremental false if it reports errors in code you didn't touch)
 npm run build
 npm run test:unit        # node:test via tsx: script conversion, content integrity, UI strings, the logo, the stotras
-npm run test:e2e         # Playwright in the installed Chrome: every page × en/kn/hi × four widths
+npm run test:e2e         # Playwright in the installed Chrome: every page × en/kn/hi × seven widths
 npx playwright test --project=desktop -g "kena"   # one width, pages matching "kena"
 npm run seed             # push src/lib/seed/* to Supabase (inserts missing rows, idempotent)
 npm run seed -- --reset  # wipe the content tables first, then insert
@@ -32,6 +32,14 @@ npm run seed -- --reset  # wipe the content tables first, then insert
 - `npm run lint` doesn't work as-is. No ESLint config has ever been committed, so `next lint` starts its interactive setup instead of linting.
 - The seed needs `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`. Don't remove the `--experimental-websocket` line in `.npmrc`: supabase-js needs a global WebSocket, and Node 20 only has one behind that flag.
 - The e2e suite reuses a dev server already on :3000, or starts `npm run dev`. Against the dev server, one width takes about ten minutes; `--project=desktop` is the one that also runs the font audit.
+- For the whole suite, a production build is faster and steadier. Start it with `RATE_LIMIT=off`, or the site's own rate limit throttles the test browsers within a minute (`next start` gives every local request the same address). The switch exempts only this machine (`isUncounted()` in `guard.ts`). Then run one width at a time:
+
+  ```bash
+  NEXT_DIST_DIR=.next-build npm run build && git checkout tsconfig.json
+  RATE_LIMIT=off NEXT_DIST_DIR=.next-build npx next start -p 3001
+  BASE_URL=http://localhost:3001 WORKERS=3 npx playwright test tests/e2e/rendering.spec.ts --project=phone
+  ```
+- `sharp` is a dependency because Next.js resizes pictures with it in production. Without it the local server falls behind and pictures "did not load" in the audit.
 - To check a UI change by eye, load the page in all three languages by appending `?lang=en`, `?lang=kn` or `?lang=hi`.
 
 ## Architecture
@@ -746,6 +754,10 @@ first.
     - For any UI change, study the existing pages first and design within them. The owner's personal `design-language` skill spells this out.
 
   Tailwind utilities are barely used; follow the semantic-class approach.
+- `src/styles/devices.css` is imported last and holds the rules for screens the width-based rules get wrong:
+  - a phone held sideways (landscape, under 540px tall): feature blocks keep the picture beside the words, big pictures stay inside the screen, and the home headline is sized by height;
+  - the smallest phones (380px and under): page titles step down a size, since one long word (ರಾಮಾನುಜಾಚಾರ್ಯ) was wider than the screen.
+- A long unbroken word must never push a page sideways at 320px. Sanskrit compounds (stotra names) take `overflow-wrap: anywhere`; a grid column that holds text takes `minmax(0, 1fr)`, and an `auto-fit` track takes `minmax(min(15rem, 100%), 1fr)`.
 - **Tailwind drops any `@layer` class it can't find written out literally** in `src/app`, `src/components` or `src/pages`. A class name built at runtime (such as the `tone-${i % 7}` colour palette) must live in an unlayered file (the tones are in `styles/pages.css`), or it silently disappears.
 - Unlayered rules beat the layered `.deva`/`.kannada` script classes. A component rule that sets `font` or `font-family` on an element that can carry a script class must restate the script face for it; see `.lockup-text.deva` in `chrome.css`.
 - The logo (`src/components/brand/Mark.tsx`) comes from the design canvas in `Tat tvam asi Logo Design.zip`:
@@ -772,7 +784,7 @@ first.
 
 ### Rendering tests
 
-`tests/e2e/rendering.spec.ts` loads every route in `ROUTES` (`tests/e2e/support.ts`) in all three languages at four widths, with reduced motion so scroll reveals don't offset anything. Add new pages to `ROUTES`. A test fails on any of these:
+`tests/e2e/rendering.spec.ts` loads every route in `ROUTES` (`tests/e2e/support.ts`) in all three languages at seven widths, with reduced motion so scroll reveals don't offset anything: a 320px phone (`small`), a 360px phone, a phone held sideways (`landscape`, 780×360), a tablet, a laptop, a desktop and a 1920px monitor (`wide`). Add new pages to `ROUTES`. A test fails on any of these:
 - sideways page overflow
 - text cut off by an `overflow: hidden` container
 - Indic text that is letter-spaced, italic, or wrapped at a line-height below 1.3
