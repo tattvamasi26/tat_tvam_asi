@@ -25,7 +25,8 @@ export function MeterNotice({ labels }: { labels: Labels }) {
 
   useEffect(() => {
     setLeft(null);
-    if (!isGatedPath(pathname) || readCookie(SIGNED_IN_COOKIE)) return;
+    // Not on a missing page: there is nothing there to read.
+    if (!isGatedPath(pathname) || readCookie(SIGNED_IN_COOKIE) || document.querySelector("[data-not-found]")) return;
     const n = Number(readCookie(LEFT_COOKIE));
     if (!Number.isFinite(n) || n < 0 || n > 2 || n >= FREE_READS) return;
     try {

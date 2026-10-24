@@ -126,6 +126,9 @@
   font: 700 1.15rem / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
   color: var(--ink);
+  /* A collection title is one sandhi-joined compound, wider than a
+     320px phone; it must be allowed to break. */
+  overflow-wrap: anywhere;
 }
 
 .stotra-row-sanskrit {

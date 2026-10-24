@@ -1,0 +1,65 @@
+/* Short, wide screens: a phone turned sideways, a small laptop window.
+
+   Everything else on the site sizes itself by the screen's width. That
+   is right on a phone held upright and on a desktop, but a phone held
+   sideways is wide and very short (about 360px): a picture sized to the
+   width ran to a screen and a half, and the home headline did not fit
+   at all. Loaded last, so these rules win; they apply only where the
+   screen is both landscape and shorter than a small tablet. */
+
+@media (orientation: landscape) and (max-height: 540px) and (min-width: 560px) {
+  /* Feature blocks keep the picture beside the words, as on a desktop,
+     instead of stacking a full-width picture above them. */
+  .feature {
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+  }
+  .feature[data-flip] .feature-media {
+    order: 2;
+  }
+  .devata-feature {
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  }
+  .auth-card {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  }
+  .auth-media {
+    aspect-ratio: auto;
+    min-height: 0;
+  }
+
+  /* Pictures that still run the full width are held inside the screen. */
+  .temple-hero,
+  .rf-dhero-frame,
+  .acharya-hero-frame,
+  .bh-feature-media,
+  .festival-media,
+  .stotra-group-media,
+  .nv-media,
+  .pr-frame,
+  .fe-frame,
+  .ach-figure-frame {
+    max-height: 78svh;
+  }
+
+  /* The home hero fits the screen, and its headline fits the hero. */
+  .home-hero {
+    min-height: calc(100svh - 1.2rem);
+  }
+  .home-hero-title {
+    font-size: clamp(2rem, 12svh, 3.6rem);
+  }
+}
+
+/* The smallest phones (320–380px). A page title is often one long word
+   (ರಾಮಾನುಜಾಚಾರ್ಯ, "Durgaparameshwari"), and at the site's smallest
+   headline size such a word was wider than the screen. Titles step down
+   a size here; a word that still does not fit wraps rather than pushing
+   the page sideways. */
+@media (max-width: 380px) {
+  .title {
+    font-size: clamp(1.75rem, 9.2vw, 2.3rem);
+  }
+}
+.title {
+  overflow-wrap: break-word;
+}

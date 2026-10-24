@@ -278,3 +278,20 @@ test("the middleware uses the guarded address and prefetch checks", () => {
   assert.match(mw, /isDisguisedScript\(/);
   assert.match(mw, /isProbe\(/);
 });
+
+test("RATE_LIMIT=off exempts only this machine, and only when the server sets it", () => {
+  const before = process.env.RATE_LIMIT;
+  try {
+    delete process.env.RATE_LIMIT;
+    assert.equal(isUncounted("127.0.0.1"), false, "loopback is counted by default");
+    assert.equal(isUncounted("0:0:0:0::/64"), false);
+    process.env.RATE_LIMIT = "off";
+    assert.equal(isUncounted("127.0.0.1"), true);
+    assert.equal(isUncounted("0:0:0:0::/64"), true);
+    assert.equal(isUncounted("203.0.113.9"), false, "a real reader is still counted");
+    assert.equal(isUncounted("2001:db8:0:0::/64"), false);
+  } finally {
+    if (before === undefined) delete process.env.RATE_LIMIT;
+    else process.env.RATE_LIMIT = before;
+  }
+});

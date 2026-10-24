@@ -1,7 +1,7 @@
 import { defineConfig } from "@playwright/test";
 
 /**
- * Rendering tests: every public page, in every language, at four widths.
+ * Rendering tests: every public page, in every language, at seven widths.
  *
  * They run in the Chrome already installed on the machine (`channel:
  * "chrome"`), so there is no browser download. Reduced motion is on for
@@ -24,7 +24,8 @@ export default defineConfig({
   // every hero photograph is resized on demand for each width and pixel
   // density; beyond two browsers the server saturates and page loads time
   // out — a test-harness failure, not a site one.
-  workers: 2,
+  // A production build (BASE_URL=http://localhost:3001) takes more: WORKERS=4.
+  workers: Number(process.env.WORKERS ?? 2),
   retries: 0,
   reporter: [["list"], ["html", { open: "never", outputFolder: "playwright-report" }]],
   use: {
@@ -39,11 +40,17 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   projects: [
+    // The smallest phone still sold (iPhone SE, first generation; small Androids).
+    { name: "small", use: { viewport: { width: 320, height: 640 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true } },
     { name: "phone", use: { viewport: { width: 360, height: 780 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true } },
+    // A phone turned sideways: wide enough for desktop rules, barely any height.
+    { name: "landscape", use: { viewport: { width: 780, height: 360 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true } },
     { name: "tablet", use: { viewport: { width: 820, height: 1180 } } },
     // Just above the masthead's 1100px breakpoint, where the bar is fullest.
     { name: "laptop", use: { viewport: { width: 1180, height: 800 } } },
     { name: "desktop", use: { viewport: { width: 1536, height: 900 } } },
+    // A full-HD monitor: the widest common screen, where measures run long.
+    { name: "wide", use: { viewport: { width: 1920, height: 1080 } } },
   ],
   webServer: {
     command: "npm run dev",

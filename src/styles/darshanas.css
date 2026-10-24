@@ -49,6 +49,7 @@
 
 .da-lens-inner {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.2rem, 3vw, 1.9rem);
 }
 
@@ -56,6 +57,7 @@
   display: grid;
   gap: 0.5rem;
   max-width: 62ch;
+  overflow-wrap: break-word;
 }
 
 .da-lens-title {
@@ -361,7 +363,8 @@ html:lang(hi) .da-pair-role {
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  /* Never wider than the screen: a 320px phone has less than 15rem. */
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
   gap: 0.7rem clamp(1rem, 2.4vw, 1.6rem);
 }
 

@@ -67,9 +67,25 @@ export function clientAddress(
   return LOCAL;
 }
 
-/** Only an address with no source at all is exempt from counting. */
+/**
+ * Only an address with no source at all is exempt from counting, plus
+ * this machine when the server was started with RATE_LIMIT=off.
+ */
 export function isUncounted(address: string): boolean {
-  return address === LOCAL;
+  return address === LOCAL || (process.env.RATE_LIMIT === "off" && isLoopback(address));
+}
+
+/**
+ * This machine. Used only with RATE_LIMIT=off, to run the rendering
+ * audit against a local production build: `next start` sets
+ * X-Forwarded-For to the socket address, so every test browser counts
+ * as one reader and is throttled within a minute. Both halves are
+ * needed: the switch is the server's own environment, never anything a
+ * request can send, and even with it on only the machine itself is
+ * uncounted.
+ */
+function isLoopback(address: string): boolean {
+  return /^127\./.test(address) || address === "0:0:0:0::/64";
 }
 
 function clean(value: string | null | undefined): string | null {

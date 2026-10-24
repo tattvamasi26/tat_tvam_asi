@@ -30,6 +30,8 @@ import "@/styles/cosmos.css";
 import "@/styles/darshanas.css";
 import "@/styles/practice.css";
 import "@/styles/account.css";
+// Last: short, wide screens (a phone held sideways) override the rest.
+import "@/styles/devices.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { headers } from "next/headers";
 import { accountStrings } from "@/i18n/account";
