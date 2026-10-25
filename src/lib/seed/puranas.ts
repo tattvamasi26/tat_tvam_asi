@@ -38,6 +38,9 @@ import type { Locale } from "@/i18n/config";
 /** The Padma Purāṇa's grading. Sectarian; see the note above. */
 export type PuranaGuna = "sattvika" | "rajasa" | "tamasa";
 
+/** Whom a Purāṇa leans to, as its `deity` line says. */
+export type PuranaLean = "vishnu" | "shiva" | "devi" | "brahma" | "other";
+
 export interface PuranaLink {
   href: string;
   label: Record<Locale, string>;
@@ -52,6 +55,13 @@ export interface Purana {
   order: number;
   /** The deity it leans to, in its own telling. */
   deity: Record<Locale, string>;
+  /**
+   * The same thing as keys, for the index's filter. Read off `deity`,
+   * never from the Padma grading: a Purāṇa with real Śaiva material
+   * under a Vaiṣṇava frame (Kūrma, Matsya, Vāmana) counts under both,
+   * and "other" is Sūrya, Agni, or no single deity.
+   */
+  leans: PuranaLean[];
   /** As the tradition gives it. Never presented as a count. */
   verses: number;
   guna: PuranaGuna;
@@ -79,6 +89,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "ब्रह्मपुराणम्",
     order: 1,
     deity: { en: "Brahmā, then Sūrya and Viṣṇu", kn: "ಬ್ರಹ್ಮ, ನಂತರ ಸೂರ್ಯ ಮತ್ತು ವಿಷ್ಣು", hi: "ब्रह्मा, फिर सूर्य और विष्णु" },
+    leans: ["brahma"],
     verses: 10000,
     guna: "rajasa",
     lede: {
@@ -104,6 +115,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "पद्मपुराणम्",
     order: 2,
     deity: { en: "Viṣṇu", kn: "ವಿಷ್ಣು", hi: "विष्णु" },
+    leans: ["vishnu"],
     verses: 55000,
     guna: "sattvika",
     lede: {
@@ -134,6 +146,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "विष्णुपुराणम्",
     order: 3,
     deity: { en: "Viṣṇu", kn: "ವಿಷ್ಣು", hi: "विष्णु" },
+    leans: ["vishnu"],
     verses: 23000,
     guna: "sattvika",
     lede: {
@@ -158,6 +171,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "शिवपुराणम्",
     order: 4,
     deity: { en: "Śiva", kn: "ಶಿವ", hi: "शिव" },
+    leans: ["shiva"],
     verses: 24000,
     guna: "tamasa",
     lede: {
@@ -191,6 +205,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "भागवतपुराणम्",
     order: 5,
     deity: { en: "Kṛṣṇa", kn: "ಕೃಷ್ಣ", hi: "कृष्ण" },
+    leans: ["vishnu"],
     verses: 18000,
     guna: "sattvika",
     lede: {
@@ -224,6 +239,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "नारदपुराणम्",
     order: 6,
     deity: { en: "Viṣṇu", kn: "ವಿಷ್ಣು", hi: "विष्णु" },
+    leans: ["vishnu"],
     verses: 25000,
     guna: "sattvika",
     lede: {
@@ -248,6 +264,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "मार्कण्डेयपुराणम्",
     order: 7,
     deity: { en: "Devī; also Sūrya and Agni", kn: "ದೇವಿ; ಜೊತೆಗೆ ಸೂರ್ಯ ಮತ್ತು ಅಗ್ನಿ", hi: "देवी; साथ ही सूर्य और अग्नि" },
+    leans: ["devi"],
     verses: 9000,
     guna: "rajasa",
     lede: {
@@ -273,6 +290,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "अग्निपुराणम्",
     order: 8,
     deity: { en: "No single one; Agni is the narrator", kn: "ಒಂದೇ ದೇವತೆಯಲ್ಲ; ಅಗ್ನಿ ನಿರೂಪಕ", hi: "कोई एक नहीं; अग्नि कथावाचक" },
+    leans: ["other"],
     verses: 15400,
     guna: "tamasa",
     lede: {
@@ -298,6 +316,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "भविष्यपुराणम्",
     order: 9,
     deity: { en: "Sūrya", kn: "ಸೂರ್ಯ", hi: "सूर्य" },
+    leans: ["other"],
     verses: 14500,
     guna: "rajasa",
     lede: {
@@ -327,6 +346,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "ब्रह्मवैवर्तपुराणम्",
     order: 10,
     deity: { en: "Kṛṣṇa and Rādhā", kn: "ಕೃಷ್ಣ ಮತ್ತು ರಾಧೆ", hi: "कृष्ण और राधा" },
+    leans: ["vishnu"],
     verses: 18000,
     guna: "rajasa",
     lede: {
@@ -351,6 +371,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "लिङ्गपुराणम्",
     order: 11,
     deity: { en: "Śiva", kn: "ಶಿವ", hi: "शिव" },
+    leans: ["shiva"],
     verses: 11000,
     guna: "tamasa",
     lede: {
@@ -375,6 +396,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "वराहपुराणम्",
     order: 12,
     deity: { en: "Viṣṇu as the boar", kn: "ವರಾಹ ರೂಪದ ವಿಷ್ಣು", hi: "वराह रूप में विष्णु" },
+    leans: ["vishnu"],
     verses: 24000,
     guna: "sattvika",
     lede: {
@@ -399,6 +421,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "स्कन्दपुराणम्",
     order: 13,
     deity: { en: "Skanda, and Śiva", kn: "ಸ್ಕಂದ, ಮತ್ತು ಶಿವ", hi: "स्कंद, और शिव" },
+    leans: ["shiva"],
     verses: 81100,
     guna: "tamasa",
     lede: {
@@ -428,6 +451,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "वामनपुराणम्",
     order: 14,
     deity: { en: "Viṣṇu as the dwarf; also Śiva", kn: "ವಾಮನ ರೂಪದ ವಿಷ್ಣು; ಜೊತೆಗೆ ಶಿವ", hi: "वामन रूप में विष्णु; साथ ही शिव" },
+    leans: ["vishnu", "shiva"],
     verses: 10000,
     guna: "rajasa",
     lede: {
@@ -453,6 +477,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "कूर्मपुराणम्",
     order: 15,
     deity: { en: "Viṣṇu as the tortoise; strongly Śaiva in parts", kn: "ಕೂರ್ಮ ರೂಪದ ವಿಷ್ಣು; ಕೆಲವೆಡೆ ಬಲವಾಗಿ ಶೈವ", hi: "कूर्म रूप में विष्णु; कुछ भागों में प्रबल शैव" },
+    leans: ["vishnu", "shiva"],
     verses: 17000,
     guna: "tamasa",
     lede: {
@@ -478,6 +503,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "मत्स्यपुराणम्",
     order: 16,
     deity: { en: "Viṣṇu as the fish; much Śaiva material", kn: "ಮತ್ಸ್ಯ ರೂಪದ ವಿಷ್ಣು; ಸಾಕಷ್ಟು ಶೈವ ವಿಷಯ", hi: "मत्स्य रूप में विष्णु; पर्याप्त शैव सामग्री" },
+    leans: ["vishnu", "shiva"],
     verses: 14000,
     guna: "tamasa",
     lede: {
@@ -503,6 +529,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "गरुडपुराणम्",
     order: 17,
     deity: { en: "Viṣṇu", kn: "ವಿಷ್ಣು", hi: "विष्णु" },
+    leans: ["vishnu"],
     verses: 19000,
     guna: "sattvika",
     lede: {
@@ -531,6 +558,7 @@ export const PURANAS: Purana[] = [
     sanskrit: "ब्रह्माण्डपुराणम्",
     order: 18,
     deity: { en: "No single one; Lalitā in its best known part", kn: "ಒಂದೇ ದೇವತೆಯಲ್ಲ; ಅತಿ ಪ್ರಸಿದ್ಧ ಭಾಗದಲ್ಲಿ ಲಲಿತಾ", hi: "कोई एक नहीं; सर्वाधिक प्रसिद्ध भाग में ललिता" },
+    leans: ["devi", "other"],
     verses: 12000,
     guna: "rajasa",
     lede: {

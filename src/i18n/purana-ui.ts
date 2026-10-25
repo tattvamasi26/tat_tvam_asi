@@ -38,6 +38,24 @@ export interface PuranaUi {
   labelOrder: string;
   /** Carries {n}. */
   countPuranas: string;
+
+  /** The index's sort and filter. */
+  sortLabel: string;
+  sortOrder: string;
+  sortLength: string;
+  filterLabel: string;
+  leanAll: string;
+  leanVishnu: string;
+  leanShiva: string;
+  leanDevi: string;
+  leanBrahma: string;
+  leanOther: string;
+  /** Carries {n} and {m}. */
+  showing: string;
+
+  /** A Purāṇa's page: its length beside the other seventeen. */
+  lengthTitle: string;
+  lengthNote: string;
 }
 
 export const PURANA_UI: Record<Locale, PuranaUi> = {
@@ -66,6 +84,21 @@ export const PURANA_UI: Record<Locale, PuranaUi> = {
     labelPassages: "What a reader has probably met",
     labelOrder: "In the list",
     countPuranas: "{n} Purāṇas",
+
+    sortLabel: "Order",
+    sortOrder: "As listed",
+    sortLength: "Longest first",
+    filterLabel: "Leans to",
+    leanAll: "All",
+    leanVishnu: "Viṣṇu",
+    leanShiva: "Śiva",
+    leanDevi: "Devī",
+    leanBrahma: "Brahmā",
+    leanOther: "Sūrya, Agni, or none",
+    showing: "Showing {n} of {m}",
+
+    lengthTitle: "Its length among the eighteen",
+    lengthNote: "The eighteen in list order, by the verse counts the tradition gives. This one is in gold.",
   },
 
   kn: {
@@ -93,6 +126,21 @@ export const PURANA_UI: Record<Locale, PuranaUi> = {
     labelPassages: "ಓದುಗ ಬಹುಶಃ ಕಂಡಿರುವುದು",
     labelOrder: "ಪಟ್ಟಿಯಲ್ಲಿ",
     countPuranas: "{n} ಪುರಾಣಗಳು",
+
+    sortLabel: "ಕ್ರಮ",
+    sortOrder: "ಪಟ್ಟಿಯ ಕ್ರಮದಲ್ಲಿ",
+    sortLength: "ದೊಡ್ಡದು ಮೊದಲು",
+    filterLabel: "ಒಲವು",
+    leanAll: "ಎಲ್ಲವೂ",
+    leanVishnu: "ವಿಷ್ಣು",
+    leanShiva: "ಶಿವ",
+    leanDevi: "ದೇವಿ",
+    leanBrahma: "ಬ್ರಹ್ಮ",
+    leanOther: "ಸೂರ್ಯ, ಅಗ್ನಿ, ಅಥವಾ ಯಾರೂ ಅಲ್ಲ",
+    showing: "{m}ರಲ್ಲಿ {n}",
+
+    lengthTitle: "ಹದಿನೆಂಟರಲ್ಲಿ ಇದರ ಗಾತ್ರ",
+    lengthNote: "ಪಟ್ಟಿಯ ಕ್ರಮದಲ್ಲಿ ಹದಿನೆಂಟೂ, ಪರಂಪರೆ ಕೊಡುವ ಶ್ಲೋಕಸಂಖ್ಯೆಗಳ ಪ್ರಕಾರ. ಚಿನ್ನದ ಬಣ್ಣದ್ದು ಇದು.",
   },
 
   hi: {
@@ -120,6 +168,21 @@ export const PURANA_UI: Record<Locale, PuranaUi> = {
     labelPassages: "पाठक ने शायद जो देखा है",
     labelOrder: "सूची में",
     countPuranas: "{n} पुराण",
+
+    sortLabel: "क्रम",
+    sortOrder: "सूची के क्रम में",
+    sortLength: "सबसे लंबा पहले",
+    filterLabel: "झुकाव",
+    leanAll: "सभी",
+    leanVishnu: "विष्णु",
+    leanShiva: "शिव",
+    leanDevi: "देवी",
+    leanBrahma: "ब्रह्मा",
+    leanOther: "सूर्य, अग्नि, या कोई नहीं",
+    showing: "{m} में से {n}",
+
+    lengthTitle: "अठारह में इसकी लंबाई",
+    lengthNote: "सूची के क्रम में अठारहों, परंपरा द्वारा दी गई श्लोक-संख्याओं के अनुसार। सुनहरा वाला यही है।",
   },
 };
 

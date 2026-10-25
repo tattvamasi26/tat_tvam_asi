@@ -55,6 +55,7 @@ export default function PuranaPage({ params }: { params: { purana: string } }) {
   const at = all.findIndex((x) => x.slug === p.slug);
   const prev = at > 0 ? all[at - 1] : null;
   const next = at >= 0 && at < all.length - 1 ? all[at + 1] : null;
+  const longest = Math.max(...all.map((x) => x.verses));
 
   const gunaLabel: Record<string, string> = {
     sattvika: s.gunaSattvika,
@@ -88,6 +89,36 @@ export default function PuranaPage({ params }: { params: { purana: string } }) {
 
         <div className="rf-main">
           <p className="rf-intro">{p.about}</p>
+
+          {/* Its length beside the other seventeen, on the index's scale.
+              Each bar is also the way to that Purāṇa. */}
+          <section className="rf-block" aria-labelledby="pu-length">
+            <h2 className="rf-h2" id="pu-length">
+              {u.lengthTitle}
+            </h2>
+            <ol className="pu-strip">
+              {all.map((x) => {
+                const label = `${x.name}, ${s.verseUnit(x.verses.toLocaleString("en-IN"))}`;
+                return (
+                  <li key={x.slug}>
+                    <Link
+                      href={`/puranas/${x.slug}`}
+                      className="pu-strip-bar"
+                      aria-current={x.slug === p.slug ? "page" : undefined}
+                      aria-label={label}
+                      title={label}
+                    >
+                      <span
+                        className="pu-strip-fill"
+                        style={{ height: `${Math.max(5, (x.verses / longest) * 100)}%` }}
+                      />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ol>
+            <p className="pu-strip-note">{u.lengthNote}</p>
+          </section>
 
           {p.depth && (
             <section className="rf-block" aria-labelledby="pu-parts">

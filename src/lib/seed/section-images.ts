@@ -117,6 +117,18 @@ const ART: Record<string, string> = {
   "branch:agamas": "branch-agamas",
   "darshana:vaisheshika": "darshana-vaisheshika",
   "branch:prakarana": "branch-prakarana",
+  "branch:veda": "branch-veda",
+  "branch:upanishads": "branch-upanishads",
+  "branch:darshanas": "branch-darshanas",
+};
+
+/**
+ * A picture another entry already carries, shown again where it
+ * stands for the whole. The map's Purāṇas card takes the Bhāgavata
+ * folio: a Purāṇa manuscript, which is what the branch is.
+ */
+const ALIAS: Record<string, [ImageKind, string, string?]> = {
+  "branch:puranas": ["purana", "bhagavata", "30% 22%"],
 };
 
 const SOURCES: Record<ImageKind, Record<string, Entry>> = {
@@ -127,6 +139,11 @@ const SOURCES: Record<ImageKind, Record<string, Entry>> = {
 };
 
 export function sectionImage(kind: ImageKind, slug: string): SectionImage | undefined {
+  const alias = ALIAS[`${kind}:${slug}`];
+  if (alias) {
+    const img = sectionImage(alias[0], alias[1]);
+    return img && alias[2] ? { ...img, position: alias[2] } : img;
+  }
   const entry = SOURCES[kind][slug];
   const alt = ALT[kind][slug];
   if (!entry || !alt) return undefined;

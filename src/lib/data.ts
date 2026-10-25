@@ -298,6 +298,7 @@ import {
   puranasByGuna,
   traditionalVerseTotal,
   type PuranaGuna,
+  type PuranaLean,
 } from "./seed/puranas";
 import {
   STORIES,
@@ -2005,6 +2006,7 @@ export interface PuranaView {
   sanskrit: string;
   order: number;
   deity: string;
+  leans: PuranaLean[];
   /** As the tradition gives it, never as a count. */
   verses: number;
   guna: PuranaGuna;
@@ -2024,6 +2026,7 @@ function puranaView(p: (typeof PURANAS)[number], locale: Locale): PuranaView {
     sanskrit: scriptFor(p.sanskrit, locale),
     order: p.order,
     deity: p.deity[locale],
+    leans: p.leans,
     verses: p.verses,
     guna: p.guna,
     lede: p.lede[locale],

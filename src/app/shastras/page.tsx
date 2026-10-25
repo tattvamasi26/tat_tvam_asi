@@ -11,6 +11,7 @@ import { shastraProgress } from "@/lib/seed/shastras";
 import { JumpBar } from "@/components/rf/RfHead";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { Thumb } from "@/components/content/Thumb";
 
 export const metadata: Metadata = {
   title: "Shastras & Puranas",
@@ -43,6 +44,7 @@ export default function ShastrasPage() {
   const { live, partial, total } = shastraProgress();
   const sc = scriptClass(locale);
   const branchCount = tiers.reduce((n, t) => n + t.branches.length, 0);
+  const pct = (n: number, of: number) => `${of > 0 ? Math.round((n / of) * 100) : 0}%`;
 
   return (
     <>
@@ -51,8 +53,18 @@ export default function ShastrasPage() {
           <p className="eyebrow">{u.countBranches.replace("{n}", branchCount.toLocaleString("en-IN"))}</p>
           <h1 className="title">{s.title}</h1>
           <p className="lede">{s.lede}</p>
-          <p className="sh2-progress">
-            {s.progress((live + partial).toLocaleString("en-IN"), total.toLocaleString("en-IN"))}
+          <div className="sh2-progress-wrap">
+            <p className="sh2-progress">
+              {s.progress((live + partial).toLocaleString("en-IN"), total.toLocaleString("en-IN"))}
+            </p>
+            <span className="sh2-meter is-big" aria-hidden="true">
+              <span className="sh2-meter-fill" style={{ width: pct(live + partial, total) }} />
+            </span>
+          </div>
+          {/* What the two kinds of chip on every card mean. */}
+          <p className="sh2-key">
+            <span className="chip chip-gold">{u.readHere}</span>
+            <span className="chip sh-chip-quiet">{s.noneYet}</span>
           </p>
         </div>
       </section>
@@ -78,10 +90,18 @@ export default function ShastrasPage() {
               {tier.branches.map((b) => (
                 <li key={b.id} id={b.id}>
                   <article className="sh2-card">
-                    <div className="sh2-card-head">
-                      <span className={`sh2-glyph ${sc}`} aria-hidden="true">
-                        {b.glyph}
+                    {/* The picture repeats the card's own link, so it is
+                        hidden from the keyboard and from screen readers. */}
+                    {b.page ? (
+                      <Link href={b.page} className="sh2-pic" tabIndex={-1} aria-hidden="true">
+                        <Thumb kind="branch" slug={b.id} label="" locale={locale} />
+                      </Link>
+                    ) : (
+                      <span className="sh2-pic" aria-hidden="true">
+                        <Thumb kind="branch" slug={b.id} label="" locale={locale} />
                       </span>
+                    )}
+                    <div className="sh2-card-head">
                       <h3 className="sh2-name">
                         {b.page ? <Link href={b.page}>{b.name}</Link> : b.name}
                       </h3>
@@ -116,6 +136,9 @@ export default function ShastrasPage() {
                     )}
 
                     <div className="sh2-foot">
+                      <span className="sh2-meter" aria-hidden="true">
+                        <span className="sh2-meter-fill" style={{ width: pct(b.readable, b.total) }} />
+                      </span>
                       <span className="sh2-count">
                         {b.readable > 0
                           ? s.readableOf(b.readable.toLocaleString("en-IN"), b.total.toLocaleString("en-IN"))

@@ -572,6 +572,79 @@ const ART: Record<string, ReactNode> = {
       <Lamp x={200} y={210} s={0.8} />
     </>
   ),
+
+  // The Vedas: four collections, four bundles of palm leaf tied at one
+  // point — one tradition, four books.
+  "branch-veda": (
+    <>
+      <Halo y={128} r={98} />
+      {[0, 1, 2, 3].map((i) => (
+        <g key={i} transform={`translate(200 222) rotate(${(i - 1.5) * 15}) translate(-15 -156)`}>
+          <rect width={30} height={156} rx={10} fill={[GOLD, "var(--paper-3)", SAFFRON, SACRED][i]} stroke={INK} strokeWidth={2.5} />
+          <line x1={15} x2={15} y1={18} y2={136} stroke={INK} strokeWidth={1.5} opacity={0.35} />
+          <circle cx={15} cy={42} r={3.2} fill={INK} />
+        </g>
+      ))}
+      <circle cx={200} cy={222} r={9} fill={MARIGOLD} stroke={INK} strokeWidth={2.5} />
+    </>
+  ),
+
+  // The Upaniṣads: "sitting near" — two lamps under one tree, the
+  // teacher's and the pupil's, both lit.
+  "branch-upanishads": (
+    <>
+      <Halo y={118} r={96} />
+      <rect x={192} y={122} width={16} height={104} rx={5} fill={SACRED} />
+      {[
+        [158, 100, 34],
+        [200, 78, 42],
+        [242, 100, 34],
+        [178, 122, 28],
+        [222, 122, 28],
+      ].map(([cx, cy, r], i) => (
+        <circle key={i} cx={cx} cy={cy} r={r} fill="var(--ink-3)" opacity={0.82} />
+      ))}
+      <Lamp x={128} y={222} s={0.78} />
+      <Lamp x={274} y={222} s={0.78} />
+      <Ground y={236} />
+    </>
+  ),
+
+  // The six systems: darśana is "seeing" — six ways of looking, all
+  // turned on the one question at the centre.
+  "branch-darshanas": (
+    <>
+      <Halo y={135} r={104} />
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const a = ((i * 60 - 90) * Math.PI) / 180;
+        return (
+          <line
+            key={i}
+            x1={200}
+            y1={135}
+            x2={200 + Math.cos(a) * 70}
+            y2={135 + Math.sin(a) * 70}
+            stroke="var(--ink-4)"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeDasharray="3 6"
+          />
+        );
+      })}
+      {[0, 1, 2, 3, 4, 5].map((i) => {
+        const a = ((i * 60 - 90) * Math.PI) / 180;
+        const x = 200 + Math.cos(a) * 88;
+        const y = 135 + Math.sin(a) * 88;
+        return (
+          <g key={i} transform={`translate(${x} ${y}) rotate(${i * 60})`}>
+            <path d="M-25,0 C-12,-16 12,-16 25,0 C12,16 -12,16 -25,0 Z" fill="var(--paper-3)" stroke={INK} strokeWidth={2.5} />
+            <circle r={7.5} fill={[GOLD, SACRED, SAFFRON][i % 3]} />
+          </g>
+        );
+      })}
+      <circle cx={200} cy={135} r={15} fill={MARIGOLD} stroke={INK} strokeWidth={2.5} />
+    </>
+  ),
 };
 
 /** Whether this slug or group has a drawing. */

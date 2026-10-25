@@ -300,11 +300,13 @@
 }
 
 .sh2-card {
+  --sh2-pad: clamp(1.1rem, 2.4vw, 1.4rem);
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  padding: clamp(1.1rem, 2.4vw, 1.4rem);
+  padding: var(--sh2-pad);
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--r);
   background: var(--card);
@@ -322,12 +324,6 @@
 .sh2-card-head {
   display: grid;
   gap: 0.15rem;
-}
-
-.sh2-glyph {
-  color: var(--gold-dim);
-  font-size: 0.95rem;
-  line-height: 1.5;
 }
 
 .sh2-name {
@@ -383,13 +379,17 @@
 
 .sh2-foot {
   margin-top: auto;
-  padding-top: 0.7rem;
+  padding-top: 0.75rem;
   border-top: 1px solid var(--line);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+}
+
+.sh2-foot .sh2-meter {
+  flex: 1 0 100%;
 }
 
 .sh2-count {
@@ -482,4 +482,69 @@
   margin: 0;
   color: var(--ink-2);
   line-height: 1.75;
+}
+
+/* ── the map's pictures and progress ─────────────────────────
+   Each card opens with its branch's picture run edge to edge, the way
+   the Stories cards do: the painting where the site has one, its own
+   drawing where it does not. */
+.sh2-pic {
+  display: block;
+  margin: calc(-1 * var(--sh2-pad)) calc(-1 * var(--sh2-pad)) 0.35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.sh2-pic .thumb {
+  aspect-ratio: 16 / 7;
+}
+
+@media (hover: hover) {
+  .sh2-card:hover .sh2-pic img {
+    transform: scale(1.03);
+  }
+}
+
+.sh2-pic img {
+  transition: transform 420ms var(--ease);
+}
+
+/* How much of a branch, or of the whole map, can be read here. */
+.sh2-meter {
+  display: block;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+
+.sh2-meter-fill {
+  display: block;
+  height: 100%;
+  min-width: 0.38rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--marigold), var(--saffron-2));
+}
+
+.sh2-progress-wrap {
+  display: grid;
+  gap: 0.5rem;
+  width: min(100%, 22rem);
+}
+
+.sh2-progress-wrap .sh2-progress {
+  width: fit-content;
+}
+
+.sh2-meter.is-big {
+  height: 0.5rem;
+  background: var(--paper-3);
+}
+
+/* The key to the chips on every card. */
+.sh2-key {
+  margin: 0.2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
 }

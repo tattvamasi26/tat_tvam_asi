@@ -7,6 +7,7 @@ import { puranaUi } from "@/i18n/purana-ui";
 import { getPuranas, getPuranasByGuna, getTraditionalVerseTotal } from "@/lib/data";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { PuranaList } from "@/components/puranas/PuranaList";
 
 export const metadata: Metadata = {
   title: "The Puranas",
@@ -85,9 +86,28 @@ export default function PuranasPage() {
           <p className="pu2-lede">{u.scaleLede}</p>
         </div>
 
-        <ol className="pu2-list">
-          {puranas.map((p) => (
-            <li key={p.slug}>
+        <PuranaList
+          labels={{
+            sortLabel: u.sortLabel,
+            sortOrder: u.sortOrder,
+            sortLength: u.sortLength,
+            filterLabel: u.filterLabel,
+            all: u.leanAll,
+            leans: {
+              vishnu: u.leanVishnu,
+              shiva: u.leanShiva,
+              devi: u.leanDevi,
+              brahma: u.leanBrahma,
+              other: u.leanOther,
+            },
+            showing: u.showing,
+          }}
+          items={puranas.map((p) => ({
+            slug: p.slug,
+            order: p.order,
+            verses: p.verses,
+            leans: p.leans,
+            row: (
               <Link href={`/puranas/${p.slug}`} className="pu2-row">
                 <span className="pu2-thumb" aria-hidden="true">
                   <Thumb kind="purana" slug={p.slug} label="" locale={locale} />
@@ -106,9 +126,9 @@ export default function PuranasPage() {
                   <span className="pu2-verses">{s.verseUnit(p.verses.toLocaleString("en-IN"))}</span>
                 </span>
               </Link>
-            </li>
-          ))}
-        </ol>
+            ),
+          }))}
+        />
 
         <p className="pu2-note">{s.verseNote}</p>
       </section>
