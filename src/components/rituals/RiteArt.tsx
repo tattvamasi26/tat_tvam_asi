@@ -602,7 +602,7 @@ const ART: Record<string, ReactNode> = {
         [178, 122, 28],
         [222, 122, 28],
       ].map(([cx, cy, r], i) => (
-        <circle key={i} cx={cx} cy={cy} r={r} fill="var(--ink-3)" opacity={0.82} />
+        <circle key={i} cx={cx} cy={cy} r={r} fill={[GOLD, MARIGOLD, GOLD, SAFFRON, SAFFRON][i]} stroke={INK} strokeWidth={2} />
       ))}
       <Lamp x={128} y={222} s={0.78} />
       <Lamp x={274} y={222} s={0.78} />

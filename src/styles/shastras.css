@@ -548,3 +548,146 @@
   align-items: center;
   gap: 0.4rem;
 }
+
+/* ── the Upaniṣads, the branch read here in depth ─────────────
+   The one card that spans the row: picture beside the words on a wide
+   screen, each readable text as a tile that is its own way in, the
+   rest listed as still to come, and a button to start. Marked with
+   the gold border the site uses for what is live. */
+.sh2-cards > li.is-feature {
+  grid-column: 1 / -1;
+}
+
+.sh2-feature {
+  border-color: var(--gold-dim);
+  box-shadow: var(--shadow);
+}
+
+.sh2-feature-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.sh2-feature-tag {
+  margin: 0;
+  width: fit-content;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--marigold);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.sh2-feature .sh2-name {
+  font-size: clamp(1.45rem, 2.6vw, 1.8rem);
+}
+
+.sh2-feature-lede {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 560;
+  line-height: 1.6;
+}
+
+.sh2-reads {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
+  gap: 0.6rem;
+}
+
+.sh2-read {
+  height: 100%;
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--r-sm);
+  background: var(--card-2);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+@media (hover: hover) {
+  .sh2-read:hover {
+    background: var(--marigold-soft);
+    transform: translateY(-1px);
+  }
+}
+
+.sh2-read:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.sh2-read-name {
+  font-size: 1.02rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+}
+
+.sh2-read-sanskrit {
+  color: var(--sacred);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.sh2-read-foot {
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  color: var(--gold);
+}
+
+.sh2-read .sh2-status {
+  margin-inline-start: 0;
+}
+
+.sh2-later {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.sh2-later-label {
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--ink-3);
+}
+
+.sh2-cta {
+  margin-inline-start: auto;
+}
+
+/* On a wide screen the Vedas and the Upaniṣads sit side by side, the
+   Upaniṣads at twice the width: the order the tradition gives them,
+   and the weight this site gives them. */
+@media (min-width: 900px) {
+  .sh2-cards:has(> li.is-feature) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .sh2-cards > li.is-feature {
+    grid-column: auto;
+  }
+
+  .sh2-feature .sh2-pic .thumb {
+    aspect-ratio: 16 / 6;
+  }
+
+  .sh2-reads {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sh2-read {
+    padding: 0.75rem 0.7rem;
+  }
+}

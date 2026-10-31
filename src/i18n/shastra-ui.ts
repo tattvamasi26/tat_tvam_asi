@@ -17,6 +17,11 @@ export interface ShastraUi {
   countTexts: string;
   /** Carries {n}. */
   countBranches: string;
+  /** The Upaniṣads card, which is the one branch read here in depth. */
+  featureTag: string;
+  featureLede: string;
+  featureCta: string;
+  featureLater: string;
 }
 
 export const SHASTRA_UI: Record<Locale, ShastraUi> = {
@@ -29,6 +34,10 @@ export const SHASTRA_UI: Record<Locale, ShastraUi> = {
     readHere: "Read it here",
     countTexts: "{n} texts",
     countBranches: "{n} branches",
+    featureTag: "Read here, verse by verse",
+    featureLede: "Each verse in Sanskrit, with a translation and an explanation, in English, Kannada and Hindi.",
+    featureCta: "Start reading",
+    featureLater: "Still to come",
   },
   kn: {
     open: "ತೆರೆಯಿರಿ",
@@ -39,6 +48,10 @@ export const SHASTRA_UI: Record<Locale, ShastraUi> = {
     readHere: "ಇಲ್ಲಿ ಓದಿ",
     countTexts: "{n} ಗ್ರಂಥಗಳು",
     countBranches: "{n} ಶಾಖೆಗಳು",
+    featureTag: "ಇಲ್ಲಿ ಓದಿ, ಶ್ಲೋಕ ಶ್ಲೋಕವಾಗಿ",
+    featureLede: "ಪ್ರತಿ ಶ್ಲೋಕ ಸಂಸ್ಕೃತದಲ್ಲಿ, ಅನುವಾದ ಮತ್ತು ವಿವರಣೆಯೊಂದಿಗೆ — ಇಂಗ್ಲಿಷ್, ಕನ್ನಡ ಮತ್ತು ಹಿಂದಿಯಲ್ಲಿ.",
+    featureCta: "ಓದಲು ಆರಂಭಿಸಿ",
+    featureLater: "ಮುಂದೆ ಬರಲಿವೆ",
   },
   hi: {
     open: "खोलें",
@@ -49,6 +62,10 @@ export const SHASTRA_UI: Record<Locale, ShastraUi> = {
     readHere: "यहाँ पढ़ें",
     countTexts: "{n} ग्रंथ",
     countBranches: "{n} शाखाएँ",
+    featureTag: "यहाँ पढ़ें, श्लोक-दर-श्लोक",
+    featureLede: "हर श्लोक संस्कृत में, अनुवाद और व्याख्या सहित — अंग्रेज़ी, कन्नड़ और हिंदी में।",
+    featureCta: "पढ़ना शुरू करें",
+    featureLater: "आगे आने वाले",
   },
 };
 

@@ -87,7 +87,74 @@ export default function ShastrasPage() {
             </header>
 
             <ul className="sh2-cards">
-              {tier.branches.map((b) => (
+              {tier.branches.map((b) =>
+                b.id === "upanishads" ? (
+                  <li key={b.id} id={b.id} className="is-feature">
+                    <article className="sh2-card sh2-feature">
+                      <Link href={b.page ?? "/upanishads"} className="sh2-pic" tabIndex={-1} aria-hidden="true">
+                        <Thumb kind="branch" slug={b.id} label="" locale={locale} />
+                      </Link>
+                      <div className="sh2-feature-body">
+                        <p className="sh2-feature-tag">{u.featureTag}</p>
+                        <div className="sh2-card-head">
+                          <h3 className="sh2-name">
+                            <Link href={b.page ?? "/upanishads"}>{b.name}</Link>
+                          </h3>
+                          <p className={`sh2-sanskrit ${sc}`}>{b.sanskrit}</p>
+                        </div>
+                        <p className="sh2-lede">{b.lede}</p>
+                        <p className="sh2-feature-lede">{u.featureLede}</p>
+
+                        {/* What can be read now, as the way in to each. */}
+                        <ul className="sh2-reads">
+                          {b.texts
+                            .filter((t) => t.href)
+                            .map((t) => (
+                              <li key={t.id}>
+                                <Link href={t.href!} className="sh2-read">
+                                  <span className="sh2-read-name">{t.name}</span>
+                                  <span className={`sh2-read-sanskrit ${sc}`}>{t.sanskrit}</span>
+                                  <span className="sh2-read-foot">
+                                    <span className="sh2-status" data-status={t.status}>
+                                      {t.status === "live" ? s.statusLive : s.statusPartial}
+                                    </span>
+                                    <Arrow />
+                                  </span>
+                                </Link>
+                              </li>
+                            ))}
+                        </ul>
+
+                        <div className="sh2-later">
+                          <span className="sh2-later-label">{u.featureLater}</span>
+                          <ul className="sh2-chips">
+                            {b.texts
+                              .filter((t) => !t.href)
+                              .map((t) => (
+                                <li key={t.id}>
+                                  <span className="chip sh-chip-quiet" title={t.note}>
+                                    {t.name}
+                                  </span>
+                                </li>
+                              ))}
+                          </ul>
+                        </div>
+
+                        <div className="sh2-foot">
+                          <span className="sh2-meter" aria-hidden="true">
+                            <span className="sh2-meter-fill" style={{ width: pct(b.readable, b.total) }} />
+                          </span>
+                          <span className="sh2-count">
+                            {s.readableOf(b.readable.toLocaleString("en-IN"), b.total.toLocaleString("en-IN"))}
+                          </span>
+                          <Link href={b.page ?? "/upanishads"} className="btn sh2-cta">
+                            {u.featureCta} <Arrow />
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
+                  </li>
+                ) : (
                 <li key={b.id} id={b.id}>
                   <article className="sh2-card">
                     {/* The picture repeats the card's own link, so it is
@@ -152,7 +219,8 @@ export default function ShastrasPage() {
                     </div>
                   </article>
                 </li>
-              ))}
+                ),
+              )}
             </ul>
           </div>
         </section>
