@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HeadPicture } from "@/components/content/HeadPicture";
 import { OWNER_IMAGES } from "@/lib/seed/owner-images";
+import { toneStyle } from "@/lib/seed/picture-tones";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { cosmosStrings } from "@/i18n/cosmos";
@@ -57,7 +58,7 @@ export default function CosmosPage() {
 
   return (
     <>
-      <section className="rf-dhero has-art">
+      <section className="rf-dhero has-art has-tone" style={toneStyle(OWNER_IMAGES.cosmos.src)}>
         <div className="shell rf-dhero-inner">
           <nav className="rf-crumbs" aria-label={pu.title}>
             <Link href="/puranas">{pu.title}</Link>

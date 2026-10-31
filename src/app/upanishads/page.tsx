@@ -6,6 +6,7 @@ import { Arrow } from "@/components/ui/Arrow";
 import { scriptFor, scriptClass } from "@/lib/script";
 import { HeadPicture } from "@/components/content/HeadPicture";
 import { OWNER_IMAGES } from "@/lib/seed/owner-images";
+import { toneStyle } from "@/lib/seed/picture-tones";
 
 export const metadata: Metadata = { title: "The Upanishads" };
 
@@ -18,7 +19,7 @@ export default function UpanishadsPage() {
 
   return (
     <>
-      <section className="rf-dhero has-art">
+      <section className="rf-dhero has-art has-tone" style={toneStyle(OWNER_IMAGES.palmLeafBundles.src)}>
         <div className="shell rf-dhero-inner">
           <h1 className="rf-dhero-title">{t.upanishadsTitle}</h1>
           <p className="rf-dhero-lede">{t.upanishadsBlurb}</p>

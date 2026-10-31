@@ -335,6 +335,52 @@ export const OWNER_IMAGES = {
     "ನಿಶ್ಚಲ ನೀಲಿ ನೀರಿನಲ್ಲಿ ನಿಂತ ಗೋಪುರ, ಅದರ ತುದಿಯಲ್ಲಿ ಕೆಂಪು ಹೂಬಿಟ್ಟ ಮರ, ಪಕ್ಕದಲ್ಲಿ ದೋಣಿಯಿಂದ ಮೀನು ಹಿಡಿಯುತ್ತಿರುವ ವ್ಯಕ್ತಿ — ಜಲವರ್ಣ ಚಿತ್ರ",
     "स्थिर नीले जल में खड़ा गोपुर, उसके शिखर पर लाल फूलों से लदा पेड़, पास में नाव से मछली पकड़ता व्यक्ति — जलरंग चित्र",
   ), "40% 52%", true),
+  // ── round three: a picture for every Gita chapter, five festivals ──
+  gitaArjunaAlone: pic("gita-arjuna-alone", 900, 1600, a(
+    "A lone warrior standing in silhouette in white mist",
+    "ಬಿಳಿಯ ಮಂಜಿನಲ್ಲಿ ನೆರಳಿನಂತೆ ಒಬ್ಬಂಟಿಯಾಗಿ ನಿಂತ ಯೋಧ",
+    "सफ़ेद धुंध में छाया-रूप में अकेला खड़ा योद्धा",
+  ), "50% 35%"),
+  lotusOffering: pic("lotus-offering", 900, 1600, a(
+    "A hand offering a pink lotus to a blue hand reaching to take it — digital painting",
+    "ನೀಲಿ ಕೈಗೆ ಗುಲಾಬಿ ಕಮಲವನ್ನು ಅರ್ಪಿಸುತ್ತಿರುವ ಕೈ — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "नीले हाथ को गुलाबी कमल अर्पित करता हाथ — डिजिटल चित्र",
+  ), "50% 40%"),
+  bodyChakras: pic("body-chakras", 675, 1200, a(
+    "A seated figure in meditation, the centres of the body marked in light along the spine — digital art",
+    "ಧ್ಯಾನದಲ್ಲಿ ಕುಳಿತ ಆಕೃತಿ — ಬೆನ್ನುಹುರಿಯುದ್ದಕ್ಕೂ ದೇಹದ ಕೇಂದ್ರಗಳು ಬೆಳಕಿನಲ್ಲಿ — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "ध्यान में बैठी आकृति — रीढ़ के साथ शरीर के केंद्र प्रकाश में अंकित — डिजिटल चित्र",
+  ), "50% 50%"),
+  krishnaClouds: pic("krishna-clouds", 736, 916, a(
+    "Kṛṣṇa floating in golden clouds with open hands, white birds around him — digital painting",
+    "ಹಕ್ಕಿಗಳ ನಡುವೆ ಚಿನ್ನದ ಮೋಡಗಳಲ್ಲಿ ತೆರೆದ ಕೈಗಳೊಡನೆ ತೇಲುತ್ತಿರುವ ಕೃಷ್ಣ — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "सुनहले बादलों में खुले हाथों तैरते कृष्ण, आसपास श्वेत पक्षी — डिजिटल चित्र",
+  ), "50% 25%", true),
+  meditationHill: pic("meditation-hill", 736, 1302, a(
+    "A monk in saffron sitting on a rock above misty hills at dawn",
+    "ಮುಂಜಾವಿನ ಮಂಜಿನ ಬೆಟ್ಟಗಳ ಮೇಲಿನ ಬಂಡೆಯ ಮೇಲೆ ಕುಳಿತ ಕಾವಿಧಾರಿ",
+    "भोर में धुंध भरी पहाड़ियों के ऊपर एक चट्टान पर बैठा भगवाधारी साधक",
+  ), "50% 62%"),
+  krishnaFluteMist: pic("krishna-flute-mist", 736, 1307, a(
+    "Kṛṣṇa playing the flute, in silhouette against a bright misty sky",
+    "ಬೆಳಗಿದ ಮಂಜಿನ ಆಕಾಶದ ಎದುರು ನೆರಳಿನಲ್ಲಿ ಕೊಳಲು ನುಡಿಸುತ್ತಿರುವ ಕೃಷ್ಣ",
+    "उजले धुंधले आकाश के सामने छाया-रूप में बाँसुरी बजाते कृष्ण",
+  ), "50% 30%"),
+  ramaBow: pic("rama-bow", 736, 1307, a(
+    "Rāma in profile holding his great bow, in silhouette against a pale sun",
+    "ಮಸುಕಾದ ಸೂರ್ಯನ ಎದುರು ನೆರಳಿನಲ್ಲಿ ದೊಡ್ಡ ಬಿಲ್ಲು ಹಿಡಿದ ರಾಮನ ಪಾರ್ಶ್ವನೋಟ",
+    "धुंधले सूर्य के सामने छाया-रूप में बड़ा धनुष लिए राम का पार्श्व",
+  ), "50% 35%"),
+  lingaLamps: pic("linga-lamps", 901, 1600, a(
+    "A liṅga in a dark stone hall, rows of small lamps burning on either side",
+    "ಕತ್ತಲ ಕಲ್ಲಿನ ಮಂಟಪದಲ್ಲಿ ಲಿಂಗ, ಎರಡೂ ಬದಿ ಸಾಲಾಗಿ ಉರಿಯುತ್ತಿರುವ ಪುಟ್ಟ ದೀಪಗಳು",
+    "अँधेरे पत्थर के मंडप में लिंग, दोनों ओर पंक्तियों में जलते छोटे दीपक",
+  ), "50% 60%"),
+  lakshmiAlankara: pic("lakshmi-alankara", 1076, 1252, a(
+    "The Goddess's golden face and crown, dressed in a green and orange sari and ringed with flowers",
+    "ಹಸಿರು ಕಿತ್ತಳೆ ಸೀರೆಯುಟ್ಟು ಹೂಗಳಿಂದ ಸುತ್ತುವರಿದ ದೇವಿಯ ಚಿನ್ನದ ಮುಖ ಮತ್ತು ಕಿರೀಟ",
+    "हरी और नारंगी साड़ी पहने, फूलों से घिरा देवी का स्वर्ण मुख और मुकुट",
+  ), "50% 35%"),
 } satisfies Record<string, OwnerImage>;
 
 export type OwnerImageId = keyof typeof OWNER_IMAGES;

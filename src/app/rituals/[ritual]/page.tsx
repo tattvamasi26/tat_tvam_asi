@@ -14,6 +14,7 @@ import { StepList, NeedList, Glance } from "@/components/rf/Depth";
 import { RiteArt, hasRiteArt } from "@/components/rituals/RiteArt";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { toneStyle } from "@/lib/seed/picture-tones";
 import { LOCALES } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -66,7 +67,10 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
 
   return (
     <>
-      <section className={`rf-dhero${r.image || hasRiteArt(r.slug) ? " has-art" : ""}`}>
+      <section
+        className={`rf-dhero${r.image || hasRiteArt(r.slug) ? " has-art" : ""}${r.image ? " has-tone" : ""}`}
+        style={toneStyle(r.image?.src)}
+      >
         <div className="shell rf-dhero-inner">
           <nav className="rf-crumbs" aria-label={rf.sectionTitle}>
             <Link href="/rituals">{rf.sectionTitle}</Link>

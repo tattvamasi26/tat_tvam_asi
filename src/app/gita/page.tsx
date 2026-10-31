@@ -8,22 +8,8 @@ import { Reveal } from "@/components/motion/Reveal";
 import { scriptFor, scriptClass } from "@/lib/script";
 import Image from "next/image";
 import { HeadPicture } from "@/components/content/HeadPicture";
-import { OWNER_IMAGES, type OwnerImageId } from "@/lib/seed/owner-images";
-
-/**
- * Six chapters with a picture of their own moment, from the pictures
- * the owner supplied: the chariot driven between the armies, Arjuna
- * asking to be taught, the avatara descending, Krishna with the form
- * behind him, the universal form, and the last surrender.
- */
-const SCENES: [number, OwnerImageId][] = [
-  [1, "gitaChariot"],
-  [2, "gitaArjunaKneels"],
-  [4, "gitaDescent"],
-  [7, "gitaKrishnaVishnu"],
-  [11, "gitaVishvarupaField"],
-  [18, "gitaSurrender"],
-];
+import { GITA_HEAD_IMAGE, gitaChapterImage } from "@/lib/seed/gita-images";
+import { toneStyle } from "@/lib/seed/picture-tones";
 
 export const metadata: Metadata = {
   title: "Geetha Rasa Dhara",
@@ -40,12 +26,12 @@ export default function GitaPage() {
 
   return (
     <>
-      <section className="rf-dhero has-art">
+      <section className="rf-dhero has-art has-tone" style={toneStyle(GITA_HEAD_IMAGE.src)}>
         <div className="shell rf-dhero-inner">
           <h1 className="rf-dhero-title">{work.name}</h1>
           <p className={`rf-dhero-sanskrit ${scriptClass(locale)}`}>{scriptFor(work.nameSanskrit, locale)}</p>
           <p className="rf-dhero-lede">{work.summary}</p>
-          <HeadPicture locale={locale} image={OWNER_IMAGES.gitaTeaching} label={work.name} drawnCredit="" />
+          <HeadPicture locale={locale} image={GITA_HEAD_IMAGE} label={work.name} drawnCredit="" />
         </div>
       </section>
 
@@ -82,43 +68,24 @@ export default function GitaPage() {
 
         <p className="gi-lede">{g.chaptersLede}</p>
 
-        <section className="gi-scenes-band" aria-labelledby="gi-scenes-title">
-          <h3 className="gi-scenes-title" id="gi-scenes-title">{g.scenesTitle}</h3>
-          <ul className="gi-scenes">
-            {SCENES.map(([n, key]) => {
-              const c = chapterNotes.find((x) => x.n === n);
-              const img = OWNER_IMAGES[key];
-              if (!c) return null;
-              return (
-                <li key={n}>
-                  <Link href={`/gita/${n}`} className="gi-scene">
-                    <span className="gi-scene-pic">
-                      <Image
-                        src={img.src}
-                        alt={img.alt[locale]}
-                        fill
-                        sizes="(max-width: 700px) 50vw, 16vw"
-                        style={{ objectFit: "cover", objectPosition: img.position }}
-                      />
-                    </span>
-                    <span className="gi-scene-text">
-                      <span className="gi-scene-n">
-                        {g.labelChapter} {n.toLocaleString("en-IN")}
-                      </span>
-                      <span className="gi-scene-name">{c.name}</span>
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-          <p className="gi-scenes-credit">{OWNER_IMAGES.gitaArjunaKneels.credit}</p>
-        </section>
 
         <ol className="gi-grid">
-          {chapterNotes.map((c) => (
+          {chapterNotes.map((c) => {
+            const pic = gitaChapterImage(c.n);
+            return (
             <li key={c.n}>
-              <Link href={`/gita/${c.n}`} className="gi-card">
+              <Link href={`/gita/${c.n}`} className={`gi-card${pic ? " has-pic" : ""}`}>
+                {pic && (
+                  <span className="gi-card-pic">
+                    <Image
+                      src={pic.src}
+                      alt=""
+                      fill
+                      sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                      style={{ objectFit: "cover", objectPosition: pic.position }}
+                    />
+                  </span>
+                )}
                 <span className="gi-n">{c.n.toLocaleString("en-IN")}</span>
                 <span className="gi-body">
                   <span className="gi-name">{c.name}</span>
@@ -130,8 +97,11 @@ export default function GitaPage() {
                 </span>
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ol>
+
+        <p className="gi-scenes-credit">{GITA_HEAD_IMAGE.credit}</p>
 
         {/* Why the chapters add up to one more than seven hundred. */}
         <p className="gi-note">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 /**
  * One song, whole, in one column.
@@ -30,17 +30,25 @@ export function BhajanText({
   transliteration,
   labels,
   openByDefault,
+  crest,
 }: {
   stanzas: string[][];
   transliteration: string[][];
   labels: { show: string; hide: string; roman: string };
   openByDefault: boolean;
+  /** The devata at the head of the card, as a printed bhajan book has it. */
+  crest?: ReactNode;
 }) {
   const [open, setOpen] = useState(openByDefault);
   const has = transliteration.length > 0;
 
   return (
     <div className="bh-text">
+      {crest && (
+        <div className="bh-crest" aria-hidden="true">
+          {crest}
+        </div>
+      )}
       {has && (
         <div className="bh-text-bar">
           <button

@@ -613,12 +613,21 @@ component on the site.
   with no link, because their source is not recorded. Each section's
   registry maps its slugs onto it — home cards, bhajan groups,
   festivals, rites, the practice sittings, seven śāstra branches, the
-  heads of /gita (plus six chapter scenes), /upanishads and /cosmos, two
+  heads of /gita, /upanishads and /cosmos, a picture for each of the
+  eighteen Gita chapters (`seed/gita-images.ts`: on its card and its
+  page), two
   Nava Vinayakas and a Kukke gallery picture. They are 500–1,100px wide,
   so a festival picture under 1,400px shows framed beside the title
   rather than stretched across the screen. Pictures with words printed
   on them, app screenshots, and murtis that cannot be named for certain
   were left out.
+- **A head takes its picture's tone.** `scripts/images/tones.mjs` reads
+  every picture and writes `seed/picture-tones.json`; `toneStyle(src)`
+  sets `--tone`, and `.rf-dhero.has-tone` / `.bh-song-head.has-tone`
+  wash the head in it. Re-run the script after adding pictures. A
+  bhajan song page opens on its devata: the group picture in an arched
+  niche beside the title, and a round crest of it at the top of the
+  song card. Nothing sits behind the text itself.
 - **Sizes come from the bytes.** Commons serves its own standard widths,
   so the fetcher reads each JPEG's real size from its header; seventy
   manifest entries were wrong before this. A PNG original arrives as

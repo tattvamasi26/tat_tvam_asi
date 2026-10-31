@@ -11,6 +11,7 @@ import { RTUS, SOLAR_RTU, rtuForMonth } from "@/lib/seed/rtus";
 import { StepList, NeedList, DayList, Glance } from "@/components/rf/Depth";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { toneStyle } from "@/lib/seed/picture-tones";
 import { LOCALES } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -66,7 +67,10 @@ export default function FestivalPage({ params }: { params: { festival: string } 
 
   return (
     <>
-      <section className={`rf-dhero${framed ? " has-art" : festival.image ? " has-image" : " is-plate"}`}>
+      <section
+        className={`rf-dhero${framed ? " has-art has-tone" : festival.image ? " has-image" : " is-plate"}`}
+        style={framed ? toneStyle(framed.src) : undefined}
+      >
         {festival.image && !framed ? (
           <>
             <Image

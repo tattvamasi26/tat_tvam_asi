@@ -1,4 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
+import { groupImage } from "@/lib/bhajans/images";
+import { toneStyle } from "@/lib/seed/picture-tones";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
@@ -41,6 +44,7 @@ export default async function SongPage({ params }: { params: { devata: string; s
   const groupName = group.name[locale];
   const composer = composerName(song.composer, locale);
   const dasa = haridasa(song.composer);
+  const pic = groupImage(devata);
 
   const siblings = bhajansIn(devata);
   const at = siblings.findIndex((s) => s.slug === slug);
@@ -55,7 +59,32 @@ export default async function SongPage({ params }: { params: { devata: string; s
 
   return (
     <>
-      <header className="reader-head shell bh-reader-head">
+      <section className={`bh-song-head${pic ? " has-pic has-tone" : ""}`} style={toneStyle(pic?.src)}>
+        <div className="shell bh-song-head-inner">
+          {pic && (
+            <figure className="bh-niche">
+              <span className="bh-niche-frame">
+                <Image
+                  src={pic.src}
+                  alt={pic.alt[locale]}
+                  fill
+                  sizes="(max-width: 700px) 60vw, 16rem"
+                  priority
+                  style={{ objectFit: "cover", objectPosition: pic.position }}
+                />
+              </span>
+              <figcaption>
+                {pic.sourceUrl ? (
+                  <a href={pic.sourceUrl} target="_blank" rel="noopener noreferrer">
+                    {pic.credit}
+                  </a>
+                ) : (
+                  pic.credit
+                )}
+              </figcaption>
+            </figure>
+          )}
+      <header className="reader-head bh-reader-head">
         <Link href={`/bhajans/${devata}`} className="btn-ghost stutis-back">
           <Arrow dir="left" /> {b.backToGroup(groupName)}
         </Link>
@@ -89,12 +118,21 @@ export default async function SongPage({ params }: { params: { devata: string; s
           </p>
         )}
       </header>
+        </div>
+      </section>
 
       <section className="shell stack-lg" style={{ paddingTop: 0 }}>
         <BhajanText
           stanzas={song.stanzas}
           transliteration={song.transliteration}
           openByDefault={locale !== "kn"}
+          crest={
+            pic ? (
+              <span className="bh-crest-img">
+                <Image src={pic.src} alt="" fill sizes="80px" style={{ objectFit: "cover", objectPosition: pic.position }} />
+              </span>
+            ) : undefined
+          }
           labels={{
             show: b.showTransliteration,
             hide: b.hideTransliteration,

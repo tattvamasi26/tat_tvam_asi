@@ -163,6 +163,11 @@ for (const [id, entry] of Object.entries(FROM_COMMONS)) {
 const LATER: Record<string, OwnerImageId> = {
   ugadi: "templeWatercolour",
   "akshaya-tritiya": "lakshmi",
+  "rama-navami": "ramaBow",
+  "nagara-panchami": "kukke",
+  varamahalakshmi: "lakshmiAlankara",
+  "krishna-janmashtami": "krishnaUdupi",
+  "maha-shivaratri": "lingaLamps",
   "guru-purnima": "guruParampara",
   "ganesha-chaturthi": "ganeshaChaturthi",
   vijayadashami: "jambuSavari",
