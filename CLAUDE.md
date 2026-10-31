@@ -612,7 +612,8 @@ component on the site.
   owner" (", cropped" where a burnt-in caption or watermark was cut off)
   with no link, because their source is not recorded. Each section's
   registry maps its slugs onto it — home cards, bhajan groups,
-  festivals, rites, the practice sittings, five śāstra branches, two
+  festivals, rites, the practice sittings, seven śāstra branches, the
+  heads of /gita (plus six chapter scenes), /upanishads and /cosmos, two
   Nava Vinayakas and a Kukke gallery picture. They are 500–1,100px wide,
   so a festival picture under 1,400px shows framed beside the title
   rather than stretched across the screen. Pictures with words printed

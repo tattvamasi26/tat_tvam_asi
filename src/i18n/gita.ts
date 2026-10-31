@@ -17,6 +17,8 @@ import type { Locale } from "./config";
 // ─────────────────────────────────────────────────────────
 
 export interface GitaStrings {
+  /** The row of pictures, each leading to its chapter. */
+  scenesTitle: string;
   chaptersTitle: string;
   chaptersLede: string;
   /** Carries {summed} and {traditional}. */
@@ -38,6 +40,7 @@ export interface GitaStrings {
 
 export const GITA_STRINGS: Record<Locale, GitaStrings> = {
   en: {
+    scenesTitle: "Scenes from the Gita",
     chaptersTitle: "The eighteen chapters",
     chaptersLede:
       "What each chapter actually does, where it turns, and what it is answering — because a name and a verse count is not a reading.",
@@ -60,6 +63,7 @@ export const GITA_STRINGS: Record<Locale, GitaStrings> = {
   },
 
   kn: {
+    scenesTitle: "ಗೀತೆಯ ದೃಶ್ಯಗಳು",
     chaptersTitle: "ಹದಿನೆಂಟು ಅಧ್ಯಾಯಗಳು",
     chaptersLede:
       "ಪ್ರತಿ ಅಧ್ಯಾಯ ನಿಜವಾಗಿ ಏನು ಮಾಡುತ್ತದೆ, ಎಲ್ಲಿ ತಿರುಗುತ್ತದೆ, ಮತ್ತು ಯಾವುದಕ್ಕೆ ಉತ್ತರಿಸುತ್ತಿದೆ — ಏಕೆಂದರೆ ಹೆಸರು ಮತ್ತು ಶ್ಲೋಕ ಸಂಖ್ಯೆ ಓದಲ್ಲ.",
@@ -82,6 +86,7 @@ export const GITA_STRINGS: Record<Locale, GitaStrings> = {
   },
 
   hi: {
+    scenesTitle: "गीता के दृश्य",
     chaptersTitle: "अठारह अध्याय",
     chaptersLede:
       "हर अध्याय वस्तुतः क्या करता है, कहाँ मुड़ता है, और किसका उत्तर दे रहा है — क्योंकि नाम और श्लोक-संख्या पाठ नहीं है।",

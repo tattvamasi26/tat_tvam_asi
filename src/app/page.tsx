@@ -82,7 +82,7 @@ export default function HomePage() {
     shastras: OWNER_IMAGES.vedaBooks,
     gita: OWNER_IMAGES.gitaVishvarupa,
     stutis: OWNER_IMAGES.lakshmi,
-    practice: { ...OWNER_IMAGES.meditationHill, position: "50% 66%" },
+    practice: OWNER_IMAGES.lotus,
     rituals: OWNER_IMAGES.ganeshaChaturthi,
     bhajans: { ...OWNER_IMAGES.purandaraDasa, position: "50% 10%" },
   };

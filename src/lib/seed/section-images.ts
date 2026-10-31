@@ -137,8 +137,9 @@ const ALIAS: Record<string, [ImageKind, string, string?]> = {
  * The owner's pictures (seed/owner-images.ts), which take the place of
  * a drawing: the Vedas' own volumes, palm-leaf bundles for the
  * Upanisads, one small manuscript in a hand for the short teaching
- * texts, the image-maker's measured Nataraja for the Agamas, and
- * Shankara for Vedanta.
+ * texts, the image-maker's measured Nataraja for the Agamas,
+ * Shankara for Vedanta, Hanuman carrying Rama across the sea for the
+ * epics, and a book lettered "Purana" for the Puranas.
  */
 const OWNED: Record<string, OwnerImageId> = {
   "branch:veda": "vedaBooks",
@@ -146,6 +147,8 @@ const OWNED: Record<string, OwnerImageId> = {
   "branch:prakarana": "palmLeafInHand",
   "branch:agamas": "natarajaMeasures",
   "branch:vedanta": "shankara",
+  "branch:itihasa": "hanumanCarriesRama",
+  "branch:puranas": "puranaBook",
 };
 
 const SOURCES: Record<ImageKind, Record<string, Entry>> = {

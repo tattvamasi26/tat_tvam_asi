@@ -229,6 +229,8 @@ const LATER: Record<string, OwnerImageId> = {
   surya: "surya",
   shani: "shani",
   niti: "veena",
+  subramanya: "subrahmanyaGolden",
+  ayyappa: "ayyappa",
 };
 for (const [id, key] of Object.entries(LATER)) IMAGES[id] = OWNER_IMAGES[key];
 

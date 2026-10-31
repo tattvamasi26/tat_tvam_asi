@@ -1092,3 +1092,101 @@
   font-size: 0.84rem;
   line-height: 1.6;
 }
+
+/* ── the Gita's scenes: six pictures, each the way into its chapter ── */
+.gi-scenes-band {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0.4rem 0 0.6rem;
+}
+
+.gi-scenes-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--ink);
+}
+
+.gi-scenes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.gi-scene {
+  display: grid;
+  height: 100%;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .gi-scene:hover {
+    border-color: var(--line-2);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+}
+
+.gi-scene:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.gi-scene-pic {
+  position: relative;
+  display: block;
+  aspect-ratio: 3 / 4;
+  border-bottom: 1px solid var(--line);
+}
+
+.gi-scene-text {
+  display: grid;
+  align-content: start;
+  gap: 0.15rem;
+  padding: 0.65rem 0.8rem 0.8rem;
+  min-width: 0;
+}
+
+.gi-scene-n {
+  font-size: 0.74rem;
+  font-weight: 650;
+  color: var(--gold);
+}
+
+.gi-scene-name {
+  font-size: 0.95rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+  overflow-wrap: anywhere;
+}
+
+.gi-scenes-credit {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+
+@media (max-width: 900px) {
+  .gi-scenes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .gi-scenes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

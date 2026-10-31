@@ -67,11 +67,6 @@ export const OWNER_IMAGES = {
     "ಕಮಲದ ಮೇಲೆ ಕುಳಿತ ಲಕ್ಷ್ಮಿ — ಕೈಗಳಲ್ಲಿ ಕಮಲ ಮತ್ತು ಕಲಶ, ಹಿಂದೆ ಎರಡು ಆನೆಗಳು — ಚಿತ್ರ",
     "कमल पर विराजमान लक्ष्मी — हाथों में कमल और कलश, पीछे दो हाथी — चित्र",
   ), "50% 30%"),
-  meditationHill: pic("meditation-hill", 736, 1302, a(
-    "A monk in saffron sitting on a rock above misty hills at dawn",
-    "ಮುಂಜಾವಿನ ಮಂಜಿನ ಬೆಟ್ಟಗಳ ಮೇಲಿನ ಬಂಡೆಯ ಮೇಲೆ ಕುಳಿತ ಕಾವಿಧಾರಿ",
-    "भोर में धुंध भरी पहाड़ियों के ऊपर एक चट्टान पर बैठा भगवाधारी साधक",
-  ), "50% 70%"),
   purandaraDasa: pic("purandara-dasa", 400, 628, a(
     "Purandara Dāsa singing, a tambūri on his shoulder and cymbals in his hand — illustration",
     "ಹೆಗಲ ಮೇಲೆ ತಂಬೂರಿ, ಕೈಯಲ್ಲಿ ತಾಳ — ಹಾಡುತ್ತಿರುವ ಪುರಂದರದಾಸರು — ಚಿತ್ರ",
@@ -279,6 +274,67 @@ export const OWNER_IMAGES = {
     "ಮಲ್ಲಿಗೆ ಚೆಂಡು ಹೂಗಳ ರಾಶಿಯ ನಡುವೆ ಚಿನ್ನದ ಬಹುಹೆಡೆಯ ಸರ್ಪ ಪ್ರಭಾವಳಿ",
     "चमेली और गेंदे के ढेर के बीच सोने का बहु-फण सर्प छत्र",
   ), "50% 40%"),
+  // ── round two: the Gita, Itihāsa, the Purāṇas, two bhajan groups ──
+  gitaTeaching: pic("gita-teaching", 736, 1104, a(
+    "Kṛṣṇa standing and teaching, Arjuna kneeling before him, the two of them on a great book lettered Śrīmad Bhagavadgītā — digital painting",
+    "ನಿಂತು ಉಪದೇಶಿಸುತ್ತಿರುವ ಕೃಷ್ಣ, ಎದುರು ಮಂಡಿಯೂರಿದ ಅರ್ಜುನ — ಇಬ್ಬರೂ ಶ್ರೀಮದ್ಭಗವದ್ಗೀತಾ ಎಂದು ಬರೆದ ದೊಡ್ಡ ಗ್ರಂಥದ ಮೇಲೆ — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "खड़े होकर उपदेश देते कृष्ण, सामने घुटनों पर अर्जुन — दोनों 'श्रीमद्भगवद्गीता' लिखे एक बड़े ग्रंथ पर — डिजिटल चित्र",
+  ), "50% 55%"),
+  gitaArjunaKneels: pic("gita-arjuna-kneels", 736, 1308, a(
+    "Arjuna kneeling with folded hands, his bow at his side, before Kṛṣṇa standing in a pool of light — painting",
+    "ಬೆಳಕಿನಲ್ಲಿ ನಿಂತ ಕೃಷ್ಣನ ಎದುರು ಬಿಲ್ಲನ್ನು ಪಕ್ಕಕ್ಕಿಟ್ಟು ಕೈಮುಗಿದು ಮಂಡಿಯೂರಿದ ಅರ್ಜುನ — ಚಿತ್ರ",
+    "प्रकाश में खड़े कृष्ण के सामने धनुष रखकर हाथ जोड़े घुटनों पर अर्जुन — चित्र",
+  ), "50% 62%"),
+  gitaDescent: pic("gita-descent", 900, 1600, a(
+    "Viṣṇu descending through a blaze of light, holding the discus, above a chariot and its horses on the battlefield — digital painting",
+    "ರಣಭೂಮಿಯ ರಥ ಮತ್ತು ಕುದುರೆಗಳ ಮೇಲೆ, ಚಕ್ರ ಹಿಡಿದು ಬೆಳಕಿನ ಪ್ರಭೆಯಲ್ಲಿ ಇಳಿಯುತ್ತಿರುವ ವಿಷ್ಣು — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "रणभूमि में रथ और घोड़ों के ऊपर, चक्र लिए प्रकाश की आभा में उतरते विष्णु — डिजिटल चित्र",
+  ), "50% 35%"),
+  gitaKrishnaVishnu: pic("gita-krishna-vishnu", 736, 1167, a(
+    "Kṛṣṇa in a crown, hand on his heart, with the four-armed Viṣṇu standing behind him — digital painting",
+    "ಎದೆಯ ಮೇಲೆ ಕೈಯಿಟ್ಟ ಕಿರೀಟಧಾರಿ ಕೃಷ್ಣ, ಹಿಂದೆ ನಿಂತ ಚತುರ್ಭುಜ ವಿಷ್ಣು — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "हृदय पर हाथ रखे मुकुटधारी कृष्ण, पीछे खड़े चतुर्भुज विष्णु — डिजिटल चित्र",
+  ), "50% 45%"),
+  gitaVishvarupaField: pic("gita-vishvarupa-field", 736, 817, a(
+    "The universal form towering over the battlefield, many-headed and many-armed, Arjuna kneeling small before it between the armies — digital painting",
+    "ಸೈನ್ಯಗಳ ನಡುವೆ ರಣಭೂಮಿಯ ಮೇಲೆ ಎತ್ತರವಾಗಿ ನಿಂತ ಅನೇಕ ತಲೆ ಅನೇಕ ಕೈಗಳ ವಿಶ್ವರೂಪ, ಎದುರು ಪುಟ್ಟದಾಗಿ ಮಂಡಿಯೂರಿದ ಅರ್ಜುನ — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "सेनाओं के बीच रणभूमि पर ऊँचा खड़ा अनेक सिरों और भुजाओं वाला विश्वरूप, सामने छोटे-से घुटनों पर अर्जुन — डिजिटल चित्र",
+  ), "50% 30%", true),
+  gitaSurrender: pic("gita-surrender", 736, 1104, a(
+    "Arjuna kneeling with folded hands before Kṛṣṇa, who holds up the discus, both in silhouette against a full moon",
+    "ಹುಣ್ಣಿಮೆಯ ಚಂದ್ರನ ಎದುರು ನೆರಳಿನಲ್ಲಿ — ಚಕ್ರ ಎತ್ತಿ ಹಿಡಿದ ಕೃಷ್ಣನ ಮುಂದೆ ಕೈಮುಗಿದು ಮಂಡಿಯೂರಿದ ಅರ್ಜುನ",
+    "पूर्ण चंद्र के सामने छाया-रूप में — चक्र उठाए कृष्ण के आगे हाथ जोड़े घुटनों पर अर्जुन",
+  ), "50% 45%"),
+  hanumanCarriesRama: pic("hanuman-carries-rama", 992, 1440, a(
+    "Hanumān wading through the sea with Rāma and Lakṣmaṇa on his shoulders, the monkey army behind — painting",
+    "ರಾಮ ಲಕ್ಷ್ಮಣರನ್ನು ಹೆಗಲ ಮೇಲೆ ಹೊತ್ತು ಸಮುದ್ರದಲ್ಲಿ ನಡೆಯುತ್ತಿರುವ ಹನುಮಂತ, ಹಿಂದೆ ವಾನರ ಸೈನ್ಯ — ಚಿತ್ರ",
+    "राम और लक्ष्मण को कंधों पर लिए समुद्र में चलते हनुमान, पीछे वानर सेना — चित्र",
+  ), "50% 10%"),
+  puranaBook: pic("purana-book", 540, 783, a(
+    "An old leather-bound book with पुराण embossed on its cover",
+    "ಮುಖಪುಟದ ಮೇಲೆ 'ಪುರಾಣ' ಎಂದು ಉಬ್ಬು ಅಕ್ಷರಗಳಿರುವ ಹಳೆಯ ಚರ್ಮದ ಬೈಂಡಿಂಗ್‌ನ ಗ್ರಂಥ",
+    "आवरण पर उभरे अक्षरों में 'पुराण' लिखी पुरानी चमड़े की जिल्द वाली पुस्तक",
+  ), "50% 36%", true),
+  subrahmanyaGolden: pic("subrahmanya-golden", 735, 876, a(
+    "Subrahmaṇya in golden armour and a tall crown, garlanded, tall brass lamps lit beside him",
+    "ಚಿನ್ನದ ಕವಚ ಮತ್ತು ಎತ್ತರದ ಕಿರೀಟದಲ್ಲಿ ಹಾರ ಹಾಕಿದ ಸುಬ್ರಹ್ಮಣ್ಯ, ಪಕ್ಕದಲ್ಲಿ ಉರಿಯುತ್ತಿರುವ ಎತ್ತರದ ಹಿತ್ತಾಳೆ ದೀಪಗಳು",
+    "स्वर्ण कवच और ऊँचे मुकुट में माला पहने सुब्रह्मण्य, पास में जलते ऊँचे पीतल के दीपस्तंभ",
+  ), "50% 35%", true),
+  ayyappa: pic("ayyappa-sabarimala", 736, 979, a(
+    "Ayyappa, bow in hand, riding a tiger above the gateway and steps of a hill shrine — digital painting",
+    "ಕೈಯಲ್ಲಿ ಬಿಲ್ಲು ಹಿಡಿದು ಹುಲಿಯ ಮೇಲೆ ಕುಳಿತ ಅಯ್ಯಪ್ಪ, ಕೆಳಗೆ ಬೆಟ್ಟದ ಗುಡಿಯ ಹೆಬ್ಬಾಗಿಲು ಮತ್ತು ಮೆಟ್ಟಿಲುಗಳು — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "हाथ में धनुष लिए बाघ पर सवार अय्यप्पा, नीचे पहाड़ी मंदिर का द्वार और सीढ़ियाँ — डिजिटल चित्र",
+  ), "50% 25%"),
+  cosmos: pic("cosmos-sun-moon", 941, 1672, a(
+    "A golden sun and a crescent moon on a dark starry sky, joined by a thread of small planets — digital painting",
+    "ಕತ್ತಲ ನಕ್ಷತ್ರಾಕಾಶದಲ್ಲಿ ಚಿನ್ನದ ಸೂರ್ಯ ಮತ್ತು ಅರ್ಧಚಂದ್ರ, ನಡುವೆ ಪುಟ್ಟ ಗ್ರಹಗಳ ಸಾಲು — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "अँधेरे तारों भरे आकाश में सुनहला सूर्य और अर्धचंद्र, बीच में छोटे ग्रहों की कड़ी — डिजिटल चित्र",
+  ), "50% 45%"),
+  templeWatercolour: pic("temple-watercolour", 736, 1252, a(
+    "A temple tower standing in still blue water, a tree in red bloom on its top and a man fishing from a boat beside it — watercolour",
+    "ನಿಶ್ಚಲ ನೀಲಿ ನೀರಿನಲ್ಲಿ ನಿಂತ ಗೋಪುರ, ಅದರ ತುದಿಯಲ್ಲಿ ಕೆಂಪು ಹೂಬಿಟ್ಟ ಮರ, ಪಕ್ಕದಲ್ಲಿ ದೋಣಿಯಿಂದ ಮೀನು ಹಿಡಿಯುತ್ತಿರುವ ವ್ಯಕ್ತಿ — ಜಲವರ್ಣ ಚಿತ್ರ",
+    "स्थिर नीले जल में खड़ा गोपुर, उसके शिखर पर लाल फूलों से लदा पेड़, पास में नाव से मछली पकड़ता व्यक्ति — जलरंग चित्र",
+  ), "40% 52%", true),
 } satisfies Record<string, OwnerImage>;
 
 export type OwnerImageId = keyof typeof OWNER_IMAGES;

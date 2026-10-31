@@ -1,12 +1,29 @@
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
-import { sectionsFor } from "@/i18n/sections";
 import { gitaStrings } from "@/i18n/gita";
 import Link from "next/link";
 import { getGita, getGitaChapters, getGitaVerseCounts } from "@/lib/data";
 import { TextIndex } from "@/components/content/TextIndex";
 import { Reveal } from "@/components/motion/Reveal";
 import { scriptFor, scriptClass } from "@/lib/script";
+import Image from "next/image";
+import { HeadPicture } from "@/components/content/HeadPicture";
+import { OWNER_IMAGES, type OwnerImageId } from "@/lib/seed/owner-images";
+
+/**
+ * Six chapters with a picture of their own moment, from the pictures
+ * the owner supplied: the chariot driven between the armies, Arjuna
+ * asking to be taught, the avatara descending, Krishna with the form
+ * behind him, the universal form, and the last surrender.
+ */
+const SCENES: [number, OwnerImageId][] = [
+  [1, "gitaChariot"],
+  [2, "gitaArjunaKneels"],
+  [4, "gitaDescent"],
+  [7, "gitaKrishnaVishnu"],
+  [11, "gitaVishvarupaField"],
+  [18, "gitaSurrender"],
+];
 
 export const metadata: Metadata = {
   title: "Geetha Rasa Dhara",
@@ -20,18 +37,15 @@ export default function GitaPage() {
   const g = gitaStrings(locale);
   const chapterNotes = getGitaChapters(locale);
   const counts = getGitaVerseCounts();
-  const section = sectionsFor(locale).find((s) => s.id === "gita")!;
 
   return (
     <>
-      <section className="pagehead">
-        <div className="shell pagehead-inner">
-          <span className={`${scriptClass(locale)} pagehead-glyph`} aria-hidden="true">{scriptFor(section.glyph, locale)}</span>
-          <h1 className="title">{work.name}</h1>
-          <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}>
-            {scriptFor(work.nameSanskrit, locale)}
-          </p>
-          <p className="lede">{work.summary}</p>
+      <section className="rf-dhero has-art">
+        <div className="shell rf-dhero-inner">
+          <h1 className="rf-dhero-title">{work.name}</h1>
+          <p className={`rf-dhero-sanskrit ${scriptClass(locale)}`}>{scriptFor(work.nameSanskrit, locale)}</p>
+          <p className="rf-dhero-lede">{work.summary}</p>
+          <HeadPicture locale={locale} image={OWNER_IMAGES.gitaTeaching} label={work.name} drawnCredit="" />
         </div>
       </section>
 
@@ -67,6 +81,39 @@ export default function GitaPage() {
         </Reveal>
 
         <p className="gi-lede">{g.chaptersLede}</p>
+
+        <section className="gi-scenes-band" aria-labelledby="gi-scenes-title">
+          <h3 className="gi-scenes-title" id="gi-scenes-title">{g.scenesTitle}</h3>
+          <ul className="gi-scenes">
+            {SCENES.map(([n, key]) => {
+              const c = chapterNotes.find((x) => x.n === n);
+              const img = OWNER_IMAGES[key];
+              if (!c) return null;
+              return (
+                <li key={n}>
+                  <Link href={`/gita/${n}`} className="gi-scene">
+                    <span className="gi-scene-pic">
+                      <Image
+                        src={img.src}
+                        alt={img.alt[locale]}
+                        fill
+                        sizes="(max-width: 700px) 50vw, 16vw"
+                        style={{ objectFit: "cover", objectPosition: img.position }}
+                      />
+                    </span>
+                    <span className="gi-scene-text">
+                      <span className="gi-scene-n">
+                        {g.labelChapter} {n.toLocaleString("en-IN")}
+                      </span>
+                      <span className="gi-scene-name">{c.name}</span>
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <p className="gi-scenes-credit">{OWNER_IMAGES.gitaArjunaKneels.credit}</p>
+        </section>
 
         <ol className="gi-grid">
           {chapterNotes.map((c) => (

@@ -161,6 +161,8 @@ for (const [id, entry] of Object.entries(FROM_COMMONS)) {
 // where it was weak: a museum statue for Guru Purnima, the palace lit
 // up for Vijayadashami where the day's own procession now stands.
 const LATER: Record<string, OwnerImageId> = {
+  ugadi: "templeWatercolour",
+  "akshaya-tritiya": "lakshmi",
   "guru-purnima": "guruParampara",
   "ganesha-chaturthi": "ganeshaChaturthi",
   vijayadashami: "jambuSavari",
