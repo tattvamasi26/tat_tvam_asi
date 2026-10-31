@@ -58,7 +58,7 @@ export function VerseCard({ verse }: { verse: { id: string; sanskrit: string; tr
       <p className="devanagari text-2xl text-parchment mt-4 mb-2">{verse.sanskrit}</p>
       <p className="font-sans text-xs italic text-ash/60 tracking-wider mb-4">{verse.transliteration}</p>
       <p className="font-serif text-lg font-light italic text-parchment/80 leading-relaxed mb-6">
-        "{verse.translation_en}"
+        &ldquo;{verse.translation_en}&rdquo;
       </p>
       <p className="font-sans text-xs tracking-widest text-gold uppercase">
         {verse.source}{verse.chapter ? ` · ${verse.chapter}` : ""}

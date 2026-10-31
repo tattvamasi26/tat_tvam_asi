@@ -62,7 +62,7 @@ registerTemplePage({
       place: "Bolara · Mangaluru · Dakshina Kannada",
       facts: [
         ["Deity", "Shakti, as Mangaladevi"],
-        ["Held to be", "9th century, by the Alupa king Kundavarman"],
+        ["Held to be", "Ascribed to the Alupa king Kundavarman"],
         ["Style", "Kerala, with a circular sanctum"],
         ["The city", "Mangaluru takes its name from her"],
         ["Open", "6 am to 1 pm, 4 pm to 8:30 pm"],
@@ -78,7 +78,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "The temple is held to have been built in the ninth century by Kundavarman, the best known of the Alupa kings of Tulunadu, under the patronage of Matsyendranath. An older account says Parashurama raised it, that it was lost under vegetation with time, and that Kundavarman restored it.",
+              text: "The temple is held to have been built by Kundavarman, the best known of the Alupa kings of Tulunadu, under the patronage of Matsyendranath. An older account says Parashurama raised it, that it was lost under vegetation with time, and that Kundavarman restored it.",
             },
             {
               kind: "sub",
@@ -104,7 +104,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "The temple is built in the Kerala manner found along this coast and the Western Ghats. A two-storeyed gopura opens the way in, its upper floor of wooden trellis covering the Kottupura, the hall where the drums are beaten at festivals. A rectangular wall, the Kshetra-Madilluka, encloses all the shrines, and the metal-plated Dwajasthamba stands on the axis from the tower to the sanctum.",
+              text: "The temple is built in the Kerala manner found along this coast and the Western Ghats. A two-storeyed gopura opens the way in, its upper floor of wooden trellis covering the Kottupura, the hall where the drums are beaten at festivals. A rectangular wall, the Kshetra-Madilluka, encloses all the shrines, and the metal-plated Dhwajasthambha stands on the axis from the tower to the sanctum.",
             },
             {
               kind: "list",
@@ -159,7 +159,7 @@ registerTemplePage({
       place: "ಬೋಳಾರ · ಮಂಗಳೂರು · ದಕ್ಷಿಣ ಕನ್ನಡ",
       facts: [
         ["ದೇವತೆ", "ಶಕ್ತಿ — ಮಂಗಳಾದೇವಿ"],
-        ["ಕಾಲ", "9ನೇ ಶತಮಾನ; ಆಳುಪ ಅರಸ ಕುಂದವರ್ಮ"],
+        ["ಕಾಲ", "ಆಳುಪ ಅರಸ ಕುಂದವರ್ಮನದೆಂದು ಪರಂಪರೆ"],
         ["ಶೈಲಿ", "ಕೇರಳ ಶೈಲಿ; ವೃತ್ತಾಕಾರದ ಗರ್ಭಗುಡಿ"],
         ["ನಗರ", "ಮಂಗಳೂರಿಗೆ ಹೆಸರು ಇವಳಿಂದಲೇ"],
         ["ಸಮಯ", "ಬೆಳಿಗ್ಗೆ 6–1, ಸಂಜೆ 4–8:30"],
@@ -175,7 +175,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "ತುಳುನಾಡಿನ ಆಳುಪ ಅರಸರಲ್ಲಿ ಪ್ರಸಿದ್ಧನಾದ ಕುಂದವರ್ಮನು ಮತ್ಸ್ಯೇಂದ್ರನಾಥರ ಆಶ್ರಯದಲ್ಲಿ ಒಂಬತ್ತನೆಯ ಶತಮಾನದಲ್ಲಿ ಈ ದೇವಾಲಯವನ್ನು ಕಟ್ಟಿಸಿದನೆಂದು ಹೇಳಲಾಗುತ್ತದೆ. ಪರಶುರಾಮನೇ ಇದನ್ನು ಕಟ್ಟಿದ್ದನೆಂದೂ, ಕಾಲಕ್ರಮೇಣ ಗಿಡಗಂಟಿಗಳಲ್ಲಿ ಮುಚ್ಚಿಹೋಗಿದ್ದನ್ನು ಕುಂದವರ್ಮ ಪುನರುದ್ಧರಿಸಿದನೆಂದೂ ಇನ್ನೊಂದು ಕಥೆ.",
+              text: "ತುಳುನಾಡಿನ ಆಳುಪ ಅರಸರಲ್ಲಿ ಪ್ರಸಿದ್ಧನಾದ ಕುಂದವರ್ಮನು ಮತ್ಸ್ಯೇಂದ್ರನಾಥರ ಆಶ್ರಯದಲ್ಲಿ ಈ ದೇವಾಲಯವನ್ನು ಕಟ್ಟಿಸಿದನೆಂದು ಹೇಳಲಾಗುತ್ತದೆ. ಪರಶುರಾಮನೇ ಇದನ್ನು ಕಟ್ಟಿದ್ದನೆಂದೂ, ಕಾಲಕ್ರಮೇಣ ಗಿಡಗಂಟಿಗಳಲ್ಲಿ ಮುಚ್ಚಿಹೋಗಿದ್ದನ್ನು ಕುಂದವರ್ಮ ಪುನರುದ್ಧರಿಸಿದನೆಂದೂ ಇನ್ನೊಂದು ಕಥೆ.",
             },
             {
               kind: "sub",
@@ -256,7 +256,7 @@ registerTemplePage({
       place: "बोलार · मंगलूरु · दक्षिण कन्नड़",
       facts: [
         ["देवी", "शक्ति — मंगलादेवी"],
-        ["काल", "9वीं शताब्दी; आलुप राजा कुंदवर्मन"],
+        ["काल", "परंपरा से आलुप राजा कुंदवर्मन का"],
         ["शैली", "केरल शैली; वृत्ताकार गर्भगृह"],
         ["नगर", "मंगलूरु का नाम इन्हीं से"],
         ["समय", "प्रातः 6–1, सायं 4–8:30"],
@@ -272,7 +272,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "माना जाता है कि तुलुनाडु के आलुप राजाओं में सबसे प्रसिद्ध कुंदवर्मन ने मत्स्येंद्रनाथ के संरक्षण में नौवीं शताब्दी में यह मंदिर बनवाया। एक पुराना मत यह भी है कि इसे परशुराम ने बनाया, समय के साथ यह वनस्पति में ढक गया, और कुंदवर्मन ने इसका जीर्णोद्धार किया।",
+              text: "माना जाता है कि तुलुनाडु के आलुप राजाओं में सबसे प्रसिद्ध कुंदवर्मन ने मत्स्येंद्रनाथ के संरक्षण में यह मंदिर बनवाया। एक पुराना मत यह भी है कि इसे परशुराम ने बनाया, समय के साथ यह वनस्पति में ढक गया, और कुंदवर्मन ने इसका जीर्णोद्धार किया।",
             },
             {
               kind: "sub",

@@ -107,7 +107,7 @@ registerTemplePage({
               paras: [
                 "Kanakadasa was born Veera Nayaka, a chieftain of the Kuruba community in the Vijayanagara kingdom. After losing a battle he became a dasa, a singer of devotional songs. When he came to Udupi, he was not allowed inside the temple, and was given a hut behind it, separated from the image by the wall.",
                 "The legend says the image turned west to meet his singing, and that a crack opened in the wall one night in an earthquake, through which he saw Krishna. Vadiraja Tirtha, told of it, widened the crack into a window rather than closing it.",
-                "The oral traditions were written down by the German scholar Hermann Mogling in the 1860s, roughly two hundred years after Kanakadasa's time, and what he recorded differs in places from the story told today. It is best read as the tradition's own account of why the window is there.",
+                "The oral traditions were written down by the German scholar Hermann Mogling in the 1860s, some two and a half centuries after Kanakadasa's time, and what he recorded differs in places from the story told today. It is best read as the tradition's own account of why the window is there.",
               ],
             },
           ],
@@ -119,7 +119,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "The Matha is not run by a single line of priests. Eight monasteries founded by Madhvacharya's disciples take charge of it in turn, each for two years. The handover is the Paryaya festival, held in even years; the tradition completed five hundred years in 2021.",
+              text: "The Matha is not run by a single line of priests. Eight monasteries founded by Madhvacharya's disciples take charge of it in turn, each for two years. The handover is the Paryaya festival, held in even years; the tradition has now run for five hundred years.",
             },
             {
               kind: "list",
@@ -249,7 +249,7 @@ registerTemplePage({
               paras: [
                 "ಕನಕದಾಸರ ಮೊದಲ ಹೆಸರು ವೀರ ನಾಯಕ; ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಕುರುಬ ಸಮುದಾಯದ ನಾಯಕ. ಯುದ್ಧದಲ್ಲಿ ಸೋತ ನಂತರ ದಾಸರಾಗಿ ಹಾಡತೊಡಗಿದರು. ಉಡುಪಿಗೆ ಬಂದಾಗ ಅವರಿಗೆ ದೇವಾಲಯದೊಳಗೆ ಪ್ರವೇಶವಿರಲಿಲ್ಲ; ಗೋಡೆಯ ಆಚೆ, ಹಿಂಭಾಗದ ಗುಡಿಸಲಿನಲ್ಲಿ ಉಳಿದರು.",
                 "ಅವರ ಹಾಡಿಗೆ ಮೂರ್ತಿ ಪಶ್ಚಿಮಕ್ಕೆ ತಿರುಗಿತು, ಒಂದು ರಾತ್ರಿ ಭೂಕಂಪದಲ್ಲಿ ಗೋಡೆಯಲ್ಲಿ ಬಿರುಕು ಮೂಡಿ ಅದರ ಮೂಲಕ ಕೃಷ್ಣನ ದರ್ಶನವಾಯಿತು ಎಂಬುದು ಕಥೆ. ವಿಷಯ ತಿಳಿದ ವಾದಿರಾಜ ತೀರ್ಥರು ಆ ಬಿರುಕನ್ನು ಮುಚ್ಚದೆ ಕಿಂಡಿಯಾಗಿ ಅಗಲಿಸಿದರು.",
-                "ಈ ಮೌಖಿಕ ಕಥೆಗಳನ್ನು ಜರ್ಮನ್ ವಿದ್ವಾಂಸ ಹರ್ಮನ್ ಮೊಗ್ಲಿಂಗ್ 1860ರ ದಶಕದಲ್ಲಿ — ಕನಕದಾಸರ ಕಾಲದ ಸುಮಾರು ಇನ್ನೂರು ವರ್ಷಗಳ ನಂತರ — ಬರೆದಿಟ್ಟರು; ಅವರು ದಾಖಲಿಸಿದ ಕಥೆ ಇಂದಿನದಕ್ಕಿಂತ ಕೆಲವೆಡೆ ಭಿನ್ನ. ಕಿಂಡಿ ಏಕಿದೆ ಎಂಬುದಕ್ಕೆ ಪರಂಪರೆಯೇ ಹೇಳುವ ಉತ್ತರ ಇದು.",
+                "ಈ ಮೌಖಿಕ ಕಥೆಗಳನ್ನು ಜರ್ಮನ್ ವಿದ್ವಾಂಸ ಹರ್ಮನ್ ಮೊಗ್ಲಿಂಗ್ 1860ರ ದಶಕದಲ್ಲಿ — ಕನಕದಾಸರ ಕಾಲದ ಸುಮಾರು ಎರಡೂವರೆ ಶತಮಾನಗಳ ನಂತರ — ಬರೆದಿಟ್ಟರು; ಅವರು ದಾಖಲಿಸಿದ ಕಥೆ ಇಂದಿನದಕ್ಕಿಂತ ಕೆಲವೆಡೆ ಭಿನ್ನ. ಕಿಂಡಿ ಏಕಿದೆ ಎಂಬುದಕ್ಕೆ ಪರಂಪರೆಯೇ ಹೇಳುವ ಉತ್ತರ ಇದು.",
               ],
             },
           ],
@@ -261,7 +261,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "ಈ ಮಠವನ್ನು ಒಂದೇ ಅರ್ಚಕ ಪರಂಪರೆ ನಡೆಸುವುದಿಲ್ಲ. ಮಧ್ವಾಚಾರ್ಯರ ಶಿಷ್ಯರು ಸ್ಥಾಪಿಸಿದ ಎಂಟು ಮಠಗಳು ಸರದಿಯಂತೆ, ತಲಾ ಎರಡು ವರ್ಷ ಇದರ ಉಸ್ತುವಾರಿ ವಹಿಸುತ್ತವೆ. ಈ ಹಸ್ತಾಂತರವೇ ಪರ್ಯಾಯ ಉತ್ಸವ; ಸಮ ವರ್ಷಗಳಲ್ಲಿ ನಡೆಯುತ್ತದೆ. 2021ಕ್ಕೆ ಈ ಪದ್ಧತಿಗೆ ಐನೂರು ವರ್ಷ ತುಂಬಿತು.",
+              text: "ಈ ಮಠವನ್ನು ಒಂದೇ ಅರ್ಚಕ ಪರಂಪರೆ ನಡೆಸುವುದಿಲ್ಲ. ಮಧ್ವಾಚಾರ್ಯರ ಶಿಷ್ಯರು ಸ್ಥಾಪಿಸಿದ ಎಂಟು ಮಠಗಳು ಸರದಿಯಂತೆ, ತಲಾ ಎರಡು ವರ್ಷ ಇದರ ಉಸ್ತುವಾರಿ ವಹಿಸುತ್ತವೆ. ಈ ಹಸ್ತಾಂತರವೇ ಪರ್ಯಾಯ ಉತ್ಸವ; ಸಮ ವರ್ಷಗಳಲ್ಲಿ ನಡೆಯುತ್ತದೆ. ಈ ಪದ್ಧತಿಗೆ ಈಗ ಐನೂರು ವರ್ಷ ತುಂಬಿದೆ.",
             },
             {
               kind: "list",
@@ -391,7 +391,7 @@ registerTemplePage({
               paras: [
                 "कनकदास का पहला नाम वीर नायक था; विजयनगर राज्य के कुरुबा समुदाय के सरदार। युद्ध हारने के बाद वे दास बनकर भक्ति-गीत गाने लगे। उडुपी आने पर उन्हें मंदिर में प्रवेश नहीं मिला; दीवार के पीछे एक झोपड़ी में वे रहे।",
                 "कथा है कि उनके गायन पर प्रतिमा पश्चिम की ओर मुड़ गई, और एक रात भूकंप में दीवार में दरार पड़ी जिससे उन्हें दर्शन हुए। यह जानकर वादिराज तीर्थ ने दरार को बंद करने के बजाय खिड़की बना दिया।",
-                "इन मौखिक कथाओं को जर्मन विद्वान हरमन मोगलिंग ने 1860 के दशक में — कनकदास के समय के लगभग दो सौ वर्ष बाद — लिखा; उनका दर्ज किया रूप आज की कथा से कहीं-कहीं भिन्न है। खिड़की क्यों है, इसका उत्तर परंपरा स्वयं इसी रूप में देती है।",
+                "इन मौखिक कथाओं को जर्मन विद्वान हरमन मोगलिंग ने 1860 के दशक में — कनकदास के समय के लगभग ढाई सौ वर्ष बाद — लिखा; उनका दर्ज किया रूप आज की कथा से कहीं-कहीं भिन्न है। खिड़की क्यों है, इसका उत्तर परंपरा स्वयं इसी रूप में देती है।",
               ],
             },
           ],
@@ -403,7 +403,7 @@ registerTemplePage({
           blocks: [
             {
               kind: "para",
-              text: "इस मठ को कोई एक पुरोहित-परंपरा नहीं चलाती। मध्वाचार्य के शिष्यों द्वारा स्थापित आठ मठ बारी-बारी से, दो-दो वर्ष इसका भार सँभालते हैं। यही हस्तांतरण पर्याय उत्सव है, जो सम वर्षों में होता है; 2021 में इस परंपरा के पाँच सौ वर्ष पूरे हुए।",
+              text: "इस मठ को कोई एक पुरोहित-परंपरा नहीं चलाती। मध्वाचार्य के शिष्यों द्वारा स्थापित आठ मठ बारी-बारी से, दो-दो वर्ष इसका भार सँभालते हैं। यही हस्तांतरण पर्याय उत्सव है, जो सम वर्षों में होता है; इस परंपरा को अब पाँच सौ वर्ष हो चुके हैं।",
             },
             {
               kind: "list",

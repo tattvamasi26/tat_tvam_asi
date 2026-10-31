@@ -83,12 +83,12 @@ export const TEMPLE_TRANSLATIONS: TempleTranslationRow[] = [
 
   // ── Virupaksha
   { temple_id: "tp-virupaksha", language: "en", name: "Virupaksha Temple", location: "Hampi", state: "Karnataka", dynasty: "Vijayanagara", architecture_style: "Dravidian", presiding_deity: "Shiva (Virupaksha)",
-    description: "One of the oldest continuously functioning temples in India, worshipped without a break for over 1,300 years, at the heart of the ruins of the Vijayanagara empire.",
-    significance: "Thirteen centuries of unbroken worship. Empires rose and fell around it; the lamp inside never went out. This is what Dharma means in stone — not a belief but a continuity that outlasts circumstance." },
+    description: "One of the oldest temples in India still in worship, its worship going back more than 1,300 years, at the heart of the ruins of the Vijayanagara empire.",
+    significance: "Thirteen centuries of worship. Empires rose and fell around it, and the city that built its towers was sacked in 1565; the worship outlived it. This is what Dharma means in stone — not a belief but a continuity that outlasts circumstance." },
   { temple_id: "tp-virupaksha", language: "kn", name: "ವಿರೂಪಾಕ್ಷ ದೇವಾಲಯ", location: "ಹಂಪಿ", state: "ಕರ್ನಾಟಕ", dynasty: "ವಿಜಯನಗರ", architecture_style: "ದ್ರಾವಿಡ", presiding_deity: "ಶಿವ (ವಿರೂಪಾಕ್ಷ)",
-    description: "ಭಾರತದಲ್ಲಿ ನಿರಂತರವಾಗಿ ಪೂಜೆ ನಡೆಯುತ್ತಿರುವ ಅತ್ಯಂತ ಪ್ರಾಚೀನ ದೇವಾಲಯಗಳಲ್ಲಿ ಒಂದು; 1,300 ವರ್ಷಗಳಿಗೂ ಹೆಚ್ಚು ಕಾಲ ಅಡೆತಡೆಯಿಲ್ಲದೆ ಪೂಜಿಸಲ್ಪಡುತ್ತಿದೆ. ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಅವಶೇಷಗಳ ಹೃದಯಭಾಗದಲ್ಲಿದೆ.",
-    significance: "ಹದಿಮೂರು ಶತಮಾನಗಳ ಅವಿಚ್ಛಿನ್ನ ಪೂಜೆ. ಸುತ್ತಲೂ ಸಾಮ್ರಾಜ್ಯಗಳು ಏಳುತ್ತಾ ಬೀಳುತ್ತಾ ಇದ್ದವು; ಒಳಗಿನ ದೀಪ ಮಾತ್ರ ಆರಲಿಲ್ಲ. ಕಲ್ಲಿನಲ್ಲಿ ಧರ್ಮ ಎಂದರೆ ಇದೇ — ನಂಬಿಕೆಯಲ್ಲ, ಸನ್ನಿವೇಶಗಳನ್ನು ಮೀರಿ ಉಳಿಯುವ ನಿರಂತರತೆ." },
+    description: "ಇಂದಿಗೂ ಪೂಜೆ ನಡೆಯುತ್ತಿರುವ ಭಾರತದ ಅತ್ಯಂತ ಪ್ರಾಚೀನ ದೇವಾಲಯಗಳಲ್ಲಿ ಒಂದು; ಇಲ್ಲಿನ ಪೂಜೆ 1,300 ವರ್ಷಗಳಿಗೂ ಹಿಂದಿನದು. ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಅವಶೇಷಗಳ ಹೃದಯಭಾಗದಲ್ಲಿದೆ.",
+    significance: "ಹದಿಮೂರು ಶತಮಾನಗಳ ಪೂಜೆ. ಸುತ್ತಲೂ ಸಾಮ್ರಾಜ್ಯಗಳು ಎದ್ದು ಬಿದ್ದವು, ಅದರ ಗೋಪುರಗಳನ್ನು ಕಟ್ಟಿದ ನಗರ 1565ರಲ್ಲಿ ಧ್ವಂಸವಾಯಿತು; ಪೂಜೆ ಮಾತ್ರ ಉಳಿಯಿತು. ಕಲ್ಲಿನಲ್ಲಿ ಧರ್ಮ ಎಂದರೆ ಇದೇ — ನಂಬಿಕೆಯಲ್ಲ, ಸನ್ನಿವೇಶಗಳನ್ನು ಮೀರಿ ಉಳಿಯುವ ನಿರಂತರತೆ." },
   { temple_id: "tp-virupaksha", language: "hi", name: "विरूपाक्ष मंदिर", location: "हम्पी", state: "कर्नाटक", dynasty: "विजयनगर", architecture_style: "द्रविड़", presiding_deity: "शिव (विरूपाक्ष)",
-    description: "भारत के उन प्राचीनतम मंदिरों में से एक जहाँ पूजा निरंतर चलती रही है — 1,300 वर्षों से अधिक समय से अटूट। विजयनगर साम्राज्य के खंडहरों के हृदय में स्थित।",
-    significance: "तेरह शताब्दियों की अटूट पूजा। चारों ओर साम्राज्य उठते और गिरते रहे; भीतर का दीपक कभी नहीं बुझा। पत्थर में धर्म का अर्थ यही है — कोई मान्यता नहीं, बल्कि वह निरंतरता जो परिस्थितियों से अधिक टिकती है।" },
+    description: "भारत के उन प्राचीनतम मंदिरों में से एक जहाँ आज भी पूजा होती है — जिसकी परंपरा 1,300 वर्षों से भी पुरानी है। विजयनगर साम्राज्य के खंडहरों के हृदय में स्थित।",
+    significance: "तेरह शताब्दियों की पूजा। चारों ओर साम्राज्य उठे और गिरे, और इसके गोपुर बनाने वाला नगर 1565 में ध्वस्त हुआ; पूजा फिर भी बनी रही। पत्थर में धर्म का अर्थ यही है — कोई मान्यता नहीं, बल्कि वह निरंतरता जो परिस्थितियों से अधिक टिकती है।" },
 ];

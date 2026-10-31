@@ -82,7 +82,7 @@ registerTemplePage({
             },
             {
               kind: "para",
-              text: "The epics say the divine serpent Vasuki, hunted by Garuda, took refuge under Subramanya here, and the other serpents with him. The temple is also counted among the seven sacred sites established by Parashurama.",
+              text: "The Puranas say the divine serpent Vasuki, hunted by Garuda, took refuge under Subramanya here, and the other serpents with him. The temple is also counted among the seven sacred sites established by Parashurama.",
             },
             {
               kind: "sub",
@@ -120,7 +120,7 @@ registerTemplePage({
               kind: "sub",
               title: "The Sthanika Brahmins",
               paras: [
-                "Kukke was the chief centre of the Sthanika Brahmins, the oldest of the Tulu Brahmin groups, who were its priests until the early 1900s. Their trusteeship was revoked under British rule after the community took part in the independence campaigns; their leader Sri Padma Theertha was killed in 1845 and many were hanged, and the community fell into poverty. The priesthood passed to the Shivalli Brahmins.",
+                "Kukke was the chief centre of the Sthanika Brahmins, the oldest of the Tulu Brahmin groups, who were its priests until the early 1900s. Their trusteeship was revoked under British rule after the community took part in risings against British rule; their leader Sri Padma Theertha was killed in 1845 and many were hanged, and the community fell into poverty. The priesthood passed to the Shivalli Brahmins.",
                 "The Shri Subramanya Sabha, founded in 1908, restored the community's standing, and Sthanika Brahmins still take part in the temple's rituals.",
               ],
             },
@@ -199,7 +199,7 @@ registerTemplePage({
               kind: "sub",
               title: "ಸ್ಥಾನಿಕ ಬ್ರಾಹ್ಮಣರು",
               paras: [
-                "ತುಳು ಬ್ರಾಹ್ಮಣ ಗುಂಪುಗಳಲ್ಲಿ ಅತ್ಯಂತ ಹಳೆಯದಾದ ಸ್ಥಾನಿಕ ಬ್ರಾಹ್ಮಣರ ಪ್ರಮುಖ ಕೇಂದ್ರ ಕುಕ್ಕೆ; 1900ರ ದಶಕದ ಆರಂಭದವರೆಗೆ ಅವರೇ ಇಲ್ಲಿನ ಅರ್ಚಕರು. ಸ್ವಾತಂತ್ರ್ಯ ಚಳವಳಿಗಳಲ್ಲಿ ಭಾಗವಹಿಸಿದ ಕಾರಣ ಬ್ರಿಟಿಷ್ ಆಡಳಿತದಲ್ಲಿ ಅವರ ಧರ್ಮದರ್ಶಿತ್ವ ರದ್ದಾಯಿತು; 1845ರಲ್ಲಿ ಅವರ ನಾಯಕ ಶ್ರೀ ಪದ್ಮತೀರ್ಥರ ಹತ್ಯೆಯಾಯಿತು, ಹಲವರನ್ನು ಗಲ್ಲಿಗೇರಿಸಲಾಯಿತು, ಸಮುದಾಯ ಬಡತನಕ್ಕೆ ಇಳಿಯಿತು. ಅರ್ಚಕತ್ವ ಶಿವಳ್ಳಿ ಬ್ರಾಹ್ಮಣರಿಗೆ ವರ್ಗಾವಣೆಯಾಯಿತು.",
+                "ತುಳು ಬ್ರಾಹ್ಮಣ ಗುಂಪುಗಳಲ್ಲಿ ಅತ್ಯಂತ ಹಳೆಯದಾದ ಸ್ಥಾನಿಕ ಬ್ರಾಹ್ಮಣರ ಪ್ರಮುಖ ಕೇಂದ್ರ ಕುಕ್ಕೆ; 1900ರ ದಶಕದ ಆರಂಭದವರೆಗೆ ಅವರೇ ಇಲ್ಲಿನ ಅರ್ಚಕರು. ಬ್ರಿಟಿಷರ ವಿರುದ್ಧದ ದಂಗೆಗಳಲ್ಲಿ ಭಾಗವಹಿಸಿದ ಕಾರಣ ಬ್ರಿಟಿಷ್ ಆಡಳಿತದಲ್ಲಿ ಅವರ ಧರ್ಮದರ್ಶಿತ್ವ ರದ್ದಾಯಿತು; 1845ರಲ್ಲಿ ಅವರ ನಾಯಕ ಶ್ರೀ ಪದ್ಮತೀರ್ಥರ ಹತ್ಯೆಯಾಯಿತು, ಹಲವರನ್ನು ಗಲ್ಲಿಗೇರಿಸಲಾಯಿತು, ಸಮುದಾಯ ಬಡತನಕ್ಕೆ ಇಳಿಯಿತು. ಅರ್ಚಕತ್ವ ಶಿವಳ್ಳಿ ಬ್ರಾಹ್ಮಣರಿಗೆ ವರ್ಗಾವಣೆಯಾಯಿತು.",
                 "1908ರಲ್ಲಿ ಸ್ಥಾಪನೆಯಾದ ಶ್ರೀ ಸುಬ್ರಹ್ಮಣ್ಯ ಸಭಾ ಸಮುದಾಯವನ್ನು ಮತ್ತೆ ಮೇಲೆತ್ತಿತು; ಇಂದಿಗೂ ಸ್ಥಾನಿಕ ಬ್ರಾಹ್ಮಣರು ದೇವಾಲಯದ ಆಚರಣೆಗಳಲ್ಲಿ ಪಾಲ್ಗೊಳ್ಳುತ್ತಾರೆ.",
               ],
             },
@@ -278,7 +278,7 @@ registerTemplePage({
               kind: "sub",
               title: "स्थानिक ब्राह्मण",
               paras: [
-                "तुलु ब्राह्मण समूहों में सबसे पुराने स्थानिक ब्राह्मणों का प्रमुख केंद्र कुक्के था; 1900 के दशक के आरंभ तक वे ही यहाँ के पुरोहित थे। स्वतंत्रता आंदोलनों में भाग लेने के कारण ब्रिटिश शासन में उनका न्यास-अधिकार समाप्त कर दिया गया; 1845 में उनके नेता श्री पद्मतीर्थ की हत्या हुई, अनेक को फाँसी दी गई, और समुदाय दरिद्रता में चला गया। पुरोहिताई शिवल्लि ब्राह्मणों को मिली।",
+                "तुलु ब्राह्मण समूहों में सबसे पुराने स्थानिक ब्राह्मणों का प्रमुख केंद्र कुक्के था; 1900 के दशक के आरंभ तक वे ही यहाँ के पुरोहित थे। ब्रिटिश शासन के विरुद्ध विद्रोहों में भाग लेने के कारण ब्रिटिश शासन में उनका न्यास-अधिकार समाप्त कर दिया गया; 1845 में उनके नेता श्री पद्मतीर्थ की हत्या हुई, अनेक को फाँसी दी गई, और समुदाय दरिद्रता में चला गया। पुरोहिताई शिवल्लि ब्राह्मणों को मिली।",
                 "1908 में स्थापित श्री सुब्रह्मण्य सभा ने समुदाय को फिर खड़ा किया; स्थानिक ब्राह्मण आज भी मंदिर के अनुष्ठानों में भाग लेते हैं।",
               ],
             },

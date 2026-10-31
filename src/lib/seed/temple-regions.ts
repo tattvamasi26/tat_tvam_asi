@@ -90,9 +90,9 @@ export const TEMPLE_REGIONS: TempleRegion[] = [
       hi: "तट के ऊपर के पठार पर — शिला में तराशा एलोरा और साम्राज्य का हम्पी।",
     },
     lede: {
-      en: "On the Deccan plateau the rock itself was the material. At Ellora a temple was cut downward out of a cliff; at Hampi a city of temples was raised among granite boulders, and worship in one of them has never stopped.",
+      en: "On the Deccan plateau the rock itself was the material. At Ellora a temple was cut downward out of a cliff; at Hampi a city of temples was raised among granite boulders, and in one of them worship still goes on.",
       kn: "ದಖ್ಖನ್ ಪ್ರಸ್ಥಭೂಮಿಯಲ್ಲಿ ಶಿಲೆಯೇ ಸಾಮಗ್ರಿಯಾಗಿತ್ತು. ಎಲ್ಲೋರಾದಲ್ಲಿ ಬಂಡೆಯನ್ನು ಮೇಲಿನಿಂದ ಕೆಳಕ್ಕೆ ಕೊರೆದು ದೇವಾಲಯವನ್ನು ರೂಪಿಸಲಾಯಿತು; ಹಂಪಿಯಲ್ಲಿ ಗ್ರಾನೈಟ್ ಬಂಡೆಗಳ ನಡುವೆ ದೇವಾಲಯಗಳ ನಗರವೇ ಎದ್ದಿತು, ಮತ್ತು ಅವುಗಳಲ್ಲೊಂದರಲ್ಲಿ ಪೂಜೆ ಇಂದಿಗೂ ನಿಂತಿಲ್ಲ.",
-      hi: "दक्कन के पठार पर शिला ही सामग्री थी। एलोरा में चट्टान को ऊपर से नीचे तराशकर मंदिर बनाया गया; हम्पी में ग्रेनाइट शिलाखंडों के बीच मंदिरों का नगर खड़ा हुआ, और उनमें से एक में पूजा कभी नहीं रुकी।",
+      hi: "दक्कन के पठार पर शिला ही सामग्री थी। एलोरा में चट्टान को ऊपर से नीचे तराशकर मंदिर बनाया गया; हम्पी में ग्रेनाइट शिलाखंडों के बीच मंदिरों का नगर खड़ा हुआ, और उनमें से एक में पूजा आज भी होती है।",
     },
     image: {
       src: "/images/site/hampi.jpg",
