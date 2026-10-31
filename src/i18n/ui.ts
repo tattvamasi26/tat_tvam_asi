@@ -20,6 +20,8 @@ export interface UIStrings {
   // ── Navigation
   navTeachings: string;
   navVerses: string;
+  navShastras: string;
+  navBhajans: string;
   navUpanishads: string;
   navTeachers: string;
   navTemples: string;
@@ -79,6 +81,21 @@ export interface UIStrings {
   labelSignificance: string;
   labelDefinition: string;
   labelRelated: string;
+  /** The five groups the concepts are read in. */
+  conceptGroupReality: string;
+  conceptGroupSelf: string;
+  conceptGroupAction: string;
+  conceptGroupLife: string;
+  conceptGroupPath: string;
+  /** The six terms where Vedanta divides. */
+  labelSchools: string;
+  labelSchoolsNote: string;
+  schoolAdvaita: string;
+  schoolVishishtadvaita: string;
+  schoolDvaita: string;
+  labelSourceText: string;
+  /** Carries {n}; the page substitutes. */
+  conceptCount: string;
   labelCommentary: string;
   labelTranslation: string;
   labelFoundedBy: string;
@@ -135,6 +152,30 @@ export interface UIStrings {
   labelLectures: string;
   readerHint: string;
   labelSelections: string;
+
+  // ── Rigveda
+  /** The section: ten mandalas, 1,028 hymns, 10,552 verses. */
+  rvArrangedTitle: string;
+  rvArrangedBody: string;
+  rvMandala: string;
+  rvMandalas: string;
+  rvSuktas: string;
+  rvVerses: string;
+  rvRishi: string;
+  rvDevata: string;
+  rvMetre: string;
+  rvByDevata: string;
+  rvByDevataBlurb: string;
+  rvPrincipallyTo: string;
+  rvHymnsTo: string;
+  rvFullAttribution: string;
+  rvReadByHand: string;
+  rvTextCompleteTitle: string;
+  rvTextCompleteBody: string;
+  rvTranslatedCount: string;
+  rvFamousTitle: string;
+  rvSourcesTitle: string;
+  rvOpen: string;
   labelReadNow: string;
 
   // ── Stutis, by devata
@@ -159,6 +200,15 @@ export interface UIStrings {
   labelWatchOnYouTube: string;
   labelVideo: string;
   labelFestival: string;
+
+  // ── Temples, by region
+  labelCircuits: string;
+  labelCircuitOne: string;
+  labelTemplesCount: string;
+  labelTempleOne: string;
+  labelSources: string;
+  labelContents: string;
+  labelInDepth: string;
 
   // ── Homepage (2026 redesign)
   //
@@ -192,6 +242,8 @@ const en: UIStrings = {
 
   navTeachings: "Teachings",
   navVerses: "Verses",
+  navShastras: "Shastras & Puranas",
+  navBhajans: "Bhajans",
   navUpanishads: "Upanishads",
   navTeachers: "Acharyas",
   navTemples: "Temples",
@@ -249,6 +301,19 @@ const en: UIStrings = {
   labelSignificance: "Significance",
   labelDefinition: "Definition",
   labelRelated: "Related",
+  conceptGroupReality: "What is there",
+  conceptGroupSelf: "What you are",
+  conceptGroupAction: "Action and its consequence",
+  conceptGroupLife: "How a life is ordered",
+  conceptGroupPath: "The way out",
+  labelSchools: "Where Vedanta divides",
+  labelSchoolsNote:
+    "Shankara, Ramanuja and Madhva wrote commentaries on the same Upanishads, the same Gita and the same Brahma Sutras, and reached conclusions that contradict each other. On this term they do not merely differ in emphasis.",
+  schoolAdvaita: "Advaita",
+  schoolVishishtadvaita: "Vishishtadvaita",
+  schoolDvaita: "Dvaita",
+  labelSourceText: "Chiefly set out in",
+  conceptCount: "{n} terms, in five groups.",
   labelCommentary: "Commentary",
   labelTranslation: "Translation",
   labelFoundedBy: "Founded by",
@@ -303,6 +368,32 @@ const en: UIStrings = {
   labelLectures: "Lectures",
   readerHint: "Use J and K, or the arrow keys, to move between verses.",
   labelSelections: "Selections —",
+
+  // ── Rigveda
+  rvArrangedTitle: "How it is arranged",
+  rvArrangedBody:
+    "Ten maṇḍalas — circles, or books. A maṇḍala holds sūktas, which are hymns; a sūkta holds mantras, which are the verses themselves. A hymn is named by the two numbers: 1.164 is the hundred and sixty-fourth hymn of the first maṇḍala.",
+  rvMandala: "Maṇḍala",
+  rvMandalas: "Maṇḍalas",
+  rvSuktas: "Hymns",
+  rvVerses: "Verses",
+  rvRishi: "Ṛṣi",
+  rvDevata: "Devatā",
+  rvMetre: "Metre",
+  rvByDevata: "By devatā",
+  rvByDevataBlurb:
+    "Each hymn is filed under the devatā its first verse addresses. Hymns that turn to other gods later say so on their own page.",
+  rvPrincipallyTo: "principally to",
+  rvHymnsTo: "Hymns to",
+  rvFullAttribution: "The Anukramaṇī gives",
+  rvReadByHand: "Read by hand",
+  rvTextCompleteTitle: "The Sanskrit is complete. The translation is not.",
+  rvTextCompleteBody:
+    "All 1,028 hymns carry their verified text, ṛṣi, devatā, metre and verse count. None is translated yet — so this page shows the mūla alone, and nothing here is a translation.",
+  rvTranslatedCount: "translated of 1,028",
+  rvFamousTitle: "Well-known hymns",
+  rvSourcesTitle: "Sources",
+  rvOpen: "Open",
   labelReadNow: "Read now",
 
   labelStotras: "Stotras",
@@ -326,6 +417,13 @@ const en: UIStrings = {
   labelWatchOnYouTube: "Watch on YouTube",
   labelVideo: "Video",
   labelFestival: "Festival",
+  labelCircuits: "Circuits",
+  labelCircuitOne: "Circuit",
+  labelTemplesCount: "temples",
+  labelTempleOne: "temple",
+  labelSources: "Sources",
+  labelContents: "In this page",
+  labelInDepth: "In depth",
 
   navGita: "Gita",
   ctaStartReading: "Start reading",
@@ -355,6 +453,8 @@ const kn: UIStrings = {
 
   navTeachings: "ಬೋಧನೆಗಳು",
   navVerses: "ಶ್ಲೋಕಗಳು",
+  navShastras: "ಶಾಸ್ತ್ರ ಮತ್ತು ಪುರಾಣ",
+  navBhajans: "ಭಜನೆಗಳು",
   navUpanishads: "ಉಪನಿಷತ್ತುಗಳು",
   navTeachers: "ಆಚಾರ್ಯರು",
   navTemples: "ದೇವಾಲಯಗಳು",
@@ -391,7 +491,7 @@ const kn: UIStrings = {
   conceptsTitle: "ಪರಿಕಲ್ಪನೆಗಳು",
   conceptsBlurb: "ವೇದಾಂತದ ಪಾರಿಭಾಷಿಕ ಪದಗಳು, ನಿಖರವಾಗಿ ವಿವರಿಸಲಾಗಿದೆ.",
   mathasTitle: "ನಾಲ್ಕು ಮಠಗಳು",
-  mathasBlurb: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಸ್ಥಾಪಿಸಿದ ನಾಲ್ಕು ದಿಗ್ಪೀಠಗಳು.",
+  mathasBlurb: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಸ್ಥಾಪಿಸಿದ ನಾಲ್ಕು ದಿಕ್ಪೀಠಗಳು.",
 
   labelVeda: "ವೇದ",
   labelVerseCount: "ಶ್ಲೋಕಗಳು",
@@ -412,6 +512,19 @@ const kn: UIStrings = {
   labelSignificance: "ಮಹತ್ವ",
   labelDefinition: "ವ್ಯಾಖ್ಯಾನ",
   labelRelated: "ಸಂಬಂಧಿತ",
+  conceptGroupReality: "ಏನಿದೆ",
+  conceptGroupSelf: "ನೀನು ಏನು",
+  conceptGroupAction: "ಕರ್ಮ ಮತ್ತು ಅದರ ಫಲ",
+  conceptGroupLife: "ಬದುಕನ್ನು ಜೋಡಿಸುವ ಕ್ರಮ",
+  conceptGroupPath: "ಹೊರಗಿನ ದಾರಿ",
+  labelSchools: "ವೇದಾಂತ ಎಲ್ಲಿ ಒಡೆಯುತ್ತದೆ",
+  labelSchoolsNote:
+    "ಶಂಕರ, ರಾಮಾನುಜ ಮತ್ತು ಮಧ್ವರು ಅದೇ ಉಪನಿಷತ್ತುಗಳಿಗೆ, ಅದೇ ಗೀತೆಗೆ, ಅದೇ ಬ್ರಹ್ಮಸೂತ್ರಗಳಿಗೆ ಭಾಷ್ಯ ಬರೆದು ಪರಸ್ಪರ ವಿರುದ್ಧವಾದ ತೀರ್ಮಾನಗಳಿಗೆ ತಲುಪಿದರು. ಈ ಪದದ ವಿಷಯದಲ್ಲಿ ಅವರ ನಡುವಿನ ಭೇದ ಕೇವಲ ಒತ್ತಿನದಲ್ಲ.",
+  schoolAdvaita: "ಅದ್ವೈತ",
+  schoolVishishtadvaita: "ವಿಶಿಷ್ಟಾದ್ವೈತ",
+  schoolDvaita: "ದ್ವೈತ",
+  labelSourceText: "ಮುಖ್ಯವಾಗಿ ನಿರೂಪಿತವಾಗಿರುವುದು",
+  conceptCount: "{n} ಪದಗಳು, ಐದು ಗುಂಪುಗಳಲ್ಲಿ.",
   labelCommentary: "ಭಾಷ್ಯ",
   labelTranslation: "ಅನುವಾದ",
   labelFoundedBy: "ಸ್ಥಾಪಕರು",
@@ -435,7 +548,7 @@ const kn: UIStrings = {
   backHome: "ಮುಖಪುಟಕ್ಕೆ",
   uncitedNotice: "ತಾಣದ ಸ್ವಂತ ಸಾರಾಂಶ — ಇನ್ನೂ ಆಕರ ಸಹಿತ ವಿದ್ವತ್ ಅನುವಾದವಲ್ಲ.",
   footerTagline: "ಸನಾತನ ಧರ್ಮದ ಆಕರ ಗ್ರಂಥ — ಪಠ್ಯ, ದೇವಾಲಯ, ಆಚಾರ್ಯರು ಮತ್ತು ಪರಂಪರೆಗಳು.",
-  footerRights: "ಎಲ್ಲಾ ಹಕ್ಕುಗಳು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
+  footerRights: "ಎಲ್ಲ ಹಕ್ಕುಗಳನ್ನೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.",
   footerExplore: "ಅನ್ವೇಷಿಸಿ",
   footerAbout: "ನಮ್ಮ ಬಗ್ಗೆ",
 
@@ -465,6 +578,32 @@ const kn: UIStrings = {
   labelLectures: "ಪ್ರವಚನಗಳು",
   readerHint: "ಶ್ಲೋಕಗಳ ನಡುವೆ ಚಲಿಸಲು J ಮತ್ತು K, ಅಥವಾ ಬಾಣದ ಕೀಲಿಗಳನ್ನು ಬಳಸಿ.",
   labelSelections: "ಆಯ್ದ ಭಾಗಗಳು —",
+
+  // ── Rigveda
+  rvArrangedTitle: "ಜೋಡಣೆ ಹೇಗಿದೆ",
+  rvArrangedBody:
+    "ಹತ್ತು ಮಂಡಲಗಳು. ಒಂದು ಮಂಡಲದಲ್ಲಿ ಸೂಕ್ತಗಳು, ಒಂದು ಸೂಕ್ತದಲ್ಲಿ ಮಂತ್ರಗಳು — ಅಂದರೆ ಋಕ್ಕುಗಳು. ಸೂಕ್ತವನ್ನು ಎರಡು ಸಂಖ್ಯೆಗಳಿಂದ ಹೆಸರಿಸಲಾಗುತ್ತದೆ: 1.164 ಎಂದರೆ ಮೊದಲ ಮಂಡಲದ ನೂರ ಅರವತ್ತನಾಲ್ಕನೆಯ ಸೂಕ್ತ.",
+  rvMandala: "ಮಂಡಲ",
+  rvMandalas: "ಮಂಡಲಗಳು",
+  rvSuktas: "ಸೂಕ್ತಗಳು",
+  rvVerses: "ಋಕ್ಕುಗಳು",
+  rvRishi: "ಋಷಿ",
+  rvDevata: "ದೇವತೆ",
+  rvMetre: "ಛಂದಸ್ಸು",
+  rvByDevata: "ದೇವತೆಯ ಪ್ರಕಾರ",
+  rvByDevataBlurb:
+    "ಪ್ರತಿ ಸೂಕ್ತವನ್ನೂ ಅದರ ಮೊದಲ ಋಕ್ಕು ಸಂಬೋಧಿಸುವ ದೇವತೆಯ ಅಡಿಯಲ್ಲಿ ಸೇರಿಸಲಾಗಿದೆ. ಮುಂದೆ ಬೇರೆ ದೇವತೆಗಳಿಗೆ ತಿರುಗುವ ಸೂಕ್ತಗಳು ತಮ್ಮ ಪುಟದಲ್ಲಿ ಅದನ್ನು ಹೇಳುತ್ತವೆ.",
+  rvPrincipallyTo: "ಮುಖ್ಯವಾಗಿ",
+  rvHymnsTo: "ಈ ದೇವತೆಗೆ ಸಲ್ಲುವ ಸೂಕ್ತಗಳು",
+  rvFullAttribution: "ಅನುಕ್ರಮಣಿಯ ಪ್ರಕಾರ",
+  rvReadByHand: "ಕೈಯಾರೆ ಓದಿದ್ದು",
+  rvTextCompleteTitle: "ಸಂಸ್ಕೃತ ಪಾಠ ಪೂರ್ಣ. ಅನುವಾದ ಇನ್ನೂ ಇಲ್ಲ.",
+  rvTextCompleteBody:
+    "ಎಲ್ಲಾ 1,028 ಸೂಕ್ತಗಳಿಗೂ ಪರಿಶೀಲಿತ ಪಾಠ, ಋಷಿ, ದೇವತೆ, ಛಂದಸ್ಸು ಮತ್ತು ಋಕ್ಕುಗಳ ಸಂಖ್ಯೆ ಇದೆ. ಯಾವುದಕ್ಕೂ ಇನ್ನೂ ಅನುವಾದವಿಲ್ಲ — ಆದ್ದರಿಂದ ಈ ಪುಟದಲ್ಲಿ ಮೂಲ ಮಾತ್ರ ಇದೆ; ಇಲ್ಲಿ ಯಾವುದೂ ಅನುವಾದವಲ್ಲ.",
+  rvTranslatedCount: "1,028 ರಲ್ಲಿ ಅನುವಾದಿತ",
+  rvFamousTitle: "ಪ್ರಸಿದ್ಧ ಸೂಕ್ತಗಳು",
+  rvSourcesTitle: "ಆಕರಗಳು",
+  rvOpen: "ತೆರೆಯಿರಿ",
   labelReadNow: "ಈಗಲೇ ಓದಿ",
 
   labelStotras: "ಸ್ತೋತ್ರಗಳು",
@@ -488,6 +627,13 @@ const kn: UIStrings = {
   labelWatchOnYouTube: "YouTube ನಲ್ಲಿ ನೋಡಿ",
   labelVideo: "ವೀಡಿಯೊ",
   labelFestival: "ಹಬ್ಬ",
+  labelCircuits: "ಯಾತ್ರೆಗಳು",
+  labelCircuitOne: "ಯಾತ್ರೆ",
+  labelTemplesCount: "ದೇವಾಲಯಗಳು",
+  labelTempleOne: "ದೇವಾಲಯ",
+  labelSources: "ಆಧಾರಗಳು",
+  labelContents: "ಈ ಪುಟದಲ್ಲಿ",
+  labelInDepth: "ವಿವರವಾಗಿ",
 
   navGita: "ಗೀತೆ",
   ctaStartReading: "ಓದಲು ಆರಂಭಿಸಿ",
@@ -517,6 +663,8 @@ const hi: UIStrings = {
 
   navTeachings: "उपदेश",
   navVerses: "श्लोक",
+  navShastras: "शास्त्र और पुराण",
+  navBhajans: "भजन",
   navUpanishads: "उपनिषद्",
   navTeachers: "आचार्य",
   navTemples: "मंदिर",
@@ -574,6 +722,19 @@ const hi: UIStrings = {
   labelSignificance: "महत्व",
   labelDefinition: "परिभाषा",
   labelRelated: "संबंधित",
+  conceptGroupReality: "क्या है",
+  conceptGroupSelf: "तुम क्या हो",
+  conceptGroupAction: "कर्म और उसका फल",
+  conceptGroupLife: "जीवन किस क्रम में बँधा है",
+  conceptGroupPath: "बाहर का मार्ग",
+  labelSchools: "वेदांत कहाँ बँटता है",
+  labelSchoolsNote:
+    "शंकर, रामानुज और मध्व ने उन्हीं उपनिषदों, उसी गीता और उन्हीं ब्रह्मसूत्रों पर भाष्य लिखे और परस्पर विरोधी निष्कर्षों तक पहुँचे। इस शब्द पर उनका भेद केवल बल का नहीं है।",
+  schoolAdvaita: "अद्वैत",
+  schoolVishishtadvaita: "विशिष्टाद्वैत",
+  schoolDvaita: "द्वैत",
+  labelSourceText: "मुख्यतः निरूपित",
+  conceptCount: "{n} शब्द, पाँच समूहों में।",
   labelCommentary: "भाष्य",
   labelTranslation: "अनुवाद",
   labelFoundedBy: "संस्थापक",
@@ -627,6 +788,32 @@ const hi: UIStrings = {
   labelLectures: "प्रवचन",
   readerHint: "श्लोकों के बीच चलने के लिए J और K, या तीर कुंजियाँ प्रयोग करें।",
   labelSelections: "चयनित अंश —",
+
+  // ── Rigveda
+  rvArrangedTitle: "इसकी व्यवस्था",
+  rvArrangedBody:
+    "दस मंडल। एक मंडल में सूक्त होते हैं, और एक सूक्त में मंत्र — अर्थात् ऋचाएँ। सूक्त दो संख्याओं से पहचाना जाता है: 1.164 अर्थात् पहले मंडल का एक सौ चौंसठवाँ सूक्त।",
+  rvMandala: "मंडल",
+  rvMandalas: "मंडल",
+  rvSuktas: "सूक्त",
+  rvVerses: "ऋचाएँ",
+  rvRishi: "ऋषि",
+  rvDevata: "देवता",
+  rvMetre: "छंद",
+  rvByDevata: "देवता के अनुसार",
+  rvByDevataBlurb:
+    "प्रत्येक सूक्त उसी देवता के अंतर्गत रखा गया है जिसे उसकी पहली ऋचा संबोधित करती है। जो सूक्त आगे अन्य देवताओं की ओर मुड़ते हैं, वे अपने पृष्ठ पर यह बताते हैं।",
+  rvPrincipallyTo: "मुख्यतः",
+  rvHymnsTo: "इस देवता के सूक्त",
+  rvFullAttribution: "अनुक्रमणी के अनुसार",
+  rvReadByHand: "हाथ से पढ़ा गया",
+  rvTextCompleteTitle: "संस्कृत पाठ पूर्ण है। अनुवाद अभी नहीं।",
+  rvTextCompleteBody:
+    "सभी 1,028 सूक्तों का सत्यापित पाठ, ऋषि, देवता, छंद और ऋचा-संख्या उपलब्ध है। किसी का भी अनुवाद अभी नहीं हुआ — इसलिए इस पृष्ठ पर केवल मूल है; यहाँ कुछ भी अनुवाद नहीं है।",
+  rvTranslatedCount: "1,028 में से अनूदित",
+  rvFamousTitle: "प्रसिद्ध सूक्त",
+  rvSourcesTitle: "स्रोत",
+  rvOpen: "खोलें",
   labelReadNow: "अभी पढ़ें",
 
   labelStotras: "स्तोत्र",
@@ -650,6 +837,13 @@ const hi: UIStrings = {
   labelWatchOnYouTube: "YouTube पर देखें",
   labelVideo: "वीडियो",
   labelFestival: "पर्व",
+  labelCircuits: "यात्राएँ",
+  labelCircuitOne: "यात्रा",
+  labelTemplesCount: "मंदिर",
+  labelTempleOne: "मंदिर",
+  labelSources: "स्रोत",
+  labelContents: "इस पृष्ठ में",
+  labelInDepth: "विस्तार से",
 
   navGita: "गीता",
   ctaStartReading: "पढ़ना आरंभ करें",

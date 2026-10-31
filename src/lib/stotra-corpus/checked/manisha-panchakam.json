@@ -1,0 +1,158 @@
+{
+  "editionTitle": "मनीषापञ्चकम्",
+  "startPage": 528,
+  "slug": "manisha-panchakam",
+  "name": "Manisha Panchakam",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/manisha-panchakam-in-kannada/",
+  "corrections": [
+    {
+      "verse": "#4",
+      "from": "काश्चनघटी",
+      "to": "काञ्चनघटी",
+      "page": 520,
+      "kind": "transcription"
+    },
+    {
+      "verse": "#5",
+      "from": "दृढमज्ञापि",
+      "to": "दृढप्रज्ञापि",
+      "page": 520,
+      "kind": "transcription"
+    },
+    {
+      "verse": "#5",
+      "from": "यस्यास्तिचे.",
+      "to": "यस्यास्तिचे-",
+      "page": 520,
+      "kind": "transcription",
+      "why": "The line ends in a hyphen, the word running on; the transcription typed a full stop."
+    }
+  ],
+  "variants": [
+    {
+      "verse": "2",
+      "reading": "शङ्करस्सोऽपि चण्डालः",
+      "witness": "शङ्करस्योऽपि चाण्डालस्",
+      "page": 520
+    },
+    {
+      "verse": "#3",
+      "extra": "चाण्डालोवाच",
+      "page": 520,
+      "note": "The witness names the speakers; the book does not."
+    },
+    {
+      "verse": "#3",
+      "reading": "यतिवर दूरीकर्तुं",
+      "witness": "द्विजवर दूरीकर्तुं",
+      "page": 520
+    },
+    {
+      "verse": "#4",
+      "extra": "यतिवर",
+      "page": 520
+    },
+    {
+      "verse": "#4",
+      "reading": "किं गङ्गाम्बुनि",
+      "witness": "किं गङ्गाम्बुधि",
+      "page": 520
+    },
+    {
+      "verse": "#4",
+      "reading": "चण्डालवीधी",
+      "witness": "चाण्डालवीथी",
+      "page": 520
+    },
+    {
+      "verse": "#5",
+      "extra": "शङ्कर उवाच",
+      "page": 520
+    },
+    {
+      "verse": "#5",
+      "reading": "च्चण्डालोऽस्तु",
+      "witness": "च्चाण्डालोऽस्तु",
+      "page": 520
+    },
+    {
+      "verse": "#6",
+      "reading": "चण्डालोऽस्तु",
+      "witness": "चाण्डालोऽस्तु",
+      "page": 521
+    },
+    {
+      "verse": "3",
+      "reading": "भूतं भावि च",
+      "witness": "भूतं भाति च",
+      "page": 521
+    },
+    {
+      "verse": "4",
+      "reading": "रहमित्यन्तस्फुटा",
+      "witness": "रहमित्यन्तःस्फुटा",
+      "page": 521
+    },
+    {
+      "verse": "5",
+      "extra": "दासस्तेऽहं देहदृष्ट्यास्मि शम्भो जातस्तेंऽशो जीवदृष्ट्या त्रिदृष्टे सर्वस्यात्मन्नात्मदृष्ट्या त्वमेवेत्येवं मे धीर्निश्चिता सर्वशास्त्रैः",
+      "page": 521,
+      "note": "The witness closes with a further verse; the book does not print it."
+    }
+  ],
+  "spacing": [
+    {
+      "verse": "#3",
+      "from": "मथवाचैतन्य",
+      "to": "मथवा चैतन्य"
+    },
+    {
+      "verse": "#4",
+      "from": "किंगङ्गाम्बुनि",
+      "to": "किं गङ्गाम्बुनि"
+    },
+    {
+      "verse": "#5",
+      "from": "याब्रह्मादि",
+      "to": "या ब्रह्मादि"
+    },
+    {
+      "verse": "#5",
+      "from": "सतु द्विजो",
+      "to": "स तु द्विजो"
+    },
+    {
+      "verse": "#5",
+      "from": "गुरुरित्येषामनीषामम",
+      "to": "गुरुरित्येषा मनीषा मम"
+    },
+    {
+      "verse": "#6",
+      "from": "सतु द्विजो",
+      "to": "स तु द्विजो"
+    },
+    {
+      "verse": "#6",
+      "from": "गुरुरित्येषामनीषामम",
+      "to": "गुरुरित्येषा मनीषा मम"
+    },
+    {
+      "verse": "4",
+      "from": "स्फुटागृह्यते",
+      "to": "स्फुटा गृह्यते"
+    },
+    {
+      "verse": "4",
+      "from": "मानसोऽहिगुरुरित्येषामनीषामम",
+      "to": "मानसोऽहि गुरुरित्येषा मनीषा मम"
+    },
+    {
+      "verse": "5",
+      "from": "नब्रह्मवि",
+      "to": "न ब्रह्मवि"
+    }
+  ]
+}

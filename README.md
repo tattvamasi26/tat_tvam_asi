@@ -199,8 +199,7 @@ tat-tvam-asi/
 │   │   ├── temples/page.tsx    # Temple gallery
 │   │   ├── teachers/page.tsx   # Acharyas
 │   │   ├── concepts/page.tsx   # Vedantic terms
-│   │   ├── search/page.tsx     # Search
-│   │   └── api/search/         # Search API endpoint
+│   │   └── search/page.tsx     # Search
 │   ├── components/
 │   │   ├── layout/             # Navbar, Footer
 │   │   ├── ui/                 # Reusable UI components

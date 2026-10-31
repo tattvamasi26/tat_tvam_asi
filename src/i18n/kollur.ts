@@ -117,9 +117,9 @@ const en: KollurContent = {
     "Even voiceless, Mookasura was formidable. He defeated Indra and subjected the three worlds to chaos. The Trimurti called upon the Tridevi to create a form to defeat the asura. Their combined energies became Mookambika — the one who silenced the mute demon.",
   shankaraTitle: "Adi Shankaracharya and the Goddess Who Stayed",
   shankaraP1:
-    "In the 8th century, Adi Shankaracharya traversed the Kodachadri hills and encountered the divine presence of Mookambika. He wished to bring her to Kerala. She agreed to follow — on one condition: he must walk ahead without looking back, guided only by the sound of her anklets.",
+    "Tradition holds that Adi Shankaracharya crossed the Kodachadri hills and met the divine presence of Mookambika there. He wished to bring her to Kerala. She agreed to follow — on one condition: he must walk ahead without looking back, guided only by the sound of her anklets.",
   shankaraP2:
-    "He walked. The anklets rang. Then suddenly — silence. Doubt overtook him. He looked back. The goddess chose to remain at Kollur. But because of his austerities, she also agreed to be present at Chottanikkara in Kerala. Even today, Chottanikkara's doors open only after Kollur's — this daily rhythm maintained for over twelve centuries.",
+    "He walked. The anklets rang. Then suddenly — silence. Doubt overtook him. He looked back. The goddess chose to remain at Kollur. But because of his austerities, she also agreed to be present at Chottanikkara in Kerala. Even today, Chottanikkara's doors open only after Kollur's — a daily rhythm the tradition traces back to Shankara.",
 
   deityEyebrow: "The Deity",
   deityTitle: "Who is Mookambika?",
@@ -132,7 +132,7 @@ const en: KollurContent = {
   ],
   deepaTitle: "The Deepasthambha",
   deepaBody:
-    "The lamp tower at the temple entrance has its base shaped like a tortoise's head with 21 concentric circles. When all lamps are lit and viewed from a distance, they appear similar to the divine Makara Jyothi of Sabarimala. The golden Dwajasthambha (flag mast) beside it marks the axis of the temple's sacred space.",
+    "The lamp tower at the temple entrance has its base shaped like a tortoise's head with 21 concentric circles. When all lamps are lit and viewed from a distance, they appear similar to the divine Makara Jyothi of Sabarimala. The golden Dhwajasthambha (flag mast) beside it marks the axis of the temple's sacred space.",
 
   agamaEyebrow: "Agama Shastra",
   agamaTitle: "The Science of Worship",
@@ -180,7 +180,7 @@ const en: KollurContent = {
     },
     {
       time: "6:00 – 8:00 AM",
-      name: "Srinagara Pooja",
+      name: "Shringara Pooja",
       desc: "The goddess is adorned with fresh flowers, new silks, and ornaments — the divine mother dressed for the day.",
     },
     {
@@ -295,7 +295,7 @@ const en: KollurContent = {
     goldSub: "The Panchaloha idol on Sri Chakra · Kollur sanctum",
     silver: "Devi in the silver palanquin",
     silverSub: "During the Rathotsava procession",
-    deepa: "Deepasthambha & Dwajasthambha",
+    deepa: "Deepasthambha & Dhwajasthambha",
     deepaSub: "The lamp tower with 21 concentric circles · temple courtyard",
   },
   alts: {
@@ -303,7 +303,7 @@ const en: KollurContent = {
     flowers: "Flower offerings at Mookambika temple entrance",
     gold: "Sri Mookambika Devi adorned in gold",
     silver: "Mookambika Devi in silver palanquin",
-    deepa: "Deepasthambha and Dwajasthambha at Mookambika Temple",
+    deepa: "Deepasthambha and Dhwajasthambha at Mookambika Temple",
   },
 
   allTemples: "All Temples",
@@ -335,9 +335,9 @@ const kn: KollurContent = {
     "ಧ್ವನಿಯಿಲ್ಲದಿದ್ದರೂ ಮೂಕಾಸುರ ಪ್ರಬಲನಾಗಿದ್ದನು. ಅವನು ಇಂದ್ರನನ್ನು ಸೋಲಿಸಿ ಮೂರು ಲೋಕಗಳನ್ನೂ ಅಲ್ಲೋಲಕಲ್ಲೋಲಗೊಳಿಸಿದನು. ಆ ಅಸುರನನ್ನು ಸಂಹರಿಸಲು ಒಂದು ರೂಪವನ್ನು ಸೃಷ್ಟಿಸುವಂತೆ ತ್ರಿಮೂರ್ತಿಗಳು ತ್ರಿದೇವಿಯರನ್ನು ಕೋರಿದರು. ಅವರ ಸಂಯುಕ್ತ ಶಕ್ತಿಯೇ ಮೂಕಾಂಬಿಕೆಯಾಯಿತು — ಮೂಕ ಅಸುರನನ್ನು ಮೌನಗೊಳಿಸಿದವಳು.",
   shankaraTitle: "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಮತ್ತು ಇಲ್ಲಿಯೇ ನಿಂತ ದೇವಿ",
   shankaraP1:
-    "ಎಂಟನೆಯ ಶತಮಾನದಲ್ಲಿ ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಕೊಡಚಾದ್ರಿ ಬೆಟ್ಟಗಳನ್ನು ದಾಟಿ ಮೂಕಾಂಬಿಕೆಯ ದಿವ್ಯ ಸಾನ್ನಿಧ್ಯವನ್ನು ಕಂಡರು. ಅವರು ಆಕೆಯನ್ನು ಕೇರಳಕ್ಕೆ ಕರೆದೊಯ್ಯಲು ಬಯಸಿದರು. ಆಕೆ ಒಂದು ಷರತ್ತಿನ ಮೇಲೆ ಒಪ್ಪಿದಳು — ಅವರು ಹಿಂತಿರುಗಿ ನೋಡದೆ, ಕೇವಲ ಆಕೆಯ ಗೆಜ್ಜೆಯ ನಾದವನ್ನೇ ಆಧರಿಸಿ ಮುಂದೆ ನಡೆಯಬೇಕು.",
+    "ಆದಿ ಶಂಕರಾಚಾರ್ಯರು ಕೊಡಚಾದ್ರಿ ಬೆಟ್ಟಗಳನ್ನು ದಾಟಿ ಮೂಕಾಂಬಿಕೆಯ ದಿವ್ಯ ಸಾನ್ನಿಧ್ಯವನ್ನು ಕಂಡರು ಎಂದು ಪರಂಪರೆ ಹೇಳುತ್ತದೆ. ಅವರು ಆಕೆಯನ್ನು ಕೇರಳಕ್ಕೆ ಕರೆದೊಯ್ಯಲು ಬಯಸಿದರು. ಆಕೆ ಒಂದು ಷರತ್ತಿನ ಮೇಲೆ ಒಪ್ಪಿದಳು — ಅವರು ಹಿಂತಿರುಗಿ ನೋಡದೆ, ಕೇವಲ ಆಕೆಯ ಗೆಜ್ಜೆಯ ನಾದವನ್ನೇ ಆಧರಿಸಿ ಮುಂದೆ ನಡೆಯಬೇಕು.",
   shankaraP2:
-    "ಅವರು ನಡೆದರು. ಗೆಜ್ಜೆ ನುಡಿಯಿತು. ಆಮೇಲೆ ಇದ್ದಕ್ಕಿದ್ದಂತೆ — ಮೌನ. ಸಂಶಯ ಆವರಿಸಿತು. ಅವರು ಹಿಂತಿರುಗಿ ನೋಡಿದರು. ದೇವಿ ಕೊಲ್ಲೂರಿನಲ್ಲಿಯೇ ಉಳಿಯಲು ನಿರ್ಧರಿಸಿದಳು. ಆದರೆ ಅವರ ತಪಸ್ಸಿನ ಫಲವಾಗಿ ಕೇರಳದ ಚೊಟ್ಟಾನಿಕ್ಕರೆಯಲ್ಲಿಯೂ ನೆಲೆಸಲು ಒಪ್ಪಿದಳು. ಇಂದಿಗೂ ಚೊಟ್ಟಾನಿಕ್ಕರೆಯ ಬಾಗಿಲುಗಳು ಕೊಲ್ಲೂರಿನ ನಂತರವೇ ತೆರೆಯುತ್ತವೆ — ಹನ್ನೆರಡು ಶತಮಾನಗಳಿಂದ ಈ ದೈನಂದಿನ ಕ್ರಮ ಪಾಲಿಸಲ್ಪಡುತ್ತಿದೆ.",
+    "ಅವರು ನಡೆದರು. ಗೆಜ್ಜೆ ನುಡಿಯಿತು. ಆಮೇಲೆ ಇದ್ದಕ್ಕಿದ್ದಂತೆ — ಮೌನ. ಸಂಶಯ ಆವರಿಸಿತು. ಅವರು ಹಿಂತಿರುಗಿ ನೋಡಿದರು. ದೇವಿ ಕೊಲ್ಲೂರಿನಲ್ಲಿಯೇ ಉಳಿಯಲು ನಿರ್ಧರಿಸಿದಳು. ಆದರೆ ಅವರ ತಪಸ್ಸಿನ ಫಲವಾಗಿ ಕೇರಳದ ಚೊಟ್ಟಾನಿಕ್ಕರೆಯಲ್ಲಿಯೂ ನೆಲೆಸಲು ಒಪ್ಪಿದಳು. ಇಂದಿಗೂ ಚೊಟ್ಟಾನಿಕ್ಕರೆಯ ಬಾಗಿಲುಗಳು ಕೊಲ್ಲೂರಿನ ನಂತರವೇ ತೆರೆಯುತ್ತವೆ — ಪರಂಪರೆ ಈ ದೈನಂದಿನ ಕ್ರಮವನ್ನು ಶಂಕರರವರೆಗೆ ಹಿಂದಕ್ಕೆ ಒಯ್ಯುತ್ತದೆ.",
 
   deityEyebrow: "ದೇವತೆ",
   deityTitle: "ಮೂಕಾಂಬಿಕೆ ಯಾರು?",
@@ -350,7 +350,7 @@ const kn: KollurContent = {
   ],
   deepaTitle: "ದೀಪಸ್ತಂಭ",
   deepaBody:
-    "ದೇವಾಲಯದ ಪ್ರವೇಶದ್ವಾರದಲ್ಲಿರುವ ದೀಪಸ್ತಂಭದ ಬುಡವು ಆಮೆಯ ತಲೆಯ ಆಕಾರದಲ್ಲಿದ್ದು ೨೧ ಏಕಕೇಂದ್ರ ವರ್ತುಲಗಳನ್ನು ಹೊಂದಿದೆ. ಎಲ್ಲ ದೀಪಗಳನ್ನೂ ಬೆಳಗಿಸಿ ದೂರದಿಂದ ನೋಡಿದಾಗ ಅವು ಶಬರಿಮಲೆಯ ದಿವ್ಯ ಮಕರಜ್ಯೋತಿಯಂತೆ ಕಾಣುತ್ತವೆ. ಪಕ್ಕದಲ್ಲಿರುವ ಸುವರ್ಣ ಧ್ವಜಸ್ತಂಭವು ದೇವಾಲಯದ ಪವಿತ್ರ ಆಕಾಶದ ಅಕ್ಷವನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
+    "ದೇವಾಲಯದ ಪ್ರವೇಶದ್ವಾರದಲ್ಲಿರುವ ದೀಪಸ್ತಂಭದ ಬುಡವು ಆಮೆಯ ತಲೆಯ ಆಕಾರದಲ್ಲಿದ್ದು ೨೧ ಏಕಕೇಂದ್ರ ವರ್ತುಲಗಳನ್ನು ಹೊಂದಿದೆ. ಎಲ್ಲ ದೀಪಗಳನ್ನೂ ಬೆಳಗಿಸಿ ದೂರದಿಂದ ನೋಡಿದಾಗ ಅವು ಶಬರಿಮಲೆಯ ದಿವ್ಯ ಮಕರಜ್ಯೋತಿಯಂತೆ ಕಾಣುತ್ತವೆ. ಪಕ್ಕದಲ್ಲಿರುವ ಸುವರ್ಣ ಧ್ವಜಸ್ತಂಭವು ದೇವಾಲಯದ ಪವಿತ್ರ ಆವರಣದ ಅಕ್ಷವನ್ನು ಸೂಚಿಸುತ್ತದೆ.",
 
   agamaEyebrow: "ಆಗಮ ಶಾಸ್ತ್ರ",
   agamaTitle: "ಪೂಜೆಯ ಶಾಸ್ತ್ರ",
@@ -553,9 +553,9 @@ const hi: KollurContent = {
     "वाणीहीन होकर भी मूकासुर दुर्जेय था। उसने इंद्र को परास्त किया और तीनों लोकों में उत्पात मचाया। त्रिमूर्ति ने त्रिदेवी से उस असुर के संहार हेतु एक रूप रचने की प्रार्थना की। उनकी संयुक्त शक्ति ही मूकाम्बिका बनी — वह जिसने मूक असुर को मौन कर दिया।",
   shankaraTitle: "आदि शंकराचार्य और वह देवी जो यहीं रुक गईं",
   shankaraP1:
-    "आठवीं शताब्दी में आदि शंकराचार्य कोडचाद्रि की पहाड़ियों को पार करते हुए मूकाम्बिका के दिव्य सान्निध्य तक पहुँचे। वे उन्हें केरल ले जाना चाहते थे। देवी एक शर्त पर सहमत हुईं — वे बिना पीछे मुड़े आगे चलें, केवल उनके नूपुरों की ध्वनि के सहारे।",
+    "परंपरा के अनुसार आदि शंकराचार्य कोडचाद्रि की पहाड़ियों को पार करते हुए मूकाम्बिका के दिव्य सान्निध्य तक पहुँचे। वे उन्हें केरल ले जाना चाहते थे। देवी एक शर्त पर सहमत हुईं — वे बिना पीछे मुड़े आगे चलें, केवल उनके नूपुरों की ध्वनि के सहारे।",
   shankaraP2:
-    "वे चले। नूपुर बजते रहे। फिर अचानक — मौन। संशय ने घेर लिया। उन्होंने पीछे मुड़कर देखा। देवी ने कोल्लूर में ही रहना चुना। किंतु उनकी तपस्या के फलस्वरूप वे केरल के चोट्टानिक्कारा में भी विराजने को सहमत हुईं। आज भी चोट्टानिक्कारा के द्वार कोल्लूर के बाद ही खुलते हैं — बारह शताब्दियों से यह दैनिक क्रम निभाया जा रहा है।",
+    "वे चले। नूपुर बजते रहे। फिर अचानक — मौन। संशय ने घेर लिया। उन्होंने पीछे मुड़कर देखा। देवी ने कोल्लूर में ही रहना चुना। किंतु उनकी तपस्या के फलस्वरूप वे केरल के चोट्टानिक्कारा में भी विराजने को सहमत हुईं। आज भी चोट्टानिक्कारा के द्वार कोल्लूर के बाद ही खुलते हैं — परंपरा इस दैनिक क्रम को शंकर तक ले जाती है।",
 
   deityEyebrow: "देवता",
   deityTitle: "मूकाम्बिका कौन हैं?",
@@ -568,7 +568,7 @@ const hi: KollurContent = {
   ],
   deepaTitle: "दीपस्तंभ",
   deepaBody:
-    "मंदिर के प्रवेश पर स्थित दीपस्तंभ का आधार कछुए के सिर के आकार का है, जिसमें २१ संकेंद्रित वृत्त हैं। जब सभी दीप प्रज्वलित होकर दूर से देखे जाते हैं, तो वे सबरीमला की दिव्य मकर ज्योति के समान प्रतीत होते हैं। उसके पास खड़ा स्वर्ण ध्वजस्तंभ मंदिर के पवित्र आकाश की धुरी को चिह्नित करता है।",
+    "मंदिर के प्रवेश पर स्थित दीपस्तंभ का आधार कछुए के सिर के आकार का है, जिसमें २१ संकेंद्रित वृत्त हैं। जब सभी दीप प्रज्वलित होकर दूर से देखे जाते हैं, तो वे सबरीमला की दिव्य मकर ज्योति के समान प्रतीत होते हैं। उसके पास खड़ा स्वर्ण ध्वजस्तंभ मंदिर के पवित्र परिसर की धुरी को चिह्नित करता है।",
 
   agamaEyebrow: "आगम शास्त्र",
   agamaTitle: "पूजा का शास्त्र",

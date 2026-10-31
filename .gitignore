@@ -1,5 +1,7 @@
 node_modules/
 .next/
+# A build run with NEXT_DIST_DIR, so it does not disturb a dev server.
+.next-*/
 *.tsbuildinfo
 
 # Test output
@@ -17,3 +19,30 @@ node_modules/
 .env.local
 .env.*.local
 .env.production
+
+# The Rigveda harvest: the accented samhita (3.4 MB) and 1,028 pages of
+# Sayana's bhashya (34 MB). Both are re-fetched by
+# scripts/rigveda/fetch-samhita.mjs and fetch-spine.mjs, and the corpus
+# the site actually reads is committed under src/lib/rigveda/data. The
+# parsed spine (rv-spine-raw.json) IS committed, so what the editorial
+# layer in src/lib/rigveda/devatas.ts does to the raw field can be
+# checked without re-harvesting anything.
+/corpus/rigveda/rv-sasvara-raw.txt
+/corpus/rigveda/suktas/
+
+# A WordPress harvest is somebody else's site, pulled down read-only by
+# scripts/wordpress/fetch.mjs and re-fetchable at any time. What this
+# repo commits is what the editorial layer makes of it, not the dump.
+/corpus/wordpress/
+
+# The stotra harvest: the Wikisource pages and transcription of the
+# Brihat Stotra Ratnakara, the witness pages read only to check it, the
+# page scans, and stotranidhi's list. All re-fetchable by the scripts in
+# scripts/stotras/. What the repo commits is the check record for each
+# stotra (src/lib/stotra-corpus/checked/) and the built texts.
+/corpus/stotras/
+
+# Sign-in setup secrets (scripts/setup-auth.mjs). Never commit.
+/.env.setup
+/.env.local.bak
+/supabase/.temp/

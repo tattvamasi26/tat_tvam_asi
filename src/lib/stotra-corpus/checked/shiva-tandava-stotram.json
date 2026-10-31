@@ -1,0 +1,184 @@
+{
+  "editionTitle": "रावणकृतशिवताण्डवस्तोत्रम्",
+  "startPage": 250,
+  "slug": "shiva-tandava-stotram",
+  "name": "Shiva Tandava Stotram",
+  "devata": "shiva",
+  "composer": "ravana",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/shiva-tandav-stotram-in-kannada/",
+  "corrections": [
+    {
+      "verse": "#1",
+      "from": "भ्रमन्निल्लिम्प",
+      "to": "भ्रमन्निलिम्प",
+      "page": 242,
+      "kind": "transcription"
+    },
+    {
+      "verse": "#2",
+      "from": "स्फुरदिगन्त",
+      "to": "स्फुरद्दिगन्त",
+      "page": 242,
+      "kind": "transcription"
+    },
+    {
+      "verse": "#2",
+      "from": "कचिच्चिदम्बरे",
+      "to": "क्वचिच्चिदम्बरे",
+      "page": 242,
+      "kind": "misprint",
+      "why": "The book prints कचि-, checked at enlargement; it is no word. The sense, क्वचित्, and the witness both require क्व."
+    },
+    {
+      "verse": "#3",
+      "from": "बिभर्तुं",
+      "to": "बिभर्तु",
+      "page": 242,
+      "kind": "transcription"
+    },
+    {
+      "verse": "5",
+      "from": "पञ्चस्रायकं",
+      "to": "पञ्चसायकं",
+      "page": 243,
+      "kind": "transcription"
+    },
+    {
+      "verse": "7",
+      "from": "कृतिसिन्धुरः",
+      "to": "कृत्तिसिन्धुरः",
+      "page": 243,
+      "kind": "misprint",
+      "why": "The book prints कृति-, checked at enlargement. The epithet is 'wearing the elephant's hide' (कृत्ति); the witness agrees."
+    },
+    {
+      "verse": "7",
+      "from": "जगध्दुरन्धरः",
+      "to": "जगद्धुरन्धरः",
+      "page": 243,
+      "kind": "transcription",
+      "why": "The transcription typed ध्द; the print has the conjunct द्ध."
+    },
+    {
+      "verse": "#10",
+      "from": "जयत्वधभ्र",
+      "to": "जयत्वदभ्र",
+      "page": 244,
+      "kind": "transcription"
+    },
+    {
+      "verse": "14",
+      "from": "दशवक्रगीतं",
+      "to": "दशवक्त्रगीतं",
+      "page": 245,
+      "kind": "transcription",
+      "why": "Checked at enlargement: the conjunct is क्त्र."
+    }
+  ],
+  "variants": [
+    {
+      "verse": "#1",
+      "extra": "जटाटवीगलज्जलप्रवाहपावितस्थले गलेऽवलम्ब्य लम्बितां भुजङ्गतुङ्गमालिकाम् डमड्डमड्डमड्डमन्निनादवड्डमर्वयं चकार चण्डताण्डवं तनोतु नः शिवः शिवम्",
+      "page": 242,
+      "note": "The witness opens with the verse जटाटवीगलज्जल…; the book does not print it."
+    },
+    {
+      "verse": "#1",
+      "reading": "जटाकटाह",
+      "witness": "जटाकटाकटाह",
+      "page": 242
+    },
+    {
+      "verse": "#2",
+      "reading": "च्चिदम्बरे",
+      "witness": "द्दिगम्बरे",
+      "page": 242
+    },
+    {
+      "verse": "6",
+      "reading": "करालभाल",
+      "witness": "करालफाल",
+      "page": 243
+    },
+    {
+      "verse": "6",
+      "reading": "धनञ्जयाधरीकृत",
+      "witness": "धनञ्जयाहुतीकृत",
+      "page": 243
+    },
+    {
+      "verse": "6",
+      "reading": "मतिर्मम",
+      "witness": "रतिर्मम",
+      "page": 243
+    },
+    {
+      "verse": "7",
+      "reading": "प्रबन्धबन्धुकन्धरः",
+      "witness": "प्रबन्धबद्धकन्धरः",
+      "page": 243
+    },
+    {
+      "verse": "#8",
+      "reading": "कालिमच्छटाविडम्बिकण्ठकन्धरारुचिप्रबन्ध",
+      "witness": "कालिमप्रभावलम्बिकण्ठकन्दलीरुचिप्रबद्ध",
+      "page": 243
+    },
+    {
+      "verse": "#9",
+      "reading": "अगर्व",
+      "witness": "अखर्व",
+      "page": 244
+    },
+    {
+      "verse": "#10",
+      "reading": "भुजङ्गमस्फुरद्धगद्धगद्विनिर्गमत्कराल",
+      "witness": "भुजङ्गमश्वसद्विनिर्गमत्क्रमस्फुरत्कराल",
+      "page": 244
+    },
+    {
+      "verse": "#11",
+      "reading": "समं प्रवर्तयन्मनः कदा सदाशिवं भजे",
+      "witness": "समप्रवृत्तिकः कदा सदाशिवं भजाम्यहम्",
+      "page": 244
+    },
+    {
+      "verse": "12",
+      "reading": "शिरःस्थमञ्जलिं",
+      "witness": "शिरस्थमञ्जलिं",
+      "page": 244
+    },
+    {
+      "verse": "12",
+      "reading": "विमुक्तलोललोचनाललाम",
+      "witness": "विलोललोललोचनो ललाम",
+      "page": 245
+    },
+    {
+      "verse": "13",
+      "reading": "हरे गुरौ स भक्तिमाशु",
+      "witness": "हरे गुरौ सुभक्तिमाशु",
+      "page": 245
+    },
+    {
+      "verse": "13",
+      "reading": "देहिनां तु शङ्करस्य",
+      "witness": "देहिनां सुशङ्करस्य",
+      "page": 245
+    },
+    {
+      "verse": "14",
+      "reading": "शम्भुपूजनमिदं",
+      "witness": "शम्भुपूजनपरं",
+      "page": 245
+    }
+  ],
+  "spacing": [
+    {
+      "verse": "#8",
+      "from": "रुचिप्रबन्ध कन्धरम्",
+      "to": "रुचिप्रबन्धकन्धरम्"
+    }
+  ]
+}

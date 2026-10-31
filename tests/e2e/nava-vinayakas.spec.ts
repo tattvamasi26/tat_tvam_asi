@@ -29,7 +29,30 @@ test("nine temples, south to north, each photograph credited to its source", asy
   }
 });
 
-test("the Temples page leads to the Nava Vinayakas", async ({ page, baseURL }) => {
+test("Temples leads to Tulunadu, and Tulunadu to the Nava Vinayakas", async ({ page, baseURL }) => {
   await openPage(page, baseURL!, "/temples", "en");
+  await expect(page.locator('a[href="/temples/tulunadu"]')).toBeVisible();
+
+  await openPage(page, baseURL!, "/temples/tulunadu", "en");
   await expect(page.locator('a[href="/temples/tulunadu/nava-vinayakas"]')).toBeVisible();
+  // The region lists its temples written in depth beside the circuit.
+  await expect(page.locator('a[href="/temples/tulunadu/kollur-mookambika"]')).toBeVisible();
+});
+
+test("a temple written in depth: facts, sections, pictures and sources", async ({ page, baseURL }) => {
+  await openPage(page, baseURL!, "/temples/tulunadu/udupi-krishna-matha", "en");
+  await expect(page.locator("h1")).toContainText("Udupi");
+  expect(await page.locator(".temple-fact").count()).toBeGreaterThan(3);
+  expect(await page.locator(".temple-section").count()).toBeGreaterThan(3);
+  await expect(page.locator(".temple-hero img")).toBeVisible();
+  const sources = page.locator(".temple-sources a");
+  expect(await sources.count()).toBeGreaterThan(0);
+  for (const href of await sources.evaluateAll((as) => as.map((a) => a.getAttribute("href")))) {
+    expect(href).toMatch(/^https:\/\//);
+  }
+});
+
+test("a temple's old address still leads to it", async ({ page, baseURL }) => {
+  await openPage(page, baseURL!, "/temples/brihadeeswarar-temple", "en");
+  expect(new URL(page.url()).pathname).toBe("/temples/tamil-nadu/brihadeeswarar-temple");
 });

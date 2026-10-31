@@ -94,7 +94,7 @@ registerStotra({
       iast: ["sphuranniṣṭhurālolapiṅgākṣitāraṃ", "kṛpākomalodāralīlāvatāram |", "kalābindugaṃ gīyate yogivaryair", "gaṇādhīśam īśānasūnuṃ tam īḍe ||"],
       readings: {
         en: { translation: "I praise him, lord of the gaṇas, son of Īśāna: the pupils of his tawny eyes flashing fierce and restless, yet gentle and generous with compassion in the forms he takes in play — he whom the best of yogis sing of as dwelling in the kalā and the bindu of his mantra." },
-        kn: { translation: "ಉಗ್ರವಾಗಿ, ಚಂಚಲವಾಗಿ ಮಿನುಗುವ ಪಿಂಗಳ ಕಣ್ಣುಗುಡ್ಡೆಗಳುಳ್ಳ, ಆದರೂ ಕರುಣೆಯಿಂದ ಮೃದುವಾದ ಉದಾರ ಲೀಲಾವತಾರನಾದ, ಕಲೆ ಮತ್ತು ಬಿಂದುವಿನಲ್ಲಿ ನೆಲೆಸಿರುವನೆಂದು ಯೋಗಿಶ್ರೇಷ್ಠರು ಹಾಡುವ ಗಣಾಧೀಶನನ್ನು, ಈಶಾನಪುತ್ರನನ್ನು ಸ್ತುತಿಸುತ್ತೇನೆ." },
+        kn: { translation: "ಉಗ್ರವಾಗಿ, ಚಂಚಲವಾಗಿ ಮಿನುಗುವ ಪಿಂಗಳ ಕಣ್ಣುಪಾಪೆಗಳುಳ್ಳ, ಆದರೂ ಕರುಣೆಯಿಂದ ಮೃದುವಾದ ಉದಾರ ಲೀಲಾವತಾರನಾದ, ಕಲೆ ಮತ್ತು ಬಿಂದುವಿನಲ್ಲಿ ನೆಲೆಸಿರುವನೆಂದು ಯೋಗಿಶ್ರೇಷ್ಠರು ಹಾಡುವ ಗಣಾಧೀಶನನ್ನು, ಈಶಾನಪುತ್ರನನ್ನು ಸ್ತುತಿಸುತ್ತೇನೆ." },
         hi: { translation: "जिनकी पिंगल आँखों की पुतलियाँ प्रचंड और चंचल चमकती हैं, फिर भी जिनका लीलावतार करुणा से कोमल और उदार है, जिन्हें श्रेष्ठ योगी कला और बिंदु में स्थित बताकर गाते हैं — उन गणाधीश, ईशान-पुत्र की मैं स्तुति करता हूँ।" },
       },
     },

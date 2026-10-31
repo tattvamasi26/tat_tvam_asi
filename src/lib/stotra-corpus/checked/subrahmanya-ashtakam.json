@@ -1,0 +1,34 @@
+{
+  "editionTitle": "सुब्रह्मण्याष्टकम्",
+  "startPage": 128,
+  "slug": "subrahmanya-ashtakam",
+  "name": "Subrahmanya Ashtakam",
+  "devata": "subrahmanya",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/subrahmanya-ashtakam-in-kannada/",
+  "corrections": [
+    { "verse": "3", "from": "भाग्यप्रदातपरिपूरित", "to": "भाग्यप्रदानपरिपूरित", "page": 120, "kind": "transcription" }
+  ],
+  "misprints": [
+    { "verse": "5", "printed": "करालम्बम्", "reads": "करावलम्बम्", "page": 121, "why": "Checked at enlargement; the transcription had already put it right." }
+  ],
+  "variants": [
+    { "verse": "1", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 120, "note": "So in every verse of the book." },
+    { "verse": "2", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 120 },
+    { "verse": "3", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 120 },
+    { "verse": "4", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 121 },
+    { "verse": "5", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 121 },
+    { "verse": "6", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 121 },
+    { "verse": "7", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 121 },
+    { "verse": "8", "reading": "वल्लीसनाथ", "witness": "वल्लीशनाथ", "page": 122 },
+    { "verse": "2", "reading": "देवाधिदेवसुत देवगणाधिनाथ", "witness": "देवादिदेवनुत देवगणाधिनाथ", "page": 120 },
+    { "verse": "3", "reading": "नित्यान्नदाननिरताखिलरोगहारिन्", "witness": "नित्यान्नदाननिरताखिलरोगहारिन् तस्मात्", "page": 120 },
+    { "verse": "3", "reading": "भाग्यप्रदानपरिपूरितभक्तकाम", "witness": "प्रदानपरिपूरितभक्तकाम भाग्य", "page": 120, "note": "The witness arranges this line differently." },
+    { "verse": "4", "reading": "चापादिशस्त्र", "witness": "पाशादिशस्त्र", "page": 120 },
+    { "verse": "4", "extra": "चापादि", "page": 121, "note": "The witness moves चापादि to the next line; the book prints it once, at the start of line 2." },
+    { "verse": "5", "reading": "देवाधिदेवरथ", "witness": "देवादिदेवरथ", "page": 121 },
+    { "verse": "5", "reading": "देवेन्द्रपीठनकरं", "witness": "देवेन्द्रपीठनगरं", "page": 121 },
+    { "verse": "6", "reading": "हारादिरत्नमणियुक्तकिरीटहार", "witness": "हीरादिरत्नमणियुक्तकिरीटहार हारादि", "page": 121 },
+    { "verse": "6", "reading": "कवचाभिराम", "witness": "कवचाभिरामं", "page": 121 }
+  ]
+}

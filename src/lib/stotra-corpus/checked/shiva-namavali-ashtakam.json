@@ -1,0 +1,35 @@
+{
+  "editionTitle": "शिवनामावल्यष्टकम्",
+  "startPage": 331,
+  "slug": "shiva-namavali-ashtakam",
+  "name": "Shiva Namavali Ashtakam",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/shiva-namavali-ashtakam-in-kannada/",
+  "refrain": {
+    "from": "संसार",
+    "full": "संसारदुःखगहनाज्जगदीश रक्ष"
+  },
+  "corrections": [],
+  "variants": [
+    {
+      "verse": "5",
+      "reading": "सर्वहृदयैकनिवास",
+      "witness": "सर्वहृदयैकनिवास नाथ",
+      "page": 323
+    }
+  ],
+  "spacing": [
+    {
+      "verse": "1",
+      "from": "महेशशम्भो",
+      "to": "महेश शम्भो"
+    },
+    {
+      "verse": "1",
+      "from": "भूतेशभीतभयसूदनमामनाथं",
+      "to": "भूतेश भीतभयसूदन मामनाथं"
+    }
+  ]
+}

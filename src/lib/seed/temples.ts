@@ -1,32 +1,35 @@
 import type { TempleRow, TempleTranslationRow } from "./types";
 
+// Every temple belongs to a region, and is reached at
+// /temples/[region]/[slug]. The temples written in depth are modules
+// under seed/temple-pages/; these rows are the shorter entries.
 export const TEMPLES: TempleRow[] = [
   {
-    id: "tp-brihadeeswarar", slug: "brihadeeswarar-temple", name_local: "பெரிய கோயில்",
+    id: "tp-brihadeeswarar", slug: "brihadeeswarar-temple", region: "tamil-nadu", name_local: "பெரிய கோயில்",
     century_built: "11th century CE", latitude: 10.7828, longitude: 79.1318,
     image_url: "/images/site/brihadeeswarar.jpg",
     image_credit: "Rainer Halama / UnpetitproleX · CC BY-SA 4.0 · Wikimedia Commons",
   },
   {
-    id: "tp-kailasa", slug: "kailasa-temple-ellora", name_local: "कैलास मंदिर",
+    id: "tp-kailasa", slug: "kailasa-temple-ellora", region: "deccan", name_local: "कैलास मंदिर",
     century_built: "8th century CE", latitude: 20.0263, longitude: 75.1779,
     image_url: "/images/site/ellora.jpg",
     image_credit: "Shishirdasika · CC BY-SA 4.0 · Wikimedia Commons",
   },
   {
-    id: "tp-meenakshi", slug: "meenakshi-amman-temple", name_local: "மீனாக்ஷி அம்மன் கோவில்",
+    id: "tp-meenakshi", slug: "meenakshi-amman-temple", region: "tamil-nadu", name_local: "மீனாக்ஷி அம்மன் கோவில்",
     century_built: "17th century CE", latitude: 9.9195, longitude: 78.1193,
     image_url: "/images/site/meenakshi.jpg",
     image_credit: "எஸ்ஸார் · CC BY 3.0 · Wikimedia Commons",
   },
   {
-    id: "tp-konark", slug: "konark-sun-temple", name_local: "କୋଣାର୍କ",
+    id: "tp-konark", slug: "konark-sun-temple", region: "odisha", name_local: "କୋଣାର୍କ",
     century_built: "13th century CE", latitude: 19.8876, longitude: 86.0945,
     image_url: "/images/site/konark.jpg",
     image_credit: "Subham9423 · CC BY-SA 4.0 · Wikimedia Commons",
   },
   {
-    id: "tp-virupaksha", slug: "virupaksha-temple-hampi", name_local: "ವಿರೂಪಾಕ್ಷ ದೇವಾಲಯ",
+    id: "tp-virupaksha", slug: "virupaksha-temple-hampi", region: "deccan", name_local: "ವಿರೂಪಾಕ್ಷ ದೇವಾಲಯ",
     century_built: "7th century CE", latitude: 15.3350, longitude: 76.4600,
     image_url: "/images/site/hampi.jpg",
     image_credit: "iMahesh · CC BY-SA 4.0 · Wikimedia Commons",
@@ -59,13 +62,13 @@ export const TEMPLE_TRANSLATIONS: TempleTranslationRow[] = [
   // ── Meenakshi
   { temple_id: "tp-meenakshi", language: "en", name: "Meenakshi Amman Temple", location: "Madurai", state: "Tamil Nadu", dynasty: "Nayak", architecture_style: "Dravidian", presiding_deity: "Meenakshi (Parvati)",
     description: "One of the largest temple complexes in India, with fourteen gopurams covered in thousands of painted sculptures. Its corridors encode the sixty-four sacred games of Shiva.",
-    significance: "The temple encodes an entire cosmos in its plan; walking through it is walking through a living scripture. The rituals performed here have continued without interruption for over a thousand years." },
+    significance: "The temple encodes an entire cosmos in its plan; walking through it is walking through a living scripture. The worship here goes back more than a thousand years." },
   { temple_id: "tp-meenakshi", language: "kn", name: "ಮೀನಾಕ್ಷಿ ಅಮ್ಮನ್ ದೇವಾಲಯ", location: "ಮಧುರೈ", state: "ತಮಿಳುನಾಡು", dynasty: "ನಾಯಕ", architecture_style: "ದ್ರಾವಿಡ", presiding_deity: "ಮೀನಾಕ್ಷಿ (ಪಾರ್ವತಿ)",
     description: "ಭಾರತದ ಅತಿ ದೊಡ್ಡ ದೇವಾಲಯ ಸಂಕೀರ್ಣಗಳಲ್ಲಿ ಒಂದು; ಸಾವಿರಾರು ವರ್ಣಚಿತ್ರಿತ ಶಿಲ್ಪಗಳಿಂದ ಆವೃತವಾದ ಹದಿನಾಲ್ಕು ಗೋಪುರಗಳಿವೆ. ಇದರ ಪ್ರಾಕಾರಗಳು ಶಿವನ ಅರವತ್ತನಾಲ್ಕು ತಿರುವಿಳೈಯಾಡಲ್‌ಗಳನ್ನು ಒಳಗೊಂಡಿವೆ.",
-    significance: "ದೇವಾಲಯದ ಯೋಜನೆಯಲ್ಲಿಯೇ ಇಡೀ ಬ್ರಹ್ಮಾಂಡವಿದೆ; ಅದರೊಳಗೆ ನಡೆಯುವುದೆಂದರೆ ಜೀವಂತ ಶಾಸ್ತ್ರದೊಳಗೆ ನಡೆದಂತೆ. ಇಲ್ಲಿ ನಡೆಯುವ ಪೂಜಾವಿಧಿಗಳು ಸಾವಿರ ವರ್ಷಗಳಿಗೂ ಹೆಚ್ಚು ಕಾಲ ಅವಿಚ್ಛಿನ್ನವಾಗಿ ಮುಂದುವರಿದಿವೆ." },
+    significance: "ದೇವಾಲಯದ ಯೋಜನೆಯಲ್ಲಿಯೇ ಇಡೀ ಬ್ರಹ್ಮಾಂಡವಿದೆ; ಅದರೊಳಗೆ ನಡೆಯುವುದೆಂದರೆ ಜೀವಂತ ಶಾಸ್ತ್ರದೊಳಗೆ ನಡೆದಂತೆ. ಇಲ್ಲಿನ ಪೂಜೆಯ ಪರಂಪರೆ ಸಾವಿರ ವರ್ಷಗಳಿಗೂ ಹಿಂದಿನದು." },
   { temple_id: "tp-meenakshi", language: "hi", name: "मीनाक्षी अम्मन मंदिर", location: "मदुरै", state: "तमिलनाडु", dynasty: "नायक", architecture_style: "द्रविड़", presiding_deity: "मीनाक्षी (पार्वती)",
     description: "भारत के सबसे बड़े मंदिर परिसरों में से एक, जिसमें हज़ारों रंगीन मूर्तियों से ढके चौदह गोपुरम हैं। इसके प्राकार शिव की चौंसठ लीलाओं को अंकित करते हैं।",
-    significance: "मंदिर की योजना में ही सम्पूर्ण ब्रह्मांड निहित है; इसमें चलना जीवंत शास्त्र में चलना है। यहाँ के अनुष्ठान एक हज़ार वर्षों से अधिक समय से अटूट रूप से चले आ रहे हैं।" },
+    significance: "मंदिर की योजना में ही सम्पूर्ण ब्रह्मांड निहित है; इसमें चलना जीवंत शास्त्र में चलना है। यहाँ की पूजा की परंपरा एक हज़ार वर्षों से भी पुरानी है।" },
 
   // ── Konark
   { temple_id: "tp-konark", language: "en", name: "Konark Sun Temple", location: "Konark", state: "Odisha", dynasty: "Eastern Ganga", architecture_style: "Kalinga", presiding_deity: "Surya (the Sun)",
@@ -80,12 +83,12 @@ export const TEMPLE_TRANSLATIONS: TempleTranslationRow[] = [
 
   // ── Virupaksha
   { temple_id: "tp-virupaksha", language: "en", name: "Virupaksha Temple", location: "Hampi", state: "Karnataka", dynasty: "Vijayanagara", architecture_style: "Dravidian", presiding_deity: "Shiva (Virupaksha)",
-    description: "One of the oldest continuously functioning temples in India, worshipped without a break for over 1,300 years, at the heart of the ruins of the Vijayanagara empire.",
-    significance: "Thirteen centuries of unbroken worship. Empires rose and fell around it; the lamp inside never went out. This is what Dharma means in stone — not a belief but a continuity that outlasts circumstance." },
+    description: "One of the oldest temples in India still in worship, its worship going back more than 1,300 years, at the heart of the ruins of the Vijayanagara empire.",
+    significance: "Thirteen centuries of worship. Empires rose and fell around it, and the city that built its towers was sacked in 1565; the worship outlived it. This is what Dharma means in stone — not a belief but a continuity that outlasts circumstance." },
   { temple_id: "tp-virupaksha", language: "kn", name: "ವಿರೂಪಾಕ್ಷ ದೇವಾಲಯ", location: "ಹಂಪಿ", state: "ಕರ್ನಾಟಕ", dynasty: "ವಿಜಯನಗರ", architecture_style: "ದ್ರಾವಿಡ", presiding_deity: "ಶಿವ (ವಿರೂಪಾಕ್ಷ)",
-    description: "ಭಾರತದಲ್ಲಿ ನಿರಂತರವಾಗಿ ಪೂಜೆ ನಡೆಯುತ್ತಿರುವ ಅತ್ಯಂತ ಪ್ರಾಚೀನ ದೇವಾಲಯಗಳಲ್ಲಿ ಒಂದು; 1,300 ವರ್ಷಗಳಿಗೂ ಹೆಚ್ಚು ಕಾಲ ಅಡೆತಡೆಯಿಲ್ಲದೆ ಪೂಜಿಸಲ್ಪಡುತ್ತಿದೆ. ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಅವಶೇಷಗಳ ಹೃದಯಭಾಗದಲ್ಲಿದೆ.",
-    significance: "ಹದಿಮೂರು ಶತಮಾನಗಳ ಅವಿಚ್ಛಿನ್ನ ಪೂಜೆ. ಸುತ್ತಲೂ ಸಾಮ್ರಾಜ್ಯಗಳು ಏಳುತ್ತಾ ಬೀಳುತ್ತಾ ಇದ್ದವು; ಒಳಗಿನ ದೀಪ ಮಾತ್ರ ಆರಲಿಲ್ಲ. ಕಲ್ಲಿನಲ್ಲಿ ಧರ್ಮ ಎಂದರೆ ಇದೇ — ನಂಬಿಕೆಯಲ್ಲ, ಸನ್ನಿವೇಶಗಳನ್ನು ಮೀರಿ ಉಳಿಯುವ ನಿರಂತರತೆ." },
+    description: "ಇಂದಿಗೂ ಪೂಜೆ ನಡೆಯುತ್ತಿರುವ ಭಾರತದ ಅತ್ಯಂತ ಪ್ರಾಚೀನ ದೇವಾಲಯಗಳಲ್ಲಿ ಒಂದು; ಇಲ್ಲಿನ ಪೂಜೆ 1,300 ವರ್ಷಗಳಿಗೂ ಹಿಂದಿನದು. ವಿಜಯನಗರ ಸಾಮ್ರಾಜ್ಯದ ಅವಶೇಷಗಳ ಹೃದಯಭಾಗದಲ್ಲಿದೆ.",
+    significance: "ಹದಿಮೂರು ಶತಮಾನಗಳ ಪೂಜೆ. ಸುತ್ತಲೂ ಸಾಮ್ರಾಜ್ಯಗಳು ಎದ್ದು ಬಿದ್ದವು, ಅದರ ಗೋಪುರಗಳನ್ನು ಕಟ್ಟಿದ ನಗರ 1565ರಲ್ಲಿ ಧ್ವಂಸವಾಯಿತು; ಪೂಜೆ ಮಾತ್ರ ಉಳಿಯಿತು. ಕಲ್ಲಿನಲ್ಲಿ ಧರ್ಮ ಎಂದರೆ ಇದೇ — ನಂಬಿಕೆಯಲ್ಲ, ಸನ್ನಿವೇಶಗಳನ್ನು ಮೀರಿ ಉಳಿಯುವ ನಿರಂತರತೆ." },
   { temple_id: "tp-virupaksha", language: "hi", name: "विरूपाक्ष मंदिर", location: "हम्पी", state: "कर्नाटक", dynasty: "विजयनगर", architecture_style: "द्रविड़", presiding_deity: "शिव (विरूपाक्ष)",
-    description: "भारत के उन प्राचीनतम मंदिरों में से एक जहाँ पूजा निरंतर चलती रही है — 1,300 वर्षों से अधिक समय से अटूट। विजयनगर साम्राज्य के खंडहरों के हृदय में स्थित।",
-    significance: "तेरह शताब्दियों की अटूट पूजा। चारों ओर साम्राज्य उठते और गिरते रहे; भीतर का दीपक कभी नहीं बुझा। पत्थर में धर्म का अर्थ यही है — कोई मान्यता नहीं, बल्कि वह निरंतरता जो परिस्थितियों से अधिक टिकती है।" },
+    description: "भारत के उन प्राचीनतम मंदिरों में से एक जहाँ आज भी पूजा होती है — जिसकी परंपरा 1,300 वर्षों से भी पुरानी है। विजयनगर साम्राज्य के खंडहरों के हृदय में स्थित।",
+    significance: "तेरह शताब्दियों की पूजा। चारों ओर साम्राज्य उठे और गिरे, और इसके गोपुर बनाने वाला नगर 1565 में ध्वस्त हुआ; पूजा फिर भी बनी रही। पत्थर में धर्म का अर्थ यही है — कोई मान्यता नहीं, बल्कि वह निरंतरता जो परिस्थितियों से अधिक टिकती है।" },
 ];

@@ -5,7 +5,7 @@ export default function NotFound() {
   const { t } = getTranslations();
 
   return (
-    <section className="shell-narrow stack-xl" style={{ textAlign: "center" }}>
+    <section className="shell-narrow stack-xl" style={{ textAlign: "center" }} data-not-found="">
       <span className="om" style={{ fontSize: "2.5rem" }}>ॐ</span>
       <h1 className="title" style={{ marginTop: "1.5rem" }}>{t.notFoundTitle}</h1>
       <p className="lede" style={{ margin: "1rem auto 2.5rem" }}>{t.notFoundBody}</p>

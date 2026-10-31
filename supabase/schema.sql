@@ -724,3 +724,71 @@ create index if not exists idx_teacher_translations_lang on teacher_translations
 create index if not exists idx_temple_translations_lang  on temple_translations (temple_id, language);
 create index if not exists idx_concept_translations_lang on concept_translations (concept_id, language);
 create index if not exists idx_matha_translations_lang   on matha_translations (matha_id, language);
+
+-- ════════════════════════════════════════════════════════════
+--  Readers' accounts (docs/ACCOUNTS.md)
+--
+--  Readers sign in with Google through Supabase Auth, which keeps the
+--  login itself in auth.users. `profiles` holds the little the site
+--  keeps about a reader, one row per account, created by a trigger
+--  the moment the account is.
+--
+--  Unlike every content table above, this one has NO public-read
+--  policy, deliberately: a reader may read and edit only their own
+--  row, and nobody else may read it at all. Which columns a reader may
+--  change is fixed by column grants, not by RLS (which works on rows),
+--  so a column added later for payments — a customer id, a plan — is
+--  writable only by the service role, behind requireAdmin() or a
+--  verified webhook.
+-- ════════════════════════════════════════════════════════════
+
+create table if not exists profiles (
+  id          uuid primary key references auth.users (id) on delete cascade,
+  email       text not null,
+  full_name   text,
+  locale      text not null default 'en' check (locale in ('en', 'kn', 'hi')),
+  created_at  timestamptz not null default now(),
+  updated_at  timestamptz not null default now()
+);
+
+alter table profiles enable row level security;
+
+drop policy if exists profiles_own_read on profiles;
+create policy profiles_own_read on profiles
+  for select to authenticated using ((select auth.uid()) = id);
+
+drop policy if exists profiles_own_update on profiles;
+create policy profiles_own_update on profiles
+  for update to authenticated
+  using ((select auth.uid()) = id) with check ((select auth.uid()) = id);
+
+-- No insert or delete policy: the trigger inserts, and deleting the
+-- auth user cascades. A reader may change only these two columns.
+revoke all on profiles from anon, authenticated;
+grant select on profiles to authenticated;
+grant update (full_name, locale) on profiles to authenticated;
+
+-- Runs as the table owner, so it can insert past RLS. search_path is
+-- pinned so a caller cannot shadow `profiles` with their own table.
+create or replace function public.handle_new_user()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  insert into public.profiles (id, email, full_name)
+  values (
+    new.id,
+    coalesce(new.email, ''),
+    coalesce(new.raw_user_meta_data ->> 'full_name', new.raw_user_meta_data ->> 'name')
+  )
+  on conflict (id) do nothing;
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created on auth.users;
+create trigger on_auth_user_created
+  after insert on auth.users
+  for each row execute function public.handle_new_user();

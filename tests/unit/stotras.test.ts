@@ -1,4 +1,5 @@
 import { test } from "node:test";
+import { corpusStotra, corpusStotrasOf } from "../../src/lib/stotra-corpus";
 import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
@@ -219,14 +220,14 @@ test("Gaṇeśa has at least ten stotras, each with its own recitation to listen
   assert.equal(new Set(ids).size, ids.length, "two stotras share a video");
 });
 
-test("a devata's sections come daily, Vedic, stotras — and read in the same order as the pager", () => {
+test("a devata's sections come daily, Vedic, stotras, then the collection — and read in the same order as the pager", () => {
   for (const d of getDevatas("en")) {
     const groups = getStotraGroups(d.slug, "en");
     const present = groups.map((g) => g.group);
-    assert.deepEqual(present, (["daily", "vedic", "stotra"] as const).filter((g) => present.includes(g)), `${d.slug}: sections out of order`);
+    assert.deepEqual(present, (["daily", "vedic", "stotra", "edition"] as const).filter((g) => present.includes(g)), `${d.slug}: sections out of order`);
     assert.deepEqual(
       groups.flatMap((g) => g.stotras.map((s) => s.slug)),
-      getStotraViews(d.slug, "en").map((s) => s.slug),
+      [...getStotraViews(d.slug, "en").map((s) => s.slug), ...corpusStotrasOf(d.slug).map((c) => c.slug)],
       `${d.slug}: reading down the sections does not follow the stotras' positions`
     );
   }
@@ -277,5 +278,5 @@ test("the storage rows cite the site's own editorial source for every translatio
 });
 
 test("every stotra route names the devata the stotra belongs to", () => {
-  for (const p of getStotraParams()) assert.equal(getStotra(p.stotra)!.devata, p.devata);
+  for (const p of getStotraParams()) assert.equal((getStotra(p.stotra) ?? corpusStotra(p.stotra))!.devata, p.devata);
 });

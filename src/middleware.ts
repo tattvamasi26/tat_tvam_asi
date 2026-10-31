@@ -1,32 +1,282 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { createServerClient, type CookieOptions } from "@supabase/ssr";
+import { readsSession } from "@/lib/auth-paths";
+import { authStatus } from "@/lib/auth-status";
+import {
+  COOKIELESS_DAILY,
+  FREE_READS,
+  LEFT_COOKIE,
+  METER_COOKIE,
+  SIGNED_IN_COOKIE,
+  WINDOW_MS,
+  decide,
+  decodeMeter,
+  encodeMeter,
+  isGatedPath,
+  isVerifiedCrawler,
+  meterSecret,
+  pageId,
+} from "@/lib/security/reading-gate";
 import { LOCALE_COOKIE, isLocale } from "@/i18n/config";
+import { classify, TRAP_PATH } from "@/lib/security/bots";
+import { RateLimiter } from "@/lib/security/rate-limit";
+import {
+  clientAddress,
+  isDisguisedScript,
+  isProbe,
+  isRouterPrefetch,
+  isUncounted,
+} from "@/lib/security/guard";
 
 /**
- * Makes `?lang=kn` a shareable way to open any page in a given language:
- * the parameter is written to the locale cookie and stripped from the URL
- * by a redirect, so the address stays clean and every later navigation
- * stays in that language.
+ * Runs before every request. In order:
  *
- * The switcher in the header sets the same cookie directly and never
- * reaches this path.
+ * 1. The bot guard. AI crawlers and copying tools that name themselves
+ *    are refused with 403; robots.txt has already told them no. So is a
+ *    script that borrows a browser's User-Agent but none of the headers
+ *    every browser sends with it.
+ * 2. The traps. A client that requests the invisible trap link is
+ *    copying the site, and is refused for an hour; one probing for
+ *    other platforms' admin pages or secret files, for fifteen minutes.
+ * 3. The rate limit, counted on pages. The router's own prefetches are
+ *    counted separately against a larger allowance, since a long list
+ *    of links prefetches many at once; pictures are not counted.
+ * 4. `?lang=kn`: the parameter is written to the locale cookie and
+ *    stripped by a redirect, so any page can be shared in a language.
+ *
+ * The response headers that apply to every file, including the static
+ * ones this never sees, are in next.config.js. The decisions themselves
+ * are in lib/security/guard.ts, where they are tested.
  */
-export function middleware(request: NextRequest) {
-  const lang = request.nextUrl.searchParams.get("lang");
-  if (!isLocale(lang)) return NextResponse.next();
 
-  const url = request.nextUrl.clone();
-  url.searchParams.delete("lang");
+// 120 pages a minute, 1,200 an hour. Reading at full tilt is a page
+// every few seconds.
+const pages = new RateLimiter([
+  { limit: 120, ms: 60_000 },
+  { limit: 1_200, ms: 3_600_000 },
+]);
+// A Rigveda mandala lists nearly two hundred hymns, and the router
+// prefetches each link as it scrolls into view.
+const prefetches = new RateLimiter([
+  { limit: 600, ms: 60_000 },
+  { limit: 6_000, ms: 3_600_000 },
+]);
+// Reading pages opened by a client that keeps no cookies, per address.
+const cookieless = new RateLimiter([{ limit: COOKIELESS_DAILY, ms: 86_400_000 }]);
+const TRAP_BAN_MS = 3_600_000;
+const PROBE_BAN_MS = 900_000;
+const REFUSAL = "Automated access to this site is not permitted. See /rights.";
 
-  const response = NextResponse.redirect(url);
-  response.cookies.set(LOCALE_COOKIE, lang, {
-    path: "/",
-    maxAge: 31_536_000,
-    sameSite: "lax",
+function refuse(status: 403 | 429, message: string): NextResponse {
+  return new NextResponse(message, {
+    status,
+    headers: {
+      "content-type": "text/plain; charset=utf-8",
+      "cache-control": "no-store",
+      "x-robots-tag": "noindex, nofollow",
+      ...(status === 429 ? { "retry-after": "60" } : {}),
+    },
   });
+}
+
+function isLocalHost(host: string | null): boolean {
+  return !host || /^(localhost|127\.0\.0\.1|\[::1\])(:\d+)?$/.test(host);
+}
+
+export async function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+  const key = clientAddress(request.headers, request.ip);
+  // No client address at all: this machine (`next start` with no proxy
+  // in front, where the tests run) or the image optimiser's internal
+  // read. Never banned or counted, or one trap hit would lock out
+  // everyone behind the same missing address. An address a request
+  // merely *claims* (127.0.0.1 in X-Forwarded-For) gets no such pass.
+  const uncounted = isUncounted(key);
+
+  // 1 — who is asking. A picture refuses only the AI crawlers: the
+  // image optimiser reads /images/ through an internal request that
+  // carries no headers at all, and most pictures are Commons files
+  // anyway. (The optimiser's own /_next/image URL is answered before
+  // middleware runs at all, so it is guarded only at the edge; see
+  // docs/SECURITY.md.)
+  const isPicture = pathname.startsWith("/images/");
+  const ua = request.headers.get("user-agent");
+  const verdict = classify(ua);
+  if (verdict === "ai") return refuse(403, REFUSAL);
+  if (!isPicture && (verdict === "scraper" || isDisguisedScript(ua, request.headers))) {
+    return refuse(403, REFUSAL);
+  }
+
+  // 2 — the traps
+  if (pathname === TRAP_PATH) {
+    if (!uncounted) pages.block(key, TRAP_BAN_MS);
+    return refuse(403, REFUSAL);
+  }
+  if (isProbe(pathname)) {
+    if (!uncounted) pages.block(key, PROBE_BAN_MS);
+    return refuse(403, REFUSAL);
+  }
+  if (pages.isBlocked(key)) return refuse(403, REFUSAL);
+
+  // 3 — how often
+  if (!isPicture && !uncounted) {
+    const limiter = isRouterPrefetch(request.headers) ? prefetches : pages;
+    if (limiter.hit(key)) return refuse(429, "Too many requests. Please slow down.");
+  }
+
+  // 4 — the language parameter
+  const lang = request.nextUrl.searchParams.get("lang");
+  // A reading page tells the layout so, for its schema.org markup.
+  const gated = isGatedPath(pathname);
+  const forward = new Headers(request.headers);
+  if (gated) forward.set("x-tta-metered", "1");
+  let response: NextResponse;
+  if (isLocale(lang)) {
+    const url = request.nextUrl.clone();
+    url.searchParams.delete("lang");
+    response = NextResponse.redirect(url);
+    response.cookies.set(LOCALE_COOKIE, lang, {
+      path: "/",
+      maxAge: 31_536_000,
+      sameSite: "lax",
+      secure: !isLocalHost(request.headers.get("host")),
+    });
+  } else {
+    response = NextResponse.next({ request: { headers: forward } });
+  }
+
+  // 5 — a signed-in reader's session, refreshed where a page reads it.
+  // A Server Component cannot write cookies, so a token refreshed there
+  // is never saved, and the next refresh, with the spent token, fails.
+  // Only on these paths: elsewhere a page never looks at the session,
+  // and asking Supabase on every page would cost every reader a call.
+  const redirecting = response.headers.has("location");
+  let signedIn = false;
+  if (!redirecting && (readsSession(pathname) || (gated && hasSessionCookie(request)))) {
+    const r = await refreshSession(request, response, forward);
+    response = r.response;
+    signedIn = r.signedIn;
+  }
+
+  // 6 — the reading meter (lib/security/reading-gate.ts). A few reading
+  // pages are free; then the reader signs in. Only where sign-in works,
+  // so nobody is ever walled off from a way in that is switched off.
+  if (gated && !redirecting && !signedIn && (await meterIsOn())) {
+    const ip = request.ip ?? rightmostForwarded(request.headers);
+    if (!(await isVerifiedCrawler(ua, ip))) {
+      // A router prefetch never counts and never carries a reading page
+      // to a signed-out reader: it would read past the meter unseen.
+      if (isRouterPrefetch(request.headers)) return new NextResponse(null, { status: 204 });
+
+      const secret = meterSecret()!;
+      const raw = request.cookies.get(METER_COOKIE)?.value;
+      // A client that never sends the cookie back is counted by address.
+      if (!raw && !uncounted && cookieless.hit(key)) return toSignIn(request, pathname);
+      const decision = decide(await decodeMeter(raw, secret), await pageId(pathname));
+      if (!decision.allow) return toSignIn(request, pathname);
+
+      const secure = !isLocalHost(request.headers.get("host"));
+      response.cookies.set(METER_COOKIE, await encodeMeter(decision.meter, secret), {
+        path: "/",
+        httpOnly: true,
+        sameSite: "lax",
+        secure,
+        maxAge: Math.ceil((decision.meter.since + WINDOW_MS - Date.now()) / 1000),
+      });
+      // Read by the page's notice only; the signed cookie is what counts.
+      response.cookies.set(LEFT_COOKIE, String(FREE_READS - decision.meter.read.length), {
+        path: "/",
+        sameSite: "lax",
+        secure,
+        maxAge: 30 * 86_400,
+      });
+    }
+  }
+  if (!redirecting && (gated || readsSession(pathname))) {
+    // For the masthead's account button only; never trusted for access.
+    if (signedIn) response.cookies.set(SIGNED_IN_COOKIE, "1", { path: "/", sameSite: "lax", maxAge: 400 * 86_400 });
+    else if (request.cookies.has(SIGNED_IN_COOKIE)) response.cookies.delete(SIGNED_IN_COOKIE);
+  }
+
+  // HSTS only off localhost: sent to localhost it would pin every other
+  // project on this machine to https.
+  if (!isLocalHost(request.headers.get("host"))) {
+    response.headers.set(
+      "strict-transport-security",
+      "max-age=63072000; includeSubDomains; preload",
+    );
+  }
+  if (pathname.startsWith("/admin") || readsSession(pathname)) {
+    response.headers.set("x-robots-tag", "noindex, nofollow, noarchive");
+    response.headers.set("cache-control", "no-store");
+  }
   return response;
 }
 
+/** Is the meter switched on? Only where a reader can actually sign in. */
+async function meterIsOn(): Promise<boolean> {
+  if (process.env.READING_GATE === "off" || !meterSecret()) return false;
+  const status = await authStatus();
+  return status.state === "ready" && (status.google || status.email);
+}
+
+/** A Supabase session cookie is present (it is verified before it counts). */
+function hasSessionCookie(request: NextRequest): boolean {
+  return request.cookies.getAll().some((c) => /^sb-.+-auth-token/.test(c.name));
+}
+
+/** The address the platform or our proxy saw, unaltered, for crawler checks. */
+function rightmostForwarded(headers: Headers): string | null {
+  const chain = (headers.get("x-forwarded-for") ?? "").split(",").map((x) => x.trim()).filter(Boolean);
+  return chain.at(-1) ?? null;
+}
+
+/** Out of free pages: to sign-in, which brings the reader back here after. */
+function toSignIn(request: NextRequest, pathname: string): NextResponse {
+  const url = request.nextUrl.clone();
+  url.pathname = "/signin";
+  url.search = "";
+  url.searchParams.set("reason", "limit");
+  url.searchParams.set("next", pathname);
+  const res = NextResponse.redirect(url, 307);
+  res.headers.set("cache-control", "no-store");
+  return res;
+}
+
+async function refreshSession(
+  request: NextRequest,
+  response: NextResponse,
+  forward: Headers,
+): Promise<{ response: NextResponse; signedIn: boolean }> {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  if (!url || !key) return { response, signedIn: false };
+  let out = response;
+  let signedIn = false;
+  try {
+    const supabase = createServerClient(url, key, {
+      cookies: {
+        getAll: () => request.cookies.getAll(),
+        setAll: (cookies: { name: string; value: string; options: CookieOptions }[]) => {
+          // The page rendering this request must see the new tokens
+          // too, or it refreshes again with the spent one.
+          for (const { name, value } of cookies) request.cookies.set(name, value);
+          forward.set("cookie", request.headers.get("cookie") ?? "");
+          out = NextResponse.next({ request: { headers: forward } });
+          for (const { name, value, options } of cookies) out.cookies.set(name, value, options);
+        },
+      },
+    });
+    // getUser asks Supabase to verify the token; a forged cookie fails.
+    const { data } = await supabase.auth.getUser();
+    signedIn = Boolean(data.user);
+  } catch {
+    // Supabase unreachable: the page itself will find no reader.
+  }
+  return { response: out, signedIn };
+}
+
 export const config = {
-  // Skip Next internals and static assets — they have no locale.
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|images/).*)"],
+  // Everything except the framework's own hashed bundles and the icons.
+  matcher: ["/((?!_next/static|favicon.ico|icon.svg|apple-icon.png).*)"],
 };

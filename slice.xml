@@ -1,0 +1,2429 @@
+            <l xml:id="b01_h001_03_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_03_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_03_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_03_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h001_03_zur_a">agnínā rayím aśnavat</l>
+              <l xml:id="b01_h001_03_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_a_01">
+                  <f name="surface">
+                    <string>agnínā</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_agni_79">agní-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="INS"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_a_02">
+                  <f name="surface">
+                    <string>rayím</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_rayi_7325">rayí- ~ rāy-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_a_03">
+                  <f name="surface">
+                    <string>aśnavat</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aS_1210">√aś-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="3"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="SBJV"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_03_zur_b">póṣam evá divé-dive</l>
+              <l xml:id="b01_h001_03_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_b_01">
+                  <f name="surface">
+                    <string>póṣam</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_poza_5821">póṣa-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_b_02">
+                  <f name="surface">
+                    <string>evá</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_eva_2315">evá</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules"/>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_b_03">
+                  <f name="surface">
+                    <string>divé-dive</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_div_4231 #lemma_dyu_4513">dyú- ~ div-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="DAT"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_03_zur_c">yaśásaṃ vīrávattamam</l>
+              <l xml:id="b01_h001_03_zur_c_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_c_01">
+                  <f name="surface">
+                    <string>yaśásam</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_yaSas_7081">yaśás-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_03_zur_c_02">
+                  <f name="surface">
+                    <string>vīrávattamam</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_vIravat_8324">vīrávattama-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="degree">
+                        <symbol value="SUP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_03_lubotsky" xml:lang="san-Latn-x-ISO-15919" source="lubotsky">
+              <l xml:id="b01_h001_03_lubotsky_a">agnínā rayím aśnavat</l>
+              <l xml:id="b01_h001_03_lubotsky_b">póṣam evá divé-dive-_</l>
+              <l xml:id="b01_h001_03_lubotsky_c">yaśásam vīrávattamam</l>
+            </lg>
+            <lg xml:id="b01_h001_03_vnh" xml:lang="san-Latn-x-ISO-15919" source="vnh">
+              <l xml:id="b01_h001_03_vnh_a">agnínā rayím aśnavat</l>
+              <l xml:id="b01_h001_03_vnh_b">póṣam evá divé-dive</l>
+              <l xml:id="b01_h001_03_vnh_c">yaśásaṁ vīrávattamam</l>
+            </lg>
+            <lg xml:id="b01_h001_03_aufrecht" xml:lang="san-Latn-x-ISO-15919" source="aufrecht">
+              <l xml:id="b01_h001_03_aufrecht_a">agnínā rayím aśnavat póṣam evá divé-dive</l>
+              <l xml:id="b01_h001_03_aufrecht_c">yaśásaṁ vīrávattamam</l>
+            </lg>
+            <lg xml:id="b01_h001_03_padapatha" xml:lang="san-Latn-x-ISO-15919" source="padapatha">
+              <l xml:id="b01_h001_03_padapatha_0" xml:lang="san-Latn-x-ISO-15919">
+                <w xml:id="b01_h001_03_padapatha_0_01">agninā</w>
+                <w xml:id="b01_h001_03_padapatha_0_02">rayim</w>
+                <w xml:id="b01_h001_03_padapatha_0_03">aśnavat</w>
+                <w xml:id="b01_h001_03_padapatha_0_04">poṣam</w>
+                <w xml:id="b01_h001_03_padapatha_0_05">eva</w>
+                <w xml:id="b01_h001_03_padapatha_0_06">dive--dive</w>
+                <w xml:id="b01_h001_03_padapatha_0_07">yaśasam</w>
+                <w xml:id="b01_h001_03_padapatha_0_08">vīravat-tamam</w>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_03_eichler" xml:lang="san-Deva" source="eichler">
+              <l xml:id="b01_h001_03_eichler_a">अ॒ग्निना॑ र॒यिम॑श्नव॒त्पोष॑मे॒व दि॒वेदि॑वे</l>
+              <l xml:id="b01_h001_03_eichler_c">य॒शसं॑ वी॒रव॑त्तमम्</l>
+            </lg>
+            <lg xml:id="b01_h001_03_geldner" xml:lang="deu" source="geldner">
+              <l xml:id="b01_h001_03_geldner_0" xml:lang="deu">Durch Agni möge er Reichtum und Zuwachs Tag für Tag erlangen, ansehnlichen, der die meisten Söhne zählt.</l>
+            </lg>
+            <lg xml:id="b01_h001_03_grassmann" xml:lang="deu" source="grassmann">
+              <l xml:id="b01_h001_03_grassmann_0" xml:lang="deu">Durch Agni werd' uns Tag für Tag Gedeihn und schönes Gut zu Theil, Das reich mit Helden sei versehn.</l>
+            </lg>
+            <lg xml:id="b01_h001_03_griffith" xml:lang="eng" source="griffith">
+              <l xml:id="b01_h001_03_griffith_0" xml:lang="eng">Through Agni man obtaineth wealth, yea, plenty waxing day by day, Most rich in heroes, glorious.</l>
+            </lg>
+            <lg xml:id="b01_h001_03_macdonell" xml:lang="eng" source="macdonell">
+              <l xml:id="b01_h001_03_macdonell_0" xml:lang="eng">Through Agni may we riches gain, And day by day prosperity Replete with fame and manly sons.</l>
+            </lg>
+            <lg xml:id="b01_h001_03_oldenberg" xml:lang="eng" source="oldenberg">
+              <l xml:id="b01_h001_03_oldenberg_0" xml:lang="eng">May one obtain through Agni wealth and welfare day by day, which may bring glory and high bliss of valiant offspring.</l>
+            </lg>
+            <lg xml:id="b01_h001_03_renou" xml:lang="fra" source="renou">
+              <l xml:id="b01_h001_03_renou_0" xml:lang="fra">Grâce à Agni puisse (le sacrifiant) atteindre richesse (et) prospérité jour après jour,/ (richesse et prospérité) honorable, très abondante en hommes d'élite!</l>
+            </lg>
+            <lg xml:id="b01_h001_03_elizarenkova" xml:lang="rus" source="elizarenkova">
+              <l xml:id="b01_h001_03_elizarenkova_1">Агни, посредством (него) пусть достигает он богатства</l>
+              <l xml:id="b01_h001_03_elizarenkova_2">И процветания – изо дня в день –</l>
+              <l xml:id="b01_h001_03_elizarenkova_3">Сияющего, мужеобильнейшего!</l>
+            </lg>
+          </div>
+          <div xml:id="b01_h001_04" type="stanza">
+            <lg xml:id="b01_h001_04_strata" type="strata">
+              <l xml:id="b01_h001_04_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_04_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_04_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_04_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h001_04_zur_a">ágne yáṃ yajñám adhvaráṃ</l>
+              <l xml:id="b01_h001_04_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_a_01">
+                  <f name="surface">
+                    <string>ágne</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_agni_79">agní-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_a_02">
+                  <f name="surface">
+                    <string>yám</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_ya_6983">yá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_a_03">
+                  <f name="surface">
+                    <string>yajñám</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_yajYa_7002">yajñá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_a_04">
+                  <f name="surface">
+                    <string>adhvarám</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aDvara_384">adhvará-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_04_zur_b">viśvátaḥ paribhū́r ási</l>
+              <l xml:id="b01_h001_04_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_b_01">
+                  <f name="surface">
+                    <string>viśvátas</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_viSvatas_8165">viśvátas</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules"/>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_b_02">
+                  <f name="surface">
+                    <string>paribhū́ḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_pariBU_5303">paribhū́-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_b_03">
+                  <f name="surface">
+                    <string>ási</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_as_1305">√as- 1</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="2"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="IND"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_04_zur_c">sá íd devéṣu gachati</l>
+              <l xml:id="b01_h001_04_zur_c_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_c_01">
+                  <f name="surface">
+                    <string>sáḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_sa_9064 #lemma_ta_3606">sá- ~ tá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_c_02">
+                  <f name="surface">
+                    <string>ít</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_id_1695">íd</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules"/>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_c_03">
+                  <f name="surface">
+                    <string>devéṣu</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_deva_4419">devá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="LOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_04_zur_c_04">
+                  <f name="surface">
+                    <string>gachati</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_gam_2902">√gam-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="3"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="IND"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_04_lubotsky" xml:lang="san-Latn-x-ISO-15919" source="lubotsky">
+              <l xml:id="b01_h001_04_lubotsky_a">ágne-_ yám yajñám adhvarám</l>
+              <l xml:id="b01_h001_04_lubotsky_b">viśvátaḥ paribhū́ḥ ási</l>
+              <l xml:id="b01_h001_04_lubotsky_c">sáḥ ít devéṣu gacchati</l>
+            </lg>
+            <lg xml:id="b01_h001_04_vnh" xml:lang="san-Latn-x-ISO-15919" source="vnh">
+              <l xml:id="b01_h001_04_vnh_a">ágne yáṁ yajñám adhvaráṁ</l>
+              <l xml:id="b01_h001_04_vnh_b">viśvátaḥ paribhū́r ási</l>
+              <l xml:id="b01_h001_04_vnh_c">sá íd devéṣu gachati</l>
+            </lg>
+            <lg xml:id="b01_h001_04_aufrecht" xml:lang="san-Latn-x-ISO-15919" source="aufrecht">
+              <l xml:id="b01_h001_04_aufrecht_a">ágne yáṁ yajñám adhvaráṁ viśvátaḥ paribhū́r ási</l>
+              <l xml:id="b01_h001_04_aufrecht_c">sá íd devéṣu gachati</l>
+            </lg>
+            <lg xml:id="b01_h001_04_padapatha" xml:lang="san-Latn-x-ISO-15919" source="padapatha">
+              <l xml:id="b01_h001_04_padapatha_0" xml:lang="san-Latn-x-ISO-15919">
+                <w xml:id="b01_h001_04_padapatha_0_01">agne</w>
+                <w xml:id="b01_h001_04_padapatha_0_02">yam</w>
+                <w xml:id="b01_h001_04_padapatha_0_03">yajñam</w>
+                <w xml:id="b01_h001_04_padapatha_0_04">adhvaram</w>
+                <w xml:id="b01_h001_04_padapatha_0_05">viśvataḥ</w>
+                <w xml:id="b01_h001_04_padapatha_0_06">pari-bhūḥ</w>
+                <w xml:id="b01_h001_04_padapatha_0_07">asi</w>
+                <w xml:id="b01_h001_04_padapatha_0_08">saḥ</w>
+                <w xml:id="b01_h001_04_padapatha_0_09">it</w>
+                <w xml:id="b01_h001_04_padapatha_0_10">deveṣu</w>
+                <w xml:id="b01_h001_04_padapatha_0_11">gacchati</w>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_04_eichler" xml:lang="san-Deva" source="eichler">
+              <l xml:id="b01_h001_04_eichler_a">अग्ने॒ यं य॒ज्ञम॑ध्व॒रं वि॒श्वतः॑ परि॒भूरसि॑</l>
+              <l xml:id="b01_h001_04_eichler_c">स इद्दे॒वेषु॑ गच्छति</l>
+            </lg>
+            <lg xml:id="b01_h001_04_geldner" xml:lang="deu" source="geldner">
+              <l xml:id="b01_h001_04_geldner_0" xml:lang="deu">Agni! Nur die Anbetung und das Opfer, das du ganz zusammenhältst, gelangt zu den Göttern.</l>
+            </lg>
+            <lg xml:id="b01_h001_04_grassmann" xml:lang="deu" source="grassmann">
+              <l xml:id="b01_h001_04_grassmann_0" xml:lang="deu">Welch Opfer, Agni, welches Fest von allen Seiten du umfängst, Nur das geht zu den Göttern hin.</l>
+            </lg>
+            <lg xml:id="b01_h001_04_griffith" xml:lang="eng" source="griffith">
+              <l xml:id="b01_h001_04_griffith_0" xml:lang="eng">Agni, the perfect sacrifice which thou encompassest about Verily goeth to the Gods.</l>
+            </lg>
+            <lg xml:id="b01_h001_04_macdonell" xml:lang="eng" source="macdonell">
+              <l xml:id="b01_h001_04_macdonell_0" xml:lang="eng">The worship and the sacrifice, Guarded by thee on every side, Go straight, O Agni, to the gods.</l>
+            </lg>
+            <lg xml:id="b01_h001_04_oldenberg" xml:lang="eng" source="oldenberg">
+              <l xml:id="b01_h001_04_oldenberg_0" xml:lang="eng">Agni, whatever sacrifice and worship 1 thou encompassest on every side, that indeed goes to the gods.</l>
+            </lg>
+            <lg xml:id="b01_h001_04_renou" xml:lang="fra" source="renou">
+              <l xml:id="b01_h001_04_renou_0" xml:lang="fra">O Agni, le sacrifice, le rite que tu environnes de toutes parts,/ celui-là seul va chez les dieux.</l>
+            </lg>
+            <lg xml:id="b01_h001_04_elizarenkova" xml:lang="rus" source="elizarenkova">
+              <l xml:id="b01_h001_04_elizarenkova_1">О Агни, жертва (и) обряд,</l>
+              <l xml:id="b01_h001_04_elizarenkova_2">Которые ты охватываешь со всех сторон,</l>
+              <l xml:id="b01_h001_04_elizarenkova_3">Именно они идут к богам.</l>
+            </lg>
+          </div>
+          <div xml:id="b01_h001_05" type="stanza">
+            <lg xml:id="b01_h001_05_strata" type="strata">
+              <l xml:id="b01_h001_05_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_05_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_05_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_05_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h001_05_zur_a">agnír hótā kavíkratuḥ</l>
+              <l xml:id="b01_h001_05_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_a_01">
+                  <f name="surface">
+                    <string>agníḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_agni_79">agní-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_a_02">
+                  <f name="surface">
+                    <string>hótā</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_hotf_10749">hótar-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_a_03">
+                  <f name="surface">
+                    <string>kavíkratuḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_kavikratu_2490">kavíkratu-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_05_zur_b">satyáś citráśravastamaḥ</l>
+              <l xml:id="b01_h001_05_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_b_01">
+                  <f name="surface">
+                    <string>satyáḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_satya_9173">satyá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_b_02">
+                  <f name="surface">
+                    <string>citráśravastamaḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_citraSravas_3308">citráśravastama-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="degree">
+                        <symbol value="SUP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_05_zur_c">devó devébhir ā́ gamat</l>
+              <l xml:id="b01_h001_05_zur_c_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_c_01">
+                  <f name="surface">
+                    <string>deváḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_deva_4419">devá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_c_02">
+                  <f name="surface">
+                    <string>devébhiḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_deva_4419">devá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="INS"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_c_03">
+                  <f name="surface">
+                    <string>ā́</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_A_1444">ā́</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="local particle">
+                        <symbol value="LP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_05_zur_c_04">
+                  <f name="surface">
+                    <string>gamat</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_gam_2902">√gam-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="3"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="SBJV"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="AOR"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_05_lubotsky" xml:lang="san-Latn-x-ISO-15919" source="lubotsky">
+              <l xml:id="b01_h001_05_lubotsky_a">agníḥ hótā kavíkratuḥ</l>
+              <l xml:id="b01_h001_05_lubotsky_b">satyáḥ citráśravastamaḥ</l>
+              <l xml:id="b01_h001_05_lubotsky_c">deváḥ devébhiḥ ā́ gamat</l>
+            </lg>
+            <lg xml:id="b01_h001_05_vnh" xml:lang="san-Latn-x-ISO-15919" source="vnh">
+              <l xml:id="b01_h001_05_vnh_a">agnír hótā kavíkratuḥ</l>
+              <l xml:id="b01_h001_05_vnh_b">satyáś citráśravastamaḥ</l>
+              <l xml:id="b01_h001_05_vnh_c">devó devébhir ā́ gamat</l>
+            </lg>
+            <lg xml:id="b01_h001_05_aufrecht" xml:lang="san-Latn-x-ISO-15919" source="aufrecht">
+              <l xml:id="b01_h001_05_aufrecht_a">agnír hótā kavíkratuḥ satyáś citráśravastamaḥ</l>
+              <l xml:id="b01_h001_05_aufrecht_c">devó devébhir ā́ gamat</l>
+            </lg>
+            <lg xml:id="b01_h001_05_padapatha" xml:lang="san-Latn-x-ISO-15919" source="padapatha">
+              <l xml:id="b01_h001_05_padapatha_0" xml:lang="san-Latn-x-ISO-15919">
+                <w xml:id="b01_h001_05_padapatha_0_01">agniḥ</w>
+                <w xml:id="b01_h001_05_padapatha_0_02">hotā</w>
+                <w xml:id="b01_h001_05_padapatha_0_03">kavi-kratuḥ</w>
+                <w xml:id="b01_h001_05_padapatha_0_04">satyaḥ</w>
+                <w xml:id="b01_h001_05_padapatha_0_05">citraśravaḥ-tamaḥ</w>
+                <w xml:id="b01_h001_05_padapatha_0_06">devaḥ</w>
+                <w xml:id="b01_h001_05_padapatha_0_07">devebhiḥ</w>
+                <w xml:id="b01_h001_05_padapatha_0_08">ā</w>
+                <w xml:id="b01_h001_05_padapatha_0_09">gamat</w>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_05_eichler" xml:lang="san-Deva" source="eichler">
+              <l xml:id="b01_h001_05_eichler_a">अ॒ग्निर्होता॑ क॒विक्र॑तुः स॒त्यश्चि॒त्रश्र॑वस्तमः</l>
+              <l xml:id="b01_h001_05_eichler_c">दे॒वो दे॒वेभि॒रा ग॑मत्</l>
+            </lg>
+            <lg xml:id="b01_h001_05_geldner" xml:lang="deu" source="geldner">
+              <l xml:id="b01_h001_05_geldner_0" xml:lang="deu">Agni, der wahre Hotr̥ mit Sehersinn und am meisten ruhmglänzend, der Gott soll mit den Göttern herkommen.</l>
+            </lg>
+            <lg xml:id="b01_h001_05_grassmann" xml:lang="deu" source="grassmann">
+              <l xml:id="b01_h001_05_grassmann_0" xml:lang="deu">Der weise, weitberühmteste, wahrhafte Priester Agni komm, Der Gott nun mit den Göttern her.</l>
+            </lg>
+            <lg xml:id="b01_h001_05_griffith" xml:lang="eng" source="griffith">
+              <l xml:id="b01_h001_05_griffith_0" xml:lang="eng">May Agni, sapient-minded Priest, truthful, most gloriously great, The God, come hither with the Gods.</l>
+            </lg>
+            <lg xml:id="b01_h001_05_macdonell" xml:lang="eng" source="macdonell">
+              <l xml:id="b01_h001_05_macdonell_0" xml:lang="eng">May Agni, the invoker, wise And true, of most resplendent fame, The god, come hither with the gods.</l>
+            </lg>
+            <lg xml:id="b01_h001_05_oldenberg" xml:lang="eng" source="oldenberg">
+              <l xml:id="b01_h001_05_oldenberg_0" xml:lang="eng">May Agni the thoughtful Hotri, he who is true and most splendidly renowned, may the god come hither with the gods.</l>
+            </lg>
+            <lg xml:id="b01_h001_05_renou" xml:lang="fra" source="renou">
+              <l xml:id="b01_h001_05_renou_0" xml:lang="fra">Agni, oblateur ayant le pouvoir-spirituel d'un poète, (Agni) réel au renom très éclatant,/ dieu (lui-même), qu'il vienne avec les dieux! </l>
+            </lg>
+            <lg xml:id="b01_h001_05_elizarenkova" xml:lang="rus" source="elizarenkova">
+              <l xml:id="b01_h001_05_elizarenkova_1">Агни-хотар с прозорливостью поэта,</l>
+              <l xml:id="b01_h001_05_elizarenkova_2">Истинный, с ярчайшей славой, –</l>
+              <l xml:id="b01_h001_05_elizarenkova_3">Бог с богами да приидет!</l>
+            </lg>
+          </div>
+          <div xml:id="b01_h001_06" type="stanza">
+            <lg xml:id="b01_h001_06_strata" type="strata">
+              <l xml:id="b01_h001_06_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_06_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_06_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_06_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h001_06_zur_a">yád aṅgá dāśúṣe tvám</l>
+              <l xml:id="b01_h001_06_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_a_01">
+                  <f name="surface">
+                    <string>yát</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_ya_6983">yá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="N"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_a_02">
+                  <f name="surface">
+                    <string>aṅgá</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aNga_133">aṅgá</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules"/>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_a_03">
+                  <f name="surface">
+                    <string>dāśúṣe</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_dASvas_4207">dāśváṃs-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="DAT"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_a_04">
+                  <f name="surface">
+                    <string>tvám</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_tva_3983">tvám</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_06_zur_b">ágne bhadráṃ kariṣyási</l>
+              <l xml:id="b01_h001_06_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_b_01">
+                  <f name="surface">
+                    <string>ágne</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_agni_79">agní-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_b_02">
+                  <f name="surface">
+                    <string>bhadrám</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_Badra_6296">bhadrá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="N"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_b_03">
+                  <f name="surface">
+                    <string>kariṣyási</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_kf_2645">√kr̥-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="2"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="IND"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="FUT"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_06_zur_c">távét tát satyám aṅgiraḥ</l>
+              <l xml:id="b01_h001_06_zur_c_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_c_01">
+                  <f name="surface">
+                    <string>táva</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_tva_3983">tvám</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="GEN"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_c_02">
+                  <f name="surface">
+                    <string>ít</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_id_1695">íd</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules"/>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_c_03">
+                  <f name="surface">
+                    <string>tát</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_sa_9064 #lemma_ta_3606">sá- ~ tá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="N"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_c_04">
+                  <f name="surface">
+                    <string>satyám</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_satya_9173">satyá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="N"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_06_zur_c_05">
+                  <f name="surface">
+                    <string>aṅgiraḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aNgiras_137">áṅgiras-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_06_lubotsky" xml:lang="san-Latn-x-ISO-15919" source="lubotsky">
+              <l xml:id="b01_h001_06_lubotsky_a">yát aṅgá dāśúṣe-_ tvám</l>
+              <l xml:id="b01_h001_06_lubotsky_b">ágne-_ bhadrám kariṣyási</l>
+              <l xml:id="b01_h001_06_lubotsky_c">táva ít tát satyám aṅgiraḥ</l>
+            </lg>
+            <lg xml:id="b01_h001_06_vnh" xml:lang="san-Latn-x-ISO-15919" source="vnh">
+              <l xml:id="b01_h001_06_vnh_a">yád aṅgá dāśúṣe tuvám</l>
+              <l xml:id="b01_h001_06_vnh_b">ágne bhadráṁ kariṣyási</l>
+              <l xml:id="b01_h001_06_vnh_c">távét tát satyám aṅgiraḥ</l>
+            </lg>
+            <lg xml:id="b01_h001_06_aufrecht" xml:lang="san-Latn-x-ISO-15919" source="aufrecht">
+              <l xml:id="b01_h001_06_aufrecht_a">yád aṅgá dāśúṣe tvám ágne bhadráṁ kariṣyási</l>
+              <l xml:id="b01_h001_06_aufrecht_c">távét tát satyám aṅgiraḥ</l>
+            </lg>
+            <lg xml:id="b01_h001_06_padapatha" xml:lang="san-Latn-x-ISO-15919" source="padapatha">
+              <l xml:id="b01_h001_06_padapatha_0" xml:lang="san-Latn-x-ISO-15919">
+                <w xml:id="b01_h001_06_padapatha_0_01">yat</w>
+                <w xml:id="b01_h001_06_padapatha_0_02">aṅga</w>
+                <w xml:id="b01_h001_06_padapatha_0_03">dāśuṣe</w>
+                <w xml:id="b01_h001_06_padapatha_0_04">tvam</w>
+                <w xml:id="b01_h001_06_padapatha_0_05">agne</w>
+                <w xml:id="b01_h001_06_padapatha_0_06">bhadram</w>
+                <w xml:id="b01_h001_06_padapatha_0_07">kariṣyasi</w>
+                <w xml:id="b01_h001_06_padapatha_0_08">tava</w>
+                <w xml:id="b01_h001_06_padapatha_0_09">it</w>
+                <w xml:id="b01_h001_06_padapatha_0_10">tat</w>
+                <w xml:id="b01_h001_06_padapatha_0_11">satyam</w>
+                <w xml:id="b01_h001_06_padapatha_0_12">aṅgiraḥ</w>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_06_eichler" xml:lang="san-Deva" source="eichler">
+              <l xml:id="b01_h001_06_eichler_a">यद॒ङ्ग दा॒शुषे॒ त्वमग्ने॑ भ॒द्रं क॑रि॒ष्यसि॑</l>
+              <l xml:id="b01_h001_06_eichler_c">तवेत्तत्स॒त्यम॑ङ्गिरः</l>
+            </lg>
+            <lg xml:id="b01_h001_06_geldner" xml:lang="deu" source="geldner">
+              <l xml:id="b01_h001_06_geldner_0" xml:lang="deu">Wenn du wirklich dem Spender Gutes tun willst, Agni, so wird bei dir das wahr, oh Aṅgiras.</l>
+            </lg>
+            <lg xml:id="b01_h001_06_grassmann" xml:lang="deu" source="grassmann">
+              <l xml:id="b01_h001_06_grassmann_0" xml:lang="deu">Dass du dem Mann, der dich verehrt, o Agni, Heil verschaffen wirst, Ist deine Art, o Angiras.</l>
+            </lg>
+            <lg xml:id="b01_h001_06_griffith" xml:lang="eng" source="griffith">
+              <l xml:id="b01_h001_06_griffith_0" xml:lang="eng">Whatever blessing, Agni, thou wilt grant unto thy worshipper, That, Angiras, is indeed thy truth.</l>
+            </lg>
+            <lg xml:id="b01_h001_06_macdonell" xml:lang="eng" source="macdonell">
+              <l xml:id="b01_h001_06_macdonell_0" xml:lang="eng">Whatever good thou wilt bestow, O Agni, on the pious man, That gift comes true, O Angiras.</l>
+            </lg>
+            <lg xml:id="b01_h001_06_oldenberg" xml:lang="eng" source="oldenberg">
+              <l xml:id="b01_h001_06_oldenberg_0" xml:lang="eng">Whatever good thou wilt do to thy worshipper, O Agni, that (work) verily is thine, O Angiras.</l>
+            </lg>
+            <lg xml:id="b01_h001_06_renou" xml:lang="fra" source="renou">
+              <l xml:id="b01_h001_06_renou_0" xml:lang="fra">En vérité, quand tu décideras toi(-même), ô Agni, de faire du bien à l'adorateur,/ c'est à toi (qu'en reviendra le mérite) réel, ô Aṅgiras.</l>
+            </lg>
+            <lg xml:id="b01_h001_06_elizarenkova" xml:lang="rus" source="elizarenkova">
+              <l xml:id="b01_h001_06_elizarenkova_1">Когда ты в самом деле возжелаешь,</l>
+              <l xml:id="b01_h001_06_elizarenkova_2">О Агни, сделать добро почитающему (тебя),</l>
+              <l xml:id="b01_h001_06_elizarenkova_3">То у тебя это истинно, о Ангирас.</l>
+            </lg>
+          </div>
+          <div xml:id="b01_h001_07" type="stanza">
+            <lg xml:id="b01_h001_07_strata" type="strata">
+              <l xml:id="b01_h001_07_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_07_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_07_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_07_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h001_07_zur_a">úpa tvāgne divé-dive</l>
+              <l xml:id="b01_h001_07_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_a_01">
+                  <f name="surface">
+                    <string>úpa</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_upa_1933">úpa</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="local particle">
+                        <symbol value="LP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_a_02">
+                  <f name="surface">
+                    <string>tvā</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_tva_3983">tvám</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_a_03">
+                  <f name="surface">
+                    <string>agne</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_agni_79">agní-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_a_04">
+                  <f name="surface">
+                    <string>divé-dive</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_div_4231 #lemma_dyu_4513">dyú- ~ div-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="DAT"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_07_zur_b">dóṣāvastar dhiyā́ vayám</l>
+              <l xml:id="b01_h001_07_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_b_01">
+                  <f name="surface">
+                    <string>dóṣāvastar</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_dozAvastf_4504">doṣāvastar-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_b_02">
+                  <f name="surface">
+                    <string>dhiyā́</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_DI_4710">dhī́-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="INS"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="F"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_b_03">
+                  <f name="surface">
+                    <string>vayám</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aham_1404">ahám</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_07_zur_c">námo bháranta émasi</l>
+              <l xml:id="b01_h001_07_zur_c_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_c_01">
+                  <f name="surface">
+                    <string>námaḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_namas_4845">námas-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="N"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_c_02">
+                  <f name="surface">
+                    <string>bhárantaḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_Bf_6437">√bhr̥-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                      <f name="non-finite">
+                        <symbol value="PTCP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_c_03">
+                  <f name="surface">
+                    <string>ā́</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_A_1444">ā́</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="local particle">
+                        <symbol value="LP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_07_zur_c_04">
+                  <f name="surface">
+                    <string>imasi</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_i_1675">√i- 1</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="1"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="IND"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_07_lubotsky" xml:lang="san-Latn-x-ISO-15919" source="lubotsky">
+              <l xml:id="b01_h001_07_lubotsky_a">úpa tvā agne-_ divé-dive-_</l>
+              <l xml:id="b01_h001_07_lubotsky_b">dóṣāvastar dhiyā́ vayám</l>
+              <l xml:id="b01_h001_07_lubotsky_c">námaḥ bhárantaḥ ā́ imasi</l>
+            </lg>
+            <lg xml:id="b01_h001_07_vnh" xml:lang="san-Latn-x-ISO-15919" source="vnh">
+              <l xml:id="b01_h001_07_vnh_a">úpa tvāgne divé-dive</l>
+              <l xml:id="b01_h001_07_vnh_b">dóṣāvastar dhiyā́ vayám</l>
+              <l xml:id="b01_h001_07_vnh_c">námo bháranta émasi</l>
+            </lg>
+            <lg xml:id="b01_h001_07_aufrecht" xml:lang="san-Latn-x-ISO-15919" source="aufrecht">
+              <l xml:id="b01_h001_07_aufrecht_a">úpa tvāgne divé-dive dóṣāvastar dhiyā́ vayám</l>
+              <l xml:id="b01_h001_07_aufrecht_c">námo bháranta émasi</l>
+            </lg>
+            <lg xml:id="b01_h001_07_padapatha" xml:lang="san-Latn-x-ISO-15919" source="padapatha">
+              <l xml:id="b01_h001_07_padapatha_0" xml:lang="san-Latn-x-ISO-15919">
+                <w xml:id="b01_h001_07_padapatha_0_01">upa</w>
+                <w xml:id="b01_h001_07_padapatha_0_02">tvā</w>
+                <w xml:id="b01_h001_07_padapatha_0_03">agne</w>
+                <w xml:id="b01_h001_07_padapatha_0_04">dive--dive</w>
+                <w xml:id="b01_h001_07_padapatha_0_05">doṣāvastaḥ</w>
+                <w xml:id="b01_h001_07_padapatha_0_06">dhiyā</w>
+                <w xml:id="b01_h001_07_padapatha_0_07">vayam</w>
+                <w xml:id="b01_h001_07_padapatha_0_08">namaḥ</w>
+                <w xml:id="b01_h001_07_padapatha_0_09">bharantaḥ</w>
+                <w xml:id="b01_h001_07_padapatha_0_10">ā</w>
+                <w xml:id="b01_h001_07_padapatha_0_11">imasi</w>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_07_eichler" xml:lang="san-Deva" source="eichler">
+              <l xml:id="b01_h001_07_eichler_a">उप॑ त्वाग्ने दि॒वेदि॑वे॒ दोषा॑वस्तर्धि॒या व॒यम्</l>
+              <l xml:id="b01_h001_07_eichler_c">नमो॒ भर॑न्त॒ एम॑सि</l>
+            </lg>
+            <lg xml:id="b01_h001_07_geldner" xml:lang="deu" source="geldner">
+              <l xml:id="b01_h001_07_geldner_0" xml:lang="deu">Dir, Agni, nahen wir Tag für Tag, du Dunkel-Erheller, mit Andacht, Huldigung darbringend,</l>
+            </lg>
+            <lg xml:id="b01_h001_07_grassmann" xml:lang="deu" source="grassmann">
+              <l xml:id="b01_h001_07_grassmann_0" xml:lang="deu">Dir, Agni, nahn wir Tag für Tag, o Nachterheller, mit Gebet Und bringen dir Verehrung dar.</l>
+            </lg>
+            <lg xml:id="b01_h001_07_griffith" xml:lang="eng" source="griffith">
+              <l xml:id="b01_h001_07_griffith_0" xml:lang="eng">To thee, dispeller of the night, O Agni, day by day with prayer Bringing thee reverence, we come</l>
+            </lg>
+            <lg xml:id="b01_h001_07_macdonell" xml:lang="eng" source="macdonell">
+              <l xml:id="b01_h001_07_macdonell_0" xml:lang="eng">To thee, O Agni, day by day, O thou illuminer of gloom, With thought we, bearing homage, come:</l>
+            </lg>
+            <lg xml:id="b01_h001_07_oldenberg" xml:lang="eng" source="oldenberg">
+              <l xml:id="b01_h001_07_oldenberg_0" xml:lang="eng">Thee, O Agni, we approach day by day, O (god) who shinest in the darkness 1; with our prayer, bringing adoration to thee</l>
+            </lg>
+            <lg xml:id="b01_h001_07_renou" xml:lang="fra" source="renou">
+              <l xml:id="b01_h001_07_renou_0" xml:lang="fra">Nous t'approchons jour après jour, ô Agni, grâce à la vision-poétique, ô toi qui éclaires durant les nuits,/ nous-mêmes, en t'apportant l'hommage,</l>
+            </lg>
+            <lg xml:id="b01_h001_07_elizarenkova" xml:lang="rus" source="elizarenkova">
+              <l xml:id="b01_h001_07_elizarenkova_1">К тебе, о Агни, изо дня в день,</l>
+              <l xml:id="b01_h001_07_elizarenkova_2">О озаряющий тьму, мы приходим</l>
+              <l xml:id="b01_h001_07_elizarenkova_3">С молитвой, неся поклонение –</l>
+            </lg>
+          </div>
+          <div xml:id="b01_h001_08" type="stanza">
+            <lg xml:id="b01_h001_08_strata" type="strata">
+              <l xml:id="b01_h001_08_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_08_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_08_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_08_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h001_08_zur_a">rā́jantam adhvarā́ṇāṃ</l>
+              <l xml:id="b01_h001_08_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_a_01">
+                  <f name="surface">
+                    <string>rā́jantam</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_rAj_7358 #lemma_rAj_7359">√rāj-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                      <f name="non-finite">
+                        <symbol value="PTCP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_a_02">
+                  <f name="surface">
+                    <string>adhvarā́ṇām</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aDvara_384">adhvará-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="GEN"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_08_zur_b">gopā́m r̥tásya dī́divim</l>
+              <l xml:id="b01_h001_08_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_b_01">
+                  <f name="surface">
+                    <string>gopā́m</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_gopA_3059">gopā́-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_b_02">
+                  <f name="surface">
+                    <string>r̥tásya</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_fta_2184">r̥tá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="GEN"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="N"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_b_03">
+                  <f name="surface">
+                    <string>dī́divim</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_dIdivi_4259">dī́divi-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_08_zur_c">várdhamānaṃ své dáme</l>
+              <l xml:id="b01_h001_08_zur_c_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_c_01">
+                  <f name="surface">
+                    <string>várdhamānam</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_vfD_8385">√vr̥dh-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="MED"/>
+                      </f>
+                      <f name="non-finite">
+                        <symbol value="PTCP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_c_02">
+                  <f name="surface">
+                    <string>své</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_sva_10367">svá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="LOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_08_zur_c_03">
+                  <f name="surface">
+                    <string>dáme</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_dama_4091">dáma-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="LOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_08_lubotsky" xml:lang="san-Latn-x-ISO-15919" source="lubotsky">
+              <l xml:id="b01_h001_08_lubotsky_a">rā́jantam adhvarā́ṇām</l>
+              <l xml:id="b01_h001_08_lubotsky_b">gopā́m r̥tásya dī́divim</l>
+              <l xml:id="b01_h001_08_lubotsky_c">várdhamānam své-_ dáme-_</l>
+            </lg>
+            <lg xml:id="b01_h001_08_vnh" xml:lang="san-Latn-x-ISO-15919" source="vnh">
+              <l xml:id="b01_h001_08_vnh_a">rā́jantam adhvarā́ṇaaṁ</l>
+              <l xml:id="b01_h001_08_vnh_b">gopā́m r̥tásya dī́divim</l>
+              <l xml:id="b01_h001_08_vnh_c">várdhamānaṁ suvé dáme</l>
+            </lg>
+            <lg xml:id="b01_h001_08_aufrecht" xml:lang="san-Latn-x-ISO-15919" source="aufrecht">
+              <l xml:id="b01_h001_08_aufrecht_a">rā́jantam adhvarā́ṇāṁ gopā́m r̥tásya dī́divim</l>
+              <l xml:id="b01_h001_08_aufrecht_c">várdhamānaṁ své dáme</l>
+            </lg>
+            <lg xml:id="b01_h001_08_padapatha" xml:lang="san-Latn-x-ISO-15919" source="padapatha">
+              <l xml:id="b01_h001_08_padapatha_0" xml:lang="san-Latn-x-ISO-15919">
+                <w xml:id="b01_h001_08_padapatha_0_01">rājantam</w>
+                <w xml:id="b01_h001_08_padapatha_0_02">adhvarāṇām</w>
+                <w xml:id="b01_h001_08_padapatha_0_03">gopām</w>
+                <w xml:id="b01_h001_08_padapatha_0_04">r̥tasya</w>
+                <w xml:id="b01_h001_08_padapatha_0_05">dīdivim</w>
+                <w xml:id="b01_h001_08_padapatha_0_06">vardhamānam</w>
+                <w xml:id="b01_h001_08_padapatha_0_07">sve</w>
+                <w xml:id="b01_h001_08_padapatha_0_08">dame</w>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_08_eichler" xml:lang="san-Deva" source="eichler">
+              <l xml:id="b01_h001_08_eichler_a">राज॑न्तमध्व॒राणां॑ गो॒पामृ॒तस्य॒ दीदि॑विम्</l>
+              <l xml:id="b01_h001_08_eichler_c">वर्ध॑मानं॒ स्वे दमे॑</l>
+            </lg>
+            <lg xml:id="b01_h001_08_geldner" xml:lang="deu" source="geldner">
+              <l xml:id="b01_h001_08_geldner_0" xml:lang="deu">Dem Walter der Opferhandlungen, dem Hüter des rechten Brauches, dem leuchtenden, der im eigenen Hause heranwächst.</l>
+            </lg>
+            <lg xml:id="b01_h001_08_grassmann" xml:lang="deu" source="grassmann">
+              <l xml:id="b01_h001_08_grassmann_0" xml:lang="deu">Dir, der die Opfer du beherrschst, der glänzend du das Werk beschirmst, Und in dem eignen Haus gedeihst.</l>
+            </lg>
+            <lg xml:id="b01_h001_08_griffith" xml:lang="eng" source="griffith">
+              <l xml:id="b01_h001_08_griffith_0" xml:lang="eng">Ruler of sacrifices, guard of Law eternal, radiant One, Increasing in thine own abode.</l>
+            </lg>
+            <lg xml:id="b01_h001_08_macdonell" xml:lang="eng" source="macdonell">
+              <l xml:id="b01_h001_08_macdonell_0" xml:lang="eng">To thee the lord of sacrifice, The radiant guardian of the Law, That growest in thine own abode.</l>
+            </lg>
+            <lg xml:id="b01_h001_08_oldenberg" xml:lang="eng" source="oldenberg">
+              <l xml:id="b01_h001_08_oldenberg_0" xml:lang="eng">Who art the king of all worship, the guardian of Rita, the shining one, increasing in thy own house.</l>
+            </lg>
+            <lg xml:id="b01_h001_08_renou" xml:lang="fra" source="renou">
+              <l xml:id="b01_h001_08_renou_0" xml:lang="fra">toi qui régis les rites (comme) gardien de l'Ordre-sacré, (dieu) éclatant,/ qui prends croissance en ta propre maison.</l>
+            </lg>
+            <lg xml:id="b01_h001_08_elizarenkova" xml:lang="rus" source="elizarenkova">
+              <l xml:id="b01_h001_08_elizarenkova_1">К царящему при обрядах,</l>
+              <l xml:id="b01_h001_08_elizarenkova_2">К пастырю закона, сверкающему,</l>
+              <l xml:id="b01_h001_08_elizarenkova_3">К возрастающему в доме своем.</l>
+            </lg>
+          </div>
+          <div xml:id="b01_h001_09" type="stanza">
+            <lg xml:id="b01_h001_09_strata" type="strata">
+              <l xml:id="b01_h001_09_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_09_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_09_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">N</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_09_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h001_09_zur_a">sá naḥ pitéva sūnáve-</l>
+              <l xml:id="b01_h001_09_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_a_01">
+                  <f name="surface">
+                    <string>sá</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_sa_9064 #lemma_ta_3606">sá- ~ tá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_a_02">
+                  <f name="surface">
+                    <string>naḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aham_1404">ahám</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="DAT"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_a_03">
+                  <f name="surface">
+                    <string>pitā́</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_pitf_5481">pitár-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_a_04">
+                  <f name="surface">
+                    <string>iva</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_iva_1775">iva</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules"/>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_a_05">
+                  <f name="surface">
+                    <string>sūnáve</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_sUnu_10096">sūnú-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="DAT"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_09_zur_b">-ágne sūpāyanó bhava</l>
+              <l xml:id="b01_h001_09_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_b_01">
+                  <f name="surface">
+                    <string>ágne</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_agni_79">agní-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_b_02">
+                  <f name="surface">
+                    <string>sūpāyanáḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_sUpAyana_10103">sūpāyaná-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_b_03">
+                  <f name="surface">
+                    <string>bhava</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_BU_6403">√bhū-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="2"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="IMP"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h001_09_zur_c">sácasvā naḥ svastáye</l>
+              <l xml:id="b01_h001_09_zur_c_tokens">
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_c_01">
+                  <f name="surface">
+                    <string>sácasva +</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_sac_9133">√sac-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="2"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="IMP"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="MED"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_c_02">
+                  <f name="surface">
+                    <string>naḥ</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_aham_1404">ahám</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="ACC"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="PL"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h001_09_zur_c_03">
+                  <f name="surface">
+                    <string>svastáye</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_svasti_10485">svastí-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="DAT"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="F"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_09_lubotsky" xml:lang="san-Latn-x-ISO-15919" source="lubotsky">
+              <l xml:id="b01_h001_09_lubotsky_a">sá naḥ pitā́ iva sūnáve-_</l>
+              <l xml:id="b01_h001_09_lubotsky_b">ágne-_ sūpāyanáḥ bhava</l>
+              <l xml:id="b01_h001_09_lubotsky_c">sácasvā+ naḥ svastáye-_</l>
+            </lg>
+            <lg xml:id="b01_h001_09_vnh" xml:lang="san-Latn-x-ISO-15919" source="vnh">
+              <l xml:id="b01_h001_09_vnh_a">sá naḥ pitéva sūnáve</l>
+              <l xml:id="b01_h001_09_vnh_b">ágne sūpāyanó bhava</l>
+              <l xml:id="b01_h001_09_vnh_c">sácasvā naḥ suastáye</l>
+            </lg>
+            <lg xml:id="b01_h001_09_aufrecht" xml:lang="san-Latn-x-ISO-15919" source="aufrecht">
+              <l xml:id="b01_h001_09_aufrecht_a">sá naḥ pitéva sūnávé 'gne sūpāyanó bhava</l>
+              <l xml:id="b01_h001_09_aufrecht_c">sácasvā naḥ svastáye</l>
+            </lg>
+            <lg xml:id="b01_h001_09_padapatha" xml:lang="san-Latn-x-ISO-15919" source="padapatha">
+              <l xml:id="b01_h001_09_padapatha_0" xml:lang="san-Latn-x-ISO-15919">
+                <w xml:id="b01_h001_09_padapatha_0_01">saḥ</w>
+                <w xml:id="b01_h001_09_padapatha_0_02">naḥ</w>
+                <w xml:id="b01_h001_09_padapatha_0_03">pitāiva</w>
+                <w xml:id="b01_h001_09_padapatha_0_04">sūnave</w>
+                <w xml:id="b01_h001_09_padapatha_0_05">agne</w>
+                <w xml:id="b01_h001_09_padapatha_0_06">su-upāyanaḥ</w>
+                <w xml:id="b01_h001_09_padapatha_0_07">bhava</w>
+                <w xml:id="b01_h001_09_padapatha_0_08">sacasva</w>
+                <w xml:id="b01_h001_09_padapatha_0_09">naḥ</w>
+                <w xml:id="b01_h001_09_padapatha_0_10">svastaye</w>
+              </l>
+            </lg>
+            <lg xml:id="b01_h001_09_eichler" xml:lang="san-Deva" source="eichler">
+              <l xml:id="b01_h001_09_eichler_a">स नः॑ पि॒तेव॑ सू॒नवेऽग्ने॑ सूपाय॒नो भ॑व</l>
+              <l xml:id="b01_h001_09_eichler_c">सच॑स्वा नः स्व॒स्तये॑</l>
+            </lg>
+            <lg xml:id="b01_h001_09_geldner" xml:lang="deu" source="geldner">
+              <l xml:id="b01_h001_09_geldner_0" xml:lang="deu">Sei du Agni uns zugänglich wie ein Vater dem Sohne! Sei mit uns zum Heile!</l>
+            </lg>
+            <lg xml:id="b01_h001_09_grassmann" xml:lang="deu" source="grassmann">
+              <l xml:id="b01_h001_09_grassmann_0" xml:lang="deu">Gewähre, Agni, uns Gehör, sowie der Vater seinem Sohn, Geleite uns zum Wohlergehn.</l>
+            </lg>
+            <lg xml:id="b01_h001_09_griffith" xml:lang="eng" source="griffith">
+              <l xml:id="b01_h001_09_griffith_0" xml:lang="eng">Be to us easy of approach, even as a father to his son: Agni, be with us for our weal.</l>
+            </lg>
+            <lg xml:id="b01_h001_09_macdonell" xml:lang="eng" source="macdonell">
+              <l xml:id="b01_h001_09_macdonell_0" xml:lang="eng">So, like a father to his son, Be easy of approach to us; Agni, for weal abide with us.</l>
+            </lg>
+            <lg xml:id="b01_h001_09_oldenberg" xml:lang="eng" source="oldenberg">
+              <l xml:id="b01_h001_09_oldenberg_0" xml:lang="eng">Thus, O Agni, be easy of access to us, as a father is to his son. Stay with us for our happiness.</l>
+            </lg>
+            <lg xml:id="b01_h001_09_renou" xml:lang="fra" source="renou">
+              <l xml:id="b01_h001_09_renou_0" xml:lang="fra">Tel (étant), sois nous d'accès facile comme (l'est) un père pour le fils, ô Agni;/ tiens toi à nos côtés, pour (notre) salut!</l>
+            </lg>
+            <lg xml:id="b01_h001_09_elizarenkova" xml:lang="rus" source="elizarenkova">
+              <l xml:id="b01_h001_09_elizarenkova_1">Как отец – сыну,</l>
+              <l xml:id="b01_h001_09_elizarenkova_2">О Агни, будь доступен нам!</l>
+              <l xml:id="b01_h001_09_elizarenkova_3">Сопровождай нас ради блага!</l>
+            </lg>
+          </div>
+        </div>
+        <div xml:id="b01_h002" ana="2" type="hymn">
+          <div type="dedication">
+            <div type="addressee">
+              <p xml:lang="deu">An Vayu, Indra und Vayu, Mitra und Varuna</p>
+              <p xml:lang="eng">Vayu, Indra and Vayu, Mitra and Varuna</p>
+            </div>
+            <div type="group" n="1">
+              <p xml:lang="deu">Lieder des Madhucchandas</p>
+              <p xml:lang="eng">Hymns of Madhucchandas</p>
+            </div>
+          </div>
+          <div xml:id="b01_h002_01" type="stanza">
+            <lg xml:id="b01_h002_01_strata" type="strata">
+              <l xml:id="b01_h002_01_strata_a">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">S</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h002_01_strata_b">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">S</f>
+                </fs>
+              </l>
+              <l xml:id="b01_h002_01_strata_c">
+                <fs type="strata_info">
+                  <f name="label">MO</f>
+                  <f name="strata">S</f>
+                </fs>
+              </l>
+            </lg>
+            <lg xml:id="b01_h002_01_zur" xml:lang="san-Latn-x-ISO-15919" source="zurich">
+              <l xml:id="b01_h002_01_zur_a">vā́yav ā́ yāhi darśata-</l>
+              <l xml:id="b01_h002_01_zur_a_tokens">
+                <fs type="zurich_info" xml:id="b01_h002_01_zur_a_01">
+                  <f name="surface">
+                    <string>vā́yo</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_vAyu_7917">vāyú-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h002_01_zur_a_02">
+                  <f name="surface">
+                    <string>ā́</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_A_1444">ā́</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="invariable"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="local particle">
+                        <symbol value="LP"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h002_01_zur_a_03">
+                  <f name="surface">
+                    <string>yāhi</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_yA_7091">√yā- 1</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="root"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                      <f name="person">
+                        <symbol value="2"/>
+                      </f>
+                      <f name="mood">
+                        <symbol value="IMP"/>
+                      </f>
+                      <f name="tense">
+                        <symbol value="PRS"/>
+                      </f>
+                      <f name="voice">
+                        <symbol value="ACT"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+                <fs type="zurich_info" xml:id="b01_h002_01_zur_a_04">
+                  <f name="surface">
+                    <string>darśata</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_darSata_4115">darśatá-</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="nominal stem"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="VOC"/>
+                      </f>
+                      <f name="gender">
+                        <symbol value="M"/>
+                      </f>
+                      <f name="number">
+                        <symbol value="SG"/>
+                      </f>
+                    </fs>
+                  </f>
+                </fs>
+              </l>
+              <l xml:id="b01_h002_01_zur_b">-imé sómā áraṃkr̥tāḥ</l>
+              <l xml:id="b01_h002_01_zur_b_tokens">
+                <fs type="zurich_info" xml:id="b01_h002_01_zur_b_01">
+                  <f name="surface">
+                    <string>imé</string>
+                  </f>
+                  <f name="gra_lemma">
+                    <string correction="#lemma_idam_1696">ayám</string>
+                  </f>
+                  <f name="gra_gramm">
+                    <symbol value="pronoun"/>
+                  </f>
+                  <f name="morphosyntax">
+                    <fs type="leipzig_glossing_rules">
+                      <f name="case">
+                        <symbol value="NOM"/>
+                      </f>
+                 

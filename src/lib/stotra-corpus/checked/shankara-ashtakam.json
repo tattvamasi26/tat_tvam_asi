@@ -1,0 +1,28 @@
+{
+  "editionTitle": "शङ्कराष्टकम्",
+  "startPage": 361,
+  "slug": "shankara-ashtakam",
+  "name": "Shankara Ashtakam",
+  "devata": "shiva",
+  "composer": "brahmananda",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/sri-shankara-ashtakam-in-kannada/",
+  "corrections": [
+    { "verse": "2", "from": "जगत्त्रर्याफालम्", "to": "जगत्त्रयीफालम्", "page": 353, "kind": "transcription" },
+    { "verse": "6", "from": "देहिनां वन्दे ।", "to": "देहिनां वन्दे ॥", "page": 353, "kind": "transcription", "why": "Verse 5 ends here; its danda and number are lost at the margin of the print, and the transcription typed a single danda, running verses 5 and 6 together." },
+    { "verse": "6", "from": "दालयावेशम्", "to": "हृदालयावेशम्", "page": 353, "kind": "transcription" },
+    { "verse": "7", "from": "करतलकलिवपिनाकं", "to": "करतलकलितपिनाकं", "page": 353, "kind": "transcription" },
+    { "verse": "8", "from": "भूतिविभूषितकार्य", "to": "भूतिविभूषितकायं", "page": 354, "kind": "transcription" },
+    { "verse": "8", "from": "विवर्जिवापायम्", "to": "विवर्जितापायम्", "page": 354, "kind": "transcription" },
+    { "verse": "8", "from": "प्रातनिरन्तरं", "to": "प्रातर्निरन्तरं", "page": 354, "kind": "transcription" }
+  ],
+  "split": [
+    { "verse": "6", "after": "देहिनां वन्दे ॥", "why": "The danda restored above ends verse 5." }
+  ],
+  "variants": [
+    { "verse": "2", "reading": "जगत्त्रयीफालम्", "witness": "जगत्त्रयीपालम्", "page": 353 },
+    { "verse": "6", "reading": "स्वान्तेषु देहिनां", "witness": "स्वान्तेषु देवानां", "page": 353 },
+    { "verse": "7", "reading": "विगतजराकं", "witness": "विगतजलाकं", "page": 353 },
+    { "verse": "8", "reading": "भूतिविभूषितकायं", "witness": "भूतविभूषितकायं", "page": 354 }
+  ]
+}

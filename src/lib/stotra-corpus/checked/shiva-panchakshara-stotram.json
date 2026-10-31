@@ -1,0 +1,17 @@
+{
+  "editionTitle": "शिवपञ्चाक्षरस्तोत्रम्",
+  "startPage": 242,
+  "slug": "shiva-panchakshara-stotram",
+  "name": "Shiva Panchakshara Stotram",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/shiva-panchakshara-stotram-in-kannada/",
+  "corrections": [
+    { "verse": "#5", "from": "जटाघराय", "to": "जटाधराय", "page": 235, "kind": "transcription", "why": "The letter is ध, faintly inked; the witness reads the same." }
+  ],
+  "variants": [
+    { "verse": "#1", "reading": "विलोचनाय", "witness": "त्रिलोचनाय", "page": 234 },
+    { "verse": "#6", "whole": true, "witness": null, "page": 235, "note": "The phalaśruti, numbered 6 in the book; the witness does not print it." }
+  ]
+}

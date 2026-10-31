@@ -1,0 +1,620 @@
+/* ─────────────────────────────────────────────────────────
+   Time and the cosmos.
+
+   Built the way Rituals & Festivals is: each section a drawing paired
+   with the list it needs, the drawing carrying the shape and the list
+   carrying the names and every link. Plain SVG on the site's own
+   tokens — no chart library, nothing shipped to the browser.
+
+   Four drawings, four different shapes: a logarithmic ladder, a ring
+   divided 4:3:2:1, a vertical axis of fourteen, and concentric rings.
+   Each is the only honest rendering of what it shows.
+   ───────────────────────────────────────────────────────── */
+
+.co-standing {
+  max-width: 64ch;
+  padding-left: clamp(0.9rem, 2.4vw, 1.4rem);
+  border-left: 2px solid var(--gold);
+}
+
+.co-standing-text {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+.co-lens {
+  padding-block: clamp(2rem, 5vw, 3.4rem);
+  background: var(--paper);
+}
+
+.co-lens:nth-of-type(even) {
+  background: var(--paper-2);
+}
+
+.co-lens-inner {
+  display: grid;
+  gap: clamp(1.2rem, 3vw, 1.9rem);
+}
+
+.co-lens-head {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 62ch;
+}
+
+.co-lens-title {
+  margin: 0;
+  font-size: clamp(1.5rem, 3.8vw, 2.2rem);
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.co-lens-lede {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+/* A drawing beside its list, stacking on a narrow screen. */
+.co-pair {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(1.2rem, 3vw, 2.2rem);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .co-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* ── the drawings, shared ─────────────────────────────────── */
+.co-scale,
+.co-yuga,
+.co-lokas,
+.co-dvipas {
+  margin: 0;
+  min-width: 0;
+}
+
+.co-scale svg,
+.co-yuga svg,
+.co-lokas svg,
+.co-dvipas svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.co-caption {
+  margin-top: 0.7rem;
+  max-width: 58ch;
+  color: var(--ink-4);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.co-axis {
+  stroke: var(--line-2);
+  stroke-width: 2;
+}
+
+.co-grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.co-axis-label {
+  fill: var(--ink-4);
+  font-size: 11px;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+.co-dot {
+  fill: var(--sacred);
+}
+
+.co-stem {
+  stroke: var(--line-2);
+  stroke-width: 1;
+}
+
+.co-rung-n {
+  fill: var(--ink-3);
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── the ladder's list ────────────────────────────────────── */
+.co-rungs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 0.6rem;
+}
+
+.co-rung {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2rem 0.7rem;
+  align-items: start;
+  padding: 0.8rem 1rem 0.9rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+
+.co-rung-num {
+  width: 1.6rem;
+  height: 1.6rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--marigold-soft);
+  color: #6b4a00;
+  font-size: 0.72rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.co-rung-body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.co-rung-name {
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.co-rung-sanskrit {
+  font-size: 0.95rem;
+  color: var(--sacred);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.co-rung-def {
+  margin-top: 0.2rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* ── the ages ─────────────────────────────────────────────── */
+.co-yuga {
+  max-width: 340px;
+  justify-self: center;
+  width: 100%;
+}
+
+.co-yuga-arc {
+  fill: var(--saffron);
+  stroke: var(--paper);
+  stroke-width: 1;
+}
+
+.co-lens:nth-of-type(even) .co-yuga-arc {
+  stroke: var(--paper-2);
+}
+
+.co-yuga-n {
+  fill: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  font-variant-numeric: tabular-nums;
+}
+
+.co-centre-top,
+.co-centre-bottom {
+  text-anchor: middle;
+  fill: var(--ink-3);
+  font-size: 11px;
+}
+
+.co-centre-top {
+  fill: var(--sacred);
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.co-yuga-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.co-yuga-list li {
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.8rem 1rem 0.9rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+
+/* The age we are in, marked. */
+.co-yuga-list li[data-here="yes"] {
+  border-color: var(--gold);
+  background: var(--marigold-soft);
+}
+
+.co-yuga-name {
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.co-yuga-years {
+  font-size: 0.84rem;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums;
+}
+
+.co-yuga-char {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+/* Where the scheme says we are. */
+.co-now {
+  display: grid;
+  gap: 0.3rem;
+  padding-left: clamp(0.8rem, 2vw, 1.1rem);
+  border-left: 2px solid var(--gold);
+  max-width: 64ch;
+}
+
+.co-now-text {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.co-now-note {
+  margin: 0;
+  color: var(--ink-4);
+  font-size: 0.86rem;
+  line-height: 1.7;
+}
+
+/* ── the worlds ───────────────────────────────────────────── */
+.co-here-band {
+  fill: var(--marigold);
+  opacity: 0.16;
+}
+
+.co-loka-dot {
+  fill: var(--paper);
+  stroke: var(--ink-4);
+  stroke-width: 2;
+}
+
+.co-loka-dot[data-perishable="yes"] {
+  fill: var(--marigold-soft);
+  stroke: var(--gold-dim);
+}
+
+.co-loka-dot[data-here="yes"] {
+  fill: var(--marigold);
+  stroke: var(--gold);
+}
+
+.co-loka-name {
+  fill: var(--ink-2);
+  font-size: 12px;
+}
+
+.co-loka-name[data-here="yes"] {
+  fill: var(--sacred);
+  font-weight: 700;
+}
+
+.co-loka-note {
+  fill: var(--ink-4);
+  font-size: 9.5px;
+}
+
+.co-loka-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.co-loka-list li {
+  display: grid;
+  gap: 0.1rem;
+  padding: 0.6rem 0.9rem 0.7rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+
+.co-loka-list li[data-here="yes"] {
+  border-color: var(--gold);
+  background: var(--marigold-soft);
+}
+
+.co-loka-item-name {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.co-loka-item-sanskrit {
+  font-size: 0.92rem;
+  color: var(--sacred);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.co-loka-item-gloss {
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* ── the islands ──────────────────────────────────────────── */
+.co-dvipas {
+  max-width: 340px;
+  justify-self: center;
+  width: 100%;
+}
+
+/* The alternation is the whole content of this drawing, so the two
+   fills have to be clearly different. The first pass used paper-3
+   against marigold-soft on a paper-2 section and all three read as
+   the same cream. */
+.co-sea {
+  fill: var(--marigold);
+  fill-opacity: 0.3;
+  stroke: var(--gold-dim);
+  stroke-width: 1;
+}
+
+.co-land {
+  fill: var(--paper-3);
+  stroke: var(--sacred);
+  stroke-opacity: 0.5;
+  stroke-width: 1;
+}
+
+.co-meru {
+  fill: var(--sacred);
+}
+
+.co-meru-name {
+  fill: var(--on-night, #fbf3df);
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: middle;
+}
+
+.co-dvipa-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.co-dvipa-list li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2rem 0.7rem;
+  align-items: start;
+  padding: 0.7rem 0.95rem 0.8rem;
+  border-radius: var(--r-sm);
+  background: var(--card);
+  border: 1px solid var(--line);
+  min-width: 0;
+}
+
+.co-dvipa-num {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--paper-2);
+  color: var(--ink-3);
+  font-size: 0.7rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.co-dvipa-body {
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.co-dvipa-name {
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.co-dvipa-sea {
+  font-size: 0.85rem;
+  color: var(--gold);
+}
+
+.co-dvipa-note {
+  margin-top: 0.2rem;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* ── the dissolutions ─────────────────────────────────────── */
+.co-pralayas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  gap: 0.7rem;
+}
+
+.co-pralayas li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2rem 0.75rem;
+  align-items: start;
+  padding: 1rem 1.15rem 1.1rem;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  min-width: 0;
+}
+
+.co-pralaya-num {
+  width: 1.7rem;
+  height: 1.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--marigold-soft);
+  color: #6b4a00;
+  font-size: 0.74rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.co-pralaya-body {
+  display: grid;
+  gap: 0.12rem;
+  min-width: 0;
+}
+
+.co-pralaya-name {
+  font-weight: 700;
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.co-pralaya-sanskrit {
+  font-size: 0.95rem;
+  color: var(--sacred);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.co-pralaya-when {
+  margin-top: 0.2rem;
+  font-size: 0.84rem;
+  color: var(--gold);
+  line-height: 1.55;
+}
+
+.co-pralaya-what {
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--ink-2);
+}
+
+/* ── the four arguments ───────────────────────────────────── */
+.co-topics {
+  display: grid;
+  gap: clamp(1rem, 2.4vw, 1.4rem);
+  padding-block: clamp(2rem, 5vw, 3.2rem);
+}
+
+.co-topic-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 0.7rem;
+}
+
+.co-topic {
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+  height: 100%;
+  padding: 1.1rem 1.25rem 1.2rem;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .co-topic:hover {
+    border-color: var(--line-2);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+}
+
+.co-topic-name {
+  font-size: 1.08rem;
+  font-weight: 700;
+  line-height: var(--lh-snug, 1.3);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.co-topic-sanskrit {
+  font-size: 0.98rem;
+  color: var(--sacred);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.co-topic-lede {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+
+.co-topic-more {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+/* ── one argument ─────────────────────────────────────────── */
+.co-topic-body {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-block: clamp(2rem, 5vw, 3.2rem);
+  display: grid;
+  gap: clamp(1.8rem, 4vw, 2.6rem);
+}

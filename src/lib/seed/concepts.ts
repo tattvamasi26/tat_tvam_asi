@@ -1,6 +1,10 @@
 import type { ConceptRow, ConceptTranslationRow } from "./types";
+// The fifteen terms added later, the Vedanta schools' disagreements
+// and the source texts all live next door, because this file is
+// already long and that material has its own editorial rules.
+import { MORE_CONCEPTS, MORE_TRANSLATIONS } from "./concepts-more";
 
-export const CONCEPTS: ConceptRow[] = [
+const FIRST_SIX: ConceptRow[] = [
   { id: "c-brahman", slug: "brahman", term_sanskrit: "ब्रह्मन्", term_iast: "Brahman", category: "advaita", related_concepts: ["atman", "maya", "advaita"] },
   { id: "c-atman", slug: "atman", term_sanskrit: "आत्मन्", term_iast: "Ātman", category: "advaita", related_concepts: ["brahman", "maya", "moksha"] },
   { id: "c-maya", slug: "maya", term_sanskrit: "माया", term_iast: "Māyā", category: "advaita", related_concepts: ["brahman", "viveka", "moksha"] },
@@ -9,7 +13,7 @@ export const CONCEPTS: ConceptRow[] = [
   { id: "c-viveka", slug: "viveka", term_sanskrit: "विवेक", term_iast: "Viveka", category: "advaita", related_concepts: ["moksha", "atman", "maya"] },
 ];
 
-export const CONCEPT_TRANSLATIONS: ConceptTranslationRow[] = [
+const FIRST_SIX_TRANSLATIONS: ConceptTranslationRow[] = [
   // ── Brahman
   { concept_id: "c-brahman", language: "en", term: "Brahman", definition: "The ultimate, infinite, unchanging reality underlying all existence.",
     detailed_explanation: "In Advaita Vedanta, Brahman is the sole reality — infinite, eternal, self-luminous consciousness, described as Sat-Chit-Ananda: pure being, pure consciousness, pure bliss. Everything appearing as the world is Brahman alone, as waves are the ocean. Brahman is not a God existing somewhere; it is existence itself, knowing itself." },
@@ -28,11 +32,11 @@ export const CONCEPT_TRANSLATIONS: ConceptTranslationRow[] = [
 
   // ── Maya
   { concept_id: "c-maya", language: "en", term: "Maya", definition: "The creative power by which the one Brahman appears as many.",
-    detailed_explanation: "Maya is neither real nor unreal — it is the inexplicable power (shakti) of Brahman by which the infinite appears as the finite world. It works through two functions: avarana, the veiling of Brahman, and vikshepa, the projection of the world. Maya is often misread as meaning the world is an illusion in the sense of being nothing. It means something more precise: the world is real as appearance, but not real as an independent existence apart from Brahman." },
+    detailed_explanation: "Advaita calls māyā neither real nor unreal — the inexplicable power (śakti) by which the infinite appears as the finite world. It works through two functions: avarana, the veiling of Brahman, and vikshepa, the projection of the world. Maya is often misread as meaning the world is an illusion in the sense of being nothing. On Advaita's own account it means something more precise: the world is real as appearance, but not real as an independent existence apart from Brahman. Rāmānuja and Madhva both reject that reading, and their answers are below." },
   { concept_id: "c-maya", language: "kn", term: "ಮಾಯಾ", definition: "ಏಕವಾದ ಬ್ರಹ್ಮವು ಅನೇಕವಾಗಿ ತೋರುವಂತೆ ಮಾಡುವ ಸೃಜನಶಕ್ತಿ.",
-    detailed_explanation: "ಮಾಯೆಯು ಸತ್ಯವೂ ಅಲ್ಲ, ಅಸತ್ಯವೂ ಅಲ್ಲ — ಅನಂತವು ಸಾಂತ ಜಗತ್ತಾಗಿ ತೋರುವಂತೆ ಮಾಡುವ ಬ್ರಹ್ಮನ ಅನಿರ್ವಚನೀಯ ಶಕ್ತಿ. ಇದು ಎರಡು ಕಾರ್ಯಗಳ ಮೂಲಕ ಕೆಲಸ ಮಾಡುತ್ತದೆ: ಆವರಣ, ಅಂದರೆ ಬ್ರಹ್ಮವನ್ನು ಮರೆಮಾಡುವುದು; ಮತ್ತು ವಿಕ್ಷೇಪ, ಅಂದರೆ ಜಗತ್ತನ್ನು ಪ್ರಕ್ಷೇಪಿಸುವುದು. ಜಗತ್ತು ಶೂನ್ಯ ಎಂಬ ಅರ್ಥದಲ್ಲಿ ಮಾಯೆಯನ್ನು ತಪ್ಪಾಗಿ ಭಾವಿಸಲಾಗುತ್ತದೆ. ಅದರ ನಿಜವಾದ ಅರ್ಥ ಹೆಚ್ಚು ನಿಖರ: ಜಗತ್ತು ತೋರಿಕೆಯಾಗಿ ಸತ್ಯ, ಆದರೆ ಬ್ರಹ್ಮನಿಂದ ಬೇರೆಯಾದ ಸ್ವತಂತ್ರ ಅಸ್ತಿತ್ವವಾಗಿ ಸತ್ಯವಲ್ಲ." },
+    detailed_explanation: "ಅದ್ವೈತ ಮಾಯೆಯನ್ನು ಸತ್ಯವೂ ಅಲ್ಲ ಅಸತ್ಯವೂ ಅಲ್ಲ ಎನ್ನುತ್ತದೆ — ಅನಂತವು ಸಾಂತ ಜಗತ್ತಾಗಿ ತೋರುವಂತೆ ಮಾಡುವ ಅನಿರ್ವಚನೀಯ ಶಕ್ತಿ. ಇದು ಎರಡು ಕಾರ್ಯಗಳ ಮೂಲಕ ಕೆಲಸ ಮಾಡುತ್ತದೆ: ಆವರಣ, ಅಂದರೆ ಬ್ರಹ್ಮವನ್ನು ಮರೆಮಾಡುವುದು; ಮತ್ತು ವಿಕ್ಷೇಪ, ಅಂದರೆ ಜಗತ್ತನ್ನು ಪ್ರಕ್ಷೇಪಿಸುವುದು. ಜಗತ್ತು ಶೂನ್ಯ ಎಂಬ ಅರ್ಥದಲ್ಲಿ ಮಾಯೆಯನ್ನು ತಪ್ಪಾಗಿ ಭಾವಿಸಲಾಗುತ್ತದೆ. ಅದ್ವೈತದ ಪ್ರಕಾರ ಅದರ ಅರ್ಥ ಹೆಚ್ಚು ನಿಖರ: ಜಗತ್ತು ತೋರಿಕೆಯಾಗಿ ಸತ್ಯ, ಆದರೆ ಬ್ರಹ್ಮನಿಂದ ಬೇರೆಯಾದ ಸ್ವತಂತ್ರ ಅಸ್ತಿತ್ವವಾಗಿ ಸತ್ಯವಲ್ಲ. ರಾಮಾನುಜರೂ ಮಧ್ವರೂ ಈ ವ್ಯಾಖ್ಯಾನವನ್ನು ತಿರಸ್ಕರಿಸುತ್ತಾರೆ; ಅವರ ಉತ್ತರಗಳು ಕೆಳಗಿವೆ." },
   { concept_id: "c-maya", language: "hi", term: "माया", definition: "वह सृजनात्मक शक्ति जिससे एक ब्रह्म अनेक रूपों में प्रतीत होता है।",
-    detailed_explanation: "माया न सत् है न असत् — वह ब्रह्म की अनिर्वचनीय शक्ति है जिससे अनंत सांत जगत् के रूप में प्रतीत होता है। यह दो कार्यों से काम करती है: आवरण, अर्थात् ब्रह्म को ढँकना; और विक्षेप, अर्थात् जगत् का प्रक्षेपण। माया को प्रायः इस अर्थ में गलत समझा जाता है कि जगत् शून्य है। इसका अर्थ अधिक सूक्ष्म है: जगत् प्रतीति रूप में सत्य है, किंतु ब्रह्म से पृथक् स्वतंत्र सत्ता के रूप में सत्य नहीं।" },
+    detailed_explanation: "अद्वैत माया को न सत् कहता है न असत् — वह अनिर्वचनीय शक्ति, जिससे अनंत सांत जगत् के रूप में प्रतीत होता है। यह दो कार्यों से काम करती है: आवरण, अर्थात् ब्रह्म को ढँकना; और विक्षेप, अर्थात् जगत् का प्रक्षेपण। माया को प्रायः इस अर्थ में गलत समझा जाता है कि जगत् शून्य है। अद्वैत के अनुसार इसका अर्थ अधिक सूक्ष्म है: जगत् प्रतीति रूप में सत्य है, किंतु ब्रह्म से पृथक् स्वतंत्र सत्ता के रूप में सत्य नहीं। रामानुज और मध्व दोनों इस व्याख्या को अस्वीकार करते हैं; उनके उत्तर नीचे हैं।" },
 
   // ── Advaita
   { concept_id: "c-advaita", language: "en", term: "Non-duality", definition: "The position that reality is one, without a second.",
@@ -57,4 +61,11 @@ export const CONCEPT_TRANSLATIONS: ConceptTranslationRow[] = [
     detailed_explanation: "ವೇದಾಂತ ವಿಚಾರಕ್ಕೆ ಬೇಕಾದ ಮೊದಲ ಅರ್ಹತೆಯೇ ವಿವೇಕ: ನಿತ್ಯವಾದುದನ್ನು ಅನಿತ್ಯವಾದುದರಿಂದ, ಪ್ರಜ್ಞೆಯನ್ನು ಅದರೊಳಗೆ ಕಾಣಿಸಿಕೊಳ್ಳುವ ವಸ್ತುಗಳಿಂದ ಸ್ಪಷ್ಟವಾಗಿ ಬೇರ್ಪಡಿಸುವ ಸಾಮರ್ಥ್ಯ. ವಿವೇಕವಿಲ್ಲದೆ ಬೋಧನೆ ಬೇರೂರುವುದಿಲ್ಲ; ಅದಿದ್ದರೆ ಪ್ರತಿಯೊಂದೂ ಆತ್ಮದತ್ತ ತೋರುವ ಸೂಚಕವಾಗುತ್ತದೆ." },
   { concept_id: "c-viveka", language: "hi", term: "विवेक", definition: "सत् और असत् के बीच भेद करने की क्षमता।",
     detailed_explanation: "वेदांतिक विचार की पहली योग्यता विवेक है: नित्य और अनित्य के बीच, तथा स्वयं चैतन्य और उसमें प्रतीत होने वाले विषयों के बीच स्पष्ट भेद करने की क्षमता। विवेक के बिना उपदेश जड़ नहीं पकड़ता; उसके साथ प्रत्येक वस्तु आत्मा की ओर संकेत बन जाती है।" },
+];
+
+export const CONCEPTS: ConceptRow[] = [...FIRST_SIX, ...MORE_CONCEPTS];
+
+export const CONCEPT_TRANSLATIONS: ConceptTranslationRow[] = [
+  ...FIRST_SIX_TRANSLATIONS,
+  ...MORE_TRANSLATIONS,
 ];

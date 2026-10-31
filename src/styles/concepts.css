@@ -1,0 +1,215 @@
+/* ─────────────────────────────────────────────────────────
+   The concepts.
+
+   Read in five groups rather than as an alphabet, because a glossary
+   is the one shape in which none of these words make sense: brahman,
+   karma and āśrama are not three entries of the same kind.
+
+   The one new pattern is the block that prints three incompatible
+   readings side by side. It is set apart from the body prose on
+   purpose — a reader has to be able to see at a glance that they are
+   looking at a disagreement and not at a continuation of the
+   paragraph above.
+   ───────────────────────────────────────────────────────── */
+
+.cn-group {
+  padding-block: clamp(1.8rem, 4.4vw, 3rem);
+  background: var(--paper);
+}
+
+.cn-group:nth-of-type(even) {
+  background: var(--paper-2);
+}
+
+.cn-group-inner {
+  display: grid;
+  gap: clamp(1rem, 2.4vw, 1.5rem);
+}
+
+.cn-group-title {
+  margin: 0;
+  font-size: clamp(1.3rem, 3.2vw, 1.8rem);
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.cn-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 0.7rem;
+}
+
+.cn-card {
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+  height: 100%;
+  padding: 1.05rem 1.2rem 1.15rem;
+  border-radius: var(--r-lg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s var(--ease);
+}
+
+@media (hover: hover) {
+  .cn-card:hover {
+    border-color: var(--line-2);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+}
+
+.cn-term {
+  font-size: clamp(1.5rem, 3.6vw, 1.9rem);
+  line-height: 1.35;
+  color: var(--sacred);
+  overflow-wrap: anywhere;
+}
+
+.cn-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: var(--lh-snug, 1.3);
+  letter-spacing: var(--track-head);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.cn-iast {
+  font-family: var(--translit-face);
+  font-size: 0.86rem;
+  color: var(--ink-4);
+  overflow-wrap: anywhere;
+}
+
+.cn-def {
+  margin-top: 0.35rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-3);
+}
+
+/* The mark that says this one is argued over. Deliberately on the
+   index: it tells a reader which terms are settled before they have
+   read a word of any of them. */
+.cn-contested {
+  justify-self: start;
+  margin-top: 0.5rem;
+  padding: 0.14rem 0.5rem;
+  border-radius: var(--pill, 999px);
+  background: var(--marigold-soft);
+  color: #6b4a00;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── one concept ──────────────────────────────────────────── */
+.cn-hero-term {
+  font-size: clamp(2.6rem, 7vw, 4.5rem);
+}
+
+.cn-definition {
+  margin: 0.8rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: var(--gold);
+}
+
+/* Three incompatible readings, set apart from the prose so nobody
+   reads them as its continuation. */
+.cn-schools {
+  margin-top: 2.6rem;
+  padding: clamp(1.2rem, 3vw, 1.8rem);
+  border-radius: var(--r);
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  display: grid;
+  gap: 0.8rem;
+}
+
+.cn-schools-title {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  font-weight: 600;
+}
+
+.cn-schools-note {
+  margin: 0;
+  color: var(--ink-3);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.cn-schools-list {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.cn-schools-list li {
+  display: grid;
+  gap: 0.2rem;
+  padding-left: clamp(0.8rem, 2vw, 1.1rem);
+  border-left: 2px solid var(--gold-dim);
+}
+
+.cn-school-name {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--sacred);
+}
+
+.cn-school-says {
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.cn-schools-link {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .cn-schools-link:hover {
+    color: var(--sacred);
+  }
+}
+
+/* Where to go and check, so nobody has to take this site's word. */
+.cn-source {
+  margin-top: 1.6rem;
+  padding-left: clamp(0.8rem, 2vw, 1.1rem);
+  border-left: 2px solid var(--gold);
+  display: grid;
+  gap: 0.25rem;
+}
+
+.cn-source p:last-child {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}

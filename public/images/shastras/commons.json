@@ -1,0 +1,23 @@
+{
+  "vedangas": {
+    "src": "/images/shastras/vedangas.jpg",
+    "width": 1221,
+    "height": 1280,
+    "credit": "Ms Sarah Welch and University of Pennsylvania Libraries · CC0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:2nd_century_BCE_and_11th_century_CE,_Double_book_manuscript,_Patanjali_Mahabhasya_and_Kaiyata_Mah%C4%81bh%C4%81%E1%B9%A3yaprad%C4%ABpa,_Sanskrit_Hindu_text_India,_now_at_University_of_Pennsylvania_01.jpg"
+  },
+  "dharma": {
+    "src": "/images/shastras/dharma.jpg",
+    "width": 1400,
+    "height": 1081,
+    "credit": "Ms Sarah Welch · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:1407_CE,_Naradasmriti_Hindu_law_manuscript,_Sanskrit,_Bhujimol_script,_Malla_kingdom.jpg"
+  },
+  "itihasa": {
+    "src": "/images/shastras/itihasa.jpg",
+    "width": 1400,
+    "height": 818,
+    "credit": "Unknown · CC BY-SA 4.0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:1653_CE_Ramayana_manuscript,_Mewar_manuscript,_Kiskindha_kanda,_Rama_and_Lakshmana_arrive_at_Lake_Pampa_(now_Hampi,_Vijayanagara),_Hanuman_finds_them.jpg"
+  }
+}

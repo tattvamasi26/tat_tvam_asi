@@ -1,0 +1,693 @@
+/* ─────────────────────────────────────────────────────────
+   Shastras and Puranas.
+
+   The first version of this page was a stack of hairline rows and it
+   read like a printed index — correct, and no reason to look at it.
+   The fix is the site's own pillar idea from the home page: a tinted
+   panel carrying the branch's name in Devanagari at display size,
+   then the words beneath it.
+
+   Hierarchy is the whole design. The Vedas and the Upaniṣads get
+   double-width cards laid out side-on; the other eight are ordinary
+   cards. A reader should be able to tell, without reading, which two
+   branches this site has actually gone deep on.
+
+   Tones come from the seven-colour palette in pages.css, which is
+   unlayered — a class name built at runtime (`tone-${i % 7}`) would
+   be dropped by Tailwind if it lived in a layer.
+   ───────────────────────────────────────────────────────── */
+
+/* ── what this page is ────────────────────────────────────── */
+.sh-standing {
+  max-width: 62ch;
+  padding-left: clamp(0.9rem, 2.4vw, 1.4rem);
+  border-left: 2px solid var(--gold);
+  display: grid;
+  gap: 0.45rem;
+}
+
+.sh-standing-count {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+  font-weight: 600;
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+}
+
+.sh-standing-text {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+/* ── the grid ─────────────────────────────────────────────── */
+.sh-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 270px), 1fr));
+  gap: clamp(0.9rem, 2.2vw, 1.4rem);
+  align-items: stretch;
+}
+
+.sh-cell {
+  min-width: 0;
+  display: flex;
+}
+
+/* The two developed branches take two columns each. On a narrow grid
+   they fall back to one like everything else. */
+@media (min-width: 900px) {
+  .sh-cell.is-wide {
+    grid-column: span 2;
+  }
+}
+
+.sh-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg, var(--r));
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.35s var(--ease, ease), box-shadow 0.3s ease, border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .sh-card:has(a.sh-card-head:hover) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow, var(--shadow-sm));
+    border-color: var(--gold);
+  }
+}
+
+/* ── the head: art panel + words ──────────────────────────── */
+.sh-card-head {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+/* A wide card turns side-on: the panel beside the words, not above
+   them, so the extra width buys presence rather than empty space. */
+@media (min-width: 900px) {
+  .is-wide .sh-card-head {
+    grid-template-rows: none;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: stretch;
+  }
+}
+
+.sh-art {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(130px, 15vw, 180px);
+  padding: 1.2rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 84% 18%, rgba(255, 255, 255, 0.5) 0 10%, transparent 10.5%),
+    radial-gradient(circle at 84% 18%, transparent 0 18%, rgba(255, 255, 255, 0.34) 18.3% 18.8%, transparent 19.1%),
+    linear-gradient(150deg, var(--tone-1), var(--tone-2));
+}
+
+@media (min-width: 900px) {
+  .is-wide .sh-art {
+    min-height: clamp(180px, 18vw, 240px);
+  }
+}
+
+.sh-art-glyph {
+  color: var(--tone-ink);
+  /* Sized so the longest glyph in the set — उपनिषद्, seven aksharas
+     with a final conjunct — still sits on one line inside the panel.
+     Devanagari and Kannada both run wider than Latin at the same
+     size, so this is deliberately smaller than it looks like it
+     should be. */
+  font-size: clamp(1.9rem, 5vw, 2.9rem);
+  line-height: 1.35;
+  text-align: center;
+  overflow-wrap: anywhere;
+  transition: transform 0.6s var(--ease, ease);
+}
+
+@media (min-width: 900px) {
+  .is-wide .sh-art-glyph {
+    font-size: clamp(2.2rem, 3.6vw, 3.1rem);
+  }
+}
+
+/* Kannada sets wider than Devanagari at the same point size, so the
+   same glyph that fits in Devanagari wraps in Kannada — ಉಪನಿಷದ್ was
+   breaking onto a second line while उपनिषद् sat comfortably. The
+   script class is already on the element; this leans on it. */
+.sh-art-glyph.kannada {
+  font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+}
+
+@media (min-width: 900px) {
+  .is-wide .sh-art-glyph.kannada {
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
+  }
+}
+
+@media (hover: hover) {
+  .sh-card:has(a.sh-card-head:hover) .sh-art-glyph {
+    transform: scale(1.05);
+  }
+}
+
+.sh-card-body {
+  display: grid;
+  gap: 0.4rem;
+  align-content: center;
+  min-width: 0;
+  padding: clamp(0.95rem, 2.2vw, 1.4rem);
+}
+
+.sh-card-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.sh-card-name {
+  font-size: clamp(1.1rem, 2.6vw, 1.35rem);
+  font-weight: 600;
+  line-height: var(--lh-snug, 1.3);
+  color: var(--ink);
+  overflow-wrap: anywhere;
+}
+
+.sh-card-lede {
+  color: var(--ink-3);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+/* ── the foot: what is actually readable ──────────────────── */
+.sh-card-foot {
+  padding: 0 clamp(0.95rem, 2.2vw, 1.4rem) clamp(0.95rem, 2.2vw, 1.3rem);
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.sh-count {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--ink-4);
+  font-variant-numeric: tabular-nums;
+}
+
+.sh-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.sh-chips .chip {
+  font-size: 0.76rem;
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* A text with nowhere to go yet is present but plainly not a link. */
+.sh-chip-quiet {
+  color: var(--ink-4);
+  border-style: dashed;
+  background: transparent;
+}
+
+@media (max-width: 560px) {
+  .sh-art {
+    min-height: 116px;
+  }
+}
+
+/* The return leg of the bridge into Rituals & Festivals: a branch
+   that lays rites down says how many and points at them. Quiet, and
+   below the texts, because what the branch *is* comes first. */
+.sh-rites {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .sh-rites:hover {
+    color: var(--sacred);
+  }
+}
+
+/* ─────────────────────────────────────────────────────────
+   The map, redesigned (sh2-*).
+
+   The ten branches sit in the three tiers as bands (.rf-band, shared
+   with Rituals & Festivals and the Purāṇas), and each branch is a
+   card in the site's own palette — paper, ink, gold — replacing the
+   pastel art panels, which were the one place the site's colours went
+   off. A branch's own page lists its texts as cards with a status pill.
+   ───────────────────────────────────────────────────────── */
+
+.sh2-progress {
+  margin: 0;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: var(--marigold-soft);
+  color: var(--gold);
+  font-size: 0.86rem;
+  font-weight: 650;
+}
+
+.sh2-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: clamp(0.8rem, 1.8vw, 1.1rem);
+  min-width: 0;
+}
+
+.sh2-cards > li {
+  display: flex;
+  scroll-margin-top: calc(var(--masthead-space) + 5rem);
+}
+
+.sh2-card {
+  --sh2-pad: clamp(1.1rem, 2.4vw, 1.4rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: var(--sh2-pad);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+@media (hover: hover) {
+  .sh2-card:hover {
+    box-shadow: var(--shadow);
+    border-color: var(--gold-dim);
+  }
+}
+
+.sh2-card-head {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.sh2-name {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--track-head);
+}
+
+.sh2-name a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .sh2-name a:hover {
+    color: var(--gold);
+  }
+}
+
+.sh2-sanskrit {
+  margin: 0;
+  color: var(--sacred);
+  font-size: 0.98rem;
+}
+
+.sh2-lede {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.sh2-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.sh2-rites {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.sh2-foot {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sh2-foot .sh2-meter {
+  flex: 1 0 100%;
+}
+
+.sh2-count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+.sh2-open {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--gold);
+  text-decoration: none;
+}
+
+/* A branch's page: its texts. */
+.sh2-texts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.sh2-text {
+  display: grid;
+  gap: 0.45rem;
+  padding: clamp(1rem, 2.2vw, 1.25rem);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  background: var(--card);
+}
+
+.sh2-text[data-status="live"],
+.sh2-text[data-status="partial"] {
+  border-color: var(--gold-dim);
+}
+
+.sh2-text-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.7rem;
+}
+
+.sh2-text-name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+}
+
+.sh2-text-sanskrit {
+  color: var(--sacred);
+  font-size: 0.95rem;
+}
+
+.sh2-status {
+  margin-inline-start: auto;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+  color: var(--ink-3);
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.4;
+}
+
+.sh2-status[data-status="live"] {
+  background: var(--marigold);
+  color: var(--ink);
+}
+
+.sh2-status[data-status="partial"] {
+  background: var(--marigold-soft);
+  color: var(--gold);
+}
+
+.sh2-text-note {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 560;
+  line-height: 1.6;
+}
+
+.sh2-text-detail {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.75;
+}
+
+/* ── the map's pictures and progress ─────────────────────────
+   Each card opens with its branch's picture run edge to edge, the way
+   the Stories cards do: the painting where the site has one, its own
+   drawing where it does not. */
+.sh2-pic {
+  display: block;
+  margin: calc(-1 * var(--sh2-pad)) calc(-1 * var(--sh2-pad)) 0.35rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.sh2-pic .thumb {
+  aspect-ratio: 16 / 7;
+}
+
+@media (hover: hover) {
+  .sh2-card:hover .sh2-pic img {
+    transform: scale(1.03);
+  }
+}
+
+.sh2-pic img {
+  transition: transform 420ms var(--ease);
+}
+
+/* How much of a branch, or of the whole map, can be read here. */
+.sh2-meter {
+  display: block;
+  height: 0.38rem;
+  border-radius: 999px;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+
+.sh2-meter-fill {
+  display: block;
+  height: 100%;
+  min-width: 0.38rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--marigold), var(--saffron-2));
+}
+
+.sh2-progress-wrap {
+  display: grid;
+  gap: 0.5rem;
+  width: min(100%, 22rem);
+}
+
+.sh2-progress-wrap .sh2-progress {
+  width: fit-content;
+}
+
+.sh2-meter.is-big {
+  height: 0.5rem;
+  background: var(--paper-3);
+}
+
+/* The key to the chips on every card. */
+.sh2-key {
+  margin: 0.2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ── the Upaniṣads, the branch read here in depth ─────────────
+   The one card that spans the row: picture beside the words on a wide
+   screen, each readable text as a tile that is its own way in, the
+   rest listed as still to come, and a button to start. Marked with
+   the gold border the site uses for what is live. */
+.sh2-cards > li.is-feature {
+  grid-column: 1 / -1;
+}
+
+.sh2-feature {
+  border-color: var(--gold-dim);
+  box-shadow: var(--shadow);
+}
+
+.sh2-feature-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  min-width: 0;
+}
+
+.sh2-feature-tag {
+  margin: 0;
+  width: fit-content;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  background: var(--marigold);
+  color: var(--ink);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.sh2-feature .sh2-name {
+  font-size: clamp(1.45rem, 2.6vw, 1.8rem);
+}
+
+.sh2-feature-lede {
+  margin: 0;
+  color: var(--ink);
+  font-weight: 560;
+  line-height: 1.6;
+}
+
+.sh2-reads {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr));
+  gap: 0.6rem;
+}
+
+.sh2-read {
+  height: 100%;
+  display: grid;
+  gap: 0.15rem;
+  align-content: start;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--gold-dim);
+  border-radius: var(--r-sm);
+  background: var(--card-2);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+@media (hover: hover) {
+  .sh2-read:hover {
+    background: var(--marigold-soft);
+    transform: translateY(-1px);
+  }
+}
+
+.sh2-read:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.sh2-read-name {
+  font-size: 1.02rem;
+  font-weight: 650;
+  line-height: var(--lh-snug);
+}
+
+.sh2-read-sanskrit {
+  color: var(--sacred);
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.sh2-read-foot {
+  margin-top: 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  color: var(--gold);
+}
+
+.sh2-read .sh2-status {
+  margin-inline-start: 0;
+}
+
+.sh2-later {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.sh2-later-label {
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--ink-3);
+}
+
+.sh2-cta {
+  margin-inline-start: auto;
+}
+
+/* On a wide screen the Vedas and the Upaniṣads sit side by side, the
+   Upaniṣads at twice the width: the order the tradition gives them,
+   and the weight this site gives them. */
+@media (min-width: 900px) {
+  .sh2-cards:has(> li.is-feature) {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
+  .sh2-cards > li.is-feature {
+    grid-column: auto;
+  }
+
+  .sh2-feature .sh2-pic .thumb {
+    aspect-ratio: 16 / 6;
+  }
+
+  .sh2-reads {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sh2-read {
+    padding: 0.75rem 0.7rem;
+  }
+}

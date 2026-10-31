@@ -1,0 +1,27 @@
+{
+  "editionTitle": "चन्द्रशेखराष्टकम्",
+  "startPage": 223,
+  "slug": "chandrashekhara-ashtakam",
+  "name": "Chandrashekhara Ashtakam",
+  "devata": "shiva",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/chandrasekhara-ashtakam-in-kannada/",
+  "refrain": { "from": "चन्द्रशेखर", "full": "चन्द्रशेखरमाश्रये मम किं करिष्यति वै यमः" },
+  "corrections": [
+    { "verse": "2", "from": "वै नमः", "to": "वै यमः", "page": 215, "kind": "misprint", "why": "The book prints नमः (checked at enlargement). The refrain asks what Yama can do to one who takes refuge in Shiva; the sense and the witness both require यमः." },
+    { "verse": "5", "from": "कलेवरम्", "to": "कलेबरम्", "page": 216, "kind": "transcription" },
+    { "verse": "7", "from": "सकलायसङ्घ", "to": "सकलाघसङ्घ", "page": 216, "kind": "transcription", "why": "Checked at enlargement: घ." },
+    { "verse": "8", "from": "खाकृति", "to": "खाकृतिं", "page": 216, "kind": "transcription" }
+  ],
+  "variants": [
+    { "verse": "2", "reading": "सिञ्जिनीकृत", "witness": "शिञ्जिनीकृत", "page": 215 },
+    { "verse": "2", "reading": "मच्युताननसायकम्", "witness": "मच्युतानलसायकम्", "page": 215 },
+    { "verse": "3", "reading": "भाललोचन", "witness": "फाललोचन", "page": 215, "note": "Checked at enlargement." },
+    { "verse": "6", "reading": "अन्धकान्धक", "witness": "अन्धकान्तक", "page": 216, "note": "Checked at enlargement." },
+    { "verse": "7", "reading": "भक्तिमुक्तिफलप्रदं", "witness": "भुक्तिमुक्तिफलप्रदं", "page": 216 },
+    { "verse": "8", "reading": "सोमवारिनभोहुताशनसोमपानिलखाकृतिं", "witness": "सोमवारुणभूहुताशनसोमपाखिलाकृतिं", "page": 216 },
+    { "verse": "10", "reading": "मृकण्डसूनु", "witness": "मृकण्डुसूनु", "page": 217 },
+    { "verse": "10", "reading": "मायुररोगितामखिल", "witness": "मायुररोगतामखिल", "page": 217 },
+    { "verse": "10", "extra": "अधिकश्लोकम् संसारसर्पदुष्टानां जन्तूनामविवेकिनां चन्द्रशेखरपादाब्जस्मरणं परमौषधम्", "page": 217, "note": "The witness adds a further verse, marked as extra; the book does not print it." }
+  ]
+}

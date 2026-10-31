@@ -1,0 +1,54 @@
+{
+  "editionTitle": "यतिपञ्चकम्",
+  "startPage": 527,
+  "slug": "yati-panchakam",
+  "name": "Yati Panchakam",
+  "devata": "shiva",
+  "composer": "shankara",
+  "checkedOn": "2026-10-21",
+  "witness": "https://stotranidhi.com/kn/yati-panchakam-kaupeena-panchakam-in-kannada/",
+  "corrections": [
+    {
+      "verse": "6",
+      "from": "कौपीनपश्चरत्नस्य",
+      "to": "कौपीनपञ्चरत्नस्य",
+      "page": 519,
+      "kind": "transcription"
+    }
+  ],
+  "variants": [
+    {
+      "verse": "5",
+      "reading": "पञ्चाक्षरं पावन",
+      "witness": "ब्रह्माक्षरं पावन",
+      "page": 519
+    }
+  ],
+  "spacing": [
+    {
+      "verse": "1",
+      "from": "भिक्षान्नमात्रेणच",
+      "to": "भिक्षान्नमात्रेण च"
+    },
+    {
+      "verse": "2",
+      "from": "केवल माश्रयन्तः",
+      "to": "केवलमाश्रयन्तः"
+    },
+    {
+      "verse": "2",
+      "from": "कन्था मिव",
+      "to": "कन्थामिव"
+    },
+    {
+      "verse": "3",
+      "from": "बहि स्स्मरन्तः",
+      "to": "बहिस्स्मरन्तः"
+    },
+    {
+      "verse": "5",
+      "from": "पावन मुच्चरन्तः",
+      "to": "पावनमुच्चरन्तः"
+    }
+  ]
+}

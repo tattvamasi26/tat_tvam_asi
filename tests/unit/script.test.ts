@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { devanagariToKannada, scriptFor, scriptClass } from "../../src/lib/script";
+import { devanagariToKannada, scriptFor, scriptClass, stripVedicAccents } from "../../src/lib/script";
 import { TEXTS } from "../../src/lib/seed/texts";
 import { VEDAS, GITA, GITA_CHAPTERS, STUTIS, BHAJANS } from "../../src/lib/seed/corpus";
 import { VERSES } from "../../src/lib/seed/verses";
@@ -53,6 +53,35 @@ test("scriptFor converts only for Kannada; scriptClass names the matching face",
   assert.equal(scriptClass("kn"), "kannada");
   assert.equal(scriptClass("hi"), "deva");
   assert.equal(scriptClass("en"), "deva");
+});
+
+test("stripVedicAccents removes the pitch marks and nothing else", () => {
+  assert.equal(stripVedicAccents("अ॒ग्निमी॑ळे पु॒रोहि॑तं"), "अग्निमीळे पुरोहितं");
+  // Dandas, avagraha and ḷa are text, not accents.
+  assert.equal(stripVedicAccents("।॥ऽळ"), "।॥ऽळ");
+  assert.equal(stripVedicAccents("अग्निमीळे"), "अग्निमीळे");
+});
+
+test("stripping the accented saṃhitā yields the unaccented recension exactly", () => {
+  // RV 1.1.1a as sa.wikisource prints it in both of its recensions —
+  // sasvara (accented) and visvara (plain). One must reduce to the other,
+  // or the two sources disagree about the words themselves.
+  const sasvara = "अ॒ग्निमी॑ळे पु॒रोहि॑तं य॒ज्ञस्य॑ दे॒वमृ॒त्विज॑म्";
+  const visvara = "अग्निमीळे पुरोहितं यज्ञस्य देवमृत्विजम्";
+  assert.equal(stripVedicAccents(sasvara), visvara);
+});
+
+test("Kannada drops the pitch marks; Devanagari and IAST keep them", () => {
+  const accented = "अ॒ग्निमी॑ळे पु॒रोहि॑तं";
+
+  // The transliteration itself stays faithful — it is reversible, and the
+  // test above this one holds it to that. The editorial choice lives in
+  // scriptFor, not in the script conversion.
+  assert.equal(devanagariToKannada(accented), "ಅ॒ಗ್ನಿಮೀ॑ಳೇ ಪು॒ರೋಹಿ॑ತಂ");
+
+  assert.equal(scriptFor(accented, "kn"), "ಅಗ್ನಿಮೀಳೇ ಪುರೋಹಿತಂ");
+  assert.equal(scriptFor(accented, "en"), accented);
+  assert.equal(scriptFor(accented, "hi"), accented);
 });
 
 test("every Sanskrit string on the site converts to Kannada completely", () => {

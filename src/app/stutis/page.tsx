@@ -35,8 +35,8 @@ export default function StutisPage() {
         <div className="grid-cards">
           {devatas.map((d) => (
             <Link key={d.slug} href={`/stutis/${d.slug}`} className="card devata-card">
-              {d.image && (
-                <div className="card-img devata-card-img">
+              <div className="card-img devata-card-img">
+                {d.image ? (
                   <Image
                     src={d.image.src}
                     alt=""
@@ -44,8 +44,12 @@ export default function StutisPage() {
                     sizes="(max-width: 700px) 100vw, 33vw"
                     style={{ objectFit: "cover", objectPosition: d.image.position }}
                   />
-                </div>
-              )}
+                ) : (
+                  <p className={`bh-plate ${d.scriptClass}`} aria-hidden="true">
+                    {d.nameSanskrit}
+                  </p>
+                )}
+              </div>
               <div className="card-body">
                 <h2 className="card-title">{d.name}</h2>
                 <p className={`devata-sanskrit ${d.scriptClass}`}>{d.nameSanskrit}</p>

@@ -1,0 +1,343 @@
+/* ─────────────────────────────────────────────────────────
+   The festivals.
+
+   Image-led. A festival is a thing people see — lamps in rows, dolls
+   on stepped shelves, a pot boiling over, a clay Ganesha walked to
+   the water — and the first version of this section led with type,
+   which made the year read like a reference work instead of like the
+   year.
+
+   So every card is a photograph first, and a festival's own page
+   opens with a full-bleed one carrying its name and its lunar date.
+   The words sit below, on the site's paper, where they read.
+
+   The scrims are the only dark surfaces on the site, and they exist
+   for one reason: text over a photograph needs guaranteed contrast,
+   and a scrim is the honest way to get it.
+   ───────────────────────────────────────────────────────── */
+
+/* ── why there are no Gregorian dates here ─────────────────── */
+.fe-standing {
+  max-width: 62ch;
+  padding-left: clamp(0.9rem, 2.4vw, 1.4rem);
+  border-left: 2px solid var(--gold);
+}
+
+.fe-standing-text {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+/* ── the year, as cards ────────────────────────────────────── */
+.fe-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 310px), 1fr));
+  gap: clamp(0.9rem, 2.2vw, 1.4rem);
+}
+
+.fe-card {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg, var(--r));
+  background: var(--card);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.35s var(--ease, ease), box-shadow 0.3s ease, border-color 0.2s ease;
+}
+
+@media (hover: hover) {
+  .fe-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow, var(--shadow-sm));
+    border-color: var(--gold);
+  }
+}
+
+/* The photograph, with the name written over its foot. */
+.fe-frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.fe-frame img {
+  transition: transform 0.8s var(--ease, ease);
+}
+
+@media (hover: hover) {
+  .fe-card:hover .fe-frame img {
+    transform: scale(1.05);
+  }
+}
+
+/* Text over a photograph is unreadable without one of these. */
+.fe-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(28, 18, 8, 0.86) 0%,
+    rgba(28, 18, 8, 0.52) 34%,
+    rgba(28, 18, 8, 0.08) 62%,
+    rgba(28, 18, 8, 0.18) 100%
+  );
+}
+
+.fe-chip {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.92);
+  color: var(--ink-2);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* The one solar festival among sixteen is marked, not left to look
+   like all the others. */
+.fe-chip.is-solar {
+  background: var(--marigold, var(--gold));
+  color: var(--ink);
+}
+
+.fe-frame-foot {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.9rem 1rem 1rem;
+  display: grid;
+  gap: 0.1rem;
+  min-width: 0;
+}
+
+.fe-frame-name {
+  color: #fffdf8;
+  font-size: clamp(1.1rem, 2.6vw, 1.3rem);
+  font-weight: 600;
+  line-height: var(--lh-snug, 1.3);
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+}
+
+.fe-frame-sanskrit {
+  color: rgba(255, 249, 235, 0.88);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+.fe-card-body {
+  padding: 0.9rem 1rem 1.05rem;
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  min-width: 0;
+}
+
+/* The lunar date. It is the point of this section, so it is in the
+   sacred ink and sits above the description. */
+.fe-when-date {
+  color: var(--sacred);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.fe-lede {
+  color: var(--ink-3);
+  font-size: 0.9rem;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.fe-more {
+  margin-top: 0.15rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+/* ── one festival: the hero ────────────────────────────────── */
+.fe-hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: clamp(340px, 52vh, 560px);
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.fe-hero-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(24, 15, 6, 0.9) 0%,
+    rgba(24, 15, 6, 0.62) 38%,
+    rgba(24, 15, 6, 0.22) 70%,
+    rgba(24, 15, 6, 0.34) 100%
+  );
+}
+
+.fe-hero-inner {
+  position: relative;
+  padding-block: clamp(1.8rem, 5vw, 3.2rem);
+  display: grid;
+  gap: 0.3rem;
+  justify-items: start;
+  min-width: 0;
+}
+
+.fe-hero-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(255, 252, 245, 0.16);
+  border: 1px solid rgba(255, 252, 245, 0.28);
+  color: #fffdf8;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+@media (hover: hover) {
+  .fe-hero-back:hover {
+    background: rgba(255, 252, 245, 0.3);
+  }
+}
+
+.fe-hero-title {
+  margin: 0;
+  color: #fffdf8;
+  font-size: clamp(2rem, 6.5vw, 3.6rem);
+  line-height: var(--lh-display, 1.1);
+  overflow-wrap: anywhere;
+  text-shadow: 0 2px 22px rgba(0, 0, 0, 0.4);
+}
+
+.fe-hero-sanskrit {
+  margin: 0;
+  color: rgba(255, 246, 228, 0.92);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+
+.fe-hero-when {
+  margin: 0.9rem 0 0;
+  color: var(--marigold, #f5c451);
+  font-size: clamp(1rem, 2.8vw, 1.35rem);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.5);
+}
+
+.fe-hero-kind {
+  margin: 0.15rem 0 0;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 249, 235, 0.72);
+}
+
+/* ── one festival: the words ───────────────────────────────── */
+.fe-body {
+  max-width: 44rem;
+  margin-inline: auto;
+  padding-block: clamp(2rem, 5vw, 3.4rem);
+  display: grid;
+  gap: clamp(1.7rem, 4vw, 2.4rem);
+}
+
+.fe-lede-big {
+  margin: 0;
+  font-size: clamp(1.1rem, 2.8vw, 1.3rem);
+}
+
+.fe-when-note {
+  margin: 0;
+  color: var(--ink-3);
+  line-height: 1.7;
+}
+
+/* Where the north and the south disagree about the month. */
+.fe-aside {
+  padding: clamp(0.9rem, 2.4vw, 1.2rem) clamp(1rem, 2.6vw, 1.4rem);
+  background: var(--paper-2);
+  border-radius: var(--r);
+  border-left: 2px solid var(--gold);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.fe-aside p:last-child {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+
+.fe-section {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.fe-section p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.8;
+}
+
+.fe-h2 {
+  margin: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-4);
+  font-weight: 600;
+}
+
+.fe-links {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.fe-links .chip {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.fe-credit {
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .fe-hero {
+    min-height: clamp(300px, 46vh, 400px);
+  }
+}

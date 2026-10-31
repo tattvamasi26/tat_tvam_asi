@@ -19,7 +19,17 @@ export const ROUTES = [
   "/upanishads/kena",
   "/upanishads/mandukya",
   "/vedas",
+  // The Rigveda: its front door, a mandala list, a short hymn and a
+  // long one, and a devata page.
+  "/vedas/rigveda",
+  "/vedas/rigveda/1",
+  "/vedas/rigveda/1/1",
+  "/vedas/rigveda/10/129",
+  "/vedas/rigveda/devata/ushas",
   "/gita",
+  // The shortest chapter, and the one whose verse count is disputed.
+  "/gita/12",
+  "/gita/13",
   "/stutis",
   "/stutis/gayatri",
   "/stutis/gayatri/gayatri-mantra",
@@ -28,20 +38,82 @@ export const ROUTES = [
   "/stutis/ganesha/sankatanashana-ganesha-stotram",
   "/stutis/ganesha/ganapati-atharvashirsha",
   "/stutis/ganesha/ganeshashtakam",
+  "/stutis/subrahmanya",
+  "/stutis/subrahmanya/subrahmanya-ashtakam",
+  "/stutis/shiva/shiva-tandava-stotram",
+  "/stutis/shiva/manisha-panchakam",
+  "/stutis/shiva",
+  "/stutis/shiva/nirvana-shatkam",
+  "/stutis/bhairava",
+  "/stutis/bhairava/kalabhairava-ashtakam",
+  "/shastras",
+  // A branch page with six texts, and one carrying a contested text.
+  "/shastras/vedangas",
+  "/shastras/dharma",
+  // Two drawn blocks on the front door, both CSS rather than SVG, and
+  // the two schools that carry a drawing of their own.
+  "/darshanas",
+  "/darshanas/nyaya",
+  "/darshanas/sankhya",
+  // The school whose means-of-knowledge count is disputed inside it.
+  "/darshanas/mimamsa",
+  "/puranas",
+  // The most read of the eighteen, and one with a disputed place
+  // in the list.
+  "/puranas/bhagavata",
+  "/puranas/shiva",
+  "/puranas/stories",
+  // One story whose tellings differ, and one whose do not.
+  "/puranas/stories/samudra-manthana",
+  "/puranas/stories/prithu",
+  // Four SVG drawings on one page, and one of the four arguments.
+  "/cosmos",
+  "/cosmos/reckoning",
+  "/rituals",
+  // The rite with the most steps, and a short one.
+  "/rituals/upanayana",
+  "/rituals/jatakarma",
+  "/festivals",
+  "/practice",
+  // One sitting with a recitation and one without.
+  "/practice/ganapati-japa",
+  "/practice/breath",
+  // A lunar festival, and the one solar one. Both are kept over
+  // several days, so the day cards are covered too.
+  "/festivals/ganesha-chaturthi",
+  "/festivals/makara-sankranti",
+  // A festival with no picture: the head is its name on a plate.
+  "/festivals/gita-jayanti",
   "/bhajans",
+  // One of each kind of bhajan page: a devata group, the niti group,
+  // the admitted gap, and a song with a long Kannada text.
+  "/bhajans/krishna",
+  "/bhajans/niti",
+  "/bhajans/unsorted",
+  "/bhajans/krishna/adidano-ranga-adbhutadindali",
   "/acharyas",
   "/acharyas/adi-shankaracharya",
+  "/acharyas/ramanujacharya",
+  // no free photograph exists for him; the card falls back to his name
+  "/acharyas/bharati-tirtha",
   "/temples",
-  "/temples/brihadeeswarar-temple",
+  "/temples/tulunadu",
+  "/temples/tamil-nadu/brihadeeswarar-temple",
   "/temples/tulunadu/kollur-mookambika",
+  "/temples/tulunadu/udupi-krishna-matha",
+  "/temples/tulunadu/kateel",
   "/temples/tulunadu/nava-vinayakas",
   "/concepts",
+  // One term the schools argue over, and one they do not.
   "/concepts/brahman",
+  "/concepts/karma",
   "/mathas",
   "/verses",
   "/verses/v-sarvam-khalvidam",
   "/search?q=brahman",
   "/about",
+  "/rights",
+  "/signin",
   "/this-page-does-not-exist",
 ];
 

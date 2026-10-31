@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { getTranslations } from "@/i18n/server";
-import { sectionsFor } from "@/i18n/sections";
+import { topLevelSectionsFor } from "@/i18n/sections";
 import { nameScriptClass } from "@/i18n/config";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { SiteNav } from "./SiteNav";
 import { MastheadLinks } from "./MastheadLinks";
 import { Wordmark } from "@/components/brand/Mark";
 import { scriptFor, scriptClass } from "@/lib/script";
+import { accountStrings } from "@/i18n/account";
+import { AccountButton } from "@/components/account/AccountButton";
 
 /**
  * The floating masthead.
@@ -17,14 +19,19 @@ import { scriptFor, scriptClass } from "@/lib/script";
  */
 export function Navbar() {
   const { locale, t } = getTranslations();
+  const account = accountStrings(locale);
   // Glyphs in the reader's script, like every other Sanskrit on the site.
-  const sections = sectionsFor(locale).map((s) => ({ ...s, glyph: scriptFor(s.glyph, locale) }));
+  const sections = topLevelSectionsFor(locale).map((s) => ({ ...s, glyph: scriptFor(s.glyph, locale) }));
 
+  // One way in to the texts. The Upanishads and the Gita used to sit
+  // here beside Shastras, which meant the masthead offered three
+  // doors into the same room.
   const primary = [
-    { href: "/upanishads", label: t.navUpanishads },
+    { href: "/shastras", label: t.navShastras },
     { href: "/gita", label: t.navGita },
     { href: "/temples", label: t.navTemples },
     { href: "/acharyas", label: t.navTeachers },
+    { href: "/bhajans", label: t.navBhajans },
   ];
 
   // Reference material, kept out of the pillars so the index reads
@@ -35,6 +42,7 @@ export function Navbar() {
     { href: "/verses", label: t.navVerses },
     { href: "/search", label: t.navSearch },
     { href: "/about", label: t.navAbout },
+    { href: "/account", label: account.navAccount },
   ];
 
   return (
@@ -53,6 +61,8 @@ export function Navbar() {
               <path d="M20 20l-3.5-3.5" strokeLinecap="round" />
             </svg>
           </Link>
+
+          <AccountButton signInLabel={account.signIn} accountLabel={account.yourAccount} />
 
           <LanguageSwitcher current={locale} label={t.chooseLanguage} />
 

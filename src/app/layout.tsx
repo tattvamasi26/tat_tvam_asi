@@ -16,8 +16,28 @@ import "@/styles/pages.css";
 import "@/styles/home.css";
 import "@/styles/reader.css";
 import "@/styles/stotra.css";
+import "@/styles/temples.css";
+import "@/styles/rigveda.css";
+import "@/styles/acharyas.css";
+import "@/styles/bhajans.css";
+import "@/styles/shastras.css";
+import "@/styles/festivals.css";
+import "@/styles/rituals.css";
+import "@/styles/rf.css";
+import "@/styles/concepts.css";
+import "@/styles/puranas.css";
+import "@/styles/cosmos.css";
+import "@/styles/darshanas.css";
+import "@/styles/practice.css";
+import "@/styles/account.css";
+// Last: short, wide screens (a phone held sideways) override the rest.
+import "@/styles/devices.css";
 import { Navbar } from "@/components/layout/Navbar";
+import { headers } from "next/headers";
+import { accountStrings } from "@/i18n/account";
+import { MeterNotice } from "@/components/account/MeterNotice";
 import { Footer } from "@/components/layout/Footer";
+
 import { getLocale } from "@/i18n/server";
 import { LOCALE_META } from "@/i18n/config";
 
@@ -109,6 +129,15 @@ const notoOriya = Noto_Sans_Oriya({
   preload: false,
 });
 
+// Fixed content, nothing from the request, so it is safe to set as raw
+// HTML: tells search engines that readers meet a sign-in on this page.
+const METERED_LD = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  isAccessibleForFree: false,
+  hasPart: { "@type": "WebPageElement", isAccessibleForFree: false, cssSelector: ".metered" },
+});
+
 export const metadata: Metadata = {
   title: { default: "Tat Tvam Asi", template: "%s | Tat Tvam Asi" },
   description:
@@ -126,6 +155,8 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const locale = getLocale();
+  const account = accountStrings(locale);
+  const metered = headers().get("x-tta-metered") === "1";
   const fonts = [
     interTight,
     instrument,
@@ -144,7 +175,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang={LOCALE_META[locale].htmlLang} className={fonts}>
       <body>
         <Navbar />
-        <main id="main">{children}</main>
+        <main id="main" className={metered ? "metered" : undefined}>
+          {children}
+        </main>
+        {metered && (
+          // Readers meet a sign-in after a few pages; search engines are
+          // told so, in the form they ask for, rather than shown one
+          // page and readers another. Constant content only.
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: METERED_LD }} />
+        )}
+        {metered && (
+          <MeterNotice
+            labels={{
+              leftOne: account.leftOne,
+              leftMany: account.leftMany,
+              leftNone: account.leftNone,
+              cta: account.noticeCta,
+              close: account.noticeClose,
+            }}
+          />
+        )}
         <Footer />
       </body>
     </html>

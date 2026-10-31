@@ -143,6 +143,10 @@
 
 .feature {
   display: grid;
+  /* One column below 860px — and it must be allowed to be narrower
+     than its content, or a long biography or work title sizes the card
+     to max-content and the page scrolls sideways on a phone. */
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(1.25rem, 3vw, 2.5rem);
   align-items: center;
   padding: clamp(0.5rem, 1vw, 0.75rem);
@@ -173,6 +177,30 @@
   gap: 1rem;
   justify-items: start;
   padding: clamp(0.9rem, 3vw, 2rem);
+  min-width: 0;
+}
+
+/* A grid item is as wide as its widest unbreakable word unless it is
+   told otherwise, and Kannada and Devanagari produce long ones — a
+   single chip holding a work title was pushing the whole card past the
+   viewport at 390px. */
+.feature-body > * {
+  max-width: 100%;
+}
+
+.feature-body .chips,
+.feature-body .chip {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+/* A line-clamped paragraph is a -webkit-box, and a -webkit-box takes
+   its intrinsic width from the unwrapped text, ignoring max-width. It
+   has to be given the width outright. */
+.feature-body .prose,
+.feature-body .clamp-4 {
+  width: 100%;
 }
 
 /* ── Fact tiles ───────────────────────────────────────── */

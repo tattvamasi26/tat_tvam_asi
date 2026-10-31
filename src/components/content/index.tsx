@@ -47,10 +47,10 @@ export function VerseOfTheDay({ verse }: { verse: VerseDetail }) {
       <div style={{ maxWidth:720, margin:"0 auto", textAlign:"center" }}>
         <p style={{ ...S.label, textAlign:"center" }}>Verse of the Day</p>
         <div style={{ position:"relative", padding:"0 2rem", marginTop:"3rem" }}>
-          <span style={{ position:"absolute", top:"-1rem", left:"0.5rem", fontFamily:"var(--serif)", fontSize:"5rem", color:"var(--gold)", opacity:0.12, lineHeight:1 }}>"</span>
+          <span style={{ position:"absolute", top:"-1rem", left:"0.5rem", fontFamily:"var(--serif)", fontSize:"5rem", color:"var(--gold)", opacity:0.12, lineHeight:1 }}>&ldquo;</span>
           <p style={{ fontFamily:"var(--serif)", fontSize:"clamp(1.8rem,4vw,2.8rem)", fontWeight:300, color:"var(--text0)", letterSpacing:"0.04em", lineHeight:1.5, marginBottom:"0.6rem" }}>{verse.sanskrit}</p>
           <p style={{ fontFamily:"var(--sans)", fontSize:"0.78rem", letterSpacing:"0.15em", color:"var(--text2)", fontStyle:"italic", marginBottom:"1.5rem" }}>{verse.transliteration}</p>
-          <p style={{ fontFamily:"var(--serif)", fontSize:"1.25rem", fontStyle:"italic", fontWeight:300, color:"var(--text0)", opacity:0.8, lineHeight:1.7, marginBottom:"1.5rem" }}>"{verse.translation_en}"</p>
+          <p style={{ fontFamily:"var(--serif)", fontSize:"1.25rem", fontStyle:"italic", fontWeight:300, color:"var(--text0)", opacity:0.8, lineHeight:1.7, marginBottom:"1.5rem" }}>&ldquo;{verse.translation_en}&rdquo;</p>
         </div>
         <p style={{ fontFamily:"var(--sans)", fontSize:"0.68rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--gold)", marginTop:"1.5rem" }}>{verse.source}{verse.chapter ? ` · ${verse.chapter}` : ""}</p>
         {verse.is_mahavakya && (
@@ -139,7 +139,7 @@ export function TeacherRow({ teachers }: { teachers: Teacher[] }) {
               <p style={{ fontFamily:"var(--sans)", fontSize:"0.62rem", letterSpacing:"0.2em", textTransform:"uppercase", color:"var(--saffron)", marginBottom:"1rem" }}>{t.era}</p>
               <p style={{ fontFamily:"var(--serif)", fontSize:"1.6rem", fontWeight:300, color:"var(--text0)", marginBottom:"0.2rem" }}>{t.name}</p>
               {t.name_sanskrit && <p style={{ fontFamily:"var(--serif)", fontSize:"1rem", color:"var(--text2)", marginBottom:"1.2rem" }}>{t.name_sanskrit}</p>}
-              {t.quote && <blockquote style={{ fontFamily:"var(--serif)", fontSize:"0.95rem", fontStyle:"italic", color:"var(--text1)", borderLeft:"1px solid rgba(200,150,62,0.2)", paddingLeft:"1rem", lineHeight:1.7 }}>"{t.quote}"</blockquote>}
+              {t.quote && <blockquote style={{ fontFamily:"var(--serif)", fontSize:"0.95rem", fontStyle:"italic", color:"var(--text1)", borderLeft:"1px solid rgba(200,150,62,0.2)", paddingLeft:"1rem", lineHeight:1.7 }}>&ldquo;{t.quote}&rdquo;</blockquote>}
             </Link>
           ))}
         </div>

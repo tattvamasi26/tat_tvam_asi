@@ -126,6 +126,9 @@
   font: 700 1.15rem / var(--lh-snug) var(--sans);
   letter-spacing: var(--track-head);
   color: var(--ink);
+  /* A collection title is one sandhi-joined compound, wider than a
+     320px phone; it must be allowed to break. */
+  overflow-wrap: anywhere;
 }
 
 .stotra-row-sanskrit {
@@ -286,6 +289,9 @@
 .stotra-verse-iast p {
   font-size: clamp(0.92rem, 1.2vw, 1.02rem);
   line-height: 1.55;
+  /* A compound transliterates as one long word
+     (ratnapādukāprabhābhirāmapādayugmakaṃ): let it break on a phone. */
+  overflow-wrap: anywhere;
 }
 
 .stotra-verse-meaning {
@@ -579,153 +585,89 @@ html:lang(hi) .stotra-verse-meaning {
   text-underline-offset: 2px;
 }
 
-/* ── Nava Vinayakas of Tulunadu ───────────────────────── */
-
-.nv-note {
-  max-width: 62ch;
-  padding: 0.85rem 1.1rem;
-  border-radius: var(--r);
-  border-left: 3px solid var(--marigold);
-  background: var(--card);
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--ink-2);
-}
-
-.nv-route {
-  display: grid;
-  gap: 0.6rem;
-  margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
-}
-
-.nv-route-list {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-.nv-route-list a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.35rem 0.85rem 0.35rem 0.4rem;
-  border-radius: var(--pill);
-  border: 1px solid var(--line);
-  background: var(--card);
-  font: 600 0.9rem / 1.5 var(--sans);
-  color: var(--ink);
-  transition: border-color 0.2s ease;
-}
-@media (hover: hover) {
-  .nv-route-list a:hover {
-    border-color: var(--ink-3);
-  }
-}
-
-.nv-route-num,
-.nv-num {
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--marigold-soft);
-  color: #6b4a00;
-  font-variant-numeric: tabular-nums;
-}
-.nv-route-num {
-  width: 1.6rem;
-  height: 1.6rem;
-  font: 700 0.78rem / 1 var(--sans);
-}
-.nv-num {
-  width: 2.2rem;
-  height: 2.2rem;
-  font: 700 0.92rem / 1 var(--sans);
-}
-
-.nv-list {
-  list-style: none;
-  display: grid;
-  gap: clamp(1rem, 2.5vw, 1.6rem);
-}
-
-.nv-item {
-  display: grid;
-  gap: clamp(0.5rem, 2vw, 1.5rem);
-  padding: clamp(0.5rem, 1vw, 0.75rem);
-  border-radius: var(--r-xl);
-  border: 1px solid var(--line);
-  background: var(--card);
-  box-shadow: var(--shadow-sm);
-  scroll-margin-top: calc(var(--masthead-space) + 1rem);
-}
-@media (min-width: 860px) {
-  .nv-item {
-    grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
-    align-items: center;
-  }
-}
-
-.nv-media {
-  position: relative;
-  display: grid;
-  place-items: center;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border-radius: calc(var(--r-xl) - 0.7rem);
-  background: var(--paper-2);
-}
-
-/* A temple with no free photograph shows its name in its own script. */
-.nv-media-name {
-  padding: 1.5rem;
-  text-align: center;
-  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
-  line-height: 1.6;
-  color: var(--sacred);
-}
-
-.nv-body {
-  display: grid;
-  gap: 0.5rem;
-  justify-items: start;
-  padding: clamp(0.6rem, 2.5vw, 1.6rem);
-}
-
-.nv-name {
-  font: 700 clamp(1.3rem, 2.4vw, 1.75rem) / var(--lh-snug) var(--sans);
-  letter-spacing: var(--track-head);
-  color: var(--ink);
-}
-
-.nv-place {
-  font: 600 0.95rem / 1.5 var(--sans);
-  color: var(--gold);
-}
-
-.nv-text {
-  max-width: 62ch;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--ink-2);
-}
-
-.nv-body .credit a {
-  text-decoration: underline;
-  text-decoration-color: var(--line-2);
-  text-underline-offset: 2px;
-}
-
-.nv-back {
-  margin-top: clamp(1.5rem, 4vw, 2.5rem);
-}
-
 @media (prefers-reduced-motion: reduce) {
   .stotra-row,
   .stotra-toggle,
   .pager-link,
-  .stotra-video-play,
-  .nv-route-list a {
+  .stotra-video-play {
     transition: none;
   }
+}
+
+/* ── A stotra from the collection: how its text was checked ──
+   The record under the text: the edition, the method, every correction
+   made from the scan and every reading of the book's that was kept. Set
+   as the Rigveda's sources are, small and quiet below the reading. */
+.edition-notes {
+  max-width: 68ch;
+  margin: clamp(1.6rem, 3.5vw, 2.4rem) 0 0;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: var(--ink-3);
+}
+.edition-notes h2 {
+  margin-bottom: 0.6rem;
+  font: 700 0.78rem / 1.3 var(--sans);
+  color: var(--gold);
+}
+.edition-notes h3 {
+  margin: 1.2rem 0 0.4rem;
+  font: 600 0.84rem / var(--lh-snug) var(--sans);
+  color: var(--ink-2);
+}
+.edition-notes p + p {
+  margin-top: 0.6rem;
+}
+.edition-notes ul {
+  display: grid;
+  gap: 0.3rem;
+  padding-left: 1.1rem;
+  list-style: disc;
+}
+.edition-notes a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 2px;
+}
+.edition-notes .edition-links {
+  margin-top: 1.2rem;
+  padding-left: 0;
+  list-style: none;
+}
+.edition-notes .arrow {
+  vertical-align: -0.12em;
+}
+/* A reading quoted in the record, in the reader's script. */
+.edition-sa {
+  color: var(--sacred);
+  font-size: 1.05em;
+  overflow-wrap: anywhere;
+}
+
+/* The record folded under one line: what it was checked against, and
+   the words to open the rest. */
+.edition-notes > summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.35rem 0.9rem;
+  cursor: pointer;
+  list-style: none;
+}
+.edition-notes > summary::-webkit-details-marker {
+  display: none;
+}
+.edition-summary-line {
+  color: var(--ink-3);
+}
+.edition-summary-open {
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 2px;
+}
+.edition-notes[open] > summary {
+  margin-bottom: 0.9rem;
 }

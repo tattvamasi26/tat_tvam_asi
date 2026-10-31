@@ -23,7 +23,7 @@ npm run dev              # http://localhost:3000 — needs no .env.local and no 
 npx tsc --noEmit         # typecheck (add --incremental false if it reports errors in code you didn't touch)
 npm run build
 npm run test:unit        # node:test via tsx: script conversion, content integrity, UI strings, the logo, the stotras
-npm run test:e2e         # Playwright in the installed Chrome: every page × en/kn/hi × four widths
+npm run test:e2e         # Playwright in the installed Chrome: every page × en/kn/hi × seven widths
 npx playwright test --project=desktop -g "kena"   # one width, pages matching "kena"
 npm run seed             # push src/lib/seed/* to Supabase (inserts missing rows, idempotent)
 npm run seed -- --reset  # wipe the content tables first, then insert
@@ -32,6 +32,14 @@ npm run seed -- --reset  # wipe the content tables first, then insert
 - `npm run lint` doesn't work as-is. No ESLint config has ever been committed, so `next lint` starts its interactive setup instead of linting.
 - The seed needs `NEXT_PUBLIC_SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` in `.env.local`. Don't remove the `--experimental-websocket` line in `.npmrc`: supabase-js needs a global WebSocket, and Node 20 only has one behind that flag.
 - The e2e suite reuses a dev server already on :3000, or starts `npm run dev`. Against the dev server, one width takes about ten minutes; `--project=desktop` is the one that also runs the font audit.
+- For the whole suite, a production build is faster and steadier. Start it with `RATE_LIMIT=off`, or the site's own rate limit throttles the test browsers within a minute (`next start` gives every local request the same address). The switch exempts only this machine (`isUncounted()` in `guard.ts`). Then run one width at a time:
+
+  ```bash
+  NEXT_DIST_DIR=.next-build npm run build && git checkout tsconfig.json
+  RATE_LIMIT=off NEXT_DIST_DIR=.next-build npx next start -p 3001
+  BASE_URL=http://localhost:3001 WORKERS=3 npx playwright test tests/e2e/rendering.spec.ts --project=phone
+  ```
+- `sharp` is a dependency because Next.js resizes pictures with it in production. Without it the local server falls behind and pictures "did not load" in the audit.
 - To check a UI change by eye, load the page in all three languages by appending `?lang=en`, `?lang=kn` or `?lang=hi`.
 
 ## Architecture
@@ -111,15 +119,501 @@ The routes are `/stutis`, then `/stutis/[devata]`, then `/stutis/[devata]/[stotr
   - A picture cropped from its original says "cropped" in its credit.
   - Each one must clearly show the devata. The owner chooses among candidates before one goes in.
 
-### Nava Vinayakas of Tulunadu
+### The stotra collection: checked against a printed page
 
-`/temples/tulunadu/nava-vinayakas` lists nine Gaṇeśa temples of the coast, south to north, from `seed/nava-vinayakas.ts`. Each temple has names, place and a short text in every language, plus its Kannada name.
+Besides the hand-entered stotras, the stutis carry a **collection**: the
+Sanskrit alone, taken from the *Bṛhat Stotra Ratnākara*, vol. 1 (Madras,
+1953), as transcribed on Wikisource, and checked syllable by syllable
+against the scanned page. Read `docs/STOTRAS.md` first.
 
-- The page says plainly that the nine are a pilgrims' circuit, not a scriptural list. It also says that Idagunji and Gokarna lie north of Tulunadu proper. Keep both points.
-- Photographs:
-  - They come from Wikimedia Commons, with the licence and author in each credit.
-  - A temple with no free photograph shows its Kannada name in place of one. Don't substitute a photo of another temple.
-- The Temples index links to the page with a second feature card, below Kollur's.
+- **Wikisource's "validated" pages still carry OCR slips.** No stotra is
+  published on that status. `scripts/stotras/collate.mjs` compares each
+  stotra with an independent transcription on stotranidhi.com, and
+  every disagreement is settled on the scan
+  (`fetch-scan.mjs`, `crop-scan.ps1`).
+- **Each decision is recorded** in `src/lib/stotra-corpus/checked/<slug>.json`:
+  - a correction from the scan;
+  - a misprint in the book;
+  - a reading of the book's kept against the witness, quoted exactly as
+    it stands in the text (sandhi-joined);
+  - the printed page.
+
+  `build.mjs` publishes only verified stotras and fails on a record
+  whose stotra is not verified.
+- **stotranidhi's texts are never copied.** It publishes no licence. Its
+  list is the coverage target, and its text is used only to check.
+- On the page:
+  - The text is in the reader's script, with IAST on English pages
+    (`src/lib/iast.ts`, made by rule).
+  - A notice says the translation is not written yet.
+  - The full record of how the text was checked follows, as data, so
+    it reads the same in every language.
+- A devata opens once it has a stotra of either kind; `status:
+  "planned"` in `devatas.ts` only means none is entered. A devata with
+  no chosen picture shows its name on the bhajans' plate.
+- Verses are numbered by their place in the stotra.
+- **Layout is not the book's typesetting.**
+  - A refrain the book abbreviates is written out on a line of its own,
+    as the book prints the first one.
+  - A verse the book set like prose (a daṇḍa in mid-line, words broken
+    wherever the page ran out) is reset as half-verse lines.
+  - Word spacing the print got wrong is fixed through `spacing` in the
+    check record, which refuses any change other than spaces.
+  - Readers complained about all three; keep them fixed.
+- The record of how a text was checked is folded under one line
+  (`<details>`). It is for whoever wants it, not in the reader's way.
+- **Load one devata's texts, never all.** `data/texts/<devata>.json` is
+  loaded by `corpusVerses()`. A test fails any page importing it
+  directly.
+
+### The Rigveda is a built corpus, not seed files
+
+The Rigveda is eighty times the rest of the site's verse corpus, so it
+does not live in `src/lib/seed/`. It is harvested, built and committed
+as data, and read through `src/lib/rigveda/`.
+
+```
+node scripts/rigveda/fetch-samhita.mjs    # corpus/rigveda/rv-sasvara-raw.txt
+node scripts/rigveda/fetch-spine.mjs      # corpus/rigveda/{rv-spine-raw.json,suktas/}
+npx tsx scripts/rigveda/build.ts          # -> src/lib/rigveda/data/
+```
+
+- **Sources and decisions are documented**: `docs/RIGVEDA-SOURCES.md`
+  (what may legally be used, and what was harvested) and
+  `docs/RIGVEDA-DESIGN.md` (the pages, and the owner's decisions).
+  Read both before adding Rigveda pages.
+- **The built corpus is committed**: `src/lib/rigveda/data/spine.json`
+  (1,028 hymns without verses, ~330 KB) and `mandala-1..10.json` (the
+  10,552 verses). The raw saṃhitā and the 1,028 Sāyaṇa pages under
+  `corpus/` are git-ignored and re-fetchable; `rv-spine-raw.json` is
+  committed as the witness for what the editorial layer does.
+- **Load one mandala, never ten.** `SPINE` is imported directly;
+  `verses(mandala, sukta)` dynamically imports a single mandala file.
+  Never import `data/mandala-*.json` from a page.
+- **The devatā field is an attribution, not a name.** It gives
+  per-verse attributions, epithets and subjects, in 290 spellings. The
+  editorial layer is `src/lib/rigveda/devatas.ts`: 98 canonical
+  devatās, plus a map from each principal (the devatā of verse 1,
+  parsed by `scripts/rigveda/attribution.mjs`). A hymn is filed under
+  its verse-1 devatā and its full attribution is printed on its own
+  page. **The build fails on a principal with no entry**, so a
+  re-harvest cannot quietly introduce an unmapped god.
+- **26 values were read by hand** out of Sāyaṇa or the Anukramaṇī's
+  prose (`devatas-by-hand.ts`, `spine-by-hand.ts`). Each quotes the
+  clause it was read from. Keep that rule: never add one without its
+  witness.
+- **Honesty**: all 1,028 hymns have verified mūla, ṛṣi, devatā, metre
+  and verse count; none has a translation yet. That is a *complete
+  text whose translation is in part* — a different claim from
+  `completeness: "selections"`, and it needs its own plain words on
+  the sūkta page and the front door (DESIGN §5-6).
+- `tests/unit/rigveda.test.ts` holds the counts, the completeness, the
+  grouping and the Kannada-plain rendering.
+
+**The pages** (`src/app/vedas/rigveda/`), four levels, added 2026-09-23:
+
+```
+/vedas/rigveda                       front door
+/vedas/rigveda/[mandala]             one mandala, its hymns grouped by devata
+/vedas/rigveda/[mandala]/[sukta]     one hymn, all its verses
+/vedas/rigveda/devata/[devata]       every hymn filed under one devata
+```
+
+- They reuse the existing idioms rather than inventing any: `.pagehead`
+  for the index pages, and for a sukta the stotra reader unchanged —
+  `.reader-head` above, the whole text in one `.stotra-text` card
+  below. Only the listing patterns are new (`src/styles/rigveda.css`,
+  `.rv-*`), and they follow `.stotra-row`.
+- `[mandala]` and `[sukta]` must reject a non-numeric segment with
+  `notFound()`: the static `devata` segment wins over `[mandala]`, but
+  nothing else may render an empty mandala.
+- **A row never repeats the heading it sits under.** On a mandala page
+  the hymns are already grouped by devata, so a row prints its
+  attribution only when `mixed` — which is exactly where it says
+  something the heading does not.
+- The sukta page has no `generateStaticParams`: 1,028 prerendered
+  routes cost more build time than they are worth when the page
+  renders dynamically anyway (the locale is a cookie). Mandalas and
+  devatas do prerender.
+- Numbers use `toLocaleString("en-IN")` in every language, as the rest
+  of the site does; `plain()` strips the danda the Anukramani ends many
+  fields with, for display only.
+- The sitemap carries the front door, the ten mandalas and the devatas
+  — not the 1,028 sukta URLs.
+
+### The bhajans are an imported corpus
+
+913 Kannada devotional songs, brought over read-only from
+bhakthilahari.com, which the site's owner also keeps. Like the
+Rigveda they are built and committed as data, not written into
+`src/lib/seed/`, and read through `src/lib/bhajans/`.
+
+```
+node scripts/wordpress/fetch.mjs https://bhakthilahari.com --probe
+node scripts/wordpress/fetch.mjs https://bhakthilahari.com
+node scripts/wordpress/parse-bhajans.mjs
+node scripts/wordpress/build-bhajans.mjs
+```
+
+- **The decisions are in `docs/BHAJANS.md`.** Read it before touching
+  the section.
+- **Nothing is ever written to the source site.** `fetch.mjs` has one
+  function that reaches the network and it sends GET only. WordPress
+  needs no plugin for this: the REST API has been in core since 4.7.
+- **The harvest is git-ignored** (`corpus/wordpress/`) and
+  re-fetchable. What is committed is `src/lib/bhajans/data/` —
+  `spine.json` (every song without its text) and `texts/<devata>.json`.
+- **Load one group, never twenty-two.** `SPINE` is imported directly;
+  `songsIn(devata)` loads a single texts file. Never import
+  `data/texts/*.json` from a page.
+- **These songs have no translation, and the section says so.** The
+  source carries a meaning for 13 posts out of 915. This is a complete
+  text whose translation has not been written — the Rigveda's claim,
+  needing the Rigveda's plain words, on the front door and on every
+  song. Nothing may imply a meaning exists.
+- **A song is Kannada, not Sanskrit stored in Devanagari.** Nothing
+  goes through `scriptFor`; the text is identical in all three
+  languages and carries `lang="kn"` so the script audit skips it.
+  Thirty-nine songs quote a little Devanagari inside an otherwise
+  Kannada text, so the test asserts Kannada dominates rather than that
+  Devanagari is absent.
+- **The transliteration is deliberately not paired stanza-for-stanza**
+  with the Kannada: in four songs of ten the source abridges it.
+  Unlike the stutis it is shown in every language, opening by default
+  except in Kannada — there it is the Kannada reader who does not need
+  it and the English and Hindi reader who cannot read the script.
+- **A devata is scored, never guessed.** `scripts/wordpress/deities.mjs`
+  holds the epithets each devata actually goes by; the composer's
+  ankita is stripped first, or all five hundred `...ವಿಠಲ` signatures
+  would file their songs under Viṭṭhala. A devata must win by a clear
+  margin. 625 of 913 are settled, and where the owner had categorised
+  a post by hand the text agreed 138 times out of 141. The rest sit in
+  `niti` (addressed to the mind, a real form) or `unsorted` (an
+  admitted gap) — a wrong devata is worse than no devata.
+- **The source site's 905 pictures did not come over**, none carrying
+  a licence or an author. The group pictures come instead from
+  Wikimedia Commons (`scripts/wordpress/fetch-devata-images.mjs`, which
+  refuses anything non-free) and from four photographs the owner
+  supplied. **Pinterest is not a source**: several files offered from
+  there carry photographer watermarks burnt in, and were not used. A
+  group with no picture shows its name on a designed plate.
+- **Look at a picture before shipping it.** The first Commons pass
+  filed a photograph of a signboard outside the Pandharpur temple as
+  the picture of Vitthala, and three carvings too dark to read at card
+  size. Raja Ravi Varma's paintings are public domain and read at any
+  size.
+- **Never name a group after what it lacks.** The 258 songs naming no
+  single form of God are "Bhakti padagalu", not "unsorted" — a
+  Haridasa singing plainly to Hari is doing a real thing, not failing
+  to be classified. A unit test rejects "unsorted", "unknown", "misc"
+  and "other" as group names.
+- **Raga and tala are not recorded by the source.** An early pass
+  "found" 227 ragas; every one was the label matching inside an
+  ordinary word (`varagala` → raga `la`). The extractor now demands an
+  explicit label, and `tests/unit/bhajans.test.ts` pins it.
+
+### The acharyas list
+
+`seed/teachers.ts` holds nine acharyas, **in chronological order**,
+each written in all three languages: Shankara, Ramanuja, Basavanna,
+Madhva, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
+Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
+`tests/unit/teachers.test.ts` holds the whole roster to these rules:
+
+- **A contested date is not printed as a known one.** Shankara,
+  Ramanuja and Madhva all have two or more datings in circulation, so
+  their `birth_year`/`death_year` are null and the era string carries
+  the claim. Don't fill them in.
+- **A living teacher has no death year**, and nothing is asserted about
+  him that the matha has not published. Vidhushekhara Bharati's year of
+  birth is not public and is not guessed at.
+- **A picture is used on one of two grounds, and the credit says
+  which.** Either it carries a licence that allows reuse, and the
+  credit names the licence and links to Commons; or the site's owner
+  supplied it, and the credit says so with no source link (the
+  precedent is `seed/stuti-images.ts`). Basavanna, Madhva and the two
+  living Jagadgurus are the owner's; the rest are Commons. Where the
+  file is signed or watermarked by its artist or photographer, that
+  person is named in the credit and the watermark stays on the file —
+  Sri Vidhushekhara Bharati's portrait is the case, and it is **not**
+  under a free licence.
+- **No photograph at all is still a valid state.** `image_url` may be
+  null, and the card then shows the name in the reader's script
+  (`.acharya-nameplate`), the way a temple without a photograph does.
+  Nothing uses it at present; keep it for the next acharya who needs
+  it.
+- **Key works are chip-sized labels**, not full citations — a long one
+  pushed the card past the viewport at 390px. The attribution belongs
+  in the biography.
+- Quotes are given in all three languages or in none; the pages hide
+  the quote rule and the key-works label when empty.
+
+### An acharya written in depth is a monograph
+
+`/acharyas/[slug]` renders one of two things: a **monograph**, when a
+module under `src/lib/seed/acharya-pages/` has registered one, or the
+summary card built from `seed/teachers.ts` when none has. Adi
+Shankaracharya is the first monograph (2026-09-23).
+
+- **The study comes before the page.** `docs/SHANKARA.md` carries the
+  sources, the dating dispute and the editorial decisions; the module
+  is written from it. Read it before changing anything on that page.
+- **It reuses the temples' monograph, it does not fork it.** The block
+  vocabulary (`para`, `sub`, `list`, `rows`) is imported from
+  `seed/temple-pages.ts`, and the renderer is shared:
+  `components/content/ProseBlock.tsx` serves both. The `temple-*` CSS
+  classes are deliberately reused — they style a passage of prose, not
+  a temple. Only the portrait and the Sanskrit name are new
+  (`styles/acharyas.css`).
+- **Registration is an import side effect**, as with texts and
+  temples: the module must be imported in `src/lib/data.ts` or it sits
+  on disk unregistered.
+- **Three rules the Shankara page exists to honour**, and which
+  `tests/unit/acharyas.test.ts` enforces:
+  1. The dates are given as a disagreement — the mathas' own 5th c.
+     BCE traditions, the early-Indology 788–820 CE, Nakamura's 700–750,
+     Potter's late 7th–early 8th. `birth_year`/`death_year` in
+     `teachers.ts` are **null on purpose**; don't fill them in.
+  2. The life is labelled as tradition. Every surviving biography was
+     written five centuries or more after he died.
+  3. The works are three lists — accepted, doubted, attributed.
+     *Vivekachudamani* is doubted and must not be listed as a key work.
+     A stotra of his is "traditionally attributed", never "by".
+- Pictures are Wikimedia Commons under `public/images/acharyas/`, each
+  with licence, author and `sourceUrl`; a unit test reads the JPEG to
+  check the declared size.
+- **The prose is one file per language** (`shankara/en.ts`, `kn.ts`,
+  `hi.ts`), assembled by `shankara/index.ts`, which holds what they
+  share — the pictures and the sources. Adding a section means adding
+  it to all three; the unit test fails otherwise.
+- **Drawn blocks.** On top of the temples' four prose blocks, an
+  acharya page has nine more, declared in `seed/acharya-pages.ts` and
+  rendered by `components/acharyas/AcharyaBlocks.tsx`: `timeline`
+  (dated claims on one band, drawn to scale from `year`), `journey`,
+  `compass`, `layers`, `tiers`, `lineage`, `verse`, `terms`,
+  `figure` (a picture named by `src`, resolved against the page's own
+  pictures). All are plain CSS on semantic markup — no chart library,
+  no canvas — and all collapse to one column on a phone.
+- **Sanskrit inside a drawn block is stored in Devanagari and
+  converted by the view**, not by the content file: `getAcharyaMonograph`
+  passes `verse.sanskrit`, `terms[].sanskrit`, `compass.centre` and
+  `compass.points[].vakya` through `scriptFor`. A unit test asserts
+  both halves — Devanagari in the seed, Kannada on the Kannada page.
+- **Let long compounds break.** The adhyāsa-bhāṣya's opening is one
+  unbroken word of sixty-odd letters; Sanskrit elements that can carry
+  such a string need `overflow-wrap: anywhere` or the page scrolls
+  sideways on a phone.
+
+### Temples are arranged by region
+
+The routes are `/temples` (the regions), `/temples/[section]` (one region), and `/temples/[section]/[entry]` (a temple, or a circuit). There is one dynamic segment per level, so `[section]` and `[entry]` resolve by data rather than by folder.
+
+- `seed/temple-regions.ts` lists the regions: Tulunadu, Tamil Nadu, the Deccan, Odisha. A region is cultural, not administrative — Tulunadu spans Kasaragod in Kerala and the Karnataka coast.
+- A region page shows its circuits first, then its temples.
+- A temple written in depth is a module under `seed/temple-pages/` that calls `registerTemplePage()`. Import it in the temple block of `data.ts`, or it has no page.
+  - The prose is written per language (`content.en`, `.kn`, `.hi`), each with the whole structure, the way `i18n/kollur.ts` was written. A unit test holds the languages to the same section ids and the same block kinds, so none can drift.
+  - Blocks are `para`, `sub` (a titled passage), `list` (label and text) and `rows` (a time, a name, what happens then).
+  - Every module names the sources its facts came from, and the page prints them. Say plainly where a tradition is a tradition, and where a legend was written down long after the event.
+  - Kollur keeps its prose in `i18n/kollur.ts`; its module shapes that into the monograph. Its old hand-built dark page is gone.
+- The shorter entries stay as `TEMPLES` rows in `seed/temples.ts`, each carrying a `region`. They render through `ShortTemple` with the same head and facts bar.
+- A circuit (a set of temples visited together) is a row in `seed/temple-collections.ts` pointing at its own data and page; the Nava Vinayakas are the first.
+  - That page says plainly that the nine are a pilgrims' circuit, not a scriptural list, and that Idagunji and Gokarna lie north of Tulunadu proper. Keep both points.
+- Photographs come from Wikimedia Commons with the licence and author in each credit; a temple with no free photograph shows its own name in its own script instead. Don't substitute a photo of another temple.
+- Temples used to live at `/temples/<slug>`. Those addresses still work: `[section]` redirects a slug it recognises to the temple's page inside its region. Keep that redirect when adding regions.
+
+### Rituals & Festivals is one section with two halves
+
+`/rituals` (the Rituals tab) and `/festivals` (the Festivals tab) sit
+under one shared head, `components/rf/RfHead.tsx`: the title and two
+large tabs, the active one filled in marigold, then a jump bar. Both
+halves are built from the same shape, the **band** (`styles/rf.css`):
+a heading column held on the left, cards on the right. Rituals has one
+band per group (the sixteen saṃskāras open the first); Festivals has
+one per season — the six ṛtus in `seed/rtus.ts`, two lunar months each,
+with the solar Makara Saṅkrānti placed by `SOLAR_RTU`. The old drawings
+(year wheel, day band, life line) are no longer on these pages.
+
+**Depth lives in `seed/rite-depth/`** — one file per language, keyed by
+slug: each rite's and festival's steps in order, what is used, and for
+a festival kept over several days, the days. `tests/unit/rite-depth.test.ts`
+holds the three languages to the same counts and rejects instruction.
+Detail pages render it with `components/rf/Depth.tsx` beside an
+at-a-glance panel. A festival with no picture shows its name on a plate,
+never a grey box.
+
+Both are reached through one nav entry, "Rituals & Festivals", because
+a rite and a festival are the same kind of thing — something done on an
+occasion — and splitting them put the eleventh tithi of the moon in one
+section and the naming on the eleventh day in another. `festivals`
+carries `parent: "rituals"` in `i18n/sections.ts`, the same mechanism
+that puts the Vedas under Shastras, so it is not listed twice.
+
+- **A date is never Gregorian, on either half.** An occasion is a
+  tithi, an hour, or a stage of life. `tests/unit/support/gregorian.ts`
+  holds the one check both halves use; it is case-sensitive about month
+  names and makes "May" prove it is a month, because the naive version
+  reported the modal verb in "before it he may not study the Veda".
+- **The sixteen saṃskāras are all listed, and each says whether it is
+  still performed** (`kept: "common" | "rare" | "lapsed"` in
+  `seed/rituals.ts`). Eight are common, three rare, five lapsed; the
+  prose quotes those numbers in three languages and
+  `tests/unit/rituals.test.ts` pins the split so they cannot drift. The
+  Rituals tab shows all sixteen as a grid of tiles, the written-up ones
+  outlined and linked.
+- **Where a practice is argued over, the disagreement is printed.** Who
+  may be given the upanayana, and who may perform a śrāddha, both have
+  more than one answer in circulation. The pages say so and settle
+  neither.
+- **These pages describe rites; they do not teach them.** A test
+  rejects the second person ("you should", "recite the"). No mantra is
+  given as an instruction; where the site holds the words, the rite
+  links to them.
+- **Each rite and group has an illustration drawn for the site**
+  (`components/rituals/RiteArt.tsx`): inline SVG on the site's tokens, no
+  text, showing the object that defines the rite — the thread and staff,
+  seven footprints by the fire, the agnihotra's three altars. Shown on the
+  cards, in each group's band head and in a rite's page head, credited
+  "Illustration drawn for this site". It is not a photograph and never
+  claims to be one.
+- **The rites are drawn, not photographed.** Seventeen licence-checked
+  Commons photographs were fetched for this section and all of them were
+  removed at the owner's word: documentary photographs of other people's
+  ceremonies are not what this site looks like, and a rite is not a thing
+  a stranger's snapshot explains. A group opens with its own glyph on a
+  plate; a rite opens with its name on paper in the reader's script
+  (`.ri-hero.is-plain`). The band leading to the year shows the twelve
+  lunar months, the ones carrying a festival set in the sacred ink,
+  rather than four photographs of crowds.
+- **Do not fill `seed/ritual-images.ts` from an image search.** It is
+  empty on purpose and there is deliberately no `rituals` set in
+  `scripts/images/fetch-commons.mjs` any more, so it cannot be refilled
+  by running a script. A picture here would be one the owner chose or
+  supplied, credited the way `seed/stuti-images.ts` credits theirs — and
+  an owner-supplied credit links nowhere. A unit test holds the registry
+  empty and the image directory gone.
+- Rites are reached from `/shastras` under the Vedāṅga **Kalpa**, which
+  is the limb that governs ritual procedure; a unit test holds that
+  link. The sūtras themselves are not entered, so it is `partial`.
+
+The general lesson, which cost two rounds to learn: **do not add
+photographs to a section on your own initiative.** Licence-checking them,
+and even viewing every candidate at the crop the page will use, catches
+the embarrassments — a promotional poster with its caption burnt in, a
+signboard outside a matha, a gurukula classroom filed under "homa" — but
+it does not make the result belong here. The owner picks the pictures.
+
+### The śāstra map and the Purāṇas
+
+- **`/shastras` is arranged in three tiers** (`seed/shastra-tiers.ts`):
+  what is heard (śruti), what is remembered (smṛti), and what is built
+  on them. Each tier is an `.rf-band`; each branch a `.sh2-card` in the
+  site's own palette (the old pastel `tone-*` panels are gone from it).
+- **No branch leads nowhere.** Four have sections (`href`); the other
+  six — Vedānta, Vedāṅgas, Dharma, Āgama, Itihāsa, teaching texts —
+  have a page at `/shastras/[branch]` written in
+  `seed/shastra-pages/{en,kn,hi}.ts`: a few paragraphs on the branch and
+  one on every text. A branch with a section redirects there from
+  `/shastras/[branch]`, so there is never a second page about it.
+  `tests/unit/shastra-pages.test.ts` holds this.
+- **`/puranas` lists the eighteen as rows in list order**, each with
+  its length as a bar on one scale. The Padma Purāṇa's guṇa grading is
+  a smaller panel below, under its own names (sāttvika, rājasa, tāmasa)
+  — not named by deity, since the rājasa six include the Kṛṣṇa-leaning
+  Brahmavaivarta. Each Purāṇa's page carries its divisions and
+  best-known passages from `seed/purana-depth/{en,kn,hi}.ts`.
+- Detail pages across Rituals, Festivals, Purāṇas and branches share
+  one shape: `.rf-dhero`, then `.rf-detail` with the `Glance` panel.
+
+### The six darśanas
+
+`/darshanas` (front door) and `/darshanas/[school]` (six pages), reached
+through Shastras (`parent: "shastras"`). Structured data is in
+`seed/darshanas.ts`; the prose is one file per language in
+`seed/darshana-pages/` (`en.ts`, `kn.ts`, `hi.ts`), the Shankara
+arrangement, held to the same section ids and block kinds by
+`tests/unit/darshanas.test.ts`.
+
+- **Three corrections lead the front door, and a test pins each**:
+  the list of six is a later convention, not how the schools formed;
+  āstika means accepting the Veda, not theism (Sāṅkhya argues there is
+  no God, Mīmāṃsā gives one nothing to do — both āstika); and six is
+  not all there were (`CONTRAST`: Buddhist, Jain, Cārvāka).
+- **`ishvara` is prose, never a boolean**, because that is the field
+  the popular account gets wrong.
+- **The Jain row of the pramāṇa grid is `null` on purpose.** Jain
+  epistemology has its own list; forcing it onto the Nyāya six would
+  be tidy and false.
+- **A disputed count carries its note** (Vaiśeṣika, Mīmāṃsā, Vedānta).
+- **The drawings are CSS on semantic markup, not SVG** — a real
+  `<table>` for the grid, nested lists for Sāṅkhya's twenty-five and
+  Nyāya's five members. They show labelled structure in three scripts,
+  which SVG text cannot wrap. The grid must fit a phone outright: the
+  audit fails any sideways-scrolling region, so below 600px the count
+  column is dropped instead.
+
+### Everyday Vedanta is the one section a reader does
+
+`/practice` holds five sittings built on texts the site already has.
+`components/practice/Sitting.tsx` is the only substantial client
+component on the site.
+
+- **It promises nothing, and a test enforces that** across both the
+  sittings' prose and the section's own strings — the chrome is where a
+  claim creeps in, since a bell and a dark screen are exactly what a
+  wellness app would sell by their supposed effects.
+- **Nothing leaves the machine.** The streak and the preferences live in
+  `localStorage` under `tta_practice_v1` and `tta_practice_prefs_v1`,
+  read in an effect and never during render, and the page says so.
+- **The bell is synthesised, not a file** (`components/practice/bell.ts`):
+  a struck bowl built from four inharmonic partials. An audio file would
+  be a request the page makes on its own, which this section does not
+  do. It also works with no network, which is the state a phone on a mat
+  at six in the morning is often in. Audio can only start inside a click
+  handler, so `wakeAudio()` is called from the button.
+- **The countdown works off a wall-clock end time**, not by decrementing
+  a counter: a background tab throttles timers to once a minute.
+- **An open sitting counts up** and ends when the reader says so,
+  because a timer offering only three lengths implies those are the
+  lengths that count.
+- **Full screen is an overlay first and the Fullscreen API second.** The
+  API is refused often enough that the overlay has to be the thing that
+  works; the request is a bonus that hides the browser chrome. Escape
+  leaves, `fullscreenchange` keeps the two in step, and body scroll is
+  restored on the way out.
+- **The screen wake lock is released** on pause, on finishing and on
+  unmount, and re-taken when the tab becomes visible again. A lock left
+  held keeps somebody's phone lit all day.
+- The recitation sits **inside** the timer panel, using the stotras'
+  player, which still loads nothing from YouTube until it is pressed.
+
+### Pictures across the site
+
+- **Sources, in order of preference**: public-domain or freely licensed
+  paintings, manuscripts and sculpture from Wikimedia Commons; then a
+  drawing made for the site (`components/rituals/RiteArt.tsx`, inline
+  SVG on the site's tokens, credited "Illustration drawn for this
+  site"); then nothing. A specific temple gets only a real photograph of
+  that temple — Sowthadka, Pavanje and Hattiangadi have none on Commons
+  and keep their name plates until the owner supplies one.
+- **How a picture gets in**: candidates are searched and looked at on a
+  contact sheet; the chosen titles go into
+  `scripts/images/sets/<set>.json`, copied from the reviewed manifest,
+  never retyped; `node scripts/images/fetch-commons.mjs <set>` downloads
+  them licence-checked into `public/images/<set>/commons.json`. The
+  Purāṇas, Stories, darśanas and branch pages read them through
+  `seed/section-images.ts`, which shows a picture only once its alt text
+  is written in all three languages, and names a drawing (`ART`) where
+  no picture exists.
+- **Sizes come from the bytes.** Commons serves its own standard widths,
+  so the fetcher reads each JPEG's real size from its header; seventy
+  manifest entries were wrong before this. A PNG original arrives as
+  PNG and must be converted to a real JPEG before committing.
+  `tests/unit/pictures.test.ts` checks every manifest on the site.
+- **Rejected, and why** (so they are not proposed again): a Bhāgavata
+  folio of the gopīs' clothes, a disembowelling for Prahlāda, Veda
+  manuscripts titled "1500–1200 BCE", a fan-made postage stamp for
+  Kaṇāda, a palm-leaf photo with its caption burnt in, lizards for
+  "Āgama", Jain hell scenes for the cosmos.
 
 ### Citation and accuracy rules
 
@@ -151,6 +645,87 @@ Don't route around these.
   - Never store Sanskrit in Kannada script in the seed data.
   - Text that is in another language on purpose (a temple's own Kannada name on an English page) carries a `lang` attribute; the script check skips `[lang]` elements.
 
+### Security and anti-copying
+
+Read `docs/SECURITY.md` before touching any of this. The short version:
+
+- **AI crawlers are refused twice.** robots.txt disallows every token in
+  `AI_CRAWLERS` (`src/lib/security/bots.ts`), and the middleware sends a
+  403 to the ones that name themselves in their User-Agent. To add a
+  crawler, add it to that one list.
+- **Copying tools are refused** by User-Agent: curl, python-requests,
+  HeadlessChrome and the like. This is also why
+  `playwright.config.ts` sets an ordinary Chrome User-Agent. Without it
+  every e2e test gets a 403.
+- **The trap.** `/archive-index` is linked invisibly from the footer and
+  disallowed in robots.txt. Anything that requests it is banned for an
+  hour. Never link it visibly, and never make it a `<Link>`: a prefetch
+  would ban real readers.
+- **The rate limit is in memory**: 120 pages a minute and 1,200 an hour,
+  per address. Prefetches and pictures don't count, and neither does a
+  request with no client address (local, tests). The image optimiser
+  reads `/images/` with no headers, so pictures refuse only named AI
+  crawlers.
+- **The client address is never the client's word.** `clientAddress()`
+  in `src/lib/security/guard.ts` takes `request.ip`, or the
+  `X-Forwarded-For` entry our proxy appended (counted from the right,
+  `TRUSTED_PROXY_HOPS`), and groups IPv6 by /64. Only a request with no
+  address at all is uncounted. A fake `Purpose: prefetch` header earns
+  nothing: only the router's own prefetch (`Next-Router-Prefetch` with
+  `RSC: 1`) counts as one, against its own allowance. A browser
+  User-Agent sent with neither `Sec-Fetch-Mode` nor `Accept-Language` is
+  a script and gets a 403. Scanner probes (`/.env`, `*.php`, `/wp-*`)
+  are banned for fifteen minutes.
+- **Copying is annotated, never blocked.** `CopyAttribution` (in the
+  footer) appends the page URL and `/rights` to any copied passage of 40+
+  characters. Don't add `user-select: none` or right-click blocking: they
+  stop no copier and break the site for readers; a test rejects them.
+- **Headers live in `next.config.js`**, HSTS in the middleware (off
+  localhost). Any new outside host must be added to the CSP there: a
+  picture host to `img-src`, an embed to `frame-src`. The optimiser's
+  `remotePatterns` must also list only hosts actually used.
+- **There is no public JSON API.** `/api/search` was removed because it
+  served the corpus to anyone. Don't add a data endpoint without
+  same-origin checks and a rate limit.
+- `/rights` (`src/i18n/rights.ts`) is the notice the TDM headers,
+  `/.well-known/tdmrep.json` and `/ai.txt` point to. It claims only the
+  site's own work. The texts and the credited pictures aren't the site's
+  to reserve.
+- `tests/unit/security.test.ts` pins all of it.
+- **Open item:** Next 14.2.35 carries npm-audit advisories whose only
+  fix is Next 16.
+
+### Readers' accounts
+
+Readers can sign in with Google. Five reading pages a month are free;
+then the reader signs in, free, to read on. Read `docs/ACCOUNTS.md`
+first.
+
+- The flow is `/signin`, then `/auth/google`, then Supabase and Google,
+  then `/auth/callback`, then `/account`. It all runs in route handlers
+  on the server (PKCE). There is no client component.
+- `safeNext()` in `src/lib/auth-paths.ts` is the only way a return path
+  is chosen. Never redirect to a raw `next` parameter.
+- Read the reader with `currentReader()` (`src/lib/auth.ts`). It calls
+  `getUser()`. Never use `getSession()` on the server.
+- The middleware refreshes the session only where `readsSession()`
+  says so, or on a reading page that carries a session cookie. Don't
+  widen that to every page.
+- **The reading meter** is `src/lib/security/reading-gate.ts` plus step
+  6 of the middleware. A new kind of reading page must be added to
+  `GATED`; an index never is. The count is an HMAC-signed cookie; the
+  meter is on only when `authStatus()` says a way in works; verified
+  Google and Bing crawlers read freely and the page declares
+  `isAccessibleForFree: false`. `READING_GATE=off` switches it off.
+  An e2e test may open at most five reading pages per browser context.
+- `profiles` is the one table **without** a public-read policy, on
+  purpose.
+  - A reader may update only the columns granted to `authenticated`.
+  - Add payment columns without a grant.
+- The words are in `src/i18n/account.ts`, held to the same keys in all
+  three languages. If more data is ever kept, the "What is kept"
+  sentence changes with it.
+
 ### Supabase and `/admin`
 
 - `src/lib/supabase.ts` is server-only. It exports three clients:
@@ -166,7 +741,7 @@ Don't route around these.
   - `verses (text_id, locator)`
   - `translations (verse_id, language, source_id)`
   - `(parent_id, language)` on every `*_translations` table
-- A new table needs RLS enabled and a public-read policy in the same change.
+- A new table needs RLS enabled and a public-read policy in the same change. The exception is `profiles`, which is private.
 
 ### UI
 
@@ -179,6 +754,10 @@ Don't route around these.
     - For any UI change, study the existing pages first and design within them. The owner's personal `design-language` skill spells this out.
 
   Tailwind utilities are barely used; follow the semantic-class approach.
+- `src/styles/devices.css` is imported last and holds the rules for screens the width-based rules get wrong:
+  - a phone held sideways (landscape, under 540px tall): feature blocks keep the picture beside the words, big pictures stay inside the screen, and the home headline is sized by height;
+  - the smallest phones (380px and under): page titles step down a size, since one long word (ರಾಮಾನುಜಾಚಾರ್ಯ) was wider than the screen.
+- A long unbroken word must never push a page sideways at 320px. Sanskrit compounds (stotra names) take `overflow-wrap: anywhere`; a grid column that holds text takes `minmax(0, 1fr)`, and an `auto-fit` track takes `minmax(min(15rem, 100%), 1fr)`.
 - **Tailwind drops any `@layer` class it can't find written out literally** in `src/app`, `src/components` or `src/pages`. A class name built at runtime (such as the `tone-${i % 7}` colour palette) must live in an unlayered file (the tones are in `styles/pages.css`), or it silently disappears.
 - Unlayered rules beat the layered `.deva`/`.kannada` script classes. A component rule that sets `font` or `font-family` on an element that can carry a script class must restate the script face for it; see `.lockup-text.deva` in `chrome.css`.
 - The logo (`src/components/brand/Mark.tsx`) comes from the design canvas in `Tat tvam asi Logo Design.zip`:
@@ -205,7 +784,7 @@ Don't route around these.
 
 ### Rendering tests
 
-`tests/e2e/rendering.spec.ts` loads every route in `ROUTES` (`tests/e2e/support.ts`) in all three languages at four widths, with reduced motion so scroll reveals don't offset anything. Add new pages to `ROUTES`. A test fails on any of these:
+`tests/e2e/rendering.spec.ts` loads every route in `ROUTES` (`tests/e2e/support.ts`) in all three languages at seven widths, with reduced motion so scroll reveals don't offset anything: a 320px phone (`small`), a 360px phone, a phone held sideways (`landscape`, 780×360), a tablet, a laptop, a desktop and a 1920px monitor (`wide`). Add new pages to `ROUTES`. A test fails on any of these:
 - sideways page overflow
 - text cut off by an `overflow: hidden` container
 - Indic text that is letter-spaced, italic, or wrapped at a line-height below 1.3

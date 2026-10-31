@@ -11,17 +11,31 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [failures, setFailures] = useState(0);
+  const [waitUntil, setWaitUntil] = useState(0);
   const configured = isSupabaseConfiguredBrowser();
 
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    // Supabase limits sign-in attempts on its side; this only slows a
+    // guesser at the form. After three failures, each further attempt
+    // waits twice as long, up to five minutes.
+    if (Date.now() < waitUntil) {
+      setError("Too many attempts. Please wait a moment and try again.");
+      return;
+    }
     setLoading(true);
     setError(null);
     const supabase = supabaseBrowser();
     const { error: signInError } = await supabase.auth.signInWithPassword({ email, password });
     setLoading(false);
     if (signInError) {
-      setError(signInError.message);
+      // One message for every failure: the form must not reveal whether
+      // an address has an account.
+      const n = failures + 1;
+      setFailures(n);
+      if (n >= 3) setWaitUntil(Date.now() + Math.min(300_000, 5_000 * 2 ** (n - 3)));
+      setError("Sign-in failed. Check the email and password.");
       return;
     }
     router.replace("/admin/sources");
@@ -49,6 +63,7 @@ export default function AdminLoginPage() {
         )}
         <input
           type="email"
+          autoComplete="username"
           required
           placeholder="Email"
           value={email}
@@ -57,6 +72,7 @@ export default function AdminLoginPage() {
         />
         <input
           type="password"
+          autoComplete="current-password"
           required
           placeholder="Password"
           value={password}

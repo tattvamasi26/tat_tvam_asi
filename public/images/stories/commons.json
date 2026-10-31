@@ -1,0 +1,58 @@
+{
+  "dhruva": {
+    "src": "/images/stories/dhruva.jpg",
+    "width": 1400,
+    "height": 1786,
+    "credit": "Gita Press Gorakhpur · CC0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Story_of_dhruva.jpg"
+  },
+  "prahlada": {
+    "src": "/images/stories/prahlada.jpg",
+    "width": 1400,
+    "height": 1330,
+    "credit": "AnonymousUnknown author · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Narasimha_oil_colour.jpg"
+  },
+  "samudra-manthana": {
+    "src": "/images/stories/samudra-manthana.jpg",
+    "width": 1400,
+    "height": 1260,
+    "credit": "anonymous · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anonymous_-_The_Churning_of_the_Ocean_of_Milk_-_1977.443.2_-_Metropolitan_Museum_of_Art.jpg"
+  },
+  "vamana-bali": {
+    "src": "/images/stories/vamana-bali.jpg",
+    "width": 1400,
+    "height": 1990,
+    "credit": "anonymous · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Anonymous_-_Vamana_being_blessed_by_King_Bali_-_2016.248_-_Metropolitan_Museum_of_Art.jpg"
+  },
+  "gajendra-moksha": {
+    "src": "/images/stories/gajendra-moksha.jpg",
+    "width": 1400,
+    "height": 981,
+    "credit": "anonymous · CC0 · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:India,_Rajasthan,_Kota(%3F),_19th_century_-_Gajendra_Moksha-_The_Salvation_of_the_King_of_the_Elephants_-_1933.452_-_Cleveland_Museum_of_Art.jpg"
+  },
+  "mahishasura-mardini": {
+    "src": "/images/stories/mahishasura-mardini.jpg",
+    "width": 1400,
+    "height": 1231,
+    "credit": "Artist/maker unknown, India – Artist/Maker (India) · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Maker_unknown,_India_-_The_Great_Goddess_Durga_Slaying_the_Buffalo_Demon_(Mahishasuramardini)_-_Google_Art_Project.jpg"
+  },
+  "jadabharata": {
+    "src": "/images/stories/jadabharata.jpg",
+    "width": 1239,
+    "height": 909,
+    "credit": "Unknown authorUnknown author · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Bharata_saving_a_deer_(cropped).jpg"
+  },
+  "markandeya": {
+    "src": "/images/stories/markandeya.jpg",
+    "width": 784,
+    "height": 1071,
+    "credit": "Raja Ravi Varma · Public domain · Wikimedia Commons",
+    "sourceUrl": "https://commons.wikimedia.org/wiki/File:Raja_Ravi_Varma,_Markandeya.jpg"
+  }
+}
