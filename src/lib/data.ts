@@ -1522,7 +1522,7 @@ export interface FestivalView {
     height: number;
     alt: string;
     credit: string;
-    sourceUrl: string;
+    sourceUrl?: string;
     position: string;
   } | null;
 }
@@ -1600,7 +1600,7 @@ export interface PracticeImageView {
   height: number;
   alt: string;
   credit: string;
-  sourceUrl: string;
+  sourceUrl?: string;
   position: string;
 }
 

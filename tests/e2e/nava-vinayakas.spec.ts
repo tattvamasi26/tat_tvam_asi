@@ -23,7 +23,12 @@ test("nine temples, south to north, each photograph credited to its source", asy
 
   const photos = await page.locator(".nv-media img").count();
   expect(photos).toBeGreaterThan(0);
-  await expect(page.locator(".nv-body .credit a")).toHaveCount(photos);
+  // Each photograph is credited: a Commons file links to its page, and
+  // one the owner supplied says so and links nowhere.
+  const credits = page.locator(".nv-body .credit");
+  await expect(credits).toHaveCount(photos);
+  const owned = await credits.filter({ hasText: "Supplied by the site owner" }).count();
+  await expect(page.locator(".nv-body .credit a")).toHaveCount(photos - owned);
   for (const href of await page.locator(".nv-body .credit a").evaluateAll((as) => as.map((a) => a.getAttribute("href")))) {
     expect(href).toMatch(/^https:\/\/commons\.wikimedia\.org\//);
   }

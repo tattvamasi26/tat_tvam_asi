@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import { OWNER_IMAGES, type OwnerImageId } from "@/lib/seed/owner-images";
 import commons from "../../../public/images/bhajans/commons.json";
 
 // ─────────────────────────────────────────────────────────
@@ -209,6 +210,27 @@ for (const [id, entry] of Object.entries(FROM_COMMONS)) {
 }
 // The owner's photographs take precedence where he supplied one.
 for (const [id, entry] of Object.entries(OWNED)) IMAGES[id] = entry;
+
+// The owner's later pictures (seed/owner-images.ts), placed where the
+// Commons file was weak — a crowd scene for Krishna, a stage tent for
+// Vitthala, a street statue for Vishnu — or where the group had only
+// its drawn plate (the niti songs, which take the dasas' vina).
+const LATER: Record<string, OwnerImageId> = {
+  krishna: "krishnaUdupi",
+  vitthala: "vitthalaSaffron",
+  rama: "ramaPattabhisheka",
+  narasimha: "narasimhaBronze",
+  vishnu: "vishnuAnantashayana",
+  anjaneya: "hanumanSeated",
+  shiva: "shivaFamily",
+  raghavendra: "raghavendra",
+  dattatreya: "dattatreya",
+  tulasi: "tulasiLamp",
+  surya: "surya",
+  shani: "shani",
+  niti: "veena",
+};
+for (const [id, key] of Object.entries(LATER)) IMAGES[id] = OWNER_IMAGES[key];
 
 /** The picture for a group, or undefined when it has none. */
 export function groupImage(id: string): GroupImage | undefined {

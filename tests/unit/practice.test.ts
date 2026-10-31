@@ -136,7 +136,9 @@ test("every picture is on disk and credited", () => {
     assert.ok(img, `${p.slug} has no picture`);
     assert.ok(existsSync(path.join(process.cwd(), "public", img!.src)), `${img!.src} is not on disk`);
     assert.ok(img!.credit.trim(), `${p.slug}'s picture has no credit`);
-    assert.ok(img!.sourceUrl.startsWith("https://"), `${p.slug}'s picture has no source link`);
+    if (!/upplied by the site owner/.test(img!.credit)) {
+      assert.ok(img!.sourceUrl?.startsWith("https://"), `${p.slug}'s picture has no source link`);
+    }
     for (const locale of LOCALES) {
       assert.ok(img!.alt[locale]?.trim(), `${p.slug}'s picture has no ${locale} alt text`);
     }

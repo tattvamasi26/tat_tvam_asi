@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import { OWNER_IMAGES, type OwnerImageId } from "@/lib/seed/owner-images";
 import commons from "../../../public/images/festivals/commons.json";
 
 // ─────────────────────────────────────────────────────────
@@ -35,7 +36,8 @@ export interface FestivalImage {
   width: number;
   height: number;
   credit: string;
-  sourceUrl: string;
+  /** Absent for a picture the owner supplied without a source. */
+  sourceUrl?: string;
   alt: Record<Locale, string>;
   /** Which part of the frame the card must keep when it crops. */
   position?: string;
@@ -154,6 +156,20 @@ for (const [id, entry] of Object.entries(FROM_COMMONS)) {
   if (!alt) continue;
   IMAGES[id] = { ...entry, alt, position: POSITION[id] ?? "50% 50%" };
 }
+
+// The owner's pictures (seed/owner-images.ts) replace a Commons file
+// where it was weak: a museum statue for Guru Purnima, the palace lit
+// up for Vijayadashami where the day's own procession now stands.
+const LATER: Record<string, OwnerImageId> = {
+  "guru-purnima": "guruParampara",
+  "ganesha-chaturthi": "ganeshaChaturthi",
+  vijayadashami: "jambuSavari",
+  holi: "holi",
+  "gita-jayanti": "gitaChariot",
+  navaratri: "navaratri",
+  "utthana-dwadashi": "tulasiGarlanded",
+};
+for (const [id, key] of Object.entries(LATER)) IMAGES[id] = OWNER_IMAGES[key];
 
 export function festivalImage(slug: string): FestivalImage | undefined {
   return IMAGES[slug];

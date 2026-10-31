@@ -23,6 +23,7 @@ import { FillQuote } from "@/components/home/FillQuote";
 import { Marquee } from "@/components/home/Marquee";
 import { Reveal } from "@/components/motion/Reveal";
 import { Rosette } from "@/components/brand/Mark";
+import { OWNER_IMAGES } from "@/lib/seed/owner-images";
 import { Arrow } from "@/components/ui/Arrow";
 
 /**
@@ -72,11 +73,18 @@ export default function HomePage() {
 
   const totalEntries = readable.reduce((n, r) => n + r.entries, 0);
 
-  // The two sections about people and places get a photograph instead
-  // of a glyph. Any other section falls back to its glyph.
+  // Every section card carries a picture: a temple and an acharya from
+  // the sections themselves, and the owner's pictures for the rest
+  // (seed/owner-images.ts). A section with none falls back to its glyph.
   const pillarMedia: Record<string, { src: string; position?: string } | undefined> = {
     temples: temples[0]?.imageUrl ? { src: temples[0].imageUrl } : undefined,
     acharyas: teachers[0]?.imageUrl ? { src: teachers[0].imageUrl, position: "50% 18%" } : undefined,
+    shastras: OWNER_IMAGES.vedaBooks,
+    gita: OWNER_IMAGES.gitaVishvarupa,
+    stutis: OWNER_IMAGES.lakshmi,
+    practice: { ...OWNER_IMAGES.meditationHill, position: "50% 66%" },
+    rituals: OWNER_IMAGES.ganeshaChaturthi,
+    bhajans: { ...OWNER_IMAGES.purandaraDasa, position: "50% 10%" },
   };
 
   const stats = [

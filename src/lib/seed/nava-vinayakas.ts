@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { DevataImage } from "./devatas";
+import { OWNER_IMAGES } from "./owner-images";
 
 // ─────────────────────────────────────────────────────────
 //  Nava Vinayakas of Tulunadu — nine Gaṇeśa temples of the coast,
@@ -176,18 +177,9 @@ export const NAVA_VINAYAKAS: NavaVinayaka[] = [
       kn: "ಉಡುಪಿ ಮತ್ತು ಕುಂದಾಪುರದ ನಡುವಿನ ಹೆದ್ದಾರಿಯ ಪಕ್ಕದಲ್ಲಿ, ಆನೆಗುಡ್ಡೆ ಎಂಬ ದಿಬ್ಬದ ಮೇಲಿದೆ. ಕುಂಭಾಶಿ ಪರಶುರಾಮ ಕ್ಷೇತ್ರದ ಏಳು ಮುಕ್ತಿಸ್ಥಳಗಳಲ್ಲಿ ಒಂದು; ವಾದಿರಾಜ ತೀರ್ಥರ ತೀರ್ಥಪ್ರಬಂಧದಲ್ಲಿ ಈ ದೇವಾಲಯದ ಉಲ್ಲೇಖವಿದೆ.",
       hi: "उडुपी और कुंदापुर के बीच राजमार्ग के किनारे, आनेगुड्डे — 'हाथी पहाड़ी' — नामक टीले पर। कुंभाशी परशुराम क्षेत्र के सात मुक्तिस्थलों में से एक है, और वादिराज तीर्थ के तीर्थप्रबंध में इस मंदिर का उल्लेख है।",
     },
-    photo: {
-      src: "/images/temples/nava-vinayakas/anegudde.jpg",
-      width: 1024,
-      height: 768,
-      credit: `Anegudde temple, Kumbhashi — photo by Raghavendra Nayak Muddur, CC BY 3.0, ${COMMONS}`,
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Anegudde.jpg",
-      alt: {
-        en: "The gopura of the Anegudde temple above its entrance hall.",
-        kn: "ಆನೆಗುಡ್ಡೆ ದೇವಾಲಯದ ಪ್ರವೇಶ ಮಂಟಪದ ಮೇಲಿನ ಗೋಪುರ.",
-        hi: "प्रवेश मंडप के ऊपर आनेगुड्डे मंदिर का गोपुर।",
-      },
-    },
+    // The owner's photograph of the murti, named in its own caption
+    // (cropped off): "Lord Sri Vinayaka, Anegudde, Kumbhashi".
+    photo: OWNER_IMAGES.anegudde,
   },
   {
     slug: "hattiangadi",
@@ -216,18 +208,10 @@ export const NAVA_VINAYAKAS: NavaVinayaka[] = [
       kn: "ಹೊನ್ನಾವರದಿಂದ ಸುಮಾರು 14 ಕಿ.ಮೀ., ಶರಾವತಿ ನದಿಯ ಸಮೀಪದಲ್ಲಿದೆ; ವರ್ಷಕ್ಕೆ ಸುಮಾರು ಹತ್ತು ಲಕ್ಷ ಜನ ಭೇಟಿ ನೀಡುತ್ತಾರೆ. ಸುಮಾರು 4–5ನೇ ಶತಮಾನದ ನಿಂತಿರುವ ಮೂರ್ತಿಗೆ ಎರಡು ಕೈಗಳು ಮತ್ತು ಎರಡು ದಂತಗಳು; ಎರಡೂ ದಂತಗಳಿರುವ ಏಕೈಕ ಗಣಪತಿ ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ. ವಾಲಖಿಲ್ಯ ಋಷಿಯ ಯಜ್ಞ ವಿಘ್ನವಿಲ್ಲದೆ ನಡೆಯಲೆಂದು ನಾರದರು ಗಣೇಶನನ್ನು ಇಲ್ಲಿಗೆ ಕರೆತಂದರು ಎಂಬುದು ಕಥೆ.",
       hi: "होन्नावर से लगभग 14 किमी, शरावती नदी के पास; हर वर्ष लगभग दस लाख लोग आते हैं। लगभग चौथी-पाँचवीं शताब्दी की खड़ी प्रतिमा के दो हाथ और दो दाँत हैं; कहा जाता है कि दोनों दाँतों वाले ये एकमात्र गणपति हैं। कथा है कि ऋषि वालखिल्य का यज्ञ निर्विघ्न चले, इसलिए नारद गणेश को यहाँ लाए।",
     },
-    photo: {
-      src: "/images/temples/nava-vinayakas/idagunji.jpg",
-      width: 1024,
-      height: 768,
-      credit: `Idagunji Ganesh Temple's entrance — photo by Deepak Patil, CC BY-SA 3.0, ${COMMONS}`,
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Idagunji_Ganesh_Temple%27s_Entrance_-_panoramio.jpg",
-      alt: {
-        en: "The painted entrance of the Idagunji temple, with figures of deities above the door.",
-        kn: "ಬಾಗಿಲ ಮೇಲೆ ದೇವತೆಗಳ ಮೂರ್ತಿಗಳಿರುವ, ಬಣ್ಣ ಬಳಿದ ಇಡಗುಂಜಿ ದೇವಾಲಯದ ಪ್ರವೇಶದ್ವಾರ.",
-        hi: "द्वार के ऊपर देवताओं की आकृतियों वाला, रंगा हुआ इडगुंजी मंदिर का प्रवेश द्वार।",
-      },
-    },
+    // The owner's photograph of the murti, which the text describes:
+    // standing, two arms, both tusks. The entrance photo it replaced
+    // showed only the painted door.
+    photo: OWNER_IMAGES.idagunji,
   },
   {
     slug: "gokarna",

@@ -1117,6 +1117,13 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* A rite the owner supplied a picture for: the photograph fills the
+   frame the drawing sat in. */
+.rf-card-art.is-photo {
+  position: relative;
+  overflow: hidden;
+}
+
 .rf-band-art {
   width: min(100%, 15rem);
   aspect-ratio: 16 / 10;

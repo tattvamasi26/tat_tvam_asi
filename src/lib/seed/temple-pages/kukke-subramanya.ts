@@ -1,3 +1,4 @@
+import { OWNER_IMAGES } from "../owner-images";
 import { registerTemplePage } from "../temple-pages";
 
 // ─────────────────────────────────────────────────────────
@@ -49,6 +50,14 @@ registerTemplePage({
         en: "The gopura at the entrance, on the road up from the Kumaradhara.",
         kn: "ಕುಮಾರಧಾರೆಯಿಂದ ಮೇಲೇರುವ ದಾರಿಯಲ್ಲಿನ ಪ್ರವೇಶ ಗೋಪುರ.",
         hi: "कुमारधारा से ऊपर आते मार्ग पर प्रवेश गोपुर।",
+      },
+    },
+    {
+      ...OWNER_IMAGES.kukke,
+      caption: {
+        en: "The serpent canopy, dressed in gold and flowers.",
+        kn: "ಚಿನ್ನ ಮತ್ತು ಹೂಗಳಿಂದ ಅಲಂಕರಿಸಿದ ಸರ್ಪ ಪ್ರಭಾವಳಿ.",
+        hi: "सोने और फूलों से सजा सर्प छत्र।",
       },
     },
   ],

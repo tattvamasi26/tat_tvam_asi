@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import { OWNER_IMAGES, type OwnerImageId } from "@/lib/seed/owner-images";
 import commons from "../../../public/images/practice/commons.json";
 
 // ─────────────────────────────────────────────────────────
@@ -20,7 +21,8 @@ export interface PracticeImage {
   width: number;
   height: number;
   credit: string;
-  sourceUrl: string;
+  /** Absent for a picture the owner supplied without a source. */
+  sourceUrl?: string;
   alt: Record<Locale, string>;
   position?: string;
 }
@@ -62,6 +64,18 @@ for (const [id, entry] of Object.entries(FROM_COMMONS)) {
   if (!alt) continue;
   IMAGES[id] = { ...entry, alt, position: "50% 50%" };
 }
+
+// The owner's pictures (seed/owner-images.ts), still literal: dawn on
+// the Ganga for the Gayatri, a mala in the hand for the japa, Ganesha
+// in his shrine for his Atharvashirsha, one lotus on still water for
+// the breath. Arunachala stays for self-enquiry.
+const LATER: Record<string, OwnerImageId> = {
+  gayatri: "gangaDawn",
+  "ganapati-japa": "japaMala",
+  atharvashirsha: "ganeshaShrineLamps",
+  breath: "lotus",
+};
+for (const [id, key] of Object.entries(LATER)) IMAGES[id] = OWNER_IMAGES[key];
 
 export function practiceImage(slug: string): PracticeImage | undefined {
   return IMAGES[slug];

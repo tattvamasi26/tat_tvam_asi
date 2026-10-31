@@ -484,13 +484,15 @@ that puts the Vedas under Shastras, so it is not listed twice.
   (`.ri-hero.is-plain`). The band leading to the year shows the twelve
   lunar months, the ones carrying a festival set in the sacred ink,
   rather than four photographs of crowds.
-- **Do not fill `seed/ritual-images.ts` from an image search.** It is
-  empty on purpose and there is deliberately no `rituals` set in
-  `scripts/images/fetch-commons.mjs` any more, so it cannot be refilled
-  by running a script. A picture here would be one the owner chose or
-  supplied, credited the way `seed/stuti-images.ts` credits theirs — and
-  an owner-supplied credit links nowhere. A unit test holds the registry
-  empty and the image directory gone.
+- **Do not fill `seed/ritual-images.ts` from an image search.** There is
+  deliberately no `rituals` set in `scripts/images/fetch-commons.mjs`,
+  so it cannot be refilled by running a script. Since 2026-10-31 seven
+  daily and vow rites (pūjā, the lamp at dusk, sandhyāvandana, pradoṣa,
+  ekādaśī, saṅkaṣṭahara, tīrthayātrā) carry pictures **the owner
+  supplied**; the rites of passage, the fire and the rites for the dead
+  keep their drawings. A unit test holds every rite picture to an
+  owner credit and `public/images/rituals` gone. A rite's picture sits
+  in the framed slot beside its title, not full-bleed.
 - Rites are reached from `/shastras` under the Vedāṅga **Kalpa**, which
   is the limb that governs ritual procedure; a unit test holds that
   link. The sūtras themselves are not entered, so it is `partial`.
@@ -604,6 +606,18 @@ component on the site.
   `seed/section-images.ts`, which shows a picture only once its alt text
   is written in all three languages, and names a drawing (`ART`) where
   no picture exists.
+- **The owner's pictures** (`Project V/Images/TTA`, placed 2026-10-31)
+  live in `seed/owner-images.ts` and `public/images/owner/`: one
+  registry, alt text in three languages, credited "Supplied by the site
+  owner" (", cropped" where a burnt-in caption or watermark was cut off)
+  with no link, because their source is not recorded. Each section's
+  registry maps its slugs onto it — home cards, bhajan groups,
+  festivals, rites, the practice sittings, five śāstra branches, two
+  Nava Vinayakas and a Kukke gallery picture. They are 500–1,100px wide,
+  so a festival picture under 1,400px shows framed beside the title
+  rather than stretched across the screen. Pictures with words printed
+  on them, app screenshots, and murtis that cannot be named for certain
+  were left out.
 - **Sizes come from the bytes.** Commons serves its own standard widths,
   so the fetcher reads each JPEG's real size from its header; seventy
   manifest entries were wrong before this. A PNG original arrives as
