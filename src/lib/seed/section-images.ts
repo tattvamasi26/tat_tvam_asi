@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/config";
+import { OWNER_IMAGES, type OwnerImageId } from "@/lib/seed/owner-images";
 import puranas from "../../../public/images/puranas/commons.json";
 import stories from "../../../public/images/stories/commons.json";
 import darshanas from "../../../public/images/darshanas/commons.json";
@@ -37,7 +38,8 @@ export interface SectionImage {
   width: number;
   height: number;
   credit: string;
-  sourceUrl: string;
+  /** Absent for a picture the owner supplied without a source. */
+  sourceUrl?: string;
   alt: Record<Locale, string>;
   /** Which part of the frame a crop must keep. */
   position: string;
@@ -131,6 +133,24 @@ const ALIAS: Record<string, [ImageKind, string, string?]> = {
   "branch:puranas": ["purana", "bhagavata", "30% 22%"],
 };
 
+/**
+ * The owner's pictures (seed/owner-images.ts), which take the place of
+ * a drawing: the Vedas' own volumes, palm-leaf bundles for the
+ * Upanisads, one small manuscript in a hand for the short teaching
+ * texts, the image-maker's measured Nataraja for the Agamas,
+ * Shankara for Vedanta, Hanuman carrying Rama across the sea for the
+ * epics, and a book lettered "Purana" for the Puranas.
+ */
+const OWNED: Record<string, OwnerImageId> = {
+  "branch:veda": "vedaBooks",
+  "branch:upanishads": "palmLeafBundles",
+  "branch:prakarana": "palmLeafInHand",
+  "branch:agamas": "natarajaMeasures",
+  "branch:vedanta": "shankara",
+  "branch:itihasa": "hanumanCarriesRama",
+  "branch:puranas": "puranaBook",
+};
+
 const SOURCES: Record<ImageKind, Record<string, Entry>> = {
   purana: puranas as Record<string, Entry>,
   story: stories as Record<string, Entry>,
@@ -139,6 +159,8 @@ const SOURCES: Record<ImageKind, Record<string, Entry>> = {
 };
 
 export function sectionImage(kind: ImageKind, slug: string): SectionImage | undefined {
+  const owned = OWNED[`${kind}:${slug}`];
+  if (owned) return OWNER_IMAGES[owned];
   const alias = ALIAS[`${kind}:${slug}`];
   if (alias) {
     const img = sectionImage(alias[0], alias[1]);
@@ -152,12 +174,17 @@ export function sectionImage(kind: ImageKind, slug: string): SectionImage | unde
 
 /** The drawing to show when there is no picture, if one was made. */
 export function sectionArt(kind: ImageKind, slug: string): string | undefined {
+  if (OWNED[`${kind}:${slug}`]) return undefined;
   return ART[`${kind}:${slug}`];
 }
 
 /** Every picture the registry will show, for the tests. */
 export function allSectionImages(): [string, SectionImage][] {
   const out: [string, SectionImage][] = [];
+  for (const key of Object.keys(OWNED)) {
+    const [kind, slug] = key.split(":") as [ImageKind, string];
+    out.push([key, sectionImage(kind, slug)!]);
+  }
   for (const kind of Object.keys(SOURCES) as ImageKind[]) {
     for (const slug of Object.keys(SOURCES[kind])) {
       const img = sectionImage(kind, slug);

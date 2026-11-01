@@ -1117,6 +1117,13 @@
   border-bottom: 1px solid var(--line);
 }
 
+/* A rite the owner supplied a picture for: the photograph fills the
+   frame the drawing sat in. */
+.rf-card-art.is-photo {
+  position: relative;
+  overflow: hidden;
+}
+
 .rf-band-art {
   width: min(100%, 15rem);
   aspect-ratio: 16 / 10;
@@ -1257,4 +1264,23 @@
   aspect-ratio: 3 / 4;
   border-radius: var(--r-sm);
   border: 1px solid var(--line);
+}
+
+/* A head washed in its own picture's tone (--tone, from
+   seed/picture-tones.ts): a glow from the corner the picture sits in,
+   over paper barely tinted. Text stays ink on paper. */
+.rf-dhero.has-tone {
+  background:
+    radial-gradient(80% 120% at 100% 0%, color-mix(in srgb, var(--tone) 30%, transparent), transparent 62%),
+    radial-gradient(60% 90% at 0% 100%, color-mix(in srgb, var(--tone) 12%, transparent), transparent 70%),
+    color-mix(in srgb, var(--tone) 7%, var(--paper-2));
+}
+
+.rf-dhero.has-tone .rf-dhero-frame {
+  border-color: color-mix(in srgb, var(--tone) 35%, var(--line));
+  box-shadow: 0 18px 40px -22px color-mix(in srgb, var(--tone) 70%, transparent);
+}
+
+.rf-crumbs > span {
+  padding: 0.25rem 0.1rem;
 }

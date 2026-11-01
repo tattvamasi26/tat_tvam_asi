@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { DevataImage } from "./devatas";
+import { OWNER_IMAGES } from "./owner-images";
 
 // ─────────────────────────────────────────────────────────
 //  Nava Vinayakas of Tulunadu — nine Gaṇeśa temples of the coast,
@@ -16,7 +17,7 @@ import type { DevataImage } from "./devatas";
 //  thin (Sharavu, Sowthadka, Pavanje, Guddattu), from the temples' own
 //  sites and regional heritage sites. Photographs are from Wikimedia
 //  Commons under the licence in each credit; three temples have no
-//  free photograph yet, and show their Kannada name instead.
+//  free photograph; the owner supplied one of each (2026-11-01).
 // ─────────────────────────────────────────────────────────
 
 type Text = Record<Locale, string>;
@@ -120,6 +121,8 @@ export const NAVA_VINAYAKAS: NavaVinayaka[] = [
       kn: "ಬಯಲು ಗುಡಿ: ಗರ್ಭಗುಡಿಯಾಗಲಿ ಛಾವಣಿಯಾಗಲಿ ಇಲ್ಲದೆ ಮೂರ್ತಿ ಆಕಾಶದ ಕೆಳಗೆ ನಿಂತಿದೆ, ಯಾವ ಹೊತ್ತಿನಲ್ಲಾದರೂ ದರ್ಶನ ಮಾಡಬಹುದು. ದಾಳಿಕೋರರಿಂದ ಕಾಪಾಡಲು ದನಗಾಹಿಗಳು ಅದನ್ನು ಇಲ್ಲಿ ಬಚ್ಚಿಟ್ಟರು ಎಂಬುದು ಪ್ರತೀತಿ. 'ಸೌತೆ' ಮತ್ತು 'ಅಡ್ಕ' (ಹುಲ್ಲುಗಾವಲು) ಸೇರಿ ಈ ಹೆಸರು. ಹರಕೆ ಹೊತ್ತ ಭಕ್ತರು ಇಲ್ಲಿ ಗಂಟೆಗಳನ್ನು ಕಟ್ಟುತ್ತಾರೆ.",
       hi: "खुले में स्थित देवस्थान: न गर्भगृह, न छत — प्रतिमा आकाश के नीचे खड़ी है, और किसी भी समय दर्शन हो सकते हैं। परंपरा कहती है कि आक्रमणकारियों से बचाने के लिए ग्वालों ने इसे यहाँ छिपाया था। नाम 'सौते' (ककड़ी) और 'अड्क' (घास का मैदान) से बना है। मन्नत मानने वाले भक्त यहाँ घंटियाँ बाँधते हैं।",
     },
+    // The owner's photograph.
+    photo: OWNER_IMAGES.sowthadka,
   },
   {
     slug: "pavanje",
@@ -136,6 +139,8 @@ export const NAVA_VINAYAKAS: NavaVinayaka[] = [
       kn: "ಮಂಗಳೂರಿನ ಉತ್ತರಕ್ಕೆ, ಹೆದ್ದಾರಿಯ ಪಕ್ಕದಲ್ಲಿ, ನಂದಿನಿ ನದಿಯ ಉತ್ತರ ದಡದಲ್ಲಿದೆ. ಸಣ್ಣ ಗುಡ್ಡದ ಮೇಲೆ ಮಹಾಲಿಂಗೇಶ್ವರನಾಗಿ ಶಿವನ ಪೂಜೆ ನಡೆಯುತ್ತದೆ; ಮಹಾಗಣಪತಿಗೆ ಮುಖ್ಯ ದೇವಾಲಯದ ಹೊರಗೆ ಪ್ರತ್ಯೇಕ ಗುಡಿ ಇದೆ — ಇದು ಅಪರೂಪ.",
       hi: "मंगलूरु के ठीक उत्तर में, राजमार्ग के किनारे, नंदिनी नदी के उत्तरी तट पर। एक छोटी पहाड़ी पर महालिंगेश्वर के रूप में शिव की पूजा होती है; महागणपति का मुख्य मंदिर के बाहर अपना अलग मंदिर है, जो दुर्लभ है।",
     },
+    // The owner's photograph.
+    photo: OWNER_IMAGES.pavanje,
   },
   {
     slug: "guddattu",
@@ -176,18 +181,9 @@ export const NAVA_VINAYAKAS: NavaVinayaka[] = [
       kn: "ಉಡುಪಿ ಮತ್ತು ಕುಂದಾಪುರದ ನಡುವಿನ ಹೆದ್ದಾರಿಯ ಪಕ್ಕದಲ್ಲಿ, ಆನೆಗುಡ್ಡೆ ಎಂಬ ದಿಬ್ಬದ ಮೇಲಿದೆ. ಕುಂಭಾಶಿ ಪರಶುರಾಮ ಕ್ಷೇತ್ರದ ಏಳು ಮುಕ್ತಿಸ್ಥಳಗಳಲ್ಲಿ ಒಂದು; ವಾದಿರಾಜ ತೀರ್ಥರ ತೀರ್ಥಪ್ರಬಂಧದಲ್ಲಿ ಈ ದೇವಾಲಯದ ಉಲ್ಲೇಖವಿದೆ.",
       hi: "उडुपी और कुंदापुर के बीच राजमार्ग के किनारे, आनेगुड्डे — 'हाथी पहाड़ी' — नामक टीले पर। कुंभाशी परशुराम क्षेत्र के सात मुक्तिस्थलों में से एक है, और वादिराज तीर्थ के तीर्थप्रबंध में इस मंदिर का उल्लेख है।",
     },
-    photo: {
-      src: "/images/temples/nava-vinayakas/anegudde.jpg",
-      width: 1024,
-      height: 768,
-      credit: `Anegudde temple, Kumbhashi — photo by Raghavendra Nayak Muddur, CC BY 3.0, ${COMMONS}`,
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Anegudde.jpg",
-      alt: {
-        en: "The gopura of the Anegudde temple above its entrance hall.",
-        kn: "ಆನೆಗುಡ್ಡೆ ದೇವಾಲಯದ ಪ್ರವೇಶ ಮಂಟಪದ ಮೇಲಿನ ಗೋಪುರ.",
-        hi: "प्रवेश मंडप के ऊपर आनेगुड्डे मंदिर का गोपुर।",
-      },
-    },
+    // The owner's photograph of the murti, named in its own caption
+    // (cropped off): "Lord Sri Vinayaka, Anegudde, Kumbhashi".
+    photo: OWNER_IMAGES.anegudde,
   },
   {
     slug: "hattiangadi",
@@ -204,6 +200,8 @@ export const NAVA_VINAYAKAS: NavaVinayaka[] = [
       kn: "ವಾರಾಹಿ ನದಿಯ ದಡದಲ್ಲಿ, ಒಮ್ಮೆ ಆಳುಪ ಅರಸರ ರಾಜಧಾನಿಯಾಗಿದ್ದ ಊರಿನಲ್ಲಿದೆ; ದೇವಾಲಯ ಏಳನೆಯ ಅಥವಾ ಎಂಟನೆಯ ಶತಮಾನದ್ದು ಎನ್ನಲಾಗುತ್ತದೆ. ಸಾಲಿಗ್ರಾಮ ಶಿಲೆಯ, ಎರಡೂವರೆ ಅಡಿ ಎತ್ತರದ ಮೂರ್ತಿ ದ್ವಿಭುಜ ಬಾಲಗಣೇಶ, ಹಿಂದೆ ಇಳಿಬಿದ್ದ ಕೂದಲಿನೊಂದಿಗೆ — ಜಟೆಯುಳ್ಳ ಏಕೈಕ ವಿನಾಯಕ ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ.",
       hi: "वाराही नदी के तट पर, कभी आलुप राजाओं की राजधानी रहे स्थान पर; मंदिर सातवीं या आठवीं शताब्दी का माना जाता है। शालिग्राम शिला की ढाई फुट ऊँची प्रतिमा द्विभुज बालगणेश की है, जिनके केश पीछे खुले लटकते हैं — कहा जाता है कि जटा वाले ये एकमात्र विनायक हैं।",
     },
+    // The owner's photograph.
+    photo: OWNER_IMAGES.hattiangadi,
   },
   {
     slug: "idagunji",
@@ -216,18 +214,10 @@ export const NAVA_VINAYAKAS: NavaVinayaka[] = [
       kn: "ಹೊನ್ನಾವರದಿಂದ ಸುಮಾರು 14 ಕಿ.ಮೀ., ಶರಾವತಿ ನದಿಯ ಸಮೀಪದಲ್ಲಿದೆ; ವರ್ಷಕ್ಕೆ ಸುಮಾರು ಹತ್ತು ಲಕ್ಷ ಜನ ಭೇಟಿ ನೀಡುತ್ತಾರೆ. ಸುಮಾರು 4–5ನೇ ಶತಮಾನದ ನಿಂತಿರುವ ಮೂರ್ತಿಗೆ ಎರಡು ಕೈಗಳು ಮತ್ತು ಎರಡು ದಂತಗಳು; ಎರಡೂ ದಂತಗಳಿರುವ ಏಕೈಕ ಗಣಪತಿ ಎಂದು ಹೇಳಲಾಗುತ್ತದೆ. ವಾಲಖಿಲ್ಯ ಋಷಿಯ ಯಜ್ಞ ವಿಘ್ನವಿಲ್ಲದೆ ನಡೆಯಲೆಂದು ನಾರದರು ಗಣೇಶನನ್ನು ಇಲ್ಲಿಗೆ ಕರೆತಂದರು ಎಂಬುದು ಕಥೆ.",
       hi: "होन्नावर से लगभग 14 किमी, शरावती नदी के पास; हर वर्ष लगभग दस लाख लोग आते हैं। लगभग चौथी-पाँचवीं शताब्दी की खड़ी प्रतिमा के दो हाथ और दो दाँत हैं; कहा जाता है कि दोनों दाँतों वाले ये एकमात्र गणपति हैं। कथा है कि ऋषि वालखिल्य का यज्ञ निर्विघ्न चले, इसलिए नारद गणेश को यहाँ लाए।",
     },
-    photo: {
-      src: "/images/temples/nava-vinayakas/idagunji.jpg",
-      width: 1024,
-      height: 768,
-      credit: `Idagunji Ganesh Temple's entrance — photo by Deepak Patil, CC BY-SA 3.0, ${COMMONS}`,
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Idagunji_Ganesh_Temple%27s_Entrance_-_panoramio.jpg",
-      alt: {
-        en: "The painted entrance of the Idagunji temple, with figures of deities above the door.",
-        kn: "ಬಾಗಿಲ ಮೇಲೆ ದೇವತೆಗಳ ಮೂರ್ತಿಗಳಿರುವ, ಬಣ್ಣ ಬಳಿದ ಇಡಗುಂಜಿ ದೇವಾಲಯದ ಪ್ರವೇಶದ್ವಾರ.",
-        hi: "द्वार के ऊपर देवताओं की आकृतियों वाला, रंगा हुआ इडगुंजी मंदिर का प्रवेश द्वार।",
-      },
-    },
+    // The owner's photograph of the murti, which the text describes:
+    // standing, two arms, both tusks. The entrance photo it replaced
+    // showed only the painted door.
+    photo: OWNER_IMAGES.idagunji,
   },
   {
     slug: "gokarna",

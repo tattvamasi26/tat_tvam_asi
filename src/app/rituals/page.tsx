@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { ritualStrings } from "@/i18n/rituals";
@@ -122,9 +123,21 @@ export default function RitualsPage() {
                 {g.rituals.map((r) => (
                   <li key={r.slug}>
                     <Link href={`/rituals/${r.slug}`} className="rf-card has-art">
-                      <span className="rf-card-art" aria-hidden="true">
-                        <RiteArt art={r.slug} label="" />
-                      </span>
+                      {r.image ? (
+                        <span className="rf-card-art is-photo" aria-hidden="true">
+                          <Image
+                            src={r.image.src}
+                            alt=""
+                            fill
+                            sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 30vw"
+                            style={{ objectFit: "cover", objectPosition: r.image.position }}
+                          />
+                        </span>
+                      ) : (
+                        <span className="rf-card-art" aria-hidden="true">
+                          <RiteArt art={r.slug} label="" />
+                        </span>
+                      )}
                       <span className="rf-card-name">{r.name}</span>
                       <span className={`rf-card-sanskrit ${sc}`}>{r.sanskrit}</span>
                       <span className="rf-card-lede">{r.lede}</span>

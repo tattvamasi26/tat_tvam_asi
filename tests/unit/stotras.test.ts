@@ -199,6 +199,8 @@ test("a devata's portrait and every temple photograph link to their free-licence
     assert.match(d.image!.sourceUrl ?? "", /^https:\/\/commons\.wikimedia\.org\//, `${d.slug}: portrait has no Commons source`);
   }
   for (const n of NAVA_VINAYAKAS.filter((x) => x.photo)) {
+    // The owner's own photographs of a murti say so and link nowhere.
+    if (/^Supplied by the site owner/.test(n.photo!.credit)) continue;
     assert.match(n.photo!.sourceUrl ?? "", /^https:\/\/commons\.wikimedia\.org\//, `${n.slug}: photograph has no Commons source`);
     assert.match(n.photo!.credit, /CC BY|CC0|public domain/i, `${n.slug}: credit does not name the licence`);
   }

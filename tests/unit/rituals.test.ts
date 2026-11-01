@@ -341,18 +341,19 @@ test("the section's own strings are complete, and carry no typed arrows", () => 
   }
 });
 
-test("the rites are drawn, not photographed", () => {
+test("the rites are drawn, or show a picture the owner supplied", () => {
   // Seventeen licence-checked Commons photographs were fetched for this
   // section and all of them were removed: documentary photographs of
   // other people's ceremonies are not what this site looks like, and a
-  // rite is not a thing a stranger's snapshot explains. The pages were
-  // built to work without them, so this is the designed state and not
-  // a gap waiting to be filled.
-  assert.deepEqual(
-    allRitualImages(),
-    [],
-    "a picture has been added to the rites; it must be one the owner chose, not one a script found",
-  );
+  // rite is not a thing a stranger's snapshot explains. Since 31 October
+  // 2026 some rites carry pictures the owner supplied; nothing else.
+  for (const [id, img] of allRitualImages()) {
+    assert.match(
+      img.credit,
+      /^Supplied by the site owner/,
+      `${id}: a picture on the rites must be one the owner chose, not one a script found`,
+    );
+  }
 
   // And nothing may be left behind in the repository for a later run to
   // quietly pick up again.
@@ -391,9 +392,10 @@ test("a picture added later has to be described and credited", () => {
 
 test("every rite renders without a picture", () => {
   // The words are what the page is. A rite has to carry its own head
-  // from its name, its group and its occasion alone.
+  // from its name, its group and its occasion alone — a picture, where
+  // the owner supplied one, is never the only thing heading it.
   for (const r of getRituals("en")) {
-    assert.equal(r.image, null, `${r.slug} has a picture`);
+    if (r.image) assert.match(r.image.credit, /^Supplied by the site owner/, `${r.slug}'s picture is not the owner's`);
     assert.ok(r.name.trim(), `${r.slug} has no name to head the page with`);
     assert.ok(r.when.trim(), `${r.slug} has no occasion to head the page with`);
     assert.ok(r.groupName.trim(), `${r.slug} has no group to head the page with`);

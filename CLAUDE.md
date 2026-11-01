@@ -484,13 +484,17 @@ that puts the Vedas under Shastras, so it is not listed twice.
   (`.ri-hero.is-plain`). The band leading to the year shows the twelve
   lunar months, the ones carrying a festival set in the sacred ink,
   rather than four photographs of crowds.
-- **Do not fill `seed/ritual-images.ts` from an image search.** It is
-  empty on purpose and there is deliberately no `rituals` set in
-  `scripts/images/fetch-commons.mjs` any more, so it cannot be refilled
-  by running a script. A picture here would be one the owner chose or
-  supplied, credited the way `seed/stuti-images.ts` credits theirs — and
-  an owner-supplied credit links nowhere. A unit test holds the registry
-  empty and the image directory gone.
+- **Do not fill `seed/ritual-images.ts` from an image search.** There is
+  deliberately no `rituals` set in `scripts/images/fetch-commons.mjs`,
+  so it cannot be refilled by running a script. Since 2026-10-31 (and
+  2026-11-01, ten more the owner named for their rites) seventeen of the
+  twenty-one rites carry owner pictures; before that, seven
+  daily and vow rites (pūjā, the lamp at dusk, sandhyāvandana, pradoṣa,
+  ekādaśī, saṅkaṣṭahara, tīrthayātrā) carry pictures **the owner
+  supplied**; the rites of passage, the fire and the rites for the dead
+  keep their drawings. A unit test holds every rite picture to an
+  owner credit and `public/images/rituals` gone. A rite's picture sits
+  in the framed slot beside its title, not full-bleed.
 - Rites are reached from `/shastras` under the Vedāṅga **Kalpa**, which
   is the limb that governs ritual procedure; a unit test holds that
   link. The sūtras themselves are not entered, so it is `partial`.
@@ -593,8 +597,8 @@ component on the site.
   drawing made for the site (`components/rituals/RiteArt.tsx`, inline
   SVG on the site's tokens, credited "Illustration drawn for this
   site"); then nothing. A specific temple gets only a real photograph of
-  that temple — Sowthadka, Pavanje and Hattiangadi have none on Commons
-  and keep their name plates until the owner supplies one.
+  that temple — Sowthadka, Pavanje and Hattiangadi have none on Commons;
+  the owner supplied a photograph of each on 2026-11-01.
 - **How a picture gets in**: candidates are searched and looked at on a
   contact sheet; the chosen titles go into
   `scripts/images/sets/<set>.json`, copied from the reviewed manifest,
@@ -604,6 +608,28 @@ component on the site.
   `seed/section-images.ts`, which shows a picture only once its alt text
   is written in all three languages, and names a drawing (`ART`) where
   no picture exists.
+- **The owner's pictures** (`Project V/Images/TTA`, placed 2026-10-31)
+  live in `seed/owner-images.ts` and `public/images/owner/`: one
+  registry, alt text in three languages, credited "Supplied by the site
+  owner" (", cropped" where a burnt-in caption or watermark was cut off)
+  with no link, because their source is not recorded. Each section's
+  registry maps its slugs onto it — home cards, bhajan groups,
+  festivals, rites, the practice sittings, seven śāstra branches, the
+  heads of /gita, /upanishads and /cosmos, a picture for each of the
+  eighteen Gita chapters (`seed/gita-images.ts`: on its card and its
+  page), two
+  Nava Vinayakas and a Kukke gallery picture. They are 500–1,100px wide,
+  so a festival picture under 1,400px shows framed beside the title
+  rather than stretched across the screen. Pictures with words printed
+  on them, app screenshots, and murtis that cannot be named for certain
+  were left out.
+- **A head takes its picture's tone.** `scripts/images/tones.mjs` reads
+  every picture and writes `seed/picture-tones.json`; `toneStyle(src)`
+  sets `--tone`, and `.rf-dhero.has-tone` / `.bh-song-head.has-tone`
+  wash the head in it. Re-run the script after adding pictures. A
+  bhajan song page opens on its devata: the group picture in an arched
+  niche beside the title, and a round crest of it at the top of the
+  song card. Nothing sits behind the text itself.
 - **Sizes come from the bytes.** Commons serves its own standard widths,
   so the fetcher reads each JPEG's real size from its header; seventy
   manifest entries were wrong before this. A PNG original arrives as

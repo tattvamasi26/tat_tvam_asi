@@ -14,6 +14,7 @@ import { StepList, NeedList, Glance } from "@/components/rf/Depth";
 import { RiteArt, hasRiteArt } from "@/components/rituals/RiteArt";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { toneStyle } from "@/lib/seed/picture-tones";
 import { LOCALES } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -66,20 +67,10 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
 
   return (
     <>
-      <section className={`rf-dhero${r.image ? " has-image" : hasRiteArt(r.slug) ? " has-art" : ""}`}>
-        {r.image && (
-          <>
-            <Image
-              src={r.image.src}
-              alt={r.image.alt}
-              fill
-              sizes="100vw"
-              priority
-              style={{ objectFit: "cover", objectPosition: r.image.position }}
-            />
-            <div className="rf-dhero-scrim" aria-hidden="true" />
-          </>
-        )}
+      <section
+        className={`rf-dhero${r.image || hasRiteArt(r.slug) ? " has-art" : ""}${r.image ? " has-tone" : ""}`}
+        style={toneStyle(r.image?.src)}
+      >
         <div className="shell rf-dhero-inner">
           <nav className="rf-crumbs" aria-label={rf.sectionTitle}>
             <Link href="/rituals">{rf.sectionTitle}</Link>
@@ -89,6 +80,29 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
           <h1 className="rf-dhero-title">{r.name}</h1>
           <p className={`rf-dhero-sanskrit ${sc}`}>{r.sanskrit}</p>
           <p className="rf-dhero-lede">{r.lede}</p>
+          {r.image && (
+            <figure className="rf-dhero-art is-photo">
+              <span className="rf-dhero-frame">
+                <Image
+                  src={r.image.src}
+                  alt={r.image.alt}
+                  fill
+                  sizes="(max-width: 860px) 100vw, 45vw"
+                  priority
+                  style={{ objectFit: "cover", objectPosition: r.image.position }}
+                />
+              </span>
+              <figcaption>
+                {r.image.sourceUrl ? (
+                  <a href={r.image.sourceUrl} target="_blank" rel="noopener noreferrer">
+                    {r.image.credit}
+                  </a>
+                ) : (
+                  r.image.credit
+                )}
+              </figcaption>
+            </figure>
+          )}
           {!r.image && hasRiteArt(r.slug) && (
             <figure className="rf-dhero-art">
               <RiteArt art={r.slug} label={r.name} />
@@ -178,17 +192,6 @@ export default function RitualPage({ params }: { params: { ritual: string } }) {
             )}
           </nav>
 
-          {r.image && (
-            <p className="stutis-credit ri-credit">
-              {r.image.sourceUrl ? (
-                <a href={r.image.sourceUrl} target="_blank" rel="noopener noreferrer">
-                  {r.image.credit}
-                </a>
-              ) : (
-                r.image.credit
-              )}
-            </p>
-          )}
         </div>
       </section>
     </>

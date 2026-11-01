@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { HeadPicture } from "@/components/content/HeadPicture";
+import { OWNER_IMAGES } from "@/lib/seed/owner-images";
+import { toneStyle } from "@/lib/seed/picture-tones";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
 import { cosmosStrings } from "@/i18n/cosmos";
@@ -55,13 +58,14 @@ export default function CosmosPage() {
 
   return (
     <>
-      <section className="pagehead">
-        <div className="shell pagehead-inner">
-          <h1 className="title">{s.title}</h1>
-          <p className="lede">{s.lede}</p>
-          <Link href="/puranas" className="chip" style={{ marginTop: "0.5rem" }}>
-            <Arrow dir="left" /> {pu.title}
-          </Link>
+      <section className="rf-dhero has-art has-tone" style={toneStyle(OWNER_IMAGES.cosmos.src)}>
+        <div className="shell rf-dhero-inner">
+          <nav className="rf-crumbs" aria-label={pu.title}>
+            <Link href="/puranas">{pu.title}</Link>
+          </nav>
+          <h1 className="rf-dhero-title">{s.title}</h1>
+          <p className="rf-dhero-lede">{s.lede}</p>
+          <HeadPicture locale={locale} image={OWNER_IMAGES.cosmos} label={s.title} drawnCredit="" />
         </div>
       </section>
 

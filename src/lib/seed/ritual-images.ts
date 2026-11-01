@@ -1,7 +1,8 @@
 import type { Locale } from "@/i18n/config";
+import { OWNER_IMAGES, type OwnerImageId } from "@/lib/seed/owner-images";
 
 // ─────────────────────────────────────────────────────────
-//  Pictures for the rites — and there are none.
+//  Pictures for the rites — only the owner's.
 //
 //  **This section is drawn, not photographed.** Seventeen
 //  licence-checked Commons photographs were fetched for it and all of
@@ -38,8 +39,38 @@ export interface RitualImage {
   position?: string;
 }
 
-/** Empty on purpose. See the note above before adding to it. */
-const IMAGES: Record<string, RitualImage> = {};
+/**
+ * The owner supplied pictures on 31 October 2026 (seed/owner-images.ts),
+ * and these are the rites they show plainly: the lamp waved in puja,
+ * the lamp at dusk, water offered at the river, Nandi beside the linga
+ * at pradosha, Vitthala for Ekadashi, Ganesha for his Chaturthi, the
+ * ghats at Kashi for pilgrimage. On 1 November they added pictures
+ * named for eight rites of passage, the two fire rites and
+ * Chāturmāsya. The rites for the dead and pradakṣiṇā keep their
+ * drawings: nothing supplied shows them.
+ */
+const OWNED: Record<string, OwnerImageId> = {
+  puja: "arati",
+  deepa: "deepaDusk",
+  sandhyavandana: "waterOffering",
+  pradosha: "nandiLinga",
+  ekadashi: "vitthalaGarlanded",
+  "sankashtahara-chaturthi": "ganeshaDurva",
+  tirthayatra: "kashiGhats",
+  simantonnayana: "riteSimantonnayana",
+  jatakarma: "riteJatakarma",
+  namakarana: "riteNamakarana",
+  annaprashana: "riteAnnaprashana",
+  chudakarma: "riteChudakarma",
+  upanayana: "riteUpanayana",
+  vivaha: "riteVivaha",
+  homa: "riteHoma",
+  agnihotra: "riteAgnihotra",
+  chaturmasya: "riteChaturmasya",
+};
+const IMAGES: Record<string, RitualImage> = Object.fromEntries(
+  Object.entries(OWNED).map(([slug, key]) => [slug, OWNER_IMAGES[key]]),
+);
 
 export function ritualImage(slug: string): RitualImage | undefined {
   return IMAGES[slug];

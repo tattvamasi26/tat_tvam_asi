@@ -9,6 +9,9 @@ import { GITA_CHAPTER_NOTES } from "@/lib/seed/gita-chapters";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
 import { LOCALES } from "@/i18n/config";
+import { HeadPicture } from "@/components/content/HeadPicture";
+import { gitaChapterImage } from "@/lib/seed/gita-images";
+import { toneStyle } from "@/lib/seed/picture-tones";
 
 export function generateStaticParams() {
   return GITA_CHAPTER_NOTES.map((c) => ({ chapter: String(c.n) }));
@@ -49,20 +52,24 @@ export default function GitaChapterPage({ params }: { params: { chapter: string 
   const all = getGitaChapters(locale);
   const prev = n > 1 ? all[n - 2] : null;
   const next = n < all.length ? all[n] : null;
+  const pic = gitaChapterImage(n);
 
   return (
     <>
-      <section className="pu-hero">
-        <div className="shell pu-hero-inner">
-          <Link href="/gita" className="pu-hero-back">
-            <Arrow dir="left" /> {s.back}
-          </Link>
-          <p className="pu-hero-kicker">
-            {s.labelChapter} {c.n.toLocaleString("en-IN")}
-          </p>
-          <h1 className="pu-hero-title">{c.name}</h1>
-          <p className={`pu-hero-sanskrit ${sc}`}>{c.sanskrit}</p>
-          <p className="pu-hero-lede">{c.lede}</p>
+      <section className={`rf-dhero${pic ? " has-art has-tone" : ""}`} style={toneStyle(pic?.src)}>
+        <div className="shell rf-dhero-inner">
+          <nav className="rf-crumbs" aria-label={section.label}>
+            <Link href="/gita">
+              <Arrow dir="left" /> {s.back}
+            </Link>
+            <span>
+              {s.labelChapter} {c.n.toLocaleString("en-IN")}
+            </span>
+          </nav>
+          <h1 className="rf-dhero-title">{c.name}</h1>
+          <p className={`rf-dhero-sanskrit ${sc}`}>{c.sanskrit}</p>
+          <p className="rf-dhero-lede">{c.lede}</p>
+          {pic && <HeadPicture locale={locale} image={pic} label={c.name} drawnCredit="" />}
         </div>
       </section>
 

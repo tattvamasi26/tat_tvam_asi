@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
-import { sectionsFor } from "@/i18n/sections";
 import { gitaStrings } from "@/i18n/gita";
 import Link from "next/link";
 import { getGita, getGitaChapters, getGitaVerseCounts } from "@/lib/data";
 import { TextIndex } from "@/components/content/TextIndex";
 import { Reveal } from "@/components/motion/Reveal";
 import { scriptFor, scriptClass } from "@/lib/script";
+import Image from "next/image";
+import { HeadPicture } from "@/components/content/HeadPicture";
+import { GITA_HEAD_IMAGE, gitaChapterImage } from "@/lib/seed/gita-images";
+import { toneStyle } from "@/lib/seed/picture-tones";
 
 export const metadata: Metadata = {
   title: "Geetha Rasa Dhara",
@@ -20,18 +23,15 @@ export default function GitaPage() {
   const g = gitaStrings(locale);
   const chapterNotes = getGitaChapters(locale);
   const counts = getGitaVerseCounts();
-  const section = sectionsFor(locale).find((s) => s.id === "gita")!;
 
   return (
     <>
-      <section className="pagehead">
-        <div className="shell pagehead-inner">
-          <span className={`${scriptClass(locale)} pagehead-glyph`} aria-hidden="true">{scriptFor(section.glyph, locale)}</span>
-          <h1 className="title">{work.name}</h1>
-          <p className={`sanskrit ${scriptClass(locale)}`} style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}>
-            {scriptFor(work.nameSanskrit, locale)}
-          </p>
-          <p className="lede">{work.summary}</p>
+      <section className="rf-dhero has-art has-tone" style={toneStyle(GITA_HEAD_IMAGE.src)}>
+        <div className="shell rf-dhero-inner">
+          <h1 className="rf-dhero-title">{work.name}</h1>
+          <p className={`rf-dhero-sanskrit ${scriptClass(locale)}`}>{scriptFor(work.nameSanskrit, locale)}</p>
+          <p className="rf-dhero-lede">{work.summary}</p>
+          <HeadPicture locale={locale} image={GITA_HEAD_IMAGE} label={work.name} drawnCredit="" />
         </div>
       </section>
 
@@ -68,10 +68,24 @@ export default function GitaPage() {
 
         <p className="gi-lede">{g.chaptersLede}</p>
 
+
         <ol className="gi-grid">
-          {chapterNotes.map((c) => (
+          {chapterNotes.map((c) => {
+            const pic = gitaChapterImage(c.n);
+            return (
             <li key={c.n}>
-              <Link href={`/gita/${c.n}`} className="gi-card">
+              <Link href={`/gita/${c.n}`} className={`gi-card${pic ? " has-pic" : ""}`}>
+                {pic && (
+                  <span className="gi-card-pic">
+                    <Image
+                      src={pic.src}
+                      alt=""
+                      fill
+                      sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                      style={{ objectFit: "cover", objectPosition: pic.position }}
+                    />
+                  </span>
+                )}
                 <span className="gi-n">{c.n.toLocaleString("en-IN")}</span>
                 <span className="gi-body">
                   <span className="gi-name">{c.name}</span>
@@ -83,8 +97,11 @@ export default function GitaPage() {
                 </span>
               </Link>
             </li>
-          ))}
+            );
+          })}
         </ol>
+
+        <p className="gi-scenes-credit">{GITA_HEAD_IMAGE.credit}</p>
 
         {/* Why the chapters add up to one more than seven hundred. */}
         <p className="gi-note">

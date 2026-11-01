@@ -37,9 +37,13 @@ export function HeadPicture({
           />
         </span>
         <figcaption>
-          <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
-            {image.credit}
-          </a>
+          {image.sourceUrl ? (
+            <a href={image.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {image.credit}
+            </a>
+          ) : (
+            image.credit
+          )}
         </figcaption>
       </figure>
     );

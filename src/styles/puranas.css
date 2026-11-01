@@ -1092,3 +1092,24 @@
   font-size: 0.84rem;
   line-height: 1.6;
 }
+
+/* A chapter's picture across the top of its card. */
+.gi-card.has-pic {
+  padding-top: 0;
+  overflow: hidden;
+}
+
+.gi-card-pic {
+  grid-column: 1 / -1;
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  margin: 0 -1.15rem 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.gi-scenes-credit {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}

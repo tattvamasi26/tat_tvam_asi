@@ -59,8 +59,14 @@ test("every section picture is free, sourced and described in every language", (
   const all = allSectionImages();
   assert.ok(all.length >= 30, "the section pictures went missing");
   for (const [key, img] of all) {
-    assert.match(img.credit, FREE, `${key}: the credit names no free licence`);
-    assert.match(img.sourceUrl, /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/, `${key}: no Commons page`);
+    // Either a free Commons file with its page, or one the owner
+    // supplied, which says so and links nowhere.
+    if (/upplied by the site owner/.test(img.credit)) {
+      assert.equal(img.sourceUrl, undefined, `${key}: an owner's picture has no source to link`);
+    } else {
+      assert.match(img.credit, FREE, `${key}: the credit names no free licence`);
+      assert.match(img.sourceUrl ?? "", /^https:\/\/commons\.wikimedia\.org\/wiki\/File:/, `${key}: no Commons page`);
+    }
     for (const locale of LOCALES) {
       assert.ok(img.alt[locale]?.trim().length > 10, `${key}: no ${locale} alt text`);
     }
@@ -81,9 +87,6 @@ test("every rite and group has its drawing, and every named drawing exists", () 
     ["darshana", "nyaya"],
     ["darshana", "mimamsa"],
     ["darshana", "vaisheshika"],
-    ["branch", "vedanta"],
-    ["branch", "agamas"],
-    ["branch", "prakarana"],
   ] as const) {
     const art = sectionArt(kind, slug);
     assert.ok(art && hasRiteArt(art), `${kind}:${slug} names a drawing that does not exist`);

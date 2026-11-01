@@ -11,6 +11,7 @@ import { RTUS, SOLAR_RTU, rtuForMonth } from "@/lib/seed/rtus";
 import { StepList, NeedList, DayList, Glance } from "@/components/rf/Depth";
 import { scriptClass } from "@/lib/script";
 import { Arrow } from "@/components/ui/Arrow";
+import { toneStyle } from "@/lib/seed/picture-tones";
 import { LOCALES } from "@/i18n/config";
 
 export function generateStaticParams() {
@@ -61,10 +62,16 @@ export default function FestivalPage({ params }: { params: { festival: string } 
   }
   if (festival.alsoCalled) glance.push([s.labelAlsoCalled, festival.alsoCalled]);
 
+  // Full-bleed only for a picture wide enough to cover the screen.
+  const framed = festival.image && festival.image.width < 1400 ? festival.image : null;
+
   return (
     <>
-      <section className={`rf-dhero${festival.image ? " has-image" : " is-plate"}`}>
-        {festival.image ? (
+      <section
+        className={`rf-dhero${framed ? " has-art has-tone" : festival.image ? " has-image" : " is-plate"}`}
+        style={framed ? toneStyle(framed.src) : undefined}
+      >
+        {festival.image && !framed ? (
           <>
             <Image
               src={festival.image.src}
@@ -87,6 +94,21 @@ export default function FestivalPage({ params }: { params: { festival: string } 
           <h1 className="rf-dhero-title">{festival.name}</h1>
           <p className={`rf-dhero-sanskrit ${sc}`}>{festival.sanskrit}</p>
           <p className="rf-dhero-when">{festival.when || festival.whenNote}</p>
+          {framed && (
+            <figure className="rf-dhero-art is-photo">
+              <span className="rf-dhero-frame">
+                <Image
+                  src={framed.src}
+                  alt={framed.alt}
+                  fill
+                  sizes="(max-width: 860px) 100vw, 45vw"
+                  priority
+                  style={{ objectFit: "cover", objectPosition: framed.position }}
+                />
+              </span>
+              <figcaption>{framed.credit}</figcaption>
+            </figure>
+          )}
         </div>
       </section>
 
@@ -154,11 +176,15 @@ export default function FestivalPage({ params }: { params: { festival: string } 
             )}
           </nav>
 
-          {festival.image && (
+          {festival.image && !framed && (
             <p className="stutis-credit fe-credit">
-              <a href={festival.image.sourceUrl} target="_blank" rel="noopener noreferrer">
-                {festival.image.credit}
-              </a>
+              {festival.image.sourceUrl ? (
+                <a href={festival.image.sourceUrl} target="_blank" rel="noopener noreferrer">
+                  {festival.image.credit}
+                </a>
+              ) : (
+                festival.image.credit
+              )}
             </p>
           )}
         </div>

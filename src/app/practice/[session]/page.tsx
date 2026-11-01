@@ -175,9 +175,13 @@ export default function SessionPage({ params }: { params: { session: string } })
 
         {p.image && (
           <p className="stutis-credit pr-credit">
-            <a href={p.image.sourceUrl} target="_blank" rel="noopener noreferrer">
-              {p.image.credit}
-            </a>
+            {p.image.sourceUrl ? (
+              <a href={p.image.sourceUrl} target="_blank" rel="noopener noreferrer">
+                {p.image.credit}
+              </a>
+            ) : (
+              p.image.credit
+            )}
           </p>
         )}
       </section>
