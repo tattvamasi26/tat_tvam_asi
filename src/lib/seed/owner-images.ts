@@ -383,6 +383,57 @@ export const OWNER_IMAGES = {
     "ಹಸಿರು ಕಿತ್ತಳೆ ಸೀರೆಯುಟ್ಟು ಹೂಗಳಿಂದ ಸುತ್ತುವರಿದ ದೇವಿಯ ಚಿನ್ನದ ಮುಖ ಮತ್ತು ಕಿರೀಟ",
     "हरी और नारंगी साड़ी पहने, फूलों से घिरा देवी का स्वर्ण मुख और मुकुट",
   ), "50% 35%"),
+  // ── round four: the rites, from pictures the owner named for them ──
+  riteSimantonnayana: pic("rite-simantonnayana", 1152, 1270, a(
+    "A pregnant woman in a blue sari, a hand on her belly, a basket of bangles beside her — illustration",
+    "ಹೊಟ್ಟೆಯ ಮೇಲೆ ಕೈಯಿಟ್ಟ ನೀಲಿ ಸೀರೆಯ ಗರ್ಭಿಣಿ, ಪಕ್ಕದಲ್ಲಿ ಬಳೆಗಳ ಬುಟ್ಟಿ — ಚಿತ್ರ",
+    "पेट पर हाथ रखे नीली साड़ी में गर्भवती स्त्री, पास में चूड़ियों की टोकरी — चित्र",
+  ), "50% 75%", true),
+  riteJatakarma: pic("rite-jatakarma", 564, 1002, a(
+    "A finger tracing a horoscope chart drawn on paper",
+    "ಕಾಗದದ ಮೇಲೆ ಬರೆದ ಜಾತಕ ಚಕ್ರವನ್ನು ತೋರುತ್ತಿರುವ ಬೆರಳು",
+    "काग़ज़ पर बनी जन्मकुंडली पर रखी उँगली",
+  ), "50% 55%"),
+  riteNamakarana: pic("rite-namakarana", 1152, 799, a(
+    "Father and mother seated on a mat, the father whispering into the baby's ear, kolam patterns on either side — illustration",
+    "ಚಾಪೆಯ ಮೇಲೆ ಕುಳಿತ ತಂದೆ ತಾಯಿ, ಮಗುವಿನ ಕಿವಿಯಲ್ಲಿ ಪಿಸುಗುಡುತ್ತಿರುವ ತಂದೆ, ಎರಡೂ ಬದಿ ರಂಗೋಲಿ — ಚಿತ್ರ",
+    "चटाई पर बैठे माता-पिता, शिशु के कान में फुसफुसाते पिता, दोनों ओर रंगोली — चित्र",
+  ), "50% 55%", true),
+  riteAnnaprashana: pic("rite-annaprashana", 591, 800, a(
+    "A mother feeding the child Kṛṣṇa from a small bowl, a tray of food before them — painting",
+    "ಪುಟ್ಟ ಬಟ್ಟಲಿನಿಂದ ಬಾಲಕೃಷ್ಣನಿಗೆ ಉಣಿಸುತ್ತಿರುವ ತಾಯಿ, ಎದುರು ಊಟದ ತಟ್ಟೆ — ಚಿತ್ರ",
+    "छोटी कटोरी से बालकृष्ण को खिलाती माँ, सामने भोजन की थाली — चित्र",
+  ), "50% 30%"),
+  riteChudakarma: pic("rite-chudakarma", 736, 432, a(
+    "A child's head being shaved as his parents and a priest sit around him, a lamp and a pot before them — watercolour",
+    "ತಂದೆ ತಾಯಿ ಮತ್ತು ಪುರೋಹಿತರು ಸುತ್ತ ಕುಳಿತಿರಲು ಮಗುವಿನ ಚೌಲ — ಎದುರು ದೀಪ ಮತ್ತು ಕಲಶ — ಜಲವರ್ಣ ಚಿತ್ರ",
+    "माता-पिता और पुरोहित के बीच शिशु का मुंडन — सामने दीपक और कलश — जलरंग चित्र",
+  ), "50% 35%", true),
+  riteUpanayana: pic("rite-upanayana", 1024, 1536, a(
+    "A boy with a shaven head and the sacred thread, seated before an open book — painting",
+    "ಯಜ್ಞೋಪವೀತ ಧರಿಸಿ ತೆರೆದ ಗ್ರಂಥದ ಎದುರು ಕುಳಿತ ಮುಂಡನದ ಬಾಲಕ — ಚಿತ್ರ",
+    "जनेऊ धारण किए, खुली पुस्तक के सामने बैठा मुंडित बालक — चित्र",
+  ), "50% 12%"),
+  riteVivaha: { ...pic("rite-vivaha", 900, 1600, a(
+    "Śiva and Pārvatī walking round the fire hand in hand, the gods and sages watching — painting",
+    "ದೇವತೆಗಳು ಋಷಿಗಳು ನೋಡುತ್ತಿರಲು ಕೈ ಹಿಡಿದು ಅಗ್ನಿಯನ್ನು ಸುತ್ತುತ್ತಿರುವ ಶಿವ ಪಾರ್ವತಿ — ಚಿತ್ರ",
+    "देवताओं और ऋषियों के सामने हाथ थामे अग्नि की परिक्रमा करते शिव और पार्वती — चित्र",
+  ), "50% 55%"), credit: "Supplied by the site owner · signed by the artist, Pias" },
+  riteHoma: pic("rite-homa", 736, 736, a(
+    "Men in white seated round a fire pit, offering into the flames",
+    "ಅಗ್ನಿಕುಂಡದ ಸುತ್ತ ಕುಳಿತು ಜ್ವಾಲೆಗೆ ಆಹುತಿ ನೀಡುತ್ತಿರುವ ಬಿಳಿ ವಸ್ತ್ರಧಾರಿಗಳು",
+    "अग्निकुंड के चारों ओर बैठे श्वेत वस्त्रधारी, लपटों में आहुति देते हुए",
+  ), "50% 50%"),
+  riteAgnihotra: pic("rite-agnihotra", 800, 450, a(
+    "A small fire burning in a copper vessel on a carved stand, petals scattered round it",
+    "ಕೆತ್ತಿದ ಪೀಠದ ಮೇಲಿನ ತಾಮ್ರದ ಪಾತ್ರೆಯಲ್ಲಿ ಉರಿಯುತ್ತಿರುವ ಪುಟ್ಟ ಅಗ್ನಿ, ಸುತ್ತ ಹೂದಳಗಳು",
+    "नक्काशीदार चौकी पर ताँबे के पात्र में जलती छोटी अग्नि, आसपास बिखरी पंखुड़ियाँ",
+  ), "50% 45%"),
+  riteChaturmasya: { ...pic("rite-chaturmasya", 847, 800, a(
+    "Two sannyāsins in saffron seated with their staffs beside a shrine hung with flowers",
+    "ಹೂಗಳಿಂದ ಅಲಂಕರಿಸಿದ ಮಂಟಪದ ಪಕ್ಕ ದಂಡ ಹಿಡಿದು ಕುಳಿತ ಇಬ್ಬರು ಕಾವಿಧಾರಿ ಸಂನ್ಯಾಸಿಗಳು",
+    "फूलों से सजे मंडप के पास दंड लिए बैठे भगवाधारी दो संन्यासी",
+  ), "30% 55%"), credit: "Supplied by the site owner · photograph © sringeri.net, whose mark it carries" },
 } satisfies Record<string, OwnerImage>;
 
 export type OwnerImageId = keyof typeof OWNER_IMAGES;

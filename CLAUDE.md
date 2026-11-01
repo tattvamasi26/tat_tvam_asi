@@ -486,7 +486,9 @@ that puts the Vedas under Shastras, so it is not listed twice.
   rather than four photographs of crowds.
 - **Do not fill `seed/ritual-images.ts` from an image search.** There is
   deliberately no `rituals` set in `scripts/images/fetch-commons.mjs`,
-  so it cannot be refilled by running a script. Since 2026-10-31 seven
+  so it cannot be refilled by running a script. Since 2026-10-31 (and
+  2026-11-01, ten more the owner named for their rites) seventeen of the
+  twenty-one rites carry owner pictures; before that, seven
   daily and vow rites (pūjā, the lamp at dusk, sandhyāvandana, pradoṣa,
   ekādaśī, saṅkaṣṭahara, tīrthayātrā) carry pictures **the owner
   supplied**; the rites of passage, the fire and the rites for the dead

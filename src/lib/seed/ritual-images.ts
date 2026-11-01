@@ -44,8 +44,10 @@ export interface RitualImage {
  * and these are the rites they show plainly: the lamp waved in puja,
  * the lamp at dusk, water offered at the river, Nandi beside the linga
  * at pradosha, Vitthala for Ekadashi, Ganesha for his Chaturthi, the
- * ghats at Kashi for pilgrimage. The rites of passage, the fire and the
- * rites for the dead keep their drawings: nothing supplied shows them.
+ * ghats at Kashi for pilgrimage. On 1 November they added pictures
+ * named for eight rites of passage, the two fire rites and
+ * Chāturmāsya. The rites for the dead and pradakṣiṇā keep their
+ * drawings: nothing supplied shows them.
  */
 const OWNED: Record<string, OwnerImageId> = {
   puja: "arati",
@@ -55,6 +57,16 @@ const OWNED: Record<string, OwnerImageId> = {
   ekadashi: "vitthalaGarlanded",
   "sankashtahara-chaturthi": "ganeshaDurva",
   tirthayatra: "kashiGhats",
+  simantonnayana: "riteSimantonnayana",
+  jatakarma: "riteJatakarma",
+  namakarana: "riteNamakarana",
+  annaprashana: "riteAnnaprashana",
+  chudakarma: "riteChudakarma",
+  upanayana: "riteUpanayana",
+  vivaha: "riteVivaha",
+  homa: "riteHoma",
+  agnihotra: "riteAgnihotra",
+  chaturmasya: "riteChaturmasya",
 };
 const IMAGES: Record<string, RitualImage> = Object.fromEntries(
   Object.entries(OWNED).map(([slug, key]) => [slug, OWNER_IMAGES[key]]),
