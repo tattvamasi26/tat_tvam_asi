@@ -597,8 +597,8 @@ component on the site.
   drawing made for the site (`components/rituals/RiteArt.tsx`, inline
   SVG on the site's tokens, credited "Illustration drawn for this
   site"); then nothing. A specific temple gets only a real photograph of
-  that temple — Sowthadka, Pavanje and Hattiangadi have none on Commons
-  and keep their name plates until the owner supplies one.
+  that temple — Sowthadka, Pavanje and Hattiangadi have none on Commons;
+  the owner supplied a photograph of each on 2026-11-01.
 - **How a picture gets in**: candidates are searched and looked at on a
   contact sheet; the chosen titles go into
   `scripts/images/sets/<set>.json`, copied from the reviewed manifest,

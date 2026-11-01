@@ -434,6 +434,22 @@ export const OWNER_IMAGES = {
     "ಹೂಗಳಿಂದ ಅಲಂಕರಿಸಿದ ಮಂಟಪದ ಪಕ್ಕ ದಂಡ ಹಿಡಿದು ಕುಳಿತ ಇಬ್ಬರು ಕಾವಿಧಾರಿ ಸಂನ್ಯಾಸಿಗಳು",
     "फूलों से सजे मंडप के पास दंड लिए बैठे भगवाधारी दो संन्यासी",
   ), "30% 55%"), credit: "Supplied by the site owner · photograph © sringeri.net, whose mark it carries" },
+  // ── the three Nava Vinayakas Commons had no photograph of ──
+  hattiangadi: pic("hattiangadi-vinayaka", 571, 732, a(
+    "The black-stone Siddhivināyaka of Hattiangadi, seated — an old photograph",
+    "ಕುಳಿತ ಭಂಗಿಯ ಹಟ್ಟಿಯಂಗಡಿಯ ಕಪ್ಪು ಕಲ್ಲಿನ ಸಿದ್ಧಿವಿನಾಯಕ — ಹಳೆಯ ಛಾಯಾಚಿತ್ರ",
+    "बैठी मुद्रा में हट्टियंगडि के काले पत्थर के सिद्धिविनायक — पुराना छायाचित्र",
+  ), "50% 12%", true),
+  pavanje: pic("pavanje-utsava", 452, 678, a(
+    "A priest carrying the festival image on his head under a flower-decked golden arch",
+    "ಹೂವಿನಿಂದ ಅಲಂಕರಿಸಿದ ಚಿನ್ನದ ಪ್ರಭಾವಳಿಯೊಡನೆ ಉತ್ಸವಮೂರ್ತಿಯನ್ನು ತಲೆಯ ಮೇಲೆ ಹೊತ್ತ ಅರ್ಚಕರು",
+    "फूलों से सजे स्वर्ण प्रभामंडल के साथ उत्सव-मूर्ति को सिर पर उठाए पुजारी",
+  ), "50% 30%"),
+  sowthadka: pic("sowthadka-ganapati", 735, 926, a(
+    "The Ganapati of Sowthadka under the open sky, heaped with garlands, a tree behind",
+    "ಬಯಲಿನಲ್ಲಿ, ಹಾರಗಳ ರಾಶಿಯ ನಡುವೆ ಸೌತಡ್ಕದ ಗಣಪತಿ, ಹಿಂದೆ ಮರ",
+    "खुले आकाश के नीचे मालाओं से लदे सौतड्क के गणपति, पीछे पेड़",
+  ), "50% 45%"),
 } satisfies Record<string, OwnerImage>;
 
 export type OwnerImageId = keyof typeof OWNER_IMAGES;
