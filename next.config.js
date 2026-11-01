@@ -81,7 +81,7 @@ const securityHeaders = [
   { key: "tdm-reservation", value: "1" },
   // The site's address: NEXT_PUBLIC_SITE_URL, else the canonical domain
   // (the same rule as src/lib/site.ts, which this file cannot import).
-  { key: "tdm-policy", value: `${(process.env.NEXT_PUBLIC_SITE_URL || "https://tattvam-asi.org").replace(/\/$/, "")}/rights` },
+  { key: "tdm-policy", value: `${(process.env.NEXT_PUBLIC_SITE_URL || "https://tattvam-asi.in").replace(/\/$/, "")}/rights` },
 ];
 
 const nextConfig = {

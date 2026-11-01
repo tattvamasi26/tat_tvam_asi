@@ -309,6 +309,6 @@ test("the site's address is spelled out only in src/lib/site.ts", () => {
     .filter((f) => !f.endsWith(path.join("lib", "site.ts")))
     .filter((f) => own.test(readFileSync(f, "utf8")));
   assert.deepEqual(offenders, []);
-  assert.match(readFileSync("src/lib/site.ts", "utf8"), /https:\/\/tattvam-asi\.org/);
+  assert.match(readFileSync("src/lib/site.ts", "utf8"), /https:\/\/tattvam-asi\.in/);
   assert.doesNotMatch(readFileSync("public/ai.txt", "utf8"), /tattvamasi\.in/);
 });

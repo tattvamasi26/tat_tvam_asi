@@ -1,10 +1,10 @@
 // The site's own address, in one place.
 //
-// tattvam-asi.org is the canonical domain; tattvam-asi.in redirects to
-// it (set in the Vercel dashboard, not here). NEXT_PUBLIC_SITE_URL can
+// tattvam-asi.in is the site's one domain (www. redirects to it, set in
+// the Vercel dashboard). NEXT_PUBLIC_SITE_URL can
 // override it for a preview or a move, so nothing else in the code
 // should spell the domain out.
-const FALLBACK = "https://tattvam-asi.org";
+const FALLBACK = "https://tattvam-asi.in";
 
 function origin(): string {
   const configured = process.env.NEXT_PUBLIC_SITE_URL;
@@ -18,5 +18,5 @@ function origin(): string {
   return FALLBACK;
 }
 
-/** e.g. "https://tattvam-asi.org", with no trailing slash. */
+/** e.g. "https://tattvam-asi.in", with no trailing slash. */
 export const SITE_URL = origin();

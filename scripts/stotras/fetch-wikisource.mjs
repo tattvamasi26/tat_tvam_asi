@@ -21,7 +21,7 @@ import { writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const UA = "TatTvamAsi-research/1.0 (reference site; stotra harvest; https://tattvam-asi.org)";
+const UA = "TatTvamAsi-research/1.0 (reference site; stotra harvest; https://tattvam-asi.in)";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const OUT = join(ROOT, "corpus", "stotras");
 const RAW = join(OUT, "raw");
