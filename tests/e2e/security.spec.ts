@@ -88,6 +88,21 @@ test.describe("the reading meter", () => {
     await expect(page.locator("a.auth-google")).toHaveAttribute("href", /\/auth\/google\?next=%2Fupanishads%2Fisha/);
   });
 
+  test("with the meter off, no reading page claims the free pages are spent", async ({ page, context }, testInfo) => {
+    // The notice once read a missing count as zero, and told every reader
+    // on the live site, where sign-in was off, that this was their last
+    // free page.
+    test.skip(testInfo.project.name !== "desktop", "checked once");
+    await page.goto(pages[0] + "?lang=en");
+    const metered = (await context.cookies()).some((c) => c.name === "tta_meter");
+    test.skip(metered, "the meter is on here; the test above covers it");
+    for (const p of pages.slice(1, 3)) {
+      await page.goto(p);
+      await page.waitForTimeout(500);
+      await expect(page.locator(".meter-notice")).toHaveCount(0);
+    }
+  });
+
   test("a forged meter cookie is ignored, not trusted", async ({ page, context, baseURL }, testInfo) => {
     test.skip(testInfo.project.name !== "desktop", "checked once");
     const host = new URL(baseURL!).hostname;

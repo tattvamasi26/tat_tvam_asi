@@ -27,7 +27,12 @@ export function MeterNotice({ labels }: { labels: Labels }) {
     setLeft(null);
     // Not on a missing page: there is nothing there to read.
     if (!isGatedPath(pathname) || readCookie(SIGNED_IN_COOKIE) || document.querySelector("[data-not-found]")) return;
-    const n = Number(readCookie(LEFT_COOKIE));
+    // No count means the meter is not running (sign-in switched off):
+    // say nothing. Number(null) is 0, which once told every reader on
+    // the live site that they had used their last free page.
+    const raw = readCookie(LEFT_COOKIE);
+    if (raw === null || raw.trim() === "") return;
+    const n = Number(raw);
     if (!Number.isFinite(n) || n < 0 || n > 2 || n >= FREE_READS) return;
     try {
       if (sessionStorage.getItem("tta_meter_closed") === String(n)) return;
