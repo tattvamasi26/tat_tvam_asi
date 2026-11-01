@@ -40,6 +40,7 @@ import { Footer } from "@/components/layout/Footer";
 
 import { getLocale } from "@/i18n/server";
 import { LOCALE_META } from "@/i18n/config";
+import { SITE_URL } from "@/lib/site";
 
 // The interface face: a tight grotesk that holds together at display
 // sizes with negative tracking, and stays plain at body sizes.
@@ -139,6 +140,8 @@ const METERED_LD = JSON.stringify({
 });
 
 export const metadata: Metadata = {
+  // Absolute URLs for social cards resolve against the canonical domain.
+  metadataBase: new URL(SITE_URL),
   title: { default: "Tat Tvam Asi", template: "%s | Tat Tvam Asi" },
   description:
     "A reference for Sanatana Dharma — Vedic texts, Upanishads, the Gita, bhashyas, temples and their history, practices and traditions, stotras and recitations.",

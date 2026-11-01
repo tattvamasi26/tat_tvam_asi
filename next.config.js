@@ -79,7 +79,9 @@ const securityHeaders = [
   // TDMRep signal, which the EU's copyright directive gives legal force.
   { key: "X-Robots-Tag", value: "noai, noimageai" },
   { key: "tdm-reservation", value: "1" },
-  { key: "tdm-policy", value: "https://tattvamasi.in/rights" },
+  // The site's address: NEXT_PUBLIC_SITE_URL, else the canonical domain
+  // (the same rule as src/lib/site.ts, which this file cannot import).
+  { key: "tdm-policy", value: `${(process.env.NEXT_PUBLIC_SITE_URL || "https://tattvam-asi.in").replace(/\/$/, "")}/rights` },
 ];
 
 const nextConfig = {

@@ -16,7 +16,7 @@ import { join } from "node:path";
 import { CORPUS, sleep } from "./lib.mjs";
 
 const BASE = "https://stotranidhi.com/kn";
-const UA = "Mozilla/5.0 (compatible; TatTvamAsi-research/1.0; +https://tattvamasi.in)";
+const UA = "Mozilla/5.0 (compatible; TatTvamAsi-research/1.0; +https://tattvam-asi.in)";
 
 async function get(url) {
   const res = await fetch(url, { headers: { "User-Agent": UA, "Accept-Language": "kn,en" } });

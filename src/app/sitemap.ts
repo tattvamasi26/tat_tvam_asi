@@ -13,9 +13,10 @@ import { GITA_CHAPTER_NOTES } from "@/lib/seed/gita-chapters";
 import { PRACTICES } from "@/lib/seed/practice";
 import { LOCALES } from "@/i18n/config";
 import { TEACHERS } from "@/lib/seed/teachers";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://tattvamasi.in";
+  const base = SITE_URL;
   const staticRoutes = ["/", "/verses", "/upanishads", "/teachers", "/temples", "/concepts", "/mathas", "/search", "/about", "/rights", "/vedas", "/vedas/rigveda", "/acharyas", "/shastras"];
 
   // Every region and everything inside it, so a temple written in

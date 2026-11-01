@@ -721,6 +721,17 @@ Read `docs/SECURITY.md` before touching any of this. The short version:
 - **Open item:** Next 14.2.35 carries npm-audit advisories whose only
   fix is Next 16.
 
+### The domain
+
+The site lives at **tattvam-asi.in**, its only domain; `www.` redirects
+to it in the Vercel dashboard. `src/lib/site.ts` exports `SITE_URL` (from
+`NEXT_PUBLIC_SITE_URL`, else `https://tattvam-asi.in`), and the
+sitemap, robots.txt and `metadataBase` read it; `next.config.js` repeats
+the same rule for the `tdm-policy` header. Never spell the domain
+anywhere else in `src/`: a unit test fails on it. (Before 2026-11-01 the
+sitemap and rights notices pointed at tattvamasi.in — no hyphen — a
+domain the site never owned.)
+
 ### Readers' accounts
 
 Readers can sign in with Google. Five reading pages a month are free;
