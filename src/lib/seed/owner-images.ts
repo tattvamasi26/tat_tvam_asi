@@ -315,11 +315,13 @@ export const OWNER_IMAGES = {
     "ಮುಖಪುಟದ ಮೇಲೆ 'ಪುರಾಣ' ಎಂದು ಉಬ್ಬು ಅಕ್ಷರಗಳಿರುವ ಹಳೆಯ ಚರ್ಮದ ಬೈಂಡಿಂಗ್‌ನ ಗ್ರಂಥ",
     "आवरण पर उभरे अक्षरों में 'पुराण' लिखी पुरानी चमड़े की जिल्द वाली पुस्तक",
   ), "50% 36%", true),
-  subrahmanyaGolden: pic("subrahmanya-golden", 735, 876, a(
-    "Subrahmaṇya in golden armour and a tall crown, garlanded, tall brass lamps lit beside him",
-    "ಚಿನ್ನದ ಕವಚ ಮತ್ತು ಎತ್ತರದ ಕಿರೀಟದಲ್ಲಿ ಹಾರ ಹಾಕಿದ ಸುಬ್ರಹ್ಮಣ್ಯ, ಪಕ್ಕದಲ್ಲಿ ಉರಿಯುತ್ತಿರುವ ಎತ್ತರದ ಹಿತ್ತಾಳೆ ದೀಪಗಳು",
-    "स्वर्ण कवच और ऊँचे मुकुट में माला पहने सुब्रह्मण्य, पास में जलते ऊँचे पीतल के दीपस्तंभ",
-  ), "50% 35%", true),
+  // Not the golden murti first placed here: the owner identified that
+  // one as Manjunatha, so it was taken off the Subrahmanya group.
+  subrahmanyaPeacock: pic("subrahmanya-peacock", 914, 1600, a(
+    "Six-headed Subrahmaṇya seated on his peacock with the vel, in a stone niche lined with lamps — digital art",
+    "ದೀಪಗಳ ಸಾಲಿನ ಕಲ್ಲಿನ ಗೂಡಿನಲ್ಲಿ ವೇಲ್ ಹಿಡಿದು ನವಿಲಿನ ಮೇಲೆ ಕುಳಿತ ಷಣ್ಮುಖ ಸುಬ್ರಹ್ಮಣ್ಯ — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
+    "दीपों से घिरे पत्थर के आले में वेल लिए मोर पर विराजमान षण्मुख सुब्रह्मण्य — डिजिटल चित्र",
+  ), "50% 50%"),
   ayyappa: pic("ayyappa-sabarimala", 736, 979, a(
     "Ayyappa, bow in hand, riding a tiger above the gateway and steps of a hill shrine — digital painting",
     "ಕೈಯಲ್ಲಿ ಬಿಲ್ಲು ಹಿಡಿದು ಹುಲಿಯ ಮೇಲೆ ಕುಳಿತ ಅಯ್ಯಪ್ಪ, ಕೆಳಗೆ ಬೆಟ್ಟದ ಗುಡಿಯ ಹೆಬ್ಬಾಗಿಲು ಮತ್ತು ಮೆಟ್ಟಿಲುಗಳು — ಡಿಜಿಟಲ್ ಚಿತ್ರ",
