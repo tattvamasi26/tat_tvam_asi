@@ -295,3 +295,20 @@ test("RATE_LIMIT=off exempts only this machine, and only when the server sets it
     else process.env.RATE_LIMIT = before;
   }
 });
+
+test("the site's address is spelled out only in src/lib/site.ts", () => {
+  // The sitemap and the rights notices once pointed at tattvamasi.in, a
+  // domain the site never owned. Everything now reads SITE_URL, so no
+  // other source file may name a domain of the site's own.
+  const own = /https?:\/\/(www\.)?(tattvam-?asi|tat-tvam-asi)\.(org|in|com)/;
+  const walk = (dir: string): string[] =>
+    require("node:fs").readdirSync(dir, { withFileTypes: true }).flatMap((e: { name: string; isDirectory(): boolean }) =>
+      e.isDirectory() ? walk(path.join(dir, e.name)) : /\.(ts|tsx)$/.test(e.name) ? [path.join(dir, e.name)] : [],
+    );
+  const offenders = walk(path.join(process.cwd(), "src"))
+    .filter((f) => !f.endsWith(path.join("lib", "site.ts")))
+    .filter((f) => own.test(readFileSync(f, "utf8")));
+  assert.deepEqual(offenders, []);
+  assert.match(readFileSync("src/lib/site.ts", "utf8"), /https:\/\/tattvam-asi\.org/);
+  assert.doesNotMatch(readFileSync("public/ai.txt", "utf8"), /tattvamasi\.in/);
+});

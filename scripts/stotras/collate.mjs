@@ -33,7 +33,7 @@ import { norm, dice, diff, hunks, loadChecks, applyChecks, cleanWitness } from "
 
 const WIT = join(CORPUS, "witness");
 mkdirSync(WIT, { recursive: true });
-const UA = "Mozilla/5.0 (compatible; TatTvamAsi-research/1.0; +https://tattvamasi.in)";
+const UA = "Mozilla/5.0 (compatible; TatTvamAsi-research/1.0; +https://tattvam-asi.org)";
 
 const stotras = JSON.parse(readFileSync(join(CORPUS, "bsr", "stotras.json"), "utf8"));
 const catalogue = JSON.parse(readFileSync(join(CORPUS, "stotranidhi-catalogue.json"), "utf8"));

@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 export const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const CORPUS = join(ROOT, "corpus", "stotras");
-export const UA = "TatTvamAsi-research/1.0 (reference site; stotra harvest; https://tattvamasi.in)";
+export const UA = "TatTvamAsi-research/1.0 (reference site; stotra harvest; https://tattvam-asi.org)";
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 

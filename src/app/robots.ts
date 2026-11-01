@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { AI_CRAWLERS, TRAP_PATH } from "@/lib/security/bots";
+import { SITE_URL } from "@/lib/site";
 
 /**
  * Search engines may index the site; AI crawlers and dataset builders
@@ -20,6 +21,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/admin", "/api/", "/account", "/auth/", "/signin", TRAP_PATH],
       },
     ],
-    sitemap: "https://tattvamasi.in/sitemap.xml",
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }
