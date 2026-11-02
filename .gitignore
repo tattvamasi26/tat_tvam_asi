@@ -46,3 +46,8 @@ node_modules/
 /.env.setup
 /.env.local.bak
 /supabase/.temp/
+
+# API keys saved as files by hand (an ElevenLabs key was once dropped here)
+sk_*
+*-key.txt
+*.key
