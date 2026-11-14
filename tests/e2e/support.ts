@@ -91,6 +91,9 @@ export const ROUTES = [
   "/bhajans",
   // One of each kind of bhajan page: a devata group, the niti group,
   // the admitted gap, and a song with a long Kannada text.
+  // Finding a song: a line from the middle of one, and the filters.
+  "/bhajans?q=jagadoddharana",
+  "/bhajans?composer=kanaka-dasa&listen=1",
   "/bhajans/krishna",
   "/bhajans/niti",
   "/bhajans/unsorted",

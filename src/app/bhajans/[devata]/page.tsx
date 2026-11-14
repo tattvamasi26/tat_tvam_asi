@@ -4,12 +4,14 @@ import { RiteArt } from "@/components/rituals/RiteArt";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { getTranslations } from "@/i18n/server";
-import { bhajanStrings } from "@/i18n/bhajans";
+import { bhajanStrings, finderLabels } from "@/i18n/bhajans";
 import { bhajanGroups, bhajansIn, bhajanGroupExists, composerName, formName } from "@/lib/bhajans";
 import { bhajanGroup } from "@/lib/bhajans/groups";
 import { groupImage } from "@/lib/bhajans/images";
 import { Arrow } from "@/components/ui/Arrow";
 import { LOCALES } from "@/i18n/config";
+import { searchBhajans } from "@/lib/bhajans/search";
+import { BhajanFinder } from "@/components/bhajan/BhajanFinder";
 
 export function generateStaticParams() {
   return bhajanGroups(LOCALES[0]).map((g) => ({ devata: g.id }));
@@ -32,7 +34,7 @@ export async function generateMetadata({ params }: { params: { devata: string } 
  * heading does not: who wrote it, what kind of text it is when that is
  * not the ordinary one, and whether there is a recitation.
  */
-export default function GroupPage({ params }: { params: { devata: string } }) {
+export default async function GroupPage({ params }: { params: { devata: string } }) {
   const { devata } = params;
   if (!bhajanGroupExists(devata)) notFound();
 
@@ -43,6 +45,8 @@ export default function GroupPage({ params }: { params: { devata: string } }) {
   const name = group.name[locale];
   const local = group.name.kn;
   const pic = groupImage(devata);
+  // The search, preset to this group; its counts are this group's.
+  const facets = (await searchBhajans({ devata }, locale)).facets;
 
   const blurb =
     group.kind === "devata"
@@ -62,7 +66,7 @@ export default function GroupPage({ params }: { params: { devata: string } }) {
         </div>
       </section>
 
-      <section className="shell stack-lg" style={{ paddingTop: 0 }}>
+      <section className="shell stack-lg bh-page" style={{ paddingTop: 0 }}>
         <div className="bh-feature">
           <div className="bh-feature-media">
             {pic ? (
@@ -101,6 +105,23 @@ export default function GroupPage({ params }: { params: { devata: string } }) {
               </p>
             )}
           </div>
+        </div>
+
+        {/* Searching from here leads to the bhajans page's results, still
+            filtered to this group, so the reader can widen it from there. */}
+        <div className="bh-find-block">
+          <h2 className="bh-find-here">{b.searchHere(name)}</h2>
+          <BhajanFinder
+            live={false}
+            values={{ q: "", devata, composer: "", form: "", listen: false }}
+            options={{
+              devata: facets.devata,
+              composer: facets.composer.map((o) => (o.value === "none" ? { ...o, label: b.unsigned } : o)),
+              form: facets.form,
+            }}
+            listenCount={facets.listen}
+            labels={finderLabels(b)}
+          />
         </div>
 
         <ul className="bh-songs">

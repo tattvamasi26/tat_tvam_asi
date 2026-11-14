@@ -300,6 +300,17 @@ node scripts/wordpress/build-bhajans.mjs
 - **Load one group, never twenty-two.** `SPINE` is imported directly;
   `songsIn(devata)` loads a single texts file. Never import
   `data/texts/*.json` from a page.
+- **Finding a song** (`/bhajans?q=…&devata=…&composer=…&form=…&listen=1`)
+  is `src/lib/bhajans/search.ts`, server-side inside the results page:
+  - There is no search endpoint.
+  - It is the one reader of every group's texts. It builds its index
+    once per process.
+  - `fold.ts` gives every spelling one key: ಕೃಷ್ಣ, krishna and krushna
+    match. Add a reader's spelling to the pairs in
+    `tests/unit/bhajan-search.test.ts` before changing a rule there.
+  - The form (`components/bhajan/BhajanFinder.tsx`) is the one client
+    piece. It only writes the address.
+  - See `docs/BHAJANS.md` §6.
 - **These songs have no translation, and the section says so.** The
   source carries a meaning for 13 posts out of 915. This is a complete
   text whose translation has not been written — the Rigveda's claim,
