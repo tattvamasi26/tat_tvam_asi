@@ -400,6 +400,24 @@ export const EN: DepthBook = {
     ],
   },
 
+  "kartika-masa": {
+    steps: [
+      ["Kārtika snāna", "A bath before dawn, every day of the month, in a river or temple tank where one is near. The month's texts say the Gaṅgā is present in every water during it."],
+      ["The evening lamp", "A lamp is lit at dusk every day — at the home shrine, at the tulasī, at the door, at the temple. The gift of a lamp, dīpa-dāna, is the month's defining act."],
+      ["The verse at the lamp", "A verse often said as the lamp is lit asks that insects, birds, mosquitoes, trees and every creature of water and land that sees the flame be freed from birth. The lamp is given for all of them, not for the one who lights it."],
+      ["Mondays", "Each Monday is kept for Śiva: a fast through the day, the liṅga bathed in milk, curd, ghee, honey and sugar and offered bilva leaves, and food only after the evening lamps are lit."],
+      ["Vana-bhojana", "Families and neighbours cook and eat together outdoors, under an āmla tree, which the month holds sacred to Viṣṇu."],
+      ["Reading", "The Kārtika Purāṇam or the Kārtika Māhātmya is read aloud, in many homes a chapter a day."],
+    ],
+    needs: ["Clay or brass lamps", "Sesame oil or ghee", "Cotton wicks", "Bilva leaves", "Āmla", "Tulasī"],
+    days: [
+      ["Kārtika Somavāra", "Each Monday of the month, kept for Śiva."],
+      ["Utthāna Ekādaśī", "Śukla ekādaśī: Viṣṇu wakes from the sleep he began in Āṣāḍha."],
+      ["Kṣīrābdhi Dvādaśī", "The day after: the tulasī is married to Viṣṇu."],
+      ["Kārtika Pūrṇimā", "The full moon: Tripurāri Pūrṇimā, for Śiva's burning of the three cities, with lamps set floating on rivers and tanks."],
+    ],
+  },
+
   "utthana-dwadashi": {
     steps: [
       ["Viṣṇu wakes", "The four months of Cāturmāsya end."],

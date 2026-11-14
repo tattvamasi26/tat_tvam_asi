@@ -88,6 +88,8 @@ export const ROUTES = [
   "/festivals/makara-sankranti",
   // A festival with no picture: the head is its name on a plate.
   "/festivals/gita-jayanti",
+  "/festivals/kartika-masa",
+  "/darshanas/vaisheshika",
   "/bhajans",
   // One of each kind of bhajan page: a devata group, the niti group,
   // the admitted gap, and a song with a long Kannada text.

@@ -175,6 +175,7 @@ const LATER: Record<string, OwnerImageId> = {
   "gita-jayanti": "gitaChariot",
   navaratri: "navaratri",
   "utthana-dwadashi": "tulasiGarlanded",
+  "kartika-masa": "arati",
 };
 for (const [id, key] of Object.entries(LATER)) IMAGES[id] = OWNER_IMAGES[key];
 

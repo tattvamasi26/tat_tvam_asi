@@ -93,6 +93,37 @@ export const EN: DarshanaProse = {
       ],
     },
     {
+      id: "kanada",
+      eyebrow: "The sage",
+      title: "Kaṇāda, and what his sūtras say about falling",
+      blocks: [
+        sub(
+          "The name",
+          "Kaṇāda is usually read as kaṇa, a grain or a particle, and ad, to eat: the one who eats grains. Tradition tells of a sage who lived on grains gleaned from the fields after the harvest; a popular modern telling has him crumble a grain until it would divide no further. Neither story is in the sūtras. He is also called Kaṇabhuj and Kaṇabhakṣa, which say the same thing; Ulūka, the owl, which is why the school is sometimes called Aulūkya; and Kāśyapa.",
+        ),
+        sub(
+          "When",
+          "Nothing certain is known of his life. Estimates run from the sixth century before the common era to the second, and the sūtras as we have them were probably settled later still; texts of the first and second centuries CE already quote their doctrines. That rules out any confident claim of priority over the Greek atomists, in either direction.",
+        ),
+        sub(
+          "Falling",
+          "One sūtra (5.1.7, in the numbering of Śaṅkara Miśra's text) names the cause of a fall: when nothing holds a thing up, it falls because of gurutva, heaviness. The school treats gurutva as a quality of earth and water, not perceived in itself but known from the falling it causes, and held off by contact, by effort — a bird's, in flight — and by impetus, until the impetus is spent.",
+          "It is not Newton's gravitation. Gurutva pulls a thing down, here, towards the earth; there is no attraction between any two bodies, and nothing about the heavens. What the sūtra achieves is narrower, and real: it makes falling a cause of its own, separate from being pushed.",
+        ),
+        sub(
+          "The unseen",
+          "Two sūtras set aside motions that neither contact nor heaviness explains: a needle moving towards a lodestone (5.1.15), and water rising through a tree (5.2.7). Both are put down to adṛṣṭa, the unseen.",
+          "What the word meant to the sūtra's authors is argued over. Some scholars read it, in the earliest layer, as plainly a cause not observed. By Praśastapāda's time it had come to mean the unseen fruit of past action, and the fifteenth-century commentator Śaṅkara Miśra explains the water in the tree by the merit of the beings who will enjoy its leaves and fruit.",
+        ),
+        list(
+          "Claims to read with care",
+          ["The father of atomic theory", "His atoms are reached by argument, not observed, and they differ in kind as well as in size. It is a different theory from Dalton's, not an early draft of it."],
+          ["He discovered gravity", "He named a downward heaviness in things. Attraction between all masses is Newton's."],
+          ["Adṛṣṭa is magnetism", "Adṛṣṭa names a cause not seen. The sūtras file the lodestone under it beside the rising of water in a tree, and the school later folded it into karma. It is not a theory of the magnet."],
+        ),
+      ],
+    },
+    {
       id: "argued",
       eyebrow: "Where it is argued with",
       title: "The objection is to the method, not to any one entry",

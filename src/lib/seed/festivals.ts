@@ -79,7 +79,8 @@ export interface Festival {
   /** In Devanagari, converted by the view. */
   sanskrit: string;
   reckoning: Reckoning;
-  /** Lunar festivals only. */
+  /** Lunar festivals only. A month kept whole (Kārtika) names no
+   *  paksha or tithi, and its whenNote says how long it runs. */
   month?: string;
   paksha?: Paksha;
   tithi?: string;
@@ -429,6 +430,43 @@ export const FESTIVALS: Festival[] = [
   },
 
   {
+    slug: "kartika-masa",
+    name: { en: "Kārtika Māsa", kn: "ಕಾರ್ತಿಕ ಮಾಸ", hi: "कार्तिक मास" },
+    sanskrit: "कार्तिकमासः",
+    reckoning: "lunar",
+    month: "kartika",
+    whenNote: {
+      en: "The whole month. In the south it runs from the day after Dīpāvali's new moon to the next new moon; in the north, where a month ends at the full moon, it begins a fortnight earlier.",
+      kn: "ಇಡೀ ತಿಂಗಳು. ದಕ್ಷಿಣದಲ್ಲಿ ದೀಪಾವಳಿಯ ಅಮಾವಾಸ್ಯೆಯ ಮರುದಿನದಿಂದ ಮುಂದಿನ ಅಮಾವಾಸ್ಯೆಯವರೆಗೆ; ಹುಣ್ಣಿಮೆಗೆ ತಿಂಗಳು ಮುಗಿಯುವ ಉತ್ತರದಲ್ಲಿ, ಹದಿನೈದು ದಿನ ಮುಂಚೆ ಆರಂಭ.",
+      hi: "पूरा महीना। दक्षिण में दीपावली की अमावस्या के अगले दिन से अगली अमावस्या तक; उत्तर में, जहाँ महीना पूर्णिमा पर पूरा होता है, यह एक पखवाड़ा पहले आरंभ होता है।",
+    },
+    lede: {
+      en: "A month of lamps, kept for Śiva and for Viṣṇu together.",
+      kn: "ದೀಪಗಳ ತಿಂಗಳು — ಶಿವ ಮತ್ತು ವಿಷ್ಣು ಇಬ್ಬರಿಗೂ ಒಟ್ಟಿಗೆ.",
+      hi: "दीपों का महीना — शिव और विष्णु दोनों के लिए एक साथ।",
+    },
+    observed: {
+      en: "A bath before dawn, in a river where one is near. A lamp lit every evening of the month — at the shrine, at the tulasī, at the temple, on the riverbank, set floating on the water. The Mondays are kept for Śiva, with a fast until the evening lamps. Utthāna Ekādaśī and the dvādaśī after it are kept for Viṣṇu and the tulasī, and families eat together outdoors under an āmla tree.",
+      kn: "ಬೆಳಗಾಗುವ ಮುನ್ನ ಸ್ನಾನ, ಹತ್ತಿರ ನದಿಯಿದ್ದರೆ ನದಿಯಲ್ಲಿ. ತಿಂಗಳ ಪ್ರತಿ ಸಂಜೆ ದೀಪ — ದೇವರ ಮನೆಯಲ್ಲಿ, ತುಳಸಿಯ ಬಳಿ, ದೇವಾಲಯದಲ್ಲಿ, ನದಿ ದಡದಲ್ಲಿ, ನೀರಿನ ಮೇಲೆ ತೇಲಿಬಿಟ್ಟು. ಸೋಮವಾರಗಳು ಶಿವನಿಗೆ, ಸಂಜೆಯ ದೀಪದವರೆಗೆ ಉಪವಾಸ. ಉತ್ಥಾನ ಏಕಾದಶಿ ಮತ್ತು ಮರುದಿನದ ದ್ವಾದಶಿ ವಿಷ್ಣು ಮತ್ತು ತುಳಸಿಗೆ; ಕುಟುಂಬಗಳು ನೆಲ್ಲಿ ಮರದಡಿ ಹೊರಗೆ ಒಟ್ಟಿಗೆ ಊಟ ಮಾಡುತ್ತಾರೆ.",
+      hi: "भोर से पहले स्नान, पास में नदी हो तो नदी में। महीने की हर संध्या एक दीप — पूजाघर में, तुलसी के पास, मंदिर में, नदी के तट पर, जल पर तैराकर। सोमवार शिव के लिए, संध्या के दीप तक उपवास। उत्थान एकादशी और उसके बाद की द्वादशी विष्णु और तुलसी के लिए; परिवार आँवले के पेड़ के नीचे बाहर साथ भोजन करते हैं।",
+    },
+    significance: {
+      en: "The month is named for the Kṛttikā, the Pleiades, the star its full moon falls near. It is the one month the tradition gives to Hari and Hara together, and many read that as its point: the lamp lit for one is lit for the other. Its rules and its praise are set out in the Kārtika Māhātmya, which places the gift of a lamp, dīpa-dāna, above most gifts.",
+      kn: "ಹುಣ್ಣಿಮೆ ಯಾವ ನಕ್ಷತ್ರದ ಬಳಿ ಬರುತ್ತದೋ ಆ ಕೃತ್ತಿಕೆಯಿಂದ ತಿಂಗಳಿಗೆ ಹೆಸರು. ಹರಿ ಮತ್ತು ಹರ ಇಬ್ಬರಿಗೂ ಒಟ್ಟಿಗೆ ಪರಂಪರೆ ನೀಡುವ ಏಕೈಕ ತಿಂಗಳು ಇದು; ಅನೇಕರು ಅದನ್ನೇ ಇದರ ಮರ್ಮವೆಂದು ಓದುತ್ತಾರೆ: ಒಬ್ಬನಿಗೆ ಹಚ್ಚಿದ ದೀಪ ಇನ್ನೊಬ್ಬನಿಗೂ. ಇದರ ನಿಯಮಗಳು ಮತ್ತು ಮಹಿಮೆ ಕಾರ್ತಿಕ ಮಾಹಾತ್ಮ್ಯದಲ್ಲಿವೆ; ಅದು ದೀಪದಾನವನ್ನು ಹೆಚ್ಚಿನ ದಾನಗಳಿಗಿಂತ ಮಿಗಿಲೆನ್ನುತ್ತದೆ.",
+      hi: "महीने का नाम कृत्तिका पर है — वह नक्षत्र जिसके पास इसकी पूर्णिमा पड़ती है। परंपरा में यही एक महीना है जो हरि और हर दोनों को साथ दिया गया है, और बहुत से लोग इसी को इसका मर्म मानते हैं: एक के लिए जला दीप दूसरे के लिए भी है। इसके नियम और महिमा कार्तिक माहात्म्य में हैं, जो दीपदान को अधिकतर दानों से ऊपर रखता है।",
+    },
+    regional: {
+      en: "Andhra and Telangana keep the month most fully, its Mondays above all, with the Kārtika Purāṇam read aloud. In Tamil Nadu the lamp festival is Kārttikai Dīpam, on the Kṛttikā star, when a beacon is lit on the hill at Tiruvaṇṇāmalai. In Vārāṇasī the full moon is Dev Dīpāvalī, the ghats lined with lamps.",
+      kn: "ಆಂಧ್ರ ಮತ್ತು ತೆಲಂಗಾಣ ಈ ತಿಂಗಳನ್ನು ಅತ್ಯಂತ ಪೂರ್ಣವಾಗಿ ಆಚರಿಸುತ್ತವೆ, ಅದರಲ್ಲೂ ಸೋಮವಾರಗಳನ್ನು; ಕಾರ್ತಿಕ ಪುರಾಣವನ್ನು ಗಟ್ಟಿಯಾಗಿ ಓದುತ್ತಾರೆ. ತಮಿಳುನಾಡಿನಲ್ಲಿ ದೀಪೋತ್ಸವ ಕಾರ್ತಿಗೈ ದೀಪಂ, ಕೃತ್ತಿಕಾ ನಕ್ಷತ್ರದಂದು; ಆಗ ತಿರುವಣ್ಣಾಮಲೈಯ ಬೆಟ್ಟದ ಮೇಲೆ ಮಹಾದೀಪ ಬೆಳಗುತ್ತದೆ. ವಾರಾಣಸಿಯಲ್ಲಿ ಹುಣ್ಣಿಮೆ ದೇವ ದೀಪಾವಳಿ; ಘಾಟ್‌ಗಳ ತುಂಬಾ ದೀಪಗಳು.",
+      hi: "आंध्र और तेलंगाना यह महीना सबसे पूरे ढंग से मनाते हैं, विशेषकर इसके सोमवार, और कार्तिक पुराण पढ़कर सुनाया जाता है। तमिलनाडु में दीपोत्सव कार्तिगै दीपम है, कृत्तिका नक्षत्र पर, जब तिरुवण्णामलै की पहाड़ी पर महादीप जलता है। वाराणसी में पूर्णिमा देव दीपावली है, घाट दीपों से भरे।",
+    },
+    links: [
+      L("/festivals/utthana-dwadashi", "Utthāna Dvādaśī", "ಉತ್ಥಾನ ದ್ವಾದಶಿ", "उत्थान द्वादशी"),
+      L("/bhajans/shiva", "Songs to Shiva", "ಶಿವನ ಪದಗಳು", "शिव के पद"),
+    ],
+  },
+
+  {
     slug: "utthana-dwadashi",
     name: { en: "Utthāna Dvādaśī", kn: "ಉತ್ಥಾನ ದ್ವಾದಶಿ", hi: "उत्थान द्वादशी" },
     sanskrit: "उत्थानद्वादशी",
@@ -450,6 +488,11 @@ export const FESTIVALS: Festival[] = [
       en: "A plant is married to a god, in the courtyard, with the neighbours invited. Nothing in the practice treats this as a metaphor.",
       kn: "ಒಂದು ಗಿಡವನ್ನು ದೇವರಿಗೆ ಮದುವೆ ಮಾಡಲಾಗುತ್ತದೆ — ಅಂಗಳದಲ್ಲಿ, ನೆರೆಹೊರೆಯವರನ್ನು ಕರೆದು. ಆಚರಣೆಯಲ್ಲಿ ಎಲ್ಲಿಯೂ ಇದನ್ನು ರೂಪಕವೆಂದು ಭಾವಿಸುವುದಿಲ್ಲ.",
       hi: "एक पौधे का देवता से विवाह होता है — आँगन में, पड़ोसियों को बुलाकर। आचरण में कहीं भी इसे रूपक नहीं माना जाता।",
+    },
+    regional: {
+      en: "In Karnataka and Andhra the day is also Kṣīrābdhi Dvādaśī, the dvādaśī of the ocean of milk, where Viṣṇu wakes. Much of the north keeps the waking and the wedding a day earlier, on Prabodhinī Ekādaśī.",
+      kn: "ಕರ್ನಾಟಕ ಮತ್ತು ಆಂಧ್ರದಲ್ಲಿ ಈ ದಿನ ಕ್ಷೀರಾಬ್ಧಿ ದ್ವಾದಶಿಯೂ ಹೌದು — ವಿಷ್ಣು ಎಚ್ಚರಗೊಳ್ಳುವ ಹಾಲ್ಗಡಲಿನ ದ್ವಾದಶಿ. ಉತ್ತರದ ಬಹುಭಾಗ ಎಚ್ಚರ ಮತ್ತು ಮದುವೆಯನ್ನು ಒಂದು ದಿನ ಮುಂಚೆ, ಪ್ರಬೋಧಿನೀ ಏಕಾದಶಿಯಂದು ಆಚರಿಸುತ್ತದೆ.",
+      hi: "कर्नाटक और आंध्र में यह दिन क्षीराब्धि द्वादशी भी है — क्षीरसागर की द्वादशी, जहाँ विष्णु जागते हैं। उत्तर का अधिकांश भाग जागरण और विवाह एक दिन पहले, प्रबोधिनी एकादशी को मनाता है।",
     },
     links: [L("/bhajans/tulasi", "Songs to Tulasi", "ತುಳಸಿಗೆ ಪದಗಳು", "तुलसी के पद")],
   },

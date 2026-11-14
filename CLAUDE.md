@@ -498,6 +498,11 @@ that puts the Vedas under Shastras, so it is not listed twice.
   holds the one check both halves use; it is case-sensitive about month
   names and makes "May" prove it is a month, because the naive version
   reported the modal verb in "before it he may not study the Veda".
+- **A month can be kept whole.** Kārtika Māsa (added 2026-11-14) names
+  a month but no paksha or tithi; its `whenNote` says how long it runs,
+  the glance reads "the whole month", and its key days (the Somavāras,
+  Utthāna Ekādaśī, Kṣīrābdhi Dvādaśī, the pūrṇimā) are `days` in its
+  depth, not a count of how long it lasts.
 - **The sixteen saṃskāras are all listed, and each says whether it is
   still performed** (`kept: "common" | "rare" | "lapsed"` in
   `seed/rituals.ts`). Eight are common, three rare, five lapsed; the
