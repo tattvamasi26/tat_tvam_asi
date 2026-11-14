@@ -1,0 +1,61 @@
+/* ─────────────────────────────────────────────────────────
+   The Gita's verses (components/gita).
+
+   A verse of the Gita is set the way a stotra verse is (stotra.css):
+   the same card, the same numbered column, the same meaning panel.
+   Only what the Gita has and a stotra does not is styled here: the
+   speaker lines the book sets within its verses, and the speaker of
+   the English.
+   ───────────────────────────────────────────────────────── */
+
+/* The chapter's narrow column centres its sections' children; the text
+   card spans it. */
+.gita-verses {
+  justify-items: stretch;
+}
+
+.gita-credit {
+  color: var(--ink-3);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.reader .gita-credit {
+  margin-bottom: 0.4rem;
+}
+
+/* "अर्जुन उवाच", set smaller and quieter than the verse, as printed. */
+.stotra-verse-mula p.gita-speaker {
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  color: var(--ink-3);
+}
+
+.gita-translation p + p {
+  margin-top: 0.35rem;
+}
+.gita-said {
+  display: block;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+
+/* On the chapter page each verse number leads to the verse's own page. */
+.gita-verse-link {
+  text-decoration: underline;
+  text-decoration-color: var(--line-2);
+  text-underline-offset: 3px;
+}
+@media (hover: hover) {
+  .gita-verse-link:hover {
+    color: var(--saffron);
+  }
+}
+
+/* A verse on its own page reads larger. */
+.gita-single .stotra-verse-mula p {
+  font-size: clamp(1.45rem, 3vw, 2.1rem);
+}
+.gita-single .stotra-verse-mula p.gita-speaker {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}

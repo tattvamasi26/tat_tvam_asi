@@ -166,6 +166,40 @@ against the scanned page. Read `docs/STOTRAS.md` first.
   loaded by `corpusVerses()`. A test fails any page importing it
   directly.
 
+### The Gita's verses: one printed edition, checked chapter by chapter
+
+The section is **Geetha Rasa Dhara** (`/gita`). Its verses come from
+the Besant & Bhagavan Das edition (Benares, 1905): the Sanskrit, the
+English translation and a word-for-word gloss, all in the public
+domain, with every page transcribed on Sanskrit Wikisource. Read
+`docs/GITA.md` first.
+
+- **A chapter is published only once it is checked.**
+  - The Sanskrit is collated with two witnesses: gita/gita and
+    vedicscriptures. The latter is used to check, never copied.
+  - The English is collated with an independent Internet Archive OCR
+    of another copy of the same printing.
+  - Every disagreement is read on the scan
+    (`scripts/gita/proof.mjs`, `fetch-scan.mjs`, `crop-scan.ps1`).
+  - Each decision goes in `src/lib/gita/checked/chapter-NN.json`. A
+    misprint in the book is corrected only where its own gloss and
+    both witnesses agree, and the record says why.
+  - `scripts/gita/build.mjs` fails on a record that does not pass. An
+    unchecked chapter has no file, and its page says so.
+- **Never use gita/gita's word meanings or transliteration.** They are
+  holy-bhagavad-gita.org's (Mukundananda), which is under copyright.
+  The same goes for its Hindi translations, Gambhirananda and
+  Adidevananda.
+- The book prints speaker lines inside verses (1.21); they stay where
+  printed, flagged `speaker`. Names in the English are given in the
+  print's spelling through `scripts/gita/names.mjs`. Every entry there
+  was read on a scan.
+- **Load one chapter, never eighteen**: through `chapterText()` in
+  `src/lib/gita/`. `/gita/[chapter]/[verse]` is a reading page in
+  `GATED`.
+- The heredoc in this shell halves double backslashes. Write scripts
+  holding regexes with the Write tool, not `cat <<EOF`.
+
 ### The Rigveda is a built corpus, not seed files
 
 The Rigveda is eighty times the rest of the site's verse corpus, so it
