@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { DevataImage } from "./devatas";
+import { OWNER_IMAGES } from "./owner-images";
 
 // ─────────────────────────────────────────────────────────
 //  The temples are arranged by region.
@@ -120,17 +121,8 @@ export const TEMPLE_REGIONS: TempleRegion[] = [
       kn: "ಆಂಧ್ರದಲ್ಲಿ ಮಹಾಕ್ಷೇತ್ರಗಳು ಬೆಟ್ಟಗಳ ಮೇಲಿವೆ. ಪೂರ್ವ ಘಟ್ಟಗಳ ಶೇಷಾಚಲ ಶ್ರೇಣಿಯ ತಿರುಮಲದಲ್ಲಿ ವೆಂಕಟೇಶ್ವರ ನಿಂತಿದ್ದಾನೆ — ಪಲ್ಲವ, ಚೋಳ, ವಿಜಯನಗರದ ಅರಸರು ಒಬ್ಬರಾದ ಮೇಲೊಬ್ಬರು ದತ್ತಿ ನೀಡಿದ, ಭೂಮಿಯ ಮೇಲಿನ ಬಹುತೇಕ ಯಾವುದೇ ಪೂಜಾಸ್ಥಳಕ್ಕಿಂತ ಹೆಚ್ಚು ಯಾತ್ರಿಕರನ್ನು ಸೆಳೆಯುವ ದೇವಾಲಯದಲ್ಲಿ.",
       hi: "आंध्र में महान तीर्थ पहाड़ियों पर हैं। पूर्वी घाट की शेषाचलम श्रेणी पर तिरुमला में वेंकटेश्वर उस मंदिर में खड़े हैं जिसे पल्लव, चोल और विजयनगर के राजाओं ने एक के बाद एक दान दिए, और जो पृथ्वी के लगभग किसी भी पूजास्थल से अधिक तीर्थयात्रियों को खींचता है।",
     },
-    image: {
-      src: "/images/temples/tirumala/hero.jpg",
-      width: 1920,
-      height: 1540,
-      credit: "Nikhilb239 · CC BY-SA 4.0 · Wikimedia Commons",
-      alt: {
-        en: "The white gopura at the entrance of the Tirumala temple, with the hills behind it.",
-        kn: "ಹಿಂದೆ ಬೆಟ್ಟಗಳಿರುವ, ತಿರುಮಲ ದೇವಾಲಯದ ಪ್ರವೇಶದ ಬಿಳಿಯ ಗೋಪುರ.",
-        hi: "पीछे पहाड़ियों के साथ तिरुमला मंदिर के प्रवेश का श्वेत गोपुर।",
-      },
-    },
+    // The owner's picture of the hills after dark (14 November 2026).
+    image: { ...OWNER_IMAGES.tirumalaHillsNight },
   },
   {
     slug: "odisha",

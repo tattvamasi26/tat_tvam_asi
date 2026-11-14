@@ -1,3 +1,4 @@
+import { OWNER_IMAGES } from "../owner-images";
 import { registerTemplePage } from "../temple-pages";
 
 // ─────────────────────────────────────────────────────────
@@ -41,24 +42,16 @@ registerTemplePage({
       hi: "पीछे पहाड़ियों के साथ तिरुमला मंदिर के प्रवेश का श्वेत गोपुर।",
     },
   },
+  // The owner's pictures (14 November 2026): the Lord, the vimana and
+  // the hills. The devotional artwork is described as artwork.
   gallery: [
-    {
-      src: "/images/temples/tirumala/ananda-nilayam.jpg",
-      width: 1280,
-      height: 854,
-      credit: "Ananda Nilayam, Tirumala — photo by Phanidharvaranasi, CC BY-SA 4.0, via Wikimedia Commons",
-      sourceUrl: "https://commons.wikimedia.org/wiki/File:Tirumala_Anand_nilayam4653.jpg",
-      alt: {
-        en: "The gilded Ananda Nilayam vimana in front of the white gopura, at dusk.",
-        kn: "ಸಂಜೆಯ ಬೆಳಕಿನಲ್ಲಿ ಬಿಳಿಯ ಗೋಪುರದ ಮುಂದೆ ಚಿನ್ನದ ಆನಂದ ನಿಲಯ ವಿಮಾನ.",
-        hi: "संध्या के प्रकाश में श्वेत गोपुर के आगे स्वर्णमंडित आनंद निलय विमान।",
-      },
-      caption: {
-        en: "The Ananda Nilayam, the gilded tower over the sanctum.",
-        kn: "ಆನಂದ ನಿಲಯ — ಗರ್ಭಗುಡಿಯ ಮೇಲಿನ ಚಿನ್ನದ ವಿಮಾನ.",
-        hi: "आनंद निलय — गर्भगृह के ऊपर का स्वर्णमंडित विमान।",
-      },
-    },
+    { ...OWNER_IMAGES.govindaMistGold, caption: { en: "Śrī Veṅkaṭeśvara, as Govinda.", kn: "ಶ್ರೀ ವೆಂಕಟೇಶ್ವರ — ಗೋವಿಂದ.", hi: "श्री वेंकटेश्वर — गोविंद।" } },
+    { ...OWNER_IMAGES.tirumalaVimana, caption: { en: "The Ananda Nilayam, the gilded tower over the sanctum.", kn: "ಆನಂದ ನಿಲಯ — ಗರ್ಭಗುಡಿಯ ಮೇಲಿನ ಚಿನ್ನದ ವಿಮಾನ.", hi: "आनंद निलय — गर्भगृह के ऊपर का स्वर्णमंडित विमान।" } },
+    { ...OWNER_IMAGES.govindaShrineDark, caption: { en: "The Lord in his shrine, garlanded.", kn: "ಗುಡಿಯಲ್ಲಿ ಹಾರ ಧರಿಸಿದ ಸ್ವಾಮಿ.", hi: "गर्भगृह में मालाधारी स्वामी।" } },
+    { ...OWNER_IMAGES.tirumalaHillsNight, caption: { en: "The temple towers among the seven hills, after dark.", kn: "ಏಳು ಬೆಟ್ಟಗಳ ನಡುವೆ ಗೋಪುರಗಳು, ಕತ್ತಲಾದ ಮೇಲೆ.", hi: "सात पहाड़ियों के बीच गोपुर, अँधेरा होने पर।" } },
+    { ...OWNER_IMAGES.govindaMistGrey, caption: { en: "The namam, broad and white, over the eyes.", kn: "ಕಣ್ಣುಗಳ ಮೇಲೆ ಅಗಲವಾದ ಬಿಳಿಯ ನಾಮ.", hi: "आँखों पर चौड़ा श्वेत नामम।" } },
+    { ...OWNER_IMAGES.tirumalaGopura, caption: { en: "The entrance gopura, and the pilgrims at its foot.", kn: "ಪ್ರವೇಶ ಗೋಪುರ ಮತ್ತು ಅದರ ಬುಡದಲ್ಲಿ ಯಾತ್ರಿಕರು.", hi: "प्रवेश गोपुर, और उसके नीचे तीर्थयात्री।" } },
+    { ...OWNER_IMAGES.govindaFace, caption: { en: "Govinda — devotional artwork.", kn: "ಗೋವಿಂದ — ಭಕ್ತಿ ಚಿತ್ರ.", hi: "गोविंद — भक्ति चित्र।" } },
   ],
   sources: [
     { title: "Venkateswara Temple, Tirumala — Wikipedia", url: "https://en.wikipedia.org/wiki/Venkateswara_Temple,_Tirumala" },

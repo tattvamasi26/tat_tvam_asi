@@ -17,11 +17,10 @@ export const TEACHERS: TeacherRow[] = [
     // to the 2nd century BCE. Printing years would invent them.
     birth_year: null,
     death_year: null,
-    // No picture: there is no portrait of him from life, and the only
-    // candidate on Commons was a fan-made stamp, already rejected. The
-    // card shows his name in the reader's script instead.
-    image_url: null,
-    image_credit: null,
+    // A painting the owner supplied (14 November 2026). No portrait from
+    // life exists; this is a modern artist's imagining of him.
+    image_url: "/images/owner/kanada-painting.jpg",
+    image_credit: OWNER,
   },
   {
     id: "te-shankara",
