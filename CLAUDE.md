@@ -359,8 +359,9 @@ node scripts/wordpress/build-bhajans.mjs
 
 ### The acharyas list
 
-`seed/teachers.ts` holds nine acharyas, **in chronological order**,
-each written in all three languages: Shankara, Ramanuja, Basavanna,
+`seed/teachers.ts` holds ten acharyas, **in chronological order**,
+each written in all three languages: Kaṇāda (added 2026-11-14, no
+picture, his dates unknown), Shankara, Ramanuja, Basavanna,
 Madhva, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
 Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
 `tests/unit/teachers.test.ts` holds the whole roster to these rules:
@@ -385,8 +386,8 @@ Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
 - **No photograph at all is still a valid state.** `image_url` may be
   null, and the card then shows the name in the reader's script
   (`.acharya-nameplate`), the way a temple without a photograph does.
-  Nothing uses it at present; keep it for the next acharya who needs
-  it.
+  Kaṇāda uses it: there is no portrait of him, and the one Commons
+  candidate, a fan-made stamp, was rejected.
 - **Key works are chip-sized labels**, not full citations — a long one
   pushed the card past the viewport at 390px. The attribution belongs
   in the biography.

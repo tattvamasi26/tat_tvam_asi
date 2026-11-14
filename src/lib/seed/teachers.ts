@@ -10,6 +10,20 @@ const OWNER_LOWER = "supplied by the site owner";
 
 export const TEACHERS: TeacherRow[] = [
   {
+    id: "te-kanada",
+    slug: "kanada",
+    name_sanskrit: "कणादः",
+    // Nothing certain is known of his life; estimates run from the 6th
+    // to the 2nd century BCE. Printing years would invent them.
+    birth_year: null,
+    death_year: null,
+    // No picture: there is no portrait of him from life, and the only
+    // candidate on Commons was a fan-made stamp, already rejected. The
+    // card shows his name in the reader's script instead.
+    image_url: null,
+    image_credit: null,
+  },
+  {
     id: "te-shankara",
     slug: "adi-shankaracharya",
     name_sanskrit: "आदि शङ्कराचार्य",
@@ -119,6 +133,29 @@ export const TEACHERS: TeacherRow[] = [
 ];
 
 export const TEACHER_TRANSLATIONS: TeacherTranslationRow[] = [
+  // ── Kaṇāda
+  {
+    teacher_id: "te-kanada", language: "en",
+    name: "Maharshi Kanada", era: "Unknown — estimates run from the 6th to the 2nd century BCE", tradition: "Vaisheshika",
+    key_works: ["Vaisheshika Sutra"],
+    biography: "Kanada is the sage to whom the Vaisheshika Sutra is ascribed, the founding text of the school that sorts everything there is into six categories and argues that matter divides only down to the paramanu, a particle without parts. His name is read as \"the eater of grains\"; tradition says he lived on grain gleaned from harvested fields. One sutra names gurutva, heaviness, as the cause of falling, and others set the needle drawn to a lodestone and water rising in a tree under adrishta, the unseen cause. Nothing certain is known of his life.",
+    quote: "",
+  },
+  {
+    teacher_id: "te-kanada", language: "kn",
+    name: "ಮಹರ್ಷಿ ಕಣಾದ", era: "ತಿಳಿದಿಲ್ಲ — ಅಂದಾಜುಗಳು ಕ್ರಿ.ಪೂ. ೬ರಿಂದ ೨ನೇ ಶತಮಾನದವರೆಗೆ", tradition: "ವೈಶೇಷಿಕ",
+    key_works: ["ವೈಶೇಷಿಕ ಸೂತ್ರ"],
+    biography: "ಇರುವುದೆಲ್ಲವನ್ನೂ ಆರು ಪದಾರ್ಥಗಳಾಗಿ ವಿಂಗಡಿಸಿ, ದ್ರವ್ಯ ಭಾಗವಿಲ್ಲದ ಪರಮಾಣುವಿನವರೆಗೆ ಮಾತ್ರ ಒಡೆಯುತ್ತದೆ ಎಂದು ವಾದಿಸುವ ದರ್ಶನದ ಮೂಲಗ್ರಂಥ ವೈಶೇಷಿಕ ಸೂತ್ರದ ಕರ್ತೃ ಎಂದು ಹೇಳಲಾಗುವ ಋಷಿ ಕಣಾದ. ಅವರ ಹೆಸರನ್ನು 'ಕಾಳು ತಿನ್ನುವವನು' ಎಂದು ಓದಲಾಗುತ್ತದೆ; ಕೊಯ್ಲಾದ ಹೊಲಗಳಲ್ಲಿ ಉಳಿದ ಕಾಳು ಆಯ್ದು ಬದುಕಿದರೆಂದು ಪರಂಪರೆ. ಒಂದು ಸೂತ್ರ ಬೀಳುವಿಕೆಯ ಕಾರಣವನ್ನು ಗುರುತ್ವ — ಭಾರ — ಎನ್ನುತ್ತದೆ; ಅಯಸ್ಕಾಂತದತ್ತ ಸೂಜಿಯ ಚಲನೆ, ಮರದಲ್ಲಿ ನೀರು ಏರುವುದು — ಇವನ್ನು ಇತರ ಸೂತ್ರಗಳು ಅದೃಷ್ಟಕ್ಕೆ, ಕಾಣದ ಕಾರಣಕ್ಕೆ, ಸೇರಿಸುತ್ತವೆ. ಅವರ ಜೀವನದ ಬಗ್ಗೆ ಖಚಿತವಾಗಿ ಏನೂ ತಿಳಿದಿಲ್ಲ.",
+    quote: "",
+  },
+  {
+    teacher_id: "te-kanada", language: "hi",
+    name: "महर्षि कणाद", era: "अज्ञात — अनुमान ईसा पूर्व छठी से दूसरी शताब्दी तक", tradition: "वैशेषिक",
+    key_works: ["वैशेषिक सूत्र"],
+    biography: "कणाद वे ऋषि हैं जिन्हें वैशेषिक सूत्र का कर्ता माना जाता है — उस दर्शन का मूल ग्रंथ जो सब कुछ छह पदार्थों में बाँटता है और तर्क देता है कि द्रव्य केवल निरवयव परमाणु तक ही विभाजित होता है। उनके नाम का अर्थ 'दाने खाने वाला' लिया जाता है; परंपरा कहती है कि वे कटे खेतों में बचे दाने बीनकर जीते थे। एक सूत्र गिरने का कारण गुरुत्व, भारीपन, बताता है, और अन्य सूत्र चुंबक-पत्थर की ओर सुई के खिंचने और पेड़ में पानी चढ़ने को अदृष्ट, न दिखने वाले कारण, के अंतर्गत रखते हैं। उनके जीवन के बारे में कुछ भी निश्चित ज्ञात नहीं।",
+    quote: "",
+  },
+
   // ── Adi Shankaracharya
   {
     teacher_id: "te-shankara", language: "en",

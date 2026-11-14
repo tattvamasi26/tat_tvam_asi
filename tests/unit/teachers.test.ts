@@ -120,7 +120,7 @@ test("a photographer who signed his work is credited by name", () => {
 test("a disputed date is not printed as a known one", () => {
   // Where scholarship disagrees, the years stay null and the era
   // string carries the claim. See docs/SHANKARA.md §2.
-  for (const slug of ["adi-shankaracharya", "ramanujacharya", "madhvacharya"]) {
+  for (const slug of ["kanada", "adi-shankaracharya", "ramanujacharya", "madhvacharya"]) {
     const row = TEACHERS.find((t) => t.slug === slug)!;
     assert.equal(row.birth_year, null, `${slug} prints a contested birth year`);
     assert.equal(row.death_year, null, `${slug} prints a contested death year`);
@@ -139,6 +139,7 @@ test("a living teacher is not given a death year", () => {
 test("the list runs in chronological order", () => {
   const order = TEACHERS.map((t) => t.slug);
   const expected = [
+    "kanada",
     "adi-shankaracharya",
     "ramanujacharya",
     "basavanna",
