@@ -64,7 +64,7 @@ export interface TemplePage {
   /** The temple's own name in its own script, shown in every language. */
   nameLocal: string;
   /** The script nameLocal is written in, for the lang attribute. */
-  nameLocalLang: "kn" | "ta" | "ml" | "hi";
+  nameLocalLang: "kn" | "ta" | "te" | "ml" | "hi";
   hero?: TemplePicture;
   gallery?: TemplePicture[];
   /** Where the facts came from. Every temple page shows these. */

@@ -23,6 +23,8 @@ import { LOCALES } from "../../src/i18n/config";
 // modules, as the site does.
 
 const KANNADA = /[ಀ-೿]/;
+/** A temple's own name is in an Indic script: Kannada, Tamil, Telugu, Malayalam or Devanagari. */
+const OWN_SCRIPT = /[ऀ-ॿ஀-௿ఀ-౿ಀ-೿ഀ-ൿ]/;
 
 /** Width and height from a JPEG's start-of-frame marker. */
 function jpegSize(file: string): { width: number; height: number } {
@@ -110,7 +112,7 @@ test("a monograph says the same thing in every language: same sections, same blo
       });
       assert.ok(page.name[l]?.trim(), `${slug}: no ${l} name`);
     }
-    assert.ok(KANNADA.test(page.nameLocal), `${slug}: local name is not in its own script`);
+    assert.ok(OWN_SCRIPT.test(page.nameLocal), `${slug}: local name is not in its own script`);
     assert.ok(page.sources.length > 0, `${slug}: no sources`);
     for (const s of page.sources) assert.match(s.url, /^https:\/\//, `${slug}: source is not a web address`);
   }
@@ -145,6 +147,7 @@ test("what sits at each address: a temple, a circuit, or nothing", () => {
   assert.equal(getTempleEntryKind("tulunadu", "kollur-mookambika"), "temple");
   assert.equal(getTempleEntryKind("tulunadu", "nava-vinayakas"), "collection");
   assert.equal(getTempleEntryKind("tamil-nadu", "brihadeeswarar-temple"), "temple");
+  assert.equal(getTempleEntryKind("andhra", "tirumala-venkateswara"), "temple");
   // A temple asked for under the wrong region is not there.
   assert.equal(getTempleEntryKind("tamil-nadu", "kollur-mookambika"), null);
   assert.equal(getTempleEntryKind("tulunadu", "no-such-temple"), null);

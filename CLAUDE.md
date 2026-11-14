@@ -453,7 +453,7 @@ Shankaracharya is the first monograph (2026-09-23).
 
 The routes are `/temples` (the regions), `/temples/[section]` (one region), and `/temples/[section]/[entry]` (a temple, or a circuit). There is one dynamic segment per level, so `[section]` and `[entry]` resolve by data rather than by folder.
 
-- `seed/temple-regions.ts` lists the regions: Tulunadu, Tamil Nadu, the Deccan, Odisha. A region is cultural, not administrative — Tulunadu spans Kasaragod in Kerala and the Karnataka coast.
+- `seed/temple-regions.ts` lists the regions: Tulunadu, Tamil Nadu, the Deccan, Andhra, Odisha. Andhra (added 2026-11-14) holds Tirumala, whose own name is Telugu — `Noto_Sans_Telugu` is loaded for it, like the Tamil and Odia faces. A region is cultural, not administrative — Tulunadu spans Kasaragod in Kerala and the Karnataka coast.
 - A region page shows its circuits first, then its temples.
 - A temple written in depth is a module under `seed/temple-pages/` that calls `registerTemplePage()`. Import it in the temple block of `data.ts`, or it has no page.
   - The prose is written per language (`content.en`, `.kn`, `.hi`), each with the whole structure, the way `i18n/kollur.ts` was written. A unit test holds the languages to the same section ids and the same block kinds, so none can drift.

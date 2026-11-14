@@ -58,8 +58,8 @@
     /* Type. Each stack names a Latin face first and the Indic faces
        after it, so Hindi and Kannada fall through glyph by glyph
        without any per-language rules. */
-    --sans: var(--font-inter-tight), var(--font-noto-deva), var(--font-noto-kn), var(--font-noto-tamil), var(--font-noto-oriya), system-ui, sans-serif;
-    --serif: var(--font-instrument), var(--font-tiro-sa), var(--font-tiro-kn), var(--font-noto-tamil), var(--font-noto-oriya), Georgia, serif;
+    --sans: var(--font-inter-tight), var(--font-noto-deva), var(--font-noto-kn), var(--font-noto-tamil), var(--font-noto-oriya), var(--font-noto-te), system-ui, sans-serif;
+    --serif: var(--font-instrument), var(--font-tiro-sa), var(--font-tiro-kn), var(--font-noto-tamil), var(--font-noto-oriya), var(--font-noto-te), Georgia, serif;
     /* The wordmark's face, as the logo canvas specifies. */
     --brand-serif: var(--font-cormorant), var(--font-instrument), Georgia, serif;
 

@@ -110,6 +110,8 @@ export const ROUTES = [
   "/temples/tulunadu/udupi-krishna-matha",
   "/temples/tulunadu/kateel",
   "/temples/tulunadu/nava-vinayakas",
+  "/temples/andhra",
+  "/temples/andhra/tirumala-venkateswara",
   "/concepts",
   // One term the schools argue over, and one they do not.
   "/concepts/brahman",

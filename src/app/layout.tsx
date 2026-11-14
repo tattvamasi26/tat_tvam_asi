@@ -9,6 +9,7 @@ import {
   Noto_Sans_Kannada,
   Noto_Sans_Tamil,
   Noto_Sans_Oriya,
+  Noto_Sans_Telugu,
 } from "next/font/google";
 import "./globals.css";
 import "@/styles/chrome.css";
@@ -113,7 +114,7 @@ const notoKannada = Noto_Sans_Kannada({
   preload: false,
 });
 
-// Temple names are given in the temple's own language — Tamil and Odia
+// Temple names are given in the temple's own language — Tamil, Odia and Telugu
 // among them. Without a face for those scripts each device drew them in
 // whatever it had installed, so the same name looked different on every
 // phone. Fetched only on pages that contain those glyphs.
@@ -127,6 +128,13 @@ const notoTamil = Noto_Sans_Tamil({
 const notoOriya = Noto_Sans_Oriya({
   subsets: ["oriya"],
   variable: "--font-noto-oriya",
+  display: "swap",
+  preload: false,
+});
+
+const notoTelugu = Noto_Sans_Telugu({
+  subsets: ["telugu"],
+  variable: "--font-noto-te",
   display: "swap",
   preload: false,
 });
@@ -171,6 +179,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     notoKannada,
     notoTamil,
     notoOriya,
+    notoTelugu,
   ]
     .map((f) => f.variable)
     .join(" ");
