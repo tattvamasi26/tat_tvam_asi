@@ -54,10 +54,15 @@ export default function FestivalPage({ params }: { params: { festival: string } 
   const season =
     rtuForMonth(festival.month) ?? RTUS.find((r) => r.id === SOLAR_RTU[festival.slug]);
 
-  const glance: [string, string][] = [[s.labelWhen, festival.when || festival.whenNote || ""]];
+  // A month kept whole (Kārtika) has no one day: say so, and do not
+  // count its key days as though the festival lasted that long.
+  const wholeMonth = Boolean(festival.month) && !festival.when.includes("·");
+  const glance: [string, string][] = [
+    [s.labelWhen, wholeMonth ? `${festival.when} · ${rf.wholeMonth}` : festival.when || festival.whenNote || ""],
+  ];
   if (season) glance.push([rf.labelSeason, season.name[locale]]);
   glance.push([rf.labelKind, festival.reckoning === "solar" ? s.solar : s.lunar]);
-  if (festival.depth?.days) {
+  if (festival.depth?.days && !wholeMonth) {
     glance.push([rf.labelDays, rf.daysCount.replace("{n}", festival.depth.days.length.toLocaleString("en-IN"))]);
   }
   if (festival.alsoCalled) glance.push([s.labelAlsoCalled, festival.alsoCalled]);

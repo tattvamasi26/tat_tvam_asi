@@ -356,9 +356,11 @@ import "./seed/temple-pages/kukke-subramanya";
 import "./seed/temple-pages/kateel";
 import "./seed/temple-pages/mangaladevi";
 import "./seed/temple-pages/kadri-manjunatha";
+import "./seed/temple-pages/tirumala";
 // An acharya written in depth registers itself on import, the same way
 // a temple or a readable text does.
 import "./seed/acharya-pages/shankara";
+import "./seed/acharya-pages/raghavendra";
 import {
   getAcharyaPage,
   acharyaPageSlugs,

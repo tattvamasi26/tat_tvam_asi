@@ -450,6 +450,60 @@ export const OWNER_IMAGES = {
     "ಬಯಲಿನಲ್ಲಿ, ಹಾರಗಳ ರಾಶಿಯ ನಡುವೆ ಸೌತಡ್ಕದ ಗಣಪತಿ, ಹಿಂದೆ ಮರ",
     "खुले आकाश के नीचे मालाओं से लदे सौतड्क के गणपति, पीछे पेड़",
   ), "50% 45%"),
+
+  // ── Tirumala and Govinda (placed 14 November 2026) ─────
+  tirumalaHillsNight: pic("tirumala-hills-night", 736, 1307, a(
+    "Lit temple towers below forested hills at dusk, mist in the valleys and lights on the ridge above",
+    "ಸಂಜೆಯ ಹೊತ್ತು ಕಾಡಿನ ಬೆಟ್ಟಗಳ ಕೆಳಗೆ ದೀಪ ಬೆಳಗಿದ ಗೋಪುರಗಳು — ಕಣಿವೆಗಳಲ್ಲಿ ಮಂಜು, ಮೇಲಿನ ಶಿಖರದಲ್ಲಿ ದೀಪಗಳು",
+    "संध्या में वन से ढकी पहाड़ियों के नीचे जगमगाते गोपुर — घाटियों में धुंध, ऊपर चोटी पर रोशनी",
+  ), "50% 70%"),
+  tirumalaVimana: pic("tirumala-vimana", 736, 880, a(
+    "The gilded vimana over the sanctum under a grey sky",
+    "ಬೂದು ಆಕಾಶದ ಕೆಳಗೆ ಗರ್ಭಗುಡಿಯ ಮೇಲಿನ ಚಿನ್ನದ ವಿಮಾನ",
+    "धूसर आकाश के नीचे गर्भगृह के ऊपर का स्वर्णमंडित विमान",
+  ), "50% 55%", true),
+  tirumalaGopura: pic("tirumala-gopura", 736, 981, a(
+    "The white entrance gopura with the hills behind it and pilgrims at its foot",
+    "ಹಿಂದೆ ಬೆಟ್ಟಗಳು, ಬುಡದಲ್ಲಿ ಯಾತ್ರಿಕರು — ಬಿಳಿಯ ಪ್ರವೇಶ ಗೋಪುರ",
+    "पीछे पहाड़ियाँ, नीचे तीर्थयात्री — श्वेत प्रवेश गोपुर",
+  ), "50% 45%"),
+  govindaMistGold: pic("govinda-mist-gold", 1152, 2048, a(
+    "Venkateswara standing in a golden arch, garlanded, with mist rising around him — devotional artwork",
+    "ಚಿನ್ನದ ಪ್ರಭಾವಳಿಯಲ್ಲಿ ಹಾರ ಧರಿಸಿ ನಿಂತ ವೆಂಕಟೇಶ್ವರ, ಸುತ್ತಲೂ ಮಂಜು — ಭಕ್ತಿ ಚಿತ್ರ",
+    "स्वर्ण प्रभामंडल में मालाधारी खड़े वेंकटेश्वर, चारों ओर उठती धुंध — भक्ति चित्र",
+  ), "50% 40%"),
+  govindaMistGrey: pic("govinda-mist-grey", 1152, 2048, a(
+    "Venkateswara in black and white, the namam bright on his brow, smoke drifting across the frame — devotional artwork",
+    "ಕಪ್ಪು-ಬಿಳುಪಿನಲ್ಲಿ ವೆಂಕಟೇಶ್ವರ, ಹಣೆಯ ಮೇಲೆ ಬೆಳ್ಳಗೆ ಹೊಳೆಯುವ ನಾಮ, ಚಿತ್ರದುದ್ದಕ್ಕೂ ಹೊಗೆ — ಭಕ್ತಿ ಚಿತ್ರ",
+    "श्वेत-श्याम में वेंकटेश्वर, माथे पर उजला नामम, चित्र भर में तैरता धुआँ — भक्ति चित्र",
+  ), "50% 35%"),
+  govindaShrineDark: pic("govinda-shrine-dark", 756, 1008, a(
+    "Venkateswara garlanded in a dark shrine, lit only from in front",
+    "ಕತ್ತಲೆಯ ಗುಡಿಯಲ್ಲಿ, ಎದುರಿನ ಬೆಳಕಿನಲ್ಲಷ್ಟೇ ಕಾಣುವ ಹಾರ ಧರಿಸಿದ ವೆಂಕಟೇಶ್ವರ",
+    "अँधेरे गर्भगृह में, केवल सामने के प्रकाश में दिखते मालाधारी वेंकटेश्वर",
+  ), "50% 60%"),
+  govindaFace: pic("govinda-face", 1152, 2048, a(
+    "A face in profile against a dark sky of stars and cloud, the namam glowing on the brow — devotional artwork",
+    "ನಕ್ಷತ್ರ, ಮೋಡಗಳ ಕತ್ತಲೆ ಆಕಾಶದ ಎದುರು ಪಾರ್ಶ್ವಮುಖ, ಹಣೆಯ ಮೇಲೆ ಹೊಳೆಯುವ ನಾಮ — ಭಕ್ತಿ ಚಿತ್ರ",
+    "तारों और बादलों के अँधेरे आकाश के सामने एक पार्श्व मुख, माथे पर दमकता नामम — भक्ति चित्र",
+  ), "50% 45%"),
+
+  // ── Kārtika, Kaṇāda, Rāghavendra (placed 14 November 2026) ─
+  karthikaLamps: pic("karthika-lamps", 1152, 1152, a(
+    "Clay lamps and lamps set in coconut halves burning at night, hands reaching to light more",
+    "ರಾತ್ರಿಯಲ್ಲಿ ಉರಿಯುವ ಮಣ್ಣಿನ ಹಣತೆಗಳು ಮತ್ತು ತೆಂಗಿನ ಚಿಪ್ಪಿನ ದೀಪಗಳು, ಇನ್ನಷ್ಟು ಹಚ್ಚಲು ಚಾಚಿದ ಕೈಗಳು",
+    "रात में जलते मिट्टी के दीये और नारियल के खोल में रखे दीप, और दीप जलाने को बढ़ते हाथ",
+  ), "50% 55%"),
+  kanada: pic("kanada-painting", 1055, 1149, a(
+    "A bearded sage in saffron looking up, one hand raised, a chain of small rings rising in the sky beside him — painting",
+    "ಕಾವಿ ಧರಿಸಿದ ಗಡ್ಡಧಾರಿ ಋಷಿ ಮೇಲೆ ನೋಡುತ್ತಿದ್ದಾರೆ, ಒಂದು ಕೈ ಎತ್ತಿ; ಪಕ್ಕದಲ್ಲಿ ಆಕಾಶಕ್ಕೆ ಏರುವ ಸಣ್ಣ ಉಂಗುರಗಳ ಸಾಲು — ಚಿತ್ರ",
+    "भगवा वस्त्र में दाढ़ी वाले ऋषि ऊपर देखते हुए, एक हाथ उठाए, पास में आकाश की ओर उठती छोटे छल्लों की कड़ी — चित्र",
+  ), "60% 30%"),
+  raghavendraSketch: pic("raghavendra-sketch", 1179, 1745, a(
+    "Rāghavendra Tīrtha seated, a small image of Kṛṣṇa held to his cheek, a staff in his hand and images of Rāma, Sītā and Lakṣmaṇa beside him — pencil and colour drawing",
+    "ಕುಳಿತ ರಾಘವೇಂದ್ರ ತೀರ್ಥರು — ಕೆನ್ನೆಗೆ ಹಿಡಿದ ಕೃಷ್ಣನ ಪುಟ್ಟ ವಿಗ್ರಹ, ಕೈಯಲ್ಲಿ ದಂಡ, ಪಕ್ಕದಲ್ಲಿ ರಾಮ, ಸೀತೆ, ಲಕ್ಷ್ಮಣರ ವಿಗ್ರಹಗಳು — ಪೆನ್ಸಿಲ್ ಮತ್ತು ಬಣ್ಣದ ಚಿತ್ರ",
+    "बैठे राघवेंद्र तीर्थ — गाल से लगाई कृष्ण की छोटी प्रतिमा, हाथ में दंड, पास में राम, सीता और लक्ष्मण की प्रतिमाएँ — पेंसिल और रंग का चित्र",
+  ), "50% 45%"),
 } satisfies Record<string, OwnerImage>;
 
 export type OwnerImageId = keyof typeof OWNER_IMAGES;

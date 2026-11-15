@@ -49,6 +49,30 @@ export interface BhajanStrings {
   backToGroup: (name: string) => string;
   next: string;
   previous: string;
+
+  /** Finding a song (lib/bhajans/search.ts). */
+  findTitle: string;
+  findLede: string;
+  searchLabel: string;
+  searchPlaceholder: string;
+  searchButton: string;
+  filterDevata: string;
+  filterComposer: string;
+  filterForm: string;
+  filterListen: string;
+  anyDevata: string;
+  anyComposer: string;
+  anyForm: string;
+  unsigned: string;
+  clear: string;
+  results: (n: string) => string;
+  noResults: string;
+  noResultsHint: string;
+  foundInLine: string;
+  showMore: string;
+  searching: string;
+  searchHere: (name: string) => string;
+  songsBy: (name: string) => string;
 }
 
 export const BHAJAN_STRINGS: Record<Locale, BhajanStrings> = {
@@ -88,6 +112,29 @@ export const BHAJAN_STRINGS: Record<Locale, BhajanStrings> = {
     backToGroup: (name) => `All ${name} songs`,
     next: "Next",
     previous: "Previous",
+
+    findTitle: "Find a song",
+    findLede: "Type a line you remember, a title or a Haridasa, in Kannada or in roman letters, spelled however you spell it.",
+    searchLabel: "Search the songs",
+    searchPlaceholder: "bhagyada lakshmi, ಕೃಷ್ಣ, purandara…",
+    searchButton: "Search",
+    filterDevata: "Devata",
+    filterComposer: "Haridasa",
+    filterForm: "Form",
+    filterListen: "With a recitation",
+    anyDevata: "Every devata",
+    anyComposer: "Every Haridasa",
+    anyForm: "Every form",
+    unsigned: "Not signed",
+    clear: "Clear",
+    results: (n) => (n === "1" ? "1 song" : `${n} songs`),
+    noResults: "No song matches.",
+    noResultsHint: "Try fewer words, or a single word from the line you remember. Spelling does not have to be exact.",
+    foundInLine: "Found in the line",
+    showMore: "Show more",
+    searching: "Searching…",
+    searchHere: (name) => `Search ${name} songs`,
+    songsBy: (name) => `Songs by ${name}`,
   },
 
   kn: {
@@ -126,6 +173,29 @@ export const BHAJAN_STRINGS: Record<Locale, BhajanStrings> = {
     backToGroup: (name) => `${name} ಎಲ್ಲ ಪದಗಳು`,
     next: "ಮುಂದೆ",
     previous: "ಹಿಂದೆ",
+
+    findTitle: "ಪದ ಹುಡುಕಿ",
+    findLede: "ನೆನಪಿರುವ ಒಂದು ಸಾಲು, ಶೀರ್ಷಿಕೆ ಅಥವಾ ಹರಿದಾಸರ ಹೆಸರನ್ನು ಕನ್ನಡದಲ್ಲಾಗಲೀ ರೋಮನ್ ಅಕ್ಷರಗಳಲ್ಲಾಗಲೀ, ನಿಮಗೆ ಬೇಕಾದ ಕಾಗುಣಿತದಲ್ಲಿ ಬರೆಯಿರಿ.",
+    searchLabel: "ಪದಗಳನ್ನು ಹುಡುಕಿ",
+    searchPlaceholder: "ಭಾಗ್ಯದ ಲಕ್ಷ್ಮಿ, krishna, ಪುರಂದರ…",
+    searchButton: "ಹುಡುಕಿ",
+    filterDevata: "ದೇವತೆ",
+    filterComposer: "ಹರಿದಾಸರು",
+    filterForm: "ಪ್ರಕಾರ",
+    filterListen: "ಗಾಯನ ಇರುವವು",
+    anyDevata: "ಎಲ್ಲ ದೇವತೆಗಳು",
+    anyComposer: "ಎಲ್ಲ ಹರಿದಾಸರು",
+    anyForm: "ಎಲ್ಲ ಪ್ರಕಾರಗಳು",
+    unsigned: "ಅಂಕಿತವಿಲ್ಲದವು",
+    clear: "ತೆರವುಗೊಳಿಸಿ",
+    results: (n) => `${n} ಪದಗಳು`,
+    noResults: "ಯಾವ ಪದವೂ ಹೊಂದುವುದಿಲ್ಲ.",
+    noResultsHint: "ಕಡಿಮೆ ಪದಗಳನ್ನು, ಅಥವಾ ನೆನಪಿರುವ ಸಾಲಿನ ಒಂದೇ ಪದವನ್ನು ಪ್ರಯತ್ನಿಸಿ. ಕಾಗುಣಿತ ನಿಖರವಾಗಿರಬೇಕಿಲ್ಲ.",
+    foundInLine: "ಈ ಸಾಲಿನಲ್ಲಿ ಸಿಕ್ಕಿತು",
+    showMore: "ಇನ್ನಷ್ಟು ತೋರಿಸಿ",
+    searching: "ಹುಡುಕುತ್ತಿದೆ…",
+    searchHere: (name) => `${name} ಪದಗಳಲ್ಲಿ ಹುಡುಕಿ`,
+    songsBy: (name) => `${name} ಅವರ ಪದಗಳು`,
   },
 
   hi: {
@@ -164,9 +234,54 @@ export const BHAJAN_STRINGS: Record<Locale, BhajanStrings> = {
     backToGroup: (name) => `${name} के सब पद`,
     next: "आगे",
     previous: "पीछे",
+
+    findTitle: "पद खोजें",
+    findLede: "याद रही कोई पंक्ति, शीर्षक या किसी हरिदास का नाम लिखें, कन्नड़ में या रोमन अक्षरों में, जैसी भी वर्तनी हो।",
+    searchLabel: "पद खोजें",
+    searchPlaceholder: "bhagyada lakshmi, ಕೃಷ್ಣ, purandara…",
+    searchButton: "खोजें",
+    filterDevata: "देवता",
+    filterComposer: "हरिदास",
+    filterForm: "प्रकार",
+    filterListen: "गायन सहित",
+    anyDevata: "सभी देवता",
+    anyComposer: "सभी हरिदास",
+    anyForm: "सभी प्रकार",
+    unsigned: "अंकित रहित",
+    clear: "साफ़ करें",
+    results: (n) => `${n} पद`,
+    noResults: "कोई पद मेल नहीं खाता।",
+    noResultsHint: "कम शब्द आज़माएँ, या याद रही पंक्ति का एक ही शब्द। वर्तनी सटीक होना ज़रूरी नहीं।",
+    foundInLine: "इस पंक्ति में मिला",
+    showMore: "और दिखाएँ",
+    searching: "खोज रहे हैं…",
+    searchHere: (name) => `${name} के पदों में खोजें`,
+    songsBy: (name) => `${name} के पद`,
   },
 };
 
 export function bhajanStrings(locale: Locale): BhajanStrings {
   return BHAJAN_STRINGS[locale];
+}
+
+/**
+ * The search form's words, as plain strings: the form is a client
+ * component, and the strings object carries functions that cannot
+ * cross to the browser.
+ */
+export function finderLabels(b: BhajanStrings) {
+  return {
+    searchLabel: b.searchLabel,
+    searchPlaceholder: b.searchPlaceholder,
+    searchButton: b.searchButton,
+    filterDevata: b.filterDevata,
+    filterComposer: b.filterComposer,
+    filterForm: b.filterForm,
+    filterListen: b.filterListen,
+    anyDevata: b.anyDevata,
+    anyComposer: b.anyComposer,
+    anyForm: b.anyForm,
+    clear: b.clear,
+    searching: b.searching,
+  };
 }

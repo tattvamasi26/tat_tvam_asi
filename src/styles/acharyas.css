@@ -584,6 +584,7 @@
    the adhyasa-bhashya's opening is exactly that — and no container
    can hold it without being allowed to break inside it. */
 .ach-verse-mula {
+  white-space: pre-line;
   font-size: clamp(1.15rem, 2.2vw, 1.45rem);
   line-height: 1.85;
   color: var(--sacred);
@@ -591,6 +592,7 @@
 }
 
 .ach-verse-iast {
+  white-space: pre-line;
   margin-top: 0.45rem;
   font-size: 0.95rem;
   overflow-wrap: anywhere;

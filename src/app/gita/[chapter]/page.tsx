@@ -12,6 +12,9 @@ import { LOCALES } from "@/i18n/config";
 import { HeadPicture } from "@/components/content/HeadPicture";
 import { gitaChapterImage } from "@/lib/seed/gita-images";
 import { toneStyle } from "@/lib/seed/picture-tones";
+import { chapterText } from "@/lib/gita";
+import { GitaVerseBody } from "@/components/gita/GitaVerse";
+import { GitaRecord } from "@/components/gita/GitaRecord";
 
 export function generateStaticParams() {
   return GITA_CHAPTER_NOTES.map((c) => ({ chapter: String(c.n) }));
@@ -29,16 +32,18 @@ export async function generateMetadata({
 /**
  * One chapter.
  *
- * No verses, by decision rather than omission — see the note on the
- * index. What a reader gets instead is what the chapter does, where
- * it turns, and where its own text is argued over, which is more than
- * a list of eighteen names was giving them.
+ * What the chapter does, where it turns, and where its own text is
+ * argued over; then, once the chapter's text has passed its check
+ * against the printed edition (docs/GITA.md), the whole chapter in one
+ * text card, each verse leading to its own page. Until then the page
+ * says the verses are still being checked, rather than showing
+ * uncollated Sanskrit.
  *
  * A non-numeric segment has to 404 rather than render an empty
  * chapter, the same rule the Rigveda's mandala and sukta segments
  * keep.
  */
-export default function GitaChapterPage({ params }: { params: { chapter: string } }) {
+export default async function GitaChapterPage({ params }: { params: { chapter: string } }) {
   const { locale } = getTranslations();
   const n = Number(params.chapter);
   if (!Number.isInteger(n)) notFound();
@@ -53,6 +58,8 @@ export default function GitaChapterPage({ params }: { params: { chapter: string 
   const prev = n > 1 ? all[n - 2] : null;
   const next = n < all.length ? all[n] : null;
   const pic = gitaChapterImage(n);
+  // Null until the chapter's text has passed its check (docs/GITA.md).
+  const text = await chapterText(n);
 
   return (
     <>
@@ -124,6 +131,39 @@ export default function GitaChapterPage({ params }: { params: { chapter: string 
             </ul>
           </div>
         )}
+
+        <section className="pu-section gita-verses" id="verses" aria-labelledby="verses-title">
+          <h2 className="pu-h2" id="verses-title">
+            {s.versesTitle}
+          </h2>
+          {text ? (
+            <>
+              <p>{s.versesLede}</p>
+              <p className="gita-credit">
+                {s.translationCredit} {s.translationNotYet}
+              </p>
+              <div className="stotra-text">
+                <ol className="stotra-verses">
+                  {text.verses.map((v) => (
+                    <li key={v.n} id={`v${v.n}`} className="stotra-verse">
+                      <Link
+                        href={`/gita/${n}/${v.n}`}
+                        className="stotra-verse-num gita-verse-link"
+                        aria-label={`${s.labelVerse} ${n}.${v.n}`}
+                      >
+                        {v.n.toLocaleString("en-IN")}
+                      </Link>
+                      <GitaVerseBody verse={v} locale={locale} />
+                    </li>
+                  ))}
+                </ol>
+              </div>
+              <GitaRecord text={text} locale={locale} />
+            </>
+          ) : (
+            <p>{s.versesPending}</p>
+          )}
+        </section>
 
         <nav className="stotra-pager">
           {prev ? (

@@ -30,6 +30,10 @@ export const ROUTES = [
   // The shortest chapter, and the one whose verse count is disputed.
   "/gita/12",
   "/gita/13",
+  // A checked chapter with its verses, and a verse whose speaker line
+  // stands in the middle of it.
+  "/gita/1",
+  "/gita/1/21",
   "/stutis",
   "/stutis/gayatri",
   "/stutis/gayatri/gayatri-mantra",
@@ -84,14 +88,21 @@ export const ROUTES = [
   "/festivals/makara-sankranti",
   // A festival with no picture: the head is its name on a plate.
   "/festivals/gita-jayanti",
+  "/festivals/kartika-masa",
+  "/darshanas/vaisheshika",
   "/bhajans",
   // One of each kind of bhajan page: a devata group, the niti group,
   // the admitted gap, and a song with a long Kannada text.
+  // Finding a song: a line from the middle of one, and the filters.
+  "/bhajans?q=jagadoddharana",
+  "/bhajans?composer=kanaka-dasa&listen=1",
   "/bhajans/krishna",
   "/bhajans/niti",
   "/bhajans/unsorted",
   "/bhajans/krishna/adidano-ranga-adbhutadindali",
   "/acharyas",
+  "/acharyas/kanada",
+  "/acharyas/raghavendra-tirtha",
   "/acharyas/adi-shankaracharya",
   "/acharyas/ramanujacharya",
   // no free photograph exists for him; the card falls back to his name
@@ -103,6 +114,8 @@ export const ROUTES = [
   "/temples/tulunadu/udupi-krishna-matha",
   "/temples/tulunadu/kateel",
   "/temples/tulunadu/nava-vinayakas",
+  "/temples/andhra",
+  "/temples/andhra/tirumala-venkateswara",
   "/concepts",
   // One term the schools argue over, and one they do not.
   "/concepts/brahman",

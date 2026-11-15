@@ -49,6 +49,8 @@ export interface RfStrings {
   stepsCount: string;
   /** Carries {n}. */
   daysCount: string;
+  /** The glance's "when" for a festival kept a whole month. */
+  wholeMonth: string;
   /** The credit under a drawing made for the site. */
   drawnCredit: string;
 }
@@ -87,6 +89,7 @@ export const RF_STRINGS: Record<Locale, RfStrings> = {
     labelSeason: "Season",
     stepsCount: "{n} steps",
     daysCount: "{n} days",
+    wholeMonth: "the whole month",
     drawnCredit: "Illustration drawn for this site.",
   },
 
@@ -123,6 +126,7 @@ export const RF_STRINGS: Record<Locale, RfStrings> = {
     labelSeason: "ಋತು",
     stepsCount: "{n} ಹೆಜ್ಜೆಗಳು",
     daysCount: "{n} ದಿನಗಳು",
+    wholeMonth: "ಇಡೀ ತಿಂಗಳು",
     drawnCredit: "ಈ ತಾಣಕ್ಕಾಗಿ ಬಿಡಿಸಿದ ಚಿತ್ರ.",
   },
 
@@ -159,6 +163,7 @@ export const RF_STRINGS: Record<Locale, RfStrings> = {
     labelSeason: "ऋतु",
     stepsCount: "{n} चरण",
     daysCount: "{n} दिन",
+    wholeMonth: "पूरा महीना",
     drawnCredit: "इस साइट के लिए बनाया गया चित्र।",
   },
 };

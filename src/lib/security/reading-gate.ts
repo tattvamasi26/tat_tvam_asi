@@ -38,6 +38,7 @@ export const SIGNED_IN_COOKIE = "tta_signed_in";
 const GATED: RegExp[] = [
   /^\/upanishads\/[^/]+$/,
   /^\/gita\/[^/]+$/,
+  /^\/gita\/\d+\/\d+$/,
   /^\/stutis\/[^/]+\/[^/]+$/,
   /^\/vedas\/rigveda\/\d+\/\d+$/,
   /^\/bhajans\/[^/]+\/[^/]+$/,

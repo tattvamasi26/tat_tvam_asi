@@ -166,6 +166,40 @@ against the scanned page. Read `docs/STOTRAS.md` first.
   loaded by `corpusVerses()`. A test fails any page importing it
   directly.
 
+### The Gita's verses: one printed edition, checked chapter by chapter
+
+The section is **Geetha Rasa Dhara** (`/gita`). Its verses come from
+the Besant & Bhagavan Das edition (Benares, 1905): the Sanskrit, the
+English translation and a word-for-word gloss, all in the public
+domain, with every page transcribed on Sanskrit Wikisource. Read
+`docs/GITA.md` first.
+
+- **A chapter is published only once it is checked.**
+  - The Sanskrit is collated with two witnesses: gita/gita and
+    vedicscriptures. The latter is used to check, never copied.
+  - The English is collated with an independent Internet Archive OCR
+    of another copy of the same printing.
+  - Every disagreement is read on the scan
+    (`scripts/gita/proof.mjs`, `fetch-scan.mjs`, `crop-scan.ps1`).
+  - Each decision goes in `src/lib/gita/checked/chapter-NN.json`. A
+    misprint in the book is corrected only where its own gloss and
+    both witnesses agree, and the record says why.
+  - `scripts/gita/build.mjs` fails on a record that does not pass. An
+    unchecked chapter has no file, and its page says so.
+- **Never use gita/gita's word meanings or transliteration.** They are
+  holy-bhagavad-gita.org's (Mukundananda), which is under copyright.
+  The same goes for its Hindi translations, Gambhirananda and
+  Adidevananda.
+- The book prints speaker lines inside verses (1.21); they stay where
+  printed, flagged `speaker`. Names in the English are given in the
+  print's spelling through `scripts/gita/names.mjs`. Every entry there
+  was read on a scan.
+- **Load one chapter, never eighteen**: through `chapterText()` in
+  `src/lib/gita/`. `/gita/[chapter]/[verse]` is a reading page in
+  `GATED`.
+- The heredoc in this shell halves double backslashes. Write scripts
+  holding regexes with the Write tool, not `cat <<EOF`.
+
 ### The Rigveda is a built corpus, not seed files
 
 The Rigveda is eighty times the rest of the site's verse corpus, so it
@@ -266,6 +300,17 @@ node scripts/wordpress/build-bhajans.mjs
 - **Load one group, never twenty-two.** `SPINE` is imported directly;
   `songsIn(devata)` loads a single texts file. Never import
   `data/texts/*.json` from a page.
+- **Finding a song** (`/bhajans?q=…&devata=…&composer=…&form=…&listen=1`)
+  is `src/lib/bhajans/search.ts`, server-side inside the results page:
+  - There is no search endpoint.
+  - It is the one reader of every group's texts. It builds its index
+    once per process.
+  - `fold.ts` gives every spelling one key: ಕೃಷ್ಣ, krishna and krushna
+    match. Add a reader's spelling to the pairs in
+    `tests/unit/bhajan-search.test.ts` before changing a rule there.
+  - The form (`components/bhajan/BhajanFinder.tsx`) is the one client
+    piece. It only writes the address.
+  - See `docs/BHAJANS.md` §6.
 - **These songs have no translation, and the section says so.** The
   source carries a meaning for 13 posts out of 915. This is a complete
   text whose translation has not been written — the Rigveda's claim,
@@ -314,10 +359,13 @@ node scripts/wordpress/build-bhajans.mjs
 
 ### The acharyas list
 
-`seed/teachers.ts` holds nine acharyas, **in chronological order**,
-each written in all three languages: Shankara, Ramanuja, Basavanna,
-Madhva, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
-Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
+`seed/teachers.ts` holds eleven acharyas, **in the owner's order**:
+Shankara first, then oldest to living, and Kaṇāda last (added
+2026-11-14, his dates unknown; the owner put him at the end — do not
+move him to the front by date). Each is written in all three
+languages: Shankara, Ramanuja, Basavanna,
+Madhva, Raghavendra, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
+Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati, then Kaṇāda.
 `tests/unit/teachers.test.ts` holds the whole roster to these rules:
 
 - **A contested date is not printed as a known one.** Shankara,
@@ -340,8 +388,8 @@ Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
 - **No photograph at all is still a valid state.** `image_url` may be
   null, and the card then shows the name in the reader's script
   (`.acharya-nameplate`), the way a temple without a photograph does.
-  Nothing uses it at present; keep it for the next acharya who needs
-  it.
+  Nothing uses it at present (Kaṇāda did, until the owner supplied a
+  painting); keep it for the next acharya who needs it.
 - **Key works are chip-sized labels**, not full citations — a long one
   pushed the card past the viewport at 390px. The attribution belongs
   in the biography.
@@ -353,7 +401,12 @@ Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
 `/acharyas/[slug]` renders one of two things: a **monograph**, when a
 module under `src/lib/seed/acharya-pages/` has registered one, or the
 summary card built from `seed/teachers.ts` when none has. Adi
-Shankaracharya is the first monograph (2026-09-23).
+Shankaracharya is the first monograph (2026-09-23); Raghavendra
+Tirtha the second (2026-11-15), written from `docs/RAGHAVENDRA.md`.
+His difficulty is the opposite of Shankara's: the life is close to
+the record and the works are not in doubt, so the care goes into
+keeping the miracle literature, the earlier births, the grant of
+Manchale and the Munro story labelled as tradition.
 
 - **The study comes before the page.** `docs/SHANKARA.md` carries the
   sources, the dating dispute and the editorial decisions; the module
@@ -408,7 +461,7 @@ Shankaracharya is the first monograph (2026-09-23).
 
 The routes are `/temples` (the regions), `/temples/[section]` (one region), and `/temples/[section]/[entry]` (a temple, or a circuit). There is one dynamic segment per level, so `[section]` and `[entry]` resolve by data rather than by folder.
 
-- `seed/temple-regions.ts` lists the regions: Tulunadu, Tamil Nadu, the Deccan, Odisha. A region is cultural, not administrative — Tulunadu spans Kasaragod in Kerala and the Karnataka coast.
+- `seed/temple-regions.ts` lists the regions: Tulunadu, Tamil Nadu, the Deccan, Andhra, Odisha. Andhra (added 2026-11-14) holds Tirumala, whose own name is Telugu — `Noto_Sans_Telugu` is loaded for it, like the Tamil and Odia faces. A region is cultural, not administrative — Tulunadu spans Kasaragod in Kerala and the Karnataka coast.
 - A region page shows its circuits first, then its temples.
 - A temple written in depth is a module under `seed/temple-pages/` that calls `registerTemplePage()`. Import it in the temple block of `data.ts`, or it has no page.
   - The prose is written per language (`content.en`, `.kn`, `.hi`), each with the whole structure, the way `i18n/kollur.ts` was written. A unit test holds the languages to the same section ids and the same block kinds, so none can drift.
@@ -453,6 +506,11 @@ that puts the Vedas under Shastras, so it is not listed twice.
   holds the one check both halves use; it is case-sensitive about month
   names and makes "May" prove it is a month, because the naive version
   reported the modal verb in "before it he may not study the Veda".
+- **A month can be kept whole.** Kārtika Māsa (added 2026-11-14) names
+  a month but no paksha or tithi; its `whenNote` says how long it runs,
+  the glance reads "the whole month", and its key days (the Somavāras,
+  Utthāna Ekādaśī, Kṣīrābdhi Dvādaśī, the pūrṇimā) are `days` in its
+  depth, not a count of how long it lasts.
 - **The sixteen saṃskāras are all listed, and each says whether it is
   still performed** (`kept: "common" | "rare" | "lapsed"` in
   `seed/rituals.ts`). Eight are common, three rare, five lapsed; the

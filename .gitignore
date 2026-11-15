@@ -42,7 +42,19 @@ node_modules/
 # stotra (src/lib/stotra-corpus/checked/) and the built texts.
 /corpus/stotras/
 
+# The Gita harvest: the Besant & Bhagavan Das pages from Wikisource,
+# the Internet Archive OCR of another copy, the two digital witnesses,
+# the page scans and the collations. All re-fetchable by the scripts in
+# scripts/gita/ (docs/GITA.md). What the repo commits is the check
+# record for each chapter (src/lib/gita/checked/) and the built text.
+/corpus/gita/
+
 # Sign-in setup secrets (scripts/setup-auth.mjs). Never commit.
 /.env.setup
 /.env.local.bak
 /supabase/.temp/
+
+# API keys saved as files by hand (an ElevenLabs key was once dropped here)
+sk_*
+*-key.txt
+*.key

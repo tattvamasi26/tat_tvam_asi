@@ -120,7 +120,7 @@ test("a photographer who signed his work is credited by name", () => {
 test("a disputed date is not printed as a known one", () => {
   // Where scholarship disagrees, the years stay null and the era
   // string carries the claim. See docs/SHANKARA.md §2.
-  for (const slug of ["adi-shankaracharya", "ramanujacharya", "madhvacharya"]) {
+  for (const slug of ["kanada", "adi-shankaracharya", "ramanujacharya", "madhvacharya"]) {
     const row = TEACHERS.find((t) => t.slug === slug)!;
     assert.equal(row.birth_year, null, `${slug} prints a contested birth year`);
     assert.equal(row.death_year, null, `${slug} prints a contested death year`);
@@ -143,13 +143,15 @@ test("the list runs in chronological order", () => {
     "ramanujacharya",
     "basavanna",
     "madhvacharya",
+    "raghavendra-tirtha",
     "ramakrishna-paramahamsa",
     "ramana-maharshi",
     "nisargadatta-maharaj",
     "bharati-tirtha",
     "vidhushekhara-bharati",
+    "kanada",
   ];
-  assert.deepEqual(order, expected, "the acharyas should read oldest to living");
+  assert.deepEqual(order, expected, "the acharyas read in the owner's order: Shankara first, oldest to living, Kanada last");
 });
 
 test("every teacher resolves to a view in every language", () => {

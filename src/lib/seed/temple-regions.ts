@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { DevataImage } from "./devatas";
+import { OWNER_IMAGES } from "./owner-images";
 
 // ─────────────────────────────────────────────────────────
 //  The temples are arranged by region.
@@ -107,8 +108,25 @@ export const TEMPLE_REGIONS: TempleRegion[] = [
     },
   },
   {
-    slug: "odisha",
+    slug: "andhra",
     order: 4,
+    name: { en: "Temples of Andhra", kn: "ಆಂಧ್ರದ ದೇವಾಲಯಗಳು", hi: "आंध्र के मंदिर" },
+    blurb: {
+      en: "The hill shrines of the Eastern Ghats, Tirumala above all.",
+      kn: "ಪೂರ್ವ ಘಟ್ಟಗಳ ಬೆಟ್ಟದ ಕ್ಷೇತ್ರಗಳು — ಎಲ್ಲಕ್ಕಿಂತ ಮಿಗಿಲಾಗಿ ತಿರುಮಲ.",
+      hi: "पूर्वी घाट के पहाड़ी तीर्थ — सबसे बढ़कर तिरुमला।",
+    },
+    lede: {
+      en: "In Andhra the great shrines sit on hills. At Tirumala, on the Seshachalam range of the Eastern Ghats, Venkateswara stands in a temple that Pallava, Chola and Vijayanagara kings endowed in turn, and that draws more pilgrims than almost any other place of worship on earth.",
+      kn: "ಆಂಧ್ರದಲ್ಲಿ ಮಹಾಕ್ಷೇತ್ರಗಳು ಬೆಟ್ಟಗಳ ಮೇಲಿವೆ. ಪೂರ್ವ ಘಟ್ಟಗಳ ಶೇಷಾಚಲ ಶ್ರೇಣಿಯ ತಿರುಮಲದಲ್ಲಿ ವೆಂಕಟೇಶ್ವರ ನಿಂತಿದ್ದಾನೆ — ಪಲ್ಲವ, ಚೋಳ, ವಿಜಯನಗರದ ಅರಸರು ಒಬ್ಬರಾದ ಮೇಲೊಬ್ಬರು ದತ್ತಿ ನೀಡಿದ, ಭೂಮಿಯ ಮೇಲಿನ ಬಹುತೇಕ ಯಾವುದೇ ಪೂಜಾಸ್ಥಳಕ್ಕಿಂತ ಹೆಚ್ಚು ಯಾತ್ರಿಕರನ್ನು ಸೆಳೆಯುವ ದೇವಾಲಯದಲ್ಲಿ.",
+      hi: "आंध्र में महान तीर्थ पहाड़ियों पर हैं। पूर्वी घाट की शेषाचलम श्रेणी पर तिरुमला में वेंकटेश्वर उस मंदिर में खड़े हैं जिसे पल्लव, चोल और विजयनगर के राजाओं ने एक के बाद एक दान दिए, और जो पृथ्वी के लगभग किसी भी पूजास्थल से अधिक तीर्थयात्रियों को खींचता है।",
+    },
+    // The owner's picture of the hills after dark (14 November 2026).
+    image: { ...OWNER_IMAGES.tirumalaHillsNight },
+  },
+  {
+    slug: "odisha",
+    order: 5,
     name: { en: "Temples of Odisha", kn: "ಒಡಿಶಾದ ದೇವಾಲಯಗಳು", hi: "ओडिशा के मंदिर" },
     blurb: {
       en: "The Kalinga school on the eastern coast, where a temple is a chariot.",

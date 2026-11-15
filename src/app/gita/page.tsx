@@ -9,6 +9,7 @@ import { scriptFor, scriptClass } from "@/lib/script";
 import Image from "next/image";
 import { HeadPicture } from "@/components/content/HeadPicture";
 import { GITA_HEAD_IMAGE, gitaChapterImage } from "@/lib/seed/gita-images";
+import { checkedChapters } from "@/lib/gita";
 import { toneStyle } from "@/lib/seed/picture-tones";
 
 export const metadata: Metadata = {
@@ -110,9 +111,9 @@ export default function GitaPage() {
             .replace("{traditional}", counts.traditional.toLocaleString("en-IN"))}
         </p>
 
-        {/* And why there are no verses here yet. */}
+        {/* Where the verses come from, and how many chapters are checked. */}
         <div className="gi-mula">
-          <p className="gi-mula-text">{g.mulaNote}</p>
+          <p className="gi-mula-text">{g.mulaNote.replace("{done}", checkedChapters().length.toLocaleString("en-IN"))}</p>
         </div>
       </section>
 

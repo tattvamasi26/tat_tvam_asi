@@ -76,8 +76,13 @@ test("a lunar festival has a lunar date, and a solar one says so", () => {
   for (const f of FESTIVALS) {
     if (f.reckoning === "lunar") {
       assert.ok(f.month, `${f.slug} is lunar but names no month`);
-      assert.ok(f.paksha, `${f.slug} is lunar but names no paksha`);
-      assert.ok(f.tithi, `${f.slug} is lunar but names no tithi`);
+      if (f.paksha || f.tithi || !f.whenNote) {
+        assert.ok(f.paksha, `${f.slug} is lunar but names no paksha`);
+        assert.ok(f.tithi, `${f.slug} is lunar but names no tithi`);
+      } else {
+        // A month kept whole, Kārtika, has no one tithi; its note says so.
+        for (const locale of LOCALES) assert.ok(f.whenNote[locale]?.trim(), `${f.slug} has no ${locale} when-note`);
+      }
     } else {
       // Nothing else can say when it falls, so the note must.
       assert.ok(f.whenNote, `${f.slug} is solar and must explain when it falls`);

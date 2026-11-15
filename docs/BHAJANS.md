@@ -168,7 +168,57 @@ what made the first version read as a database dump.
   one group at a time through `songsIn()`. No page may import
   `data/texts/*.json` itself.
 
-## 6. Still to do
+## 6. Finding a song
+
+Readers found the section hard to search: 913 songs filed under 22
+groups, and a reader rarely knows which devata a song is filed under.
+What they know is a line, usually the first and sometimes one from the
+middle, or the Haridasa who sang it. They type it in Kannada, or in
+roman letters spelled their own way. Added 2026-11-14.
+
+- **One box, four filters**, at the top of `/bhajans`.
+  - The box searches titles, every line of every song, and the
+    composers' names and signatures.
+  - The filters are devata, Haridasa (with "Not signed"), form, and
+    "with a recitation".
+  - Each filter option shows how many songs it would leave, given the
+    rest of the search. An option that would leave none is disabled.
+  - Each group page carries the same box, preset to its group.
+  - Each Haridasa on the front page links to his songs.
+- **Spelling does not have to be exact.** `src/lib/bhajans/fold.ts`
+  reduces the song and the query to one key, so ಕೃಷ್ಣ, krishna, krushna
+  and kṛṣṇa match. It works in four steps:
+  1. Kannada becomes IAST by rule, writing the short e and o long first.
+  2. Diacritics, aspirates and sibilants are levelled, and doubled
+     letters collapse.
+  3. The anusvāra is written n before a consonant.
+  4. The vowel ṛ, which readers write ri or ru, is written r.
+
+  `tests/unit/bhajan-search.test.ts` holds the pairs.
+- **Ranking**:
+  1. a title beginning with the query
+  2. a title containing it
+  3. the first line
+  4. a later line, whose text the result card shows under "Found in the line"
+  5. the composer
+  6. words spread across the song
+
+  With no query, songs are listed in Kannada order.
+- **It runs on the server, inside the results page.** There is no
+  search endpoint, because the site has no public data API
+  (`docs/SECURITY.md`).
+  - Every search is an address (`/bhajans?q=…&composer=…&listen=1`)
+    that can be kept or sent, and it works without JavaScript.
+  - The client piece (`components/bhajan/BhajanFinder.tsx`) only writes
+    the address as the reader types.
+  - A results page is `noindex`, with `/bhajans` as its canonical.
+- **This is the one reader of every group's texts.** A line from the
+  middle of a song can only be found by reading the song. The index is
+  built once per server process, on the first search, in about half a
+  second; after that a search takes a few milliseconds. Pages still
+  never import a texts file.
+
+## 7. Still to do
 
 - Meanings. 913 songs have none, and that is the section's largest gap.
 - The 258 unsorted songs could be sorted by hand, or by extending the

@@ -2,6 +2,7 @@
  "/images/acharyas/basavanna-statue.jpg": "#62623d",
  "/images/acharyas/bharati-tirtha.jpg": "#784938",
  "/images/acharyas/madhvacharya.jpg": "#97371a",
+ "/images/acharyas/raghavendra/mantralayam-court.jpg": "#99b0ce",
  "/images/acharyas/ramanuja-statue.jpg": "#b89463",
  "/images/acharyas/shankara/dwarka-sharada.jpg": "#8b8163",
  "/images/acharyas/shankara/kalady-janmabhumi.jpg": "#95a7ba",
@@ -78,6 +79,8 @@
  "/images/owner/idagunji-ganapati.jpg": "#a25030",
  "/images/owner/jambu-savari.jpg": "#a3744e",
  "/images/owner/japa-mala.jpg": "#aa9173",
+ "/images/owner/kanada-painting.jpg": "#cb8683",
+ "/images/owner/karthika-lamps.jpg": "#a2542a",
  "/images/owner/kashi-ghats.jpg": "#87522c",
  "/images/owner/krishna-clouds.jpg": "#ddbc91",
  "/images/owner/krishna-udupi.jpg": "#a55d2a",
@@ -114,6 +117,9 @@
  "/images/owner/subrahmanya-peacock.jpg": "#7c3c14",
  "/images/owner/surya-chariot.jpg": "#9e5728",
  "/images/owner/temple-watercolour.jpg": "#3c6386",
+ "/images/owner/tirumala-gopura.jpg": "#5e725b",
+ "/images/owner/tirumala-hills-night.jpg": "#274363",
+ "/images/owner/tirumala-vimana.jpg": "#6e512e",
  "/images/owner/tulasi-garlanded.jpg": "#4d84ad",
  "/images/owner/tulasi-lamp.jpg": "#6f793a",
  "/images/owner/veena-steps.jpg": "#7c6841",
@@ -179,5 +185,6 @@
  "/images/temples/nava-vinayakas/guddattu.jpg": "#bdb1aa",
  "/images/temples/nava-vinayakas/idagunji.jpg": "#9a6a55",
  "/images/temples/nava-vinayakas/madhur.jpg": "#7f672a",
+ "/images/temples/tirumala/hero.jpg": "#a0b8d3",
  "/images/temples/udupi-krishna-matha/hero.jpg": "#b37550"
 }

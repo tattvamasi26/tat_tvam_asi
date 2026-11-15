@@ -1,0 +1,102 @@
+{
+ "edition": {
+  "title": "The Bhagavad-Gita, with Samskrit text, free translation into English, a word-for-word translation, and an introduction on Samskrit grammar",
+  "translators": "Annie Besant and Bhagavan Das",
+  "year": 1905,
+  "printer": "Freeman & Co., Tara Printing Works, Benares",
+  "wikisource": "भगवद्गीता (आनिबेसेण्ट्, भगवान्दासश्च)",
+  "index": "भगवद्गीता (आनिबेसेण्ट्, भगवान्दासश्च).djvu"
+ },
+ "chapters": [
+  {
+   "chapter": 1,
+   "verses": 47,
+   "verified": true
+  },
+  {
+   "chapter": 2,
+   "verses": 72,
+   "verified": false
+  },
+  {
+   "chapter": 3,
+   "verses": 43,
+   "verified": false
+  },
+  {
+   "chapter": 4,
+   "verses": 42,
+   "verified": false
+  },
+  {
+   "chapter": 5,
+   "verses": 29,
+   "verified": false
+  },
+  {
+   "chapter": 6,
+   "verses": 47,
+   "verified": false
+  },
+  {
+   "chapter": 7,
+   "verses": 30,
+   "verified": false
+  },
+  {
+   "chapter": 8,
+   "verses": 28,
+   "verified": false
+  },
+  {
+   "chapter": 9,
+   "verses": 34,
+   "verified": false
+  },
+  {
+   "chapter": 10,
+   "verses": 42,
+   "verified": false
+  },
+  {
+   "chapter": 11,
+   "verses": 55,
+   "verified": false
+  },
+  {
+   "chapter": 12,
+   "verses": 20,
+   "verified": false
+  },
+  {
+   "chapter": 13,
+   "verses": 34,
+   "verified": false
+  },
+  {
+   "chapter": 14,
+   "verses": 27,
+   "verified": false
+  },
+  {
+   "chapter": 15,
+   "verses": 20,
+   "verified": false
+  },
+  {
+   "chapter": 16,
+   "verses": 24,
+   "verified": false
+  },
+  {
+   "chapter": 17,
+   "verses": 28,
+   "verified": false
+  },
+  {
+   "chapter": 18,
+   "verses": 78,
+   "verified": false
+  }
+ ]
+}
