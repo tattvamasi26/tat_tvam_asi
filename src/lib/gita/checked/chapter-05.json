@@ -1,0 +1,307 @@
+{
+ "chapter": 5,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  142,
+  143,
+  144,
+  145,
+  146,
+  147,
+  148,
+  149,
+  150,
+  151,
+  152,
+  153,
+  154,
+  155
+ ],
+ "fixes": [
+  {
+   "ref": "5.1",
+   "field": "mula",
+   "from": "एतयोरकं",
+   "to": "एतयोरेकं",
+   "kind": "transcription",
+   "page": 142
+  },
+  {
+   "ref": "5.3",
+   "field": "mula",
+   "from": "यो न वेष्टि",
+   "to": "यो न द्वेष्टि",
+   "kind": "transcription",
+   "page": 143
+  },
+  {
+   "ref": "5.3",
+   "field": "mula",
+   "from": "न काक्षति",
+   "to": "न कांक्षति",
+   "kind": "misprint",
+   "page": 143,
+   "why": "The print drops the anusvāra; the gloss reads कांक्षति."
+  },
+  {
+   "ref": "5.4",
+   "field": "mula",
+   "from": "सम्यगुभयोर्विदते",
+   "to": "सम्यगुभयोर्विंदते",
+   "kind": "misprint",
+   "page": 143,
+   "why": "The print drops the anusvāra; the gloss reads विंदते."
+  },
+  {
+   "ref": "5.3",
+   "field": "translation",
+   "from": "he is easily free from bondage",
+   "to": "he is easily set free from bondage.",
+   "page": 143
+  },
+  {
+   "ref": "5.4",
+   "field": "translation",
+   "from": "the Saikhya",
+   "to": "the Sankhya",
+   "page": 143
+  },
+  {
+   "ref": "5.5",
+   "field": "mula",
+   "from": "एकं साख्यं च योग च",
+   "to": "एकं सांख्यं च योगं च",
+   "kind": "misprint",
+   "page": 144,
+   "why": "The print drops two anusvāras and breaks योगं; the gloss reads सांख्यं and योगं."
+  },
+  {
+   "ref": "5.8",
+   "field": "mula",
+   "from": "स्पृशन्जघ्रन्",
+   "to": "स्पृशन्जिघ्रन्",
+   "kind": "transcription",
+   "page": 145
+  },
+  {
+   "ref": "5.8",
+   "field": "translation",
+   "from": "\"I do not anything, \" should",
+   "to": "\"I do not anything,\" should",
+   "page": 145
+  },
+  {
+   "ref": "5.9",
+   "field": "translation",
+   "from": "he holdeth : * The senses",
+   "to": "he holdeth: “The senses",
+   "page": 145
+  },
+  {
+   "ref": "5.14",
+   "field": "mula",
+   "from": "न कर्मफलसंयोगं स्वभावस्तु प्रवर्तते",
+   "to": "न कर्तृत्वं न कर्माणि लोकस्य सृजति प्रभुः ।\nन कर्मफलसंयोगं स्वभावस्तु प्रवर्तते",
+   "kind": "transcription",
+   "page": 147
+  },
+  {
+   "ref": "5.10",
+   "field": "translation",
+   "from": "by the waters",
+   "to": "by the waters.",
+   "page": 146
+  },
+  {
+   "ref": "5.15",
+   "field": "mula",
+   "from": "सुकृत विभुः",
+   "to": "सुकृतं विभुः",
+   "kind": "transcription",
+   "page": 148
+  },
+  {
+   "ref": "5.17",
+   "field": "mula",
+   "from": "तांश्रेष्ठास्तत्परायणाः",
+   "to": "तन्निष्ठास्तत्परायणाः",
+   "kind": "transcription",
+   "page": 149
+  },
+  {
+   "ref": "5.15",
+   "field": "translation",
+   "from": "deluded .",
+   "to": "deluded.",
+   "page": 148
+  },
+  {
+   "ref": "5.16",
+   "field": "translation",
+   "from": "the Supreme. [ 1O ]",
+   "to": "the Supreme.",
+   "page": 148
+  },
+  {
+   "ref": "5.17",
+   "field": "translation",
+   "from": "in THAT. solely",
+   "to": "in THAT, solely",
+   "page": 149
+  },
+  {
+   "ref": "5.17",
+   "field": "translation",
+   "from": "by wisdom",
+   "to": "by wisdom.",
+   "page": 149
+  },
+  {
+   "ref": "5.18",
+   "field": "translation",
+   "from": "a dog. and",
+   "to": "a dog, and",
+   "page": 149
+  },
+  {
+   "ref": "5.19",
+   "field": "mula",
+   "from": "येषा साम्ये",
+   "to": "येषां साम्ये",
+   "kind": "misprint",
+   "page": 150,
+   "why": "The print drops the anusvāra; the gloss reads येषाम्."
+  },
+  {
+   "ref": "5.19",
+   "field": "mula",
+   "from": "तस्माद्रह्मणि",
+   "to": "तस्माद्ब्रह्मणि",
+   "kind": "transcription",
+   "page": 150
+  },
+  {
+   "ref": "5.19",
+   "field": "translation",
+   "from": "in the ETERNAL",
+   "to": "in the ETERNAL.",
+   "page": 150
+  },
+  {
+   "ref": "5.20",
+   "field": "translation",
+   "from": "unpleasant. (2O )",
+   "to": "unpleasant.",
+   "page": 150
+  },
+  {
+   "ref": "5.24",
+   "field": "mula",
+   "from": "योऽतःसखोंऽतरारामस्तथांतर्ज्योतिरेव",
+   "to": "योऽंतःसुखोऽंतरारामस्तथांतर्ज्योतिरेव",
+   "kind": "misprint",
+   "page": 152,
+   "why": "The print reads योऽतःसखोंऽतराराम, dropping the u of सुखः and setting the anusvāra of अंतः on the following syllable; the gloss reads अंतःसुखः and अंतरारामः."
+  },
+  {
+   "ref": "5.24",
+   "field": "mula",
+   "from": "॥ । २४॥",
+   "to": "॥ २४॥",
+   "kind": "transcription",
+   "page": 152
+  },
+  {
+   "ref": "5.27",
+   "field": "mula",
+   "from": "बहिर्बाह्याश्चक्षुश्चैवांतरे भुवोः",
+   "to": "बहिर्बाह्यांश्चक्षुश्चैवांतरे भ्रुवोः",
+   "kind": "misprint",
+   "page": 153,
+   "why": "The print drops the anusvāra of बाह्यान् and the र of भ्रुवोः; the gloss reads बाह्यान् and भ्रुवोः."
+  },
+  {
+   "ref": "5.29",
+   "field": "mula",
+   "from": "सुहृदं सर्वभूताना ज्ञात्वा मा शातिमृच्छति",
+   "to": "सुहृदं सर्वभूतानां ज्ञात्वा मां शांतिमृच्छति",
+   "kind": "misprint",
+   "page": 154,
+   "why": "The print drops three anusvāras; the gloss reads सर्वभूतानाम्, मां and शांतिम्."
+  },
+  {
+   "ref": "5.24",
+   "field": "translation",
+   "from": "the ETERNAL goeth",
+   "to": "the ETERNAL, goeth",
+   "page": 152
+  },
+  {
+   "ref": "5.24",
+   "field": "translation",
+   "from": "Peace of the ETERNAL",
+   "to": "Peace of the ETERNAL.",
+   "page": 152
+  },
+  {
+   "ref": "5.26",
+   "field": "translation",
+   "from": "subdued thoughts .",
+   "to": "subdued thoughts.",
+   "page": 153
+  },
+  {
+   "ref": "5.28",
+   "field": "translation",
+   "from": "controlled. solely",
+   "to": "controlled, solely",
+   "page": 154
+  },
+  {
+   "ref": "5.28",
+   "field": "translation",
+   "from": "desire. fear",
+   "to": "desire, fear",
+   "page": 154
+  },
+  {
+   "ref": "5.29",
+   "field": "translation",
+   "from": "known Me as",
+   "to": "known Me, as",
+   "page": 154
+  }
+ ],
+ "kept": [
+  {
+   "ref": "5.8",
+   "ours": "श",
+   "page": 145,
+   "note": "The print orders the last words श्वसन्स्वपन्, breathing before sleeping, and its gloss follows the same order; both witnesses read स्वपञ्श्वसन्."
+  },
+  {
+   "ref": "5.8",
+   "ours": "स",
+   "page": 145,
+   "note": "The same transposition of श्वसन् and स्वपन्, as printed."
+  },
+  {
+   "ref": "5.8",
+   "ours": "प",
+   "page": 145,
+   "note": "The same transposition of श्वसन् and स्वपन्, as printed."
+  },
+  {
+   "ref": "5.12",
+   "ours": "द्",
+   "page": 147,
+   "note": "The print reads निबद्ध्यते and its gloss reads the same; both witnesses read निबध्यते."
+  },
+  {
+   "ref": "5.21",
+   "ours": "्य",
+   "page": 151,
+   "note": "The print reads अक्षय्यम्, and its gloss अक्षय्यं; both witnesses read अक्षयम्."
+  }
+ ]
+}

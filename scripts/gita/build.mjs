@@ -64,7 +64,9 @@ function applyFixes(v, fixes, problems) {
     if (f.field === "mula") {
       const i = out.mula.findIndex((l) => l.includes(f.from));
       if (i < 0) { problems.push(`${f.ref}: "${f.from}" is not in the mūla`); continue; }
-      out.mula[i] = out.mula[i].replace(f.from, f.to);
+      // A `to` holding a line break restores a line the parse lost
+      // where a verse ran across a page (5.14).
+      out.mula.splice(i, 1, ...out.mula[i].replace(f.from, f.to).split("\n"));
       if (!["transcription", "misprint"].includes(f.kind)) problems.push(`${f.ref}: a mūla fix needs kind "transcription" or "misprint"`);
       if (!f.page) problems.push(`${f.ref}: a fix needs its page`);
     } else if (f.field === "translation") {
