@@ -139,7 +139,6 @@ test("a living teacher is not given a death year", () => {
 test("the list runs in chronological order", () => {
   const order = TEACHERS.map((t) => t.slug);
   const expected = [
-    "kanada",
     "adi-shankaracharya",
     "ramanujacharya",
     "basavanna",
@@ -150,8 +149,9 @@ test("the list runs in chronological order", () => {
     "nisargadatta-maharaj",
     "bharati-tirtha",
     "vidhushekhara-bharati",
+    "kanada",
   ];
-  assert.deepEqual(order, expected, "the acharyas should read oldest to living");
+  assert.deepEqual(order, expected, "the acharyas read in the owner's order: Shankara first, oldest to living, Kanada last");
 });
 
 test("every teacher resolves to a view in every language", () => {

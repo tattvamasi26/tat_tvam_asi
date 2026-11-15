@@ -78,7 +78,12 @@ export default function HomePage() {
   // (seed/owner-images.ts). A section with none falls back to its glyph.
   const pillarMedia: Record<string, { src: string; position?: string } | undefined> = {
     temples: temples[0]?.imageUrl ? { src: temples[0].imageUrl } : undefined,
-    acharyas: teachers[0]?.imageUrl ? { src: teachers[0].imageUrl, position: "50% 18%" } : undefined,
+    // Shankara, by the owner's choice — not whoever is first in the
+    // chronological list (Kanada since 2026-11-14).
+    acharyas: (() => {
+      const shankara = teachers.find((t) => t.slug === "adi-shankaracharya");
+      return shankara?.imageUrl ? { src: shankara.imageUrl, position: "50% 18%" } : undefined;
+    })(),
     shastras: OWNER_IMAGES.vedaBooks,
     gita: OWNER_IMAGES.gitaVishvarupa,
     stutis: OWNER_IMAGES.lakshmi,

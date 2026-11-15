@@ -359,11 +359,13 @@ node scripts/wordpress/build-bhajans.mjs
 
 ### The acharyas list
 
-`seed/teachers.ts` holds eleven acharyas, **in chronological order**,
-each written in all three languages: Kaṇāda (added 2026-11-14, his dates unknown,
-the owner's painting), Shankara, Ramanuja, Basavanna,
+`seed/teachers.ts` holds eleven acharyas, **in the owner's order**:
+Shankara first, then oldest to living, and Kaṇāda last (added
+2026-11-14, his dates unknown; the owner put him at the end — do not
+move him to the front by date). Each is written in all three
+languages: Shankara, Ramanuja, Basavanna,
 Madhva, Raghavendra, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
-Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
+Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati, then Kaṇāda.
 `tests/unit/teachers.test.ts` holds the whole roster to these rules:
 
 - **A contested date is not printed as a known one.** Shankara,

@@ -10,19 +10,6 @@ const OWNER_LOWER = "supplied by the site owner";
 
 export const TEACHERS: TeacherRow[] = [
   {
-    id: "te-kanada",
-    slug: "kanada",
-    name_sanskrit: "कणादः",
-    // Nothing certain is known of his life; estimates run from the 6th
-    // to the 2nd century BCE. Printing years would invent them.
-    birth_year: null,
-    death_year: null,
-    // A painting the owner supplied (14 November 2026). No portrait from
-    // life exists; this is a modern artist's imagining of him.
-    image_url: "/images/owner/kanada-painting.jpg",
-    image_credit: OWNER,
-  },
-  {
     id: "te-shankara",
     slug: "adi-shankaracharya",
     name_sanskrit: "आदि शङ्कराचार्य",
@@ -140,6 +127,19 @@ export const TEACHERS: TeacherRow[] = [
     // watermark, and keep the credit.
     image_url: "/images/acharyas/vidhushekhara-bharati.jpg",
     image_credit: "Photograph © Nagabhushan Beloor · " + OWNER_LOWER,
+  },
+  {
+    id: "te-kanada",
+    slug: "kanada",
+    name_sanskrit: "कणादः",
+    // Nothing certain is known of his life; estimates run from the 6th
+    // to the 2nd century BCE. Printing years would invent them.
+    birth_year: null,
+    death_year: null,
+    // A painting the owner supplied (14 November 2026). No portrait from
+    // life exists; this is a modern artist's imagining of him.
+    image_url: "/images/owner/kanada-painting.jpg",
+    image_credit: OWNER,
   },
 ];
 
