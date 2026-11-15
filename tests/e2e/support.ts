@@ -102,6 +102,7 @@ export const ROUTES = [
   "/bhajans/krishna/adidano-ranga-adbhutadindali",
   "/acharyas",
   "/acharyas/kanada",
+  "/acharyas/raghavendra-tirtha",
   "/acharyas/adi-shankaracharya",
   "/acharyas/ramanujacharya",
   // no free photograph exists for him; the card falls back to his name

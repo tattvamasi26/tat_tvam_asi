@@ -75,6 +75,18 @@ export const TEACHERS: TeacherRow[] = [
     image_credit: OWNER,
   },
   {
+    id: "te-raghavendra",
+    slug: "raghavendra-tirtha",
+    name_sanskrit: "श्रीराघवेन्द्रतीर्थः",
+    // His birth is given as 1595 or 1598, so it stays null and the era
+    // string carries it. 1671, the year he entered the brindavana at
+    // Mantralaya, is not disputed.
+    birth_year: null,
+    death_year: 1671,
+    image_url: "/images/owner/raghavendra-painting.jpg",
+    image_credit: OWNER,
+  },
+  {
     id: "te-ramakrishna",
     slug: "ramakrishna-paramahamsa",
     name_sanskrit: "रामकृष्ण परमहंसः",
@@ -245,6 +257,29 @@ export const TEACHER_TRANSLATIONS: TeacherTranslationRow[] = [
     key_works: ["ब्रह्मसूत्र भाष्य", "अणुव्याख्यान", "गीता भाष्य", "द्वादश स्तोत्र", "सर्वमूल ग्रंथ"],
     biography: "उडुपी के निकट पाजक में जन्मे मध्वाचार्य ने शंकर और रामानुज — दोनों से अलग राह ली और भेद को ही वस्तुओं का सत्य बताया: पंचभेद — ईश्वर और जीव, जीव और जीव, जीव और जड़, ईश्वर और जड़, तथा एक जड़ और दूसरे जड़ के बीच के पाँच अमिट भेद। सत्ता दो प्रकार की है, स्वतंत्र और परतंत्र, और स्वतंत्र केवल विष्णु हैं। उन्होंने उडुपी में कृष्ण मठ और उसके चारों ओर अष्ट मठ स्थापित किए, जिनके स्वामी आज भी बारी-बारी से कृष्ण की पूजा करते हैं। उनके नाम से सैंतीस ग्रंथ मिलते हैं; प्रचलित दो काल-निर्णय हैं ११९९–१२७८ और १२३८–१३१७।",
     quote: "सत्ता दो प्रकार की है: स्वतंत्र और परतंत्र। स्वतंत्र केवल विष्णु हैं।",
+  },
+
+  // ── Raghavendra Tirtha
+  {
+    teacher_id: "te-raghavendra", language: "en",
+    name: "Sri Raghavendra Tirtha", era: "c. 1595 – 1671", tradition: "Dvaita (Tattvavada)",
+    key_works: ["Nyaya Sudha Parimala", "Tantradipika", "Tattvaprakashika Bhavadipa", "Bhatta Sangraha", "Mantrartha Manjari"],
+    biography: "Born Venkatanatha at Bhuvanagiri in Tamil Nadu, into a Kannada-speaking family of scholars and musicians, he was given sannyasa by Sudhindra Tirtha and led the matha at Kumbakonam for half a century. He wrote some forty-five works in Sanskrit, the commentary called Parimala above all, explaining Madhva's Dvaita in a compact, plain style. In 1671 he entered the brindavana at Mantralaya on the Tungabhadra, where the matha that now bears his name keeps it. Devotees call him Rayaru, and his following crosses every caste and sect.",
+    quote: "",
+  },
+  {
+    teacher_id: "te-raghavendra", language: "kn",
+    name: "ಶ್ರೀ ರಾಘವೇಂದ್ರ ತೀರ್ಥರು", era: "ಸು. ೧೫೯೫ – ೧೬೭೧", tradition: "ದ್ವೈತ (ತತ್ತ್ವವಾದ)",
+    key_works: ["ನ್ಯಾಯಸುಧಾ ಪರಿಮಳ", "ತಂತ್ರದೀಪಿಕಾ", "ತತ್ತ್ವಪ್ರಕಾಶಿಕಾ ಭಾವದೀಪ", "ಭಾಟ್ಟಸಂಗ್ರಹ", "ಮಂತ್ರಾರ್ಥಮಂಜರೀ"],
+    biography: "ತಮಿಳುನಾಡಿನ ಭುವನಗಿರಿಯಲ್ಲಿ, ವಿದ್ವಾಂಸರ ಮತ್ತು ಸಂಗೀತಗಾರರ ಕನ್ನಡ ಮನೆತನದಲ್ಲಿ ವೆಂಕಟನಾಥರಾಗಿ ಜನಿಸಿದ ಇವರಿಗೆ ಸುಧೀಂದ್ರ ತೀರ್ಥರು ಸಂನ್ಯಾಸ ನೀಡಿದರು; ಐವತ್ತು ವರ್ಷ ಕುಂಭಕೋಣದ ಮಠವನ್ನು ಮುನ್ನಡೆಸಿದರು. ಸಂಸ್ಕೃತದಲ್ಲಿ ಸುಮಾರು ನಲವತ್ತೈದು ಕೃತಿಗಳನ್ನು ಬರೆದರು — ಎಲ್ಲಕ್ಕಿಂತ ಮಿಗಿಲಾಗಿ ಪರಿಮಳ ಎಂಬ ವ್ಯಾಖ್ಯಾನ; ಮಧ್ವರ ದ್ವೈತವನ್ನು ಸಂಕ್ಷಿಪ್ತ, ಸರಳ ಶೈಲಿಯಲ್ಲಿ ವಿವರಿಸಿದರು. ೧೬೭೧ರಲ್ಲಿ ತುಂಗಭದ್ರೆಯ ದಡದ ಮಂತ್ರಾಲಯದಲ್ಲಿ ಬೃಂದಾವನ ಪ್ರವೇಶಿಸಿದರು; ಇಂದು ಅವರ ಹೆಸರಿನ ಮಠ ಅದನ್ನು ಕಾಯುತ್ತದೆ. ಭಕ್ತರು ಅವರನ್ನು ರಾಯರು ಎನ್ನುತ್ತಾರೆ; ಅವರ ಭಕ್ತವರ್ಗ ಎಲ್ಲ ಜಾತಿ, ಪಂಥಗಳನ್ನು ದಾಟುತ್ತದೆ.",
+    quote: "",
+  },
+  {
+    teacher_id: "te-raghavendra", language: "hi",
+    name: "श्री राघवेंद्र तीर्थ", era: "लगभग १५९५ – १६७१", tradition: "द्वैत (तत्त्ववाद)",
+    key_works: ["न्यायसुधा परिमल", "तंत्रदीपिका", "तत्त्वप्रकाशिका भावदीप", "भाट्टसंग्रह", "मंत्रार्थमंजरी"],
+    biography: "तमिलनाडु के भुवनगिरि में विद्वानों और संगीतज्ञों के एक कन्नड़-भाषी परिवार में वेंकटनाथ के रूप में जन्मे, उन्हें सुधींद्र तीर्थ ने संन्यास दिया और उन्होंने आधी शताब्दी तक कुंभकोणम के मठ का नेतृत्व किया। उन्होंने संस्कृत में लगभग पैंतालीस ग्रंथ लिखे — सबसे बढ़कर परिमल नामक टीका — और मध्व के द्वैत को संक्षिप्त, सरल शैली में समझाया। १६७१ में उन्होंने तुंगभद्रा के तट पर मंत्रालय में वृंदावन में प्रवेश किया, जिसे आज उनके नाम का मठ सँभालता है। भक्त उन्हें रायरु कहते हैं, और उनका भक्त-समुदाय हर जाति और संप्रदाय के पार फैला है।",
+    quote: "",
   },
 
   // ── Ramakrishna Paramahamsa

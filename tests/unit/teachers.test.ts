@@ -144,6 +144,7 @@ test("the list runs in chronological order", () => {
     "ramanujacharya",
     "basavanna",
     "madhvacharya",
+    "raghavendra-tirtha",
     "ramakrishna-paramahamsa",
     "ramana-maharshi",
     "nisargadatta-maharaj",

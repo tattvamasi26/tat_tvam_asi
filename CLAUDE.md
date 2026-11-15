@@ -359,10 +359,10 @@ node scripts/wordpress/build-bhajans.mjs
 
 ### The acharyas list
 
-`seed/teachers.ts` holds ten acharyas, **in chronological order**,
-each written in all three languages: Kaṇāda (added 2026-11-14, no
-picture, his dates unknown), Shankara, Ramanuja, Basavanna,
-Madhva, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
+`seed/teachers.ts` holds eleven acharyas, **in chronological order**,
+each written in all three languages: Kaṇāda (added 2026-11-14, his dates unknown,
+the owner's painting), Shankara, Ramanuja, Basavanna,
+Madhva, Raghavendra, Ramakrishna, Ramana Maharshi, Nisargadatta, and the two living
 Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
 `tests/unit/teachers.test.ts` holds the whole roster to these rules:
 
@@ -386,8 +386,8 @@ Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
 - **No photograph at all is still a valid state.** `image_url` may be
   null, and the card then shows the name in the reader's script
   (`.acharya-nameplate`), the way a temple without a photograph does.
-  Kaṇāda uses it: there is no portrait of him, and the one Commons
-  candidate, a fan-made stamp, was rejected.
+  Nothing uses it at present (Kaṇāda did, until the owner supplied a
+  painting); keep it for the next acharya who needs it.
 - **Key works are chip-sized labels**, not full citations — a long one
   pushed the card past the viewport at 390px. The attribution belongs
   in the biography.
@@ -399,7 +399,12 @@ Jagadgurus of Sringeri — Bharati Tirtha and Vidhushekhara Bharati.
 `/acharyas/[slug]` renders one of two things: a **monograph**, when a
 module under `src/lib/seed/acharya-pages/` has registered one, or the
 summary card built from `seed/teachers.ts` when none has. Adi
-Shankaracharya is the first monograph (2026-09-23).
+Shankaracharya is the first monograph (2026-09-23); Raghavendra
+Tirtha the second (2026-11-15), written from `docs/RAGHAVENDRA.md`.
+His difficulty is the opposite of Shankara's: the life is close to
+the record and the works are not in doubt, so the care goes into
+keeping the miracle literature, the earlier births, the grant of
+Manchale and the Munro story labelled as tradition.
 
 - **The study comes before the page.** `docs/SHANKARA.md` carries the
   sources, the dating dispute and the editorial decisions; the module

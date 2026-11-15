@@ -360,6 +360,7 @@ import "./seed/temple-pages/tirumala";
 // An acharya written in depth registers itself on import, the same way
 // a temple or a readable text does.
 import "./seed/acharya-pages/shankara";
+import "./seed/acharya-pages/raghavendra";
 import {
   getAcharyaPage,
   acharyaPageSlugs,

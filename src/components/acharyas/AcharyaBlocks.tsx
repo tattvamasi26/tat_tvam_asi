@@ -27,8 +27,12 @@ export function AcharyaBlock({ block, scriptClass }: { block: AcharyaBlockView; 
     // ── the dating dispute, drawn to scale ──────────────────────
     case "timeline": {
       const years = block.marks.map((m) => m.year);
-      const from = Math.min(...years) - 120;
-      const to = Math.max(...years) + 120;
+      // Pad the ends in proportion to the span: about 120 years either
+      // side of Shankara's thirteen centuries, about 7 of Raghavendra's
+      // eighty years — a fixed pad crushed a short life into the middle.
+      const pad = Math.max((Math.max(...years) - Math.min(...years)) * 0.09, 5);
+      const from = Math.min(...years) - pad;
+      const to = Math.max(...years) + pad;
       return (
         <figure className="ach-timeline">
           {block.title && <figcaption className="ach-block-title">{block.title}</figcaption>}
