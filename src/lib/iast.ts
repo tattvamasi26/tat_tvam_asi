@@ -8,7 +8,7 @@
  * shows.
  *
  * Conventions, matching the hand-entered stotras:
- * - anusvāra is ṃ, visarga ḥ, avagraha ', candrabindu m̐;
+ * - anusvāra is ṃ, visarga ḥ, avagraha ', candrabindu ṁ (the combining m̐ is missing from the site's fonts);
  * - a nasal written out stays the nasal it is (पञ्च → pañca);
  * - the daṇḍas become | and ||, as in the hand-entered stotras;
  * - Devanagari digits become Latin digits.
@@ -37,7 +37,7 @@ const CONSONANTS: Record<string, string> = {
 };
 
 const OTHER: Record<string, string> = {
-  "ं": "ṃ", "ः": "ḥ", "ँ": "m̐", "ऽ": "'", "ॐ": "oṃ", "।": "|", "॥": "||",
+  "ं": "ṃ", "ः": "ḥ", "ँ": "ṁ", "ऽ": "'", "ॐ": "oṃ", "।": "|", "॥": "||",
   "०": "0", "१": "1", "२": "2", "३": "3", "४": "4", "५": "5", "६": "6", "७": "7", "८": "8", "९": "9",
 };
 
