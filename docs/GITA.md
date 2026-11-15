@@ -139,6 +139,7 @@ The witnesses also have to be fetched into `corpus/gita/` (git-ignored):
 |---|---|---|---|---|
 | 1 | 22 | 57 | 20 mūla (5 misprints), 35 English | 2026-11-14 |
 | 2 | 38 | 44 | 34 mūla (7 misprints), 37 English; 2 kept | 2026-11-15 |
+| 3 | 26 | 25 | 21 mūla (3 misprints), 23 English; 1 kept | 2026-11-15 |
 
-Chapters 3–18: 369 Sanskrit and about 326 English places remain to be
+Chapters 4–18: 343 Sanskrit and about 301 English places remain to be
 read.

@@ -35,6 +35,7 @@ export const ROUTES = [
   "/gita/1",
   "/gita/1/21",
   "/gita/2",
+  "/gita/3",
   "/stutis",
   "/stutis/gayatri",
   "/stutis/gayatri/gayatri-mantra",

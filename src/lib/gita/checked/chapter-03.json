@@ -1,0 +1,367 @@
+{
+ "chapter": 3,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  103,
+  104,
+  105,
+  106,
+  107,
+  108,
+  109,
+  110,
+  111,
+  112,
+  113,
+  114,
+  115,
+  116,
+  117,
+  118,
+  119,
+  120,
+  121
+ ],
+ "fixes": [
+  {
+   "ref": "3.4",
+   "field": "mula",
+   "from": "पुरुषऽश्नुते",
+   "to": "पुरुषोऽश्नुते",
+   "kind": "transcription",
+   "page": 104
+  },
+  {
+   "ref": "3.6",
+   "field": "mula",
+   "from": "कमेंन्द्रियाणि",
+   "to": "कर्मेन्द्रियाणि",
+   "kind": "transcription",
+   "page": 105
+  },
+  {
+   "ref": "3.6",
+   "field": "mula",
+   "from": "य आस्त मनसा",
+   "to": "य आस्ते मनसा",
+   "kind": "transcription",
+   "page": 105
+  },
+  {
+   "ref": "3.6",
+   "field": "mula",
+   "from": "इन्द्रियार्थान्वेमढात्मा",
+   "to": "इन्द्रियार्थान्विमूढात्मा",
+   "kind": "transcription",
+   "page": 105
+  },
+  {
+   "ref": "3.6",
+   "field": "mula",
+   "from": "स उच्यत॥",
+   "to": "स उच्यते॥",
+   "kind": "transcription",
+   "page": 105
+  },
+  {
+   "ref": "3.8",
+   "field": "mula",
+   "from": "प्रसिद्धयेदकर्मणः",
+   "to": "प्रसिद्ध्येदकर्मणः",
+   "kind": "transcription",
+   "page": 106
+  },
+  {
+   "ref": "3.12",
+   "field": "mula",
+   "from": "यो भुक्ते",
+   "to": "यो भुंक्ते",
+   "kind": "transcription",
+   "page": 108
+  },
+  {
+   "ref": "3.13",
+   "field": "mula",
+   "from": "पचयात्मकारणात्",
+   "to": "पचंत्यात्मकारणात्",
+   "kind": "transcription",
+   "page": 108
+  },
+  {
+   "ref": "3.14",
+   "field": "mula",
+   "from": "पजन्यो",
+   "to": "पर्जन्यो",
+   "kind": "transcription",
+   "page": 109
+  },
+  {
+   "ref": "3.16",
+   "field": "mula",
+   "from": "चक्रे नानुवर्तयतीह",
+   "to": "चक्रं नानुवर्तयतीह",
+   "kind": "transcription",
+   "page": 109
+  },
+  {
+   "ref": "3.16",
+   "field": "mula",
+   "from": "अघायुरिंद्रियारामा",
+   "to": "अघायुरिंद्रियारामो",
+   "kind": "transcription",
+   "page": 110
+  },
+  {
+   "ref": "3.21",
+   "field": "mula",
+   "from": "लोकस्तदनुवर्तंते",
+   "to": "लोकस्तदनुवर्तते",
+   "kind": "misprint",
+   "page": 112,
+   "why": "A dot stands over the syllable in the print; the subject लोकः is singular, and the gloss reads अनुवर्तते."
+  },
+  {
+   "ref": "3.23",
+   "field": "mula",
+   "from": "वर्त्मानुवर्तते",
+   "to": "वर्त्मानुवर्तंते",
+   "kind": "transcription",
+   "page": 112
+  },
+  {
+   "ref": "3.24",
+   "field": "mula",
+   "from": "न कुर्या कर्म",
+   "to": "न कुर्यां कर्म",
+   "kind": "misprint",
+   "page": 113,
+   "why": "The print drops the anusvāra; the gloss reads कुर्यां."
+  },
+  {
+   "ref": "3.27",
+   "field": "mula",
+   "from": "गुणः कर्माणि",
+   "to": "गुणैः कर्माणि",
+   "kind": "transcription",
+   "page": 114
+  },
+  {
+   "ref": "3.29",
+   "field": "mula",
+   "from": "सज्जते",
+   "to": "सज्जंते",
+   "kind": "transcription",
+   "page": 115
+  },
+  {
+   "ref": "3.33",
+   "field": "mula",
+   "from": "प्रकृतिं याति",
+   "to": "प्रकृतिं यांति",
+   "kind": "misprint",
+   "page": 117,
+   "why": "The print drops the anusvāra; the gloss reads यांति."
+  },
+  {
+   "ref": "3.37",
+   "field": "mula",
+   "from": "विद्धयेनमिह",
+   "to": "विद्ध्येनमिह",
+   "kind": "transcription",
+   "page": 119
+  },
+  {
+   "ref": "3.38",
+   "field": "mula",
+   "from": "यथाऽऽदशं",
+   "to": "यथाऽऽदर्शो",
+   "kind": "transcription",
+   "page": 119
+  },
+  {
+   "ref": "3.43",
+   "field": "mula",
+   "from": "पर बुद्धा",
+   "to": "परं बुद्ध्वा",
+   "kind": "transcription",
+   "page": 121
+  },
+  {
+   "ref": "3.43",
+   "field": "mula",
+   "from": "जहि शत्रु",
+   "to": "जहि शत्रुं",
+   "kind": "transcription",
+   "page": 121
+  },
+  {
+   "ref": "3.2",
+   "field": "translation",
+   "from": "confuses",
+   "to": "confusest",
+   "page": 103
+  },
+  {
+   "ref": "3.3",
+   "field": "translation",
+   "from": "of the Yogs.",
+   "to": "of the Yogis.",
+   "page": 104
+  },
+  {
+   "ref": "3.7",
+   "field": "translation",
+   "from": "erformeth",
+   "to": "performeth",
+   "page": 106
+  },
+  {
+   "ref": "3.9",
+   "field": "translation",
+   "from": "attach ment",
+   "to": "attachment",
+   "page": 106
+  },
+  {
+   "ref": "3.11",
+   "field": "translation",
+   "from": "supremest good",
+   "to": "supremest good.",
+   "page": 107
+  },
+  {
+   "ref": "3.12",
+   "field": "translation",
+   "from": "with out",
+   "to": "without",
+   "page": 108
+  },
+  {
+   "ref": "3.16",
+   "field": "translation",
+   "from": "liveth in vain thus;",
+   "to": "liveth in vain.",
+   "page": 110
+  },
+  {
+   "ref": "3.17",
+   "field": "translation",
+   "from": "in the \"SELF",
+   "to": "in the SELF",
+   "page": 110
+  },
+  {
+   "ref": "3.19",
+   "field": "translation",
+   "from": "reacheth the Supreme",
+   "to": "reacheth the Supreme.",
+   "page": 111
+  },
+  {
+   "ref": "3.20",
+   "field": "translation",
+   "from": "action . (2O )",
+   "to": "action.",
+   "page": 112
+  },
+  {
+   "ref": "3.24",
+   "field": "translation",
+   "from": "per form",
+   "to": "perform",
+   "page": 113
+  },
+  {
+   "ref": "3.25",
+   "field": "translation",
+   "from": "action,- O",
+   "to": "action, O",
+   "page": 113
+  },
+  {
+   "ref": "3.28",
+   "field": "translation",
+   "from": "holding that the qualities move amid the qualities, is",
+   "to": "holding that “the qualities move amid the qualities,” is",
+   "page": 115
+  },
+  {
+   "ref": "3.30",
+   "field": "translation",
+   "from": "to Me with",
+   "to": "to Me, with",
+   "page": 116
+  },
+  {
+   "ref": "3.32",
+   "field": "translation",
+   "from": "who carp",
+   "to": "Who carp",
+   "page": 117
+  },
+  {
+   "ref": "3.34",
+   "field": "translation",
+   "from": "tw०",
+   "to": "two",
+   "page": 117
+  },
+  {
+   "ref": "3.35",
+   "field": "translation",
+   "from": "Better ones own",
+   "to": "Better one's own",
+   "page": 118
+  },
+  {
+   "ref": "3.35",
+   "field": "translation",
+   "from": "of ones own",
+   "to": "of one's own",
+   "page": 118
+  },
+  {
+   "ref": "3.38",
+   "field": "translation",
+   "from": "As a fame",
+   "to": "As a flame",
+   "page": 119
+  },
+  {
+   "ref": "3.38",
+   "field": "translation",
+   "from": "This • is",
+   "to": "This is",
+   "page": 119
+  },
+  {
+   "ref": "3.42",
+   "field": "translation",
+   "from": "is HE .",
+   "to": "is HE.",
+   "page": 121
+  },
+  {
+   "ref": "3.43",
+   "field": "translation",
+   "from": "mightyarmed",
+   "to": "mighty-armed",
+   "page": 121
+  },
+  {
+   "ref": "3.43",
+   "field": "translation",
+   "from": "overcome .",
+   "to": "overcome.",
+   "page": 121
+  }
+ ],
+ "kept": [
+  {
+   "ref": "3.30",
+   "ours": "द्",
+   "page": 116,
+   "note": "The print reads युद्ध्यस्व, and its gloss reads the same; both witnesses read युध्यस्व."
+  }
+ ]
+}
