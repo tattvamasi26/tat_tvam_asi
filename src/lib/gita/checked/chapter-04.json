@@ -1,0 +1,394 @@
+{
+ "chapter": 4,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  123,
+  124,
+  125,
+  126,
+  127,
+  128,
+  129,
+  130,
+  131,
+  132,
+  133,
+  134,
+  135,
+  136,
+  137,
+  138,
+  139,
+  140,
+  141
+ ],
+ "fixes": [
+  {
+   "ref": "4.2",
+   "field": "mula",
+   "from": "योगों",
+   "to": "योगो",
+   "kind": "transcription",
+   "page": 123
+  },
+  {
+   "ref": "4.4",
+   "field": "mula",
+   "from": "अपर भवतो",
+   "to": "अपरं भवतो",
+   "kind": "transcription",
+   "page": 124
+  },
+  {
+   "ref": "4.2",
+   "field": "translation",
+   "from": "knewThis",
+   "to": "knew. This",
+   "page": 123
+  },
+  {
+   "ref": "4.2",
+   "field": "translation",
+   "from": "effilux",
+   "to": "efflux",
+   "page": 123
+  },
+  {
+   "ref": "4.8",
+   "field": "translation",
+   "from": "righte. ousness",
+   "to": "righteousness",
+   "page": 126
+  },
+  {
+   "ref": "4.11",
+   "field": "mula",
+   "from": "वर्त्मानुवर्तते",
+   "to": "वर्त्मानुवर्तंते",
+   "kind": "transcription",
+   "page": 127
+  },
+  {
+   "ref": "4.12",
+   "field": "mula",
+   "from": "कांक्षतः",
+   "to": "कांक्षंतः",
+   "kind": "transcription",
+   "page": 127
+  },
+  {
+   "ref": "4.13",
+   "field": "mula",
+   "from": "चातुर्वण्यं",
+   "to": "चातुर्वर्ण्यं",
+   "kind": "transcription",
+   "page": 128
+  },
+  {
+   "ref": "4.13",
+   "field": "mula",
+   "from": "कर्तारमपि मा विद्यकर्तारमव्ययम्",
+   "to": "कर्तारमपि मां विद्ध्यकर्तारमव्ययम्",
+   "kind": "transcription",
+   "page": 128
+  },
+  {
+   "ref": "4.14",
+   "field": "mula",
+   "from": "न मा कर्माणि",
+   "to": "न मां कर्माणि",
+   "kind": "misprint",
+   "page": 128,
+   "why": "The print drops the anusvāra; the gloss reads माम्."
+  },
+  {
+   "ref": "4.14",
+   "field": "mula",
+   "from": "बध्यते॥। १४॥",
+   "to": "बध्यते॥ १४॥",
+   "kind": "transcription",
+   "page": 128
+  },
+  {
+   "ref": "4.10",
+   "field": "translation",
+   "from": "filled with Me taking refuge in Me purified",
+   "to": "filled with Me, taking refuge in Me, purified",
+   "page": 127
+  },
+  {
+   "ref": "4.11",
+   "field": "translation",
+   "from": "even SO do",
+   "to": "even so do",
+   "page": 127
+  },
+  {
+   "ref": "4.11",
+   "field": "translation",
+   "from": "is Mine O Partha",
+   "to": "is Mine, O Partha",
+   "page": 127
+  },
+  {
+   "ref": "4.12",
+   "field": "translation",
+   "from": "sacri- fice",
+   "to": "sacrifice",
+   "page": 128
+  },
+  {
+   "ref": "4.12",
+   "field": "translation",
+   "from": "born of action",
+   "to": "born of action.",
+   "page": 128
+  },
+  {
+   "ref": "4.13",
+   "field": "translation",
+   "from": "by Me by the",
+   "to": "by Me, by the",
+   "page": 128
+  },
+  {
+   "ref": "4.19",
+   "field": "mula",
+   "from": "समारभाः कामसकल्पवर्जिताः",
+   "to": "समारंभाः कामसंकल्पवर्जिताः",
+   "kind": "transcription",
+   "page": 130
+  },
+  {
+   "ref": "4.15",
+   "field": "translation",
+   "from": "olden time",
+   "to": "olden time.",
+   "page": 129
+  },
+  {
+   "ref": "4.19",
+   "field": "translation",
+   "from": "wis. dom",
+   "to": "wisdom",
+   "page": 130
+  },
+  {
+   "ref": "4.22",
+   "field": "mula",
+   "from": "सिद्धावासिद्धौ",
+   "to": "सिद्धावसिद्धौ",
+   "kind": "transcription",
+   "page": 132
+  },
+  {
+   "ref": "4.22",
+   "field": "mula",
+   "from": "निबद्यते",
+   "to": "निबध्यते",
+   "kind": "transcription",
+   "page": 132
+  },
+  {
+   "ref": "4.19",
+   "field": "translation",
+   "from": "called a Sage",
+   "to": "called a Sage.",
+   "page": 131
+  },
+  {
+   "ref": "4.20",
+   "field": "translation",
+   "from": "anything. although",
+   "to": "anything, although",
+   "page": 131
+  },
+  {
+   "ref": "4.22",
+   "field": "translation",
+   "from": "opposites, - without",
+   "to": "opposites, without",
+   "page": 132
+  },
+  {
+   "ref": "4.24",
+   "field": "mula",
+   "from": "हविर्बह्माग्नौ",
+   "to": "हविर्ब्रह्माग्नौ",
+   "kind": "transcription",
+   "page": 133
+  },
+  {
+   "ref": "4.24",
+   "field": "mula",
+   "from": "तेन गतव्यं",
+   "to": "तेन गंतव्यं",
+   "kind": "transcription",
+   "page": 133
+  },
+  {
+   "ref": "4.24",
+   "field": "translation",
+   "from": "wholly upon the ETERNAL",
+   "to": "wholly upon the ETERNAL.",
+   "page": 133
+  },
+  {
+   "ref": "4.25",
+   "field": "translation",
+   "from": "fire of the ETERNAL",
+   "to": "fire of the ETERNAL;",
+   "page": 133
+  },
+  {
+   "ref": "4.26",
+   "field": "translation",
+   "from": "senses as sacrifice",
+   "to": "senses as sacrifice;",
+   "page": 134
+  },
+  {
+   "ref": "4.27",
+   "field": "translation",
+   "from": "functions of life",
+   "to": "functions of life;",
+   "page": 134
+  },
+  {
+   "ref": "4.31",
+   "field": "mula",
+   "from": "यज्ञांशिष्टामृतभुजो",
+   "to": "यज्ञशिष्टामृतभुजो",
+   "kind": "transcription",
+   "page": 136
+  },
+  {
+   "ref": "4.28",
+   "field": "translation",
+   "from": "of effectual vows",
+   "to": "of effectual vows;",
+   "page": 135
+  },
+  {
+   "ref": "4.29",
+   "field": "translation",
+   "from": "re straining",
+   "to": "restraining",
+   "page": 135
+  },
+  {
+   "ref": "4.30",
+   "field": "translation",
+   "from": "life breaths in",
+   "to": "life-breaths in",
+   "page": 136
+  },
+  {
+   "ref": "4.31",
+   "field": "translation",
+   "from": "ETERNAL.This",
+   "to": "ETERNAL. This",
+   "page": 136
+  },
+  {
+   "ref": "4.31",
+   "field": "translation",
+   "from": "non sacrificer",
+   "to": "non-sacrificer",
+   "page": 136
+  },
+  {
+   "ref": "4.32",
+   "field": "translation",
+   "from": "be fore the ETERNAL Know",
+   "to": "before the ETERNAL. Know",
+   "page": 136
+  },
+  {
+   "ref": "4.33",
+   "field": "mula",
+   "from": "ज्ञानयज्ञः परतप",
+   "to": "ज्ञानयज्ञः परंतप",
+   "kind": "transcription",
+   "page": 137
+  },
+  {
+   "ref": "4.35",
+   "field": "mula",
+   "from": "यास्यसि पाडव",
+   "to": "यास्यसि पांडव",
+   "kind": "misprint",
+   "page": 137,
+   "why": "The print drops the anusvāra; the gloss reads पांडव."
+  },
+  {
+   "ref": "4.37",
+   "field": "mula",
+   "from": "यथैधासि",
+   "to": "यथैधांसि",
+   "kind": "misprint",
+   "page": 138,
+   "why": "The print drops the anusvāra; the gloss reads एधांसि."
+  },
+  {
+   "ref": "4.37",
+   "field": "mula",
+   "from": "ज्ञानाग्नेः",
+   "to": "ज्ञानाग्निः",
+   "kind": "transcription",
+   "page": 138
+  },
+  {
+   "ref": "4.34",
+   "field": "translation",
+   "from": "Essence of things will",
+   "to": "Essence of things, will",
+   "page": 137
+  },
+  {
+   "ref": "4.35",
+   "field": "translation",
+   "from": "SELF and thus in Me",
+   "to": "SELF, and thus in Me.",
+   "page": 138
+  },
+  {
+   "ref": "4.39",
+   "field": "mula",
+   "from": "श्रद्धवाँलभते",
+   "to": "श्रद्धावाँल्लभते",
+   "kind": "transcription",
+   "page": 139
+  },
+  {
+   "ref": "4.39",
+   "field": "mula",
+   "from": "परा शातमचेिरेणाधिगच्छति",
+   "to": "परां शांतिमचिरेणाधिगच्छति",
+   "kind": "transcription",
+   "page": 139
+  },
+  {
+   "ref": "4.38",
+   "field": "translation",
+   "from": "Verify there",
+   "to": "Verily there",
+   "page": 139
+  },
+  {
+   "ref": "4.38",
+   "field": "translation",
+   "from": "in due Season",
+   "to": "in due season",
+   "page": 139
+  },
+  {
+   "ref": "4.39",
+   "field": "translation",
+   "from": "visdom. and",
+   "to": "wisdom, and",
+   "page": 139
+  }
+ ],
+ "kept": []
+}
