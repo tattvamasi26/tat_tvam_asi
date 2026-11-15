@@ -1,0 +1,592 @@
+{
+ "chapter": 2,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  69,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75,
+  76,
+  77,
+  78,
+  79,
+  80,
+  81,
+  83,
+  84,
+  85,
+  87,
+  88,
+  89,
+  90,
+  91,
+  92,
+  93,
+  95,
+  96,
+  97,
+  98,
+  99,
+  100,
+  101,
+  102
+ ],
+ "fixes": [
+  {
+   "ref": "2.3",
+   "field": "mula",
+   "from": "त्यक्तोतिष्ठ",
+   "to": "त्यक्त्वोत्तिष्ठ",
+   "kind": "transcription",
+   "page": 70,
+   "why": "The क्त्व and त्त ligatures were read as plain letters; the gloss reads त्यक्त्वा and उत्तिष्ठ."
+  },
+  {
+   "ref": "2.5",
+   "field": "mula",
+   "from": "भोगान्रूधिरप्रदिग्धान्",
+   "to": "भोगान्रुधिरप्रदिग्धान्",
+   "kind": "transcription",
+   "page": 71
+  },
+  {
+   "ref": "2.6",
+   "field": "mula",
+   "from": "चैतद्विदः",
+   "to": "चैतद्विद्मः",
+   "kind": "transcription",
+   "page": 72
+  },
+  {
+   "ref": "2.10",
+   "field": "mula",
+   "from": "विषीदतमिदं",
+   "to": "विषीदंतमिदं",
+   "kind": "transcription",
+   "page": 74
+  },
+  {
+   "ref": "2.15",
+   "field": "mula",
+   "from": "धीर सोऽमृतत्वाय",
+   "to": "धीरं सोऽमृतत्वाय",
+   "kind": "transcription",
+   "page": 76
+  },
+  {
+   "ref": "2.16",
+   "field": "mula",
+   "from": "दृष्टोऽतस्त्वनयो",
+   "to": "दृष्टोऽंतस्त्वनयो",
+   "kind": "misprint",
+   "page": 77,
+   "why": "The print sets the anusvāra over ष्टो instead of on अंतः; the gloss reads अंतः."
+  },
+  {
+   "ref": "2.18",
+   "field": "mula",
+   "from": "तस्माद्युद्यस्व",
+   "to": "तस्माद्युध्यस्व",
+   "kind": "transcription",
+   "page": 78
+  },
+  {
+   "ref": "2.20",
+   "field": "mula",
+   "from": "पुराणों",
+   "to": "पुराणो",
+   "kind": "transcription",
+   "page": 78
+  },
+  {
+   "ref": "2.22",
+   "field": "mula",
+   "from": "गृह्वाति",
+   "to": "गृह्णाति",
+   "kind": "transcription",
+   "page": 79,
+   "why": "The ह्ण ligature, ण set under ह, was read as ह्व; the gloss reads गृह्णाति."
+  },
+  {
+   "ref": "2.27",
+   "field": "mula",
+   "from": "मृत्युध्रुवं",
+   "to": "मृत्युर्ध्रुवं",
+   "kind": "transcription",
+   "page": 81
+  },
+  {
+   "ref": "2.33",
+   "field": "mula",
+   "from": "धर्म्य संग्राम",
+   "to": "धर्म्यं संग्राम",
+   "kind": "misprint",
+   "page": 84,
+   "why": "The print reads धम्य, dropping the repha and the anusvāra; the gloss reads धर्म्यं."
+  },
+  {
+   "ref": "2.33",
+   "field": "mula",
+   "from": "संग्राम न करष्यसि",
+   "to": "संग्रामं न करिष्यसि",
+   "kind": "transcription",
+   "page": 84
+  },
+  {
+   "ref": "2.33",
+   "field": "mula",
+   "from": "स्वधर्मx",
+   "to": "स्वधर्मं",
+   "kind": "transcription",
+   "page": 84
+  },
+  {
+   "ref": "2.35",
+   "field": "mula",
+   "from": "च त्व बहुमतो",
+   "to": "च त्वं बहुमतो",
+   "kind": "misprint",
+   "page": 85,
+   "why": "The print drops the anusvāra; the gloss reads त्वं."
+  },
+  {
+   "ref": "2.35",
+   "field": "mula",
+   "from": "लाघवम्।३५॥",
+   "to": "लाघवम्॥३५॥",
+   "kind": "transcription",
+   "page": 85
+  },
+  {
+   "ref": "2.39",
+   "field": "mula",
+   "from": "बुद्धियोगे",
+   "to": "बुद्धिर्योगे",
+   "kind": "transcription",
+   "page": 87
+  },
+  {
+   "ref": "2.41",
+   "field": "mula",
+   "from": "व्यवसायात्मका",
+   "to": "व्यवसायात्मिका",
+   "kind": "transcription",
+   "page": 87
+  },
+  {
+   "ref": "2.41",
+   "field": "mula",
+   "from": "ह्यनताश्च",
+   "to": "ह्यनंताश्च",
+   "kind": "transcription",
+   "page": 87
+  },
+  {
+   "ref": "2.44",
+   "field": "mula",
+   "from": "व्यवसायात्मका",
+   "to": "व्यवसायात्मिका",
+   "kind": "transcription",
+   "page": 89
+  },
+  {
+   "ref": "2.48",
+   "field": "mula",
+   "from": "सिद्धयसिद्धयोः",
+   "to": "सिद्ध्यसिद्ध्योः",
+   "kind": "transcription",
+   "page": 91
+  },
+  {
+   "ref": "2.49",
+   "field": "mula",
+   "from": "बुद्वियोगाद्धनंजय",
+   "to": "बुद्धियोगाद्धनंजय",
+   "kind": "transcription",
+   "page": 92
+  },
+  {
+   "ref": "2.51",
+   "field": "mula",
+   "from": "कर्मज बुद्धि",
+   "to": "कर्मजं बुद्धि",
+   "kind": "misprint",
+   "page": 92,
+   "why": "The print drops the anusvāra; the gloss reads कर्मजं."
+  },
+  {
+   "ref": "2.52",
+   "field": "mula",
+   "from": "गतासि",
+   "to": "गंतासि",
+   "kind": "transcription",
+   "page": 93
+  },
+  {
+   "ref": "2.56",
+   "field": "mula",
+   "from": "स्थितधुर्मुनि",
+   "to": "स्थितधीर्मुनि",
+   "kind": "transcription",
+   "page": 95
+  },
+  {
+   "ref": "2.59",
+   "field": "mula",
+   "from": "विनिवर्तते",
+   "to": "विनिवर्तंते",
+   "kind": "transcription",
+   "page": 96
+  },
+  {
+   "ref": "2.59",
+   "field": "mula",
+   "from": "दृष्ट्रा",
+   "to": "दृष्ट्वा",
+   "kind": "transcription",
+   "page": 96
+  },
+  {
+   "ref": "2.61",
+   "field": "mula",
+   "from": "सयम्य",
+   "to": "संयम्य",
+   "kind": "transcription",
+   "page": 97
+  },
+  {
+   "ref": "2.61",
+   "field": "mula",
+   "from": "॥।६१॥",
+   "to": "॥६१॥",
+   "kind": "transcription",
+   "page": 97
+  },
+  {
+   "ref": "2.62",
+   "field": "mula",
+   "from": "संगस्तेऽपजायते",
+   "to": "संगस्तेषूपजायते",
+   "kind": "transcription",
+   "page": 97
+  },
+  {
+   "ref": "2.63",
+   "field": "mula",
+   "from": "स्मृतिभृशाद्",
+   "to": "स्मृतिभ्रंशाद्",
+   "kind": "transcription",
+   "page": 98
+  },
+  {
+   "ref": "2.64",
+   "field": "mula",
+   "from": "आत्मवश्याैर्विधयात्मा",
+   "to": "आत्मवश्यैर्विधेयात्मा",
+   "kind": "transcription",
+   "page": 98
+  },
+  {
+   "ref": "2.69",
+   "field": "mula",
+   "from": "यस्या जाग्रति",
+   "to": "यस्यां जाग्रति",
+   "kind": "misprint",
+   "page": 100,
+   "why": "The print drops the anusvāra; the gloss reads यस्यां."
+  },
+  {
+   "ref": "2.70",
+   "field": "mula",
+   "from": "यं प्रविशति",
+   "to": "यं प्रविशंति",
+   "kind": "transcription",
+   "page": 101
+  },
+  {
+   "ref": "2.71",
+   "field": "mula",
+   "from": "सर्वान्पुमाश्चरति",
+   "to": "सर्वान्पुमांश्चरति",
+   "kind": "misprint",
+   "page": 101,
+   "why": "The print drops the anusvāra; the gloss reads पुमान्, whose nasal stands as anusvāra before श्च."
+  },
+  {
+   "ref": "2.2",
+   "field": "translation",
+   "from": "perious",
+   "to": "perilous",
+   "page": 69
+  },
+  {
+   "ref": "2.3",
+   "field": "translation",
+   "from": "Shake of ",
+   "to": "Shake off ",
+   "page": 70
+  },
+  {
+   "ref": "2.5",
+   "field": "translation",
+   "from": "Glaying",
+   "to": "Slaying",
+   "page": 71
+  },
+  {
+   "ref": "2.6",
+   "field": "translation",
+   "from": "we- conquer",
+   "to": "we conquer",
+   "page": 72
+  },
+  {
+   "ref": "2.7",
+   "field": "translation",
+   "from": "better-that",
+   "to": "better—that",
+   "page": 72
+  },
+  {
+   "ref": "2.7",
+   "field": "translation",
+   "from": "teach me",
+   "to": "teach me.",
+   "page": 73
+  },
+  {
+   "ref": "2.11",
+   "field": "translation",
+   "from": "the dead,",
+   "to": "the dead.",
+   "page": 75
+  },
+  {
+   "ref": "2.17",
+   "field": "translation",
+   "from": "imperishable One",
+   "to": "imperishable One.",
+   "page": 77
+  },
+  {
+   "ref": "2.20",
+   "field": "translation",
+   "from": "been , ceaseth",
+   "to": "been, ceaseth",
+   "page": 79
+  },
+  {
+   "ref": "2.21",
+   "field": "translation",
+   "from": "knoveth",
+   "to": "knoweth",
+   "page": 79
+  },
+  {
+   "ref": "2.22",
+   "field": "translation",
+   "from": "'casting",
+   "to": "casting",
+   "page": 79
+  },
+  {
+   "ref": "2.24",
+   "field": "translation",
+   "from": "dried away: perpetual. all-pervasive",
+   "to": "dried away; perpetual, all-pervasive",
+   "page": 80
+  },
+  {
+   "ref": "2.25",
+   "field": "translation",
+   "from": "he is called therefore",
+   "to": "he is called; therefore",
+   "page": 81
+  },
+  {
+   "ref": "2.29",
+   "field": "translation",
+   "from": "As marvelous one regarding him ; as marvelous an other speaketh thereof; as marvelous another heareth thereof ;",
+   "to": "As marvellous one regardeth him; as marvellous another speaketh thereof; as marvellous another heareth thereof;",
+   "page": 83
+  },
+  {
+   "ref": "2.30",
+   "field": "translation",
+   "from": "invul nerable",
+   "to": "invulnerable",
+   "page": 83
+  },
+  {
+   "ref": "2.32",
+   "field": "translation",
+   "from": "Kshattriys,O",
+   "to": "Kshattriyas, O",
+   "page": 84
+  },
+  {
+   "ref": "2.33",
+   "field": "translation",
+   "from": "incur sin",
+   "to": "incur sin.",
+   "page": 84
+  },
+  {
+   "ref": "2.36",
+   "field": "translation",
+   "from": "than that? ,",
+   "to": "than that?",
+   "page": 85
+  },
+  {
+   "ref": "2.40",
+   "field": "translation",
+   "from": "trans gression",
+   "to": "transgression",
+   "page": 87
+  },
+  {
+   "ref": "2.40",
+   "field": "translation",
+   "from": "knowledge + protects",
+   "to": "knowledge protects",
+   "page": 87
+  },
+  {
+   "ref": "2.42",
+   "field": "translation",
+   "from": "Vedas, Partha,",
+   "to": "Vedas, O Partha,",
+   "page": 88
+  },
+  {
+   "ref": "2.44",
+   "field": "translation",
+   "from": "steadily bent. '",
+   "to": "steadily bent.",
+   "page": 90
+  },
+  {
+   "ref": "2.45",
+   "field": "translation",
+   "from": "attributes: l. be thou",
+   "to": "attributes; be thou",
+   "page": 90
+  },
+  {
+   "ref": "2.46",
+   "field": "translation",
+   "from": "Brah mana",
+   "to": "Brahmana",
+   "page": 90
+  },
+  {
+   "ref": "2.47",
+   "field": "translation",
+   "from": "be thy , nor",
+   "to": "be thy motive, nor",
+   "page": 91
+  },
+  {
+   "ref": "2.48",
+   "field": "translation",
+   "from": "with the divine renouncing",
+   "to": "with the divine, renouncing",
+   "page": 91
+  },
+  {
+   "ref": "2.49",
+   "field": "translation",
+   "from": "Dhanañjay...",
+   "to": "Dhanañjaya.",
+   "page": 92
+  },
+  {
+   "ref": "2.50",
+   "field": "translation",
+   "from": "good and d evil",
+   "to": "good and evil",
+   "page": 92
+  },
+  {
+   "ref": "2.56",
+   "field": "translation",
+   "from": "in different",
+   "to": "indifferent",
+   "page": 95
+  },
+  {
+   "ref": "2.57",
+   "field": "translation",
+   "from": "what- ever",
+   "to": "whatever",
+   "page": 95
+  },
+  {
+   "ref": "2.59",
+   "field": "translation",
+   "from": "after the Supreme",
+   "to": "after the Supreme is seen.",
+   "page": 96
+  },
+  {
+   "ref": "2.63",
+   "field": "translation",
+   "from": "From anger proceeds delusion:",
+   "to": "From anger proceedeth delusion;",
+   "page": 98
+  },
+  {
+   "ref": "2.67",
+   "field": "translation",
+   "from": "upon the waters",
+   "to": "upon the waters.",
+   "page": 100
+  },
+  {
+   "ref": "2.69",
+   "field": "translation",
+   "from": "dis- ciplined",
+   "to": "disciplined",
+   "page": 101
+  },
+  {
+   "ref": "2.69",
+   "field": "translation",
+   "from": "who seeth. \"",
+   "to": "who seeth.",
+   "page": 101
+  },
+  {
+   "ref": "2.70",
+   "field": "translation",
+   "from": "unmoved-not he who desireth desires",
+   "to": "unmoved—not he who desireth desires.",
+   "page": 101
+  },
+  {
+   "ref": "2.71",
+   "field": "translation",
+   "from": "egoism-he",
+   "to": "egoism—he",
+   "page": 102
+  }
+ ],
+ "kept": [
+  {
+   "ref": "2.6",
+   "ours": "ः",
+   "page": 72,
+   "note": "The print ends the line at जिजीविषामः and begins the next with तेऽवस्थिताः, setting the visarga where the witnesses join the sandhi as जिजीविषामस्तेऽवस्थिताः."
+  },
+  {
+   "ref": "2.26",
+   "ours": "न",
+   "page": 81,
+   "note": "The print reads नैनं, and its gloss explains एनं, \"this\"; both witnesses read नैवं."
+  }
+ ]
+}
