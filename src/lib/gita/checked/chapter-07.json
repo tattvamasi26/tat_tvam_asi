@@ -1,0 +1,314 @@
+{
+ "chapter": 7,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  177,
+  178,
+  179,
+  180,
+  181,
+  182,
+  183,
+  184,
+  185,
+  186,
+  187,
+  188,
+  189
+ ],
+ "fixes": [
+  {
+   "ref": "7.2",
+   "field": "mula",
+   "from": "ज्ञान तेऽहं",
+   "to": "ज्ञानं तेऽहं",
+   "kind": "transcription",
+   "page": 177
+  },
+  {
+   "ref": "7.3",
+   "field": "mula",
+   "from": "सहस्त्रेषु",
+   "to": "सहस्रेषु",
+   "kind": "transcription",
+   "page": 178
+  },
+  {
+   "ref": "7.4",
+   "field": "translation",
+   "from": "Egoism. —these",
+   "to": "Egoism—these",
+   "page": 178
+  },
+  {
+   "ref": "7.8",
+   "field": "mula",
+   "from": "कौतेय",
+   "to": "कौंतेय",
+   "kind": "transcription",
+   "page": 179
+  },
+  {
+   "ref": "7.9",
+   "field": "mula",
+   "from": "जीवन सर्वभूतेषु",
+   "to": "जीवनं सर्वभूतेषु",
+   "kind": "transcription",
+   "page": 180
+  },
+  {
+   "ref": "7.10",
+   "field": "translation",
+   "from": "all beings . I am",
+   "to": "all beings. I am",
+   "page": 180
+  },
+  {
+   "ref": "7.10",
+   "field": "translation",
+   "from": "Reason-endoved",
+   "to": "Reason-endowed",
+   "page": 180
+  },
+  {
+   "ref": "7.11",
+   "field": "mula",
+   "from": "बल बलवतामस्मि",
+   "to": "बलं बलवतामस्मि",
+   "kind": "transcription",
+   "page": 181
+  },
+  {
+   "ref": "7.13",
+   "field": "mula",
+   "from": "मोहित नाभिजानाति",
+   "to": "मोहितं नाभिजानाति",
+   "kind": "misprint",
+   "page": 182,
+   "why": "The print drops the anusvāra; the gloss reads मोहितं."
+  },
+  {
+   "ref": "7.14",
+   "field": "mula",
+   "from": "ह्यैषा",
+   "to": "ह्येषा",
+   "kind": "transcription",
+   "page": 182
+  },
+  {
+   "ref": "7.15",
+   "field": "mula",
+   "from": "प्रपद्यते नराधमाः",
+   "to": "प्रपद्यंते नराधमाः",
+   "kind": "transcription",
+   "page": 182
+  },
+  {
+   "ref": "7.12",
+   "field": "translation",
+   "from": "slothful , these",
+   "to": "slothful, these",
+   "page": 181
+  },
+  {
+   "ref": "7.12",
+   "field": "translation",
+   "from": "they in Me",
+   "to": "they in Me.",
+   "page": 181
+  },
+  {
+   "ref": "7.14",
+   "field": "translation",
+   "from": "the qualities is hard",
+   "to": "the qualities, is hard",
+   "page": 182
+  },
+  {
+   "ref": "7.16",
+   "field": "mula",
+   "from": "ज्ञाना च भरतर्षभ",
+   "to": "ज्ञानी च भरतर्षभ",
+   "kind": "misprint",
+   "page": 183,
+   "why": "The print reads ज्ञाना; the gloss reads ज्ञानी."
+  },
+  {
+   "ref": "7.19",
+   "field": "mula",
+   "from": "ज्ञानवान्मा प्रपद्यते",
+   "to": "ज्ञानवान्मां प्रपद्यते",
+   "kind": "misprint",
+   "page": 184,
+   "why": "The print drops the anusvāra; the gloss reads मां."
+  },
+  {
+   "ref": "7.20",
+   "field": "mula",
+   "from": "कामैस्तैस्तैर्ह्रतज्ञानाः प्रपद्यतेऽन्यदेवताः",
+   "to": "कामैस्तैस्तैर्हृतज्ञानाः प्रपद्यंतेऽन्यदेवताः",
+   "kind": "transcription",
+   "page": 184
+  },
+  {
+   "ref": "7.16",
+   "field": "translation",
+   "from": "worship Me O Arjuna",
+   "to": "worship Me, O Arjuna",
+   "page": 183
+  },
+  {
+   "ref": "7.16",
+   "field": "translation",
+   "from": "know ledge",
+   "to": "knowledge",
+   "page": 183
+  },
+  {
+   "ref": "7.16",
+   "field": "translation",
+   "from": "of the Bharatas",
+   "to": "of the Bharatas.",
+   "page": 183
+  },
+  {
+   "ref": "7.17",
+   "field": "translation",
+   "from": "the wise constantly",
+   "to": "the wise, constantly",
+   "page": 183
+  },
+  {
+   "ref": "7.17",
+   "field": "translation",
+   "from": "worship ping",
+   "to": "worshipping",
+   "page": 183
+  },
+  {
+   "ref": "7.17",
+   "field": "translation",
+   "from": "dear to Me",
+   "to": "dear to Me.",
+   "page": 183
+  },
+  {
+   "ref": "7.19",
+   "field": "translation",
+   "from": "saith he. the",
+   "to": "saith he, the",
+   "page": 184
+  },
+  {
+   "ref": "7.20",
+   "field": "translation",
+   "from": "ex ternal",
+   "to": "external",
+   "page": 185
+  },
+  {
+   "ref": "7.20",
+   "field": "mula",
+   "from": "त त नियममास्थाय",
+   "to": "तं तं नियममास्थाय",
+   "kind": "transcription",
+   "page": 185
+  },
+  {
+   "ref": "7.21",
+   "field": "mula",
+   "from": "तनु भक्तः श्रद्धयाऽर्चतुमिच्छति",
+   "to": "तनुं भक्तः श्रद्धयाऽर्चितुमिच्छति",
+   "kind": "transcription",
+   "page": 185
+  },
+  {
+   "ref": "7.21",
+   "field": "mula",
+   "from": "तस्याचला श्रद्धां",
+   "to": "तस्याचलां श्रद्धां",
+   "kind": "misprint",
+   "page": 185,
+   "why": "The print drops the anusvāra; the gloss reads अचलां."
+  },
+  {
+   "ref": "7.23",
+   "field": "mula",
+   "from": "अतवत्त फल तेषां तद्भत्यल्पमेधसाम्",
+   "to": "अंतवत्तु फलं तेषां तद्भवत्यल्पमेधसाम्",
+   "kind": "transcription",
+   "page": 186
+  },
+  {
+   "ref": "7.23",
+   "field": "mula",
+   "from": "मद्भक्ता याति",
+   "to": "मद्भक्ता यांति",
+   "kind": "misprint",
+   "page": 186,
+   "why": "The print drops the anusvāra; the gloss reads यांति."
+  },
+  {
+   "ref": "7.24",
+   "field": "mula",
+   "from": "पर भावमजानंतो",
+   "to": "परं भावमजानंतो",
+   "kind": "transcription",
+   "page": 186
+  },
+  {
+   "ref": "7.23",
+   "field": "translation",
+   "from": "come unto Me",
+   "to": "come unto Me.",
+   "page": 186
+  },
+  {
+   "ref": "7.26",
+   "field": "mula",
+   "from": "भूतानि मा तु",
+   "to": "भूतानि मां तु",
+   "kind": "transcription",
+   "page": 187
+  },
+  {
+   "ref": "7.27",
+   "field": "mula",
+   "from": "दैवमोहन भारत",
+   "to": "द्वंद्वमोहेन भारत",
+   "kind": "transcription",
+   "page": 187
+  },
+  {
+   "ref": "7.27",
+   "field": "mula",
+   "from": "समोहं",
+   "to": "संमोहं",
+   "kind": "transcription",
+   "page": 187
+  },
+  {
+   "ref": "7.29",
+   "field": "mula",
+   "from": "यतंतेि ये",
+   "to": "यतंति ये",
+   "kind": "transcription",
+   "page": 188
+  },
+  {
+   "ref": "7.25",
+   "field": "translation",
+   "from": "the un- born",
+   "to": "the unborn",
+   "page": 187
+  }
+ ],
+ "kept": [
+  {
+   "ref": "7.11",
+   "ours": "मस्मि",
+   "page": 181,
+   "note": "The print reads बलवतामस्मि, and its gloss बलवताम् … अस्मि; both witnesses read बलवतां चाहं."
+  }
+ ]
+}
