@@ -30,6 +30,7 @@ export const ROUTES = [
   // The shortest chapter, and the one whose verse count is disputed.
   "/gita/12",
   "/gita/13",
+  "/gita/14",
   // A checked chapter with its verses, and a verse whose speaker line
   // stands in the middle of it.
   "/gita/1",

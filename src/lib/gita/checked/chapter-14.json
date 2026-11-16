@@ -1,0 +1,274 @@
+{
+ "chapter": 14,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  295,
+  296,
+  297,
+  298,
+  299,
+  300,
+  301,
+  302,
+  303,
+  304,
+  305,
+  306
+ ],
+ "fixes": [
+  {
+   "ref": "14.2",
+   "field": "mula",
+   "from": "नोपजायते",
+   "to": "नोपजायंते",
+   "kind": "transcription",
+   "page": 295
+  },
+  {
+   "ref": "14.4",
+   "field": "mula",
+   "from": "तासा ब्रह्म",
+   "to": "तासां ब्रह्म",
+   "kind": "misprint",
+   "page": 296,
+   "why": "The print drops the anusvāra; the gloss reads तासां."
+  },
+  {
+   "ref": "14.4",
+   "field": "translation",
+   "from": "are produced. O Kaunteya",
+   "to": "are produced, O Kaunteya",
+   "page": 296
+  },
+  {
+   "ref": "14.4",
+   "field": "translation",
+   "from": "generating father. .",
+   "to": "generating father.",
+   "page": 296
+  },
+  {
+   "ref": "14.5",
+   "field": "mula",
+   "from": "प्रकृतिसंभवाः ॥",
+   "to": "प्रकृतिसंभवाः ।",
+   "kind": "transcription",
+   "page": 296
+  },
+  {
+   "ref": "14.5",
+   "field": "mula",
+   "from": "निबंध्नति",
+   "to": "निबध्नंति",
+   "kind": "transcription",
+   "page": 296
+  },
+  {
+   "ref": "14.5",
+   "field": "translation",
+   "from": "Harmony Movility, Inertia",
+   "to": "Harmony, Mobility, Inertia",
+   "page": 296
+  },
+  {
+   "ref": "14.9",
+   "field": "translation",
+   "from": "at- tacheth",
+   "to": "attacheth",
+   "page": 298
+  },
+  {
+   "ref": "14.10",
+   "field": "mula",
+   "from": "रजस्तमश्वाभिभूय",
+   "to": "रजस्तमश्चाभिभूय",
+   "kind": "transcription",
+   "page": 298
+  },
+  {
+   "ref": "14.10",
+   "field": "translation",
+   "from": "havingoverpowered Mob- ility",
+   "to": "having overpowered Mobility",
+   "page": 299
+  },
+  {
+   "ref": "14.10",
+   "field": "translation",
+   "from": "having over- powered",
+   "to": "having overpowered",
+   "page": 299
+  },
+  {
+   "ref": "14.12",
+   "field": "translation",
+   "from": "desire-these",
+   "to": "desire—these",
+   "page": 299
+  },
+  {
+   "ref": "14.12",
+   "field": "translation",
+   "from": "Bharatas. .",
+   "to": "Bharatas.",
+   "page": 299
+  },
+  {
+   "ref": "14.13",
+   "field": "mula",
+   "from": "तमस्येतानि जायते",
+   "to": "तमस्येतानि जायंते",
+   "kind": "transcription",
+   "page": 300
+  },
+  {
+   "ref": "14.13",
+   "field": "translation",
+   "from": "delusion-these",
+   "to": "delusion—these",
+   "page": 300
+  },
+  {
+   "ref": "14.14",
+   "field": "mula",
+   "from": "तदोत्तमविदा लोकान",
+   "to": "तदोत्तमविदां लोकान",
+   "kind": "misprint",
+   "page": 300,
+   "why": "The print drops the anusvāra; the gloss reads उत्तमविदाम्."
+  },
+  {
+   "ref": "14.15",
+   "field": "mula",
+   "from": "मुढयोनिषु",
+   "to": "मूढयोनिषु",
+   "kind": "misprint",
+   "page": 301,
+   "why": "The print sets मुढ with a short u; the gloss reads मूढयोनिषु."
+  },
+  {
+   "ref": "14.15",
+   "field": "translation",
+   "from": "the senseless. (",
+   "to": "the senseless.",
+   "page": 301
+  },
+  {
+   "ref": "14.17",
+   "field": "translation",
+   "from": "Mobilitv",
+   "to": "Mobility",
+   "page": 301
+  },
+  {
+   "ref": "14.18",
+   "field": "mula",
+   "from": "ऊर्ध्व गच्छंति",
+   "to": "ऊर्ध्वं गच्छंति",
+   "kind": "transcription",
+   "page": 302
+  },
+  {
+   "ref": "14.18",
+   "field": "mula",
+   "from": "मध्ये तिष्ठति राजसाः",
+   "to": "मध्ये तिष्ठंति राजसाः",
+   "kind": "transcription",
+   "page": 302
+  },
+  {
+   "ref": "14.19",
+   "field": "translation",
+   "from": "My nature. .",
+   "to": "My nature.",
+   "page": 302
+  },
+  {
+   "ref": "14.21",
+   "field": "mula",
+   "from": "बरादुःखैः",
+   "to": "अर्जुन उवाच ।",
+   "kind": "transcription",
+   "page": 303
+  },
+  {
+   "ref": "14.21",
+   "field": "mula",
+   "from": "कैलिँगैस्त्रीन्",
+   "to": "कैर्लिंगैस्त्रीन्",
+   "kind": "transcription",
+   "page": 303
+  },
+  {
+   "ref": "14.22",
+   "field": "mula",
+   "from": "मोहमेव च पा्वेष्डव",
+   "to": "मोहमेव च पांडव",
+   "kind": "misprint",
+   "page": 304,
+   "why": "The print reads पाडव, dropping the anusvāra; the gloss reads पांडव."
+  },
+  {
+   "ref": "14.22",
+   "field": "mula",
+   "from": "न दृष्टि संप्रवृत्तानि",
+   "to": "न द्वेष्टि संप्रवृत्तानि",
+   "kind": "transcription",
+   "page": 304
+  },
+  {
+   "ref": "14.23",
+   "field": "mula",
+   "from": "गुणा वर्तत इत्येव",
+   "to": "गुणा वर्तंत इत्येव",
+   "kind": "misprint",
+   "page": 304,
+   "why": "The print reads वर्तत, dropping the anusvāra; the gloss reads वर्तंते."
+  },
+  {
+   "ref": "14.24",
+   "field": "mula",
+   "from": "समलोष्टाश्मकाचनः",
+   "to": "समलोष्टाश्मकांचनः",
+   "kind": "misprint",
+   "page": 304,
+   "why": "The print drops the anusvāra; the gloss reads कांचनं."
+  },
+  {
+   "ref": "14.24",
+   "field": "translation",
+   "from": "(259) Balanced",
+   "to": "Balanced",
+   "page": 305
+  },
+  {
+   "ref": "14.24",
+   "field": "translation",
+   "from": "a lump.of earth",
+   "to": "a lump of earth",
+   "page": 305
+  },
+  {
+   "ref": "14.25",
+   "field": "translation",
+   "from": "undertakings-he",
+   "to": "undertakings—he",
+   "page": 305
+  },
+  {
+   "ref": "14.26",
+   "field": "translation",
+   "from": "mAnd he who",
+   "to": "And he who",
+   "page": 305
+  }
+ ],
+ "kept": [
+  {
+   "ref": "14.6",
+   "ours": "यो",
+   "page": 297,
+   "note": "The print reads सुखसंयोगेन, and its gloss सुखसंगेन; both witnesses read सुखसङ्गेन."
+  }
+ ]
+}
