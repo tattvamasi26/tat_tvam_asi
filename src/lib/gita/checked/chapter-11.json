@@ -1,0 +1,531 @@
+{
+ "chapter": 11,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  238,
+  239,
+  240,
+  241,
+  242,
+  243,
+  244,
+  245,
+  246,
+  247,
+  248,
+  249,
+  250,
+  251,
+  252,
+  253,
+  254,
+  255,
+  256,
+  257,
+  258,
+  259,
+  260,
+  261,
+  262,
+  263,
+  264,
+  265,
+  266,
+  267,
+  268,
+  269,
+  270
+ ],
+ "fixes": [
+  {
+   "ref": "11.4",
+   "field": "mula",
+   "from": "तच्छ्क्यं",
+   "to": "तच्छक्यं",
+   "kind": "transcription",
+   "page": 239
+  },
+  {
+   "ref": "11.3",
+   "field": "translation",
+   "from": "Form omnipotent",
+   "to": "Form omnipotent.",
+   "page": 239
+  },
+  {
+   "ref": "11.7",
+   "field": "mula",
+   "from": "यच्चान्यद्दष्टुमिच्छसि",
+   "to": "यच्चान्यद्द्रष्टुमिच्छसि",
+   "kind": "transcription",
+   "page": 240
+  },
+  {
+   "ref": "11.8",
+   "field": "mula",
+   "from": "न तु मा शक्यसे",
+   "to": "न तु मां शक्यसे",
+   "kind": "misprint",
+   "page": 241,
+   "why": "The print drops the anusvāra; the gloss reads मां."
+  },
+  {
+   "ref": "11.11",
+   "field": "mula",
+   "from": "दिव्यमाल्याबरधरं",
+   "to": "दिव्यमाल्यांबरधरं",
+   "kind": "misprint",
+   "page": 242,
+   "why": "The print drops the anusvāra; the gloss reads दिव्यमाल्यांबरधरं."
+  },
+  {
+   "ref": "11.13",
+   "field": "mula",
+   "from": "अपश्यदेवदेवस्य",
+   "to": "अपश्यद्देवदेवस्य",
+   "kind": "transcription",
+   "page": 243
+  },
+  {
+   "ref": "11.14",
+   "field": "mula",
+   "from": "हष्टरोमा",
+   "to": "हृष्टरोमा",
+   "kind": "transcription",
+   "page": 243
+  },
+  {
+   "ref": "11.15",
+   "field": "mula",
+   "from": "पश्यामि देवास्तव",
+   "to": "पश्यामि देवांस्तव",
+   "kind": "misprint",
+   "page": 244,
+   "why": "The print drops the anusvāra; the gloss reads देवान्."
+  },
+  {
+   "ref": "11.15",
+   "field": "mula",
+   "from": "मृषीश्च सर्वानुरगांश्च",
+   "to": "मृषींश्च सर्वानुरगांश्च",
+   "kind": "transcription",
+   "page": 244
+  },
+  {
+   "ref": "11.16",
+   "field": "mula",
+   "from": "पश्यामि त्वा सर्वतोऽनंतरूपम्",
+   "to": "पश्यामि त्वां सर्वतोऽनंतरूपम्",
+   "kind": "misprint",
+   "page": 244,
+   "why": "The print drops the anusvāra; the gloss reads त्वां."
+  },
+  {
+   "ref": "11.16",
+   "field": "translation",
+   "from": "multitudinous, lot I see Thee every where",
+   "to": "multitudinous, I see Thee everywhere",
+   "page": 245
+  },
+  {
+   "ref": "11.16",
+   "field": "translation",
+   "from": "middle. end",
+   "to": "middle, end",
+   "page": 245
+  },
+  {
+   "ref": "11.16",
+   "field": "mula",
+   "from": "पुनस्तवादि",
+   "to": "पुनस्तवादिं",
+   "kind": "transcription",
+   "page": 245
+  },
+  {
+   "ref": "11.19",
+   "field": "mula",
+   "from": "अनादिमध्यातमनंतवीर्य",
+   "to": "अनादिमध्यांतमनंतवीर्य",
+   "kind": "misprint",
+   "page": 246,
+   "why": "The print drops the anusvāra; the gloss reads अनादिमध्यांतम्."
+  },
+  {
+   "ref": "11.20",
+   "field": "mula",
+   "from": "रिदमंतर हि",
+   "to": "रिदमंतरं हि",
+   "kind": "transcription",
+   "page": 247
+  },
+  {
+   "ref": "11.20",
+   "field": "translation",
+   "from": "O mighty One, ,",
+   "to": "O mighty One,",
+   "page": 247
+  },
+  {
+   "ref": "11.21",
+   "field": "mula",
+   "from": "प्राजलयो गृणंंति",
+   "to": "प्रांजलयो गृणंति",
+   "kind": "misprint",
+   "page": 248,
+   "why": "The print reads प्राजलयो, dropping the anusvāra; the gloss reads प्रांजलयः. The doubled anusvāra of गृणंति is the transcription's."
+  },
+  {
+   "ref": "11.21",
+   "field": "mula",
+   "from": "(0) स्तुवंति त्वा",
+   "to": "स्तुवंति त्वां",
+   "kind": "transcription",
+   "page": 248
+  },
+  {
+   "ref": "11.21",
+   "field": "translation",
+   "from": "Siddhas,\" Svasti !\" cry",
+   "to": "Siddhas, “Svasti!” cry",
+   "page": 248
+  },
+  {
+   "ref": "11.23",
+   "field": "translation",
+   "from": "innumerate, ,",
+   "to": "innumerate,",
+   "page": 249
+  },
+  {
+   "ref": "11.24",
+   "field": "mula",
+   "from": "दीप्तमनेकवर्ण",
+   "to": "दीप्तमनेकवर्णं",
+   "kind": "transcription",
+   "page": 250
+  },
+  {
+   "ref": "11.24",
+   "field": "mula",
+   "from": "दृष्ट्वा हि त्वा प्रव्यथितातरात्मा",
+   "to": "दृष्ट्वा हि त्वां प्रव्यथितांतरात्मा",
+   "kind": "misprint",
+   "page": 250,
+   "why": "The print drops both anusvāras; the gloss reads त्वां and प्रव्यथितांतरात्मा."
+  },
+  {
+   "ref": "11.26",
+   "field": "translation",
+   "from": "of our hosts.",
+   "to": "of our hosts,",
+   "page": 251
+  },
+  {
+   "ref": "11.28",
+   "field": "mula",
+   "from": "यथा नदीना बहवोऽबुवेगा:",
+   "to": "यथा नदीनां बहवोऽंबुवेगाः",
+   "kind": "misprint",
+   "page": 252,
+   "why": "The print drops both anusvāras; the gloss reads नदीनाम् and अम्बुवेगाः."
+  },
+  {
+   "ref": "11.29",
+   "field": "mula",
+   "from": "समृद्धवेगाः .",
+   "to": "समृद्धवेगाः ।",
+   "kind": "transcription",
+   "page": 253
+  },
+  {
+   "ref": "11.28",
+   "field": "translation",
+   "from": "flaming mouths, ,",
+   "to": "flaming mouths,",
+   "page": 253
+  },
+  {
+   "ref": "11.30",
+   "field": "mula",
+   "from": "लेलियसे",
+   "to": "लेलिह्यसे",
+   "kind": "transcription",
+   "page": 254
+  },
+  {
+   "ref": "11.30",
+   "field": "mula",
+   "from": "( तेजोभिरापूर्य",
+   "to": "तेजोभिरापूर्य",
+   "kind": "transcription",
+   "page": 254
+  },
+  {
+   "ref": "11.32",
+   "field": "mula",
+   "from": "न भविष्यति सर्वे",
+   "to": "न भविष्यंति सर्वे",
+   "kind": "transcription",
+   "page": 255
+  },
+  {
+   "ref": "11.33",
+   "field": "mula",
+   "from": "शत्रून्भुक्ष्व",
+   "to": "शत्रून्भुंक्ष्व",
+   "kind": "misprint",
+   "page": 256,
+   "why": "The print drops the anusvāra; the gloss reads भुंक्ष्व."
+  },
+  {
+   "ref": "11.34",
+   "field": "mula",
+   "from": "कर्ण तथाऽन्यानपि",
+   "to": "कर्णं तथाऽन्यानपि",
+   "kind": "misprint",
+   "page": 256,
+   "why": "The print drops the anusvāra; the gloss reads कर्णं."
+  },
+  {
+   "ref": "11.34",
+   "field": "mula",
+   "from": "युद्यस्व जेतासि",
+   "to": "युद्ध्यस्व जेतासि",
+   "kind": "transcription",
+   "page": 256
+  },
+  {
+   "ref": "11.35",
+   "field": "mula",
+   "from": "सगद्गद भीतभीतः",
+   "to": "सगद्गदं भीतभीतः",
+   "kind": "transcription",
+   "page": 257
+  },
+  {
+   "ref": "11.35",
+   "field": "translation",
+   "from": "pros. trating",
+   "to": "prostrating",
+   "page": 257
+  },
+  {
+   "ref": "11.34",
+   "field": "translation",
+   "from": "Destroy then fearlessly Fight !",
+   "to": "Destroy then fearlessly. Fight!",
+   "page": 257
+  },
+  {
+   "ref": "11.37",
+   "field": "translation",
+   "from": "Himself less great than Thou.",
+   "to": "Himself less great than Thou!",
+   "page": 259
+  },
+  {
+   "ref": "11.39",
+   "field": "mula",
+   "from": "यमोऽग्निवरुणः",
+   "to": "यमोऽग्निर्वरुणः",
+   "kind": "transcription",
+   "page": 260
+  },
+  {
+   "ref": "11.43",
+   "field": "mula",
+   "from": "त्वत्समोऽस्त्यम्यधिकः",
+   "to": "त्वत्समोऽस्त्यभ्यधिकः",
+   "kind": "misprint",
+   "page": 262,
+   "why": "The print sets म्य for भ्य; the gloss on page 263 reads अभ्यधिकः."
+  },
+  {
+   "ref": "11.44",
+   "field": "mula",
+   "from": "देव सोदुम्",
+   "to": "देव सोढुम्",
+   "kind": "transcription",
+   "page": 263
+  },
+  {
+   "ref": "11.45",
+   "field": "mula",
+   "from": "देव रूप",
+   "to": "देव रूपं",
+   "kind": "transcription",
+   "page": 263
+  },
+  {
+   "ref": "11.43",
+   "field": "translation",
+   "from": "Guru's self, ,",
+   "to": "Guru's self,",
+   "page": 262
+  },
+  {
+   "ref": "11.45",
+   "field": "translation",
+   "from": "seen before, ,",
+   "to": "seen before,",
+   "page": 263
+  },
+  {
+   "ref": "11.47",
+   "field": "mula",
+   "from": "विश्वमनंतमादयं",
+   "to": "विश्वमनंतमाद्यं",
+   "kind": "transcription",
+   "page": 265
+  },
+  {
+   "ref": "11.48",
+   "field": "mula",
+   "from": "र्न वेदयज्ञाध्ययनैर्न दानै-",
+   "to": "न वेदयज्ञाध्ययनैर्न दानै-",
+   "kind": "transcription",
+   "page": 265
+  },
+  {
+   "ref": "11.48",
+   "field": "mula",
+   "from": "न च क्रियाभिर्न",
+   "to": "र्न च क्रियाभिर्न",
+   "kind": "transcription",
+   "page": 265
+  },
+  {
+   "ref": "11.48",
+   "field": "translation",
+   "from": "alms nor works, ,",
+   "to": "alms nor works,",
+   "page": 265
+  },
+  {
+   "ref": "11.48",
+   "field": "translation",
+   "from": "for man. . Foremost",
+   "to": "for man. Foremost",
+   "page": 266
+  },
+  {
+   "ref": "11.51",
+   "field": "mula",
+   "from": "दृष्टुेदं",
+   "to": "दृष्ट्वेदं",
+   "kind": "transcription",
+   "page": 267
+  },
+  {
+   "ref": "11.51",
+   "field": "mula",
+   "from": "प्रकृतिं गतः ॥५॥",
+   "to": "प्रकृतिं गतः ॥५१॥",
+   "kind": "transcription",
+   "page": 267
+  },
+  {
+   "ref": "11.51",
+   "field": "translation",
+   "from": "Janar. dana",
+   "to": "Janardana",
+   "page": 267
+  },
+  {
+   "ref": "11.52",
+   "field": "mula",
+   "from": "दृष्टवानसिं यन्मम",
+   "to": "दृष्टवानसि यन्मम",
+   "kind": "misprint",
+   "page": 268,
+   "why": "A stray dot stands over सि in the print; the gloss reads असि."
+  },
+  {
+   "ref": "11.52",
+   "field": "mula",
+   "from": "दर्शनकाक्षिणः",
+   "to": "दर्शनकांक्षिणः",
+   "kind": "transcription",
+   "page": 268
+  },
+  {
+   "ref": "11.53",
+   "field": "mula",
+   "from": "दृष्टवानसि मा यथा",
+   "to": "दृष्टवानसि मां यथा",
+   "kind": "transcription",
+   "page": 268
+  },
+  {
+   "ref": "11.54",
+   "field": "translation",
+   "from": "I may be per- ceived",
+   "to": "I may thus be perceived",
+   "page": 269
+  },
+  {
+   "ref": "11.54",
+   "field": "translation",
+   "from": "and en tered, O Parantapa. .",
+   "to": "and entered, O Parantapa.",
+   "page": 269
+  }
+ ],
+ "kept": [
+  {
+   "ref": "11.10",
+   "ours": "",
+   "page": 242,
+   "note": "The print sets अनेकवक्रनयनम्, and its gloss reads वक्राणि; both witnesses read वक्त्र."
+  },
+  {
+   "ref": "11.16",
+   "ours": "",
+   "page": 244,
+   "note": "The print sets अनेकबाहूदरवक्रनेत्रं, and its gloss reads वक्राणि; both witnesses read वक्त्र."
+  },
+  {
+   "ref": "11.16",
+   "ours": "ं",
+   "page": 245,
+   "note": "The print reads विश्वरूपम्, and its gloss विश्वरूपं; both witnesses read the vocative विश्वरूप."
+  },
+  {
+   "ref": "11.19",
+   "ours": "",
+   "page": 246,
+   "note": "The print sets दीप्तहुताशवक्रं, and its gloss वक्रं; both witnesses read वक्त्र."
+  },
+  {
+   "ref": "11.23",
+   "ours": "",
+   "page": 249,
+   "note": "The print sets बहुवक्रनेत्रं, and its gloss वक्राणि; both witnesses read वक्त्र."
+  },
+  {
+   "ref": "11.28",
+   "ours": "",
+   "page": 253,
+   "note": "The print reads समुद्रमेवाभिमुखा द्रवंति, and its gloss अभिमुखाः; the witnesses disagree with each other here."
+  },
+  {
+   "ref": "11.29",
+   "ours": "",
+   "page": 253,
+   "note": "The print sets वक्राणि, and its gloss वक्राणि; both witnesses read वक्त्राणि."
+  },
+  {
+   "ref": "11.34",
+   "ours": "द्",
+   "page": 256,
+   "note": "The print reads युद्ध्यस्व, as at 3.30, and its gloss the same; both witnesses read युध्यस्व."
+  },
+  {
+   "ref": "11.43",
+   "ours": "ः",
+   "page": 262,
+   "note": "The print ends लोकत्रयेऽप्यप्रतिमप्रभावः with a visarga, and its gloss reads प्रभावः; one witness drops it."
+  }
+ ]
+}
