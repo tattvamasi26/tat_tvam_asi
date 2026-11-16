@@ -1,0 +1,234 @@
+{
+ "chapter": 10,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  220,
+  221,
+  222,
+  223,
+  224,
+  225,
+  226,
+  227,
+  228,
+  229,
+  230,
+  231,
+  232,
+  233,
+  234,
+  235,
+  236,
+  237
+ ],
+ "fixes": [
+  {
+   "ref": "10.2",
+   "field": "translation",
+   "from": "begin- ning",
+   "to": "beginning",
+   "page": 220
+  },
+  {
+   "ref": "10.4",
+   "field": "translation",
+   "from": "non- existence",
+   "to": "non-existence",
+   "page": 221
+  },
+  {
+   "ref": "10.4",
+   "field": "translation",
+   "from": "also courage.",
+   "to": "also courage,",
+   "page": 221
+  },
+  {
+   "ref": "10.5",
+   "field": "translation",
+   "from": "alms- giving",
+   "to": "almsgiving",
+   "page": 221
+  },
+  {
+   "ref": "10.7",
+   "field": "mula",
+   "from": "एतां विभूति योगं",
+   "to": "एतां विभूतिं योगं",
+   "kind": "transcription",
+   "page": 222
+  },
+  {
+   "ref": "10.8",
+   "field": "mula",
+   "from": "मत्तः सर्व प्रवर्तते",
+   "to": "मत्तः सर्वं प्रवर्तते",
+   "kind": "transcription",
+   "page": 223
+  },
+  {
+   "ref": "10.8",
+   "field": "mula",
+   "from": "इति मत्वा भजते मां",
+   "to": "इति मत्वा भजंते मां",
+   "kind": "transcription",
+   "page": 223
+  },
+  {
+   "ref": "10.9",
+   "field": "mula",
+   "from": "च रमति च",
+   "to": "च रमंति च",
+   "kind": "transcription",
+   "page": 223
+  },
+  {
+   "ref": "10.10",
+   "field": "mula",
+   "from": "सततयुक्ताना भजता प्रीतिपूर्वकम्",
+   "to": "सततयुक्तानां भजतां प्रीतिपूर्वकम्",
+   "kind": "misprint",
+   "page": 223,
+   "why": "The print drops both anusvāras; the gloss on page 224 reads युक्तानां and भजतां."
+  },
+  {
+   "ref": "10.13",
+   "field": "translation",
+   "from": "as also. the divine Rishi. Narada",
+   "to": "as also the divine Rishi, Narada",
+   "page": 225
+  },
+  {
+   "ref": "10.17",
+   "field": "mula",
+   "from": "योगिस्त्वां",
+   "to": "योगिंस्त्वां",
+   "kind": "transcription",
+   "page": 226
+  },
+  {
+   "ref": "10.21",
+   "field": "mula",
+   "from": "विष्णुज्योतिषा",
+   "to": "विष्णुर्ज्योतिषां",
+   "kind": "misprint",
+   "page": 228,
+   "why": "The print drops the anusvāra of ज्योतिषां, which the gloss reads ज्योतिषाम्; the transcription also dropped the repha the print has."
+  },
+  {
+   "ref": "10.22",
+   "field": "mula",
+   "from": "मनश्वास्मि",
+   "to": "मनश्चास्मि",
+   "kind": "transcription",
+   "page": 229
+  },
+  {
+   "ref": "10.23",
+   "field": "mula",
+   "from": "पावकश्वास्मि",
+   "to": "पावकश्चास्मि",
+   "kind": "transcription",
+   "page": 229
+  },
+  {
+   "ref": "10.21",
+   "field": "translation",
+   "from": "the Moon am i.",
+   "to": "the Moon am I.",
+   "page": 228
+  },
+  {
+   "ref": "10.25",
+   "field": "translation",
+   "from": "repeti- tions",
+   "to": "repetitions",
+   "page": 230
+  },
+  {
+   "ref": "10.28",
+   "field": "translation",
+   "from": "progenitors ;' of",
+   "to": "progenitors; of",
+   "page": 231
+  },
+  {
+   "ref": "10.29",
+   "field": "translation",
+   "from": "sea-dwell. ers",
+   "to": "sea-dwellers",
+   "page": 231
+  },
+  {
+   "ref": "10.31",
+   "field": "mula",
+   "from": "मकरश्वास्मि",
+   "to": "मकरश्चास्मि",
+   "kind": "transcription",
+   "page": 232
+  },
+  {
+   "ref": "10.30",
+   "field": "translation",
+   "from": "Vaina- teya",
+   "to": "Vainateya",
+   "page": 232
+  },
+  {
+   "ref": "10.33",
+   "field": "translation",
+   "from": "compounds;' I also",
+   "to": "compounds; I also",
+   "page": 233
+  },
+  {
+   "ref": "10.34",
+   "field": "mula",
+   "from": "सर्वहरश्वाहमुद्भवश्व",
+   "to": "सर्वहरश्चाहमुद्भवश्च",
+   "kind": "transcription",
+   "page": 234
+  },
+  {
+   "ref": "10.34",
+   "field": "mula",
+   "from": "श्रीवाक्च",
+   "to": "श्रीर्वाक्च",
+   "kind": "transcription",
+   "page": 234
+  },
+  {
+   "ref": "10.35",
+   "field": "translation",
+   "from": "Brihatsåman",
+   "to": "Brihatsaman",
+   "page": 234
+  },
+  {
+   "ref": "10.39",
+   "field": "mula",
+   "from": "सर्वभूताना बीजं",
+   "to": "सर्वभूतानां बीजं",
+   "kind": "misprint",
+   "page": 236,
+   "why": "The print drops the anusvāra; the gloss reads सर्वभूतानां."
+  },
+  {
+   "ref": "10.40",
+   "field": "mula",
+   "from": "विभूतीना परंतप",
+   "to": "विभूतीनां परंतप",
+   "kind": "misprint",
+   "page": 236,
+   "why": "The print drops the anusvāra; the gloss reads विभूतीनां."
+  },
+  {
+   "ref": "10.41",
+   "field": "translation",
+   "from": "and mighty, , understand",
+   "to": "and mighty, understand",
+   "page": 236
+  }
+ ],
+ "kept": []
+}
