@@ -1,0 +1,432 @@
+{
+ "chapter": 6,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  156,
+  157,
+  158,
+  159,
+  160,
+  161,
+  162,
+  163,
+  164,
+  165,
+  166,
+  167,
+  168,
+  169,
+  170,
+  171,
+  172,
+  173,
+  174,
+  175,
+  176
+ ],
+ "fixes": [
+  {
+   "ref": "6.1",
+   "field": "mula",
+   "from": "स सन्यासि च",
+   "to": "स संन्यासी च",
+   "kind": "transcription",
+   "page": 156
+  },
+  {
+   "ref": "6.2",
+   "field": "mula",
+   "from": "विद्धि पाडव",
+   "to": "विद्धि पांडव",
+   "kind": "misprint",
+   "page": 156,
+   "why": "The print drops the anusvāra; the gloss reads पांडव."
+  },
+  {
+   "ref": "6.2",
+   "field": "mula",
+   "from": "ह्यसंन्यस्तसंकल्यो",
+   "to": "ह्यसंन्यस्तसंकल्पो",
+   "kind": "transcription",
+   "page": 156
+  },
+  {
+   "ref": "6.3",
+   "field": "mula",
+   "from": "मुनेयोगं",
+   "to": "मुनेर्योगं",
+   "kind": "transcription",
+   "page": 157
+  },
+  {
+   "ref": "6.1",
+   "field": "translation",
+   "from": "ind. ependently",
+   "to": "independently",
+   "page": 156
+  },
+  {
+   "ref": "6.3",
+   "field": "translation",
+   "from": "the means ,",
+   "to": "the means,",
+   "page": 157
+  },
+  {
+   "ref": "6.4",
+   "field": "translation",
+   "from": "when a man",
+   "to": "When a man",
+   "page": 157
+  },
+  {
+   "ref": "6.4",
+   "field": "translation",
+   "from": "forma- tive",
+   "to": "formative",
+   "page": 157
+  },
+  {
+   "ref": "6.7",
+   "field": "mula",
+   "from": "प्रशातस्य",
+   "to": "प्रशांतस्य",
+   "kind": "misprint",
+   "page": 158,
+   "why": "The print drops the anusvāra; the gloss reads प्रशांतस्य."
+  },
+  {
+   "ref": "6.7",
+   "field": "mula",
+   "from": "सुखदुःखषु",
+   "to": "सुखदुःखेषु",
+   "kind": "transcription",
+   "page": 158
+  },
+  {
+   "ref": "6.8",
+   "field": "translation",
+   "from": "with , wisdom and know ledge",
+   "to": "with wisdom and knowledge",
+   "page": 159
+  },
+  {
+   "ref": "6.11",
+   "field": "mula",
+   "from": "नात्युच्छूितं",
+   "to": "नात्युच्छ्रितं",
+   "kind": "transcription",
+   "page": 160
+  },
+  {
+   "ref": "6.12",
+   "field": "mula",
+   "from": "उपवेश्यासने",
+   "to": "उपविश्यासने",
+   "kind": "transcription",
+   "page": 161
+  },
+  {
+   "ref": "6.10",
+   "field": "translation",
+   "from": "hope and greed!",
+   "to": "hope and greed.",
+   "page": 160
+  },
+  {
+   "ref": "6.11",
+   "field": "translation",
+   "from": "a pure, place",
+   "to": "a pure place",
+   "page": 160
+  },
+  {
+   "ref": "6.12",
+   "field": "translation",
+   "from": "steady on his seat should",
+   "to": "steady on his seat, he should",
+   "page": 161
+  },
+  {
+   "ref": "6.15",
+   "field": "mula",
+   "from": "युजन्नेव सदाऽऽत्मानं",
+   "to": "युंजन्नेवं सदाऽऽत्मानं",
+   "kind": "transcription",
+   "page": 162
+  },
+  {
+   "ref": "6.16",
+   "field": "mula",
+   "from": "चातिस्वप्तशीलस्य",
+   "to": "चातिस्वप्नशीलस्य",
+   "kind": "transcription",
+   "page": 163
+  },
+  {
+   "ref": "6.14",
+   "field": "translation",
+   "from": "aspiring after Me",
+   "to": "aspiring after Me.",
+   "page": 162
+  },
+  {
+   "ref": "6.15",
+   "field": "translation",
+   "from": "abideth in Me",
+   "to": "abideth in Me.",
+   "page": 162
+  },
+  {
+   "ref": "6.16",
+   "field": "translation",
+   "from": "abstainneth",
+   "to": "abstaineth",
+   "page": 163
+  },
+  {
+   "ref": "6.16",
+   "field": "translation",
+   "from": "wakefulness O Arjuna .",
+   "to": "wakefulness, O Arjuna.",
+   "page": 163
+  },
+  {
+   "ref": "6.17",
+   "field": "translation",
+   "from": "actionsregulated",
+   "to": "actions, regulated",
+   "page": 163
+  },
+  {
+   "ref": "6.19",
+   "field": "mula",
+   "from": "यतचितस्य",
+   "to": "यतचित्तस्य",
+   "kind": "transcription",
+   "page": 164
+  },
+  {
+   "ref": "6.21",
+   "field": "mula",
+   "from": "वेति यत्र",
+   "to": "वेत्ति यत्र",
+   "kind": "transcription",
+   "page": 165
+  },
+  {
+   "ref": "6.20",
+   "field": "translation",
+   "from": "is satisfied (2O )",
+   "to": "is satisfied;",
+   "page": 165
+  },
+  {
+   "ref": "6.21",
+   "field": "translation",
+   "from": "estab lised",
+   "to": "establised",
+   "page": 165
+  },
+  {
+   "ref": "6.22",
+   "field": "translation",
+   "from": "herein established",
+   "to": "wherein established",
+   "page": 165
+  },
+  {
+   "ref": "6.22",
+   "field": "translation",
+   "from": "heavy sorrow",
+   "to": "heavy sorrow;",
+   "page": 165
+  },
+  {
+   "ref": "6.24",
+   "field": "mula",
+   "from": "कामास्त्यक्त्वा",
+   "to": "कामांस्त्यक्त्वा",
+   "kind": "transcription",
+   "page": 166
+  },
+  {
+   "ref": "6.23",
+   "field": "translation",
+   "from": "with understanding mind .",
+   "to": "with undesponding mind.",
+   "page": 166
+  },
+  {
+   "ref": "6.25",
+   "field": "translation",
+   "from": "the SELF. let",
+   "to": "the SELF, let",
+   "page": 167
+  },
+  {
+   "ref": "6.29",
+   "field": "mula",
+   "from": "समदृर्शनः",
+   "to": "समदर्शनः",
+   "kind": "transcription",
+   "page": 168
+  },
+  {
+   "ref": "6.30",
+   "field": "mula",
+   "from": "यो मा पश्यति",
+   "to": "यो मां पश्यति",
+   "kind": "misprint",
+   "page": 169,
+   "why": "The print drops the anusvāra; the gloss reads मां."
+  },
+  {
+   "ref": "6.31",
+   "field": "mula",
+   "from": "सर्वभूतरस्थितं यो मा",
+   "to": "सर्वभूतस्थितं यो मां",
+   "kind": "misprint",
+   "page": 169,
+   "why": "The print drops the anusvāra of मां, which the gloss reads; the र in the transcription is not in the print."
+  },
+  {
+   "ref": "6.28",
+   "field": "translation",
+   "from": "the self. hath",
+   "to": "the self, hath",
+   "page": 168
+  },
+  {
+   "ref": "6.28",
+   "field": "translation",
+   "from": "with the ETERNAL",
+   "to": "with the ETERNAL.",
+   "page": 168
+  },
+  {
+   "ref": "6.29",
+   "field": "translation",
+   "from": "every- where",
+   "to": "everywhere",
+   "page": 168
+  },
+  {
+   "ref": "6.36",
+   "field": "mula",
+   "from": "शक्याऽवाप्तुमुपायतः",
+   "to": "शक्योऽवाप्तुमुपायतः",
+   "kind": "transcription",
+   "page": 171
+  },
+  {
+   "ref": "6.33",
+   "field": "translation",
+   "from": "founda• tion",
+   "to": "foundation",
+   "page": 170
+  },
+  {
+   "ref": "6.35",
+   "field": "translation",
+   "from": "and restless ,",
+   "to": "and restless;",
+   "page": 171
+  },
+  {
+   "ref": "6.36",
+   "field": "translation",
+   "from": "me thinks",
+   "to": "methinks",
+   "page": 171
+  },
+  {
+   "ref": "6.37",
+   "field": "mula",
+   "from": "योगसंसिद्धि का गतिं",
+   "to": "योगसंसिद्धिं कां गतिं",
+   "kind": "misprint",
+   "page": 172,
+   "why": "The print reads योगसंसिद्धिं का, setting का raised and without its anusvāra; the gloss reads कां."
+  },
+  {
+   "ref": "6.37",
+   "field": "translation",
+   "from": "O Krishna ? अ-",
+   "to": "O Krishna?",
+   "page": 172
+  },
+  {
+   "ref": "6.41",
+   "field": "mula",
+   "from": "पुण्यकृताँलोकानुषित्वा",
+   "to": "पुण्यकृताँल्लोकानुषित्वा",
+   "kind": "transcription",
+   "page": 174
+  },
+  {
+   "ref": "6.41",
+   "field": "mula",
+   "from": "शुचीना श्रीमता गेहे",
+   "to": "शुचीनां श्रीमतां गेहे",
+   "kind": "misprint",
+   "page": 174,
+   "why": "The print drops both anusvāras; the gloss reads शुचीनां and श्रीमतां."
+  },
+  {
+   "ref": "6.42",
+   "field": "mula",
+   "from": "योगनामेव",
+   "to": "योगिनामेव",
+   "kind": "transcription",
+   "page": 174
+  },
+  {
+   "ref": "6.42",
+   "field": "mula",
+   "from": "लोक जन्म",
+   "to": "लोके जन्म",
+   "kind": "transcription",
+   "page": 174
+  },
+  {
+   "ref": "6.44",
+   "field": "mula",
+   "from": "तेनैव हियते",
+   "to": "तेनैव ह्रियते",
+   "kind": "misprint",
+   "page": 175,
+   "why": "The print reads हियते, dropping the र; the gloss reads ह्रियते."
+  },
+  {
+   "ref": "6.44",
+   "field": "mula",
+   "from": "जिज्ञासुरपी",
+   "to": "जिज्ञासुरपि",
+   "kind": "transcription",
+   "page": 175
+  },
+  {
+   "ref": "6.45",
+   "field": "translation",
+   "from": "he reacheth. the",
+   "to": "he reacheth the",
+   "page": 175
+  },
+  {
+   "ref": "6.46",
+   "field": "translation",
+   "from": "a Yogग,",
+   "to": "a Yogi,",
+   "page": 176
+  }
+ ],
+ "kept": [
+  {
+   "ref": "6.41",
+   "ours": "्ल",
+   "page": 174,
+   "note": "The print joins the sandhi as पुण्यकृताँल्लोकान्, with candrabindu and doubled ल; the witnesses write पुण्यकृतां लोकान्."
+  }
+ ]
+}
