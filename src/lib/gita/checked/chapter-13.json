@@ -1,0 +1,265 @@
+{
+ "chapter": 13,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  280,
+  281,
+  282,
+  283,
+  284,
+  285,
+  286,
+  287,
+  288,
+  289,
+  290,
+  291,
+  292,
+  293,
+  294,
+  295
+ ],
+ "fixes": [
+  {
+   "ref": "13.1",
+   "field": "translation",
+   "from": "by the Sages. .",
+   "to": "by the Sages.",
+   "page": 280
+  },
+  {
+   "ref": "13.2",
+   "field": "translation",
+   "from": "is the Wisdom,",
+   "to": "is the Wisdom.",
+   "page": 281
+  },
+  {
+   "ref": "13.3",
+   "field": "translation",
+   "from": "how modi- fied",
+   "to": "how modified",
+   "page": 281
+  },
+  {
+   "ref": "13.3",
+   "field": "translation",
+   "from": "from Me. .",
+   "to": "from Me.",
+   "page": 281
+  },
+  {
+   "ref": "13.4",
+   "field": "translation",
+   "from": "rea- sonings",
+   "to": "reasonings",
+   "page": 282
+  },
+  {
+   "ref": "13.6",
+   "field": "translation",
+   "from": "intel- ligence",
+   "to": "intelligence",
+   "page": 282
+  },
+  {
+   "ref": "13.6",
+   "field": "translation",
+   "from": "modifications. 1 The body. ( 237 )",
+   "to": "modifications.",
+   "page": 282
+  },
+  {
+   "ref": "13.7",
+   "field": "mula",
+   "from": "अमानित्वमदंमित्व",
+   "to": "अमानित्वमदंभित्व",
+   "kind": "transcription",
+   "page": 283
+  },
+  {
+   "ref": "13.8",
+   "field": "translation",
+   "from": "lndifference",
+   "to": "Indifference",
+   "page": 283
+  },
+  {
+   "ref": "13.10",
+   "field": "translation",
+   "from": "company of men. (to)",
+   "to": "company of men,",
+   "page": 284
+  },
+  {
+   "ref": "13.12",
+   "field": "translation",
+   "from": "enjoyed-the begin- ningless",
+   "to": "enjoyed—the beginningless",
+   "page": 285
+  },
+  {
+   "ref": "13.13",
+   "field": "translation",
+   "from": "He dwelleth .in the world, enveloping all; 0",
+   "to": "He dwelleth in the world, enveloping all;",
+   "page": 285
+  },
+  {
+   "ref": "13.14",
+   "field": "translation",
+   "from": "unattached supporting",
+   "to": "unattached, supporting",
+   "page": 286
+  },
+  {
+   "ref": "13.14",
+   "field": "translation",
+   "from": "free from qual- ities enjoying",
+   "to": "free from qualities, enjoying",
+   "page": 286
+  },
+  {
+   "ref": "13.16",
+   "field": "translation",
+   "from": "ly ; Not divided amid beings, and yet seated distributive- THAT is to be known as the supporter of beings; He devours and He generates. .",
+   "to": "Not divided amid beings, and yet seated distributively; THAT is to be known as the supporter of beings; He devours and He generates.",
+   "page": 287
+  },
+  {
+   "ref": "13.19",
+   "field": "mula",
+   "from": "विद्यनादी उभावपि",
+   "to": "विद्ध्यनादी उभावपि",
+   "kind": "misprint",
+   "page": 288,
+   "why": "The print sets विद्यनादी, dropping the ध्; the gloss reads विद्धि and अनादी."
+  },
+  {
+   "ref": "13.19",
+   "field": "mula",
+   "from": "विकाराश्च गुणाश्चैव",
+   "to": "विकारांश्च गुणांश्चैव",
+   "kind": "misprint",
+   "page": 288,
+   "why": "The print drops both anusvāras; the gloss reads विकारान् and गुणान्."
+  },
+  {
+   "ref": "13.19",
+   "field": "translation",
+   "from": "all Matter-born",
+   "to": "all Matter-born.",
+   "page": 288
+  },
+  {
+   "ref": "13.20",
+   "field": "mula",
+   "from": "पुरुषःसुखदुःखाना भोक्तृत्वे",
+   "to": "पुरुषः सुखदुःखानां भोक्तृत्वे",
+   "kind": "misprint",
+   "page": 288,
+   "why": "The print drops the anusvāra; the gloss on page 289 reads सुखदुःखानाम्."
+  },
+  {
+   "ref": "13.20",
+   "field": "translation",
+   "from": "pleasure and pain. 51",
+   "to": "pleasure and pain.",
+   "page": 288
+  },
+  {
+   "ref": "13.22",
+   "field": "mula",
+   "from": "देहे ऽस्मिन्पुरुषः पर॥",
+   "to": "देहेऽस्मिन्पुरुषः परः॥",
+   "kind": "misprint",
+   "page": 289,
+   "why": "The print drops the visarga of परः, which the gloss reads."
+  },
+  {
+   "ref": "13.23",
+   "field": "translation",
+   "from": "born again. .",
+   "to": "born again.",
+   "page": 290
+  },
+  {
+   "ref": "13.23",
+   "field": "mula",
+   "from": "न स भयोऽभिजायते",
+   "to": "न स भूयोऽभिजायते",
+   "kind": "transcription",
+   "page": 290
+  },
+  {
+   "ref": "13.24",
+   "field": "mula",
+   "from": "अन्ये साख्येन",
+   "to": "अन्ये सांख्येन",
+   "kind": "misprint",
+   "page": 290,
+   "why": "The print drops the anusvāra; the gloss reads सांख्येन."
+  },
+  {
+   "ref": "13.24",
+   "field": "translation",
+   "from": "the Sankhya Yoga",
+   "to": "the Sankhya Yoga,",
+   "page": 290
+  },
+  {
+   "ref": "13.27",
+   "field": "translation",
+   "from": "perishing--he",
+   "to": "perishing—he",
+   "page": 291
+  },
+  {
+   "ref": "13.27",
+   "field": "mula",
+   "from": "तिष्ठतं परमेश्वरम्",
+   "to": "तिष्ठंतं परमेश्वरम्",
+   "kind": "transcription",
+   "page": 291
+  },
+  {
+   "ref": "13.28",
+   "field": "mula",
+   "from": "परागतिम्",
+   "to": "परां गतिम्",
+   "kind": "misprint",
+   "page": 292,
+   "why": "The print reads परा गतिम्, dropping the anusvāra; the gloss reads परं."
+  },
+  {
+   "ref": "13.31",
+   "field": "translation",
+   "from": "the im- perishable",
+   "to": "the imperishable",
+   "page": 293
+  },
+  {
+   "ref": "13.34",
+   "field": "mula",
+   "from": "ये विदुर्याति ते परम्",
+   "to": "ये विदुर्यांति ते परम्",
+   "kind": "misprint",
+   "page": 294,
+   "why": "The print drops the anusvāra; the gloss reads यांति."
+  }
+ ],
+ "kept": [
+  {
+   "ref": "13.14",
+   "ours": "ै",
+   "page": 286,
+   "note": "The print reads सर्वैंद्रिय twice, joining सर्व and इंद्रिय with ai; its gloss reads the same. Both witnesses read सर्वेन्द्रिय."
+  },
+  {
+   "ref": "13.17",
+   "ours": "ध",
+   "page": 287,
+   "note": "The print reads धिष्ठितम्, as its gloss does; both witnesses read विष्ठितम्."
+  }
+ ]
+}
