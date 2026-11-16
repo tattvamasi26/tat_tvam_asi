@@ -1,0 +1,217 @@
+{
+ "chapter": 12,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  271,
+  272,
+  273,
+  274,
+  275,
+  276,
+  277,
+  278,
+  279,
+  280
+ ],
+ "fixes": [
+  {
+   "ref": "12.1",
+   "field": "translation",
+   "from": "yoga? Arjuna said:",
+   "to": "Arjuna said:",
+   "page": 271
+  },
+  {
+   "ref": "12.1",
+   "field": "translation",
+   "from": "learned in yoga ?",
+   "to": "learned in yoga?",
+   "page": 271
+  },
+  {
+   "ref": "12.2",
+   "field": "translation",
+   "from": "ever harmonised worship",
+   "to": "ever harmonised, worship",
+   "page": 271
+  },
+  {
+   "ref": "12.2",
+   "field": "translation",
+   "from": "endowed, these in My opinion,",
+   "to": "endowed, these, in My opinion,",
+   "page": 271
+  },
+  {
+   "ref": "12.3",
+   "field": "translation",
+   "from": "Eternal, 3",
+   "to": "Eternal,",
+   "page": 272
+  },
+  {
+   "ref": "12.4",
+   "field": "translation",
+   "from": "unto Me. .",
+   "to": "unto Me.",
+   "page": 272
+  },
+  {
+   "ref": "12.5",
+   "field": "mula",
+   "from": "गतिर्दुःख देहवद्भिरवाप्यते",
+   "to": "गतिर्दुःखं देहवद्भिरवाप्यते",
+   "kind": "transcription",
+   "page": 272
+  },
+  {
+   "ref": "12.5",
+   "field": "translation",
+   "from": "Unmani. . fested is hard for the embodied to reach. .",
+   "to": "Unmanifested is hard for the embodied to reach.",
+   "page": 273
+  },
+  {
+   "ref": "12.6",
+   "field": "translation",
+   "from": "whole. hearted",
+   "to": "whole-hearted",
+   "page": 273
+  },
+  {
+   "ref": "12.8",
+   "field": "mula",
+   "from": "अत ऊर्ध्व न",
+   "to": "अत ऊर्ध्वं न",
+   "kind": "transcription",
+   "page": 274
+  },
+  {
+   "ref": "12.10",
+   "field": "translation",
+   "from": "It also thou",
+   "to": "If also thou",
+   "page": 275
+  },
+  {
+   "ref": "12.10",
+   "field": "translation",
+   "from": "be in- tent",
+   "to": "be intent",
+   "page": 275
+  },
+  {
+   "ref": "12.10",
+   "field": "translation",
+   "from": "perfection. )",
+   "to": "perfection.",
+   "page": 275
+  },
+  {
+   "ref": "12.11",
+   "field": "mula",
+   "from": "कर्तु मद्योगमाश्रितः",
+   "to": "कर्तुं मद्योगमाश्रितः",
+   "kind": "transcription",
+   "page": 275
+  },
+  {
+   "ref": "12.12",
+   "field": "mula",
+   "from": "ध्यानाकर्मफलत्याग",
+   "to": "ध्यानात्कर्मफलत्याग",
+   "kind": "transcription",
+   "page": 275
+  },
+  {
+   "ref": "12.12",
+   "field": "translation",
+   "from": "meditation better :",
+   "to": "meditation is better;",
+   "page": 275
+  },
+  {
+   "ref": "12.13",
+   "field": "mula",
+   "from": "सर्वभूताना मैत्रः",
+   "to": "सर्वभूतानां मैत्रः",
+   "kind": "transcription",
+   "page": 276
+  },
+  {
+   "ref": "12.14",
+   "field": "translation",
+   "from": "deyotee",
+   "to": "devotee",
+   "page": 276
+  },
+  {
+   "ref": "12.16",
+   "field": "translation",
+   "from": "devo- tee",
+   "to": "devotee",
+   "page": 277
+  },
+  {
+   "ref": "12.17",
+   "field": "mula",
+   "from": "न दृष्टि न",
+   "to": "न द्वेष्टि न",
+   "kind": "transcription",
+   "page": 277
+  },
+  {
+   "ref": "12.17",
+   "field": "mula",
+   "from": "न काक्षति",
+   "to": "न कांक्षति",
+   "kind": "misprint",
+   "page": 277,
+   "why": "The print drops the anusvāra; the gloss on page 278 reads कांक्षति."
+  },
+  {
+   "ref": "12.18",
+   "field": "mula",
+   "from": "शीतोष्णसुखदुःखेषु समः संगविवर्जितः",
+   "to": "समः शत्रौ च मित्रे च तथा मानापमानयोः ।\nशीतोष्णसुखदुःखेषु समः संगविवर्जितः",
+   "kind": "transcription",
+   "page": 278
+  },
+  {
+   "ref": "12.18",
+   "field": "translation",
+   "from": "प Alike",
+   "to": "Alike",
+   "page": 278
+  },
+  {
+   "ref": "12.18",
+   "field": "translation",
+   "from": "igno. miny",
+   "to": "ignominy",
+   "page": 278
+  },
+  {
+   "ref": "12.18",
+   "field": "translation",
+   "from": "desti. tute of attachment, -",
+   "to": "destitute of attachment,",
+   "page": 278
+  },
+  {
+   "ref": "12.19",
+   "field": "translation",
+   "from": "wholly ( 233 ) content",
+   "to": "wholly content",
+   "page": 278
+  }
+ ],
+ "kept": [
+  {
+   "ref": "12.14",
+   "ours": "े",
+   "page": 276,
+   "note": "The print reads यो मे भक्तः, and its gloss मे … भक्तः; both witnesses read मद्भक्तः."
+  }
+ ]
+}
