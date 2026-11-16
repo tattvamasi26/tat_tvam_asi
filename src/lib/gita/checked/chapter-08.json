@@ -1,0 +1,289 @@
+{
+ "chapter": 8,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  190,
+  191,
+  192,
+  193,
+  194,
+  195,
+  196,
+  197,
+  198,
+  199,
+  200,
+  201,
+  202,
+  203
+ ],
+ "fixes": [
+  {
+   "ref": "8.1",
+   "field": "mula",
+   "from": "अधिभूत च",
+   "to": "अधिभूतं च",
+   "kind": "transcription",
+   "page": 190
+  },
+  {
+   "ref": "8.1",
+   "field": "translation",
+   "from": "know ledge",
+   "to": "knowledge",
+   "page": 190
+  },
+  {
+   "ref": "8.2",
+   "field": "translation",
+   "from": "forth going",
+   "to": "forthgoing",
+   "page": 190
+  },
+  {
+   "ref": "8.3",
+   "field": "translation",
+   "from": "the supreme is the ETERNAL",
+   "to": "the supreme, is the ETERNAL",
+   "page": 191
+  },
+  {
+   "ref": "8.3",
+   "field": "translation",
+   "from": "is named Action.",
+   "to": "is named Action;",
+   "page": 191
+  },
+  {
+   "ref": "8.4",
+   "field": "translation",
+   "from": "perish able",
+   "to": "perishable",
+   "page": 191
+  },
+  {
+   "ref": "8.4",
+   "field": "translation",
+   "from": "con cerns",
+   "to": "concerns",
+   "page": 191
+  },
+  {
+   "ref": "8.4",
+   "field": "translation",
+   "from": "body, best of living beings",
+   "to": "body, O best of living beings.",
+   "page": 191
+  },
+  {
+   "ref": "8.5",
+   "field": "mula",
+   "from": "स मद्भाव याति",
+   "to": "स मद्भावं याति",
+   "kind": "misprint",
+   "page": 192,
+   "why": "The print drops the anusvāra; the gloss reads मद्भावं."
+  },
+  {
+   "ref": "8.8",
+   "field": "mula",
+   "from": "पार्थानुचितयन्",
+   "to": "पार्थानुचिंतयन्",
+   "kind": "transcription",
+   "page": 193
+  },
+  {
+   "ref": "8.9",
+   "field": "mula",
+   "from": "धातारमjdचिंत्यरूप",
+   "to": "धातारमचिंत्यरूप",
+   "kind": "transcription",
+   "page": 193
+  },
+  {
+   "ref": "8.5",
+   "field": "translation",
+   "from": "casting of the body",
+   "to": "casting off the body",
+   "page": 192
+  },
+  {
+   "ref": "8.6",
+   "field": "translation",
+   "from": "think ing",
+   "to": "thinking",
+   "page": 192
+  },
+  {
+   "ref": "8.6",
+   "field": "translation",
+   "from": "goeth, o Kaunteya",
+   "to": "goeth, O Kaunteya",
+   "page": 192
+  },
+  {
+   "ref": "8.7",
+   "field": "translation",
+   "from": "and fight With mind and Reason set on Me without doubt thou shalt come to Me",
+   "to": "and fight. With mind and Reason set on Me, without doubt thou shalt come to Me.",
+   "page": 193
+  },
+  {
+   "ref": "8.8",
+   "field": "translation",
+   "from": "Spirit, supreme divine",
+   "to": "Spirit, supreme, divine.",
+   "page": 193
+  },
+  {
+   "ref": "8.11",
+   "field": "mula",
+   "from": "पदं सग्रहेण",
+   "to": "पदं संग्रहेण",
+   "kind": "transcription",
+   "page": 195
+  },
+  {
+   "ref": "8.12",
+   "field": "mula",
+   "from": "मध्याधायात्मनः",
+   "to": "मूर्ध्न्याधायात्मनः",
+   "kind": "transcription",
+   "page": 195
+  },
+  {
+   "ref": "8.9",
+   "field": "translation",
+   "from": "the Omniscient the All-Ruler",
+   "to": "the Omniscient, the All-Ruler",
+   "page": 194
+  },
+  {
+   "ref": "8.11",
+   "field": "translation",
+   "from": "Vedaknowers",
+   "to": "Veda-knowers",
+   "page": 195
+  },
+  {
+   "ref": "8.15",
+   "field": "mula",
+   "from": "संसिद्धि परमां",
+   "to": "संसिद्धिं परमां",
+   "kind": "transcription",
+   "page": 197
+  },
+  {
+   "ref": "8.16",
+   "field": "mula",
+   "from": "आब्रह्मभुवनालोकाः",
+   "to": "आब्रह्मभुवनाल्लोकाः",
+   "kind": "transcription",
+   "page": 197
+  },
+  {
+   "ref": "8.17",
+   "field": "mula",
+   "from": "सहस्रयुगपर्यंतमहर्यब्रह्मणो",
+   "to": "सहस्रयुगपर्यंतमहर्यद्ब्रह्मणो",
+   "kind": "transcription",
+   "page": 197
+  },
+  {
+   "ref": "8.13",
+   "field": "translation",
+   "from": "think- ing",
+   "to": "thinking",
+   "page": 196
+  },
+  {
+   "ref": "8.16",
+   "field": "translation",
+   "from": "'but he who",
+   "to": "but he who",
+   "page": 197
+  },
+  {
+   "ref": "8.17",
+   "field": "mula",
+   "from": "युगसहस्रांता",
+   "to": "युगसहस्रांतां",
+   "kind": "misprint",
+   "page": 197,
+   "why": "The print drops the final anusvāra; the gloss on page 198 reads युगसहस्रांतां."
+  },
+  {
+   "ref": "8.18",
+   "field": "mula",
+   "from": "अव्यक्ताद्वयक्तयः सर्वाः प्रभवत्यहरागमे",
+   "to": "अव्यक्ताद्व्यक्तयः सर्वाः प्रभवंत्यहरागमे",
+   "kind": "transcription",
+   "page": 198
+  },
+  {
+   "ref": "8.18",
+   "field": "mula",
+   "from": "राज्यागमे",
+   "to": "रात्र्यागमे",
+   "kind": "transcription",
+   "page": 198
+  },
+  {
+   "ref": "8.21",
+   "field": "mula",
+   "from": "न निवर्तते",
+   "to": "न निवर्तंते",
+   "kind": "transcription",
+   "page": 199
+  },
+  {
+   "ref": "8.23",
+   "field": "mula",
+   "from": "प्रयाता याति",
+   "to": "प्रयाता यांति",
+   "kind": "misprint",
+   "page": 200,
+   "why": "The print drops the anusvāra; the gloss reads यांति."
+  },
+  {
+   "ref": "8.24",
+   "field": "mula",
+   "from": "अग्निज्योतिरहः",
+   "to": "अग्निर्ज्योतिरहः",
+   "kind": "transcription",
+   "page": 200
+  },
+  {
+   "ref": "8.24",
+   "field": "mula",
+   "from": "ब्रह्मावदो",
+   "to": "ब्रह्मविदो",
+   "kind": "transcription",
+   "page": 200
+  },
+  {
+   "ref": "8.25",
+   "field": "mula",
+   "from": "चाद्रमसं",
+   "to": "चांद्रमसं",
+   "kind": "misprint",
+   "page": 201,
+   "why": "The print drops the anusvāra; the gloss reads चांद्रमसं."
+  },
+  {
+   "ref": "8.24",
+   "field": "translation",
+   "from": "northern path-then",
+   "to": "northern path—then",
+   "page": 201
+  },
+  {
+   "ref": "8.25",
+   "field": "translation",
+   "from": "southern path-then",
+   "to": "southern path—then",
+   "page": 201
+  }
+ ],
+ "kept": []
+}
