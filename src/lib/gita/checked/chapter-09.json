@@ -1,0 +1,235 @@
+{
+ "chapter": 9,
+ "checkedOn": "2026-11-15",
+ "pagesRead": [
+  204,
+  205,
+  206,
+  207,
+  208,
+  209,
+  210,
+  211,
+  212,
+  213,
+  214,
+  215,
+  216,
+  217,
+  218,
+  219
+ ],
+ "fixes": [
+  {
+   "ref": "9.2",
+   "field": "mula",
+   "from": "धर्म्य सुसुखं",
+   "to": "धर्म्यं सुसुखं",
+   "kind": "transcription",
+   "page": 204
+  },
+  {
+   "ref": "9.2",
+   "field": "mula",
+   "from": "कर्तुव्ययम्",
+   "to": "कर्तुमव्ययम्",
+   "kind": "misprint",
+   "page": 204,
+   "why": "The print sets कर्मतुव्ययम्, a garbled कर्तुमव्ययम्; the gloss reads कर्तुम् and अव्ययम्."
+  },
+  {
+   "ref": "9.3",
+   "field": "mula",
+   "from": "अप्राप्य मा निवर्तते",
+   "to": "अप्राप्य मां निवर्तंते",
+   "kind": "misprint",
+   "page": 205,
+   "why": "The print drops the anusvāra of मां, which the gloss reads; निवर्तंते is as printed."
+  },
+  {
+   "ref": "9.4",
+   "field": "mula",
+   "from": "सर्व जगदव्यक्तमूर्तिना",
+   "to": "सर्वं जगदव्यक्तमूर्तिना",
+   "kind": "transcription",
+   "page": 205
+  },
+  {
+   "ref": "9.3",
+   "field": "translation",
+   "from": "Parantapa, , not",
+   "to": "Parantapa, not",
+   "page": 205
+  },
+  {
+   "ref": "9.7",
+   "field": "mula",
+   "from": "प्रकृतिं याति",
+   "to": "प्रकृतिं यांति",
+   "kind": "misprint",
+   "page": 206,
+   "why": "The print drops the anusvāra; the gloss on page 207 reads यांति."
+  },
+  {
+   "ref": "9.8",
+   "field": "mula",
+   "from": "प्रकृति स्वामवष्टभ्य",
+   "to": "प्रकृतिं स्वामवष्टभ्य",
+   "kind": "transcription",
+   "page": 207
+  },
+  {
+   "ref": "9.9",
+   "field": "mula",
+   "from": "निबन्धंति",
+   "to": "निबध्नंति",
+   "kind": "transcription",
+   "page": 207
+  },
+  {
+   "ref": "9.6",
+   "field": "translation",
+   "from": "in Me-thus",
+   "to": "in Me—thus",
+   "page": 206
+  },
+  {
+   "ref": "9.7",
+   "field": "translation",
+   "from": "world- age",
+   "to": "world-age",
+   "page": 206
+  },
+  {
+   "ref": "9.8",
+   "field": "translation",
+   "from": "help- less",
+   "to": "helpless",
+   "page": 207
+  },
+  {
+   "ref": "9.13",
+   "field": "mula",
+   "from": "महात्मानस्तु मा पार्थ",
+   "to": "महात्मानस्तु मां पार्थ",
+   "kind": "misprint",
+   "page": 209,
+   "why": "The print drops the anusvāra; the gloss reads मां."
+  },
+  {
+   "ref": "9.13",
+   "field": "mula",
+   "from": "दैवी प्रकृतिमाश्रिताः",
+   "to": "दैवीं प्रकृतिमाश्रिताः",
+   "kind": "transcription",
+   "page": 209
+  },
+  {
+   "ref": "9.13",
+   "field": "mula",
+   "from": "भजत्यनन्यमनसो",
+   "to": "भजंत्यनन्यमनसो",
+   "kind": "transcription",
+   "page": 209
+  },
+  {
+   "ref": "9.14",
+   "field": "mula",
+   "from": "कीर्तयतो मा यतंतश्च",
+   "to": "कीर्तयंतो मां यतंतश्च",
+   "kind": "misprint",
+   "page": 209,
+   "why": "The print drops the anusvāra of मां, which the gloss reads; कीर्तयंतो is as printed."
+  },
+  {
+   "ref": "9.14",
+   "field": "mula",
+   "from": "नमस्यंतश्च मा भक्त्या",
+   "to": "नमस्यंतश्च मां भक्त्या",
+   "kind": "misprint",
+   "page": 209,
+   "why": "The print drops the anusvāra; the gloss reads माम्."
+  },
+  {
+   "ref": "9.17",
+   "field": "translation",
+   "from": "the Sup-. porter",
+   "to": "the Supporter",
+   "page": 210
+  },
+  {
+   "ref": "9.17",
+   "field": "translation",
+   "from": "Word of Pover",
+   "to": "Word of Power",
+   "page": 211
+  },
+  {
+   "ref": "9.18",
+   "field": "translation",
+   "from": "Treasure-house, : Seed",
+   "to": "Treasure-house, Seed",
+   "page": 211
+  },
+  {
+   "ref": "9.20",
+   "field": "mula",
+   "from": "त्रैविद्या मा सोमपाः",
+   "to": "त्रैविद्या मां सोमपाः",
+   "kind": "misprint",
+   "page": 212,
+   "why": "The print drops the anusvāra; the gloss reads मां."
+  },
+  {
+   "ref": "9.21",
+   "field": "mula",
+   "from": "कामकामा लभते",
+   "to": "कामकामा लभंते",
+   "kind": "transcription",
+   "page": 213
+  },
+  {
+   "ref": "9.22",
+   "field": "mula",
+   "from": "अनन्याश्चितयंतो मा ये",
+   "to": "अनन्याश्चिंतयंतो मां ये",
+   "kind": "misprint",
+   "page": 213,
+   "why": "The print drops the anusvāra of मां, which the gloss reads; the transcription also dropped that of चिंतयंतः, which the print has."
+  },
+  {
+   "ref": "9.21",
+   "field": "translation",
+   "from": "the three,' desiring",
+   "to": "the three, desiring",
+   "page": 213
+  },
+  {
+   "ref": "9.25",
+   "field": "mula",
+   "from": "याति देवव्रता",
+   "to": "यांति देवव्रता",
+   "kind": "misprint",
+   "page": 214,
+   "why": "The print drops the anusvāra three times in this verse; the gloss on page 215 reads यांति each time."
+  },
+  {
+   "ref": "9.25",
+   "field": "mula",
+   "from": "भूतानि यातिभूतेज्या याति मद्याजिनोऽपि",
+   "to": "भूतानि यांति भूतेज्या यांति मद्याजिनोऽपि",
+   "kind": "misprint",
+   "page": 214,
+   "why": "The print drops the anusvāra; the gloss reads यांति."
+  },
+  {
+   "ref": "9.31",
+   "field": "mula",
+   "from": "भक्त : प्रणश्यति",
+   "to": "भक्तः प्रणश्यति",
+   "kind": "transcription",
+   "page": 217
+  }
+ ],
+ "kept": []
+}
